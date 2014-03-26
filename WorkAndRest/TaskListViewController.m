@@ -30,6 +30,8 @@
     items = [[NSMutableArray alloc] initWithCapacity:20];
     
     if (!hasRunBefore) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstRun"];
+        
         TaskItem *item;
         
         item = [[TaskItem alloc] init];
@@ -50,7 +52,7 @@
         }
     }
     
-    [self performFetch];
+    //[self performFetch];
 }
 
 - (void)performFetch
@@ -86,8 +88,10 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+//    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+//    return [sectionInfo numberOfObjects];
+
+    return items.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
