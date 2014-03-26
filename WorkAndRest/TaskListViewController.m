@@ -26,21 +26,28 @@
 {
     [super viewDidLoad];
     
-    BOOL hasRunBefore = [[NSUserDefaults standardUserDefaults] boolForKey:@"FirstRun"];
     items = [[NSMutableArray alloc] initWithCapacity:20];
+
+    [self firstRun];
+    [self loadFromCoreData];
+    //[self performFetch];
+}
+
+// 首次运行程序
+- (void)firstRun
+{
+    BOOL hasRunBefore = [[NSUserDefaults standardUserDefaults] boolForKey:@"FirstRun"];
     
     if (!hasRunBefore) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstRun"];
         
         TaskItem *item;
-        
         item = [[TaskItem alloc] init];
         item.text = @"Task Sample";
         item.completed = YES;
         item.costWorkTimes = 5;
         
         Task *sampleTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
-        
         sampleTask.text = item.text;
         sampleTask.costWorkTimes = [NSNumber numberWithInteger:item.costWorkTimes];
         sampleTask.completed = [NSNumber numberWithBool:item.completed];
@@ -51,8 +58,22 @@
             return;
         }
     }
+}
+
+// 从数据库加载数据
+- (void)loadFromCoreData
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
     
-    //[self performFetch];
+    NSError *error;
+    NSArray *foundObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (foundObjects == nil) {
+        FATAL_CORE_DATA_ERROR(error);
+        return;
+    }
+    items = [foundObjects mutableCopy];
 }
 
 - (void)performFetch

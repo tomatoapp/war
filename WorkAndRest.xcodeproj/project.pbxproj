@@ -127,9 +127,6 @@
 		6434827718C5D344009BF110 /* WorkAndRest */ = {
 			isa = PBXGroup;
 			children = (
-				6439ADD018E15E2100CAC85B /* DataModel.xcdatamodeld */,
-				6439ADE518E16FB500CAC85B /* Task.h */,
-				6439ADE618E16FB500CAC85B /* Task.m */,
 				6434828018C5D344009BF110 /* AppDelegate.h */,
 				6434828118C5D344009BF110 /* AppDelegate.m */,
 				6434828318C5D344009BF110 /* Main.storyboard */,
@@ -139,6 +136,9 @@
 				640D064518E03575007B0894 /* ItemDetailViewController.m */,
 				640D064118E02FF3007B0894 /* TaskItem.h */,
 				640D064218E02FF3007B0894 /* TaskItem.m */,
+				6439ADD018E15E2100CAC85B /* DataModel.xcdatamodeld */,
+				6439ADE518E16FB500CAC85B /* Task.h */,
+				6439ADE618E16FB500CAC85B /* Task.m */,
 				6434828918C5D344009BF110 /* Images.xcassets */,
 				6434827818C5D344009BF110 /* Supporting Files */,
 			);
