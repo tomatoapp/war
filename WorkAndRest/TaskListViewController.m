@@ -17,6 +17,7 @@
 
 @implementation TaskListViewController  {
     NSMutableArray *items;
+    NSArray *tasks;
     NSFetchedResultsController *fetchedResultsController;
 }
 
@@ -73,7 +74,7 @@
         FATAL_CORE_DATA_ERROR(error);
         return;
     }
-    items = [foundObjects mutableCopy];
+    tasks = foundObjects;
 }
 
 - (void)performFetch
@@ -112,16 +113,16 @@
 //    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
 //    return [sectionInfo numberOfObjects];
 
-    return items.count;
+    return tasks.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskItem"];
-    TaskItem *item = [items objectAtIndex:indexPath.row];
+    Task *item = [tasks objectAtIndex:indexPath.row];
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:1000];
     titleLabel.text = item.text;
-    [self configureCheckmarkForCell:cell withTaskItem:item];
+    [self configureCheckmarkForCell:cell withTask:item];
     return cell;
 }
 
@@ -216,7 +217,24 @@
     }
 }
 
+- (void)configureCheckmarkForCell:(UITableViewCell *)cell withTask:(Task *)item
+{
+    UILabel *label = (UILabel *)[cell viewWithTag:1001];
+    
+    if ([item.completed boolValue]) {
+        label.text = @"√";
+    } else {
+        label.text = @"";
+    }
+}
+
 - (void)configureTextForCell:(UITableViewCell *)cell withTaskItem:(TaskItem *)item
+{
+    UILabel *label =(UILabel *)[cell viewWithTag:1000];
+    label.text = item.text;
+}
+
+- (void)configureTextForCell:(UITableViewCell *)cell withTask:(Task *)item
 {
     UILabel *label =(UILabel *)[cell viewWithTag:1000];
     label.text = item.text;
