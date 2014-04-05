@@ -28,11 +28,7 @@
 {
     [super viewDidLoad];
     [self performFetch];
-
-    // items = [[NSMutableArray alloc] initWithCapacity:20];
-
-    // [self firstRun];
-    // [self loadFromCoreData];
+    [self firstRun];
 }
 
 // 首次运行程序
@@ -113,7 +109,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -125,10 +120,10 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskItem"];
-//    Task *item = [tasks objectAtIndex:indexPath.row];
-//    UILabel *titleLabel = (UILabel *)[cell viewWithTag:1000];
-//    titleLabel.text = item.text;
-//    [self configureCheckmarkForCell:cell withTask:item];
+    Task *item = [tasks objectAtIndex:indexPath.row];
+    UILabel *titleLabel = (UILabel *)[cell viewWithTag:1000];
+    titleLabel.text = item.text;
+    [self configureCheckmarkForCell:cell withTask:item];
     
     [self configureCell:cell atIndexPath:indexPath];
     
@@ -233,14 +228,6 @@
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishAddingTask:(TaskItem *)item
 {
-    // NSLog(@"Click the Done Button. the new Task is: %@", item.text);
-    // int newRowIndex = [items count];
-    // [items addObject:item];
-    
-    // NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
-    // NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
-    // [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-    
     Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
     task.text = item.text;
     task.completed = [NSNumber numberWithBool:NO];
@@ -255,15 +242,13 @@
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishEditingTask:(TaskItem *)item
 {
-    // UNDONE:
-    
-    //    int index = [items indexOfObject:item];
-    //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    //    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    //
-    //    [self configureTextForCell:cell withTaskItem:item];
-    //    
-    //    [self dismissViewControllerAnimated:YES completion:nil];
+    int index = [items indexOfObject:item];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+  
+    [self configureTextForCell:cell withTaskItem:item];
+     
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)addTaskViewControllerDidCancel:(ItemDetailViewController *)controller
@@ -276,16 +261,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // UNDONE:
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
-    //    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    //
-    //    TaskItem *item = [items objectAtIndex:indexPath.row];
-    //    [item toggleCompleted];
-    //
-    //    [self configureCheckmarkForCell:cell withTaskItem:item];
-    //    
-    //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    TaskItem *item = [items objectAtIndex:indexPath.row];
+    [item toggleCompleted];
+    
+    [self configureCheckmarkForCell:cell withTaskItem:item];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)configureCheckmarkForCell:(UITableViewCell *)cell withTaskItem:(TaskItem *)item
