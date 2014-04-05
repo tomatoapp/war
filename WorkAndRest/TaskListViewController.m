@@ -159,9 +159,9 @@
     int newRowIndex = [items count];
     [items addObject:item];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
-    NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
-    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    // NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
+    // NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+    // [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     
     Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
     task.text = item.text;
