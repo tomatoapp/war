@@ -18,6 +18,7 @@
 @implementation TaskListViewController  {
     NSMutableArray *items;
     NSArray *tasks;
+    // When the objects have been changed, added or deleted, it can update the table.
     NSFetchedResultsController *fetchedResultsController;
 }
 
@@ -26,12 +27,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    items = [[NSMutableArray alloc] initWithCapacity:20];
+    [self performFetch];
 
-    [self firstRun];
-    [self loadFromCoreData];
-    //[self performFetch];
+    // items = [[NSMutableArray alloc] initWithCapacity:20];
+
+    // [self firstRun];
+    // [self loadFromCoreData];
 }
 
 // 首次运行程序
@@ -80,7 +81,7 @@
 - (void)performFetch
 {
     NSError *error;
-    if (![fetchedResultsController performFetch:&error]) {
+    if (![self.fetchedResultsController performFetch:&error]) {
         FATAL_CORE_DATA_ERROR(error);
         return;
     }
@@ -89,14 +90,21 @@
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (fetchedResultsController == nil) {
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
         [fetchRequest setEntity:entity];
         
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"text" ascending:NO];
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        
         [fetchRequest setFetchBatchSize:20];
         
-        fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Tasks"];
+        fetchedResultsController = [[NSFetchedResultsController alloc]
+                                    initWithFetchRequest:fetchRequest
+                                    managedObjectContext:self.managedObjectContext
+                                    sectionNameKeyPath:nil
+                                    cacheName:@"Tasks"];
         fetchedResultsController.delegate = self;
     }
     return fetchedResultsController;
@@ -110,20 +118,28 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
-//    return [sectionInfo numberOfObjects];
-
-    return tasks.count;
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskItem"];
-    Task *item = [tasks objectAtIndex:indexPath.row];
-    UILabel *titleLabel = (UILabel *)[cell viewWithTag:1000];
-    titleLabel.text = item.text;
-    [self configureCheckmarkForCell:cell withTask:item];
+//    Task *item = [tasks objectAtIndex:indexPath.row];
+//    UILabel *titleLabel = (UILabel *)[cell viewWithTag:1000];
+//    titleLabel.text = item.text;
+//    [self configureCheckmarkForCell:cell withTask:item];
+    
+    [self configureCell:cell atIndexPath:indexPath];
+    
     return cell;
+}
+
+-(void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+     UILabel *titleLabel = (UILabel *)[cell viewWithTag:1000];
+    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
+    titleLabel.text = item.text;
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
@@ -151,13 +167,75 @@
     }
 }
 
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    NSLog(@"*** controllerWillChangeContent");
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller
+   didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath
+     forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            NSLog(@"*** controllerDidChangeObject - NSFetchedResultsChangeInsert");
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            NSLog(@"*** controllerDidChangeObject - NSFetchedResultsChangeDelete");
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            NSLog(@"*** controllerDidChangeObject - NSFetchedResultsChangeUpdate");
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            NSLog(@"*** controllerDidChangeObject - NSFetchedResultsChangeMove");
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller
+  didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex
+     forChangeType:(NSFetchedResultsChangeType)type
+{
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            NSLog(@"*** controllerDidChangeSection - NSFetchedResultsChangeInsert");
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            NSLog(@"*** controllerDidChangeSection - NSFetchedResultsChangeDelete");
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    NSLog(@"*** controllerDidChangeContent");
+    [self.tableView endUpdates];
+}
+
 #pragma mark - NewTaskViewControllerDelegate
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishAddingTask:(TaskItem *)item
 {
     // NSLog(@"Click the Done Button. the new Task is: %@", item.text);
-    int newRowIndex = [items count];
-    [items addObject:item];
+    // int newRowIndex = [items count];
+    // [items addObject:item];
     
     // NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
     // NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
@@ -177,13 +255,15 @@
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishEditingTask:(TaskItem *)item
 {
-    int index = [items indexOfObject:item];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    // UNDONE:
     
-    [self configureTextForCell:cell withTaskItem:item];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //    int index = [items indexOfObject:item];
+    //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    //    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    //
+    //    [self configureTextForCell:cell withTaskItem:item];
+    //    
+    //    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)addTaskViewControllerDidCancel:(ItemDetailViewController *)controller
@@ -196,14 +276,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    // UNDONE:
     
-    TaskItem *item = [items objectAtIndex:indexPath.row];
-    [item toggleCompleted];
-    
-    [self configureCheckmarkForCell:cell withTaskItem:item];
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    //
+    //    TaskItem *item = [items objectAtIndex:indexPath.row];
+    //    [item toggleCompleted];
+    //
+    //    [self configureCheckmarkForCell:cell withTaskItem:item];
+    //    
+    //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)configureCheckmarkForCell:(UITableViewCell *)cell withTaskItem:(TaskItem *)item
