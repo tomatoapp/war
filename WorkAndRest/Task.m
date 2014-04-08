@@ -14,5 +14,6 @@
 @dynamic text;
 @dynamic completed;
 @dynamic costWorkTimes;
+@dynamic date;
 
 @end

@@ -15,5 +15,6 @@
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSNumber * completed;
 @property (nonatomic, retain) NSNumber * costWorkTimes;
+@property (nonatomic, retain) NSDate *date;
 
 @end

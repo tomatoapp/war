@@ -91,7 +91,7 @@
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
         [fetchRequest setEntity:entity];
         
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"text" ascending:NO];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
         [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
         
         [fetchRequest setFetchBatchSize:20];
@@ -232,6 +232,7 @@
     task.text = item.text;
     task.completed = [NSNumber numberWithBool:NO];
     task.costWorkTimes = [NSNumber numberWithInteger:0];
+    task.date = [NSDate date];
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
         FATAL_CORE_DATA_ERROR(error);
