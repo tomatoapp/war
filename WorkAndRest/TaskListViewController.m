@@ -16,8 +16,6 @@
 @end
 
 @implementation TaskListViewController  {
-    NSMutableArray *items;
-    NSArray *tasks;
     // When the objects have been changed, added or deleted, it can update the table.
     NSFetchedResultsController *fetchedResultsController;
 }
@@ -56,22 +54,6 @@
             return;
         }
     }
-}
-
-// 从数据库加载数据
-- (void)loadFromCoreData
-{
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    NSError *error;
-    NSArray *foundObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (foundObjects == nil) {
-        FATAL_CORE_DATA_ERROR(error);
-        return;
-    }
-    tasks = foundObjects;
 }
 
 - (void)performFetch
@@ -244,12 +226,10 @@
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishEditingTask:(TaskItem *)item
 {
-    int index = [items indexOfObject:item];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-  
-    [self configureTextForCell:cell withTaskItem:item];
-     
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        FATAL_CORE_DATA_ERROR(error);
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -265,7 +245,7 @@
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
-    TaskItem *item = [items objectAtIndex:indexPath.row];
+    TaskItem *item = [fetchedResultsController objectAtIndexPath:indexPath];
     [item toggleCompleted];
     
     [self configureCheckmarkForCell:cell withTaskItem:item];
