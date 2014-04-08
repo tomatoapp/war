@@ -120,7 +120,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskItem"];
-    Task *item = [tasks objectAtIndex:indexPath.row];
+    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:1000];
     titleLabel.text = item.text;
     [self configureCheckmarkForCell:cell withTask:item];
@@ -141,7 +141,8 @@
 {
     NSLog(@"accessoryButtonTappedForRowWithIndexPath");
     
-    TaskItem *item = [items objectAtIndex:indexPath.row];
+    TaskItem *item = [fetchedResultsController objectAtIndexPath:indexPath];
+    NSLog(@"item is : %@", item.text);
     [self performSegueWithIdentifier:@"EditItem" sender:item];
 }
 
