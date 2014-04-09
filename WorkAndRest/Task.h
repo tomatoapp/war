@@ -17,4 +17,6 @@
 @property (nonatomic, retain) NSNumber * costWorkTimes;
 @property (nonatomic, retain) NSDate *date;
 
+- (void)toggleCompleted;
+
 @end

@@ -243,13 +243,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    
-    TaskItem *item = [fetchedResultsController objectAtIndexPath:indexPath];
+    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
     [item toggleCompleted];
     
-    [self configureCheckmarkForCell:cell withTaskItem:item];
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        FATAL_CORE_DATA_ERROR(error);
+        return;
+    }
     
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [self configureCheckmarkForCell:cell withTask:item];
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

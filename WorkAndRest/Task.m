@@ -16,4 +16,9 @@
 @dynamic costWorkTimes;
 @dynamic date;
 
+- (void)toggleCompleted
+{
+    self.completed = [NSNumber numberWithBool:![self.completed boolValue]];
+}
+
 @end
