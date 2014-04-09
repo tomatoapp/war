@@ -241,18 +241,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
-    [item toggleCompleted];
+    CustomCell *targetCustomCell = (CustomCell *)[tableView cellForRowAtIndexPath:indexPath];
+    // Update our data source array with the new checked state.
+    Task *task = [fetchedResultsController objectAtIndexPath:indexPath];
+    targetCustomCell.checkBox.checked = !targetCustomCell.checkBox.checked;
+    task.completed = @(!targetCustomCell.checkBox.checked);
     
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
         FATAL_CORE_DATA_ERROR(error);
         return;
     }
-    
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    [self configureCheckmarkForCell:cell withTask:item];
-
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -304,41 +303,6 @@
     cell.accessibilityValue = cell.checkBox.accessibilityValue;
     
     cell.checkBox.accessibilityLabel = cell.titleLabel.text;
-}
-
-
-- (void)configureCheckmarkForCell:(UITableViewCell *)cell withTaskItem:(TaskItem *)item
-{
-    UILabel *label = (UILabel *)[cell viewWithTag:1001];
-    
-    if (item.completed) {
-        label.text = @"√";
-    } else {
-        label.text = @"";
-    }
-}
-
-- (void)configureCheckmarkForCell:(UITableViewCell *)cell withTask:(Task *)item
-{
-    UILabel *label = (UILabel *)[cell viewWithTag:1001];
-    
-    if ([item.completed boolValue]) {
-        label.text = @"√";
-    } else {
-        label.text = @"";
-    }
-}
-
-- (void)configureTextForCell:(UITableViewCell *)cell withTaskItem:(TaskItem *)item
-{
-    UILabel *label =(UILabel *)[cell viewWithTag:1000];
-    label.text = item.text;
-}
-
-- (void)configureTextForCell:(UITableViewCell *)cell withTask:(Task *)item
-{
-    UILabel *label =(UILabel *)[cell viewWithTag:1000];
-    label.text = item.text;
 }
 
 - (void)dealloc
