@@ -253,6 +253,20 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Task *task = [fetchedResultsController objectAtIndexPath:indexPath];
+        [self.managedObjectContext deleteObject:task];
+        
+        NSError *error;
+        if (![self.managedObjectContext save:&error]) {
+            FATAL_CORE_DATA_ERROR(error);
+            return;
+        }
+        
+    }
+}
 - (void)configureCheckmarkForCell:(UITableViewCell *)cell withTaskItem:(TaskItem *)item
 {
     UILabel *label = (UILabel *)[cell viewWithTag:1001];
