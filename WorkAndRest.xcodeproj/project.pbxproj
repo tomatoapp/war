@@ -26,6 +26,8 @@
 		6439ADC918E1325800CAC85B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6439ADC818E1325800CAC85B /* CoreData.framework */; };
 		6439ADD218E15E2100CAC85B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6439ADD018E15E2100CAC85B /* DataModel.xcdatamodeld */; };
 		6439ADE718E16FB500CAC85B /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 6439ADE618E16FB500CAC85B /* Task.m */; };
+		6460FB2718F52CB400CF55AA /* Checkbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460FB2418F52CB400CF55AA /* Checkbox.m */; };
+		6460FB2818F52CB400CF55AA /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460FB2618F52CB400CF55AA /* CustomCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,10 @@
 		6439ADD118E15E2100CAC85B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		6439ADE518E16FB500CAC85B /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		6439ADE618E16FB500CAC85B /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		6460FB2318F52CB400CF55AA /* Checkbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checkbox.h; sourceTree = "<group>"; };
+		6460FB2418F52CB400CF55AA /* Checkbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Checkbox.m; sourceTree = "<group>"; };
+		6460FB2518F52CB400CF55AA /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		6460FB2618F52CB400CF55AA /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,10 @@
 		6434827718C5D344009BF110 /* WorkAndRest */ = {
 			isa = PBXGroup;
 			children = (
+				6460FB2318F52CB400CF55AA /* Checkbox.h */,
+				6460FB2418F52CB400CF55AA /* Checkbox.m */,
+				6460FB2518F52CB400CF55AA /* CustomCell.h */,
+				6460FB2618F52CB400CF55AA /* CustomCell.m */,
 				6434828018C5D344009BF110 /* AppDelegate.h */,
 				6434828118C5D344009BF110 /* AppDelegate.m */,
 				6434828318C5D344009BF110 /* Main.storyboard */,
@@ -276,9 +286,11 @@
 				6434828818C5D344009BF110 /* TaskListViewController.m in Sources */,
 				6434827E18C5D344009BF110 /* main.m in Sources */,
 				640D064618E03575007B0894 /* ItemDetailViewController.m in Sources */,
+				6460FB2718F52CB400CF55AA /* Checkbox.m in Sources */,
 				6439ADD218E15E2100CAC85B /* DataModel.xcdatamodeld in Sources */,
 				6434828218C5D344009BF110 /* AppDelegate.m in Sources */,
 				640D064318E02FF3007B0894 /* TaskItem.m in Sources */,
+				6460FB2818F52CB400CF55AA /* CustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,8 @@
 #import "ItemDetailViewController.h"
 #import "TaskItem.h"
 #import "Task.h"
+#import "Checkbox.h"
+#import "CustomCell.h"
 
 @interface TaskListViewController ()
 
@@ -101,14 +103,10 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskItem"];
+    CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomCell"];
     Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
-    UILabel *titleLabel = (UILabel *)[cell viewWithTag:1000];
-    titleLabel.text = item.text;
-    [self configureCheckmarkForCell:cell withTask:item];
-    
-    [self configureCell:cell atIndexPath:indexPath];
-    
+    cell.titleLabel.text = item.text;
+    cell.checkBox.checked = [item.completed boolValue];
     return cell;
 }
 
@@ -272,6 +270,43 @@
         
     }
 }
+
+- (IBAction)checkBoxTapped:(id)sender forEvent:(UIEvent*)event
+{
+    NSSet *touches = [event allTouches];
+	UITouch *touch = [touches anyObject];
+	CGPoint currentTouchPosition = [touch locationInView:self.tableView];
+    
+    // Lookup the index path of the cell whose checkbox was modified.
+	NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:currentTouchPosition];
+    
+	if (indexPath != nil)
+	{
+		// Update our data source array with the new checked state.
+        Task *task = [fetchedResultsController objectAtIndexPath:indexPath];
+        task.completed = @([(Checkbox*)sender isChecked]);
+        
+        NSError *error;
+        if (![self.managedObjectContext save:&error]) {
+            FATAL_CORE_DATA_ERROR(error);
+            return;
+        }
+	}
+    
+    // Accessibility
+    [self updateAccessibilityForCell:(CustomCell*)[self.tableView cellForRowAtIndexPath:indexPath]];
+    
+}
+
+- (void)updateAccessibilityForCell:(CustomCell*)cell
+{
+    // The cell's accessibilityValue is the Checkbox's accessibilityValue.
+    cell.accessibilityValue = cell.checkBox.accessibilityValue;
+    
+    cell.checkBox.accessibilityLabel = cell.titleLabel.text;
+}
+
+
 - (void)configureCheckmarkForCell:(UITableViewCell *)cell withTaskItem:(TaskItem *)item
 {
     UILabel *label = (UILabel *)[cell viewWithTag:1001];
