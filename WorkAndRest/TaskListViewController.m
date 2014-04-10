@@ -29,8 +29,6 @@
     [super viewDidLoad];
     [self performFetch];
     [self firstRun];
-    
-    [self showToolbar];
 }
 
 // 首次运行程序
@@ -69,15 +67,21 @@
     }
 }
 
-- (void)showToolbar
+- (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setToolbarHidden:NO];
+    [self.navigationController setToolbarHidden:NO animated:YES];
+    
     UIBarButtonItem *showHistoryButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Show History" style:UIBarButtonItemStyleBordered target:self action:@selector(showHistory)];
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spacer.width = 95.0f;
     
     self.toolbarItems = [NSArray arrayWithObjects:spacer, showHistoryButtonItem, nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 - (void)showHistory
@@ -265,18 +269,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CustomCell *targetCustomCell = (CustomCell *)[tableView cellForRowAtIndexPath:indexPath];
-    // Update our data source array with the new checked state.
-    Task *task = [fetchedResultsController objectAtIndexPath:indexPath];
-    targetCustomCell.checkBox.checked = !targetCustomCell.checkBox.checked;
-    task.completed = @(!targetCustomCell.checkBox.checked);
+//    CustomCell *targetCustomCell = (CustomCell *)[tableView cellForRowAtIndexPath:indexPath];
+//    // Update our data source array with the new checked state.
+//    Task *task = [fetchedResultsController objectAtIndexPath:indexPath];
+//    targetCustomCell.checkBox.checked = !targetCustomCell.checkBox.checked;
+//    task.completed = @(!targetCustomCell.checkBox.checked);
+//    
+//    NSError *error;
+//    if (![self.managedObjectContext save:&error]) {
+//        FATAL_CORE_DATA_ERROR(error);
+//        return;
+//    }
     
-    NSError *error;
-    if (![self.managedObjectContext save:&error]) {
-        FATAL_CORE_DATA_ERROR(error);
-        return;
-    }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    Task *task = [fetchedResultsController objectAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"ShowItem" sender:task];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

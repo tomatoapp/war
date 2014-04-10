@@ -28,6 +28,7 @@
 		6439ADE718E16FB500CAC85B /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 6439ADE618E16FB500CAC85B /* Task.m */; };
 		6460FB2718F52CB400CF55AA /* Checkbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460FB2418F52CB400CF55AA /* Checkbox.m */; };
 		6460FB2818F52CB400CF55AA /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460FB2618F52CB400CF55AA /* CustomCell.m */; };
+		64A9E9ED18F6405300E84EF2 /* WorkWithItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		6460FB2418F52CB400CF55AA /* Checkbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Checkbox.m; sourceTree = "<group>"; };
 		6460FB2518F52CB400CF55AA /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		6460FB2618F52CB400CF55AA /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		64A9E9EB18F6405300E84EF2 /* WorkWithItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkWithItemViewController.h; sourceTree = "<group>"; };
+		64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkWithItemViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +147,8 @@
 				6434828718C5D344009BF110 /* TaskListViewController.m */,
 				640D064418E03575007B0894 /* ItemDetailViewController.h */,
 				640D064518E03575007B0894 /* ItemDetailViewController.m */,
+				64A9E9EB18F6405300E84EF2 /* WorkWithItemViewController.h */,
+				64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */,
 				640D064118E02FF3007B0894 /* TaskItem.h */,
 				640D064218E02FF3007B0894 /* TaskItem.m */,
 				6439ADD018E15E2100CAC85B /* DataModel.xcdatamodeld */,
@@ -290,6 +295,7 @@
 				6439ADD218E15E2100CAC85B /* DataModel.xcdatamodeld in Sources */,
 				6434828218C5D344009BF110 /* AppDelegate.m in Sources */,
 				640D064318E02FF3007B0894 /* TaskItem.m in Sources */,
+				64A9E9ED18F6405300E84EF2 /* WorkWithItemViewController.m in Sources */,
 				6460FB2818F52CB400CF55AA /* CustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
