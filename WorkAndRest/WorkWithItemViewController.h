@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaskItem.h"
 
 @interface WorkWithItemViewController : UIViewController
+
+@property (nonatomic, strong) TaskItem *itemToWork;
 
 @end

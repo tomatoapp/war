@@ -12,6 +12,7 @@
 #import "Task.h"
 #import "Checkbox.h"
 #import "CustomCell.h"
+#import "WorkWithItemViewController.h"
 
 @interface TaskListViewController ()
 
@@ -168,6 +169,9 @@
         ItemDetailViewController *controller = (ItemDetailViewController *)navigationController.topViewController;
         controller.itemToEdit = sender;
         controller.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"ShowItem"]) {
+        WorkWithItemViewController *controller = segue.destinationViewController;
+        controller.itemToWork = sender;
     }
 }
 
