@@ -29,6 +29,8 @@
     [super viewDidLoad];
     [self performFetch];
     [self firstRun];
+    
+    [self showToolbar];
 }
 
 // 首次运行程序
@@ -64,6 +66,28 @@
     if (![self.fetchedResultsController performFetch:&error]) {
         FATAL_CORE_DATA_ERROR(error);
         return;
+    }
+}
+
+- (void)showToolbar
+{
+    [self.navigationController setToolbarHidden:NO];
+    UIBarButtonItem *showHistoryButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Show History" style:UIBarButtonItemStyleBordered target:self action:@selector(showHistory)];
+    
+    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spacer.width = 95.0f;
+    
+    self.toolbarItems = [NSArray arrayWithObjects:spacer, showHistoryButtonItem, nil];
+}
+
+- (void)showHistory
+{
+    UIBarButtonItem *showHistoryButtonItem = (UIBarButtonItem *)[self.toolbarItems objectAtIndex:1];
+    if ([showHistoryButtonItem.title isEqualToString:@"Show History"]) {
+        showHistoryButtonItem.title = @"Hidden History";
+        
+    } else {
+        showHistoryButtonItem.title = @"Show History";
     }
 }
 
