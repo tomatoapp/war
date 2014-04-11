@@ -28,7 +28,11 @@
 		6439ADE718E16FB500CAC85B /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 6439ADE618E16FB500CAC85B /* Task.m */; };
 		6460FB2718F52CB400CF55AA /* Checkbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460FB2418F52CB400CF55AA /* Checkbox.m */; };
 		6460FB2818F52CB400CF55AA /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460FB2618F52CB400CF55AA /* CustomCell.m */; };
+		64A4D70618F7DC4B006BF4D1 /* SecondBeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64A4D70518F7DC4B006BF4D1 /* SecondBeep.wav */; };
+		64A4D70818F7DC7A006BF4D1 /* ButtonTap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64A4D70718F7DC7A006BF4D1 /* ButtonTap.wav */; };
+		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
 		64A9E9ED18F6405300E84EF2 /* WorkWithItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */; };
+		64A9E9F018F64BAF00E84EF2 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A9E9EF18F64BAF00E84EF2 /* SettingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +77,13 @@
 		6460FB2418F52CB400CF55AA /* Checkbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Checkbox.m; sourceTree = "<group>"; };
 		6460FB2518F52CB400CF55AA /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		6460FB2618F52CB400CF55AA /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		64A4D70518F7DC4B006BF4D1 /* SecondBeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SecondBeep.wav; sourceTree = "<group>"; };
+		64A4D70718F7DC7A006BF4D1 /* ButtonTap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ButtonTap.wav; sourceTree = "<group>"; };
+		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		64A9E9EB18F6405300E84EF2 /* WorkWithItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkWithItemViewController.h; sourceTree = "<group>"; };
 		64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkWithItemViewController.m; sourceTree = "<group>"; };
+		64A9E9EE18F64BAF00E84EF2 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		64A9E9EF18F64BAF00E84EF2 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */,
 				6439ADC918E1325800CAC85B /* CoreData.framework in Frameworks */,
 				6434827418C5D344009BF110 /* CoreGraphics.framework in Frameworks */,
 				6434827618C5D344009BF110 /* UIKit.framework in Frameworks */,
@@ -105,6 +115,7 @@
 		6434826518C5D343009BF110 = {
 			isa = PBXGroup;
 			children = (
+				64A4D70418F7DBFD006BF4D1 /* Supporting Files */,
 				6434827718C5D344009BF110 /* WorkAndRest */,
 				6434829618C5D344009BF110 /* WorkAndRestTests */,
 				6434827018C5D344009BF110 /* Frameworks */,
@@ -124,6 +135,7 @@
 		6434827018C5D344009BF110 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */,
 				6439ADC818E1325800CAC85B /* CoreData.framework */,
 				6434827118C5D344009BF110 /* Foundation.framework */,
 				6434827318C5D344009BF110 /* CoreGraphics.framework */,
@@ -149,6 +161,8 @@
 				640D064518E03575007B0894 /* ItemDetailViewController.m */,
 				64A9E9EB18F6405300E84EF2 /* WorkWithItemViewController.h */,
 				64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */,
+				64A9E9EE18F64BAF00E84EF2 /* SettingViewController.h */,
+				64A9E9EF18F64BAF00E84EF2 /* SettingViewController.m */,
 				640D064118E02FF3007B0894 /* TaskItem.h */,
 				640D064218E02FF3007B0894 /* TaskItem.m */,
 				6439ADD018E15E2100CAC85B /* DataModel.xcdatamodeld */,
@@ -185,6 +199,15 @@
 			children = (
 				6434829818C5D344009BF110 /* WorkAndRestTests-Info.plist */,
 				6434829918C5D344009BF110 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		64A4D70418F7DBFD006BF4D1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				64A4D70718F7DC7A006BF4D1 /* ButtonTap.wav */,
+				64A4D70518F7DC4B006BF4D1 /* SecondBeep.wav */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -268,6 +291,8 @@
 			files = (
 				6434828A18C5D344009BF110 /* Images.xcassets in Resources */,
 				6434827C18C5D344009BF110 /* InfoPlist.strings in Resources */,
+				64A4D70618F7DC4B006BF4D1 /* SecondBeep.wav in Resources */,
+				64A4D70818F7DC7A006BF4D1 /* ButtonTap.wav in Resources */,
 				6434828518C5D344009BF110 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +321,7 @@
 				6434828218C5D344009BF110 /* AppDelegate.m in Sources */,
 				640D064318E02FF3007B0894 /* TaskItem.m in Sources */,
 				64A9E9ED18F6405300E84EF2 /* WorkWithItemViewController.m in Sources */,
+				64A9E9F018F64BAF00E84EF2 /* SettingViewController.m in Sources */,
 				6460FB2818F52CB400CF55AA /* CustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

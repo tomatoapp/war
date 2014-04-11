@@ -71,7 +71,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setToolbarHidden:NO animated:YES];
-    
+    [self showToolBarItems];
+    [self.tableView reloadData];}
+
+- (void)showToolBarItems
+{
     UIBarButtonItem *showHistoryButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Show History" style:UIBarButtonItemStyleBordered target:self action:@selector(showHistory)];
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
@@ -124,36 +128,7 @@
     [super didReceiveMemoryWarning];
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
-}
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomCell"];
-    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
-    cell.titleLabel.text = item.text;
-    cell.checkBox.checked = [item.completed boolValue];
-    return cell;
-}
-
--(void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-     UILabel *titleLabel = (UILabel *)[cell viewWithTag:1000];
-    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
-    titleLabel.text = item.text;
-}
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"accessoryButtonTappedForRowWithIndexPath");
-    
-    TaskItem *item = [fetchedResultsController objectAtIndexPath:indexPath];
-    NSLog(@"item is : %@", item.text);
-    [self performSegueWithIdentifier:@"EditItem" sender:item];
-}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -270,6 +245,37 @@
 }
 
 #pragma mark - TableView
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomCell"];
+    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
+    cell.titleLabel.text = item.text;
+    cell.checkBox.checked = [item.completed boolValue];
+    return cell;
+}
+
+-(void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    UILabel *titleLabel = (UILabel *)[cell viewWithTag:1000];
+    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
+    titleLabel.text = item.text;
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"accessoryButtonTappedForRowWithIndexPath");
+    
+    TaskItem *item = [fetchedResultsController objectAtIndexPath:indexPath];
+    NSLog(@"item is : %@", item.text);
+    [self performSegueWithIdentifier:@"EditItem" sender:item];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
