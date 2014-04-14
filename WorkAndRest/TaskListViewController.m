@@ -21,6 +21,7 @@
 @implementation TaskListViewController  {
     // When the objects have been changed, added or deleted, it can update the table.
     NSFetchedResultsController *fetchedResultsController;
+    BOOL isShowHistoryTasks;
 }
 
 @synthesize managedObjectContext;
@@ -28,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    isShowHistoryTasks = YES;
     [self performFetch];
     [self firstRun];
 }
@@ -94,10 +96,15 @@
     UIBarButtonItem *showHistoryButtonItem = (UIBarButtonItem *)[self.toolbarItems objectAtIndex:1];
     if ([showHistoryButtonItem.title isEqualToString:@"Show History"]) {
         showHistoryButtonItem.title = @"Hidden History";
-        
+        isShowHistoryTasks = NO;
     } else {
         showHistoryButtonItem.title = @"Show History";
+        isShowHistoryTasks = YES;
     }
+    
+    self.fetchedResultsController = nil;
+    [self performFetch];
+    [self.tableView reloadData];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController
@@ -112,13 +119,14 @@
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
         [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
         
-        NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"completed == %@", [NSNumber numberWithBool:YES]];
-        // 简便写法：
-        // NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"completed == 1"];
-        [fetchRequest setPredicate:fetchPredicate];
-        
+        if (!isShowHistoryTasks) {
+            NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"completed == %@", [NSNumber numberWithBool:NO]];
+            // 简便写法：
+            // NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"completed == 1"];
+            [fetchRequest setPredicate:fetchPredicate];
+        }
         [fetchRequest setFetchBatchSize:20];
-        
+        [NSFetchedResultsController deleteCacheWithName:@"Tasks"];
         fetchedResultsController = [[NSFetchedResultsController alloc]
                                     initWithFetchRequest:fetchRequest
                                     managedObjectContext:self.managedObjectContext
@@ -127,6 +135,11 @@
         fetchedResultsController.delegate = self;
     }
     return fetchedResultsController;
+}
+
+- (void)setFetchedResultsController:(NSFetchedResultsController *)newFetchedResultsController
+{
+    fetchedResultsController = newFetchedResultsController;
 }
 
 - (void)didReceiveMemoryWarning
@@ -269,9 +282,6 @@
 
 -(void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-//    UILabel *titleLabel = (UILabel *)[cell viewWithTag:1000];
-//    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
-//    titleLabel.text = item.text;
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
@@ -285,18 +295,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    CustomCell *targetCustomCell = (CustomCell *)[tableView cellForRowAtIndexPath:indexPath];
-//    // Update our data source array with the new checked state.
-//    Task *task = [fetchedResultsController objectAtIndexPath:indexPath];
-//    targetCustomCell.checkBox.checked = !targetCustomCell.checkBox.checked;
-//    task.completed = @(!targetCustomCell.checkBox.checked);
-//    
-//    NSError *error;
-//    if (![self.managedObjectContext save:&error]) {
-//        FATAL_CORE_DATA_ERROR(error);
-//        return;
-//    }
-    
     Task *task = [fetchedResultsController objectAtIndexPath:indexPath];
     [self performSegueWithIdentifier:@"ShowItem" sender:task];
 }
@@ -312,7 +310,6 @@
             FATAL_CORE_DATA_ERROR(error);
             return;
         }
-        
     }
 }
 
