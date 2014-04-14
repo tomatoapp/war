@@ -19,7 +19,8 @@
     int secondsLeft;
     int minute, second;
     int seconds;
-    //AVAudioPlayer *secondBeep;
+    AVAudioPlayer *secondBeep;
+    BOOL isPlaySecondSound;
 }
 
 @synthesize itemToWork;
@@ -40,8 +41,10 @@
     seconds = [secondsValue intValue] * 60;
     // seconds = 3;
     NSLog(@"Get Seconds: %d", seconds);
-    self.stopButton.enabled = NO;
-    //secondBeep = [self setupAudioPlayerWithFile:@"SecondBeep" type:@"wav"];
+    
+    isPlaySecondSound = (BOOL)[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"];
+    
+    secondBeep = [self setupAudioPlayerWithFile:@"SecondBeep" type:@"wav"];
 
     self.title = self.itemToWork.text;
     secondsLeft = seconds;
@@ -50,6 +53,7 @@
 
     [self enableButton:self.startButton];
     [self disableButton:self.stopButton];
+    [self disableButton:self.silentButton];
 
 }
 
@@ -69,12 +73,14 @@
 
 - (void)disableButton:(UIButton *)button
 {
+    button.enabled = NO;
     button.layer.borderColor = [UIColor grayColor].CGColor;
     [button setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
 }
 
 - (void)enableButton:(UIButton *)button
 {
+    button.enabled = YES;
     if ([button.titleLabel.text isEqualToString:@"Start"]) {
         self.startButton.layer.borderColor = [UIColor colorWithRed:0 green:215.00/255.00 blue:0 alpha:1].CGColor;
         self.startButton.titleLabel.textColor = [UIColor colorWithRed:0 green:215.00/255.00 blue:0 alpha:1];
@@ -129,8 +135,6 @@
 - (IBAction)start
 {
     NSLog(@"start");
-    self.startButton.enabled = NO;
-    self.stopButton.enabled = YES;
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(subtractTime) userInfo:nil repeats:YES];
     
     self.itemToWork.completed = [NSNumber numberWithBool:NO];
@@ -141,6 +145,7 @@
     }
 
     [self enableButton:self.stopButton];
+    [self enableButton:self.silentButton];
     [self disableButton:self.startButton];
 }
 
@@ -155,12 +160,12 @@
         second = (secondsLeft % 3600) % 60;
         
         self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
-        //[secondBeep play];
+        if (isPlaySecondSound) {
+            [secondBeep play];
+        }
     } else {
         NSLog(@"Timeout");
         [timer invalidate];
-        self.startButton.enabled = YES;
-        self.stopButton.enabled = NO;
         
         self.itemToWork.costWorkTimes = [NSNumber numberWithInt:[self.itemToWork.costWorkTimes intValue] + 1];
         NSError *error;
@@ -173,6 +178,7 @@
         [alert show];
         
         [self disableButton:self.stopButton];
+        [self disableButton:self.silentButton];
         [self enableButton:self.startButton];
         
     }
@@ -192,7 +198,7 @@
     minute = (theSecondsLeft % 3600) / 60;
     second = (theSecondsLeft % 3600) % 60;
     
-    return [NSString stringWithFormat:@"%02d:%02d", minute, second];
+    return [NSString stringWithFormat:@"00:%02d:%02d", minute, second];
 }
 
 - (IBAction)stop
@@ -201,11 +207,14 @@
     [timer invalidate];
     secondsLeft = seconds;
     self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
-    self.stopButton.enabled = NO;
-    self.startButton.enabled = YES;
     
     [self enableButton:self.startButton];
     [self disableButton:self.stopButton];
+    [self disableButton:self.silentButton];
 }
 
+- (IBAction)silentButtonClick:(id)sender {
+    isPlaySecondSound = !isPlaySecondSound;
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:isPlaySecondSound] forKey:@"SecondSound"];
+}
 @end
