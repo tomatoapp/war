@@ -114,7 +114,8 @@
         secondsLeft = seconds;
         self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
         self.itemToWork.costWorkTimes = [NSNumber numberWithInt:[self.itemToWork.costWorkTimes intValue] + 1];
-
+        self.itemToWork.completed = NO;
+        
         NSError *error;
         if(![self.managedObjectContext save:&error]) {
             FATAL_CORE_DATA_ERROR(error);

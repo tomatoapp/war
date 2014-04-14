@@ -127,8 +127,6 @@
         
         if (!isShowHistoryTasks) {
             NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"completed == %@", [NSNumber numberWithBool:NO]];
-            // 简便写法：
-            // NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"completed == 0"];
             [fetchRequest setPredicate:fetchPredicate];
         }
         [fetchRequest setFetchBatchSize:20];
