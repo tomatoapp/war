@@ -31,6 +31,8 @@
 {
     [super viewDidLoad];
     self.title = @"Setting";
+    NSLog(@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"]);
+    self.switchControl.on = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"] boolValue];
     
     NSNumber *secondsNumber = (NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"];
     secondsValue = [secondsNumber intValue];
@@ -52,7 +54,9 @@
     }
     return 32.0f;
 }
+
 - (IBAction)secondSoundSwitchChanged:(id)sender {
+    NSLog(@"self.switchControl.on %hhd",self.switchControl.on);
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:self.switchControl.on] forKey:@"SecondSound"];
 }
 - (IBAction)sliderValueChanged:(id)sender {

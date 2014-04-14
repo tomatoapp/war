@@ -18,6 +18,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *timerLabel;
 @property (nonatomic, strong) IBOutlet UIButton *startButton;
 @property (nonatomic, strong) IBOutlet UIButton *stopButton;
+@property (nonatomic, strong) IBOutlet UILabel *workTimesLabel;
 
 - (IBAction)start;
 - (IBAction)stop;

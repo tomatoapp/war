@@ -45,6 +45,43 @@
     self.title = self.itemToWork.text;
     secondsLeft = seconds;
     self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
+    
+    [self enableButton:self.startButton];
+    [self disableButton:self.stopButton];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.startButton.layer.cornerRadius = 30;
+    self.startButton.layer.borderWidth = 1;
+    
+    self.stopButton.layer.cornerRadius = 30;
+    self.stopButton.layer.borderWidth = 1;
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [self stop];
+}
+
+- (void)disableButton:(UIButton *)button
+{
+    button.layer.borderColor = [UIColor grayColor].CGColor;
+    [button setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+}
+
+- (void)enableButton:(UIButton *)button
+{
+    if ([button.titleLabel.text isEqualToString:@"Start"]) {
+        self.startButton.layer.borderColor = [UIColor colorWithRed:0 green:215.00/255.00 blue:0 alpha:1].CGColor;
+        self.startButton.titleLabel.textColor = [UIColor colorWithRed:0 green:215.00/255.00 blue:0 alpha:1];
+        
+    } else if ([button.titleLabel.text isEqualToString:@"Stop"]) {
+        self.stopButton.layer.borderColor = [UIColor redColor].CGColor;
+        self.stopButton.titleLabel.textColor = [UIColor redColor];
+        
+    }
 }
 
 - (NSFetchedResultsController *)fetchedResultsController
@@ -94,6 +131,15 @@
     self.stopButton.enabled = YES;
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(subtractTime) userInfo:nil repeats:YES];
     
+    self.itemToWork.completed = NO;
+    NSError *error;
+    if(![self.managedObjectContext save:&error]) {
+        FATAL_CORE_DATA_ERROR(error);
+        return;
+    }
+
+    [self enableButton:self.stopButton];
+    [self disableButton:self.startButton];
 }
 
 - (void)subtractTime
@@ -116,7 +162,6 @@
         secondsLeft = seconds;
         self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
         self.itemToWork.costWorkTimes = [NSNumber numberWithInt:[self.itemToWork.costWorkTimes intValue] + 1];
-        self.itemToWork.completed = NO;
         
         NSError *error;
         if(![self.managedObjectContext save:&error]) {
@@ -146,6 +191,9 @@
     self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
     self.stopButton.enabled = NO;
     self.startButton.enabled = YES;
+    
+    [self enableButton:self.startButton];
+    [self disableButton:self.stopButton];
 }
 
 @end
