@@ -35,4 +35,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 0.1f;
+    }
+    return 32.0f;
+}
+
 @end
