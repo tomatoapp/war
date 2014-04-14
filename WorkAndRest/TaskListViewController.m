@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    isShowHistoryTasks = YES;
+    isShowHistoryTasks = [[NSUserDefaults standardUserDefaults] boolForKey:@"IsShowHistoryTasks"];
     [self performFetch];
     [self firstRun];
 }
@@ -78,7 +78,13 @@
 
 - (void)showToolBarItems
 {
-    UIBarButtonItem *showHistoryButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Show History" style:UIBarButtonItemStyleBordered target:self action:@selector(showHistory)];
+    NSString *title;
+    if (isShowHistoryTasks) {
+        title = @"Hidden History";
+    } else {
+        title = @"Show History";
+    }
+    UIBarButtonItem *showHistoryButtonItem = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleBordered target:self action:@selector(showHistory)];
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spacer.width = 95.0f;
@@ -94,14 +100,13 @@
 - (void)showHistory
 {
     UIBarButtonItem *showHistoryButtonItem = (UIBarButtonItem *)[self.toolbarItems objectAtIndex:1];
-    if ([showHistoryButtonItem.title isEqualToString:@"Show History"]) {
-        showHistoryButtonItem.title = @"Hidden History";
-        isShowHistoryTasks = NO;
-    } else {
+    if (isShowHistoryTasks) {
         showHistoryButtonItem.title = @"Show History";
-        isShowHistoryTasks = YES;
+    } else {
+        showHistoryButtonItem.title = @"Hidden History";
     }
-    
+    isShowHistoryTasks = !isShowHistoryTasks;
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:isShowHistoryTasks] forKey:@"IsShowHistoryTasks"];
     self.fetchedResultsController = nil;
     [self performFetch];
     [self.tableView reloadData];
@@ -116,13 +121,14 @@
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
         [fetchRequest setEntity:entity];
         
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
-        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        NSSortDescriptor *completedSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"completed" ascending:YES];
+        NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:completedSortDescriptor, dateSortDescriptor, nil]];
         
         if (!isShowHistoryTasks) {
             NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"completed == %@", [NSNumber numberWithBool:NO]];
             // 简便写法：
-            // NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"completed == 1"];
+            // NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"completed == 0"];
             [fetchRequest setPredicate:fetchPredicate];
         }
         [fetchRequest setFetchBatchSize:20];
