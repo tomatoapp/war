@@ -36,7 +36,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    seconds = 2;
+    NSNumber *secondsValue = (NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"];
+    seconds = [secondsValue intValue] * 60;
+    NSLog(@"Get Seconds: %d", seconds);
     self.stopButton.enabled = NO;
     //secondBeep = [self setupAudioPlayerWithFile:@"SecondBeep" type:@"wav"];
 

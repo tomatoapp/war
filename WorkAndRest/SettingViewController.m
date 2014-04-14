@@ -12,7 +12,11 @@
 
 @end
 
-@implementation SettingViewController
+@implementation SettingViewController {
+    int secondsValue;
+}
+
+@synthesize dateLabel, switchControl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +31,12 @@
 {
     [super viewDidLoad];
     self.title = @"Setting";
+    
+    NSNumber *secondsNumber = (NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"];
+    secondsValue = [secondsNumber intValue];
+    self.dateLabel.text = [NSString stringWithFormat:@"%d:00", secondsValue];
+    self.slider.value = secondsValue;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,6 +51,15 @@
         return 0.1f;
     }
     return 32.0f;
+}
+- (IBAction)secondSoundSwitchChanged:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:self.switchControl.on] forKey:@"SecondSound"];
+}
+- (IBAction)sliderValueChanged:(id)sender {
+    secondsValue = ((UISlider *)sender).value;
+    self.dateLabel.text = [NSString stringWithFormat:@"%d:00", secondsValue];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:secondsValue] forKey:@"Seconds"];
 }
 
 @end

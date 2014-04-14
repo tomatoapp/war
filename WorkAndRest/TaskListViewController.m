@@ -42,22 +42,19 @@
     if (!hasRunBefore) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstRun"];
         
-        TaskItem *item;
-        item = [[TaskItem alloc] init];
-        item.text = @"Task Sample";
-        item.completed = YES;
-        item.costWorkTimes = 5;
-        
+        // Add the "Task Sample" item to the list.
         Task *sampleTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
-        sampleTask.text = item.text;
-        sampleTask.costWorkTimes = [NSNumber numberWithInteger:item.costWorkTimes];
-        sampleTask.completed = [NSNumber numberWithBool:item.completed];
-        
+        sampleTask.text = @"Task Sample";
+        sampleTask.costWorkTimes = [NSNumber numberWithInteger:0];
+        sampleTask.completed = [NSNumber numberWithBool:NO];
         NSError *error;
         if(![self.managedObjectContext save:&error]) {
             FATAL_CORE_DATA_ERROR(error);
             return;
         }
+        
+        // Set the Default Seconds.
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:25] forKey:@"Seconds"];
     }
 }
 
