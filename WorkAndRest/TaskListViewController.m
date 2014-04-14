@@ -105,11 +105,17 @@
     if (fetchedResultsController == nil) {
         
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
         [fetchRequest setEntity:entity];
         
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
         [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        
+        NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"completed == %@", [NSNumber numberWithBool:YES]];
+        // 简便写法：
+        // NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"completed == 1"];
+        [fetchRequest setPredicate:fetchPredicate];
         
         [fetchRequest setFetchBatchSize:20];
         
@@ -127,8 +133,6 @@
 {
     [super didReceiveMemoryWarning];
 }
-
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
