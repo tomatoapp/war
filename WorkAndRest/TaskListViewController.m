@@ -46,6 +46,7 @@
         sampleTask.text = @"Task Sample";
         sampleTask.costWorkTimes = [NSNumber numberWithInteger:0];
         sampleTask.completed = [NSNumber numberWithBool:NO];
+        sampleTask.date = [NSDate date];
         NSError *error;
         if(![self.managedObjectContext save:&error]) {
             FATAL_CORE_DATA_ERROR(error);

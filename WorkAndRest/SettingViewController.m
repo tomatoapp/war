@@ -36,7 +36,7 @@
     
     NSNumber *secondsNumber = (NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"];
     secondsValue = [secondsNumber intValue];
-    self.dateLabel.text = [NSString stringWithFormat:@"%d:00", secondsValue];
+    self.dateLabel.text = [NSString stringWithFormat:@"%02d:00", secondsValue];
     self.slider.value = secondsValue;
     
 }
@@ -61,7 +61,7 @@
 }
 - (IBAction)sliderValueChanged:(id)sender {
     secondsValue = ((UISlider *)sender).value;
-    self.dateLabel.text = [NSString stringWithFormat:@"%d:00", secondsValue];
+    self.dateLabel.text = [NSString stringWithFormat:@"%02d:00", secondsValue];
     
     [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:secondsValue] forKey:@"Seconds"];
 }

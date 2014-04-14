@@ -38,6 +38,7 @@
     [super viewDidLoad];
     NSNumber *secondsValue = (NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"];
     seconds = [secondsValue intValue] * 60;
+    // seconds = 3;
     NSLog(@"Get Seconds: %d", seconds);
     self.stopButton.enabled = NO;
     //secondBeep = [self setupAudioPlayerWithFile:@"SecondBeep" type:@"wav"];
@@ -45,7 +46,8 @@
     self.title = self.itemToWork.text;
     secondsLeft = seconds;
     self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
-    
+    self.workTimesLabel.text = [NSString stringWithFormat:@"Work Times: %@", self.itemToWork.costWorkTimes];
+
     [self enableButton:self.startButton];
     [self disableButton:self.stopButton];
 
@@ -131,7 +133,7 @@
     self.stopButton.enabled = YES;
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(subtractTime) userInfo:nil repeats:YES];
     
-    self.itemToWork.completed = NO;
+    self.itemToWork.completed = [NSNumber numberWithBool:NO];
     NSError *error;
     if(![self.managedObjectContext save:&error]) {
         FATAL_CORE_DATA_ERROR(error);
@@ -159,10 +161,8 @@
         [timer invalidate];
         self.startButton.enabled = YES;
         self.stopButton.enabled = NO;
-        secondsLeft = seconds;
-        self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
-        self.itemToWork.costWorkTimes = [NSNumber numberWithInt:[self.itemToWork.costWorkTimes intValue] + 1];
         
+        self.itemToWork.costWorkTimes = [NSNumber numberWithInt:[self.itemToWork.costWorkTimes intValue] + 1];
         NSError *error;
         if(![self.managedObjectContext save:&error]) {
             FATAL_CORE_DATA_ERROR(error);
@@ -172,8 +172,20 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Time is up!" message:@"" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles: nil];
         [alert show];
         
+        [self disableButton:self.stopButton];
+        [self enableButton:self.startButton];
+        
     }
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    secondsLeft = seconds;
+    self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
+    
+    self.workTimesLabel.text = [NSString stringWithFormat:@"Work Times: %@", self.itemToWork.costWorkTimes];
+}
+
 
 - (NSString *)stringFromSecondsLeft:(int) theSecondsLeft
 {
