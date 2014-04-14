@@ -10,13 +10,13 @@
 #import "TaskItem.h"
 
 @class ItemDetailViewController;
-@class TaskItem;
+@class Task;
 
 @protocol ItemDetailViewControllerDelegate <NSObject>
 
 - (void)addTaskViewControllerDidCancel:(ItemDetailViewController *)controller;
-- (void)addTaskViewController:(ItemDetailViewController *)controller didFinishAddingTask:(TaskItem *)item;
-- (void)addTaskViewController:(ItemDetailViewController *)controller didFinishEditingTask:(TaskItem *)item;
+- (void)addTaskViewController:(ItemDetailViewController *)controller didFinishAddingTask:(Task *)item;
+- (void)addTaskViewController:(ItemDetailViewController *)controller didFinishEditingTask:(Task *)item;
 
 @end
 
@@ -25,7 +25,7 @@
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, weak) id <ItemDetailViewControllerDelegate> delegate;
 @property (nonatomic, strong) IBOutlet UITextField *textField;
-@property (nonatomic, strong) TaskItem *itemToEdit;
+@property (nonatomic, strong) Task *itemToEdit;
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)done:(id)sender;

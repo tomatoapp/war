@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DatePickerViewController.h"
 
 @interface SettingViewController : UITableViewController
 

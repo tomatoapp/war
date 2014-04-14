@@ -7,8 +7,7 @@
 //
 
 #import "ItemDetailViewController.h"
-#import "TaskItem.h"
-// #import "Task.h"
+#import "Task.h"
 
 @interface ItemDetailViewController ()
 
@@ -48,11 +47,12 @@
 - (IBAction)done:(id)sender
 {
     if (itemToEdit == nil) {
-        TaskItem *item = [[TaskItem alloc] init];
-        item.text = textField.text;
-        item.costWorkTimes = 0;
-        item.completed = NO;
-        [self.delegate addTaskViewController:self didFinishAddingTask:item];
+        Task *newItem = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
+        newItem.text = textField.text;
+        newItem.costWorkTimes = [NSNumber numberWithInt:0];
+        newItem.completed = [NSNumber numberWithBool:NO];
+        newItem.date = [NSDate date];
+        [self.delegate addTaskViewController:self didFinishAddingTask:newItem];
     } else {
         self.itemToEdit.text = textField.text;
         [self.delegate addTaskViewController:self didFinishEditingTask:itemToEdit];

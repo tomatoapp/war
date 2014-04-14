@@ -8,7 +8,6 @@
 
 #import "TaskListViewController.h"
 #import "ItemDetailViewController.h"
-#import "TaskItem.h"
 #import "Task.h"
 #import "Checkbox.h"
 #import "CustomCell.h"
@@ -233,13 +232,8 @@
 
 #pragma mark - NewTaskViewControllerDelegate
 
-- (void)addTaskViewController:(ItemDetailViewController *)controller didFinishAddingTask:(TaskItem *)item
+- (void)addTaskViewController:(ItemDetailViewController *)controller didFinishAddingTask:(Task *)item
 {
-    Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
-    task.text = item.text;
-    task.completed = [NSNumber numberWithBool:NO];
-    task.costWorkTimes = [NSNumber numberWithInteger:0];
-    task.date = [NSDate date];
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
         FATAL_CORE_DATA_ERROR(error);
@@ -248,7 +242,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)addTaskViewController:(ItemDetailViewController *)controller didFinishEditingTask:(TaskItem *)item
+- (void)addTaskViewController:(ItemDetailViewController *)controller didFinishEditingTask:(Task *)item
 {
     NSError *error;
     if (![self.managedObjectContext save:&error]) {

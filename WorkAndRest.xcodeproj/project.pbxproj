@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		640D064318E02FF3007B0894 /* TaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D064218E02FF3007B0894 /* TaskItem.m */; };
 		640D064618E03575007B0894 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D064518E03575007B0894 /* ItemDetailViewController.m */; };
 		6434827218C5D344009BF110 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827118C5D344009BF110 /* Foundation.framework */; };
 		6434827418C5D344009BF110 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827318C5D344009BF110 /* CoreGraphics.framework */; };
@@ -46,8 +45,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		640D064118E02FF3007B0894 /* TaskItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskItem.h; sourceTree = "<group>"; };
-		640D064218E02FF3007B0894 /* TaskItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskItem.m; sourceTree = "<group>"; };
 		640D064418E03575007B0894 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
 		640D064518E03575007B0894 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
 		6434826E18C5D344009BF110 /* WorkAndRest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkAndRest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,8 +160,6 @@
 				64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */,
 				64A9E9EE18F64BAF00E84EF2 /* SettingViewController.h */,
 				64A9E9EF18F64BAF00E84EF2 /* SettingViewController.m */,
-				640D064118E02FF3007B0894 /* TaskItem.h */,
-				640D064218E02FF3007B0894 /* TaskItem.m */,
 				6439ADD018E15E2100CAC85B /* DataModel.xcdatamodeld */,
 				6439ADE518E16FB500CAC85B /* Task.h */,
 				6439ADE618E16FB500CAC85B /* Task.m */,
@@ -319,7 +314,6 @@
 				6460FB2718F52CB400CF55AA /* Checkbox.m in Sources */,
 				6439ADD218E15E2100CAC85B /* DataModel.xcdatamodeld in Sources */,
 				6434828218C5D344009BF110 /* AppDelegate.m in Sources */,
-				640D064318E02FF3007B0894 /* TaskItem.m in Sources */,
 				64A9E9ED18F6405300E84EF2 /* WorkWithItemViewController.m in Sources */,
 				64A9E9F018F64BAF00E84EF2 /* SettingViewController.m in Sources */,
 				6460FB2818F52CB400CF55AA /* CustomCell.m in Sources */,
