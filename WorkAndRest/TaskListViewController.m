@@ -258,15 +258,16 @@
     CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomCell"];
     Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleLabel.text = item.text;
+    cell.subTitleLabel.text = [NSString stringWithFormat:@"cost: %@",item.costWorkTimes];
     cell.checkBox.checked = [item.completed boolValue];
     return cell;
 }
 
 -(void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    UILabel *titleLabel = (UILabel *)[cell viewWithTag:1000];
-    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
-    titleLabel.text = item.text;
+//    UILabel *titleLabel = (UILabel *)[cell viewWithTag:1000];
+//    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
+//    titleLabel.text = item.text;
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
