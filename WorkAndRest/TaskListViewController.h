@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ItemDetailViewController.h"
 
-@interface TaskListViewController : UITableViewController <AddItemViewControllerDelegate, NSFetchedResultsControllerDelegate>
+@interface TaskListViewController : UITableViewController <ItemDetailViewControllerDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 

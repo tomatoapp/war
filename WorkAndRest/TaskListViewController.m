@@ -147,6 +147,7 @@
     } else if ([segue.identifier isEqualToString:@"ShowItem"]) {
         WorkWithItemViewController *controller = segue.destinationViewController;
         controller.itemToWork = sender;
+        controller.managedObjectContext = self.managedObjectContext;
     }
 }
 
@@ -272,7 +273,7 @@
 {
     NSLog(@"accessoryButtonTappedForRowWithIndexPath");
     
-    TaskItem *item = [fetchedResultsController objectAtIndexPath:indexPath];
+    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
     NSLog(@"item is : %@", item.text);
     [self performSegueWithIdentifier:@"EditItem" sender:item];
 }

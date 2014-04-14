@@ -14,6 +14,7 @@
 @end
 
 @implementation WorkWithItemViewController {
+    NSFetchedResultsController *fetchedResultsController;
     NSTimer *timer;
     int secondsLeft;
     int minute, second;
@@ -42,6 +43,29 @@
     self.title = self.itemToWork.text;
     secondsLeft = seconds;
     self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
+}
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+    if (fetchedResultsController == nil) {
+        
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        
+        [fetchRequest setFetchBatchSize:20];
+        
+        fetchedResultsController = [[NSFetchedResultsController alloc]
+                                    initWithFetchRequest:fetchRequest
+                                    managedObjectContext:self.managedObjectContext
+                                    sectionNameKeyPath:nil
+                                    cacheName:@"Tasks"];
+        fetchedResultsController.delegate = self;
+    }
+    return fetchedResultsController;
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,6 +113,13 @@
         self.stopButton.enabled = NO;
         secondsLeft = seconds;
         self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
+        self.itemToWork.costWorkTimes = [NSNumber numberWithInt:[self.itemToWork.costWorkTimes intValue] + 1];
+
+        NSError *error;
+        if(![self.managedObjectContext save:&error]) {
+            FATAL_CORE_DATA_ERROR(error);
+            return;
+        }
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Time is up!" message:@"" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles: nil];
         [alert show];

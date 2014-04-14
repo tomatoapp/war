@@ -12,7 +12,7 @@
 @class ItemDetailViewController;
 @class TaskItem;
 
-@protocol AddItemViewControllerDelegate <NSObject>
+@protocol ItemDetailViewControllerDelegate <NSObject>
 
 - (void)addTaskViewControllerDidCancel:(ItemDetailViewController *)controller;
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishAddingTask:(TaskItem *)item;
@@ -23,7 +23,7 @@
 @interface ItemDetailViewController : UITableViewController
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, weak) id <AddItemViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <ItemDetailViewControllerDelegate> delegate;
 @property (nonatomic, strong) IBOutlet UITextField *textField;
 @property (nonatomic, strong) TaskItem *itemToEdit;
 

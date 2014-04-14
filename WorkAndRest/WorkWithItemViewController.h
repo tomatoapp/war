@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TaskItem.h"
+#import "Task.h"
 
-@interface WorkWithItemViewController : UIViewController<UIAlertViewDelegate>
+@interface WorkWithItemViewController : UIViewController<UIAlertViewDelegate, NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, strong) TaskItem *itemToWork;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
+@property (nonatomic, strong) Task *itemToWork;
 
 @property (nonatomic, strong) IBOutlet UILabel *timerLabel;
 @property (nonatomic, strong) IBOutlet UIButton *startButton;
