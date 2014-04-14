@@ -42,7 +42,7 @@
     // seconds = 3;
     NSLog(@"Get Seconds: %d", seconds);
     
-    isPlaySecondSound = (BOOL)[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"];
+    isPlaySecondSound = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"] boolValue];
     
     secondBeep = [self setupAudioPlayerWithFile:@"SecondBeep" type:@"wav"];
 
