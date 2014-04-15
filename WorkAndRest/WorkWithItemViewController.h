@@ -14,6 +14,8 @@
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, strong) Task *itemToWork;
+@property (nonatomic, assign) BOOL isWorking;
+@property (nonatomic, assign) int secondsLeft;
 
 @property (nonatomic, strong) IBOutlet UILabel *timerLabel;
 @property (nonatomic, strong) IBOutlet UIButton *startButton;
@@ -23,5 +25,6 @@
 
 - (IBAction)start;
 - (IBAction)stop;
+- (void)completedOneWorkTime;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "TaskListViewController.h"
+#import "WorkWithItemViewController.h"
 
 @interface AppDelegate ()
 
@@ -97,6 +98,39 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     abort();
+}
+
+#pragma mark - Application Status
+
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+    if ([self.currentModelViewController isKindOfClass:[WorkWithItemViewController class]]) {
+        [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:@"NowDate"];
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:((WorkWithItemViewController *)self.currentModelViewController).secondsLeft] forKey:@"SecondsLeft"];
+    }
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    NSLog(@"applicationDidBecomeActive");
+    if ([self.currentModelViewController isKindOfClass:[WorkWithItemViewController class]]) {
+        
+        WorkWithItemViewController *controller = (WorkWithItemViewController *)self.currentModelViewController;
+        
+        NSDate *savedDate = [[NSUserDefaults standardUserDefaults] valueForKey:@"NowDate"];
+        int savedScondsLeft = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondsLeft"] intValue];
+        NSTimeInterval passedTimeInterval = [savedDate timeIntervalSinceNow];
+        
+        if ((savedScondsLeft + (int)passedTimeInterval) > 0) {
+            controller.secondsLeft = savedScondsLeft + (int)passedTimeInterval;
+        } else { // 时间已经耗尽
+            // controller.timerLabel.text = @"00:00:00";
+            // controller.secondsLeft = 0;
+            [controller stop];
+            [controller completedOneWorkTime];
+            
+        }
+    }
 }
 
 @end

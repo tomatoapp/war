@@ -8,6 +8,7 @@
 
 #import "WorkWithItemViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "AppDelegate.h"
 
 @interface WorkWithItemViewController ()
 
@@ -16,7 +17,7 @@
 @implementation WorkWithItemViewController {
     NSFetchedResultsController *fetchedResultsController;
     NSTimer *timer;
-    int secondsLeft;
+    // int secondsLeft;
     int minute, second;
     int seconds;
     AVAudioPlayer *secondBeep;
@@ -24,6 +25,8 @@
 }
 
 @synthesize itemToWork;
+@synthesize isWorking;
+@synthesize secondsLeft;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,7 +44,7 @@
     [super viewDidLoad];
     NSNumber *secondsValue = (NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"];
     seconds = [secondsValue intValue] * 60;
-    // seconds = 3;
+    seconds = 5;
     NSLog(@"Get Seconds: %d", seconds);
     
     isPlaySecondSound = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"] boolValue];
@@ -65,6 +68,11 @@
     
     self.stopButton.layer.cornerRadius = 30;
     self.stopButton.layer.borderWidth = 1;
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.currentModelViewController = self;
+    
+
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -107,6 +115,8 @@
 - (IBAction)start
 {
     NSLog(@"start");
+    isWorking = YES;
+    
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(subtractTime) userInfo:nil repeats:YES];
     
     self.itemToWork.completed = [NSNumber numberWithBool:NO];
@@ -124,6 +134,8 @@
 - (IBAction)stop
 {
     NSLog(@"stop");
+    isWorking = NO;
+    
     [timer invalidate];
     secondsLeft = seconds;
     self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
@@ -157,14 +169,11 @@
         }
     } else {
         NSLog(@"Timeout");
+        isWorking = NO;
+        
         [timer invalidate];
         
-        self.itemToWork.costWorkTimes = [NSNumber numberWithInt:[self.itemToWork.costWorkTimes intValue] + 1];
-        NSError *error;
-        if(![self.managedObjectContext save:&error]) {
-            FATAL_CORE_DATA_ERROR(error);
-            return;
-        }
+        [self completedOneWorkTime];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Time is up!" message:@"" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles: nil];
         [alert show];
@@ -182,8 +191,6 @@
 {
     secondsLeft = seconds;
     self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
-    
-    self.workTimesLabel.text = [NSString stringWithFormat:@"Work Times: %@", self.itemToWork.costWorkTimes];
 }
 
 #pragma mark - Private Methods
@@ -230,7 +237,16 @@
     }
 }
 
-#pragma mark - Application Status
-
+- (void)completedOneWorkTime
+{
+    self.itemToWork.costWorkTimes = [NSNumber numberWithInt:[self.itemToWork.costWorkTimes intValue] + 1];
+    NSError *error;
+    if(![self.managedObjectContext save:&error]) {
+        FATAL_CORE_DATA_ERROR(error);
+        return;
+    }
+    
+    self.workTimesLabel.text = [NSString stringWithFormat:@"Work Times: %@", self.itemToWork.costWorkTimes];
+}
 
 @end
