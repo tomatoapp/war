@@ -22,6 +22,7 @@
     int seconds;
     AVAudioPlayer *secondBeep;
     BOOL isPlaySecondSound;
+    BOOL isKeepScreenLight;
 }
 
 @synthesize itemToWork;
@@ -48,6 +49,7 @@
     NSLog(@"Get Seconds: %d", seconds);
     
     isPlaySecondSound = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"] boolValue];
+    isKeepScreenLight = [[[NSUserDefaults standardUserDefaults] valueForKey:@"KeepLight"] boolValue];
     
     secondBeep = [self setupAudioPlayerWithFile:@"SecondBeep" type:@"wav"];
 
@@ -129,6 +131,10 @@
     [self enableButton:self.stopButton];
     [self enableButton:self.silentButton];
     [self disableButton:self.startButton];
+    
+    if (isKeepScreenLight) {
+        [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    }
 }
 
 - (IBAction)stop
