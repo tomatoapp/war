@@ -49,7 +49,10 @@
 -(CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 1.0f;
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+            return 0.1f;
+        }
+        return 10.0f;
     }
     return 32.0f;
 }
