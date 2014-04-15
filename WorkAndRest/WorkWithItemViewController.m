@@ -233,8 +233,8 @@
 {
     button.enabled = YES;
     if ([button.titleLabel.text isEqualToString:@"Start"]) {
-        self.startButton.layer.borderColor = [UIColor colorWithRed:0 green:215.00/255.00 blue:0 alpha:1].CGColor;
-        self.startButton.titleLabel.textColor = [UIColor colorWithRed:0 green:215.00/255.00 blue:0 alpha:1];
+        self.startButton.layer.borderColor = [UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1].CGColor;
+        self.startButton.titleLabel.textColor = [UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1];
         
     } else if ([button.titleLabel.text isEqualToString:@"Stop"]) {
         self.stopButton.layer.borderColor = [UIColor redColor].CGColor;

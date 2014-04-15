@@ -277,7 +277,7 @@
     CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomCell"];
     Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleLabel.text = item.text;
-    cell.subTitleLabel.text = [NSString stringWithFormat:@"cost: %@",item.costWorkTimes];
+    cell.subTitleLabel.text = [NSString stringWithFormat:@"work times: %@",item.costWorkTimes];
     cell.checkBox.checked = [item.completed boolValue];
     return cell;
 }
