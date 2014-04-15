@@ -34,6 +34,8 @@
     return self;
 }
 
+#pragma mark - View Status
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -54,7 +56,6 @@
     [self enableButton:self.startButton];
     [self disableButton:self.stopButton];
     [self disableButton:self.silentButton];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -71,26 +72,7 @@
     [self stop];
 }
 
-- (void)disableButton:(UIButton *)button
-{
-    button.enabled = NO;
-    button.layer.borderColor = [UIColor grayColor].CGColor;
-    [button setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-}
-
-- (void)enableButton:(UIButton *)button
-{
-    button.enabled = YES;
-    if ([button.titleLabel.text isEqualToString:@"Start"]) {
-        self.startButton.layer.borderColor = [UIColor colorWithRed:0 green:215.00/255.00 blue:0 alpha:1].CGColor;
-        self.startButton.titleLabel.textColor = [UIColor colorWithRed:0 green:215.00/255.00 blue:0 alpha:1];
-        
-    } else if ([button.titleLabel.text isEqualToString:@"Stop"]) {
-        self.stopButton.layer.borderColor = [UIColor redColor].CGColor;
-        self.stopButton.titleLabel.textColor = [UIColor redColor];
-        
-    }
-}
+#pragma mark - NSFetchedResultsControllerDelegate
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
@@ -120,18 +102,8 @@
     [super didReceiveMemoryWarning];
 }
 
-- (AVAudioPlayer *)setupAudioPlayerWithFile:(NSString *)file type:(NSString *)type
-{
-    NSString *path = [[NSBundle mainBundle]pathForResource:file ofType:type];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    
-    NSError *error;
-    AVAudioPlayer *audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-    if (!audioPlayer) {
-        NSLog(@"%@", [error description]);
-    }
-    return audioPlayer;
-}
+#pragma mark - Button Actions
+
 - (IBAction)start
 {
     NSLog(@"start");
@@ -148,6 +120,26 @@
     [self enableButton:self.silentButton];
     [self disableButton:self.startButton];
 }
+
+- (IBAction)stop
+{
+    NSLog(@"stop");
+    [timer invalidate];
+    secondsLeft = seconds;
+    self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
+    
+    [self enableButton:self.startButton];
+    [self disableButton:self.stopButton];
+    [self disableButton:self.silentButton];
+}
+
+- (IBAction)silentButtonClick:(id)sender
+{
+    isPlaySecondSound = !isPlaySecondSound;
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:isPlaySecondSound] forKey:@"SecondSound"];
+}
+
+#pragma mark - Timer
 
 - (void)subtractTime
 {
@@ -184,6 +176,8 @@
     }
 }
 
+#pragma mark - UIAlertViewDelegate
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     secondsLeft = seconds;
@@ -192,6 +186,20 @@
     self.workTimesLabel.text = [NSString stringWithFormat:@"Work Times: %@", self.itemToWork.costWorkTimes];
 }
 
+#pragma mark - Private Methods
+
+- (AVAudioPlayer *)setupAudioPlayerWithFile:(NSString *)file type:(NSString *)type
+{
+    NSString *path = [[NSBundle mainBundle]pathForResource:file ofType:type];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    
+    NSError *error;
+    AVAudioPlayer *audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    if (!audioPlayer) {
+        NSLog(@"%@", [error description]);
+    }
+    return audioPlayer;
+}
 
 - (NSString *)stringFromSecondsLeft:(int) theSecondsLeft
 {
@@ -201,20 +209,28 @@
     return [NSString stringWithFormat:@"00:%02d:%02d", minute, second];
 }
 
-- (IBAction)stop
+- (void)disableButton:(UIButton *)button
 {
-    NSLog(@"stop");
-    [timer invalidate];
-    secondsLeft = seconds;
-    self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
-    
-    [self enableButton:self.startButton];
-    [self disableButton:self.stopButton];
-    [self disableButton:self.silentButton];
+    button.enabled = NO;
+    button.layer.borderColor = [UIColor grayColor].CGColor;
+    [button setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
 }
 
-- (IBAction)silentButtonClick:(id)sender {
-    isPlaySecondSound = !isPlaySecondSound;
-    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:isPlaySecondSound] forKey:@"SecondSound"];
+- (void)enableButton:(UIButton *)button
+{
+    button.enabled = YES;
+    if ([button.titleLabel.text isEqualToString:@"Start"]) {
+        self.startButton.layer.borderColor = [UIColor colorWithRed:0 green:215.00/255.00 blue:0 alpha:1].CGColor;
+        self.startButton.titleLabel.textColor = [UIColor colorWithRed:0 green:215.00/255.00 blue:0 alpha:1];
+        
+    } else if ([button.titleLabel.text isEqualToString:@"Stop"]) {
+        self.stopButton.layer.borderColor = [UIColor redColor].CGColor;
+        self.stopButton.titleLabel.textColor = [UIColor redColor];
+        
+    }
 }
+
+#pragma mark - Application Status
+
+
 @end

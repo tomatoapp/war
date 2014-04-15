@@ -73,7 +73,8 @@
 {
     [self.navigationController setToolbarHidden:NO animated:YES];
     [self showToolBarItems];
-    [self.tableView reloadData];}
+    [self.tableView reloadData];
+}
 
 - (void)showToolBarItems
 {
