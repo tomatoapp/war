@@ -107,12 +107,21 @@
     if ([self.currentModelViewController isKindOfClass:[WorkWithItemViewController class]]) {
         [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:@"NowDate"];
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:((WorkWithItemViewController *)self.currentModelViewController).secondsLeft] forKey:@"SecondsLeft"];
+        
+        // 添加通知
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        notification.alertBody = @"time is up!";
+        int leftSeconds = ((WorkWithItemViewController *)self.currentModelViewController).secondsLeft;
+        NSTimeInterval leftSecondsTimeInterval = leftSeconds;
+        notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:leftSecondsTimeInterval];
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     NSLog(@"applicationDidBecomeActive");
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     if ([self.currentModelViewController isKindOfClass:[WorkWithItemViewController class]]) {
         
         WorkWithItemViewController *controller = (WorkWithItemViewController *)self.currentModelViewController;
@@ -124,8 +133,6 @@
         if ((savedScondsLeft + (int)passedTimeInterval) > 0) {
             controller.secondsLeft = savedScondsLeft + (int)passedTimeInterval;
         } else { // 时间已经耗尽
-            // controller.timerLabel.text = @"00:00:00";
-            // controller.secondsLeft = 0;
             [controller stop];
             [controller completedOneWorkTime];
             
