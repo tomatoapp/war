@@ -154,6 +154,12 @@
 - (IBAction)silentButtonClick:(id)sender
 {
     isPlaySecondSound = !isPlaySecondSound;
+    if (isPlaySecondSound) {
+        [self.silentButton setTitleColor:[UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1] forState:UIControlStateNormal];
+        
+    } else {
+        [self.silentButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    }
     [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:isPlaySecondSound] forKey:@"SecondSound"];
 }
 
@@ -239,7 +245,13 @@
     } else if ([button.titleLabel.text isEqualToString:@"Stop"]) {
         self.stopButton.layer.borderColor = [UIColor redColor].CGColor;
         self.stopButton.titleLabel.textColor = [UIColor redColor];
-        
+    } else {
+        if (isPlaySecondSound) {
+            [self.silentButton setTitleColor:[UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1] forState:UIControlStateNormal];
+            
+        } else {
+            [self.silentButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        }
     }
 }
 
