@@ -11,6 +11,7 @@
 @interface SettingViewController : UITableViewController
 
 @property (nonatomic, strong) IBOutlet UISwitch *switchControl;
+@property (nonatomic, strong) IBOutlet UISwitch *lightSwitchControl;
 @property (nonatomic, strong) IBOutlet UILabel *dateLabel;
 @property (nonatomic, strong) IBOutlet UISlider *slider;
 @end

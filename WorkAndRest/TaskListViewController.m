@@ -52,8 +52,11 @@
             FATAL_CORE_DATA_ERROR(error);
             return;
         }
-        // Set the Default Second Sound to YES.
+        // Set the default Second Sound to YES.
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"SecondSound"];
+        
+        // Set the default Keep Screen Light to YES.
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"KeepLight"];
         
         // Set the Default Seconds.
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:25] forKey:@"Seconds"];

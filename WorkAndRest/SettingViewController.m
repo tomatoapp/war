@@ -31,9 +31,8 @@
 {
     [super viewDidLoad];
     self.title = @"Setting";
-    NSLog(@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"]);
     self.switchControl.on = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"] boolValue];
-    
+    self.lightSwitchControl.on = [[[NSUserDefaults standardUserDefaults] valueForKey:@"KeepLight"] boolValue];
     NSNumber *secondsNumber = (NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"];
     secondsValue = [secondsNumber intValue];
     self.dateLabel.text = [NSString stringWithFormat:@"00:%02d:00", secondsValue];
@@ -55,11 +54,19 @@
     return 32.0f;
 }
 
-- (IBAction)secondSoundSwitchChanged:(id)sender {
+- (IBAction)secondSoundSwitchChanged:(id)sender
+{
     NSLog(@"self.switchControl.on %hhd",self.switchControl.on);
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:self.switchControl.on] forKey:@"SecondSound"];
 }
-- (IBAction)sliderValueChanged:(id)sender {
+
+- (IBAction)keepScreenLightSwitchChanged:(id)sender
+{
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:self.lightSwitchControl.on] forKey:@"KeepLight"];
+}
+
+- (IBAction)sliderValueChanged:(id)sender
+{
     secondsValue = ((UISlider *)sender).value;
     self.dateLabel.text = [NSString stringWithFormat:@"00:%02d:00", secondsValue];
     
