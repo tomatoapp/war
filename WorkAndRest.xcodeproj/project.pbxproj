@@ -32,6 +32,11 @@
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
 		64A9E9ED18F6405300E84EF2 /* WorkWithItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */; };
 		64A9E9F018F64BAF00E84EF2 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A9E9EF18F64BAF00E84EF2 /* SettingViewController.m */; };
+		64AB663918FE19AA007412D2 /* iOS7-Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64AB663718FE19AA007412D2 /* iOS7-Default@2x.png */; };
+		64AB663A18FE19AA007412D2 /* iOS7-Default@r4.png in Resources */ = {isa = PBXBuildFile; fileRef = 64AB663818FE19AA007412D2 /* iOS7-Default@r4.png */; };
+		64AB664418FE1DE9007412D2 /* iOS6-Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 64AB664118FE1DE9007412D2 /* iOS6-Default.png */; };
+		64AB664518FE1DE9007412D2 /* iOS6-Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64AB664218FE1DE9007412D2 /* iOS6-Default@2x.png */; };
+		64AB664618FE1DE9007412D2 /* iOS6-Default@r4.png in Resources */ = {isa = PBXBuildFile; fileRef = 64AB664318FE1DE9007412D2 /* iOS6-Default@r4.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +86,11 @@
 		64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkWithItemViewController.m; sourceTree = "<group>"; };
 		64A9E9EE18F64BAF00E84EF2 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		64A9E9EF18F64BAF00E84EF2 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		64AB663718FE19AA007412D2 /* iOS7-Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS7-Default@2x.png"; sourceTree = "<group>"; };
+		64AB663818FE19AA007412D2 /* iOS7-Default@r4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS7-Default@r4.png"; sourceTree = "<group>"; };
+		64AB664118FE1DE9007412D2 /* iOS6-Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS6-Default.png"; sourceTree = "<group>"; };
+		64AB664218FE1DE9007412D2 /* iOS6-Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS6-Default@2x.png"; sourceTree = "<group>"; };
+		64AB664318FE1DE9007412D2 /* iOS6-Default@r4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS6-Default@r4.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +122,7 @@
 		6434826518C5D343009BF110 = {
 			isa = PBXGroup;
 			children = (
+				64AB663418FE198E007412D2 /* Images */,
 				64A4D70418F7DBFD006BF4D1 /* Supporting Files */,
 				6434827718C5D344009BF110 /* WorkAndRest */,
 				6434829618C5D344009BF110 /* WorkAndRestTests */,
@@ -207,6 +218,34 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		64AB663418FE198E007412D2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				64AB663618FE199F007412D2 /* Icons */,
+				64AB663518FE1996007412D2 /* LaunchImages */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		64AB663518FE1996007412D2 /* LaunchImages */ = {
+			isa = PBXGroup;
+			children = (
+				64AB664118FE1DE9007412D2 /* iOS6-Default.png */,
+				64AB664218FE1DE9007412D2 /* iOS6-Default@2x.png */,
+				64AB664318FE1DE9007412D2 /* iOS6-Default@r4.png */,
+				64AB663718FE19AA007412D2 /* iOS7-Default@2x.png */,
+				64AB663818FE19AA007412D2 /* iOS7-Default@r4.png */,
+			);
+			name = LaunchImages;
+			sourceTree = "<group>";
+		};
+		64AB663618FE199F007412D2 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -288,6 +327,11 @@
 				6434827C18C5D344009BF110 /* InfoPlist.strings in Resources */,
 				64A4D70618F7DC4B006BF4D1 /* SecondBeep.wav in Resources */,
 				64A4D70818F7DC7A006BF4D1 /* ButtonTap.wav in Resources */,
+				64AB663A18FE19AA007412D2 /* iOS7-Default@r4.png in Resources */,
+				64AB664618FE1DE9007412D2 /* iOS6-Default@r4.png in Resources */,
+				64AB664518FE1DE9007412D2 /* iOS6-Default@2x.png in Resources */,
+				64AB663918FE19AA007412D2 /* iOS7-Default@2x.png in Resources */,
+				64AB664418FE1DE9007412D2 /* iOS6-Default.png in Resources */,
 				6434828518C5D344009BF110 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
