@@ -10,9 +10,9 @@
 "Show History" = "Show History";
 "work times: %@" = "Work Times: %@";
 "Edit Task" = "Edit Task";
-"Time is up!" = "Time is up!";
 "Yes" = "Yes";
 "Cancel" = "Cancel";
 "Start" = "Start";
 "Stop" = "Break";
 "Break this work?" = "Break this work?";
+"Time is up!" = "Task: One work has been completed.";

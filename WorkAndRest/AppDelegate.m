@@ -110,7 +110,7 @@
         
         // 添加通知
         UILocalNotification *notification = [[UILocalNotification alloc] init];
-        notification.alertBody = @"time is up!";
+        notification.alertBody = NSLocalizedString(@"Time is up!", nil);
         int leftSeconds = ((WorkWithItemViewController *)self.currentModelViewController).secondsLeft;
         NSTimeInterval leftSecondsTimeInterval = leftSeconds;
         notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:leftSecondsTimeInterval];
@@ -133,9 +133,8 @@
         if ((savedScondsLeft + (int)passedTimeInterval) > 0) {
             controller.secondsLeft = savedScondsLeft + (int)passedTimeInterval;
         } else { // 时间已经耗尽
-            [controller stop];
             [controller completedOneWorkTime];
-            
+            [controller reset];
         }
     }
 }

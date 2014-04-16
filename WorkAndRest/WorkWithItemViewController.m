@@ -46,7 +46,7 @@
     [super viewDidLoad];
     NSNumber *secondsValue = (NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"];
     seconds = [secondsValue intValue] * 60;
-    // seconds = 15;
+    seconds = 15;
     isPlaySecondSound = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"] boolValue];
     isKeepScreenLight = [[[NSUserDefaults standardUserDefaults] valueForKey:@"KeepLight"] boolValue];
     
@@ -165,7 +165,7 @@
     } else {
         isWorking = NO;
         
-        [timer invalidate];
+        [self cancelTimer];
         
         [self completedOneWorkTime];
         
@@ -191,9 +191,8 @@
             isWorking = NO;
             [buttonTap play];
             
-            [timer invalidate];
-            secondsLeft = seconds;
-            self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
+            [self cancelTimer];
+            [self resetTimerLabel];
             
             [self enableButton:self.startButton];
             [self disableButton:self.stopButton];
@@ -272,9 +271,33 @@
     self.workTimesLabel.text = [NSString stringWithFormat:NSLocalizedString(@"work times: %@", nil), self.itemToWork.costWorkTimes];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)cancelTimer
 {
     [timer invalidate];
+}
+
+- (void)resetTimerLabel
+{
+    secondsLeft = seconds;
+    self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
+}
+
+- (void)reset
+{
+    [self cancelTimer];
+    [self resetTimerLabel];
+    isWorking = NO;
+    
+    [self enableButton:self.startButton];
+    [self disableButton:self.stopButton];
+    [self disableButton:self.silentButton];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if (isWorking) {
+        [self cancelTimer];
+    }
 }
 
 @end

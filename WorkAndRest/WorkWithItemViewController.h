@@ -26,5 +26,6 @@
 - (IBAction)start;
 - (IBAction)stop;
 - (void)completedOneWorkTime;
+- (void)reset;
 
 @end
