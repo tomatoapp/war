@@ -45,17 +45,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-            return 24.0f;
-        }
-        return 10.0f;
-    }
-    return 32.0f;
-}
-
 - (IBAction)secondSoundSwitchChanged:(id)sender
 {
     NSLog(@"self.switchControl.on %hhd",self.switchControl.on);

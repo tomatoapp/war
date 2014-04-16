@@ -65,10 +65,10 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.startButton.layer.cornerRadius = 40;
+    self.startButton.layer.cornerRadius = 38;
     self.startButton.layer.borderWidth = 1.5;
     
-    self.stopButton.layer.cornerRadius = 40;
+    self.stopButton.layer.cornerRadius = 38;
     self.stopButton.layer.borderWidth = 1.5;
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -139,7 +139,7 @@
 {
     isPlaySecondSound = !isPlaySecondSound;
     if (isPlaySecondSound) {
-        [self.silentButton setTitleColor:[UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1] forState:UIControlStateNormal];
+        [self.silentButton setTitleColor:[UIColor colorWithRed:0 green:200.00/255.00 blue:0 alpha:1] forState:UIControlStateNormal];
         
     } else {
         [self.silentButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -241,9 +241,9 @@
 {
     button.enabled = YES;
     if ([button.titleLabel.text isEqualToString:NSLocalizedString(@"Start", nil)]) {
-        self.startButton.layer.borderColor = [UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1].CGColor;
-        self.startButton.titleLabel.textColor = [UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1];
-        [self.startButton setTitleColor:[UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1] forState:UIControlStateNormal];
+        self.startButton.layer.borderColor = [UIColor colorWithRed:0 green:200.00/255.00 blue:0 alpha:1].CGColor;
+        self.startButton.titleLabel.textColor = [UIColor colorWithRed:0 green:200.00/255.00 blue:0 alpha:1];
+        [self.startButton setTitleColor:[UIColor colorWithRed:0 green:200.00/255.00 blue:0 alpha:1] forState:UIControlStateNormal];
         
     } else if ([button.titleLabel.text isEqualToString:NSLocalizedString(@"Stop", nil)]) {
         self.stopButton.layer.borderColor = [UIColor redColor].CGColor;
@@ -252,7 +252,7 @@
         
     } else {
         if (isPlaySecondSound) {
-            [self.silentButton setTitleColor:[UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1] forState:UIControlStateNormal];
+            [self.silentButton setTitleColor:[UIColor colorWithRed:0 green:200.00/255.00 blue:0 alpha:1] forState:UIControlStateNormal];
             
         } else {
             [self.silentButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
