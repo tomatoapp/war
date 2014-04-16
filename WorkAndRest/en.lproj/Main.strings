@@ -1,0 +1,48 @@
+
+/* Class = "IBUILabel"; text = "00:25:00"; ObjectID = "3Wd-cv-w87"; */
+"3Wd-cv-w87.text" = "00:25:00";
+
+/* Class = "IBUILabel"; text = "Work Times: 1"; ObjectID = "6sy-7Q-i70"; */
+"6sy-7Q-i70.text" = "Work Times: 1";
+
+/* Class = "IBUIBarButtonItem"; title = "Setting"; ObjectID = "8KS-Dm-4TD"; */
+"8KS-Dm-4TD.title" = "Setting";
+
+/* Class = "IBUINavigationItem"; title = "Setting"; ObjectID = "Ezq-Zv-W88"; */
+"Ezq-Zv-W88.title" = "Setting";
+
+/* Class = "IBUILabel"; text = "Keep Screen Light"; ObjectID = "GPu-Ku-LJL"; */
+"GPu-Ku-LJL.text" = "Keep Screen Light";
+
+/* Class = "IBUILabel"; text = "Second Sound"; ObjectID = "M8R-jH-z2L"; */
+"M8R-jH-z2L.text" = "Second Sound";
+
+/* Class = "IBUIButton"; normalTitle = "Stop"; ObjectID = "MLM-zZ-Gaj"; */
+"MLM-zZ-Gaj.normalTitle" = "Break";
+
+/* Class = "IBUITextField"; placeholder = "Name of the item"; ObjectID = "NcN-m5-KQX"; */
+"NcN-m5-KQX.placeholder" = "Name of the item";
+
+/* Class = "IBUIButton"; normalTitle = "Start"; ObjectID = "Q7U-39-CpS"; */
+"Q7U-39-CpS.normalTitle" = "Start";
+
+/* Class = "IBUINavigationItem"; title = "To-do"; ObjectID = "RuG-c6-gLl"; */
+"RuG-c6-gLl.title" = "To-do";
+
+/* Class = "IBUINavigationItem"; title = "New Task"; ObjectID = "WeG-jc-PF4"; */
+"WeG-jc-PF4.title" = "New Task";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "aPd-MS-y09"; */
+"aPd-MS-y09.text" = "Label";
+
+/* Class = "IBUIButton"; normalTitle = "♫"; ObjectID = "cbP-Xr-oFB"; */
+"cbP-Xr-oFB.normalTitle" = "♫";
+
+/* Class = "IBUILabel"; text = "Time"; ObjectID = "lhf-u6-GVa"; */
+"lhf-u6-GVa.text" = "Time";
+
+/* Class = "IBUILabel"; text = "00:25:00"; ObjectID = "nkp-Qx-wTa"; */
+"nkp-Qx-wTa.text" = "00:25:00";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "vfc-Wt-w0b"; */
+"vfc-Wt-w0b.text" = "Label";

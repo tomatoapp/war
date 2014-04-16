@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		640D064618E03575007B0894 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D064518E03575007B0894 /* ItemDetailViewController.m */; };
+		64228ECA18FE2ED300461550 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64228ECC18FE2ED300461550 /* Localizable.strings */; };
 		6434827218C5D344009BF110 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827118C5D344009BF110 /* Foundation.framework */; };
 		6434827418C5D344009BF110 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827318C5D344009BF110 /* CoreGraphics.framework */; };
 		6434827618C5D344009BF110 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827518C5D344009BF110 /* UIKit.framework */; };
@@ -20,8 +21,6 @@
 		6434829118C5D344009BF110 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434829018C5D344009BF110 /* XCTest.framework */; };
 		6434829218C5D344009BF110 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827118C5D344009BF110 /* Foundation.framework */; };
 		6434829318C5D344009BF110 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827518C5D344009BF110 /* UIKit.framework */; };
-		6434829B18C5D344009BF110 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6434829918C5D344009BF110 /* InfoPlist.strings */; };
-		6434829D18C5D344009BF110 /* WorkAndRestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6434829C18C5D344009BF110 /* WorkAndRestTests.m */; };
 		6439ADC918E1325800CAC85B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6439ADC818E1325800CAC85B /* CoreData.framework */; };
 		6439ADD218E15E2100CAC85B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6439ADD018E15E2100CAC85B /* DataModel.xcdatamodeld */; };
 		6439ADE718E16FB500CAC85B /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 6439ADE618E16FB500CAC85B /* Task.m */; };
@@ -52,6 +51,12 @@
 /* Begin PBXFileReference section */
 		640D064418E03575007B0894 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
 		640D064518E03575007B0894 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
+		64228EC818FE2E7300461550 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		64228EC918FE2E7300461550 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		64228ECB18FE2ED300461550 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		64228ECD18FE2EE300461550 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		64228ECE18FE2EE300461550 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		64228ED018FE370900461550 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		6434826E18C5D344009BF110 /* WorkAndRest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkAndRest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6434827118C5D344009BF110 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6434827318C5D344009BF110 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -68,9 +73,6 @@
 		6434828918C5D344009BF110 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6434828F18C5D344009BF110 /* WorkAndRestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkAndRestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6434829018C5D344009BF110 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		6434829818C5D344009BF110 /* WorkAndRestTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WorkAndRestTests-Info.plist"; sourceTree = "<group>"; };
-		6434829A18C5D344009BF110 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6434829C18C5D344009BF110 /* WorkAndRestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkAndRestTests.m; sourceTree = "<group>"; };
 		6439ADC818E1325800CAC85B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6439ADD118E15E2100CAC85B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		6439ADE518E16FB500CAC85B /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
@@ -125,7 +127,6 @@
 				64AB663418FE198E007412D2 /* Images */,
 				64A4D70418F7DBFD006BF4D1 /* Supporting Files */,
 				6434827718C5D344009BF110 /* WorkAndRest */,
-				6434829618C5D344009BF110 /* WorkAndRestTests */,
 				6434827018C5D344009BF110 /* Frameworks */,
 				6434826F18C5D344009BF110 /* Products */,
 			);
@@ -183,28 +184,11 @@
 		6434827818C5D344009BF110 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				64228ECC18FE2ED300461550 /* Localizable.strings */,
 				6434827918C5D344009BF110 /* WorkAndRest-Info.plist */,
 				6434827A18C5D344009BF110 /* InfoPlist.strings */,
 				6434827D18C5D344009BF110 /* main.m */,
 				6434827F18C5D344009BF110 /* WorkAndRest-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6434829618C5D344009BF110 /* WorkAndRestTests */ = {
-			isa = PBXGroup;
-			children = (
-				6434829C18C5D344009BF110 /* WorkAndRestTests.m */,
-				6434829718C5D344009BF110 /* Supporting Files */,
-			);
-			path = WorkAndRestTests;
-			sourceTree = "<group>";
-		};
-		6434829718C5D344009BF110 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				6434829818C5D344009BF110 /* WorkAndRestTests-Info.plist */,
-				6434829918C5D344009BF110 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -306,6 +290,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 6434826518C5D343009BF110;
 			productRefGroup = 6434826F18C5D344009BF110 /* Products */;
@@ -325,6 +310,7 @@
 			files = (
 				6434828A18C5D344009BF110 /* Images.xcassets in Resources */,
 				6434827C18C5D344009BF110 /* InfoPlist.strings in Resources */,
+				64228ECA18FE2ED300461550 /* Localizable.strings in Resources */,
 				64A4D70618F7DC4B006BF4D1 /* SecondBeep.wav in Resources */,
 				64A4D70818F7DC7A006BF4D1 /* ButtonTap.wav in Resources */,
 				64AB663A18FE19AA007412D2 /* iOS7-Default@r4.png in Resources */,
@@ -340,7 +326,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6434829B18C5D344009BF110 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +353,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6434829D18C5D344009BF110 /* WorkAndRestTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,10 +367,21 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		64228ECC18FE2ED300461550 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64228ECB18FE2ED300461550 /* Base */,
+				64228ECD18FE2EE300461550 /* en */,
+				64228ECE18FE2EE300461550 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		6434827A18C5D344009BF110 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6434827B18C5D344009BF110 /* en */,
+				64228EC918FE2E7300461550 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -395,16 +390,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				6434828418C5D344009BF110 /* Base */,
+				64228EC818FE2E7300461550 /* zh-Hans */,
+				64228ED018FE370900461550 /* en */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		6434829918C5D344009BF110 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6434829A18C5D344009BF110 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  WorkAndRest
+
+  Created by YangCun on 14-4-16.
+  Copyright (c) 2014年 YangCun. All rights reserved.
+*/
+"Task Sample" = "Task Sample";
+"Hidden History" = "Hidden History";
+"Show History" = "Show History";
+"work times: %@" = "work times: %@";
+"Edit Task" = "Edit Task";
+"Time is up!" = "Time is up!";
+"Yes" = "Yes";
+"Start" = "Start";
+"Stop" = "Stop";

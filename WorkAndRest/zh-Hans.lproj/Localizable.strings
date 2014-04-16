@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  WorkAndRest
+
+  Created by YangCun on 14-4-16.
+  Copyright (c) 2014年 YangCun. All rights reserved.
+*/
+"Task Sample" = "示例任务";
+"Hidden History" = "隐藏已完成任务";
+"Show History" = "显示已完成任务";
+"work times: %@" = "工作次数: %@";
+"Edit Task" = "修改任务";
+"Time is up!" = "时间到!";
+"Yes" = "确定";
+"Start" = "开始";
+"Stop" = "打断";

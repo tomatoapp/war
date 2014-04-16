@@ -45,9 +45,7 @@
     [super viewDidLoad];
     NSNumber *secondsValue = (NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"];
     seconds = [secondsValue intValue] * 60;
-    seconds = 15;
-    NSLog(@"Get Seconds: %d", seconds);
-    
+    // seconds = 15;
     isPlaySecondSound = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"] boolValue];
     isKeepScreenLight = [[[NSUserDefaults standardUserDefaults] valueForKey:@"KeepLight"] boolValue];
     
@@ -56,7 +54,7 @@
     self.title = self.itemToWork.text;
     secondsLeft = seconds;
     self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
-    self.workTimesLabel.text = [NSString stringWithFormat:@"Work Times: %@", self.itemToWork.costWorkTimes];
+    self.workTimesLabel.text = [NSString stringWithFormat:NSLocalizedString(@"work times: %@", nil), self.itemToWork.costWorkTimes];
 
     [self enableButton:self.startButton];
     [self disableButton:self.stopButton];
@@ -116,7 +114,6 @@
 
 - (IBAction)start
 {
-    NSLog(@"start");
     isWorking = YES;
     
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(subtractTime) userInfo:nil repeats:YES];
@@ -139,7 +136,6 @@
 
 - (IBAction)stop
 {
-    NSLog(@"stop");
     isWorking = NO;
     
     [timer invalidate];
@@ -167,7 +163,6 @@
 
 - (void)subtractTime
 {
-    NSLog(@"subtractTime");
     
     if (secondsLeft > 0) {
         
@@ -180,14 +175,13 @@
             [secondBeep play];
         }
     } else {
-        NSLog(@"Timeout");
         isWorking = NO;
         
         [timer invalidate];
         
         [self completedOneWorkTime];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Time is up!" message:@"" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles: nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Time is up!", nil) message:@"" delegate:self cancelButtonTitle:NSLocalizedString(@"Yes", nil) otherButtonTitles: nil];
         [alert show];
         
         [self disableButton:self.stopButton];
@@ -238,11 +232,11 @@
 - (void)enableButton:(UIButton *)button
 {
     button.enabled = YES;
-    if ([button.titleLabel.text isEqualToString:@"Start"]) {
+    if ([button.titleLabel.text isEqualToString:NSLocalizedString(@"Start", nil)]) {
         self.startButton.layer.borderColor = [UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1].CGColor;
         self.startButton.titleLabel.textColor = [UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1];
         
-    } else if ([button.titleLabel.text isEqualToString:@"Stop"]) {
+    } else if ([button.titleLabel.text isEqualToString:NSLocalizedString(@"Stop", nil)]) {
         self.stopButton.layer.borderColor = [UIColor redColor].CGColor;
         self.stopButton.titleLabel.textColor = [UIColor redColor];
     } else {
@@ -264,7 +258,7 @@
         return;
     }
     
-    self.workTimesLabel.text = [NSString stringWithFormat:@"Work Times: %@", self.itemToWork.costWorkTimes];
+    self.workTimesLabel.text = [NSString stringWithFormat:NSLocalizedString(@"work times: %@", nil), self.itemToWork.costWorkTimes];
 }
 
 @end

@@ -43,7 +43,7 @@
         
         // Add the "Task Sample" item to the list.
         Task *sampleTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
-        sampleTask.text = @"Task Sample";
+        sampleTask.text =NSLocalizedString(@"Task Sample", nil);
         sampleTask.costWorkTimes = [NSNumber numberWithInteger:0];
         sampleTask.completed = [NSNumber numberWithBool:NO];
         sampleTask.date = [NSDate date];
@@ -83,9 +83,9 @@
 {
     NSString *title;
     if (isShowHistoryTasks) {
-        title = @"Hidden History";
+        title = NSLocalizedString(@"Hidden History", nil);
     } else {
-        title = @"Show History";
+        title = NSLocalizedString(@"Show History", nil);
     }
     UIBarButtonItem *showHistoryButtonItem = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleBordered target:self action:@selector(showHistory)];
     
@@ -104,9 +104,9 @@
 {
     UIBarButtonItem *showHistoryButtonItem = (UIBarButtonItem *)[self.toolbarItems objectAtIndex:1];
     if (isShowHistoryTasks) {
-        showHistoryButtonItem.title = @"Show History";
+        showHistoryButtonItem.title = NSLocalizedString(@"Show History", nil);
     } else {
-        showHistoryButtonItem.title = @"Hidden History";
+        showHistoryButtonItem.title = NSLocalizedString(@"Hidden History", nil);
     }
     isShowHistoryTasks = !isShowHistoryTasks;
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:isShowHistoryTasks] forKey:@"IsShowHistoryTasks"];
@@ -277,7 +277,7 @@
     CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomCell"];
     Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleLabel.text = item.text;
-    cell.subTitleLabel.text = [NSString stringWithFormat:@"work times: %@",item.costWorkTimes];
+    cell.subTitleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"work times: %@", nil),item.costWorkTimes];
     cell.checkBox.checked = [item.completed boolValue];
     return cell;
 }
@@ -288,10 +288,7 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"accessoryButtonTappedForRowWithIndexPath");
-    
     Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
-    NSLog(@"item is : %@", item.text);
     [self performSegueWithIdentifier:@"EditItem" sender:item];
 }
 
@@ -339,7 +336,6 @@
     
     // Accessibility
     [self updateAccessibilityForCell:(CustomCell*)[self.tableView cellForRowAtIndexPath:indexPath]];
-    
 }
 
 - (void)updateAccessibilityForCell:(CustomCell*)cell

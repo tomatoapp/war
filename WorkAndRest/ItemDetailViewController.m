@@ -34,7 +34,7 @@
     [super viewDidLoad];
     
     if (self.itemToEdit != nil) {
-        self.title = @"Edit Task";
+        self.title = NSLocalizedString(@"Edit Task", nil);
         textField.text = itemToEdit.text;
     }
 }
