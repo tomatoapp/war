@@ -21,6 +21,7 @@
     int minute, second;
     int seconds;
     AVAudioPlayer *secondBeep;
+    AVAudioPlayer *buttonTap;
     BOOL isPlaySecondSound;
     BOOL isKeepScreenLight;
 }
@@ -50,7 +51,8 @@
     isKeepScreenLight = [[[NSUserDefaults standardUserDefaults] valueForKey:@"KeepLight"] boolValue];
     
     secondBeep = [self setupAudioPlayerWithFile:@"SecondBeep" type:@"wav"];
-
+    buttonTap = [self setupAudioPlayerWithFile:@"ButtonTap" type:@"wav"];
+    
     self.title = self.itemToWork.text;
     secondsLeft = seconds;
     self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
@@ -71,13 +73,6 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.currentModelViewController = self;
-    
-
-}
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-    [self stop];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -115,6 +110,7 @@
 - (IBAction)start
 {
     isWorking = YES;
+    [buttonTap play];
     
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(subtractTime) userInfo:nil repeats:YES];
     
@@ -136,15 +132,7 @@
 
 - (IBAction)stop
 {
-    isWorking = NO;
-    
-    [timer invalidate];
-    secondsLeft = seconds;
-    self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
-    
-    [self enableButton:self.startButton];
-    [self disableButton:self.stopButton];
-    [self disableButton:self.silentButton];
+    [self showStopAlertView];
 }
 
 - (IBAction)silentButtonClick:(id)sender
@@ -195,8 +183,29 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    secondsLeft = seconds;
-    self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
+    if ([alertView.title isEqualToString:NSLocalizedString(@"Time is up!", nil)]) {
+        secondsLeft = seconds;
+        self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
+    } else if([alertView.title isEqualToString:NSLocalizedString(@"Break this work?", nil)]) {
+        if (buttonIndex == 1) {
+            isWorking = NO;
+            [buttonTap play];
+            
+            [timer invalidate];
+            secondsLeft = seconds;
+            self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
+            
+            [self enableButton:self.startButton];
+            [self disableButton:self.stopButton];
+            [self disableButton:self.silentButton];
+        }
+    }
+}
+
+- (void)showStopAlertView
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Break this work?", nil) message:@"" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
+    [alert show];
 }
 
 #pragma mark - Private Methods
@@ -235,10 +244,13 @@
     if ([button.titleLabel.text isEqualToString:NSLocalizedString(@"Start", nil)]) {
         self.startButton.layer.borderColor = [UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1].CGColor;
         self.startButton.titleLabel.textColor = [UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1];
+        [self.startButton setTitleColor:[UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1] forState:UIControlStateNormal];
         
     } else if ([button.titleLabel.text isEqualToString:NSLocalizedString(@"Stop", nil)]) {
         self.stopButton.layer.borderColor = [UIColor redColor].CGColor;
         self.stopButton.titleLabel.textColor = [UIColor redColor];
+        [self.stopButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        
     } else {
         if (isPlaySecondSound) {
             [self.silentButton setTitleColor:[UIColor colorWithRed:0 green:180.00/255.00 blue:0 alpha:1] forState:UIControlStateNormal];
@@ -257,8 +269,12 @@
         FATAL_CORE_DATA_ERROR(error);
         return;
     }
-    
     self.workTimesLabel.text = [NSString stringWithFormat:NSLocalizedString(@"work times: %@", nil), self.itemToWork.costWorkTimes];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [timer invalidate];
 }
 
 @end

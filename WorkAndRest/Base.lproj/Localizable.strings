@@ -8,9 +8,11 @@
 "Task Sample" = "Task Sample";
 "Hidden History" = "Hidden History";
 "Show History" = "Show History";
-"work times: %@" = "work times: %@";
+"work times: %@" = "Work Times: %@";
 "Edit Task" = "Edit Task";
 "Time is up!" = "Time is up!";
 "Yes" = "Yes";
+"Cancel" = "Cancel";
 "Start" = "Start";
-"Stop" = "Stop";
+"Stop" = "Break";
+"Break this work?" = "Break this work?";

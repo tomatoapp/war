@@ -12,5 +12,7 @@
 "Edit Task" = "修改任务";
 "Time is up!" = "时间到!";
 "Yes" = "确定";
+"Cancel" = "取消";
 "Start" = "开始";
 "Stop" = "打断";
+"Break this work?" = "打断当前任务？";
