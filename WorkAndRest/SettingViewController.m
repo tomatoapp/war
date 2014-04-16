@@ -49,7 +49,7 @@
 {
     if (section == 0) {
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-            return 0.1f;
+            return 24.0f;
         }
         return 10.0f;
     }

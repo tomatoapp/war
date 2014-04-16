@@ -65,11 +65,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.startButton.layer.cornerRadius = 30;
-    self.startButton.layer.borderWidth = 1;
+    self.startButton.layer.cornerRadius = 40;
+    self.startButton.layer.borderWidth = 1.5;
     
-    self.stopButton.layer.cornerRadius = 30;
-    self.stopButton.layer.borderWidth = 1;
+    self.stopButton.layer.cornerRadius = 40;
+    self.stopButton.layer.borderWidth = 1.5;
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.currentModelViewController = self;
