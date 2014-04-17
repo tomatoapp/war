@@ -166,7 +166,7 @@
         
         [self completedOneWorkTime];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Time is up!", nil) message:@"" delegate:self cancelButtonTitle:NSLocalizedString(@"Yes", nil) otherButtonTitles: nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Completed", nil) message:NSLocalizedString(@"Time is up!", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Yes", nil) otherButtonTitles: nil];
         [alert show];
         
         [self disableButton:self.stopButton];
@@ -180,9 +180,8 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if ([alertView.title isEqualToString:NSLocalizedString(@"Time is up!", nil)]) {
-        secondsLeft = seconds;
-        self.timerLabel.text = [self stringFromSecondsLeft:secondsLeft];
+    if ([alertView.title isEqualToString:NSLocalizedString(@"Completed", nil)]) {
+        [self resetTimerLabel];
     } else if([alertView.title isEqualToString:NSLocalizedString(@"Break this work?", nil)]) {
         if (buttonIndex == 1) {
             isWorking = NO;
@@ -199,7 +198,7 @@
 
 - (void)showStopAlertView
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Break this work?", nil) message:@"" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Break this work?", nil) message:NSLocalizedString(@"It will be ineffective", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
     [alert show];
 }
 

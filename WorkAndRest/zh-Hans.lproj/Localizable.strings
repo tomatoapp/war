@@ -8,12 +8,14 @@
 "Task Sample" = "示例任务";
 "Hidden History" = "隐藏已完成任务";
 "Show History" = "显示已完成任务";
-"work times: %@" = "工作次数: %@";
+"work times: %@" = "有效工作时间: %@";
 "Edit Task" = "修改任务";
 "Yes" = "确定";
 "Cancel" = "取消";
 "Start" = "开始";
 "Stop" = "打断";
-"Break this work?" = "打断当前任务?";
-"Time is up!" = "任务: 当前任务已完成!";
+"Break this work?" = "打断当前工作时间?";
+"It will be ineffective" = "打断将导致当前工作时间无效。";
+"Completed" = "已完成";
+"Time is up!" = "一个工作时间已完成!";
 
