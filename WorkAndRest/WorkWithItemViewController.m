@@ -110,7 +110,6 @@
 - (IBAction)start
 {
     isWorking = YES;
-    [buttonTap play];
     
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(subtractTime) userInfo:nil repeats:YES];
     
@@ -189,7 +188,6 @@
     } else if([alertView.title isEqualToString:NSLocalizedString(@"Break this work?", nil)]) {
         if (buttonIndex == 1) {
             isWorking = NO;
-            [buttonTap play];
             
             [self cancelTimer];
             [self resetTimerLabel];
