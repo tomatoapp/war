@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		64065F1518FF657400E7D8B1 /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = 64065F1318FF657400E7D8B1 /* 57.png */; };
 		64065F1618FF657400E7D8B1 /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 64065F1418FF657400E7D8B1 /* 114.png */; };
+		64065F1818FF664F00E7D8B1 /* sec.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64065F1718FF664F00E7D8B1 /* sec.wav */; };
 		640D064618E03575007B0894 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D064518E03575007B0894 /* ItemDetailViewController.m */; };
 		64228ECA18FE2ED300461550 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64228ECC18FE2ED300461550 /* Localizable.strings */; };
 		6434827218C5D344009BF110 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827118C5D344009BF110 /* Foundation.framework */; };
@@ -29,7 +30,6 @@
 		6460FB2718F52CB400CF55AA /* Checkbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460FB2418F52CB400CF55AA /* Checkbox.m */; };
 		6460FB2818F52CB400CF55AA /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460FB2618F52CB400CF55AA /* CustomCell.m */; };
 		64A4D70618F7DC4B006BF4D1 /* SecondBeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64A4D70518F7DC4B006BF4D1 /* SecondBeep.wav */; };
-		64A4D70818F7DC7A006BF4D1 /* ButtonTap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64A4D70718F7DC7A006BF4D1 /* ButtonTap.wav */; };
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
 		64A9E9ED18F6405300E84EF2 /* WorkWithItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */; };
 		64A9E9F018F64BAF00E84EF2 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A9E9EF18F64BAF00E84EF2 /* SettingViewController.m */; };
@@ -58,6 +58,7 @@
 /* Begin PBXFileReference section */
 		64065F1318FF657400E7D8B1 /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
 		64065F1418FF657400E7D8B1 /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
+		64065F1718FF664F00E7D8B1 /* sec.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sec.wav; sourceTree = "<group>"; };
 		640D064418E03575007B0894 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
 		640D064518E03575007B0894 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
 		64228EC818FE2E7300461550 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -91,7 +92,6 @@
 		6460FB2518F52CB400CF55AA /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		6460FB2618F52CB400CF55AA /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		64A4D70518F7DC4B006BF4D1 /* SecondBeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SecondBeep.wav; sourceTree = "<group>"; };
-		64A4D70718F7DC7A006BF4D1 /* ButtonTap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ButtonTap.wav; sourceTree = "<group>"; };
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		64A9E9EB18F6405300E84EF2 /* WorkWithItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkWithItemViewController.h; sourceTree = "<group>"; };
 		64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkWithItemViewController.m; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 		64A4D70418F7DBFD006BF4D1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				64A4D70718F7DC7A006BF4D1 /* ButtonTap.wav */,
+				64065F1718FF664F00E7D8B1 /* sec.wav */,
 				64A4D70518F7DC4B006BF4D1 /* SecondBeep.wav */,
 			);
 			name = "Supporting Files";
@@ -329,6 +329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64065F1818FF664F00E7D8B1 /* sec.wav in Resources */,
 				64065F1618FF657400E7D8B1 /* 114.png in Resources */,
 				64E847F818FEA87F009F88DA /* 40.png in Resources */,
 				64E847F718FEA87F009F88DA /* 29.png in Resources */,
@@ -336,7 +337,6 @@
 				6434827C18C5D344009BF110 /* InfoPlist.strings in Resources */,
 				64228ECA18FE2ED300461550 /* Localizable.strings in Resources */,
 				64A4D70618F7DC4B006BF4D1 /* SecondBeep.wav in Resources */,
-				64A4D70818F7DC7A006BF4D1 /* ButtonTap.wav in Resources */,
 				64AB663A18FE19AA007412D2 /* iOS7-Default@r4.png in Resources */,
 				64E847F918FEA87F009F88DA /* 58.png in Resources */,
 				64AB664618FE1DE9007412D2 /* iOS6-Default@r4.png in Resources */,

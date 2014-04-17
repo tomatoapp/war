@@ -21,7 +21,6 @@
     int minute, second;
     int seconds;
     AVAudioPlayer *secondBeep;
-    AVAudioPlayer *buttonTap;
     BOOL isPlaySecondSound;
     BOOL isKeepScreenLight;
 }
@@ -46,12 +45,11 @@
     [super viewDidLoad];
     NSNumber *secondsValue = (NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"];
     seconds = [secondsValue intValue] * 60;
-    seconds = 15;
+    seconds = 3;
     isPlaySecondSound = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"] boolValue];
     isKeepScreenLight = [[[NSUserDefaults standardUserDefaults] valueForKey:@"KeepLight"] boolValue];
     
-    secondBeep = [self setupAudioPlayerWithFile:@"SecondBeep" type:@"wav"];
-    buttonTap = [self setupAudioPlayerWithFile:@"ButtonTap" type:@"wav"];
+    secondBeep = [self setupAudioPlayerWithFile:@"sec" type:@"wav"];
     
     self.title = self.itemToWork.text;
     secondsLeft = seconds;
