@@ -29,6 +29,12 @@
     TaskListViewController *taskListViewController = (TaskListViewController *)[[navigationController viewControllers] objectAtIndex:0];
     taskListViewController.managedObjectContext = self.managedObjectContext;
     
+    // UNDONE:
+    [Appirater setAppId:@""];
+    [Appirater setDaysUntilPrompt:3];
+    [Appirater setUsesUntilPrompt:3];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:2];
     [Appirater setDebug:YES];
     [Appirater appLaunched:YES];
     
