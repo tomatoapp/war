@@ -11,6 +11,7 @@
 		64012C8C1900B8B4006FC2B2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64012C8B1900B8B4006FC2B2 /* CFNetwork.framework */; };
 		64012C8E1900B8C2006FC2B2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64012C8D1900B8C2006FC2B2 /* SystemConfiguration.framework */; };
 		64012C931900B979006FC2B2 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64012C911900B979006FC2B2 /* AppiraterLocalizable.strings */; };
+		64012C951900D68F006FC2B2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64012C941900D68F006FC2B2 /* AudioToolbox.framework */; };
 		64065F1518FF657400E7D8B1 /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = 64065F1318FF657400E7D8B1 /* 57.png */; };
 		64065F1618FF657400E7D8B1 /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 64065F1418FF657400E7D8B1 /* 114.png */; };
 		64065F1818FF664F00E7D8B1 /* sec.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64065F1718FF664F00E7D8B1 /* sec.wav */; };
@@ -66,6 +67,7 @@
 		64012C8D1900B8C2006FC2B2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		64012C8F1900B92D006FC2B2 /* AppiraterDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
 		64012C921900B979006FC2B2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
+		64012C941900D68F006FC2B2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		64065F1318FF657400E7D8B1 /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
 		64065F1418FF657400E7D8B1 /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
 		64065F1718FF664F00E7D8B1 /* sec.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sec.wav; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64012C951900D68F006FC2B2 /* AudioToolbox.framework in Frameworks */,
 				64012C8E1900B8C2006FC2B2 /* SystemConfiguration.framework in Frameworks */,
 				64012C8C1900B8B4006FC2B2 /* CFNetwork.framework in Frameworks */,
 				64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */,
@@ -198,6 +201,7 @@
 		6434827018C5D344009BF110 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64012C941900D68F006FC2B2 /* AudioToolbox.framework */,
 				64012C8D1900B8C2006FC2B2 /* SystemConfiguration.framework */,
 				64012C8B1900B8B4006FC2B2 /* CFNetwork.framework */,
 				64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */,

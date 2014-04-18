@@ -9,6 +9,7 @@
 #import "WorkWithItemViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "AppDelegate.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface WorkWithItemViewController ()
 
@@ -166,6 +167,8 @@
         
         [self completedOneWorkTime];
         
+        //AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        AudioServicesPlaySystemSound(1005);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Completed", nil) message:NSLocalizedString(@"Time is up!", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Yes", nil) otherButtonTitles: nil];
         [alert show];
         
