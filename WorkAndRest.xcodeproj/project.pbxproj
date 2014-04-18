@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64012C8A1900B89D006FC2B2 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 64012C891900B89D006FC2B2 /* Appirater.m */; };
+		64012C8C1900B8B4006FC2B2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64012C8B1900B8B4006FC2B2 /* CFNetwork.framework */; };
+		64012C8E1900B8C2006FC2B2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64012C8D1900B8C2006FC2B2 /* SystemConfiguration.framework */; };
+		64012C931900B979006FC2B2 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64012C911900B979006FC2B2 /* AppiraterLocalizable.strings */; };
 		64065F1518FF657400E7D8B1 /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = 64065F1318FF657400E7D8B1 /* 57.png */; };
 		64065F1618FF657400E7D8B1 /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 64065F1418FF657400E7D8B1 /* 114.png */; };
 		64065F1818FF664F00E7D8B1 /* sec.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64065F1718FF664F00E7D8B1 /* sec.wav */; };
@@ -56,6 +60,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		64012C881900B89D006FC2B2 /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
+		64012C891900B89D006FC2B2 /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
+		64012C8B1900B8B4006FC2B2 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		64012C8D1900B8C2006FC2B2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		64012C8F1900B92D006FC2B2 /* AppiraterDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
+		64012C921900B979006FC2B2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		64065F1318FF657400E7D8B1 /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
 		64065F1418FF657400E7D8B1 /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
 		64065F1718FF664F00E7D8B1 /* sec.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sec.wav; sourceTree = "<group>"; };
@@ -114,6 +124,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64012C8E1900B8C2006FC2B2 /* SystemConfiguration.framework in Frameworks */,
+				64012C8C1900B8B4006FC2B2 /* CFNetwork.framework in Frameworks */,
 				64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */,
 				6439ADC918E1325800CAC85B /* CoreData.framework in Frameworks */,
 				6434827418C5D344009BF110 /* CoreGraphics.framework in Frameworks */,
@@ -135,9 +147,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		64012C861900B870006FC2B2 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				64012C871900B887006FC2B2 /* Appirater */,
+			);
+			name = Libs;
+			sourceTree = "<group>";
+		};
+		64012C871900B887006FC2B2 /* Appirater */ = {
+			isa = PBXGroup;
+			children = (
+				64012C901900B979006FC2B2 /* zh-Hans.lproj */,
+				64012C8F1900B92D006FC2B2 /* AppiraterDelegate.h */,
+				64012C881900B89D006FC2B2 /* Appirater.h */,
+				64012C891900B89D006FC2B2 /* Appirater.m */,
+			);
+			name = Appirater;
+			sourceTree = "<group>";
+		};
+		64012C901900B979006FC2B2 /* zh-Hans.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				64012C911900B979006FC2B2 /* AppiraterLocalizable.strings */,
+			);
+			path = "zh-Hans.lproj";
+			sourceTree = "<group>";
+		};
 		6434826518C5D343009BF110 = {
 			isa = PBXGroup;
 			children = (
+				64012C861900B870006FC2B2 /* Libs */,
 				64AB663418FE198E007412D2 /* Images */,
 				64A4D70418F7DBFD006BF4D1 /* Supporting Files */,
 				6434827718C5D344009BF110 /* WorkAndRest */,
@@ -158,6 +198,8 @@
 		6434827018C5D344009BF110 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64012C8D1900B8C2006FC2B2 /* SystemConfiguration.framework */,
+				64012C8B1900B8B4006FC2B2 /* CFNetwork.framework */,
 				64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */,
 				6439ADC818E1325800CAC85B /* CoreData.framework */,
 				6434827118C5D344009BF110 /* Foundation.framework */,
@@ -343,6 +385,7 @@
 				64E847FA18FEA87F009F88DA /* 60.png in Resources */,
 				64AB664518FE1DE9007412D2 /* iOS6-Default@2x.png in Resources */,
 				64E847FC18FEA87F009F88DA /* 120.png in Resources */,
+				64012C931900B979006FC2B2 /* AppiraterLocalizable.strings in Resources */,
 				64AB663918FE19AA007412D2 /* iOS7-Default@2x.png in Resources */,
 				64AB664418FE1DE9007412D2 /* iOS6-Default.png in Resources */,
 				64065F1518FF657400E7D8B1 /* 57.png in Resources */,
@@ -365,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6439ADE718E16FB500CAC85B /* Task.m in Sources */,
+				64012C8A1900B89D006FC2B2 /* Appirater.m in Sources */,
 				6434828818C5D344009BF110 /* TaskListViewController.m in Sources */,
 				6434827E18C5D344009BF110 /* main.m in Sources */,
 				640D064618E03575007B0894 /* ItemDetailViewController.m in Sources */,
@@ -395,6 +439,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		64012C911900B979006FC2B2 /* AppiraterLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64012C921900B979006FC2B2 /* zh-Hans */,
+			);
+			name = AppiraterLocalizable.strings;
+			sourceTree = "<group>";
+		};
 		64228ECC18FE2ED300461550 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

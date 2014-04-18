@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TaskListViewController.h"
 #import "WorkWithItemViewController.h"
+#import "Appirater.h"
 
 @interface AppDelegate ()
 
@@ -27,6 +28,9 @@
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     TaskListViewController *taskListViewController = (TaskListViewController *)[[navigationController viewControllers] objectAtIndex:0];
     taskListViewController.managedObjectContext = self.managedObjectContext;
+    
+    [Appirater setDebug:YES];
+    [Appirater appLaunched:YES];
     
     return YES;
 }
