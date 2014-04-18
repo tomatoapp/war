@@ -8,7 +8,7 @@
 "Task Sample" = "示例任务";
 "Hidden History" = "隐藏已完成任务";
 "Show History" = "显示已完成任务";
-"work times: %@" = "有效工作时间: %@";
+"work times: %@" = "有效工作时间: %@次";
 "Edit Task" = "修改任务";
 "Yes" = "确定";
 "Cancel" = "取消";
