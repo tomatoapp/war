@@ -269,8 +269,6 @@
         return;
     }
     self.workTimesLabel.text = [NSString stringWithFormat:NSLocalizedString(@"work times: %@", nil), self.itemToWork.costWorkTimes];
-    
-    [self bounceWorkTimesLabel];
 }
 
 - (void)cancelTimer
@@ -300,25 +298,6 @@
     if (isWorking) {
         [self cancelTimer];
     }
-}
-
-- (void)bounceWorkTimesLabel
-{
-    CAKeyframeAnimation *bounce = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-    
-    CATransform3D forward = CATransform3DMakeScale(1.3, 1.3, 1);
-    CATransform3D back = CATransform3DMakeScale(0.7, 0.7, 1);
-    CATransform3D forward2 = CATransform3DMakeScale(1.2, 1.2, 1);
-    CATransform3D back2 = CATransform3DMakeScale(0.9, 0.9, 1);
-    [bounce setValues:[NSArray arrayWithObjects:
-                       [NSValue valueWithCATransform3D:CATransform3DIdentity],
-                       [NSValue valueWithCATransform3D:forward],
-                       [NSValue valueWithCATransform3D:back],
-                       [NSValue valueWithCATransform3D:forward2],
-                       [NSValue valueWithCATransform3D:back2],
-                       nil]];
-    [bounce setDuration:0.6];
-    [[self.workTimesLabel layer] addAnimation:bounce forKey:@"bounceAnimation"];
 }
 
 @end
