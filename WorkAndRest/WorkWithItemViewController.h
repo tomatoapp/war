@@ -28,4 +28,6 @@
 - (void)completedOneWorkTime;
 - (void)reset;
 
+- (void)bounceWorkTimesLabel;
+
 @end

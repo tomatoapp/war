@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "AppDelegate.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface WorkWithItemViewController ()
 
@@ -185,6 +186,7 @@
 {
     if ([alertView.title isEqualToString:NSLocalizedString(@"Completed", nil)]) {
         [self resetTimerLabel];
+        
     } else if([alertView.title isEqualToString:NSLocalizedString(@"Break this work?", nil)]) {
         if (buttonIndex == 1) {
             isWorking = NO;
@@ -267,6 +269,8 @@
         return;
     }
     self.workTimesLabel.text = [NSString stringWithFormat:NSLocalizedString(@"work times: %@", nil), self.itemToWork.costWorkTimes];
+    
+    [self bounceWorkTimesLabel];
 }
 
 - (void)cancelTimer
@@ -296,6 +300,25 @@
     if (isWorking) {
         [self cancelTimer];
     }
+}
+
+- (void)bounceWorkTimesLabel
+{
+    CAKeyframeAnimation *bounce = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    
+    CATransform3D forward = CATransform3DMakeScale(1.3, 1.3, 1);
+    CATransform3D back = CATransform3DMakeScale(0.7, 0.7, 1);
+    CATransform3D forward2 = CATransform3DMakeScale(1.2, 1.2, 1);
+    CATransform3D back2 = CATransform3DMakeScale(0.9, 0.9, 1);
+    [bounce setValues:[NSArray arrayWithObjects:
+                       [NSValue valueWithCATransform3D:CATransform3DIdentity],
+                       [NSValue valueWithCATransform3D:forward],
+                       [NSValue valueWithCATransform3D:back],
+                       [NSValue valueWithCATransform3D:forward2],
+                       [NSValue valueWithCATransform3D:back2],
+                       nil]];
+    [bounce setDuration:0.6];
+    [[self.workTimesLabel layer] addAnimation:bounce forKey:@"bounceAnimation"];
 }
 
 @end
