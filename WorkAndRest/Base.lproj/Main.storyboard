@@ -240,6 +240,27 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="Pcl-Z8-IyT">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="77D-qH-y7z">
+                                        <rect key="frame" x="0.0" y="284" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="77D-qH-y7z" id="9Qr-1a-nCc">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suggestions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HEk-VU-hNd">
+                                                    <rect key="frame" x="20" y="11" width="280" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="WxZ-x7-fyd" id="0hW-zS-47a"/>
@@ -251,6 +272,7 @@
                         <outlet property="dateLabel" destination="3Wd-cv-w87" id="Cze-nP-iCV"/>
                         <outlet property="lightSwitchControl" destination="ULC-Cb-fan" id="xaJ-pg-DZp"/>
                         <outlet property="slider" destination="5Fn-fC-CmW" id="aed-kc-oMS"/>
+                        <outlet property="suggestionsLabel" destination="HEk-VU-hNd" id="T0R-8A-Rt4"/>
                         <outlet property="switchControl" destination="wWt-Pm-mIk" id="JBZ-ce-gxq"/>
                     </connections>
                 </tableViewController>

@@ -37,6 +37,10 @@
     self.dateLabel.text = [NSString stringWithFormat:@"00:%02d:00", secondsValue];
     self.slider.value = secondsValue;
     
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(segguestionsTapped)];
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    [self.suggestionsLabel addGestureRecognizer:tapGestureRecognizer];
+    self.suggestionsLabel.userInteractionEnabled = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,4 +68,11 @@
     [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:secondsValue] forKey:@"Seconds"];
 }
 
+- (void)segguestionsTapped
+{
+    NSLog(@"Send email.");
+    NSString *urlEmail = [NSString stringWithFormat:@"mailto:workrest@outlook.com?subject=%@", NSLocalizedString(@"Suggestions", nil)];
+    NSString *url = [urlEmail stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+}
 @end

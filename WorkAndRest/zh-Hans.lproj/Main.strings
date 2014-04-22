@@ -46,3 +46,6 @@
 
 /* Class = "IBUILabel"; text = "Label"; ObjectID = "vfc-Wt-w0b"; */
 "vfc-Wt-w0b.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Suggestions"; ObjectID = "HEk-VU-hNd"; */
+"HEk-VU-hNd.text" = "意见和建议";
