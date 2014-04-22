@@ -56,7 +56,6 @@
 
 - (IBAction)secondSoundSwitchChanged:(id)sender
 {
-    NSLog(@"self.switchControl.on %hhd",self.switchControl.on);
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:self.switchControl.on] forKey:@"SecondSound"];
 }
 
@@ -88,4 +87,13 @@
 
     
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 24.0f;
+    }
+    return 14.0f;
+}
+
 @end

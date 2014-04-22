@@ -115,16 +115,21 @@
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     if ([self.currentModelViewController isKindOfClass:[WorkWithItemViewController class]]) {
-        [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:@"NowDate"];
-        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:((WorkWithItemViewController *)self.currentModelViewController).secondsLeft] forKey:@"SecondsLeft"];
-        
-        // 添加通知
-        UILocalNotification *notification = [[UILocalNotification alloc] init];
-        notification.alertBody = NSLocalizedString(@"Time is up!", nil);
-        int leftSeconds = ((WorkWithItemViewController *)self.currentModelViewController).secondsLeft;
-        NSTimeInterval leftSecondsTimeInterval = leftSeconds;
-        notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:leftSecondsTimeInterval];
-        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:((WorkWithItemViewController *)self.currentModelViewController).isWorking] forKey:@"isWorking"];
+        if (((WorkWithItemViewController *)self.currentModelViewController).isWorking) {
+            
+            
+            [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:@"NowDate"];
+            [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:((WorkWithItemViewController *)self.currentModelViewController).secondsLeft] forKey:@"SecondsLeft"];
+            
+            // 添加通知
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.alertBody = NSLocalizedString(@"Time is up!", nil);
+            int leftSeconds = ((WorkWithItemViewController *)self.currentModelViewController).secondsLeft;
+            NSTimeInterval leftSecondsTimeInterval = leftSeconds;
+            notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:leftSecondsTimeInterval];
+            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        }
     }
 }
 
@@ -133,19 +138,19 @@
     NSLog(@"applicationDidBecomeActive");
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     if ([self.currentModelViewController isKindOfClass:[WorkWithItemViewController class]]) {
-        
-        WorkWithItemViewController *controller = (WorkWithItemViewController *)self.currentModelViewController;
-        
-        NSDate *savedDate = [[NSUserDefaults standardUserDefaults] valueForKey:@"NowDate"];
-        int savedScondsLeft = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondsLeft"] intValue];
-        NSTimeInterval passedTimeInterval = [savedDate timeIntervalSinceNow];
-        
-        if ((savedScondsLeft + (int)passedTimeInterval) > 0) {
-            controller.secondsLeft = savedScondsLeft + (int)passedTimeInterval;
-        } else { // 时间已经耗尽
-            [controller completedOneWorkTime];
-            [controller reset];
-        }
+        if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"isWorking"] boolValue]) {
+            WorkWithItemViewController *controller = (WorkWithItemViewController *)self.currentModelViewController;
+            
+            NSDate *savedDate = [[NSUserDefaults standardUserDefaults] valueForKey:@"NowDate"];
+            int savedScondsLeft = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondsLeft"] intValue];
+            NSTimeInterval passedTimeInterval = [savedDate timeIntervalSinceNow];
+            
+            if ((savedScondsLeft + (int)passedTimeInterval) > 0) {
+                controller.secondsLeft = savedScondsLeft + (int)passedTimeInterval;
+            } else { // 时间已经耗尽
+                [controller completedOneWorkTime];
+                [controller reset];
+            }}
     }
 }
 
