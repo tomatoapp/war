@@ -232,7 +232,7 @@
                                                     <rect key="frame" x="233" y="11" width="67" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.29803922772407532" green="0.84705889225006104" blue="0.39215689897537231" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -259,6 +259,23 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="HEz-Fg-509">
+                                        <rect key="frame" x="0.0" y="328" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HEz-Fg-509" id="bRI-XS-gID">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MdJ-Qk-Jxi">
+                                                    <rect key="frame" x="20" y="11" width="280" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -271,6 +288,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="3Wd-cv-w87" id="Cze-nP-iCV"/>
                         <outlet property="lightSwitchControl" destination="ULC-Cb-fan" id="xaJ-pg-DZp"/>
+                        <outlet property="rateLabel" destination="MdJ-Qk-Jxi" id="KYP-gv-vmJ"/>
                         <outlet property="slider" destination="5Fn-fC-CmW" id="aed-kc-oMS"/>
                         <outlet property="suggestionsLabel" destination="HEk-VU-hNd" id="T0R-8A-Rt4"/>
                         <outlet property="switchControl" destination="wWt-Pm-mIk" id="JBZ-ce-gxq"/>

@@ -41,6 +41,11 @@
     tapGestureRecognizer.numberOfTapsRequired = 1;
     [self.suggestionsLabel addGestureRecognizer:tapGestureRecognizer];
     self.suggestionsLabel.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *rateTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rateTapped)];
+    rateTapGestureRecognizer.numberOfTapsRequired = 1;
+    [self.rateLabel addGestureRecognizer:rateTapGestureRecognizer];
+    self.rateLabel.userInteractionEnabled = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,5 +79,13 @@
     NSString *urlEmail = [NSString stringWithFormat:@"mailto:workrest@outlook.com?subject=%@", NSLocalizedString(@"Suggestions", nil)];
     NSString *url = [urlEmail stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+}
+
+- (void)rateTapped
+{
+    NSLog(@"rate");
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.com/apps/qq"]];
+
+    
 }
 @end

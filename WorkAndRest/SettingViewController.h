@@ -15,4 +15,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *dateLabel;
 @property (nonatomic, strong) IBOutlet UISlider *slider;
 @property (nonatomic, strong) IBOutlet UILabel *suggestionsLabel;
+@property (nonatomic, strong) IBOutlet UILabel *rateLabel;
+
 @end
