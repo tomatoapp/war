@@ -90,7 +90,7 @@
     UIBarButtonItem *showHistoryButtonItem = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleBordered target:self action:@selector(showHistory)];
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spacer.width = 95.0f;
+    spacer.width = 85.0f;
     
     self.toolbarItems = [NSArray arrayWithObjects:spacer, showHistoryButtonItem, nil];
 }
