@@ -49,3 +49,6 @@
 
 /* Class = "IBUILabel"; text = "Suggestions"; ObjectID = "HEk-VU-hNd"; */
 "HEk-VU-hNd.text" = "Suggestions";
+
+/* Class = "IBUILabel"; text = "Rate"; ObjectID = "MdJ-Qk-Jxi"; */
+"MdJ-Qk-Jxi.text" = "Rate";

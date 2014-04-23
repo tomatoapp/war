@@ -49,3 +49,6 @@
 
 /* Class = "IBUILabel"; text = "Suggestions"; ObjectID = "HEk-VU-hNd"; */
 "HEk-VU-hNd.text" = "意见和建议";
+
+/* Class = "IBUILabel"; text = "Rate"; ObjectID = "MdJ-Qk-Jxi"; */
+"MdJ-Qk-Jxi.text" = "评价";
