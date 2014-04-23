@@ -83,7 +83,7 @@
 - (void)rateTapped
 {
     NSLog(@"rate");
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.com/apps/qq"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.com/apps/WorkAndRest"]];
 
     
 }
