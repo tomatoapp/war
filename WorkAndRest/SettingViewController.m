@@ -75,15 +75,13 @@
 - (void)segguestionsTapped
 {
     NSLog(@"Send email.");
-    NSString *urlEmail = [NSString stringWithFormat:@"mailto:workrest@outlook.com?subject=%@", NSLocalizedString(@"Suggestions", nil)];
-    NSString *url = [urlEmail stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    [self showSendEmailAlert];
 }
 
 - (void)rateTapped
 {
     NSLog(@"rate");
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.com/apps/WorkAndRest"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.com/apps/Work+Rest"]];
 
     
 }
@@ -94,6 +92,24 @@
         return 24.0f;
     }
     return 14.0f;
+}
+
+- (void)showSendEmailAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Send an email to the developers?", nil) message:NSLocalizedString(@"Send email message", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if([alertView.title isEqualToString:NSLocalizedString(@"Send an email to the developers?", nil)])
+    {
+        if (buttonIndex == 1) {
+            NSString *urlEmail = [NSString stringWithFormat:@"mailto:workrest@outlook.com?subject=%@", NSLocalizedString(@"Suggestions", nil)];
+            NSString *url = [urlEmail stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        }
+    }
 }
 
 @end

@@ -10,7 +10,7 @@
 "Show History" = "Show History";
 "work times: %@" = "Effective working time: %@ times";
 "Edit Task" = "Edit Task";
-"Yes" = "Yes";
+"Yes" = "OK";
 "Cancel" = "Cancel";
 "Start" = "Start";
 "Stop" = "Break";
@@ -19,3 +19,5 @@
 "Completed" = "Completed";
 "Time is up!" = "The working time has been completed!";
 "Suggestions" = "Suggestions";
+"Send an email to the developers?" = "Send an email to the developers?";
+"Send email message" = "If you have any suggestions or ideas, please advise.";

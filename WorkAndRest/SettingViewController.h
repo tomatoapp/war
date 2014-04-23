@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingViewController : UITableViewController
+@interface SettingViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UISwitch *switchControl;
 @property (nonatomic, strong) IBOutlet UISwitch *lightSwitchControl;
