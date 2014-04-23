@@ -39,6 +39,11 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [textField becomeFirstResponder];
+}
+
 - (IBAction)cancel:(id)sender
 {
     [self.delegate addTaskViewControllerDidCancel:self];
