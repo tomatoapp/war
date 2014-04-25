@@ -124,6 +124,7 @@
             
             // 添加通知
             UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.soundName = UILocalNotificationDefaultSoundName;
             notification.alertBody = NSLocalizedString(@"Time is up!", nil);
             int leftSeconds = ((WorkWithItemViewController *)self.currentModelViewController).secondsLeft;
             NSTimeInterval leftSecondsTimeInterval = leftSeconds;
