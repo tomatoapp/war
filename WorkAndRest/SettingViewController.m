@@ -32,8 +32,7 @@
     [super viewDidLoad];
     self.switchControl.on = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"] boolValue];
     self.lightSwitchControl.on = [[[NSUserDefaults standardUserDefaults] valueForKey:@"KeepLight"] boolValue];
-    NSNumber *secondsNumber = (NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"];
-    secondsValue = [secondsNumber intValue];
+    secondsValue = [[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"] intValue];
     self.dateLabel.text = [NSString stringWithFormat:@"00:%02d:00", secondsValue];
     self.slider.value = secondsValue;
     

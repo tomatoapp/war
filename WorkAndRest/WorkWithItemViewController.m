@@ -45,8 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSNumber *secondsValue = (NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"];
-    seconds = [secondsValue intValue] * 60;
+    seconds = [[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"] intValue] * 60;
     // seconds = seconds / 60;
     isPlaySecondSound = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"] boolValue];
     isKeepScreenLight = [[[NSUserDefaults standardUserDefaults] valueForKey:@"KeepLight"] boolValue];
