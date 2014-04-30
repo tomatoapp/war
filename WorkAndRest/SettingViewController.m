@@ -80,7 +80,7 @@
 - (void)rateTapped
 {
     NSLog(@"rate");
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.com/apps/Work+Rest"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/app/868078759"]];
 
     
 }
