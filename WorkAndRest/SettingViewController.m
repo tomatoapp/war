@@ -114,7 +114,7 @@
             MFMailComposeViewController *mailComposeViewController = [[MFMailComposeViewController alloc] init];
             mailComposeViewController.mailComposeDelegate = self;
             
-            NSArray *toRecipients =[NSArray arrayWithObject:@"workrest@outlook.com"];
+            NSArray *toRecipients =[NSArray arrayWithObject:@"work-rest@outlook.com"];
             [mailComposeViewController setToRecipients:toRecipients];
             [mailComposeViewController setSubject: NSLocalizedString(@"Suggestions", nil)];
             [mailComposeViewController setMessageBody:@"" isHTML:NO];
