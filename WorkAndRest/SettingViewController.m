@@ -7,6 +7,7 @@
 //
 
 #import "SettingViewController.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
 @interface SettingViewController ()
 
@@ -104,11 +105,49 @@
     if([alertView.title isEqualToString:NSLocalizedString(@"Send an email to the developers?", nil)])
     {
         if (buttonIndex == 1) {
-            NSString *urlEmail = [NSString stringWithFormat:@"mailto:workrest@outlook.com?subject=%@", NSLocalizedString(@"Suggestions", nil)];
+            
+            /*
+             NSString *urlEmail = [NSString stringWithFormat:@"mailto:workrest@outlook.com?subject=%@", NSLocalizedString(@"Suggestions", nil)];
             NSString *url = [urlEmail stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+            */
+            MFMailComposeViewController *mailComposeViewController = [[MFMailComposeViewController alloc] init];
+            mailComposeViewController.mailComposeDelegate = self;
+            
+            NSArray *toRecipients =[NSArray arrayWithObject:@"workrest@outlook.com"];
+            [mailComposeViewController setToRecipients:toRecipients];
+            [mailComposeViewController setSubject: NSLocalizedString(@"Suggestions", nil)];
+            [mailComposeViewController setMessageBody:@"" isHTML:NO];
+            if (mailComposeViewController) {
+                [self presentViewController:mailComposeViewController animated:YES completion:NULL];
+            }
+            
         }
     }
+}
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result) {
+        case MFMailComposeResultSent:
+            [self showThanksAlert];
+            break;
+            
+        default:
+            break;
+    }
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+-(void)showThanksAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@""
+                          message:NSLocalizedString(@"Thanks for your help", nil)
+                          delegate:self
+                          cancelButtonTitle:NSLocalizedString(@"Yes", nil)
+                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end
