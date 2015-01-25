@@ -12,10 +12,12 @@
 
 @interface Task : NSManagedObject
 
-@property (nonatomic, retain) NSString * text;
-@property (nonatomic, retain) NSNumber * completed;
-@property (nonatomic, retain) NSNumber * costWorkTimes;
-@property (nonatomic, retain) NSDate *date;
+@property (nonatomic, assign) NSInteger taskId;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString * text;
+@property (nonatomic, strong) NSNumber * completed;
+@property (nonatomic, strong) NSNumber * costWorkTimes;
+@property (nonatomic, strong) NSDate *date;
 
 - (void)toggleCompleted;
 

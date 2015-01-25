@@ -11,10 +11,19 @@
 
 @implementation Task
 
-@dynamic text;
-@dynamic completed;
-@dynamic costWorkTimes;
-@dynamic date;
+//@dynamic taskId;
+//@dynamic title;
+//@dynamic text;
+//@dynamic completed;
+//@dynamic costWorkTimes;
+//@dynamic date;
+
+@synthesize taskId;
+@synthesize title;
+@synthesize text;
+@synthesize completed;
+@synthesize costWorkTimes;
+@synthesize date;
 
 - (void)toggleCompleted
 {

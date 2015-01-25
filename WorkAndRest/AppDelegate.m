@@ -10,6 +10,8 @@
 #import "TaskListViewController.h"
 #import "WorkWithItemViewController.h"
 #import "Appirater.h"
+#import "DBOperate.h"
+#import "Task.h"
 
 @interface AppDelegate ()
 
@@ -25,6 +27,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [DBOperate db_init];
+    NSLog(@"app dir: %@",[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);
+    
+    Task *task = [Task new];
+    task.taskId = 1001;
+    task.title = @"this is a test title.";
+    //[DBOperate insertTask:task];
+    
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     TaskListViewController *taskListViewController = (TaskListViewController *)[[navigationController viewControllers] objectAtIndex:0];
     taskListViewController.managedObjectContext = self.managedObjectContext;
