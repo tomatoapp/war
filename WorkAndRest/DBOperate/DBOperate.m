@@ -21,10 +21,13 @@ static FMDatabase* _dbOperate;
             NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:DB_PATH];
             _dbOperate = [FMDatabase databaseWithPath:writableDBPath];
             [self createTaskTable];
+            [self createWorkTable];
         }
     }
 }
 
+#pragma mark --
+#pragma mark Task
 + (void)createTaskTable {
     NSString *sql = @"CREATE TABLE t_tasks(task_id DECIMAL(18,0) DEFAULT '0', title VARCHAR(1024))";
     // open the db.
@@ -81,5 +84,59 @@ static FMDatabase* _dbOperate;
     
 }
 
+#pragma mark --
+#pragma mark Work
++ (void)createWorkTable {
+    NSString *sql = @"CREATE TABLE t_works(work_id DECIMAL(18,0) DEFAULT '0', title VARCHAR(1024))";
+    // open the db.
+    if (![_dbOperate open]) {
+        NSLog(@"Unable to open the db.");
+        return;
+    }
+    BOOL success = [_dbOperate executeUpdate:sql];
+    if (success) {
+        NSLog(@"Create the work table succeed!");
+    }
+    [_dbOperate close];
+}
++ (void)insertWork:(Work*)work {
+    // open the db.
+    if (![_dbOperate open]) {
+        return;
+    }
+    BOOL success = [_dbOperate executeUpdate:@"INSERT INTO t_works VALUES (?, ?)",
+                    [NSNumber numberWithLongLong:work.workId],
+                    work.title];
+    if (success) {
+        NSLog(@"insert into the work table succeed!");
+        [_dbOperate close];
+    } else {
+        NSLog(@"error to insert into the work table.");
+    }
+}
++ (NSArray*)selectWorkWithWorkId:(NSInteger)taskId {
+    NSString *sql = @"SELECT * from t_works";
+    if (![_dbOperate open]) {
+        return nil;
+    }
+    
+    NSMutableArray *result = [NSMutableArray new];
+    FMResultSet *rs = [_dbOperate executeQuery:sql];
+    while (rs.next) {
+        Task *tempTask = [Task new];
+        tempTask.taskId = [[rs stringForColumn:@"work_id"] integerValue];
+        tempTask.title = [rs stringForColumn:@"title"];
+        [result addObject:tempTask];
+    }
+    [_dbOperate close];
+    return result;
+}
+
++ (void)updateWork:(Work*)task {
+    
+}
++ (void)deleteWork:(Work*)task {
+    
+}
 
 @end

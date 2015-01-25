@@ -33,7 +33,12 @@
     Task *task = [Task new];
     task.taskId = 1001;
     task.title = @"this is a test title.";
-    //[DBOperate insertTask:task];
+    [DBOperate insertTask:task];
+    
+    Work *work = [Work new];
+    work.workId = 1002;
+    work.title = @"this is a test work title.";
+    [DBOperate insertWork:work];
     
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     TaskListViewController *taskListViewController = (TaskListViewController *)[[navigationController viewControllers] objectAtIndex:0];

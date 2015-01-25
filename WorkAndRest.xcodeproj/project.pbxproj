@@ -29,10 +29,11 @@
 		6434829318C5D344009BF110 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827518C5D344009BF110 /* UIKit.framework */; };
 		6439ADC918E1325800CAC85B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6439ADC818E1325800CAC85B /* CoreData.framework */; };
 		6439ADD218E15E2100CAC85B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6439ADD018E15E2100CAC85B /* DataModel.xcdatamodeld */; };
-		6439ADE718E16FB500CAC85B /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 6439ADE618E16FB500CAC85B /* Task.m */; };
 		6460FB2718F52CB400CF55AA /* Checkbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460FB2418F52CB400CF55AA /* Checkbox.m */; };
 		6460FB2818F52CB400CF55AA /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460FB2618F52CB400CF55AA /* CustomCell.m */; };
 		6497FE4F1A75A28B00174307 /* DBOperate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6497FE4E1A75A28B00174307 /* DBOperate.m */; };
+		6497FE531A75A72000174307 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 6497FE521A75A72000174307 /* Task.m */; };
+		6497FE561A75A77800174307 /* Work.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497FE551A75A77800174307 /* Work.swift */; };
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
 		64A9E9ED18F6405300E84EF2 /* WorkWithItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */; };
 		64A9E9F018F64BAF00E84EF2 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A9E9EF18F64BAF00E84EF2 /* SettingViewController.m */; };
@@ -86,14 +87,16 @@
 		6434829018C5D344009BF110 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6439ADC818E1325800CAC85B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6439ADD118E15E2100CAC85B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		6439ADE518E16FB500CAC85B /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
-		6439ADE618E16FB500CAC85B /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		6460FB2318F52CB400CF55AA /* Checkbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checkbox.h; sourceTree = "<group>"; };
 		6460FB2418F52CB400CF55AA /* Checkbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Checkbox.m; sourceTree = "<group>"; };
 		6460FB2518F52CB400CF55AA /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		6460FB2618F52CB400CF55AA /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		6497FE4D1A75A28B00174307 /* DBOperate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBOperate.h; sourceTree = "<group>"; };
 		6497FE4E1A75A28B00174307 /* DBOperate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBOperate.m; sourceTree = "<group>"; };
+		6497FE511A75A72000174307 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		6497FE521A75A72000174307 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		6497FE551A75A77800174307 /* Work.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Work.swift; sourceTree = "<group>"; };
+		6497FE581A75A91600174307 /* WorkAndRest-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WorkAndRest-Bridging-Header.h"; sourceTree = "<group>"; };
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		64A9E9EB18F6405300E84EF2 /* WorkWithItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkWithItemViewController.h; sourceTree = "<group>"; };
 		64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkWithItemViewController.m; sourceTree = "<group>"; };
@@ -211,6 +214,7 @@
 		6434827718C5D344009BF110 /* WorkAndRest */ = {
 			isa = PBXGroup;
 			children = (
+				6497FE501A75A72000174307 /* Models */,
 				6497FE4C1A75A28B00174307 /* DBOperate */,
 				6460FB2318F52CB400CF55AA /* Checkbox.h */,
 				6460FB2418F52CB400CF55AA /* Checkbox.m */,
@@ -228,8 +232,6 @@
 				64A9E9EE18F64BAF00E84EF2 /* SettingViewController.h */,
 				64A9E9EF18F64BAF00E84EF2 /* SettingViewController.m */,
 				6439ADD018E15E2100CAC85B /* DataModel.xcdatamodeld */,
-				6439ADE518E16FB500CAC85B /* Task.h */,
-				6439ADE618E16FB500CAC85B /* Task.m */,
 				6434828918C5D344009BF110 /* Images.xcassets */,
 				6434827818C5D344009BF110 /* Supporting Files */,
 			);
@@ -257,9 +259,20 @@
 			path = DBOperate;
 			sourceTree = "<group>";
 		};
+		6497FE501A75A72000174307 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6497FE511A75A72000174307 /* Task.h */,
+				6497FE521A75A72000174307 /* Task.m */,
+				6497FE551A75A77800174307 /* Work.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		64A4D70418F7DBFD006BF4D1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6497FE581A75A91600174307 /* WorkAndRest-Bridging-Header.h */,
 				64C724971A5779F500A69541 /* Sounds */,
 			);
 			name = "Supporting Files";
@@ -414,8 +427,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6439ADE718E16FB500CAC85B /* Task.m in Sources */,
+				6497FE531A75A72000174307 /* Task.m in Sources */,
 				64012C8A1900B89D006FC2B2 /* Appirater.m in Sources */,
+				6497FE561A75A77800174307 /* Work.swift in Sources */,
 				6434828818C5D344009BF110 /* TaskListViewController.m in Sources */,
 				6434827E18C5D344009BF110 /* main.m in Sources */,
 				640D064618E03575007B0894 /* ItemDetailViewController.m in Sources */,
@@ -563,13 +577,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Cun Yang (4H7ZZQ3A4G)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WorkAndRest/WorkAndRest-Prefix.pch";
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				INFOPLIST_FILE = "WorkAndRest/WorkAndRest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WorkAndRest-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -580,13 +598,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Cun Yang (4H7ZZQ3A4G)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WorkAndRest/WorkAndRest-Prefix.pch";
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				INFOPLIST_FILE = "WorkAndRest/WorkAndRest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WorkAndRest-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

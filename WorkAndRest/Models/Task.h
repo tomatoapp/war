@@ -10,7 +10,8 @@
 #import <CoreData/CoreData.h>
 
 
-@interface Task : NSManagedObject
+// @interface Task : NSManagedObject
+@interface Task : NSObject
 
 @property (nonatomic, assign) NSInteger taskId;
 @property (nonatomic, strong) NSString *title;

@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "FMDB.h"
 #import "Task.h"
+#import "WorkAndRest-Swift.h"
+#import "WorkAndRest-Bridging-Header.h"
+
 @interface DBOperate : NSObject
 
 + (void)db_init;
@@ -18,5 +21,11 @@
 + (NSArray*)selectTaskWithTaskId:(NSInteger)taskId;
 + (void)updateTask:(Task*)task;
 + (void)deleteTask:(Task*)task;
+
++ (void)createWorkTable;
++ (void)insertWork:(Work*)task;
++ (NSArray*)selectWorkWithWorkId:(NSInteger)taskId;
++ (void)updateWork:(Work*)task;
++ (void)deleteWork:(Work*)task;
 
 @end
