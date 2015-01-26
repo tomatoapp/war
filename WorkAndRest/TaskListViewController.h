@@ -11,6 +11,6 @@
 
 @interface TaskListViewController : UITableViewController <ItemDetailViewControllerDelegate, NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+//@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end

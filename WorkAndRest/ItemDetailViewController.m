@@ -41,18 +41,27 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     [textField becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.view endEditing:YES];
 }
 
 - (IBAction)cancel:(id)sender
 {
     [self.delegate addTaskViewControllerDidCancel:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)done:(id)sender
 {
     if (itemToEdit == nil) {
-        Task *newItem = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
+        Task *newItem = [Task new];
         newItem.title = textField.text;
         newItem.costWorkTimes = [NSNumber numberWithInt:0];
         newItem.completed = [NSNumber numberWithBool:NO];
@@ -62,6 +71,7 @@
         self.itemToEdit.title = textField.text;
         [self.delegate addTaskViewController:self didFinishEditingTask:itemToEdit];
     }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -72,4 +82,11 @@
     return 14.0f;
 }
 
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.view endEditing:YES];
+    return YES;
+}
 @end

@@ -22,65 +22,24 @@
     NSMutableArray *allTasks;
 }
 
-@synthesize managedObjectContext;
+//@synthesize managedObjectContext;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self firstRun];
-    [self loadAllTasks];
-}
-
-// 首次运行程序
-- (void)firstRun
-{
-    BOOL hasRunBefore = [[NSUserDefaults standardUserDefaults] boolForKey:@"FirstRun"];
     
-    if (!hasRunBefore) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstRun"];
-        
-        // Add the "Task Sample" item to the list.
-        Task *sampleTask = [Task new];
-        sampleTask.taskId = -1000;
-        sampleTask.title = NSLocalizedString(@"Task Sample", nil);
-        sampleTask.costWorkTimes = [NSNumber numberWithInteger:0];
-        sampleTask.completed = [NSNumber numberWithBool:NO];
-        sampleTask.date = [NSDate date];
-        [DBOperate insertTask:sampleTask];
-        
-        // Set the default Second Sound to YES.
-        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"SecondSound"];
-        
-        // Set the default Keep Screen Light to YES.
-        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"KeepLight"];
-        
-        // Set the Default Seconds.
-        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:25] forKey:@"Seconds"];
-    }
+    [self loadAllTasks];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-//    [self.navigationController setToolbarHidden:NO animated:YES];
-//    [self showToolBarItems];
+    [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
 
-//- (void)showToolBarItems
-//{
-//    UIBarButtonItem *mainButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Main" style:UIBarButtonItemStyleBordered target:self action:@selector(showHistory)];
-//    
-//    UIBarButtonItem *statisticsButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Statistics" style:UIBarButtonItemStyleBordered target:self action:@selector(showHistory)];
-//    
-////    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-////    spacer.width = 85.0f;
-//    
-//    self.toolbarItems = [NSArray arrayWithObjects:mainButtonItem, statisticsButtonItem, nil];
-//}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
-//    [self.navigationController setToolbarHidden:YES animated:YES];
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -95,7 +54,7 @@
     if ([segue.identifier isEqualToString:@"AddItem"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         ItemDetailViewController *controller = (ItemDetailViewController *)navigationController.topViewController;
-        controller.managedObjectContext = self.managedObjectContext;
+//        controller.managedObjectContext = self.managedObjectContext;
         controller.delegate = self;
     } else if ([segue.identifier isEqualToString:@"EditItem"]) {
         UINavigationController *navigationController = segue.destinationViewController;
@@ -105,96 +64,74 @@
     } else if ([segue.identifier isEqualToString:@"ShowItem"]) {
         WorkWithItemViewController *controller = segue.destinationViewController;
         controller.itemToWork = sender;
-        controller.managedObjectContext = self.managedObjectContext;
+//        controller.managedObjectContext = self.managedObjectContext;
     }
 }
 
-#pragma mark - NSFetchedResultsControllerDelegate
+//#pragma mark - NSFetchedResultsControllerDelegate
+//
+//- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+//{
+//    NSLog(@"*** controllerWillChangeContent");
+//    [self.tableView beginUpdates];
+//}
+//
+//- (void)controller:(NSFetchedResultsController *)controller
+//   didChangeObject:(id)anObject
+//       atIndexPath:(NSIndexPath *)indexPath
+//     forChangeType:(NSFetchedResultsChangeType)type
+//      newIndexPath:(NSIndexPath *)newIndexPath
+//{
+//    switch (type) {
+//        case NSFetchedResultsChangeInsert:
+//            NSLog(@"*** controllerDidChangeObject - NSFetchedResultsChangeInsert");
+//            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+//            break;
+//            
+//        case NSFetchedResultsChangeDelete:
+//            NSLog(@"*** controllerDidChangeObject - NSFetchedResultsChangeDelete");
+//            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//            break;
+//            
+//        case NSFetchedResultsChangeUpdate:
+//            NSLog(@"*** controllerDidChangeObject - NSFetchedResultsChangeUpdate");
+//            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+//            break;
+//            
+//        case NSFetchedResultsChangeMove:
+//            NSLog(@"*** controllerDidChangeObject - NSFetchedResultsChangeMove");
+//            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+//            break;
+//    }
+//}
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    NSLog(@"*** controllerWillChangeContent");
-    [self.tableView beginUpdates];
-}
 
-- (void)controller:(NSFetchedResultsController *)controller
-   didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath
-     forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
-    switch (type) {
-        case NSFetchedResultsChangeInsert:
-            NSLog(@"*** controllerDidChangeObject - NSFetchedResultsChangeInsert");
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            NSLog(@"*** controllerDidChangeObject - NSFetchedResultsChangeDelete");
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            NSLog(@"*** controllerDidChangeObject - NSFetchedResultsChangeUpdate");
-            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            NSLog(@"*** controllerDidChangeObject - NSFetchedResultsChangeMove");
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller
-  didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex
-     forChangeType:(NSFetchedResultsChangeType)type
-{
-    switch (type) {
-        case NSFetchedResultsChangeInsert:
-            NSLog(@"*** controllerDidChangeSection - NSFetchedResultsChangeInsert");
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            NSLog(@"*** controllerDidChangeSection - NSFetchedResultsChangeDelete");
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    NSLog(@"*** controllerDidChangeContent");
-    [self.tableView endUpdates];
-}
+//- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+//{
+//    NSLog(@"*** controllerDidChangeContent");
+//    [self.tableView endUpdates];
+//}
 
 #pragma mark - NewTaskViewControllerDelegate
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishAddingTask:(Task *)item
 {
     [DBOperate insertTask:item];
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:item] withRowAnimation:UITableViewRowAnimationFade];
+    [allTasks insertObject:item atIndex:0];
+    [self.tableView reloadData];
+    
 }
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishEditingTask:(Task *)item
 {
     [DBOperate updateTask:item];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)addTaskViewControllerDidCancel:(ItemDetailViewController *)controller
 {
     NSLog(@"Click the Cancel Button");
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - TableView
@@ -202,6 +139,24 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return allTasks.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 130.0f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 130)];
+    //view.backgroundColor = [UIColor redColor];
+    UIButton *button = [UIButton new];
+    button.frame = CGRectMake(50, 20, 200, 80);
+    [button setTitle:@"Start a new Timer" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(newTaskButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:button];
+    return view;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -235,6 +190,8 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         Task *task = [allTasks objectAtIndex:indexPath.row];
         [DBOperate deleteTask:task];
+        [allTasks removeObject:task];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
@@ -270,11 +227,13 @@
     allTasks = [NSMutableArray arrayWithArray:[DBOperate loadAllTasks]];
 }
 
-- (void)statisticsButtonItemClick:(id) sender {
-    
+- (UIView*)createHeaderView {
+    UIView *headerView = [UIView new];
+    // UNDONE:
+    return headerView;
 }
 
-- (void)mainButtonItemClick:(id) sender {
-    
+- (void)newTaskButtonClick:(id)sender {
+    [self performSegueWithIdentifier:@"AddItem" sender:nil];
 }
 @end

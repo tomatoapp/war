@@ -20,7 +20,7 @@
 
 @end
 
-@interface ItemDetailViewController : UITableViewController
+@interface ItemDetailViewController : UITableViewController <UITextFieldDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, weak) id <ItemDetailViewControllerDelegate> delegate;

@@ -15,36 +15,17 @@
 
 @interface AppDelegate ()
 
-//@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-//@property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
-//@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
 @end
 
 @implementation AppDelegate
 
-//@synthesize managedObjectModel, managedObjectContext, persistentStoreCoordinator;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [DBOperate db_init];
     NSLog(@"app dir: %@",[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);
     
-//    Task *task = [Task new];
-//    task.taskId = 1001;
-//    task.title = @"this is a test title.";
-//    [DBOperate insertTask:task];
-//    
-//    Work *work = [Work new];
-//    work.workId = 1002;
-//    work.title = @"this is a test work title.";
-//    [DBOperate insertWork:work];
+    [DBOperate db_init];
+    [self firstRun];
     
-//    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-//    TaskListViewController *taskListViewController = (TaskListViewController *)[[navigationController viewControllers] objectAtIndex:0];
-    //taskListViewController.managedObjectContext = self.managedObjectContext;
-    
-    // UNDONE:
     [Appirater setAppId:@"868078759"];
     [Appirater setDaysUntilPrompt:3];
     [Appirater setUsesUntilPrompt:3];
@@ -69,43 +50,6 @@
 {
     return [[self documentsDirectory] stringByAppendingPathComponent:@"DataStore.sqlite"];
 }
-
-//- (NSManagedObjectModel *)managedObjectModel
-//{
-//    if (managedObjectModel == nil) {
-//        NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"DataModel" ofType:@"momd"];
-//        NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
-//        managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-//    }
-//    return managedObjectModel;
-//}
-//
-//- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-//{
-//    if (persistentStoreCoordinator == nil) {
-//        NSURL *storeURL = [NSURL fileURLWithPath:[self dataStorePath]];
-//        
-//        persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
-//        
-//        NSError *error;
-//        if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-//            FATAL_CORE_DATA_ERROR(error);
-//        }
-//    }
-//    return persistentStoreCoordinator;
-//}
-
-//- (NSManagedObjectContext *)managedObjectContext
-//{
-//    if (managedObjectContext == nil) {
-//        NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
-//        if (coordinator != nil) {
-//            managedObjectContext = [[NSManagedObjectContext alloc] init];
-//            [managedObjectContext setPersistentStoreCoordinator:coordinator];
-//        }
-//    }
-//    return managedObjectContext;
-//}
 
 - (void)fatalCoreDataError:(NSError *)error
 {
@@ -169,5 +113,35 @@
             }}
     }
 }
+
+#pragma mark - First Run
+
+- (void)firstRun
+{
+    BOOL hasRunBefore = [[NSUserDefaults standardUserDefaults] boolForKey:@"FirstRun"];
+    
+    if (!hasRunBefore) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstRun"];
+        
+        // Add the "Task Sample" item to the list.
+        Task *sampleTask = [Task new];
+        sampleTask.taskId = -1000;
+        sampleTask.title = NSLocalizedString(@"Task Sample", nil);
+        sampleTask.costWorkTimes = [NSNumber numberWithInteger:0];
+        sampleTask.completed = [NSNumber numberWithBool:NO];
+        sampleTask.date = [NSDate date];
+        [DBOperate insertTask:sampleTask];
+        
+        // Set the default Second Sound to YES.
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"SecondSound"];
+        
+        // Set the default Keep Screen Light to YES.
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"KeepLight"];
+        
+        // Set the Default Seconds.
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:25] forKey:@"Seconds"];
+    }
+}
+
 
 @end
