@@ -60,6 +60,8 @@
 
 - (IBAction)done:(id)sender
 {
+    [self.view endEditing:YES];
+
     if (itemToEdit == nil) {
         Task *newItem = [Task new];
         newItem.title = textField.text;
@@ -84,9 +86,9 @@
 
 
 #pragma mark - UITextFieldDelegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField
 {
-    [self.view endEditing:YES];
+    [self done:theTextField];
     return YES;
 }
 @end

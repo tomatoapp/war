@@ -82,16 +82,26 @@ static FMDatabase* _dbOperate;
                     task.title,
                     @(task.taskId)];
     if (success) {
-        [_dbOperate close];
         NSLog(@"update task success!");
     } else {
         NSLog(@"update task faild!");
     }
+    [_dbOperate close];
 }
 
 + (void)deleteTask:(Task *)task {
-    task.title = @"Del...";
-    [self updateTask:task];
+//    task.title = @"Del...";
+//    [self updateTask:task];
+    if (![_dbOperate open]) {
+        return;
+    }
+    BOOL success = [_dbOperate executeUpdate:@"DELETE FROM t_tasks WHERE task_id = ?", @(task.taskId)];
+    if (success) {
+        NSLog(@"Delete task success!");
+    } else {
+        NSLog(@"Delete task faild!");
+    }
+    [_dbOperate close];
 }
 
 + (NSArray*)loadAllTasks
@@ -174,8 +184,8 @@ static FMDatabase* _dbOperate;
     
 }
 + (void)deleteWork:(Work*)work {
-    work.title = @"Del...";
-    [self updateWork:work];
+//    work.title = @"Del...";
+//    [self updateWork:work];
 }
 + (NSArray*)loadAllWorks
 {
