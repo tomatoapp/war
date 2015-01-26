@@ -12,6 +12,7 @@
 #import "Checkbox.h"
 #import "CustomCell.h"
 #import "WorkWithItemViewController.h"
+#import "DBOperate.h"
 
 @interface TaskListViewController ()
 
@@ -21,6 +22,7 @@
     // When the objects have been changed, added or deleted, it can update the table.
     NSFetchedResultsController *fetchedResultsController;
     BOOL isShowHistoryTasks;
+    NSMutableArray *allTasks;
 }
 
 @synthesize managedObjectContext;
@@ -31,6 +33,7 @@
     isShowHistoryTasks = [[NSUserDefaults standardUserDefaults] boolForKey:@"IsShowHistoryTasks"];
     [self performFetch];
     [self firstRun];
+    [self loadAllTasks];
 }
 
 // 首次运行程序
@@ -42,16 +45,20 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstRun"];
         
         // Add the "Task Sample" item to the list.
-        Task *sampleTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
-        sampleTask.text =NSLocalizedString(@"Task Sample", nil);
+//        Task *sampleTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
+        Task *sampleTask = [Task new];
+        sampleTask.taskId = -1000;
+        sampleTask.title = NSLocalizedString(@"Task Sample", nil);
         sampleTask.costWorkTimes = [NSNumber numberWithInteger:0];
         sampleTask.completed = [NSNumber numberWithBool:NO];
         sampleTask.date = [NSDate date];
-        NSError *error;
-        if(![self.managedObjectContext save:&error]) {
-            FATAL_CORE_DATA_ERROR(error);
-            return;
-        }
+//        NSError *error;
+//        if(![self.managedObjectContext save:&error]) {
+//            FATAL_CORE_DATA_ERROR(error);
+//            return;
+//        }
+        [DBOperate insertTask:sampleTask];
+        
         // Set the default Second Sound to YES.
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"SecondSound"];
         
@@ -241,20 +248,21 @@
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishAddingTask:(Task *)item
 {
-    NSError *error;
-    if (![self.managedObjectContext save:&error]) {
-        FATAL_CORE_DATA_ERROR(error);
-    }
-    
+//    NSError *error;
+//    if (![self.managedObjectContext save:&error]) {
+//        FATAL_CORE_DATA_ERROR(error);
+//    }
+    [DBOperate insertTask:item];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishEditingTask:(Task *)item
 {
-    NSError *error;
-    if (![self.managedObjectContext save:&error]) {
-        FATAL_CORE_DATA_ERROR(error);
-    }
+//    NSError *error;
+//    if (![self.managedObjectContext save:&error]) {
+//        FATAL_CORE_DATA_ERROR(error);
+//    }
+    [DBOperate updateTask:item];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -268,15 +276,17 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+//    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+//    return [sectionInfo numberOfObjects];
+    return allTasks.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomCell"];
-    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
-    cell.titleLabel.text = item.text;
+    //    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
+    Task *item = [allTasks objectAtIndex:indexPath.row];
+    cell.titleLabel.text = item.title;
     cell.subTitleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"work times: %@", nil),item.costWorkTimes];
     cell.checkBox.checked = [item.completed boolValue];
     return cell;
@@ -288,27 +298,28 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
+    Task *item = [allTasks objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"EditItem" sender:item];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Task *task = [fetchedResultsController objectAtIndexPath:indexPath];
+    Task *task = [allTasks objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"ShowItem" sender:task];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Task *task = [fetchedResultsController objectAtIndexPath:indexPath];
-        [self.managedObjectContext deleteObject:task];
+        Task *task = [allTasks objectAtIndex:indexPath.row];
+        //[self.managedObjectContext deleteObject:task];
         
-        NSError *error;
-        if (![self.managedObjectContext save:&error]) {
-            FATAL_CORE_DATA_ERROR(error);
-            return;
-        }
+//        NSError *error;
+//        if (![self.managedObjectContext save:&error]) {
+//            FATAL_CORE_DATA_ERROR(error);
+//            return;
+//        }
+        [DBOperate deleteTask:task];
     }
 }
 
@@ -327,11 +338,12 @@
         Task *task = [fetchedResultsController objectAtIndexPath:indexPath];
         task.completed = @([(Checkbox*)sender isChecked]);
         
-        NSError *error;
-        if (![self.managedObjectContext save:&error]) {
-            FATAL_CORE_DATA_ERROR(error);
-            return;
-        }
+//        NSError *error;
+//        if (![self.managedObjectContext save:&error]) {
+//            FATAL_CORE_DATA_ERROR(error);
+//            return;
+//        }
+        [DBOperate updateTask:task];
 	}
     
     // Accessibility
@@ -349,5 +361,10 @@
 - (void)dealloc
 {
     fetchedResultsController.delegate = nil;
+}
+
+#pragma mark - Private Methods
+- (void)loadAllTasks {
+    allTasks = [NSMutableArray arrayWithArray:[DBOperate loadAllTasks]];
 }
 @end

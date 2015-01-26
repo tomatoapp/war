@@ -35,7 +35,7 @@
     
     if (self.itemToEdit != nil) {
         self.title = NSLocalizedString(@"Edit Task", nil);
-        textField.text = itemToEdit.text;
+        textField.text = itemToEdit.title;
     }
 }
 
@@ -53,13 +53,13 @@
 {
     if (itemToEdit == nil) {
         Task *newItem = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
-        newItem.text = textField.text;
+        newItem.title = textField.text;
         newItem.costWorkTimes = [NSNumber numberWithInt:0];
         newItem.completed = [NSNumber numberWithBool:NO];
         newItem.date = [NSDate date];
         [self.delegate addTaskViewController:self didFinishAddingTask:newItem];
     } else {
-        self.itemToEdit.text = textField.text;
+        self.itemToEdit.title = textField.text;
         [self.delegate addTaskViewController:self didFinishEditingTask:itemToEdit];
     }
 }

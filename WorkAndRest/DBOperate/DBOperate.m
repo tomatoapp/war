@@ -58,13 +58,50 @@ static FMDatabase* _dbOperate;
     }
 }
 
-+ (NSArray*)selectTaskWithTaskId:(NSInteger)taskId {
-    NSString *sql = @"SELECT * from t_tasks";
++ (Task*)selectTaskWithTaskId:(NSInteger)taskId {
+    NSString *sql = [NSString stringWithFormat:@"SELECT * from t_tasks WHERE task_id = (%@)", @(taskId)];
     if (![_dbOperate open]) {
         return nil;
     }
-    
-    NSMutableArray *result = [NSMutableArray new];
+    Task *resultTask = [Task new];
+
+    FMResultSet *rs = [_dbOperate executeQuery:sql];
+    while (rs.next) {
+        resultTask.taskId = [[rs stringForColumn:@"task_id"] integerValue];
+        resultTask.title = [rs stringForColumn:@"title"];
+    }
+    [_dbOperate close];
+    return resultTask;
+}
+
++ (void)updateTask:(Task *)task {
+    if (![_dbOperate open]) {
+        return;
+    }
+    BOOL success = [_dbOperate executeUpdate:@"UPDATE t_tasks SET title = ? WHERE task_id = ?",
+                    task.title,
+                    @(task.taskId)];
+    if (success) {
+        [_dbOperate close];
+        NSLog(@"update task success!");
+    } else {
+        NSLog(@"update task faild!");
+    }
+}
+
++ (void)deleteTask:(Task *)task {
+    task.title = @"Del...";
+    [self updateTask:task];
+}
+
++ (NSArray*)loadAllTasks
+{
+    if (![_dbOperate open]) {
+        return nil;
+    }
+    NSMutableArray *result = [NSMutableArray array];
+
+    NSString *sql = @"SELECT * from t_tasks";
     FMResultSet *rs = [_dbOperate executeQuery:sql];
     while (rs.next) {
         Task *tempTask = [Task new];
@@ -74,14 +111,6 @@ static FMDatabase* _dbOperate;
     }
     [_dbOperate close];
     return result;
-}
-
-+ (void)updateTask:(Task *)task {
-    
-}
-
-+ (void)deleteTask:(Task *)task {
-    
 }
 
 #pragma mark --
@@ -114,29 +143,56 @@ static FMDatabase* _dbOperate;
         NSLog(@"error to insert into the work table.");
     }
 }
-+ (NSArray*)selectWorkWithWorkId:(NSInteger)taskId {
-    NSString *sql = @"SELECT * from t_works";
++ (Work*)selectWorkWithWorkId:(NSInteger)taskId {
+    NSString *sql = [NSString stringWithFormat:@"SELECT * from t_works WHERE work_id = (%@)", @(taskId)];
     if (![_dbOperate open]) {
         return nil;
     }
-    
-    NSMutableArray *result = [NSMutableArray new];
+    Work *resultWork = [Work new];
     FMResultSet *rs = [_dbOperate executeQuery:sql];
     while (rs.next) {
-        Task *tempTask = [Task new];
-        tempTask.taskId = [[rs stringForColumn:@"work_id"] integerValue];
+        resultWork.workId = [[rs stringForColumn:@"work_id"] integerValue];
+        resultWork.title = [rs stringForColumn:@"title"];
+    }
+    [_dbOperate close];
+    return resultWork;
+}
+
++ (void)updateWork:(Work*)work {
+    if (![_dbOperate open]) {
+        return;
+    }
+    BOOL success = [_dbOperate executeUpdate:@"UPDATE t_works SET title = ? WHERE work_id = ?",
+                    work.title,
+                    @(work.workId)];
+    if (success) {
+        [_dbOperate close];
+        NSLog(@"update work success!");
+    } else {
+        NSLog(@"update work faild!");
+    }
+    
+}
++ (void)deleteWork:(Work*)work {
+    work.title = @"Del...";
+    [self updateWork:work];
+}
++ (NSArray*)loadAllWorks
+{
+    if (![_dbOperate open]) {
+        return nil;
+    }
+    NSMutableArray *result = [NSMutableArray array];
+    
+    NSString *sql = @"SELECT * from t_works";
+    FMResultSet *rs = [_dbOperate executeQuery:sql];
+    while (rs.next) {
+        Work *tempTask = [Work new];
+        tempTask.workId = [[rs stringForColumn:@"work_id"] integerValue];
         tempTask.title = [rs stringForColumn:@"title"];
         [result addObject:tempTask];
     }
     [_dbOperate close];
     return result;
 }
-
-+ (void)updateWork:(Work*)task {
-    
-}
-+ (void)deleteWork:(Work*)task {
-    
-}
-
 @end

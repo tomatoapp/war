@@ -18,14 +18,15 @@
 
 + (void)createTaskTable;
 + (void)insertTask:(Task*)task;
-+ (NSArray*)selectTaskWithTaskId:(NSInteger)taskId;
++ (Task*)selectTaskWithTaskId:(NSInteger)taskId;
 + (void)updateTask:(Task*)task;
 + (void)deleteTask:(Task*)task;
++ (NSArray*)loadAllTasks;
 
 + (void)createWorkTable;
 + (void)insertWork:(Work*)task;
-+ (NSArray*)selectWorkWithWorkId:(NSInteger)taskId;
++ (Work*)selectWorkWithWorkId:(NSInteger)taskId;
 + (void)updateWork:(Work*)task;
 + (void)deleteWork:(Work*)task;
-
++ (NSArray*)loadAllWorks;
 @end
