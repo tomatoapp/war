@@ -53,7 +53,5 @@
 @interface CustomCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property (nonatomic, weak) IBOutlet UILabel *subTitleLabel;
-@property (nonatomic, weak) IBOutlet Checkbox *checkBox;
 
 @end

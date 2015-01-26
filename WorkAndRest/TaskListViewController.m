@@ -164,13 +164,7 @@
     CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomCell"];
     Task *item = [allTasks objectAtIndex:indexPath.row];
     cell.titleLabel.text = item.title;
-    cell.subTitleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"work times: %@", nil),item.costWorkTimes];
-    cell.checkBox.checked = [item.completed boolValue];
     return cell;
-}
-
--(void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
@@ -193,33 +187,6 @@
         [allTasks removeObject:task];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
-}
-
-- (IBAction)checkBoxTapped:(id)sender forEvent:(UIEvent*)event
-{
-    NSSet *touches = [event allTouches];
-	UITouch *touch = [touches anyObject];
-	CGPoint currentTouchPosition = [touch locationInView:self.tableView];
-    
-    // Lookup the index path of the cell whose checkbox was modified.
-	NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:currentTouchPosition];
-    
-	if (indexPath != nil)
-	{
-		// Update our data source array with the new checked state.
-        Task *task = [allTasks objectAtIndex:indexPath.row];
-        task.completed = @([(Checkbox*)sender isChecked]);
-        [DBOperate updateTask:task];
-	}
-    // Accessibility
-    [self updateAccessibilityForCell:(CustomCell*)[self.tableView cellForRowAtIndexPath:indexPath]];
-}
-
-- (void)updateAccessibilityForCell:(CustomCell*)cell
-{
-    // The cell's accessibilityValue is the Checkbox's accessibilityValue.
-    cell.accessibilityValue = cell.checkBox.accessibilityValue;
-    cell.checkBox.accessibilityLabel = cell.titleLabel.text;
 }
 
 #pragma mark - Private Methods
