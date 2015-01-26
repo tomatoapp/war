@@ -19,9 +19,6 @@
 @end
 
 @implementation TaskListViewController  {
-    // When the objects have been changed, added or deleted, it can update the table.
-    NSFetchedResultsController *fetchedResultsController;
-    BOOL isShowHistoryTasks;
     NSMutableArray *allTasks;
 }
 
@@ -30,8 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    isShowHistoryTasks = [[NSUserDefaults standardUserDefaults] boolForKey:@"IsShowHistoryTasks"];
-    [self performFetch];
     [self firstRun];
     [self loadAllTasks];
 }
@@ -45,18 +40,12 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstRun"];
         
         // Add the "Task Sample" item to the list.
-//        Task *sampleTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
         Task *sampleTask = [Task new];
         sampleTask.taskId = -1000;
         sampleTask.title = NSLocalizedString(@"Task Sample", nil);
         sampleTask.costWorkTimes = [NSNumber numberWithInteger:0];
         sampleTask.completed = [NSNumber numberWithBool:NO];
         sampleTask.date = [NSDate date];
-//        NSError *error;
-//        if(![self.managedObjectContext save:&error]) {
-//            FATAL_CORE_DATA_ERROR(error);
-//            return;
-//        }
         [DBOperate insertTask:sampleTask];
         
         // Set the default Second Sound to YES.
@@ -70,90 +59,28 @@
     }
 }
 
-- (void)performFetch
-{
-    NSError *error;
-    if (![self.fetchedResultsController performFetch:&error]) {
-        FATAL_CORE_DATA_ERROR(error);
-        return;
-    }
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setToolbarHidden:NO animated:YES];
-    [self showToolBarItems];
+//    [self.navigationController setToolbarHidden:NO animated:YES];
+//    [self showToolBarItems];
     [self.tableView reloadData];
 }
 
-- (void)showToolBarItems
-{
-    NSString *title;
-    if (isShowHistoryTasks) {
-        title = NSLocalizedString(@"Hidden History", nil);
-    } else {
-        title = NSLocalizedString(@"Show History", nil);
-    }
-    UIBarButtonItem *showHistoryButtonItem = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleBordered target:self action:@selector(showHistory)];
-    
-    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spacer.width = 85.0f;
-    
-    self.toolbarItems = [NSArray arrayWithObjects:spacer, showHistoryButtonItem, nil];
-}
+//- (void)showToolBarItems
+//{
+//    UIBarButtonItem *mainButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Main" style:UIBarButtonItemStyleBordered target:self action:@selector(showHistory)];
+//    
+//    UIBarButtonItem *statisticsButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Statistics" style:UIBarButtonItemStyleBordered target:self action:@selector(showHistory)];
+//    
+////    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+////    spacer.width = 85.0f;
+//    
+//    self.toolbarItems = [NSArray arrayWithObjects:mainButtonItem, statisticsButtonItem, nil];
+//}
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self.navigationController setToolbarHidden:YES animated:YES];
-}
-
-- (void)showHistory
-{
-    UIBarButtonItem *showHistoryButtonItem = (UIBarButtonItem *)[self.toolbarItems objectAtIndex:1];
-    if (isShowHistoryTasks) {
-        showHistoryButtonItem.title = NSLocalizedString(@"Show History", nil);
-    } else {
-        showHistoryButtonItem.title = NSLocalizedString(@"Hidden History", nil);
-    }
-    isShowHistoryTasks = !isShowHistoryTasks;
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:isShowHistoryTasks] forKey:@"IsShowHistoryTasks"];
-    self.fetchedResultsController = nil;
-    [self performFetch];
-    [self.tableView reloadData];
-}
-
-- (NSFetchedResultsController *)fetchedResultsController
-{
-    if (fetchedResultsController == nil) {
-        
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
-        [fetchRequest setEntity:entity];
-        
-        NSSortDescriptor *completedSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"completed" ascending:YES];
-        NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
-        [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:completedSortDescriptor, dateSortDescriptor, nil]];
-        
-        if (!isShowHistoryTasks) {
-            NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"completed == %@", [NSNumber numberWithBool:NO]];
-            [fetchRequest setPredicate:fetchPredicate];
-        }
-        [fetchRequest setFetchBatchSize:20];
-        [NSFetchedResultsController deleteCacheWithName:@"Tasks"];
-        fetchedResultsController = [[NSFetchedResultsController alloc]
-                                    initWithFetchRequest:fetchRequest
-                                    managedObjectContext:self.managedObjectContext
-                                    sectionNameKeyPath:nil
-                                    cacheName:@"Tasks"];
-        fetchedResultsController.delegate = self;
-    }
-    return fetchedResultsController;
-}
-
-- (void)setFetchedResultsController:(NSFetchedResultsController *)newFetchedResultsController
-{
-    fetchedResultsController = newFetchedResultsController;
+//    [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -235,6 +162,12 @@
             NSLog(@"*** controllerDidChangeSection - NSFetchedResultsChangeDelete");
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
+            
+        case NSFetchedResultsChangeMove:
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            break;
     }
 }
 
@@ -248,20 +181,12 @@
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishAddingTask:(Task *)item
 {
-//    NSError *error;
-//    if (![self.managedObjectContext save:&error]) {
-//        FATAL_CORE_DATA_ERROR(error);
-//    }
     [DBOperate insertTask:item];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishEditingTask:(Task *)item
 {
-//    NSError *error;
-//    if (![self.managedObjectContext save:&error]) {
-//        FATAL_CORE_DATA_ERROR(error);
-//    }
     [DBOperate updateTask:item];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -276,15 +201,12 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
-//    return [sectionInfo numberOfObjects];
     return allTasks.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomCell"];
-    //    Task *item = [fetchedResultsController objectAtIndexPath:indexPath];
     Task *item = [allTasks objectAtIndex:indexPath.row];
     cell.titleLabel.text = item.title;
     cell.subTitleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"work times: %@", nil),item.costWorkTimes];
@@ -312,13 +234,6 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         Task *task = [allTasks objectAtIndex:indexPath.row];
-        //[self.managedObjectContext deleteObject:task];
-        
-//        NSError *error;
-//        if (![self.managedObjectContext save:&error]) {
-//            FATAL_CORE_DATA_ERROR(error);
-//            return;
-//        }
         [DBOperate deleteTask:task];
     }
 }
@@ -335,17 +250,10 @@
 	if (indexPath != nil)
 	{
 		// Update our data source array with the new checked state.
-        Task *task = [fetchedResultsController objectAtIndexPath:indexPath];
+        Task *task = [allTasks objectAtIndex:indexPath.row];
         task.completed = @([(Checkbox*)sender isChecked]);
-        
-//        NSError *error;
-//        if (![self.managedObjectContext save:&error]) {
-//            FATAL_CORE_DATA_ERROR(error);
-//            return;
-//        }
         [DBOperate updateTask:task];
 	}
-    
     // Accessibility
     [self updateAccessibilityForCell:(CustomCell*)[self.tableView cellForRowAtIndexPath:indexPath]];
 }
@@ -354,17 +262,19 @@
 {
     // The cell's accessibilityValue is the Checkbox's accessibilityValue.
     cell.accessibilityValue = cell.checkBox.accessibilityValue;
-    
     cell.checkBox.accessibilityLabel = cell.titleLabel.text;
-}
-
-- (void)dealloc
-{
-    fetchedResultsController.delegate = nil;
 }
 
 #pragma mark - Private Methods
 - (void)loadAllTasks {
     allTasks = [NSMutableArray arrayWithArray:[DBOperate loadAllTasks]];
+}
+
+- (void)statisticsButtonItemClick:(id) sender {
+    
+}
+
+- (void)mainButtonItemClick:(id) sender {
+    
 }
 @end
