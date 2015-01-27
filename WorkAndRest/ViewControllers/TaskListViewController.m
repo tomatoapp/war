@@ -13,6 +13,7 @@
 #import "CustomCell.h"
 #import "WorkWithItemViewController.h"
 #import "DBOperate.h"
+#import "Masonry.h"
 
 @interface TaskListViewController ()
 @end
@@ -93,16 +94,6 @@
     return allTasks.count;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 130.0f;
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    
-//}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60.0f;
@@ -149,8 +140,12 @@
     // UNDONE:
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 130)];
     UIButton *button = [UIButton new];
-    button.frame = CGRectMake(50, 20, 240, 73);
+//    button.frame = CGRectMake(50, 20, 240, 73);
 
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(240, 73));
+        make.center.mas_equalTo(headerView.center);
+    }];
     [button setImage:[UIImage imageNamed:@"start_button"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(newTaskButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:button];
