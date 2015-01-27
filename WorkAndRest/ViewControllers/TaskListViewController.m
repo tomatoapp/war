@@ -52,11 +52,7 @@
 {
     NSLog(@"prepareForSegue: identifier = %@", segue.identifier);
     
-    if ([segue.identifier isEqualToString:@"AddItem"]) {
-        UINavigationController *navigationController = segue.destinationViewController;
-        ItemDetailViewController *controller = (ItemDetailViewController *)navigationController.topViewController;
-        controller.delegate = self;
-    } else if ([segue.identifier isEqualToString:@"EditItem"]) {
+    if ([segue.identifier isEqualToString:@"EditItem"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         ItemDetailViewController *controller = (ItemDetailViewController *)navigationController.topViewController;
         controller.itemToEdit = sender;
@@ -71,11 +67,18 @@
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishAddingTask:(Task *)item
 {
-    [DBOperate insertTask:item];
-    [allTasks insertObject:item atIndex:0];
-    [self.tableView reloadData];
-    
+    [self performSelector:@selector(insertItem:) withObject:item afterDelay:0.5];
 }
+
+- (void)insertItem:(Task*)newItem
+{
+    [DBOperate insertTask:newItem];
+    [allTasks insertObject:newItem atIndex:0];
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    [indexPaths addObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+}
+
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishEditingTask:(Task *)item
 {
@@ -153,7 +156,7 @@
 }
 
 - (void)newTaskButtonClick:(id)sender {
-    [self performSegueWithIdentifier:@"AddItem" sender:nil];
+    [self performSegueWithIdentifier:@"EditItem" sender:nil];
 }
 
 @end

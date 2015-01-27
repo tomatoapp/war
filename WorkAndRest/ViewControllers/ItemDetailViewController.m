@@ -39,11 +39,17 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [textField becomeFirstResponder];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [textField becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
