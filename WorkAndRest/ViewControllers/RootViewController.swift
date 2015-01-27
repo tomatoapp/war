@@ -12,16 +12,14 @@ class RootViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "title"))
         
-        var titleImageView = UIImageView(image: UIImage(named: "title"))
-        self.navigationItem.titleView = titleImageView;
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "white"), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.translucent = false
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "white"), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.translucent = false
     }
     
     override func didReceiveMemoryWarning() {
