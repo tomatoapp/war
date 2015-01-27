@@ -45,6 +45,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    //self.navigationController.navigationBar.shadowImage = [UIImage new];
+    //self.navigationController.navigationBar.translucent = YES;
+    
     seconds = [[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"] intValue] * 60;
     // seconds = seconds / 60;
     isPlaySecondSound = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"] boolValue];
@@ -70,8 +75,8 @@
     self.stopButton.layer.cornerRadius = 38;
     self.stopButton.layer.borderWidth = 1.5;
     
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelegate.currentModelViewController = self;
+    //AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    //appDelegate.currentModelViewController = self;
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

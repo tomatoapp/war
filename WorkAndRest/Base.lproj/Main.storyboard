@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--To-do-->
+        <!--Main-->
         <scene sceneID="UTY-4m-M8R">
             <objects>
                 <tableViewController id="bBY-k6-fbP" customClass="TaskListViewController" sceneMemberID="viewController">
@@ -47,18 +47,6 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Main" id="cXu-sg-NQz"/>
-                    <navigationItem key="navigationItem" title="To-do" id="RuG-c6-gLl">
-                        <barButtonItem key="leftBarButtonItem" title="Setting" id="8KS-Dm-4TD">
-                            <connections>
-                                <segue destination="WxZ-x7-fyd" kind="push" id="knU-16-gPC"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="eyS-wP-nep">
-                            <connections>
-                                <segue destination="wRB-lV-1rl" kind="modal" identifier="AddItem" id="9wL-Oa-dZu"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <segue destination="wRB-lV-1rl" kind="modal" identifier="EditItem" id="VrJ-T7-JhC"/>
                         <segue destination="6uC-ny-BXf" kind="push" identifier="ShowItem" id="bDt-xR-qPG"/>
@@ -417,7 +405,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="9wL-Oa-dZu"/>
-    </inferredMetricsTieBreakers>
 </document>
