@@ -67,7 +67,7 @@
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishAddingTask:(Task *)item
 {
-    [self performSelector:@selector(insertItem:) withObject:item afterDelay:0.5];
+    [self performSelector:@selector(insertItem:) withObject:item afterDelay:0.4];
 }
 
 - (void)insertItem:(Task*)newItem
@@ -142,14 +142,21 @@
 - (UIView*)createHeaderView {
     // UNDONE:
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 130)];
-    UIButton *button = [UIButton new];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
 //    button.frame = CGRectMake(50, 20, 240, 73);
 
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(240, 73));
+        make.size.mas_equalTo(CGSizeMake(240, 74));
         make.center.mas_equalTo(headerView.center);
     }];
+    [button.layer setMasksToBounds:YES];
+    [button.layer setCornerRadius:5];
+//    [button setImage:[UIImage imageNamed:@"start_button"] forState:UIControlStateNormal];
+    [button setAdjustsImageWhenHighlighted:NO];
+    [button setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
     [button setImage:[UIImage imageNamed:@"start_button"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"start_button_pressed"] forState:UIControlStateSelected];
+    [button setImage:[UIImage imageNamed:@"start_button_pressed"] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(newTaskButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:button];
     return headerView;

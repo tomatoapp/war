@@ -46,7 +46,7 @@
                             <outlet property="delegate" destination="bBY-k6-fbP" id="uZh-zv-4ba"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Main" id="cXu-sg-NQz">
+                    <tabBarItem key="tabBarItem" tag="1" title="Main" image="tab_item_1" id="cXu-sg-NQz">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="tab_item_1"/>
                         </userDefinedRuntimeAttributes>
@@ -306,7 +306,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Statistics" id="R9p-1e-QiG"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Statistics" image="tab_item_2" id="R9p-1e-QiG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Phg-f6-NPc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -406,7 +406,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tab_item_1" width="31" height="32"/>
+        <image name="tab_item_1" width="27" height="18"/>
+        <image name="tab_item_2" width="27" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
