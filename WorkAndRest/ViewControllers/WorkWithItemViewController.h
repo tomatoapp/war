@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Task.h"
+#import "BaseViewController.h"
 
-@interface WorkWithItemViewController : UIViewController<UIAlertViewDelegate, NSFetchedResultsControllerDelegate>
+@interface WorkWithItemViewController : BaseViewController<UIAlertViewDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 

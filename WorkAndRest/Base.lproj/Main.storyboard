@@ -46,7 +46,11 @@
                             <outlet property="delegate" destination="bBY-k6-fbP" id="uZh-zv-4ba"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Main" id="cXu-sg-NQz"/>
+                    <tabBarItem key="tabBarItem" title="Main" id="cXu-sg-NQz">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="tab_item_1"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <connections>
                         <segue destination="wRB-lV-1rl" kind="modal" identifier="EditItem" id="VrJ-T7-JhC"/>
                         <segue destination="6uC-ny-BXf" kind="push" identifier="ShowItem" id="bDt-xR-qPG"/>
@@ -308,10 +312,10 @@
             </objects>
             <point key="canvasLocation" x="410" y="738"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Root View Controller-->
         <scene sceneID="CDL-It-PC3">
             <objects>
-                <tabBarController id="aC1-Pi-pp5" sceneMemberID="viewController">
+                <tabBarController id="aC1-Pi-pp5" customClass="RootViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="uWk-te-FZ3"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="6Oz-k6-Eie">
@@ -401,6 +405,9 @@
             <point key="canvasLocation" x="1050" y="696"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tab_item_1" width="31" height="32"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

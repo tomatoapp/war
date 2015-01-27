@@ -149,9 +149,9 @@
     // UNDONE:
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 130)];
     UIButton *button = [UIButton new];
-    button.frame = CGRectMake(50, 20, 200, 80);
-    [button setTitle:@"Start a new Timer" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    button.frame = CGRectMake(50, 20, 240, 73);
+
+    [button setImage:[UIImage imageNamed:@"start_button"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(newTaskButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:button];
     return headerView;

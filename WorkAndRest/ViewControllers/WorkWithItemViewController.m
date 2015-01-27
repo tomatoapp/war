@@ -46,10 +46,6 @@
 {
     [super viewDidLoad];
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    //self.navigationController.navigationBar.shadowImage = [UIImage new];
-    //self.navigationController.navigationBar.translucent = YES;
-    
     seconds = [[[NSUserDefaults standardUserDefaults] valueForKey:@"Seconds"] intValue] * 60;
     // seconds = seconds / 60;
     isPlaySecondSound = [[[NSUserDefaults standardUserDefaults] valueForKey:@"SecondSound"] boolValue];
