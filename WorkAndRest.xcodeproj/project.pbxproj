@@ -13,7 +13,6 @@
 		64012C8E1900B8C2006FC2B2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64012C8D1900B8C2006FC2B2 /* SystemConfiguration.framework */; };
 		64012C931900B979006FC2B2 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64012C911900B979006FC2B2 /* AppiraterLocalizable.strings */; };
 		64012C951900D68F006FC2B2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64012C941900D68F006FC2B2 /* AudioToolbox.framework */; };
-		640D064618E03575007B0894 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D064518E03575007B0894 /* ItemDetailViewController.m */; };
 		64228ECA18FE2ED300461550 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64228ECC18FE2ED300461550 /* Localizable.strings */; };
 		6434827218C5D344009BF110 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827118C5D344009BF110 /* Foundation.framework */; };
 		6434827418C5D344009BF110 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827318C5D344009BF110 /* CoreGraphics.framework */; };
@@ -22,21 +21,23 @@
 		6434827E18C5D344009BF110 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6434827D18C5D344009BF110 /* main.m */; };
 		6434828218C5D344009BF110 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6434828118C5D344009BF110 /* AppDelegate.m */; };
 		6434828518C5D344009BF110 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6434828318C5D344009BF110 /* Main.storyboard */; };
-		6434828818C5D344009BF110 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6434828718C5D344009BF110 /* TaskListViewController.m */; };
 		6434828A18C5D344009BF110 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6434828918C5D344009BF110 /* Images.xcassets */; };
 		6434829118C5D344009BF110 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434829018C5D344009BF110 /* XCTest.framework */; };
 		6434829218C5D344009BF110 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827118C5D344009BF110 /* Foundation.framework */; };
 		6434829318C5D344009BF110 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827518C5D344009BF110 /* UIKit.framework */; };
 		6439ADC918E1325800CAC85B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6439ADC818E1325800CAC85B /* CoreData.framework */; };
 		6439ADD218E15E2100CAC85B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6439ADD018E15E2100CAC85B /* DataModel.xcdatamodeld */; };
-		6460FB2718F52CB400CF55AA /* Checkbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460FB2418F52CB400CF55AA /* Checkbox.m */; };
-		6460FB2818F52CB400CF55AA /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460FB2618F52CB400CF55AA /* CustomCell.m */; };
+		6458B66B1A7722BD004FD3D9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458B66A1A7722BD004FD3D9 /* RootViewController.swift */; };
+		6458B6711A772308004FD3D9 /* Checkbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B66E1A772308004FD3D9 /* Checkbox.m */; };
+		6458B6721A772308004FD3D9 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B6701A772308004FD3D9 /* CustomCell.m */; };
+		6458B67B1A772337004FD3D9 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B6741A772337004FD3D9 /* ItemDetailViewController.m */; };
+		6458B67C1A772337004FD3D9 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B6761A772337004FD3D9 /* SettingViewController.m */; };
+		6458B67D1A772337004FD3D9 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B6781A772337004FD3D9 /* TaskListViewController.m */; };
+		6458B67E1A772337004FD3D9 /* WorkWithItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B67A1A772337004FD3D9 /* WorkWithItemViewController.m */; };
 		6497FE4F1A75A28B00174307 /* DBOperate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6497FE4E1A75A28B00174307 /* DBOperate.m */; };
 		6497FE531A75A72000174307 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 6497FE521A75A72000174307 /* Task.m */; };
 		6497FE561A75A77800174307 /* Work.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497FE551A75A77800174307 /* Work.swift */; };
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
-		64A9E9ED18F6405300E84EF2 /* WorkWithItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */; };
-		64A9E9F018F64BAF00E84EF2 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A9E9EF18F64BAF00E84EF2 /* SettingViewController.m */; };
 		64C7249A1A577A0B00A69541 /* sec.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64C724981A577A0B00A69541 /* sec.wav */; };
 		64C7249B1A577A0B00A69541 /* SecondBeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64C724991A577A0B00A69541 /* SecondBeep.wav */; };
 /* End PBXBuildFile section */
@@ -61,8 +62,6 @@
 		64012C8F1900B92D006FC2B2 /* AppiraterDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
 		64012C921900B979006FC2B2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		64012C941900D68F006FC2B2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		640D064418E03575007B0894 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
-		640D064518E03575007B0894 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
 		64228EC918FE2E7300461550 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		64228ECB18FE2ED300461550 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64228ECD18FE2EE300461550 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -80,17 +79,24 @@
 		6434828018C5D344009BF110 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6434828118C5D344009BF110 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6434828418C5D344009BF110 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		6434828618C5D344009BF110 /* TaskListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskListViewController.h; sourceTree = "<group>"; };
-		6434828718C5D344009BF110 /* TaskListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskListViewController.m; sourceTree = "<group>"; };
 		6434828918C5D344009BF110 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6434828F18C5D344009BF110 /* WorkAndRestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkAndRestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6434829018C5D344009BF110 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6439ADC818E1325800CAC85B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6439ADD118E15E2100CAC85B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		6460FB2318F52CB400CF55AA /* Checkbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checkbox.h; sourceTree = "<group>"; };
-		6460FB2418F52CB400CF55AA /* Checkbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Checkbox.m; sourceTree = "<group>"; };
-		6460FB2518F52CB400CF55AA /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
-		6460FB2618F52CB400CF55AA /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		6458B66A1A7722BD004FD3D9 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		6458B66D1A772308004FD3D9 /* Checkbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checkbox.h; sourceTree = "<group>"; };
+		6458B66E1A772308004FD3D9 /* Checkbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Checkbox.m; sourceTree = "<group>"; };
+		6458B66F1A772308004FD3D9 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		6458B6701A772308004FD3D9 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		6458B6731A772337004FD3D9 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
+		6458B6741A772337004FD3D9 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
+		6458B6751A772337004FD3D9 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		6458B6761A772337004FD3D9 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		6458B6771A772337004FD3D9 /* TaskListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListViewController.h; sourceTree = "<group>"; };
+		6458B6781A772337004FD3D9 /* TaskListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListViewController.m; sourceTree = "<group>"; };
+		6458B6791A772337004FD3D9 /* WorkWithItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkWithItemViewController.h; sourceTree = "<group>"; };
+		6458B67A1A772337004FD3D9 /* WorkWithItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkWithItemViewController.m; sourceTree = "<group>"; };
 		6497FE4D1A75A28B00174307 /* DBOperate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBOperate.h; sourceTree = "<group>"; };
 		6497FE4E1A75A28B00174307 /* DBOperate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBOperate.m; sourceTree = "<group>"; };
 		6497FE511A75A72000174307 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
@@ -98,10 +104,6 @@
 		6497FE551A75A77800174307 /* Work.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Work.swift; sourceTree = "<group>"; };
 		6497FE581A75A91600174307 /* WorkAndRest-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WorkAndRest-Bridging-Header.h"; sourceTree = "<group>"; };
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		64A9E9EB18F6405300E84EF2 /* WorkWithItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkWithItemViewController.h; sourceTree = "<group>"; };
-		64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkWithItemViewController.m; sourceTree = "<group>"; };
-		64A9E9EE18F64BAF00E84EF2 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
-		64A9E9EF18F64BAF00E84EF2 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		64C724981A577A0B00A69541 /* sec.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sec.wav; sourceTree = "<group>"; };
 		64C724991A577A0B00A69541 /* SecondBeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SecondBeep.wav; sourceTree = "<group>"; };
 		C5A3E743E49F064E285AF8F1 /* Pods-WorkAndRest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkAndRest.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkAndRest/Pods-WorkAndRest.release.xcconfig"; sourceTree = "<group>"; };
@@ -214,23 +216,13 @@
 		6434827718C5D344009BF110 /* WorkAndRest */ = {
 			isa = PBXGroup;
 			children = (
+				6458B66C1A7722E3004FD3D9 /* Views */,
+				6458B6661A772279004FD3D9 /* ViewControllers */,
 				6497FE501A75A72000174307 /* Models */,
 				6497FE4C1A75A28B00174307 /* DBOperate */,
-				6460FB2318F52CB400CF55AA /* Checkbox.h */,
-				6460FB2418F52CB400CF55AA /* Checkbox.m */,
-				6460FB2518F52CB400CF55AA /* CustomCell.h */,
-				6460FB2618F52CB400CF55AA /* CustomCell.m */,
 				6434828018C5D344009BF110 /* AppDelegate.h */,
 				6434828118C5D344009BF110 /* AppDelegate.m */,
 				6434828318C5D344009BF110 /* Main.storyboard */,
-				6434828618C5D344009BF110 /* TaskListViewController.h */,
-				6434828718C5D344009BF110 /* TaskListViewController.m */,
-				640D064418E03575007B0894 /* ItemDetailViewController.h */,
-				640D064518E03575007B0894 /* ItemDetailViewController.m */,
-				64A9E9EB18F6405300E84EF2 /* WorkWithItemViewController.h */,
-				64A9E9EC18F6405300E84EF2 /* WorkWithItemViewController.m */,
-				64A9E9EE18F64BAF00E84EF2 /* SettingViewController.h */,
-				64A9E9EF18F64BAF00E84EF2 /* SettingViewController.m */,
 				6439ADD018E15E2100CAC85B /* DataModel.xcdatamodeld */,
 				6434828918C5D344009BF110 /* Images.xcassets */,
 				6434827818C5D344009BF110 /* Supporting Files */,
@@ -248,6 +240,33 @@
 				6434827F18C5D344009BF110 /* WorkAndRest-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6458B6661A772279004FD3D9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6458B6731A772337004FD3D9 /* ItemDetailViewController.h */,
+				6458B6741A772337004FD3D9 /* ItemDetailViewController.m */,
+				6458B6751A772337004FD3D9 /* SettingViewController.h */,
+				6458B6761A772337004FD3D9 /* SettingViewController.m */,
+				6458B6771A772337004FD3D9 /* TaskListViewController.h */,
+				6458B6781A772337004FD3D9 /* TaskListViewController.m */,
+				6458B6791A772337004FD3D9 /* WorkWithItemViewController.h */,
+				6458B67A1A772337004FD3D9 /* WorkWithItemViewController.m */,
+				6458B66A1A7722BD004FD3D9 /* RootViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		6458B66C1A7722E3004FD3D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6458B66D1A772308004FD3D9 /* Checkbox.h */,
+				6458B66E1A772308004FD3D9 /* Checkbox.m */,
+				6458B66F1A772308004FD3D9 /* CustomCell.h */,
+				6458B6701A772308004FD3D9 /* CustomCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		6497FE4C1A75A28B00174307 /* DBOperate */ = {
@@ -427,19 +446,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6458B67E1A772337004FD3D9 /* WorkWithItemViewController.m in Sources */,
 				6497FE531A75A72000174307 /* Task.m in Sources */,
+				6458B67D1A772337004FD3D9 /* TaskListViewController.m in Sources */,
 				64012C8A1900B89D006FC2B2 /* Appirater.m in Sources */,
+				6458B67B1A772337004FD3D9 /* ItemDetailViewController.m in Sources */,
 				6497FE561A75A77800174307 /* Work.swift in Sources */,
-				6434828818C5D344009BF110 /* TaskListViewController.m in Sources */,
+				6458B6721A772308004FD3D9 /* CustomCell.m in Sources */,
 				6434827E18C5D344009BF110 /* main.m in Sources */,
-				640D064618E03575007B0894 /* ItemDetailViewController.m in Sources */,
-				6460FB2718F52CB400CF55AA /* Checkbox.m in Sources */,
+				6458B66B1A7722BD004FD3D9 /* RootViewController.swift in Sources */,
 				6439ADD218E15E2100CAC85B /* DataModel.xcdatamodeld in Sources */,
+				6458B6711A772308004FD3D9 /* Checkbox.m in Sources */,
 				6434828218C5D344009BF110 /* AppDelegate.m in Sources */,
 				6497FE4F1A75A28B00174307 /* DBOperate.m in Sources */,
-				64A9E9ED18F6405300E84EF2 /* WorkWithItemViewController.m in Sources */,
-				64A9E9F018F64BAF00E84EF2 /* SettingViewController.m in Sources */,
-				6460FB2818F52CB400CF55AA /* CustomCell.m in Sources */,
+				6458B67C1A772337004FD3D9 /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

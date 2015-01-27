@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TaskItem.h"
+#import "Task.h"
 
 @class ItemDetailViewController;
 @class Task;

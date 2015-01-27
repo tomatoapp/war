@@ -131,7 +131,7 @@
             </objects>
             <point key="canvasLocation" x="-325" y="-24"/>
         </scene>
-        <!--Setting-->
+        <!--Settings-->
         <scene sceneID="Tph-EI-UqB">
             <objects>
                 <tableViewController id="WxZ-x7-fyd" customClass="SettingViewController" sceneMemberID="viewController">
@@ -256,7 +256,7 @@
                             <outlet property="delegate" destination="WxZ-x7-fyd" id="0qF-6R-gRo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Setting" id="Ezq-Zv-W88"/>
+                    <navigationItem key="navigationItem" title="Settings" id="Ezq-Zv-W88"/>
                     <connections>
                         <outlet property="dateLabel" destination="3Wd-cv-w87" id="Cze-nP-iCV"/>
                         <outlet property="lightSwitchControl" destination="ULC-Cb-fan" id="xaJ-pg-DZp"/>
@@ -268,7 +268,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AIO-Mo-hGI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1050" y="-824"/>
+            <point key="canvasLocation" x="-325" y="1440"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hws-3I-0lZ">
@@ -322,6 +322,7 @@
                     <connections>
                         <segue destination="bBY-k6-fbP" kind="relationship" relationship="viewControllers" id="nwU-QQ-M9S"/>
                         <segue destination="G6S-QO-VTb" kind="relationship" relationship="viewControllers" id="und-vU-1pO"/>
+                        <segue destination="WxZ-x7-fyd" kind="push" identifier="settingsSegue" id="CXK-uG-sUG"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p5P-eG-HTx" userLabel="First Responder" sceneMemberID="firstResponder"/>

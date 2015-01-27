@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface SettingViewController : UITableViewController <UIAlertViewDelegate>
+@interface SettingViewController : UITableViewController <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) IBOutlet UISwitch *switchControl;
 @property (nonatomic, strong) IBOutlet UISwitch *lightSwitchControl;
