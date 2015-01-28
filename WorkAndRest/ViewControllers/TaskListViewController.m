@@ -72,6 +72,7 @@
 
 - (void)insertItem:(Task*)newItem
 {
+    Task *t = [DBOperate selectTaskWithTaskId:0];
     [DBOperate insertTask:newItem];
     [allTasks insertObject:newItem atIndex:0];
     NSMutableArray *indexPaths = [NSMutableArray array];

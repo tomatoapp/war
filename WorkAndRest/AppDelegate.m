@@ -124,7 +124,6 @@
         
         // Add the "Task Sample" item to the list.
         Task *sampleTask = [Task new];
-        sampleTask.taskId = -1000;
         sampleTask.title = NSLocalizedString(@"Task Sample", nil);
         sampleTask.costWorkTimes = [NSNumber numberWithInteger:0];
         sampleTask.completed = [NSNumber numberWithBool:NO];
