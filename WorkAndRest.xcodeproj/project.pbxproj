@@ -41,6 +41,7 @@
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
 		64C7249A1A577A0B00A69541 /* sec.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64C724981A577A0B00A69541 /* sec.wav */; };
 		64C7249B1A577A0B00A69541 /* SecondBeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64C724991A577A0B00A69541 /* SecondBeep.wav */; };
+		64C99A581A7902A100F1D796 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C99A571A7902A100F1D796 /* Launch Screen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		64C724981A577A0B00A69541 /* sec.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sec.wav; sourceTree = "<group>"; };
 		64C724991A577A0B00A69541 /* SecondBeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SecondBeep.wav; sourceTree = "<group>"; };
+		64C99A571A7902A100F1D796 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		C5A3E743E49F064E285AF8F1 /* Pods-WorkAndRest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkAndRest.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkAndRest/Pods-WorkAndRest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -229,6 +231,7 @@
 				6434828318C5D344009BF110 /* Main.storyboard */,
 				6434828918C5D344009BF110 /* Images.xcassets */,
 				6434827818C5D344009BF110 /* Supporting Files */,
+				64C99A571A7902A100F1D796 /* Launch Screen.xib */,
 			);
 			path = WorkAndRest;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				64228ECA18FE2ED300461550 /* Localizable.strings in Resources */,
 				64012C931900B979006FC2B2 /* AppiraterLocalizable.strings in Resources */,
 				64C7249B1A577A0B00A69541 /* SecondBeep.wav in Resources */,
+				64C99A581A7902A100F1D796 /* Launch Screen.xib in Resources */,
 				64C7249A1A577A0B00A69541 /* sec.wav in Resources */,
 				6434828518C5D344009BF110 /* Main.storyboard in Resources */,
 			);
@@ -606,7 +610,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Cun Yang (4H7ZZQ3A4G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WorkAndRest/WorkAndRest-Prefix.pch";
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
@@ -614,6 +619,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WorkAndRest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -627,7 +633,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Cun Yang (4H7ZZQ3A4G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WorkAndRest/WorkAndRest-Prefix.pch";
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
@@ -635,6 +642,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WorkAndRest-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
