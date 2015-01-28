@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Task.h"
 #import "BaseViewController.h"
+
+@class Task;
 
 @interface WorkWithItemViewController : BaseViewController<UIAlertViewDelegate, NSFetchedResultsControllerDelegate>
 

@@ -10,8 +10,7 @@
 #import "TaskListViewController.h"
 #import "WorkWithItemViewController.h"
 #import "Appirater.h"
-#import "DBOperate.h"
-#import "Task.h"
+#import "WorkAndRest-Swift.h"
 
 @interface AppDelegate ()
 

@@ -7,7 +7,8 @@
 //
 
 #import "ItemDetailViewController.h"
-#import "Task.h"
+
+#import "WorkAndRest-Swift.h"
 
 @interface ItemDetailViewController ()
 

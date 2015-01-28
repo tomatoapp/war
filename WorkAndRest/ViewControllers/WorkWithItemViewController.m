@@ -12,6 +12,8 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <QuartzCore/QuartzCore.h>
 
+#import "WorkAndRest-Swift.h"
+
 @interface WorkWithItemViewController ()
 
 @end
@@ -262,7 +264,7 @@
 
 - (void)completedOneWorkTime
 {
-    self.itemToWork.costWorkTimes = [NSNumber numberWithInt:[self.itemToWork.costWorkTimes intValue] + 1];
+    self.itemToWork.costWorkTimes = [NSNumber numberWithInt:self.itemToWork.costWorkTimes + 1];
     NSError *error;
     if(![self.managedObjectContext save:&error]) {
         FATAL_CORE_DATA_ERROR(error);
