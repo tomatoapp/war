@@ -26,12 +26,12 @@
 		6434829218C5D344009BF110 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827118C5D344009BF110 /* Foundation.framework */; };
 		6434829318C5D344009BF110 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827518C5D344009BF110 /* UIKit.framework */; };
 		6439ADC918E1325800CAC85B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6439ADC818E1325800CAC85B /* CoreData.framework */; };
+		6442291D1A7A2F2000E516C1 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6442291C1A7A2F2000E516C1 /* TaskListViewController.swift */; };
 		6458B66B1A7722BD004FD3D9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458B66A1A7722BD004FD3D9 /* RootViewController.swift */; };
 		6458B6711A772308004FD3D9 /* Checkbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B66E1A772308004FD3D9 /* Checkbox.m */; };
 		6458B6721A772308004FD3D9 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B6701A772308004FD3D9 /* CustomCell.m */; };
 		6458B67B1A772337004FD3D9 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B6741A772337004FD3D9 /* ItemDetailViewController.m */; };
 		6458B67C1A772337004FD3D9 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B6761A772337004FD3D9 /* SettingViewController.m */; };
-		6458B67D1A772337004FD3D9 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B6781A772337004FD3D9 /* TaskListViewController.m */; };
 		6458B67E1A772337004FD3D9 /* WorkWithItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B67A1A772337004FD3D9 /* WorkWithItemViewController.m */; };
 		6458B6851A773719004FD3D9 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B6841A773719004FD3D9 /* BaseTableViewController.m */; };
 		6458B6881A7737A2004FD3D9 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B6871A7737A2004FD3D9 /* BaseViewController.m */; };
@@ -86,6 +86,7 @@
 		6434828F18C5D344009BF110 /* WorkAndRestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkAndRestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6434829018C5D344009BF110 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6439ADC818E1325800CAC85B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6442291C1A7A2F2000E516C1 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		6458B66A1A7722BD004FD3D9 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		6458B66D1A772308004FD3D9 /* Checkbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checkbox.h; sourceTree = "<group>"; };
 		6458B66E1A772308004FD3D9 /* Checkbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Checkbox.m; sourceTree = "<group>"; };
@@ -95,8 +96,6 @@
 		6458B6741A772337004FD3D9 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
 		6458B6751A772337004FD3D9 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		6458B6761A772337004FD3D9 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
-		6458B6771A772337004FD3D9 /* TaskListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListViewController.h; sourceTree = "<group>"; };
-		6458B6781A772337004FD3D9 /* TaskListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListViewController.m; sourceTree = "<group>"; };
 		6458B6791A772337004FD3D9 /* WorkWithItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkWithItemViewController.h; sourceTree = "<group>"; };
 		6458B67A1A772337004FD3D9 /* WorkWithItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkWithItemViewController.m; sourceTree = "<group>"; };
 		6458B6831A773719004FD3D9 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
@@ -261,12 +260,11 @@
 				6458B6741A772337004FD3D9 /* ItemDetailViewController.m */,
 				6458B6751A772337004FD3D9 /* SettingViewController.h */,
 				6458B6761A772337004FD3D9 /* SettingViewController.m */,
-				6458B6771A772337004FD3D9 /* TaskListViewController.h */,
-				6458B6781A772337004FD3D9 /* TaskListViewController.m */,
 				6458B6791A772337004FD3D9 /* WorkWithItemViewController.h */,
 				6458B67A1A772337004FD3D9 /* WorkWithItemViewController.m */,
 				64C99A591A79051600F1D796 /* NewTaskViewController.h */,
 				64C99A5A1A79051600F1D796 /* NewTaskViewController.m */,
+				6442291C1A7A2F2000E516C1 /* TaskListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -461,9 +459,9 @@
 				64C99A5D1A7905A300F1D796 /* DBOperate.swift in Sources */,
 				6458B67E1A772337004FD3D9 /* WorkWithItemViewController.m in Sources */,
 				6458B6881A7737A2004FD3D9 /* BaseViewController.m in Sources */,
-				6458B67D1A772337004FD3D9 /* TaskListViewController.m in Sources */,
 				64012C8A1900B89D006FC2B2 /* Appirater.m in Sources */,
 				6458B6851A773719004FD3D9 /* BaseTableViewController.m in Sources */,
+				6442291D1A7A2F2000E516C1 /* TaskListViewController.swift in Sources */,
 				6458B67B1A772337004FD3D9 /* ItemDetailViewController.m in Sources */,
 				6497FE561A75A77800174307 /* Work.swift in Sources */,
 				64C99A5F1A7906EA00F1D796 /* Task.swift in Sources */,
