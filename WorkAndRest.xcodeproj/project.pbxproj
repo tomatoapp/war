@@ -40,7 +40,6 @@
 		64C7249A1A577A0B00A69541 /* sec.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64C724981A577A0B00A69541 /* sec.wav */; };
 		64C7249B1A577A0B00A69541 /* SecondBeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64C724991A577A0B00A69541 /* SecondBeep.wav */; };
 		64C99A581A7902A100F1D796 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C99A571A7902A100F1D796 /* Launch Screen.xib */; };
-		64C99A5B1A79051600F1D796 /* NewTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C99A5A1A79051600F1D796 /* NewTaskViewController.m */; };
 		64C99A5D1A7905A300F1D796 /* DBOperate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C99A5C1A7905A300F1D796 /* DBOperate.swift */; };
 		64C99A5F1A7906EA00F1D796 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C99A5E1A7906EA00F1D796 /* Task.swift */; };
 /* End PBXBuildFile section */
@@ -108,8 +107,6 @@
 		64C724981A577A0B00A69541 /* sec.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sec.wav; sourceTree = "<group>"; };
 		64C724991A577A0B00A69541 /* SecondBeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SecondBeep.wav; sourceTree = "<group>"; };
 		64C99A571A7902A100F1D796 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
-		64C99A591A79051600F1D796 /* NewTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTaskViewController.h; sourceTree = "<group>"; };
-		64C99A5A1A79051600F1D796 /* NewTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTaskViewController.m; sourceTree = "<group>"; };
 		64C99A5C1A7905A300F1D796 /* DBOperate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBOperate.swift; sourceTree = "<group>"; };
 		64C99A5E1A7906EA00F1D796 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		C5A3E743E49F064E285AF8F1 /* Pods-WorkAndRest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkAndRest.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkAndRest/Pods-WorkAndRest.release.xcconfig"; sourceTree = "<group>"; };
@@ -262,8 +259,6 @@
 				6458B6761A772337004FD3D9 /* SettingViewController.m */,
 				6458B6791A772337004FD3D9 /* WorkWithItemViewController.h */,
 				6458B67A1A772337004FD3D9 /* WorkWithItemViewController.m */,
-				64C99A591A79051600F1D796 /* NewTaskViewController.h */,
-				64C99A5A1A79051600F1D796 /* NewTaskViewController.m */,
 				6442291C1A7A2F2000E516C1 /* TaskListViewController.swift */,
 			);
 			path = ViewControllers;
@@ -470,7 +465,6 @@
 				6458B66B1A7722BD004FD3D9 /* RootViewController.swift in Sources */,
 				6458B6711A772308004FD3D9 /* Checkbox.m in Sources */,
 				6434828218C5D344009BF110 /* AppDelegate.m in Sources */,
-				64C99A5B1A79051600F1D796 /* NewTaskViewController.m in Sources */,
 				6458B67C1A772337004FD3D9 /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
