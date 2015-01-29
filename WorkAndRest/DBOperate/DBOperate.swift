@@ -9,20 +9,7 @@
 import UIKit
 
 @objc class DBOperate {
-    
-//    private var once = dispatch_once_t()
-//    var dataBase: FMDatabase = FMDatabase()
 
-//    init() {
-//        dispatch_once(&once) {
-//            let documentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-//            let path = documentsFolder.stringByAppendingString("db_demo.sqlite3")
-//            //self.dataBase = FMDatabase(path: path)
-//            self.dataBase = FMDatabase(path: path)
-//        }
-//    }
-
-    
     struct Static {
         static var db = FMDatabase()
     }
@@ -57,7 +44,6 @@ import UIKit
         }
         dataBase.close()
     }
-    
     class func insertTask(task: Task) {
         // open the db
         if !dataBase.open() {
@@ -71,7 +57,6 @@ import UIKit
         }
         dataBase.close()
     }
-    
     class func selectTaskWithTaskId(taskId: Int) -> Task? {
         if !dataBase.open() {
             return nil
@@ -84,9 +69,30 @@ import UIKit
         }
         return task
     }
-    class func updateTask(task: Task) {}
-    class func deleteTask(task: Task) {}
-    
+    class func updateTask(task: Task) {
+        if !dataBase.open() {
+            return
+        }
+        let success = dataBase.executeUpdate("UPDATE t_tasks SET title = ? WHERE task_id = ?", withArgumentsInArray: [task.title, task.taskId])
+        if success {
+            println("update task table success.")
+        } else {
+            println("update task table failed!")
+        }
+        dataBase.close()
+    }
+    class func deleteTask(task: Task) {
+        if !dataBase.open() {
+            return
+        }
+        let success = dataBase.executeUpdate("DELETE FROM t_tasks WHERE task_id = ?", withArgumentsInArray: [task.taskId])
+        if success {
+            println("delete from task success.")
+        } else {
+            println("delete from task failed!")
+        }
+        dataBase.close()
+    }
     class func loadAllTasks() -> Array<Task>? {
         if !dataBase.open() {
             return nil
@@ -116,15 +122,68 @@ import UIKit
         }
         dataBase.close()
     }
-    class func insertWork(work: Work) {}
-    class func selectWorkWithWorkId(taskId: Int) -> Work {
+    class func insertWork(work: Work) {
+        if !dataBase.open() {
+            return
+        }
+        let success = dataBase.executeUpdate("INSERT INTO t_works(title) VALUES (:title)", withArgumentsInArray: [work.title])
+        if success {
+            println("insert to work table success.")
+        } else {
+            println("inert to work table failed!")
+        }
+        dataBase.close()
+    }
+    class func selectWorkWithWorkId(workId: Int) -> Work? {
+        if !dataBase.open() {
+            return nil
+        }
         var work = Work()
+        let rs = dataBase.executeQuery("SELECT * from t_works WHERE work_id = ?", withArgumentsInArray: [workId])
+        while rs.next() {
+            work.workId = rs.stringForColumn("task_id").toInt()!
+            work.title = rs.stringForColumn("title")
+        }
+        dataBase.close()
         return work
     }
-    class func updateWork(work: Work) {}
-    class func deleteWork(work: Work) {}
-    class func loadAllWorks() -> Array<Work> {
+    class func updateWork(work: Work) {
+        if !dataBase.open() {
+            return
+        }
+        let success = dataBase.executeUpdate("UPDATE t_works SET title = ? WHERE work_id = ?", withArgumentsInArray: [work.title, work.workId])
+        if success {
+            println("update work table success.")
+        } else {
+            println("update work table failed!")
+        }
+        dataBase.close()
+    }
+    class func deleteWork(work: Work) {
+        if !dataBase.open() {
+            return
+        }
+        let success = dataBase.executeUpdate("DELETE FROM t_works WHERE work_id = ?", withArgumentsInArray: [work.workId])
+        if success {
+            println("delete from work table success.")
+        } else {
+            println("delete from work table failed!")
+        }
+        dataBase.close()
+    }
+    class func loadAllWorks() -> Array<Work>? {
+        if !dataBase.open() {
+            return nil
+        }
         var workArray = [Work]()
+        let rs = dataBase.executeQuery("SELECT * from t_works", withArgumentsInArray: nil)
+        while rs.next() {
+            let tempWork = Work()
+            tempWork.workId = rs.stringForColumn("work_id").toInt()!
+            tempWork.title = rs.stringForColumn("title")
+            workArray.append(tempWork)
+        }
+        dataBase.close()
         return workArray
     }
 }

@@ -30,12 +30,12 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 50)];
     
     [self loadAllTasks];
+    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -68,21 +68,48 @@
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishAddingTask:(Task *)item
 {
     [self performSelector:@selector(insertItem:) withObject:item afterDelay:0.4];
+    [DBOperate insertTask:item];
 }
 
 - (void)insertItem:(Task*)newItem
 {
-    Task *t = [DBOperate selectTaskWithTaskId:0];
-    [DBOperate insertTask:newItem];
+    [self.tableView beginUpdates];
     [allTasks insertObject:newItem atIndex:0];
     NSMutableArray *indexPaths = [NSMutableArray array];
     [indexPaths addObject:[NSIndexPath indexPathForRow:0 inSection:0]];
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
 }
 
+- (void)insertItem:(Task*)newItem withRowAnimation:(UITableViewRowAnimation)animation
+{
+    [self.tableView beginUpdates];
+    [allTasks insertObject:newItem atIndex:0];
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    [indexPaths addObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+    [self.tableView endUpdates];
+}
+
+- (void)deleteItem:(Task*)item withRowAnimation:(UITableViewRowAnimation)animation
+{
+    [self.tableView beginUpdates];
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    [indexPaths addObject:[NSIndexPath indexPathForRow:[allTasks indexOfObject:item] inSection:0]];
+    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+    [allTasks removeObject:item];
+    [self.tableView endUpdates];
+}
+
+- (void)moveItem:(Task*)item
+{
+    [self deleteItem:item withRowAnimation:UITableViewRowAnimationLeft];
+    [self insertItem:item withRowAnimation:UITableViewRowAnimationLeft];
+}
 
 - (void)addTaskViewController:(ItemDetailViewController *)controller didFinishEditingTask:(Task *)item
 {
+    [self performSelector:@selector(moveItem:) withObject:item afterDelay:0.5];
     [DBOperate updateTask:item];
 }
 
@@ -120,23 +147,29 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Task *task = [allTasks objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"ShowItem" sender:task];
+    [self performSegueWithIdentifier:@"EditItem" sender:task];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSLog(@"%@ %@", @(indexPath.section), @(indexPath.row));
         Task *task = [allTasks objectAtIndex:indexPath.row];
         [DBOperate deleteTask:task];
-        [allTasks removeObject:task];
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        NSMutableArray *indexPaths = [NSMutableArray array];
+        [indexPaths addObject:indexPath];
+        
+        [self deleteItem:task withRowAnimation:UITableViewRowAnimationFade];
+
     }
 }
 
 #pragma mark - Private Methods
 - (void)loadAllTasks {
     NSArray *result = [DBOperate loadAllTasks];
-    NSArray *sortedResult = result; // UNDONE:
+    NSArray *sortedResult = [result sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [(Task*)obj1 taskId] < [(Task*)obj2 taskId];
+    }];
     allTasks = [NSMutableArray arrayWithArray:sortedResult];
 }
 
