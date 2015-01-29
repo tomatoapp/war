@@ -9,7 +9,7 @@
         <!--Main-->
         <scene sceneID="UTY-4m-M8R">
             <objects>
-                <tableViewController id="bBY-k6-fbP" customClass="TaskListViewController" sceneMemberID="viewController">
+                <tableViewController id="bBY-k6-fbP" customClass="TaskListViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="48" sectionHeaderHeight="22" sectionFooterHeight="22" id="LGq-1h-yIA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

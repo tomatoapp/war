@@ -15,29 +15,28 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.tableView.tableHeaderView = self.createHeaderView()
+        self.tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, 1, 50))
+        
+        self.loadAllTasks()
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
         return allTasks.count
     }
 
@@ -70,50 +69,46 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
         var result = DBOperate.loadAllTasks()
         allTasks = result!.sorted { $0.taskId < $1.taskId }
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    
+    func createHeaderView() ->UIView {
+        let headerView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 130))
+        let button: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 5
+        button.adjustsImageWhenHighlighted = false
+        button.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+        button.setImage(UIImage(named: "start_button"), forState: .Normal)
+        button.setImage(UIImage(named: "start_button_pressed"), forState: .Selected)
+        button.setImage(UIImage(named: "start_button_pressed"), forState: .Highlighted)
+        button.addTarget(self, action: Selector("newTaskButtonClick:"), forControlEvents: .TouchUpInside)
+        
+        headerView.addSubview(button)
+        button.mas_makeConstraints { make in
+            make.width.equalTo()(240)
+            make.height.equalTo()(74)
+            make.centerX.equalTo()(headerView.mas_centerX)
+            make.centerY.equalTo()(headerView.mas_centerY)
+            return ()
+        }
+        return headerView
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        println("identifier = \(segue.identifier)")
+        
+        if segue.identifier == "EditItem" {
+            let navigationController: UINavigationController = segue.destinationViewController as UINavigationController
+            let controller: ItemDetailViewController = navigationController.topViewController as ItemDetailViewController
+            controller.itemToEdit = sender as Task?
+            controller.delegate = self
+        } else if segue.identifier == "ShowItem" {
+            println("UNDONE!!!!")
+        }
     }
-    */
+    
     
     // MARK: - ItemDetailViewControllerDelegate
     
@@ -133,7 +128,9 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     
     // MARK: - Private Methods
     
-    func insertItem(item: Task!) {
+    func insertItem(val: NSTimer) {
+        println("\(val.userInfo)")
+        let item = val.userInfo as Task
         self.tableView.beginUpdates()
         allTasks.insert(item, atIndex: 0)
         var indexPath = NSIndexPath(forRow: 0, inSection: 0)
@@ -160,31 +157,13 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
         self.tableView.endUpdates()
     }
     
-    func moveItem(item: Task!) {
+    func moveItem(val: NSTimer) {
+        let item = val.userInfo as Task
         self.deleteItem(item, withRowAnimation: UITableViewRowAnimation.Left)
         self.insertItem(item, withRowAnimation: UITableViewRowAnimation.Left)
     }
     
-
+    func newTaskButtonClick(sender: UIButton) {
+        self.performSegueWithIdentifier("EditItem", sender: nil)
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
