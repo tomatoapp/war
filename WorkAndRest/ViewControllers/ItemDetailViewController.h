@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+//#import "BaseTableViewController.h"
 
 @class ItemDetailViewController;
 @class Task;
@@ -20,7 +20,7 @@
 
 @end
 
-@interface ItemDetailViewController : BaseTableViewController <UITextFieldDelegate>
+@interface ItemDetailViewController : UITableViewController <UITextFieldDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, weak) id <ItemDetailViewControllerDelegate> delegate;

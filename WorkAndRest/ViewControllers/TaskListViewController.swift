@@ -45,7 +45,7 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath) as CustomCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath) as TaskListItemCell
         let task = allTasks[indexPath.row]
         cell.titleLabel.text = task.title
         return cell
