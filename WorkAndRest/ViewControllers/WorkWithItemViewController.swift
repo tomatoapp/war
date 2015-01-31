@@ -30,7 +30,8 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
     @IBOutlet var workTimesLabel: UILabel!
     @IBOutlet var startButton: UIButton!
     @IBOutlet var stopButton: UIButton!
-    @IBOutlet var silentButton: UIButton!
+    //@IBOutlet var silentButton: UIButton!
+    @IBOutlet var soundSwitch: UISwitch!
     
     // MARK: - Lifecycle
     
@@ -45,9 +46,11 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
         self.secondsLeft = self.seconds
         self.timerLabel.text = self.stringFromSecondsLeft()
         self.workTimesLabel.text = NSLocalizedString("work times: %@", comment: "").stringByAppendingString("\(self.itemToWork.costWorkTimes)")
+        
+        self.soundSwitch.transform = CGAffineTransformMakeScale(10, 10)
         self.enableButton(self.startButton)
         self.disableButton(self.stopButton)
-        self.disableButton(self.silentButton)
+        //self.disableButton(self.silentButton)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,7 +78,7 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("subtractTime"), userInfo: nil, repeats: true)
         self.itemToWork.completed = false
         self.enableButton(self.stopButton)
-        self.enableButton(self.silentButton)
+        //self.enableButton(self.silentButton)
         self.disableButton(self.startButton)
         
         if self.isKeepScreenLight {
@@ -87,15 +90,15 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
         self.showStopAlertView()
     }
     
-    @IBAction func silentButtonClick(sender: UIButton!) {
-        self.isPlaySecondSound = !self.isPlaySecondSound
-        if self.isPlaySecondSound {
-            self.silentButton.setTitleColor(UIColor(red: 0, green: 200.0/255.0, blue: 0, alpha: 1), forState: UIControlState.Normal)
-        } else {
-            self.silentButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
-        }
-        NSUserDefaults.standardUserDefaults().setValue(self.isPlaySecondSound, forKey: "SecondSound")
-    }
+//    @IBAction func silentButtonClick(sender: UIButton!) {
+//        self.isPlaySecondSound = !self.isPlaySecondSound
+//        if self.isPlaySecondSound {
+//            self.silentButton.setTitleColor(UIColor(red: 0, green: 200.0/255.0, blue: 0, alpha: 1), forState: UIControlState.Normal)
+//        } else {
+//            self.silentButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+//        }
+//        NSUserDefaults.standardUserDefaults().setValue(self.isPlaySecondSound, forKey: "SecondSound")
+//    }
     
     // MARK: - UIAlertViewDelegate
     
@@ -109,7 +112,7 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
                 self.resetTimerLabel()
                 self.enableButton(self.startButton)
                 self.disableButton(self.stopButton)
-                self.disableButton(self.silentButton)
+                //self.disableButton(self.silentButton)
             }
         }
     }
@@ -144,13 +147,14 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
             button.layer.borderColor = UIColor.redColor().CGColor
             button.titleLabel?.textColor = UIColor.redColor()
             button.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
-        } else {
-            if self.isPlaySecondSound {
-                self.silentButton.setTitleColor(UIColor(red: 0, green: 200.0/255.0, blue: 0, alpha: 1), forState: UIControlState.Normal)
-            } else {
-                self.silentButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
-            }
         }
+//        else {
+//            if self.isPlaySecondSound {
+//                self.silentButton.setTitleColor(UIColor(red: 0, green: 200.0/255.0, blue: 0, alpha: 1), forState: UIControlState.Normal)
+//            } else {
+//                self.silentButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+//            }
+//        }
     }
     
     func disableButton(button: UIButton!) {
@@ -184,7 +188,7 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
             alert.show()
             
             self.disableButton(self.stopButton)
-            self.disableButton(self.silentButton)
+            //self.disableButton(self.silentButton)
             self.enableButton(self.startButton)
         }
     }
@@ -211,7 +215,7 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
         
         self.enableButton(self.startButton)
         self.disableButton(self.startButton)
-        self.disableButton(self.silentButton)
+        //self.disableButton(self.silentButton)
     }
 
 }

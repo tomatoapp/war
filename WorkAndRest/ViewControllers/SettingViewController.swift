@@ -23,7 +23,11 @@ class SettingViewController: BaseTableViewController, UIAlertViewDelegate, MFMai
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.switchControl.on = NSUserDefaults.standardUserDefaults().valueForKey("SecondSound")!.boolValue
+        self.lightswitchControl.on = NSUserDefaults.standardUserDefaults().valueForKey("KeepLight")!.boolValue
+        secondsValue = Int(NSUserDefaults.standardUserDefaults().valueForKey("Seconds")!.intValue)
+        self.dataLabel.text = String(format: "00:%02d:00", secondsValue)
+        self.slider.value = Float(secondsValue)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,13 +50,14 @@ class SettingViewController: BaseTableViewController, UIAlertViewDelegate, MFMai
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == 1 {
-            let mailComposeViewController = MFMailComposeViewController()
-            mailComposeViewController.mailComposeDelegate = self
-            mailComposeViewController.setToRecipients(["work-rest@outlook.com"])
-            mailComposeViewController.setSubject(NSLocalizedString("Suggestions", comment: ""))
-            mailComposeViewController.setMessageBody("", isHTML: false)
-            
-            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+            if MFMailComposeViewController.canSendMail() {
+                var mailComposeViewController = MFMailComposeViewController()
+                mailComposeViewController.mailComposeDelegate = self
+                mailComposeViewController.setToRecipients(["work-rest@outlook.com"])
+                mailComposeViewController.setSubject(NSLocalizedString("Suggestions", comment: ""))
+                mailComposeViewController.setMessageBody("", isHTML: false)
+                self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+            }
         }
     }
     
@@ -79,6 +84,13 @@ class SettingViewController: BaseTableViewController, UIAlertViewDelegate, MFMai
         return 14.0
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 && indexPath.row == 0 { //suggestions
+            self.showSendEmailAlert()
+        } else if indexPath.section == 1 && indexPath.row == 1 { //rate
+            UIApplication.sharedApplication().openURL(NSURL(string: "itms-apps://itunes.apple.com/app/id868078759")!)
+        }
+    }
     
     // MARK: - Private Methods
     
@@ -99,17 +111,18 @@ class SettingViewController: BaseTableViewController, UIAlertViewDelegate, MFMai
         alert.show()
     }
     
-    func rateTapped() {
-        UIApplication.sharedApplication().openURL(NSURL(string: "itms-apps://itunes.apple.com/app/id868078759")!)
-    }
-    
-    func sugguestionsTapped() {
-        self.showSendEmailAlert()
-    }
-    
     @IBAction func sliderValueChanged(sender: AnyObject) {
         self.secondsValue = Int((sender as UISlider).value)
-        
+        self.dataLabel.text = String(format: "00:%02d:00", self.secondsValue)
+        NSUserDefaults.standardUserDefaults().setValue(self.secondsValue, forKey: "Seconds")
+    }
+    
+    @IBAction func secondSoundSwitchChanged(sender: AnyObject) {
+        NSUserDefaults.standardUserDefaults().setObject(Int(self.switchControl.on), forKey: "SecondSound")
+    }
+    
+    @IBAction func keepScreenLightSwitchChanged(sender: AnyObject) {
+        NSUserDefaults.standardUserDefaults().setObject(Int(self.lightswitchControl.on), forKey: "KeepLight")
     }
 
 }
