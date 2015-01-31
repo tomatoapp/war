@@ -11,10 +11,11 @@ import AVFoundation
 
 class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
 
+    // MARK: - Fields
+    
     var itemToWork: Task!
     var isWorking = false
     var secondsLeft = 0
-    
     var timer: NSTimer!
     var minute = 0
     var second = 0
@@ -23,11 +24,51 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
     var isPlaySecondSound = false
     var isKeepScreenLight = false
     
+    // MARK: - Properties
+    
     @IBOutlet var timerLabel: UILabel!
+    @IBOutlet var workTimesLabel: UILabel!
     @IBOutlet var startButton: UIButton!
     @IBOutlet var stopButton: UIButton!
-    @IBOutlet var workTimesLabel: UILabel!
     @IBOutlet var silentButton: UIButton!
+    
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.seconds = NSUserDefaults.standardUserDefaults().valueForKey("Seconds")!.integerValue * 60
+        isPlaySecondSound = NSUserDefaults.standardUserDefaults().valueForKey("SecondSound")!.boolValue
+        isKeepScreenLight = NSUserDefaults.standardUserDefaults().valueForKey("KeepLight")!.boolValue
+        secondBeep = self.setupAudioPlayerWithFile("sec", type:"wav")
+        self.title = self.itemToWork.title
+        self.secondsLeft = self.seconds
+        self.timerLabel.text = self.stringFromSecondsLeft()
+        self.workTimesLabel.text = NSLocalizedString("work times: %@", comment: "").stringByAppendingString("\(self.itemToWork.costWorkTimes)")
+        self.enableButton(self.startButton)
+        self.disableButton(self.stopButton)
+        self.disableButton(self.silentButton)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if self.isWorking {
+            self.cancelTimer()
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Events
     
     @IBAction func start() {
         self.isWorking = true
@@ -54,57 +95,6 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
             self.silentButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
         }
         NSUserDefaults.standardUserDefaults().setValue(self.isPlaySecondSound, forKey: "SecondSound")
-    }
-    
-    
-    func completedOneWorkTime() {
-        self.itemToWork.costWorkTimes = self.itemToWork.costWorkTimes++
-        DBOperate .updateTask(self.itemToWork)
-        self.workTimesLabel.text = NSString(format: NSLocalizedString("work times: %@", comment: ""), [self.itemToWork.costWorkTimes])
-    }
-    
-    func reset() {
-        self.cancelTimer()
-        self.resetTimerLabel()
-        self.isWorking = false
-        
-        self.enableButton(self.startButton)
-        self.disableButton(self.startButton)
-        self.disableButton(self.silentButton)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.seconds = NSUserDefaults.standardUserDefaults().valueForKey("Seconds")!.integerValue * 60
-        isPlaySecondSound = NSUserDefaults.standardUserDefaults().valueForKey("SecondSound")!.boolValue
-        isKeepScreenLight = NSUserDefaults.standardUserDefaults().valueForKey("KeepLight")!.boolValue
-        self.setupAudioPlayerWithFile("sec", type:"wav")
-        self.title = self.itemToWork.title
-        self.secondsLeft = self.seconds
-        self.timerLabel.text = self.stringFromSecondsLeft(self.secondsLeft)
-        self.workTimesLabel.text = NSString(format: NSLocalizedString("work times: %@", comment: ""), [self.itemToWork.costWorkTimes])
-        self.enableButton(self.startButton)
-        self.disableButton(self.stopButton)
-        self.disableButton(self.silentButton)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        if self.isWorking {
-            self.cancelTimer()
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - UIAlertViewDelegate
@@ -137,10 +127,10 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
         return audioPlayer
     }
 
-    func stringFromSecondsLeft(theSeconds: Int) -> String {
-        minute = theSeconds % 3600 / 60
-        second = theSeconds % 3600 % 60
-        return NSString(format: "00:%02d:%02d", [minute, second])
+    func stringFromSecondsLeft() -> String {
+        minute = self.secondsLeft % 3600 / 60
+        second = self.secondsLeft % 3600 % 60
+        return String(format: "00:%02d:%02d", arguments: [minute, second])
     }
     
     func enableButton(button: UIButton!) {
@@ -175,12 +165,13 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
     }
     
     func subtractTime() {
+ 
         if self.secondsLeft > 0 {
             self.secondsLeft--
             self.minute = self.secondsLeft % 3600 / 60
             self.second = self.secondsLeft % 3600 % 60
             
-            self.timerLabel.text = self.stringFromSecondsLeft(self.secondsLeft)
+            self.timerLabel.text = self.stringFromSecondsLeft()
             if self.isPlaySecondSound {
                 secondBeep.play()
             }
@@ -204,5 +195,23 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
     
     func resetTimerLabel() {
         self.secondsLeft = self.seconds
+        self.timerLabel.text = self.stringFromSecondsLeft()
     }
+    
+    func completedOneWorkTime() {
+        self.itemToWork.costWorkTimes = self.itemToWork.costWorkTimes++
+        DBOperate .updateTask(self.itemToWork)
+        self.workTimesLabel.text = NSString(format: NSLocalizedString("work times: %@", comment: ""), [self.itemToWork.costWorkTimes])
+    }
+    
+    func reset() {
+        self.cancelTimer()
+        self.resetTimerLabel()
+        self.isWorking = false
+        
+        self.enableButton(self.startButton)
+        self.disableButton(self.startButton)
+        self.disableButton(self.silentButton)
+    }
+
 }

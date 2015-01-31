@@ -8,7 +8,7 @@
 "Task Sample" = "Task Sample";
 "Hidden History" = "Hidden History";
 "Show History" = "Show History";
-"work times: %@" = "Effective working time: %@ times";
+"work times: %@" = "Effective working time: ";
 "Edit Task" = "Edit Task";
 "Yes" = "OK";
 "Cancel" = "Cancel";

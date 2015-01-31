@@ -52,7 +52,7 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("EditItem", sender: allTasks[indexPath.row])
+        self.performSegueWithIdentifier("ShowItem", sender: allTasks[indexPath.row])
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -105,6 +105,8 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
             controller.delegate = self
         } else if segue.identifier == "ShowItem" {
             println("UNDONE!!!!")
+            let controller = segue.destinationViewController as WorkWithItemViewController
+            controller.itemToWork = sender as Task?
         }
     }
     

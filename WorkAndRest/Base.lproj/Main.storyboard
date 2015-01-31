@@ -115,7 +115,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ERw-yK-O1p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="972" y="-36"/>
+            <point key="canvasLocation" x="1036" y="-296"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SE7-c6-teE">
@@ -291,7 +291,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Phg-f6-NPc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="410" y="738"/>
+            <point key="canvasLocation" x="370" y="1054"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="CDL-It-PC3">
@@ -317,7 +317,7 @@
         <!--Work With Item View Controller-->
         <scene sceneID="Cl4-RA-qif">
             <objects>
-                <viewController id="6uC-ny-BXf" customClass="WorkWithItemViewController" sceneMemberID="viewController">
+                <viewController id="6uC-ny-BXf" customClass="WorkWithItemViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QTZ-mF-dqq"/>
                         <viewControllerLayoutGuide type="bottom" id="PEO-f2-d8G"/>
@@ -326,15 +326,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:25:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nkp-Qx-wTa">
-                                <rect key="frame" x="18" y="116" width="285" height="84"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:25:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nkp-Qx-wTa">
+                                <rect key="frame" x="16" y="117" width="288" height="84"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="288" id="DK1-Lj-h86"/>
+                                    <constraint firstAttribute="height" constant="84" id="gPh-qF-tCZ"/>
+                                </constraints>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="60" maxX="0.0" maxY="-60"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="73"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7U-39-CpS">
-                                <rect key="frame" x="56" y="280" width="76" height="76"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7U-39-CpS">
+                                <rect key="frame" x="56" y="281" width="76" height="76"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="76" id="6C6-Oq-E1m"/>
+                                    <constraint firstAttribute="height" constant="76" id="UeV-h4-amN"/>
+                                </constraints>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="60" maxX="0.0" maxY="-60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Start"/>
@@ -351,8 +359,12 @@
                                     <action selector="start" destination="6uC-ny-BXf" eventType="touchUpInside" id="Mn6-iz-z51"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLM-zZ-Gaj">
-                                <rect key="frame" x="189" y="280" width="76" height="76"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLM-zZ-Gaj">
+                                <rect key="frame" x="189" y="281" width="76" height="76"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="76" id="X0y-q8-UtR"/>
+                                    <constraint firstAttribute="width" constant="76" id="r2G-TF-7Fw"/>
+                                </constraints>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="60" maxX="0.0" maxY="-60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Break">
@@ -371,15 +383,22 @@
                                     <action selector="stop" destination="6uC-ny-BXf" eventType="touchUpInside" id="eeT-Fv-Q1W"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Work Times: 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sy-7Q-i70">
-                                <rect key="frame" x="18" y="99" width="285" height="18"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Times: 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sy-7Q-i70">
+                                <rect key="frame" x="16" y="99" width="288" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="kXf-Ae-7Ig"/>
+                                </constraints>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="60" maxX="0.0" maxY="-60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbP-Xr-oFB">
-                                <rect key="frame" x="253" y="199" width="61" height="56"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbP-Xr-oFB">
+                                <rect key="frame" x="243" y="209" width="61" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="CGf-87-cvG"/>
+                                    <constraint firstAttribute="width" constant="61" id="do8-Ld-w50"/>
+                                </constraints>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="60" maxX="0.0" maxY="-60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="♫"/>
@@ -389,6 +408,19 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="MLM-zZ-Gaj" secondAttribute="trailing" constant="39" id="1e4-rY-Bvg"/>
+                            <constraint firstItem="cbP-Xr-oFB" firstAttribute="trailing" secondItem="twk-2i-h4u" secondAttribute="trailingMargin" id="8fP-ah-Irl"/>
+                            <constraint firstItem="Q7U-39-CpS" firstAttribute="leading" secondItem="twk-2i-h4u" secondAttribute="leadingMargin" constant="40" id="9MA-bz-7uR"/>
+                            <constraint firstItem="6sy-7Q-i70" firstAttribute="top" secondItem="QTZ-mF-dqq" secondAttribute="bottom" constant="35" id="AOh-mb-dn4"/>
+                            <constraint firstItem="6sy-7Q-i70" firstAttribute="trailing" secondItem="twk-2i-h4u" secondAttribute="trailingMargin" id="DEo-rP-ssb"/>
+                            <constraint firstItem="Q7U-39-CpS" firstAttribute="top" secondItem="nkp-Qx-wTa" secondAttribute="bottom" constant="80" id="FP8-gJ-ysK"/>
+                            <constraint firstItem="6sy-7Q-i70" firstAttribute="leading" secondItem="twk-2i-h4u" secondAttribute="leadingMargin" id="IqD-0C-QuV"/>
+                            <constraint firstItem="nkp-Qx-wTa" firstAttribute="top" secondItem="6sy-7Q-i70" secondAttribute="bottom" id="PL4-AX-0c1"/>
+                            <constraint firstAttribute="centerX" secondItem="nkp-Qx-wTa" secondAttribute="centerX" id="Ubm-RG-jpy"/>
+                            <constraint firstItem="MLM-zZ-Gaj" firstAttribute="top" secondItem="nkp-Qx-wTa" secondAttribute="bottom" constant="80" id="V4I-1g-c6m"/>
+                            <constraint firstItem="cbP-Xr-oFB" firstAttribute="top" secondItem="nkp-Qx-wTa" secondAttribute="bottom" constant="8" id="Wx0-ZB-Zhe"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pT2-DB-1f1"/>
                     <connections>
@@ -401,7 +433,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jpf-R1-Jql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="912" y="702"/>
+            <point key="canvasLocation" x="1036" y="330"/>
         </scene>
     </scenes>
     <resources>
