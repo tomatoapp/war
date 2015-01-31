@@ -144,6 +144,7 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
             make.centerY.equalTo()(headerView.mas_centerY)
             return ()
         }
+        
         return baseView
     }
     
