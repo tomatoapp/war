@@ -24,16 +24,23 @@ import UIKit
         let path = documentsFolder.stringByAppendingPathComponent("db_demo.sqlite3")
         dataBase = FMDatabase(path: path)
 
-        let fileManager = NSFileManager.defaultManager()
-        if (!fileManager.fileExistsAtPath(path)) {
-            self.createTaskTable()
-            self.createWorkTable()
-        }
+//        let fileManager = NSFileManager.defaultManager()
+//        if (!fileManager.fileExistsAtPath(path)) {
+//            self.createTaskTable()
+//            self.createWorkTable()
+//        }
+        
+        self.createTaskTable()
+        self.createWorkTable()
     }
     
     // MARK: - Task
     class func createTaskTable() {
-        let sql = "CREATE TABLE t_tasks(task_id integer primary key autoincrement, title VARCHAR(1024))"
+        let sql = "CREATE TABLE IF NOT EXISTS t_tasks(" +
+        "task_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
+        "title VARCHAR(1024) NOT NULL," +
+        "lastUpdateTime DATETIME DEFAULT CURRENT_TIMESTAMP)"
+        
         if !dataBase.open() {
             println("Unable to open the db.")
             return
@@ -66,6 +73,7 @@ import UIKit
         while rs.next() {
             task.taskId = rs.stringForColumn("task_id").toInt()!
             task.title = rs.stringForColumn("title")
+            task.lastUpdateTime = rs.dateForColumn("lastUpdateTime")
         }
         return task
     }
@@ -73,7 +81,10 @@ import UIKit
         if !dataBase.open() {
             return
         }
-        let success = dataBase.executeUpdate("UPDATE t_tasks SET title = ? WHERE task_id = ?", withArgumentsInArray: [task.title, task.taskId])
+        
+        // also can use datetime('now'):
+        // lastUpdateTime = ? -> lastUpdateTime = datetime('now')
+        let success = dataBase.executeUpdate("UPDATE t_tasks SET title = ?, lastUpdateTime = date(?) WHERE task_id = ?", withArgumentsInArray: [task.title, task.lastUpdateTime, task.taskId])
         if success {
             println("update task table success.")
         } else {
@@ -103,15 +114,21 @@ import UIKit
             let tempTask = Task()
             tempTask.taskId = rs.stringForColumn("task_id").toInt()!
             tempTask.title = rs.stringForColumn("title")
+            
+            
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            tempTask.lastUpdateTime = formatter.dateFromString(rs.stringForColumn("lastUpdateTime"))!
             taskArray.append(tempTask)
         }
         dataBase.close()
+        println("load task list count: \(taskArray.count)")
         return taskArray
     }
     
     // MARK: - Work
     class func createWorkTable() {
-        let sql = "CREATE TABLE t_works(work_id DECIMAL(18,0) DEFAULT '0', title VARCHAR(1024))"
+        let sql = "CREATE TABLE IF NOT EXISTS t_works(work_id DECIMAL(18,0) DEFAULT '0', title VARCHAR(1024))"
         if !dataBase.open() {
             println("Unable to open the db.")
             return

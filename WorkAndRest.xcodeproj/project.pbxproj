@@ -27,6 +27,7 @@
 		6434829318C5D344009BF110 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827518C5D344009BF110 /* UIKit.framework */; };
 		6439ADC918E1325800CAC85B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6439ADC818E1325800CAC85B /* CoreData.framework */; };
 		6442291D1A7A2F2000E516C1 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6442291C1A7A2F2000E516C1 /* TaskListViewController.swift */; };
+		644554641A7CADD100F48164 /* TaskListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644554631A7CADD100F48164 /* TaskListItemCell.xib */; };
 		6458B66B1A7722BD004FD3D9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458B66A1A7722BD004FD3D9 /* RootViewController.swift */; };
 		649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308521A7AE22D00480677 /* TaskListItemCell.swift */; };
 		649308571A7AE65C00480677 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308561A7AE65C00480677 /* BaseViewController.swift */; };
@@ -85,6 +86,7 @@
 		6434829018C5D344009BF110 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6439ADC818E1325800CAC85B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6442291C1A7A2F2000E516C1 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
+		644554631A7CADD100F48164 /* TaskListItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskListItemCell.xib; sourceTree = "<group>"; };
 		6458B66A1A7722BD004FD3D9 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		649308521A7AE22D00480677 /* TaskListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListItemCell.swift; sourceTree = "<group>"; };
 		649308561A7AE65C00480677 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 		6458B66C1A7722E3004FD3D9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				644554631A7CADD100F48164 /* TaskListItemCell.xib */,
 				649308521A7AE22D00480677 /* TaskListItemCell.swift */,
 			);
 			path = Views;
@@ -383,6 +386,7 @@
 				64C7249B1A577A0B00A69541 /* SecondBeep.wav in Resources */,
 				64C99A581A7902A100F1D796 /* Launch Screen.xib in Resources */,
 				64C7249A1A577A0B00A69541 /* sec.wav in Resources */,
+				644554641A7CADD100F48164 /* TaskListItemCell.xib in Resources */,
 				6434828518C5D344009BF110 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

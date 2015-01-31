@@ -20,7 +20,7 @@ class ItemDetailViewController: BaseTableViewController, UITextFieldDelegate {
     
     var delegate: ItemDetailViewControllerDelegate! = nil
     @IBOutlet var textField: UITextField!
-    var itemToEdit: Task!
+    var copyTaskItem: Task!
     
     
     // MARK: - Lifecycle
@@ -28,9 +28,9 @@ class ItemDetailViewController: BaseTableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if self.itemToEdit != nil {
+        if self.copyTaskItem != nil {
             self.title = NSLocalizedString("Edit Task", comment: "")
-            self.textField.text = itemToEdit!.title
+            self.textField.text = copyTaskItem!.title
         }
     }
     
@@ -64,17 +64,17 @@ class ItemDetailViewController: BaseTableViewController, UITextFieldDelegate {
     }
     
     @IBAction func done(sender: AnyObject) {
-        if itemToEdit == nil {
+        if copyTaskItem == nil {
             let newItem = Task()
             newItem.title = self.textField.text
             self.delegate.addTaskViewController(self, didFinishAddingTask: newItem)
         } else {
-            if itemToEdit.title == self.textField.text {
+            if copyTaskItem.title == self.textField.text {
                 self.cancel(nil)
                 return;
             }
-            itemToEdit!.title = self.textField.text
-            self.delegate.addTaskViewController(self, didFinishEditingTask: itemToEdit)
+            copyTaskItem!.title = self.textField.text
+            self.delegate.addTaskViewController(self, didFinishEditingTask: copyTaskItem)
         }
         self.navigationController?.popToRootViewControllerAnimated(true)
     }

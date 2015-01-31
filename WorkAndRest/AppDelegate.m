@@ -127,6 +127,7 @@
         sampleTask.costWorkTimes = [NSNumber numberWithInteger:0];
         sampleTask.completed = [NSNumber numberWithBool:NO];
         sampleTask.date = [NSDate date];
+        sampleTask.lastUpdateTime = [NSDate date];
         [DBOperate insertTask:sampleTask];
         
         // Set the default Second Sound to YES.

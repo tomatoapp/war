@@ -13,7 +13,7 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
 
     // MARK: - Fields
     
-    var itemToWork: Task!
+    var taskItem: Task!
     var isWorking = false
     var secondsLeft = 0
     var timer: NSTimer!
@@ -42,10 +42,10 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
         isPlaySecondSound = NSUserDefaults.standardUserDefaults().valueForKey("SecondSound")!.boolValue
         isKeepScreenLight = NSUserDefaults.standardUserDefaults().valueForKey("KeepLight")!.boolValue
         secondBeep = self.setupAudioPlayerWithFile("sec", type:"wav")
-        self.title = self.itemToWork.title
+        self.title = self.taskItem.title
         self.secondsLeft = self.seconds
         self.timerLabel.text = self.stringFromSecondsLeft()
-        self.workTimesLabel.text = NSLocalizedString("work times: %@", comment: "").stringByAppendingString("\(self.itemToWork.costWorkTimes)")
+        self.workTimesLabel.text = NSLocalizedString("work times: %@", comment: "").stringByAppendingString("\(self.taskItem.costWorkTimes)")
         
         self.soundSwitch.transform = CGAffineTransformMakeScale(10, 10)
         self.enableButton(self.startButton)
@@ -76,7 +76,7 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
     @IBAction func start() {
         self.isWorking = true
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("subtractTime"), userInfo: nil, repeats: true)
-        self.itemToWork.completed = false
+        self.taskItem.completed = false
         self.enableButton(self.stopButton)
         //self.enableButton(self.silentButton)
         self.disableButton(self.startButton)
@@ -203,9 +203,9 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
     }
     
     func completedOneWorkTime() {
-        self.itemToWork.costWorkTimes = self.itemToWork.costWorkTimes++
-        DBOperate .updateTask(self.itemToWork)
-        self.workTimesLabel.text = NSString(format: NSLocalizedString("work times: %@", comment: ""), [self.itemToWork.costWorkTimes])
+        self.taskItem.costWorkTimes = self.taskItem.costWorkTimes++
+        DBOperate .updateTask(self.taskItem)
+        self.workTimesLabel.text = NSString(format: NSLocalizedString("work times: %@", comment: ""), [self.taskItem.costWorkTimes])
     }
     
     func reset() {

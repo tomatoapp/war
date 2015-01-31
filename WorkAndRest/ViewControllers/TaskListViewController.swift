@@ -15,11 +15,17 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.registerNib(UINib(nibName: "TaskListItemCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         self.tableView.tableHeaderView = self.createHeaderView()
         self.tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, 1, 50))
         
         self.loadAllTasks()
         self.tableView.reloadData()
+        
+        let line = UIImageView(image: UIImage(named: "line"))
+        line.frame = CGRectMake(19.5, 140, 1, self.tableView.frame.size.height-140)
+        //self.tableView.addSubview(line)
+        self.view.insertSubview(line, atIndex: 0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,18 +47,20 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 60
+        return 70
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath) as TaskListItemCell
         let task = allTasks[indexPath.row]
-        cell.titleLabel.text = task.title
+        cell.setTaskTitle(task.title)
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("ShowItem", sender: allTasks[indexPath.row])
+        let item = allTasks[indexPath.row]
+        let copyItem = item.copy() as Task
+        self.performSegueWithIdentifier("EditItem", sender: copyItem)
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -63,36 +71,6 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
             self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
         }
     }
-
-    // MARK: - Private Methods
-    func loadAllTasks() {
-        var result = DBOperate.loadAllTasks()
-        allTasks = result!.sorted { $0.taskId < $1.taskId }
-    }
-    
-    func createHeaderView() ->UIView {
-        let headerView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 130))
-        let button: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 5
-        button.adjustsImageWhenHighlighted = false
-        button.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
-        button.setImage(UIImage(named: "start_button"), forState: .Normal)
-        button.setImage(UIImage(named: "start_button_pressed"), forState: .Selected)
-        button.setImage(UIImage(named: "start_button_pressed"), forState: .Highlighted)
-        button.addTarget(self, action: Selector("newTaskButtonClick:"), forControlEvents: .TouchUpInside)
-        
-        headerView.addSubview(button)
-        button.mas_makeConstraints { make in
-            make.width.equalTo()(240)
-            make.height.equalTo()(74)
-            make.centerX.equalTo()(headerView.mas_centerX)
-            make.centerY.equalTo()(headerView.mas_centerY)
-            return ()
-        }
-        return headerView
-    }
-    
     
     // MARK: - Navigation
 
@@ -101,12 +79,11 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
         
         if segue.identifier == "EditItem" {
             let controller = segue.destinationViewController as ItemDetailViewController
-            controller.itemToEdit = sender as Task?
+            controller.copyTaskItem = sender as Task?
             controller.delegate = self
         } else if segue.identifier == "ShowItem" {
-            println("UNDONE!!!!")
             let controller = segue.destinationViewController as WorkWithItemViewController
-            controller.itemToWork = sender as Task?
+            controller.taskItem = sender as Task?
         }
     }
     
@@ -121,8 +98,9 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
    
     
     func addTaskViewController(controller: ItemDetailViewController!, didFinishEditingTask item: Task!) {
-        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItem:"), userInfo: item, repeats: false)
+        item.lastUpdateTime = NSDate()
         DBOperate.updateTask(item)
+        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItem:"), userInfo: item, repeats: false)
     }
     
     func addTaskViewControllerDidCancel(controller: ItemDetailViewController!) {
@@ -130,6 +108,40 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     }
     
     // MARK: - Private Methods
+    
+    func loadAllTasks() {
+        var result = DBOperate.loadAllTasks()
+        for item in result! {
+            println(item.taskId.description + " " + item.title + " " + item.lastUpdateTime.description)
+        }
+        allTasks = result!.sorted { $0.lastUpdateTime.compare($1.lastUpdateTime) == NSComparisonResult.OrderedDescending }
+    }
+    
+    func createHeaderView() ->UIView {
+        let baseView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 150))
+        let headerView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 140))
+        headerView.backgroundColor = UIColor.whiteColor()
+        let button: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 5
+        button.adjustsImageWhenHighlighted = false
+        button.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+        button.setImage(UIImage(named: "start_button"), forState: .Normal)
+        button.setImage(UIImage(named: "start_button_pressed"), forState: .Selected)
+        button.setImage(UIImage(named: "start_button_pressed"), forState: .Highlighted)
+        button.addTarget(self, action: Selector("newTaskButtonClick:"), forControlEvents: .TouchUpInside)
+        
+        headerView.addSubview(button)
+        baseView.addSubview(headerView)
+        button.mas_makeConstraints { make in
+            make.width.equalTo()(240)
+            make.height.equalTo()(74)
+            make.centerX.equalTo()(headerView.mas_centerX)
+            make.centerY.equalTo()(headerView.mas_centerY)
+            return ()
+        }
+        return baseView
+    }
     
     func insertItem(val: NSTimer) {
         println("\(val.userInfo)")
@@ -161,12 +173,33 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     }
     
     func moveItem(val: NSTimer) {
-        let item = val.userInfo as Task
-        self.deleteItem(item, withRowAnimation: UITableViewRowAnimation.Left)
-        self.insertItem(item, withRowAnimation: UITableViewRowAnimation.Left)
+        let copyItem = val.userInfo as Task
+        var baseItem = allTasks.filter{ $0.taskId == copyItem.taskId }.first!
+        if find(allTasks, baseItem) == 0 { // if this item is already in the top, then return
+            baseItem.title = copyItem.title
+            self.tableView.reloadData()
+            return
+        }
+        self.deleteItem(baseItem, withRowAnimation: UITableViewRowAnimation.Left)
+        self.insertItem(baseItem, withRowAnimation: UITableViewRowAnimation.Left)
+        baseItem.title = copyItem.title
+        self.scrollToTop()
+        self.reloadTableViewWithTimeInterval(0.5)
+    }
+    
+    func scrollToTop() {
+        self.tableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
     }
     
     func newTaskButtonClick(sender: UIButton) {
         self.performSegueWithIdentifier("EditItem", sender: nil)
+    }
+    
+    func reloadTableViewWithTimeInterval(ti: NSTimeInterval) {
+        NSTimer.scheduledTimerWithTimeInterval(ti, target: self, selector: Selector("reload"), userInfo: nil, repeats: false)
+    }
+    
+    func reload() {
+        self.tableView.reloadData()
     }
 }
