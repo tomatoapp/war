@@ -84,7 +84,7 @@ import UIKit
         
         // also can use datetime('now'):
         // lastUpdateTime = ? -> lastUpdateTime = datetime('now')
-        let success = dataBase.executeUpdate("UPDATE t_tasks SET title = ?, lastUpdateTime = date(?) WHERE task_id = ?", withArgumentsInArray: [task.title, task.lastUpdateTime, task.taskId])
+        let success = dataBase.executeUpdate("UPDATE t_tasks SET title = ?, lastUpdateTime = ? WHERE task_id = ?", withArgumentsInArray: [task.title, task.lastUpdateTime, task.taskId])
         if success {
             println("update task table success.")
         } else {
@@ -115,10 +115,14 @@ import UIKit
             tempTask.taskId = rs.stringForColumn("task_id").toInt()!
             tempTask.title = rs.stringForColumn("title")
             
-            
-            let formatter = NSDateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            tempTask.lastUpdateTime = formatter.dateFromString(rs.stringForColumn("lastUpdateTime"))!
+            tempTask.lastUpdateTime = rs.dateForColumn("lastUpdateTime")
+            if tempTask.lastUpdateTime.description.hasPrefix("1970") {
+                let formatter = NSDateFormatter()
+                let GMTzone = NSTimeZone(forSecondsFromGMT: 0)
+                formatter.timeZone = GMTzone
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                tempTask.lastUpdateTime = formatter.dateFromString(rs.stringForColumn("lastUpdateTime"))!
+            }
             taskArray.append(tempTask)
         }
         dataBase.close()

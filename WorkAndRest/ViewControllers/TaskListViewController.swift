@@ -112,7 +112,11 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     func loadAllTasks() {
         var result = DBOperate.loadAllTasks()
         for item in result! {
-            println(item.taskId.description + " " + item.title + " " + item.lastUpdateTime.description)
+            let formatter = NSDateFormatter()
+            formatter.timeZone = NSTimeZone.defaultTimeZone()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let timeStr = formatter.stringFromDate(item.lastUpdateTime)
+            println(item.taskId.description + " " + item.title + " " + timeStr)
         }
         allTasks = result!.sorted { $0.lastUpdateTime.compare($1.lastUpdateTime) == NSComparisonResult.OrderedDescending }
     }
