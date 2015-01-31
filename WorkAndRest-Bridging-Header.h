@@ -3,7 +3,7 @@
 //
 
 #import "FMDB.h"
-#import "ItemDetailViewController.h"
+//#import "ItemDetailViewController.h"
 //#import "WorkWithItemViewController.h"
 
 #import "Masonry.h"

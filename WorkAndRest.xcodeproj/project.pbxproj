@@ -28,14 +28,14 @@
 		6439ADC918E1325800CAC85B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6439ADC818E1325800CAC85B /* CoreData.framework */; };
 		6442291D1A7A2F2000E516C1 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6442291C1A7A2F2000E516C1 /* TaskListViewController.swift */; };
 		6458B66B1A7722BD004FD3D9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458B66A1A7722BD004FD3D9 /* RootViewController.swift */; };
-		6458B67B1A772337004FD3D9 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B6741A772337004FD3D9 /* ItemDetailViewController.m */; };
-		6458B67C1A772337004FD3D9 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B6761A772337004FD3D9 /* SettingViewController.m */; };
-		6458B67E1A772337004FD3D9 /* WorkWithItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6458B67A1A772337004FD3D9 /* WorkWithItemViewController.m */; };
 		649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308521A7AE22D00480677 /* TaskListItemCell.swift */; };
 		649308571A7AE65C00480677 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308561A7AE65C00480677 /* BaseViewController.swift */; };
 		649308591A7AE68200480677 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308581A7AE68200480677 /* BaseTableViewController.swift */; };
+		6493085B1A7AE88B00480677 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6493085A1A7AE88B00480677 /* ItemDetailViewController.swift */; };
+		6493085D1A7AEE4900480677 /* WorkWithItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6493085C1A7AEE4900480677 /* WorkWithItemViewController.swift */; };
 		6497FE561A75A77800174307 /* Work.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497FE551A75A77800174307 /* Work.swift */; };
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
+		64BD3D0B1A7B247000941B07 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BD3D0A1A7B247000941B07 /* SettingViewController.swift */; };
 		64C7249A1A577A0B00A69541 /* sec.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64C724981A577A0B00A69541 /* sec.wav */; };
 		64C7249B1A577A0B00A69541 /* SecondBeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64C724991A577A0B00A69541 /* SecondBeep.wav */; };
 		64C99A581A7902A100F1D796 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C99A571A7902A100F1D796 /* Launch Screen.xib */; };
@@ -86,18 +86,15 @@
 		6439ADC818E1325800CAC85B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6442291C1A7A2F2000E516C1 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		6458B66A1A7722BD004FD3D9 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		6458B6731A772337004FD3D9 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
-		6458B6741A772337004FD3D9 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
-		6458B6751A772337004FD3D9 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
-		6458B6761A772337004FD3D9 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
-		6458B6791A772337004FD3D9 /* WorkWithItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkWithItemViewController.h; sourceTree = "<group>"; };
-		6458B67A1A772337004FD3D9 /* WorkWithItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkWithItemViewController.m; sourceTree = "<group>"; };
 		649308521A7AE22D00480677 /* TaskListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListItemCell.swift; sourceTree = "<group>"; };
 		649308561A7AE65C00480677 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		649308581A7AE68200480677 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		6493085A1A7AE88B00480677 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		6493085C1A7AEE4900480677 /* WorkWithItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkWithItemViewController.swift; sourceTree = "<group>"; };
 		6497FE551A75A77800174307 /* Work.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Work.swift; sourceTree = "<group>"; };
 		6497FE581A75A91600174307 /* WorkAndRest-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WorkAndRest-Bridging-Header.h"; sourceTree = "<group>"; };
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		64BD3D0A1A7B247000941B07 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		64C724981A577A0B00A69541 /* sec.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sec.wav; sourceTree = "<group>"; };
 		64C724991A577A0B00A69541 /* SecondBeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SecondBeep.wav; sourceTree = "<group>"; };
 		64C99A571A7902A100F1D796 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
@@ -244,14 +241,11 @@
 			children = (
 				649308561A7AE65C00480677 /* BaseViewController.swift */,
 				6458B66A1A7722BD004FD3D9 /* RootViewController.swift */,
-				6458B6731A772337004FD3D9 /* ItemDetailViewController.h */,
-				6458B6741A772337004FD3D9 /* ItemDetailViewController.m */,
-				6458B6751A772337004FD3D9 /* SettingViewController.h */,
-				6458B6761A772337004FD3D9 /* SettingViewController.m */,
-				6458B6791A772337004FD3D9 /* WorkWithItemViewController.h */,
-				6458B67A1A772337004FD3D9 /* WorkWithItemViewController.m */,
 				6442291C1A7A2F2000E516C1 /* TaskListViewController.swift */,
 				649308581A7AE68200480677 /* BaseTableViewController.swift */,
+				6493085A1A7AE88B00480677 /* ItemDetailViewController.swift */,
+				6493085C1A7AEE4900480677 /* WorkWithItemViewController.swift */,
+				64BD3D0A1A7B247000941B07 /* SettingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -440,20 +434,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6493085D1A7AEE4900480677 /* WorkWithItemViewController.swift in Sources */,
 				64C99A5D1A7905A300F1D796 /* DBOperate.swift in Sources */,
-				6458B67E1A772337004FD3D9 /* WorkWithItemViewController.m in Sources */,
 				64012C8A1900B89D006FC2B2 /* Appirater.m in Sources */,
 				6442291D1A7A2F2000E516C1 /* TaskListViewController.swift in Sources */,
 				649308571A7AE65C00480677 /* BaseViewController.swift in Sources */,
-				6458B67B1A772337004FD3D9 /* ItemDetailViewController.m in Sources */,
+				64BD3D0B1A7B247000941B07 /* SettingViewController.swift in Sources */,
 				6497FE561A75A77800174307 /* Work.swift in Sources */,
 				64C99A5F1A7906EA00F1D796 /* Task.swift in Sources */,
 				6434827E18C5D344009BF110 /* main.m in Sources */,
+				6493085B1A7AE88B00480677 /* ItemDetailViewController.swift in Sources */,
 				6458B66B1A7722BD004FD3D9 /* RootViewController.swift in Sources */,
 				649308591A7AE68200480677 /* BaseTableViewController.swift in Sources */,
 				649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */,
 				6434828218C5D344009BF110 /* AppDelegate.m in Sources */,
-				6458B67C1A772337004FD3D9 /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

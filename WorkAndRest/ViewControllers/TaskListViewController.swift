@@ -100,8 +100,7 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
         println("identifier = \(segue.identifier)")
         
         if segue.identifier == "EditItem" {
-            let navigationController: UINavigationController = segue.destinationViewController as UINavigationController
-            let controller: ItemDetailViewController = navigationController.topViewController as ItemDetailViewController
+            let controller = segue.destinationViewController as ItemDetailViewController
             controller.itemToEdit = sender as Task?
             controller.delegate = self
         } else if segue.identifier == "ShowItem" {
@@ -116,6 +115,8 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
         DBOperate.insertTask(item)
     }
+    
+   
     
     func addTaskViewController(controller: ItemDetailViewController!, didFinishEditingTask item: Task!) {
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItem:"), userInfo: item, repeats: false)

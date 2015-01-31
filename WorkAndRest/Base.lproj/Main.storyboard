@@ -52,18 +52,18 @@
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <connections>
-                        <segue destination="wRB-lV-1rl" kind="modal" identifier="EditItem" id="VrJ-T7-JhC"/>
                         <segue destination="6uC-ny-BXf" kind="push" identifier="ShowItem" id="bDt-xR-qPG"/>
+                        <segue destination="gsS-3P-2PW" kind="push" identifier="EditItem" id="b1V-PN-NMD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bp6-Rd-dBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="429" y="-24"/>
+            <point key="canvasLocation" x="481" y="-46"/>
         </scene>
-        <!--New Task-->
+        <!--Item Detail View Controller-->
         <scene sceneID="HcJ-cJ-HZQ">
             <objects>
-                <tableViewController id="gsS-3P-2PW" customClass="ItemDetailViewController" sceneMemberID="viewController">
+                <tableViewController id="gsS-3P-2PW" customClass="ItemDetailViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="gbY-Mb-txg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -97,25 +97,25 @@
                             <outlet property="delegate" destination="gsS-3P-2PW" id="cWu-Be-7zK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Task" id="WeG-jc-PF4">
+                    <navigationItem key="navigationItem" id="WeG-jc-PF4">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="K7Y-yK-MQl">
                             <connections>
-                                <action selector="cancel:" destination="gsS-3P-2PW" id="sH6-Ey-crD"/>
+                                <action selector="cancel:" destination="gsS-3P-2PW" id="dzo-JD-KRy"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="IV4-Zk-j3r">
                             <connections>
-                                <action selector="done:" destination="gsS-3P-2PW" id="RNJ-2c-pS8"/>
+                                <action selector="done:" destination="gsS-3P-2PW" id="y3u-55-MND"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="textField" destination="NcN-m5-KQX" id="tb5-U5-ozP"/>
+                        <outlet property="textField" destination="NcN-m5-KQX" id="EwY-gn-PQ8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ERw-yK-O1p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1576" y="-24"/>
+            <point key="canvasLocation" x="972" y="-36"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SE7-c6-teE">
@@ -274,25 +274,6 @@
             </objects>
             <point key="canvasLocation" x="-325" y="1440"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Hws-3I-0lZ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wRB-lV-1rl" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="a9K-V8-9OJ"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NyJ-73-DYE">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="gsS-3P-2PW" kind="relationship" relationship="rootViewController" id="1NQ-6U-Xvf"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uMu-zC-y1Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1050" y="-24"/>
-        </scene>
         <!--Statistics-->
         <scene sceneID="DpI-S4-den">
             <objects>
@@ -357,6 +338,15 @@
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="60" maxX="0.0" maxY="-60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Start"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="38"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="start" destination="6uC-ny-BXf" eventType="touchUpInside" id="Mn6-iz-z51"/>
                                 </connections>
@@ -368,6 +358,15 @@
                                 <state key="normal" title="Break">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="38"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="stop" destination="6uC-ny-BXf" eventType="touchUpInside" id="eeT-Fv-Q1W"/>
                                 </connections>
@@ -402,7 +401,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jpf-R1-Jql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1050" y="696"/>
+            <point key="canvasLocation" x="912" y="702"/>
         </scene>
     </scenes>
     <resources>
