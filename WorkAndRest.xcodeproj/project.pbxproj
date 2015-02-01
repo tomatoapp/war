@@ -42,6 +42,7 @@
 		64C99A581A7902A100F1D796 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C99A571A7902A100F1D796 /* Launch Screen.xib */; };
 		64C99A5D1A7905A300F1D796 /* DBOperate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C99A5C1A7905A300F1D796 /* DBOperate.swift */; };
 		64C99A5F1A7906EA00F1D796 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C99A5E1A7906EA00F1D796 /* Task.swift */; };
+		64EAEC2D1A7E37F70026C748 /* TaskRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		64C99A571A7902A100F1D796 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		64C99A5C1A7905A300F1D796 /* DBOperate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBOperate.swift; sourceTree = "<group>"; };
 		64C99A5E1A7906EA00F1D796 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRunner.swift; sourceTree = "<group>"; };
 		C5A3E743E49F064E285AF8F1 /* Pods-WorkAndRest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkAndRest.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkAndRest/Pods-WorkAndRest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -210,10 +212,11 @@
 		6434827718C5D344009BF110 /* WorkAndRest */ = {
 			isa = PBXGroup;
 			children = (
-				645FDE141A7D9E7F002EC8EF /* Common */,
 				6458B66C1A7722E3004FD3D9 /* Views */,
-				6458B6661A772279004FD3D9 /* ViewControllers */,
 				6497FE501A75A72000174307 /* Models */,
+				6458B6661A772279004FD3D9 /* ViewControllers */,
+				64EAEC2B1A7E37830026C748 /* BusinessLogic */,
+				645FDE141A7D9E7F002EC8EF /* Common */,
 				6497FE4C1A75A28B00174307 /* DBOperate */,
 				6434827818C5D344009BF110 /* Supporting Files */,
 				6434828318C5D344009BF110 /* Main.storyboard */,
@@ -292,6 +295,14 @@
 				64C99A5E1A7906EA00F1D796 /* Task.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		64EAEC2B1A7E37830026C748 /* BusinessLogic */ = {
+			isa = PBXGroup;
+			children = (
+				64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */,
+			);
+			path = BusinessLogic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,6 +449,7 @@
 			files = (
 				6493085D1A7AEE4900480677 /* WorkWithItemViewController.swift in Sources */,
 				64C99A5D1A7905A300F1D796 /* DBOperate.swift in Sources */,
+				64EAEC2D1A7E37F70026C748 /* TaskRunner.swift in Sources */,
 				64012C8A1900B89D006FC2B2 /* Appirater.m in Sources */,
 				6442291D1A7A2F2000E516C1 /* TaskListViewController.swift in Sources */,
 				645FDE0E1A7D98FB002EC8EF /* AppDelegate.swift in Sources */,
