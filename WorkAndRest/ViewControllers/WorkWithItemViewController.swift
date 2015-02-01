@@ -13,7 +13,10 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
 
     var taskRunner: TaskRunner!
     var taskItem: Task!
+    var seconds = 0
     var isPlaySecondSound = false
+    var secondBeep: AVAudioPlayer!
+    var timerText: String?
 
     // MARK: - Properties
     
@@ -29,19 +32,24 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.taskRunner = TaskRunner(task: self.taskItem)
+        self.title = self.taskItem.title
+
+        self.seconds = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.integerValue * 60
+        self.taskRunner = TaskRunner(task: self.taskItem, seconds:self.seconds)
         self.taskRunner.delegate = self
         
-        self.title = self.taskItem.title
-        self.workTimesLabel.text = NSLocalizedString("work times: %@", comment: "").stringByAppendingString("\(self.taskItem.costWorkTimes)")
         self.isPlaySecondSound = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.kBOOL_SECOND_SOUND)!.boolValue
+        self.secondBeep = self.setupAudioPlayerWithFile("sec", type:"wav")
 
         self.soundSwitch.on = self.isPlaySecondSound
         self.soundSwitch.transform = CGAffineTransformMakeScale(0.65, 0.65)
+        self.setupMusicalMaskLabel()
         
-        self.enableButton(self.startButton)
-        self.disableButton(self.stopButton)
+        self.workTimesLabel.text = NSLocalizedString("work times: %@", comment: "").stringByAppendingString("\(self.taskItem.costWorkTimes)")
+        self.timerLabel.text = self.getTimerString()
+        
+        
+        self.reset()
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,11 +66,13 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
     }
     
     @IBAction func stop() {
-        taskRunner.stop()
+        self.showStopAlertView()
     }
     
     @IBAction func silentSwitchValueChanged(sender: AnyObject) {
-        //NSUserDefaults.standardUserDefaults().setBool(self.isPlaySecondSound, forKey: GlobalConstants.kBOOL_SECOND_SOUND)
+        self.isPlaySecondSound = !self.isPlaySecondSound
+        self.setupMusicalMaskLabel()
+        NSUserDefaults.standardUserDefaults().setBool(self.isPlaySecondSound, forKey: GlobalConstants.kBOOL_SECOND_SOUND)
     }
 
     func enableButton(button: UIButton!) {
@@ -85,18 +95,74 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
         button.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
     }
     
+    func reset() {
+        self.enableButton(self.startButton)
+        self.disableButton(self.stopButton)
+    }
+    
     // MARK: - TaskRunnerDelegate
     
     func tick(sender: TaskRunner?) {
-        self.timerLabel.text = sender?.timerText
+        self.seconds = sender!.seconds
+        self.timerLabel.text = self.getTimerString()
+        if self.isPlaySecondSound {
+            self.secondBeep.play()
+        }
     }
     
     func breaked(sender: TaskRunner?) {
         println("breaked")
+        self.reset()
+        self.seconds = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.integerValue * 60
+        self.timerLabel.text = self.getTimerString()
     }
     
     func completed(sender: TaskRunner?) {
         println("completed")
+        AudioServicesPlaySystemSound(1005)
+        let alert = UIAlertView(title: NSLocalizedString("Completed", comment: ""), message: NSLocalizedString("Time is up!", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("YES", comment: ""))
+        alert.show()
+        self.seconds = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.integerValue * 60
+        self.timerLabel.text = self.getTimerString()
     }
     
+    func setupAudioPlayerWithFile(fileName: String!, type: String!) -> AVAudioPlayer {
+        let path = NSBundle.mainBundle().pathForResource(fileName, ofType: type)
+        let url = NSURL.fileURLWithPath(path!)
+        
+        var error: NSError? = nil
+        let audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
+        if audioPlayer == nil {
+            println("\(error?.description)")
+        }
+        return audioPlayer
+    }
+    
+    func getTimerString() -> String {
+        return String(format: "00:%02d:%02d", arguments: [self.seconds % 3600 / 60, self.seconds % 3600 % 60])
+    }
+    
+    func setupMusicalMaskLabel() {
+        if self.isPlaySecondSound {
+            self.musicalNoteLabel.textColor = UIColor(red: 0.0, green: 200.0/255.0, blue: 0, alpha: 1)
+        } else {
+            self.musicalNoteLabel.textColor = UIColor.grayColor()
+        }
+    }
+    // MARK: - UIAlertViewDelegate
+
+    func showStopAlertView() {
+        let alert = UIAlertView(title: NSLocalizedString("Break this work?", comment: ""), message: NSLocalizedString("It will be ineffective", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""), otherButtonTitles: NSLocalizedString("Yes", comment: ""))
+        alert.show()
+    }
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if alertView.title == NSLocalizedString("Completed", comment: "") {
+            self.reset()
+        } else if alertView.title == NSLocalizedString("Break this work?", comment: "") {
+            if buttonIndex == 1 {
+                self.taskRunner.stop()
+            }
+        }
+    }
 }

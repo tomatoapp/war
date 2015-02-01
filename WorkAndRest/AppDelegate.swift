@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(application: UIApplication) {
         if self.currentModelViewController.isKindOfClass(WorkWithItemViewController) {
             let isWorking = (self.currentModelViewController as WorkWithItemViewController).taskRunner.isWorking
-            let secondsLeft = (self.currentModelViewController as WorkWithItemViewController).taskRunner.secondsLeft
+            let secondsLeft = (self.currentModelViewController as WorkWithItemViewController).seconds
             
            NSUserDefaults.standardUserDefaults().setBool(isWorking, forKey: GlobalConstants.kBOOL_ISWORKING)
             if isWorking {
@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let passedTimeInterval = dateWhenResignActive.timeIntervalSinceNow
                 
                 if secondsLeftWhenResignActive + Int(passedTimeInterval) > 0 {
-                    controller.taskRunner.secondsLeft = secondsLeftWhenResignActive + Int(passedTimeInterval)
+                    controller.seconds = secondsLeftWhenResignActive + Int(passedTimeInterval)
                 } else {
                     controller.taskRunner.completedOneWorkTime()
                     controller.taskRunner.reset()
@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notification = UILocalNotification()
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.alertBody = NSLocalizedString("Time is up!", comment:"")
-        let secondsLeftTimeInterval = NSTimeInterval((self.currentModelViewController as WorkWithItemViewController).taskRunner.secondsLeft)
+        let secondsLeftTimeInterval = NSTimeInterval((self.currentModelViewController as WorkWithItemViewController).seconds)
         
         println("\(secondsLeftTimeInterval)")
         let fireDate = NSDate(timeIntervalSinceNow: secondsLeftTimeInterval)
