@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XCQ-Ik-FFg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XCQ-Ik-FFg">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -206,7 +206,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="15" maxValue="45" translatesAutoresizingMaskIntoConstraints="NO" id="5Fn-fC-CmW">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="1" maxValue="45" translatesAutoresizingMaskIntoConstraints="NO" id="5Fn-fC-CmW">
                                                     <rect key="frame" x="18" y="41.5" width="284" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="33" id="V09-ub-cBZ"/>
@@ -436,10 +436,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YAb-PO-A15">
-                                <rect key="frame" x="232" y="209" width="51" height="31"/>
+                                <rect key="frame" x="240" y="209" width="51" height="31"/>
+                                <connections>
+                                    <action selector="silentSwitchValueChanged:" destination="6uC-ny-BXf" eventType="valueChanged" id="4Gg-t4-pT5"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="♫" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbD-B9-30e">
-                                <rect key="frame" x="289" y="214" width="15" height="18"/>
+                                <rect key="frame" x="289" y="214" width="15" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -457,13 +460,15 @@
                             <constraint firstItem="nkp-Qx-wTa" firstAttribute="top" secondItem="6sy-7Q-i70" secondAttribute="bottom" id="PL4-AX-0c1"/>
                             <constraint firstAttribute="centerX" secondItem="nkp-Qx-wTa" secondAttribute="centerX" id="Ubm-RG-jpy"/>
                             <constraint firstItem="MLM-zZ-Gaj" firstAttribute="top" secondItem="nkp-Qx-wTa" secondAttribute="bottom" constant="80" id="V4I-1g-c6m"/>
-                            <constraint firstItem="PbD-B9-30e" firstAttribute="leading" secondItem="YAb-PO-A15" secondAttribute="trailing" constant="8" id="ZfU-Sh-9GK"/>
+                            <constraint firstItem="PbD-B9-30e" firstAttribute="leading" secondItem="YAb-PO-A15" secondAttribute="trailing" id="ZfU-Sh-9GK"/>
+                            <constraint firstItem="PbD-B9-30e" firstAttribute="centerY" secondItem="YAb-PO-A15" secondAttribute="centerY" id="d7X-lM-nD3"/>
                             <constraint firstItem="PbD-B9-30e" firstAttribute="top" secondItem="QTZ-mF-dqq" secondAttribute="bottom" constant="150" id="dKz-xw-7eH"/>
                             <constraint firstItem="PbD-B9-30e" firstAttribute="trailing" secondItem="twk-2i-h4u" secondAttribute="trailingMargin" id="uoz-ay-fD9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pT2-DB-1f1"/>
                     <connections>
+                        <outlet property="musicalNoteLabel" destination="PbD-B9-30e" id="Pte-ug-JHO"/>
                         <outlet property="soundSwitch" destination="YAb-PO-A15" id="wEB-ja-Igk"/>
                         <outlet property="startButton" destination="Q7U-39-CpS" id="Zle-jE-kod"/>
                         <outlet property="stopButton" destination="MLM-zZ-Gaj" id="qh9-ko-0xi"/>

@@ -33,6 +33,7 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
     //@IBOutlet var silentButton: UIButton!
     @IBOutlet var soundSwitch: UISwitch!
     
+    @IBOutlet var musicalNoteLabel: UILabel!
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -47,10 +48,14 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
         self.timerLabel.text = self.stringFromSecondsLeft()
         self.workTimesLabel.text = NSLocalizedString("work times: %@", comment: "").stringByAppendingString("\(self.taskItem.costWorkTimes)")
         
-        self.soundSwitch.transform = CGAffineTransformMakeScale(10, 10)
         self.enableButton(self.startButton)
         self.disableButton(self.stopButton)
         //self.disableButton(self.silentButton)
+        
+        self.changeTheMusicalNoteLabelColor()
+        self.soundSwitch.on = self.isPlaySecondSound
+        self.soundSwitch.transform = CGAffineTransformMakeScale(0.65, 0.65)
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -90,16 +95,12 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
         self.showStopAlertView()
     }
     
-//    @IBAction func silentButtonClick(sender: UIButton!) {
-//        self.isPlaySecondSound = !self.isPlaySecondSound
-//        if self.isPlaySecondSound {
-//            self.silentButton.setTitleColor(UIColor(red: 0, green: 200.0/255.0, blue: 0, alpha: 1), forState: UIControlState.Normal)
-//        } else {
-//            self.silentButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
-//        }
-//        NSUserDefaults.standardUserDefaults().setValue(self.isPlaySecondSound, forKey: "SecondSound")
-//    }
-    
+    @IBAction func silentSwitchValueChanged(sender: AnyObject) {
+        self.isPlaySecondSound = !self.isPlaySecondSound
+        self.changeTheMusicalNoteLabelColor()
+        NSUserDefaults.standardUserDefaults().setBool(self.isPlaySecondSound, forKey: GlobalConstants.kBOOL_SECOND_SOUND)
+    }
+
     // MARK: - UIAlertViewDelegate
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
@@ -204,7 +205,7 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
     
     func completedOneWorkTime() {
         self.taskItem.costWorkTimes = self.taskItem.costWorkTimes++
-        DBOperate .updateTask(self.taskItem)
+        DBOperate.updateTask(self.taskItem)
         self.workTimesLabel.text = NSString(format: NSLocalizedString("work times: %@", comment: ""), [self.taskItem.costWorkTimes])
     }
     
@@ -214,8 +215,16 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
         self.isWorking = false
         
         self.enableButton(self.startButton)
-        self.disableButton(self.startButton)
+        self.disableButton(self.stopButton)
         //self.disableButton(self.silentButton)
+    }
+    
+    func changeTheMusicalNoteLabelColor() {
+        if self.isPlaySecondSound {
+            self.musicalNoteLabel.textColor = UIColor(red: 0, green: 200.0/255.0, blue: 0, alpha: 1)
+        } else {
+            self.musicalNoteLabel.textColor = UIColor.grayColor()
+        }
     }
 
 }

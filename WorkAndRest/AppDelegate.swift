@@ -22,11 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        //println(NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0] as String)
+        println(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String)
         DBOperate.db_init()
         self.firstRun()
         self.initRater()
-        
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil))
         return true
     }
     
@@ -86,7 +86,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.alertBody = NSLocalizedString("Time is up!", comment:"")
         let secondsLeftTimeInterval = NSTimeInterval((self.currentModelViewController as WorkWithItemViewController).secondsLeft)
-        notification.fireDate = NSDate(timeIntervalSinceNow: secondsLeftTimeInterval)
+        
+        println("\(secondsLeftTimeInterval)")
+        let fireDate = NSDate(timeIntervalSinceNow: secondsLeftTimeInterval)
+        let formatter = NSDateFormatter()
+        formatter.timeZone = NSTimeZone.defaultTimeZone()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let timeStr = formatter.stringFromDate(fireDate)
+        println(timeStr)
+        notification.fireDate = fireDate
+        
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
