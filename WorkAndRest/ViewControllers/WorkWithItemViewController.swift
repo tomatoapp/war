@@ -119,11 +119,12 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
     
     func completed(sender: TaskRunner?) {
         println("completed")
+        self.completedOneWorkTime()
+        self.workTimesLabel.text = NSLocalizedString("work times: %@", comment: "").stringByAppendingString("\(self.taskItem.costWorkTimes)")
         AudioServicesPlaySystemSound(1005)
         let alert = UIAlertView(title: NSLocalizedString("Completed", comment: ""), message: NSLocalizedString("Time is up!", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("YES", comment: ""))
         alert.show()
         self.seconds = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.integerValue * 60
-        self.timerLabel.text = self.getTimerString()
     }
     
     func setupAudioPlayerWithFile(fileName: String!, type: String!) -> AVAudioPlayer {
@@ -149,6 +150,12 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
             self.musicalNoteLabel.textColor = UIColor.grayColor()
         }
     }
+    
+    func completedOneWorkTime() {
+        self.taskItem.costWorkTimes++
+        DBOperate.updateTask(self.taskItem)
+    }
+    
     // MARK: - UIAlertViewDelegate
 
     func showStopAlertView() {
@@ -159,6 +166,7 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if alertView.title == NSLocalizedString("Completed", comment: "") {
             self.reset()
+            self.timerLabel.text = self.getTimerString()
         } else if alertView.title == NSLocalizedString("Break this work?", comment: "") {
             if buttonIndex == 1 {
                 self.taskRunner.stop()

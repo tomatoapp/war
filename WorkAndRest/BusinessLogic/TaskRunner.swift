@@ -47,6 +47,10 @@ class TaskRunner: NSObject, UIAlertViewDelegate {
         self.delegate?.breaked(self)
     }
     
+    func complete() {
+        self.reset()
+        self.delegate?.completed(self)
+    }
     // MARK: - Private Methods
 
     func tick() {
@@ -54,20 +58,12 @@ class TaskRunner: NSObject, UIAlertViewDelegate {
             self.seconds--
             self.delegate?.tick(self)
         } else {
-            self.isWorking = false
-            self.cancelTimer()
-            self.completedOneWorkTime()
-            self.delegate?.completed(self)
+            self.complete()
         }
     }
     
     func cancelTimer() {
         self.timer.invalidate()
-    }
-    
-    func completedOneWorkTime() {
-        self.taskItem.costWorkTimes = self.taskItem.costWorkTimes++
-        DBOperate.updateTask(self.taskItem)
     }
     
     func reset() {

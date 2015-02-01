@@ -59,8 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if secondsLeftWhenResignActive + Int(passedTimeInterval) > 0 {
                     controller.seconds = secondsLeftWhenResignActive + Int(passedTimeInterval)
                 } else {
-                    controller.taskRunner.completedOneWorkTime()
-                    controller.taskRunner.reset()
+                    controller.taskRunner.complete()
                 }
             }
         }
