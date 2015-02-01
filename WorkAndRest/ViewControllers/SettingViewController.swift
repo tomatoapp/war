@@ -23,9 +23,9 @@ class SettingViewController: BaseTableViewController, UIAlertViewDelegate, MFMai
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.switchControl.on = NSUserDefaults.standardUserDefaults().valueForKey("SecondSound")!.boolValue
-        self.lightswitchControl.on = NSUserDefaults.standardUserDefaults().valueForKey("KeepLight")!.boolValue
-        secondsValue = Int(NSUserDefaults.standardUserDefaults().valueForKey("Seconds")!.intValue)
+        self.switchControl.on = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.kBOOL_SECOND_SOUND)!.boolValue
+        self.lightswitchControl.on = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.kBOOL_KEEP_LIGHT)!.boolValue
+        secondsValue = Int(NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.intValue)
         self.dataLabel.text = String(format: "00:%02d:00", secondsValue)
         self.slider.value = Float(secondsValue)
     }
@@ -114,15 +114,15 @@ class SettingViewController: BaseTableViewController, UIAlertViewDelegate, MFMai
     @IBAction func sliderValueChanged(sender: AnyObject) {
         self.secondsValue = Int((sender as UISlider).value)
         self.dataLabel.text = String(format: "00:%02d:00", self.secondsValue)
-        NSUserDefaults.standardUserDefaults().setValue(self.secondsValue, forKey: "Seconds")
+        NSUserDefaults.standardUserDefaults().setValue(self.secondsValue, forKey: GlobalConstants.k_SECONDS)
     }
     
     @IBAction func secondSoundSwitchChanged(sender: AnyObject) {
-        NSUserDefaults.standardUserDefaults().setObject(Int(self.switchControl.on), forKey: "SecondSound")
+        NSUserDefaults.standardUserDefaults().setObject(Int(self.switchControl.on), forKey: GlobalConstants.kBOOL_SECOND_SOUND)
     }
     
     @IBAction func keepScreenLightSwitchChanged(sender: AnyObject) {
-        NSUserDefaults.standardUserDefaults().setObject(Int(self.lightswitchControl.on), forKey: "KeepLight")
+        NSUserDefaults.standardUserDefaults().setObject(Int(self.lightswitchControl.on), forKey: GlobalConstants.kBOOL_KEEP_LIGHT)
     }
 
 }

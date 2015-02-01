@@ -38,9 +38,9 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.seconds = NSUserDefaults.standardUserDefaults().valueForKey("Seconds")!.integerValue * 60
-        isPlaySecondSound = NSUserDefaults.standardUserDefaults().valueForKey("SecondSound")!.boolValue
-        isKeepScreenLight = NSUserDefaults.standardUserDefaults().valueForKey("KeepLight")!.boolValue
+        self.seconds = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.integerValue * 60
+        isPlaySecondSound = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.kBOOL_SECOND_SOUND)!.boolValue
+        isKeepScreenLight = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.kBOOL_KEEP_LIGHT)!.boolValue
         secondBeep = self.setupAudioPlayerWithFile("sec", type:"wav")
         self.title = self.taskItem.title
         self.secondsLeft = self.seconds
