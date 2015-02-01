@@ -8,9 +8,15 @@
 
 import UIKit
 
-class TaskListViewController: UITableViewController, ItemDetailViewControllerDelegate {
+enum HandleType: Int {
+    case None, AddOrEdit, Start
+}
+
+class TaskListViewController: UITableViewController, ItemDetailViewControllerDelegate, TaskListItemCellDelegate {
 
     var allTasks = [Task]()
+    var runningTask: Task?
+    var handleType = HandleType.None
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,15 +58,25 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath) as TaskListItemCell
+        cell.delegate = self
         let task = allTasks[indexPath.row]
-        cell.setTaskTitle(task.title)
+        cell.taskItem = (task.copy() as Task)
+        cell.refresh()
+        
+        if runningTask != nil {
+            if task.taskId == runningTask!.taskId {
+                cell.start()
+            } else {
+                cell.disable()
+            }
+        }
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let item = allTasks[indexPath.row]
-        let copyItem = item.copy() as Task
-        self.performSegueWithIdentifier("ShowItem", sender: copyItem)
+        //let item = allTasks[indexPath.row]
+        //let copyItem = item.copy() as Task
+        //self.performSegueWithIdentifier("ShowItem", sender: copyItem)
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -72,6 +88,13 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
         }
     }
     
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        let item = allTasks[indexPath.row]
+        if runningTask == nil  {
+            return UITableViewCellEditingStyle.Delete
+        }
+        return UITableViewCellEditingStyle.None
+    }
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -98,13 +121,27 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
    
     
     func addTaskViewController(controller: ItemDetailViewController!, didFinishEditingTask item: Task!) {
+        handleType = HandleType.AddOrEdit
         item.lastUpdateTime = NSDate()
         DBOperate.updateTask(item)
-        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItem:"), userInfo: item, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: item, repeats: false)
     }
     
     func addTaskViewControllerDidCancel(controller: ItemDetailViewController!) {
         println("Clicked the cancel button.")
+    }
+    
+    // MARK: - TaskListItemCellDelegate
+    
+    func start(cell: TaskListItemCell!, item: Task!) {
+        if self.runningTask != nil { // some task is running, can not start another task!
+            return
+        }
+        self.handleType = HandleType.Start
+        item.lastUpdateTime = NSDate()
+        self.runningTask = item
+        DBOperate.updateTask(item)
+        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: item, repeats: false)
     }
     
     // MARK: - Private Methods
@@ -176,7 +213,7 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
         self.tableView.endUpdates()
     }
     
-    func moveItem(val: NSTimer) {
+    func moveItemToTop(val: NSTimer) {
         let copyItem = val.userInfo as Task
         var baseItem = allTasks.filter{ $0.taskId == copyItem.taskId }.first!
         if find(allTasks, baseItem) == 0 { // if this item is already in the top, then return
@@ -188,7 +225,11 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
         self.insertItem(baseItem, withRowAnimation: UITableViewRowAnimation.Left)
         baseItem.title = copyItem.title
         self.scrollToTop()
-        self.reloadTableViewWithTimeInterval(0.5)
+        if handleType == HandleType.AddOrEdit {
+            self.reloadTableViewWithTimeInterval(0.5)
+        } else if handleType == HandleType.Start {
+            self.reloadTableViewWithTimeInterval(1.0)
+        }
     }
     
     func scrollToTop() {
