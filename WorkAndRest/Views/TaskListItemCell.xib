@@ -40,9 +40,9 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25:88" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpZ-Ip-HHZ">
-                                <rect key="frame" x="338" y="31" width="43" height="21"/>
+                                <rect key="frame" x="336" y="31" width="45" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="43" id="h87-C1-U8n"/>
+                                    <constraint firstAttribute="width" constant="45" id="h87-C1-U8n"/>
                                     <constraint firstAttribute="height" constant="21" id="iKw-5H-vdh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -109,7 +109,7 @@
                 <outlet property="bgImageView" destination="SNV-J3-tCQ" id="flv-mj-gwv"/>
                 <outlet property="grayMaskView" destination="w9P-6H-JOT" id="gPp-bH-j0y"/>
                 <outlet property="startButton" destination="4s3-p9-bUw" id="5aX-Jg-h2f"/>
-                <outlet property="timeLabel" destination="gpZ-Ip-HHZ" id="wpf-GY-2gs"/>
+                <outlet property="timerLabel" destination="gpZ-Ip-HHZ" id="nIi-WZ-ac5"/>
                 <outlet property="titleLabel" destination="xtX-tg-YOQ" id="9D3-CI-fDA"/>
             </connections>
             <point key="canvasLocation" x="362.5" y="85"/>

@@ -14,8 +14,7 @@ protocol TaskRunnerDelegate {
     func tick(sender: TaskRunner?)
 }
 
-
-class TaskRunner: NSObject, UIAlertViewDelegate {
+class TaskRunner: NSObject {
     
     var delegate: TaskRunnerDelegate?
     var taskItem: Task!
@@ -32,14 +31,17 @@ class TaskRunner: NSObject, UIAlertViewDelegate {
         self.init()
         self.taskItem = task
         self.seconds = seconds
-
     }
     
     // MARK: - Methods
     
      func start() {
         self.isWorking = true
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("tick"), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0,
+            target: self,
+            selector: Selector("tick"),
+            userInfo: nil,
+            repeats: true)
     }
     
      func stop() {
@@ -47,19 +49,17 @@ class TaskRunner: NSObject, UIAlertViewDelegate {
         self.delegate?.breaked(self)
     }
     
-    func complete() {
-        self.reset()
-        self.delegate?.completed(self)
-    }
-    // MARK: - Private Methods
-
     func tick() {
-        if self.seconds > 0 {
-            self.seconds--
+        if self.seconds-- > 0 {
             self.delegate?.tick(self)
         } else {
             self.complete()
         }
+    }
+    
+    func complete() {
+        self.reset()
+        self.delegate?.completed(self)
     }
     
     func cancelTimer() {

@@ -63,13 +63,16 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
         cell.taskItem = (task.copy() as Task)
         cell.refresh()
         
-        if runningTask != nil {
+        if runningTask == nil {
+            cell.reset()
+        } else {
             if task.taskId == runningTask!.taskId {
                 cell.start()
             } else {
                 cell.disable()
             }
         }
+        
         return cell
     }
     
@@ -133,15 +136,24 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     
     // MARK: - TaskListItemCellDelegate
     
-    func start(cell: TaskListItemCell!, item: Task!) {
+    func started(sender: TaskListItemCell!) {
         if self.runningTask != nil { // some task is running, can not start another task!
             return
         }
         self.handleType = HandleType.Start
-        item.lastUpdateTime = NSDate()
-        self.runningTask = item
-        DBOperate.updateTask(item)
-        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: item, repeats: false)
+        sender.taskItem?.lastUpdateTime = NSDate()
+        self.runningTask = sender.taskItem
+        DBOperate.updateTask(sender.taskItem!)
+        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: sender.taskItem, repeats: false)
+    }
+    
+    func completed(sender: TaskListItemCell!) {
+        self.runningTask = nil
+        self.reloadTableViewWithTimeInterval(0.5)
+    }
+    
+    func breaked(sender: TaskListItemCell!) {
+        
     }
     
     // MARK: - Private Methods

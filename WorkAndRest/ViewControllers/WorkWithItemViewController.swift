@@ -119,8 +119,6 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
     
     func completed(sender: TaskRunner?) {
         println("completed")
-        self.completedOneWorkTime()
-        self.workTimesLabel.text = NSLocalizedString("work times: %@", comment: "").stringByAppendingString("\(self.taskItem.costWorkTimes)")
         AudioServicesPlaySystemSound(1005)
         let alert = UIAlertView(title: NSLocalizedString("Completed", comment: ""), message: NSLocalizedString("Time is up!", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("YES", comment: ""))
         alert.show()
@@ -167,6 +165,8 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
         if alertView.title == NSLocalizedString("Completed", comment: "") {
             self.reset()
             self.timerLabel.text = self.getTimerString()
+            self.completedOneWorkTime()
+            self.workTimesLabel.text = NSLocalizedString("work times: %@", comment: "").stringByAppendingString("\(self.taskItem.costWorkTimes)")
         } else if alertView.title == NSLocalizedString("Break this work?", comment: "") {
             if buttonIndex == 1 {
                 self.taskRunner.stop()
