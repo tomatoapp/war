@@ -34,8 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillResignActive(application: UIApplication) {
         if self.currentModelViewController.isKindOfClass(WorkWithItemViewController) {
-            let isWorking = (self.currentModelViewController as WorkWithItemViewController).isWorking
-            let secondsLeft = (self.currentModelViewController as WorkWithItemViewController).secondsLeft
+            let isWorking = (self.currentModelViewController as WorkWithItemViewController).taskRunner.isWorking
+            let secondsLeft = (self.currentModelViewController as WorkWithItemViewController).taskRunner.secondsLeft
             
            NSUserDefaults.standardUserDefaults().setBool(isWorking, forKey: GlobalConstants.kBOOL_ISWORKING)
             if isWorking {
@@ -57,10 +57,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let passedTimeInterval = dateWhenResignActive.timeIntervalSinceNow
                 
                 if secondsLeftWhenResignActive + Int(passedTimeInterval) > 0 {
-                    controller.secondsLeft = secondsLeftWhenResignActive + Int(passedTimeInterval)
+                    controller.taskRunner.secondsLeft = secondsLeftWhenResignActive + Int(passedTimeInterval)
                 } else {
-                    controller.completedOneWorkTime()
-                    controller.reset()
+                    controller.taskRunner.completedOneWorkTime()
+                    controller.taskRunner.reset()
                 }
             }
         }
@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notification = UILocalNotification()
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.alertBody = NSLocalizedString("Time is up!", comment:"")
-        let secondsLeftTimeInterval = NSTimeInterval((self.currentModelViewController as WorkWithItemViewController).secondsLeft)
+        let secondsLeftTimeInterval = NSTimeInterval((self.currentModelViewController as WorkWithItemViewController).taskRunner.secondsLeft)
         
         println("\(secondsLeftTimeInterval)")
         let fireDate = NSDate(timeIntervalSinceNow: secondsLeftTimeInterval)

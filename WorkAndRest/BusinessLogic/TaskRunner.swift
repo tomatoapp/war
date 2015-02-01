@@ -28,19 +28,24 @@ class TaskRunner: NSObject, UIAlertViewDelegate {
     var seconds = 0
     var secondBeep: AVAudioPlayer!
     var isPlaySecondSound = false
-    var isKeepScreenLight = false
 
     var timerText: String?
     
     override init() {
         super.init()
-        
+
         self.seconds = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.integerValue * 60
         self.isPlaySecondSound = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.kBOOL_SECOND_SOUND)!.boolValue
-        self.isKeepScreenLight = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.kBOOL_KEEP_LIGHT)!.boolValue
         self.secondBeep = self.setupAudioPlayerWithFile("sec", type:"wav")
         self.secondsLeft = self.seconds
         self.timerText = self.stringFromSecondsLeft()
+        
+    }
+    
+    convenience init(task: Task!) {
+        self.init()
+
+        self.taskItem = task
     }
     
     // MARK: - Events
@@ -49,10 +54,6 @@ class TaskRunner: NSObject, UIAlertViewDelegate {
         self.isWorking = true
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("tick"), userInfo: nil, repeats: true)
         self.taskItem.completed = false
-        
-        if self.isKeepScreenLight {
-            UIApplication.sharedApplication().idleTimerDisabled = true
-        }
     }
     
      func stop() {
