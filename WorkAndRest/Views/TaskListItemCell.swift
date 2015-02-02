@@ -23,6 +23,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     @IBOutlet var startButton: UIButton!
     @IBOutlet var timerLabel: UILabel!
     @IBOutlet var grayMaskView: UIView!
+    @IBOutlet var pointImageView: UIImageView!
     
     var seconds = 0
     var taskItem: Task?
@@ -73,6 +74,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
             animations: { () -> Void in
                 self.startButton.alpha = 0
                 self.timerLabel.alpha = 1
+                
             })
             { (finished: Bool) -> Void in
         }
@@ -82,6 +84,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 self.bgImageView.image = UIImage(named: "list_item_working_bg")
+                self.pointImageView.image = UIImage(named: "point_green")
             })
             { (finished: Bool) -> Void in
         }
@@ -117,6 +120,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 self.bgImageView.image = UIImage(named: "list_item_normal_bg")
+                self.pointImageView.image = UIImage(named: "point_yellow")
             })
             { (finished: Bool) -> Void in
         }

@@ -108,6 +108,7 @@
             <connections>
                 <outlet property="bgImageView" destination="SNV-J3-tCQ" id="flv-mj-gwv"/>
                 <outlet property="grayMaskView" destination="w9P-6H-JOT" id="gPp-bH-j0y"/>
+                <outlet property="pointImageView" destination="48e-US-JE7" id="jDi-ae-B7x"/>
                 <outlet property="startButton" destination="4s3-p9-bUw" id="5aX-Jg-h2f"/>
                 <outlet property="timerLabel" destination="gpZ-Ip-HHZ" id="nIi-WZ-ac5"/>
                 <outlet property="titleLabel" destination="xtX-tg-YOQ" id="9D3-CI-fDA"/>
