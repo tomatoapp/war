@@ -20,6 +20,7 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
     @IBOutlet var editTaskTitleButton: UIButton!
     @IBOutlet var startNowButton: UIButton!
     @IBOutlet var startLaterButton: UIButton!
+    @IBOutlet var titleLabel: UILabel!
     
     var taskItem: Task?
     var delegate: NewTaskViewControllerDelegate?
@@ -28,6 +29,8 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.titleLabel.hidden = true
 
     }
     
@@ -40,6 +43,7 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
         if segue.identifier == "EditTaskTitleSegue" {
             let controller = segue.destinationViewController as ItemDetailViewController
             controller.delegate = self
+            controller.copyTaskItem = self.taskItem
         }
     }
     
@@ -69,10 +73,25 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
     
     func addTaskViewController(controller: ItemDetailViewController!, didFinishAddingTask item: Task!) {
         self.taskItem = item
+        if !item.title.isEmpty {
+            self.editTaskTitleButton.setImage(UIImage(named: "edit_task_title_empty"), forState: UIControlState.Normal)
+            self.titleLabel.text = item.title
+            self.titleLabel.hidden = false
+        }
+        
     }
     
     func addTaskViewController(controller: ItemDetailViewController!, didFinishEditingTask item: Task!) {
-        
+        self.taskItem = item
+        if item.title.isEmpty {
+            self.editTaskTitleButton.setImage(UIImage(named: "edit_task_title"), forState: UIControlState.Normal)
+            self.titleLabel.text = item.title
+            self.titleLabel.hidden = true
+        } else {
+            self.editTaskTitleButton.setImage(UIImage(named: "edit_task_title_empty"), forState: UIControlState.Normal)
+            self.titleLabel.text = item.title
+            self.titleLabel.hidden = false
+        }
     }
     
     func addTaskViewControllerDidCancel(controller: ItemDetailViewController!) {

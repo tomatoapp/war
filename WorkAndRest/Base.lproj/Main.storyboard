@@ -111,13 +111,25 @@
                                     <segue destination="gsS-3P-2PW" kind="push" identifier="EditTaskTitleSegue" id="3Pk-3n-Uh8"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbh-c0-SMz">
+                                <rect key="frame" x="68" y="361" width="185" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="giC-4C-u4X"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Vbh-c0-SMz" firstAttribute="top" secondItem="prc-Lp-Xgz" secondAttribute="bottom" constant="165" id="6DB-gd-Bio"/>
+                            <constraint firstAttribute="centerX" secondItem="Vbh-c0-SMz" secondAttribute="centerX" id="7UR-Cu-sOf"/>
                             <constraint firstAttribute="centerX" secondItem="nr4-Se-J1E" secondAttribute="centerX" constant="0.5" id="8IJ-IP-WNk"/>
                             <constraint firstAttribute="centerX" secondItem="nhL-qJ-3Kl" secondAttribute="centerX" constant="0.5" id="Bh1-1Y-hE2"/>
                             <constraint firstAttribute="centerX" secondItem="prc-Lp-Xgz" secondAttribute="centerX" id="Ocr-rb-IQp"/>
                             <constraint firstAttribute="bottomMargin" secondItem="GC9-IE-2wq" secondAttribute="bottom" constant="45" id="UlV-Vd-OtV"/>
+                            <constraint firstItem="nhL-qJ-3Kl" firstAttribute="width" secondItem="Vbh-c0-SMz" secondAttribute="width" constant="50" id="XcU-Kq-FUM"/>
                             <constraint firstAttribute="bottomMargin" secondItem="EH0-bE-GLF" secondAttribute="bottom" constant="45" id="a9K-V0-IZ6"/>
                             <constraint firstItem="GC9-IE-2wq" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="5" id="av6-Gw-Gac"/>
                             <constraint firstItem="EH0-bE-GLF" firstAttribute="trailing" secondItem="A1W-Vw-dDY" secondAttribute="trailingMargin" constant="-5" id="kTa-JZ-iQc"/>
@@ -132,6 +144,7 @@
                         <outlet property="editTaskTitleButton" destination="nhL-qJ-3Kl" id="ei0-Ii-loX"/>
                         <outlet property="startLaterButton" destination="EH0-bE-GLF" id="r1E-NK-DB3"/>
                         <outlet property="startNowButton" destination="GC9-IE-2wq" id="uyW-dF-KKc"/>
+                        <outlet property="titleLabel" destination="Vbh-c0-SMz" id="S7K-8h-aHX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omq-KS-Kve" userLabel="First Responder" sceneMemberID="firstResponder"/>
