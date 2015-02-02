@@ -244,9 +244,9 @@
 			isa = PBXGroup;
 			children = (
 				649308561A7AE65C00480677 /* BaseViewController.swift */,
+				649308581A7AE68200480677 /* BaseTableViewController.swift */,
 				6458B66A1A7722BD004FD3D9 /* RootViewController.swift */,
 				6442291C1A7A2F2000E516C1 /* TaskListViewController.swift */,
-				649308581A7AE68200480677 /* BaseTableViewController.swift */,
 				6493085A1A7AE88B00480677 /* ItemDetailViewController.swift */,
 				6493085C1A7AEE4900480677 /* WorkWithItemViewController.swift */,
 				64BD3D0A1A7B247000941B07 /* SettingViewController.swift */,
