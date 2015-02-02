@@ -66,6 +66,8 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
         if runningTask == nil {
             cell.reset()
         } else {
+            println("runningTask: \(runningTask!.taskId) + \(runningTask!.title)")
+            println("task: \(task.taskId) + \(task.title)")
             if task.taskId == runningTask!.taskId {
                 cell.start()
             } else {
@@ -118,7 +120,7 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     
     func addTaskViewController(controller: ItemDetailViewController!, didFinishAddingTask item: Task!) {
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
-        DBOperate.insertTask(item)
+        
     }
     
    

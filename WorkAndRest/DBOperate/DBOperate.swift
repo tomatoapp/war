@@ -37,7 +37,7 @@ import UIKit
     // MARK: - Task
     class func createTaskTable() {
         let sql = "CREATE TABLE IF NOT EXISTS t_tasks(" +
-        "task_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
+        "task_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT DEFAULT 1," +
         "title VARCHAR(1024) NOT NULL," +
         "lastUpdateTime DATETIME DEFAULT CURRENT_TIMESTAMP)"
         
@@ -51,10 +51,10 @@ import UIKit
         }
         dataBase.close()
     }
-    class func insertTask(task: Task) {
+    class func insertTask(task: Task) -> Bool {
         // open the db
         if !dataBase.open() {
-            return
+            return false
         }
         let success = dataBase.executeUpdate("INSERT INTO t_tasks(title) VALUES (:title)", withArgumentsInArray: [task.title])
         if success {
@@ -62,7 +62,11 @@ import UIKit
         } else {
             println("insert to task table failed!")
         }
+        let lastRowId = Int(dataBase.lastInsertRowId())
+        println("lastRowId: \(lastRowId)")
+        task.taskId = lastRowId
         dataBase.close()
+        return success
     }
     class func selectTaskWithTaskId(taskId: Int) -> Task? {
         if !dataBase.open() {
@@ -75,8 +79,20 @@ import UIKit
             task.title = rs.stringForColumn("title")
             task.lastUpdateTime = rs.dateForColumn("lastUpdateTime")
         }
+        dataBase.close()
         return task
     }
+    
+    class func lastInsertId() -> Int {
+        if !dataBase.open() {
+            return -1
+        }
+        let lastRowId = Int(dataBase.lastInsertRowId())
+        dataBase.close()
+        println("lastRowId: \(lastRowId)")
+        return lastRowId
+    }
+    
     class func updateTask(task: Task) {
         if !dataBase.open() {
             return

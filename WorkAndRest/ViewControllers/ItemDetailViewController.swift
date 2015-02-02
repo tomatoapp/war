@@ -67,7 +67,10 @@ class ItemDetailViewController: BaseTableViewController, UITextFieldDelegate {
         if copyTaskItem == nil {
             let newItem = Task()
             newItem.title = self.textField.text
-            self.delegate.addTaskViewController(self, didFinishAddingTask: newItem)
+            if DBOperate.insertTask(newItem) {
+                self.delegate.addTaskViewController(self, didFinishAddingTask: newItem)
+            }
+            
         } else {
             if copyTaskItem.title == self.textField.text {
                 self.cancel(nil)
