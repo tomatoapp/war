@@ -27,11 +27,89 @@
                     <connections>
                         <segue destination="6uC-ny-BXf" kind="push" identifier="ShowItem" id="bDt-xR-qPG"/>
                         <segue destination="gsS-3P-2PW" kind="push" identifier="EditItem" id="b1V-PN-NMD"/>
+                        <segue destination="Suk-oZ-58b" kind="push" identifier="NewTask" id="j3d-Bi-yZi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bp6-Rd-dBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="481" y="-46"/>
+            <point key="canvasLocation" x="485" y="-154"/>
+        </scene>
+        <!--New Task View Controller-->
+        <scene sceneID="0Nk-8p-wS8">
+            <objects>
+                <viewController id="Suk-oZ-58b" customClass="NewTaskViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mpJ-or-Bcp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Naa-3f-RwY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A1W-Vw-dDY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_task_tomato_icon" translatesAutoresizingMaskIntoConstraints="NO" id="nr4-Se-J1E">
+                                <rect key="frame" x="128" y="89" width="63" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="63" id="Zla-kn-H1P"/>
+                                    <constraint firstAttribute="height" constant="55" id="kTB-HZ-TMr"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starting_a_timer" translatesAutoresizingMaskIntoConstraints="NO" id="prc-Lp-Xgz">
+                                <rect key="frame" x="88" y="169" width="154" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="154" id="1o4-VH-aRK"/>
+                                    <constraint firstAttribute="height" constant="22" id="9Xe-u1-mYM"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GC9-IE-2wq">
+                                <rect key="frame" x="21" y="451" width="72" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="B3u-TE-3xj"/>
+                                    <constraint firstAttribute="height" constant="72" id="Vwq-vA-kiO"/>
+                                </constraints>
+                                <state key="normal" image="start_now">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="36"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EH0-bE-GLF">
+                                <rect key="frame" x="227" y="451" width="72" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="7Ng-Lg-Hn6"/>
+                                    <constraint firstAttribute="height" constant="72" id="bDE-vn-Dwv"/>
+                                </constraints>
+                                <state key="normal" image="start_later">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="36"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="nr4-Se-J1E" secondAttribute="centerX" constant="0.5" id="8IJ-IP-WNk"/>
+                            <constraint firstAttribute="centerX" secondItem="prc-Lp-Xgz" secondAttribute="centerX" constant="-5" id="Ocr-rb-IQp"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="GC9-IE-2wq" secondAttribute="bottom" constant="45" id="UlV-Vd-OtV"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="EH0-bE-GLF" secondAttribute="bottom" constant="45" id="a9K-V0-IZ6"/>
+                            <constraint firstItem="GC9-IE-2wq" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="5" id="av6-Gw-Gac"/>
+                            <constraint firstItem="EH0-bE-GLF" firstAttribute="trailing" secondItem="A1W-Vw-dDY" secondAttribute="trailingMargin" constant="-5" id="kTa-JZ-iQc"/>
+                            <constraint firstItem="nr4-Se-J1E" firstAttribute="top" secondItem="mpJ-or-Bcp" secondAttribute="bottom" constant="25" id="xP8-P5-dRt"/>
+                            <constraint firstItem="prc-Lp-Xgz" firstAttribute="top" secondItem="nr4-Se-J1E" secondAttribute="bottom" constant="25" id="zsl-fG-Ici"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="uOa-7G-T5S"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="omq-KS-Kve" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1037" y="-966"/>
         </scene>
         <!--Item Detail View Controller-->
         <scene sceneID="HcJ-cJ-HZQ">
@@ -482,6 +560,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="new_task_tomato_icon" width="63" height="55"/>
+        <image name="start_later" width="72" height="72"/>
+        <image name="start_now" width="72" height="72"/>
+        <image name="starting_a_timer" width="154" height="22"/>
         <image name="tab_item_1" width="27" height="18"/>
         <image name="tab_item_2" width="27" height="20"/>
     </resources>

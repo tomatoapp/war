@@ -251,7 +251,7 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     }
     
     func newTaskButtonClick(sender: UIButton) {
-        self.performSegueWithIdentifier("EditItem", sender: nil)
+        self.performSegueWithIdentifier("NewTask", sender: nil)
     }
     
     func reloadTableViewWithTimeInterval(ti: NSTimeInterval) {
