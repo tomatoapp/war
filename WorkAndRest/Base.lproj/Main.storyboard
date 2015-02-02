@@ -106,6 +106,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uOa-7G-T5S"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omq-KS-Kve" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
