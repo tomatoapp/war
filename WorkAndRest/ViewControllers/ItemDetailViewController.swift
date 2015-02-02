@@ -10,6 +10,8 @@ import UIKit
 
 protocol ItemDetailViewControllerDelegate {
     func addTaskViewController(controller: ItemDetailViewController!, didFinishAddingTask item: Task!)
+    
+    
     func addTaskViewController(controller: ItemDetailViewController!, didFinishEditingTask item: Task!)
     func addTaskViewControllerDidCancel(controller: ItemDetailViewController!)
 }
@@ -60,17 +62,14 @@ class ItemDetailViewController: BaseTableViewController, UITextFieldDelegate {
         if (self.delegate != nil) {
             self.delegate.addTaskViewControllerDidCancel(self)
         }
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.navigationController!.popViewControllerAnimated(true)
     }
     
     @IBAction func done(sender: AnyObject) {
         if copyTaskItem == nil {
             let newItem = Task()
             newItem.title = self.textField.text
-            if DBOperate.insertTask(newItem) {
-                self.delegate.addTaskViewController(self, didFinishAddingTask: newItem)
-            }
-            
+            self.delegate.addTaskViewController(self, didFinishAddingTask: newItem)
         } else {
             if copyTaskItem.title == self.textField.text {
                 self.cancel(nil)
@@ -79,7 +78,7 @@ class ItemDetailViewController: BaseTableViewController, UITextFieldDelegate {
             copyTaskItem!.title = self.textField.text
             self.delegate.addTaskViewController(self, didFinishEditingTask: copyTaskItem)
         }
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.navigationController!.popViewControllerAnimated(true)
     }
     
     // MARK: - UITableViewDelegate

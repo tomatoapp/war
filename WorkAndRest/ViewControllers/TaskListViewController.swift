@@ -12,7 +12,7 @@ enum HandleType: Int {
     case None, AddOrEdit, Start
 }
 
-class TaskListViewController: UITableViewController, ItemDetailViewControllerDelegate, TaskListItemCellDelegate {
+class TaskListViewController: UITableViewController,ItemDetailViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate {
 
     var allTasks = [Task]()
     var runningTask: Task?
@@ -112,6 +112,9 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
         } else if segue.identifier == "ShowItem" {
             let controller = segue.destinationViewController as WorkWithItemViewController
             controller.taskItem = sender as Task?
+        } else if segue.identifier == "NewTaskSegue" {
+            let controller = segue.destinationViewController as NewTaskViewController
+            controller.delegate = self
         }
     }
     
@@ -134,6 +137,18 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     
     func addTaskViewControllerDidCancel(controller: ItemDetailViewController!) {
         println("Clicked the cancel button.")
+    }
+    
+    // MARK: - NewTaskViewControllerDelegate
+    
+    func newTaskViewController(controller: NewTaskViewController!, didFinishAddingTask item: Task!, runningNow runNow: Bool) {
+        
+        if DBOperate.insertTask(item) {
+            NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
+            if runNow {
+                self.runningTask = item
+            }
+        }
     }
     
     // MARK: - TaskListItemCellDelegate
@@ -251,7 +266,7 @@ class TaskListViewController: UITableViewController, ItemDetailViewControllerDel
     }
     
     func newTaskButtonClick(sender: UIButton) {
-        self.performSegueWithIdentifier("NewTask", sender: nil)
+        self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
     }
     
     func reloadTableViewWithTimeInterval(ti: NSTimeInterval) {

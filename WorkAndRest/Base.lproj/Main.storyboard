@@ -27,7 +27,7 @@
                     <connections>
                         <segue destination="6uC-ny-BXf" kind="push" identifier="ShowItem" id="bDt-xR-qPG"/>
                         <segue destination="gsS-3P-2PW" kind="push" identifier="EditItem" id="b1V-PN-NMD"/>
-                        <segue destination="Suk-oZ-58b" kind="push" identifier="NewTask" id="j3d-Bi-yZi"/>
+                        <segue destination="Suk-oZ-58b" kind="push" identifier="NewTaskSegue" id="j3d-Bi-yZi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bp6-Rd-dBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -54,7 +54,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starting_a_timer" translatesAutoresizingMaskIntoConstraints="NO" id="prc-Lp-Xgz">
-                                <rect key="frame" x="88" y="169" width="154" height="22"/>
+                                <rect key="frame" x="83" y="174" width="154" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="154" id="1o4-VH-aRK"/>
                                     <constraint firstAttribute="height" constant="22" id="9Xe-u1-mYM"/>
@@ -75,6 +75,9 @@
                                         <integer key="value" value="36"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="startNowClick:" destination="Suk-oZ-58b" eventType="touchUpInside" id="ScY-5P-gdP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EH0-bE-GLF">
                                 <rect key="frame" x="227" y="451" width="72" height="72"/>
@@ -91,22 +94,45 @@
                                         <integer key="value" value="36"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="startLaterClick:" destination="Suk-oZ-58b" eventType="touchUpInside" id="Att-Yz-8Ye"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhL-qJ-3Kl">
+                                <rect key="frame" x="42" y="361" width="235" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="4yA-Xm-Mbv"/>
+                                    <constraint firstAttribute="width" constant="235" id="kc6-TU-tXR"/>
+                                </constraints>
+                                <state key="normal" image="edit_task_title">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="gsS-3P-2PW" kind="push" identifier="EditTaskTitleSegue" id="3Pk-3n-Uh8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="nr4-Se-J1E" secondAttribute="centerX" constant="0.5" id="8IJ-IP-WNk"/>
-                            <constraint firstAttribute="centerX" secondItem="prc-Lp-Xgz" secondAttribute="centerX" constant="-5" id="Ocr-rb-IQp"/>
+                            <constraint firstAttribute="centerX" secondItem="nhL-qJ-3Kl" secondAttribute="centerX" constant="0.5" id="Bh1-1Y-hE2"/>
+                            <constraint firstAttribute="centerX" secondItem="prc-Lp-Xgz" secondAttribute="centerX" id="Ocr-rb-IQp"/>
                             <constraint firstAttribute="bottomMargin" secondItem="GC9-IE-2wq" secondAttribute="bottom" constant="45" id="UlV-Vd-OtV"/>
                             <constraint firstAttribute="bottomMargin" secondItem="EH0-bE-GLF" secondAttribute="bottom" constant="45" id="a9K-V0-IZ6"/>
                             <constraint firstItem="GC9-IE-2wq" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="5" id="av6-Gw-Gac"/>
                             <constraint firstItem="EH0-bE-GLF" firstAttribute="trailing" secondItem="A1W-Vw-dDY" secondAttribute="trailingMargin" constant="-5" id="kTa-JZ-iQc"/>
+                            <constraint firstItem="nhL-qJ-3Kl" firstAttribute="top" secondItem="prc-Lp-Xgz" secondAttribute="bottom" constant="165" id="veg-0V-77d"/>
                             <constraint firstItem="nr4-Se-J1E" firstAttribute="top" secondItem="mpJ-or-Bcp" secondAttribute="bottom" constant="25" id="xP8-P5-dRt"/>
-                            <constraint firstItem="prc-Lp-Xgz" firstAttribute="top" secondItem="nr4-Se-J1E" secondAttribute="bottom" constant="25" id="zsl-fG-Ici"/>
+                            <constraint firstItem="prc-Lp-Xgz" firstAttribute="top" secondItem="nr4-Se-J1E" secondAttribute="bottom" constant="30" id="zsl-fG-Ici"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uOa-7G-T5S"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="editTaskTitleButton" destination="nhL-qJ-3Kl" id="ei0-Ii-loX"/>
+                        <outlet property="startLaterButton" destination="EH0-bE-GLF" id="r1E-NK-DB3"/>
+                        <outlet property="startNowButton" destination="GC9-IE-2wq" id="uyW-dF-KKc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omq-KS-Kve" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -167,7 +193,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ERw-yK-O1p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1036" y="-296"/>
+            <point key="canvasLocation" x="1036" y="-250"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SE7-c6-teE">
@@ -561,6 +587,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="edit_task_title" width="235" height="22"/>
         <image name="new_task_tomato_icon" width="63" height="55"/>
         <image name="start_later" width="72" height="72"/>
         <image name="start_now" width="72" height="72"/>
@@ -573,4 +600,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="3Pk-3n-Uh8"/>
+    </inferredMetricsTieBreakers>
 </document>
