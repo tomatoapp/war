@@ -39,6 +39,8 @@
 		6497FE561A75A77800174307 /* Work.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497FE551A75A77800174307 /* Work.swift */; };
 		64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */; };
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
+		64B67F131A8063C0002127BC /* TimeSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64B67F121A8063C0002127BC /* TimeSelectorView.xib */; };
+		64B67F151A8063D0002127BC /* TimeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B67F141A8063D0002127BC /* TimeSelectorView.swift */; };
 		64BD3D0B1A7B247000941B07 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BD3D0A1A7B247000941B07 /* SettingViewController.swift */; };
 		64C99A581A7902A100F1D796 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C99A571A7902A100F1D796 /* Launch Screen.xib */; };
 		64C99A5D1A7905A300F1D796 /* DBOperate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C99A5C1A7905A300F1D796 /* DBOperate.swift */; };
@@ -53,6 +55,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6434826D18C5D344009BF110;
 			remoteInfo = WorkAndRest;
+		};
+		64B67F2F1A8069CF002127BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6434826618C5D343009BF110 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64B67F191A8069CF002127BC;
+			remoteInfo = UIPickerView_demo;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -100,6 +109,10 @@
 		6497FE581A75A91600174307 /* WorkAndRest-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WorkAndRest-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		64B67F121A8063C0002127BC /* TimeSelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeSelectorView.xib; sourceTree = "<group>"; };
+		64B67F141A8063D0002127BC /* TimeSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSelectorView.swift; sourceTree = "<group>"; };
+		64B67F1A1A8069CF002127BC /* UIPickerView_demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIPickerView_demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64B67F2E1A8069CF002127BC /* UIPickerView_demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIPickerView_demoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64BD3D0A1A7B247000941B07 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		64C99A571A7902A100F1D796 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		64C99A5C1A7905A300F1D796 /* DBOperate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBOperate.swift; sourceTree = "<group>"; };
@@ -132,6 +145,20 @@
 				6434829118C5D344009BF110 /* XCTest.framework in Frameworks */,
 				6434829318C5D344009BF110 /* UIKit.framework in Frameworks */,
 				6434829218C5D344009BF110 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64B67F171A8069CF002127BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64B67F2B1A8069CF002127BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +217,8 @@
 			children = (
 				6434826E18C5D344009BF110 /* WorkAndRest.app */,
 				6434828F18C5D344009BF110 /* WorkAndRestTests.xctest */,
+				64B67F1A1A8069CF002127BC /* UIPickerView_demo.app */,
+				64B67F2E1A8069CF002127BC /* UIPickerView_demoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -262,6 +291,8 @@
 			children = (
 				644554631A7CADD100F48164 /* TaskListItemCell.xib */,
 				649308521A7AE22D00480677 /* TaskListItemCell.swift */,
+				64B67F121A8063C0002127BC /* TimeSelectorView.xib */,
+				64B67F141A8063D0002127BC /* TimeSelectorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -348,6 +379,41 @@
 			productReference = 6434828F18C5D344009BF110 /* WorkAndRestTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		64B67F191A8069CF002127BC /* UIPickerView_demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64B67F361A8069CF002127BC /* Build configuration list for PBXNativeTarget "UIPickerView_demo" */;
+			buildPhases = (
+				64B67F161A8069CF002127BC /* Sources */,
+				64B67F171A8069CF002127BC /* Frameworks */,
+				64B67F181A8069CF002127BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UIPickerView_demo;
+			productName = UIPickerView_demo;
+			productReference = 64B67F1A1A8069CF002127BC /* UIPickerView_demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		64B67F2D1A8069CF002127BC /* UIPickerView_demoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64B67F391A8069CF002127BC /* Build configuration list for PBXNativeTarget "UIPickerView_demoTests" */;
+			buildPhases = (
+				64B67F2A1A8069CF002127BC /* Sources */,
+				64B67F2B1A8069CF002127BC /* Frameworks */,
+				64B67F2C1A8069CF002127BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				64B67F301A8069CF002127BC /* PBXTargetDependency */,
+			);
+			name = UIPickerView_demoTests;
+			productName = UIPickerView_demoTests;
+			productReference = 64B67F2E1A8069CF002127BC /* UIPickerView_demoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -363,6 +429,13 @@
 					};
 					6434828E18C5D344009BF110 = {
 						TestTargetID = 6434826D18C5D344009BF110;
+					};
+					64B67F191A8069CF002127BC = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					64B67F2D1A8069CF002127BC = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 64B67F191A8069CF002127BC;
 					};
 				};
 			};
@@ -382,6 +455,8 @@
 			targets = (
 				6434826D18C5D344009BF110 /* WorkAndRest */,
 				6434828E18C5D344009BF110 /* WorkAndRestTests */,
+				64B67F191A8069CF002127BC /* UIPickerView_demo */,
+				64B67F2D1A8069CF002127BC /* UIPickerView_demoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -399,11 +474,26 @@
 				644554641A7CADD100F48164 /* TaskListItemCell.xib in Resources */,
 				645FDE131A7D9BA9002EC8EF /* SecondBeep.wav in Resources */,
 				645FDE121A7D9BA9002EC8EF /* sec.wav in Resources */,
+				64B67F131A8063C0002127BC /* TimeSelectorView.xib in Resources */,
 				6434828518C5D344009BF110 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6434828D18C5D344009BF110 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64B67F181A8069CF002127BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64B67F2C1A8069CF002127BC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -466,10 +556,25 @@
 				649308591A7AE68200480677 /* BaseTableViewController.swift in Sources */,
 				645FDE161A7D9E8C002EC8EF /* GlobalConstants.swift in Sources */,
 				649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */,
+				64B67F151A8063D0002127BC /* TimeSelectorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6434828B18C5D344009BF110 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64B67F161A8069CF002127BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64B67F2A1A8069CF002127BC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -483,6 +588,11 @@
 			isa = PBXTargetDependency;
 			target = 6434826D18C5D344009BF110 /* WorkAndRest */;
 			targetProxy = 6434829418C5D344009BF110 /* PBXContainerItemProxy */;
+		};
+		64B67F301A8069CF002127BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64B67F191A8069CF002127BC /* UIPickerView_demo */;
+			targetProxy = 64B67F2F1A8069CF002127BC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -682,6 +792,85 @@
 			};
 			name = Release;
 		};
+		64B67F371A8069CF002127BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = UIPickerView_demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		64B67F381A8069CF002127BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = UIPickerView_demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		64B67F3A1A8069CF002127BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = UIPickerView_demoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UIPickerView_demo.app/UIPickerView_demo";
+			};
+			name = Debug;
+		};
+		64B67F3B1A8069CF002127BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = UIPickerView_demoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UIPickerView_demo.app/UIPickerView_demo";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -708,6 +897,24 @@
 			buildConfigurations = (
 				643482A418C5D344009BF110 /* Debug */,
 				643482A518C5D344009BF110 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64B67F361A8069CF002127BC /* Build configuration list for PBXNativeTarget "UIPickerView_demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64B67F371A8069CF002127BC /* Debug */,
+				64B67F381A8069CF002127BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64B67F391A8069CF002127BC /* Build configuration list for PBXNativeTarget "UIPickerView_demoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64B67F3A1A8069CF002127BC /* Debug */,
+				64B67F3B1A8069CF002127BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
