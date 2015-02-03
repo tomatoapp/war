@@ -63,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var isWorking = false
         if self.taskListViewController.runningTask != nil {
             isWorking = true
+            //TaskManager.freezeTask(self.taskListViewController.runningTask)
 //            let secondsLeft = (self.currentModelViewController as WorkWithItemViewController).seconds
 //            let secondsLeft = self.taskListViewController.
 //            NSUserDefaults.standardUserDefaults().setInteger(secondsLeft, forKey: GlobalConstants.k_SECONDS_LEFT)
@@ -102,6 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                controller.taskRunner.complete()
 //            }
             println("isWorking! become active")
+            //TaskManager.activeFrozenTask()
         }
     }
     
