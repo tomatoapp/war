@@ -21,6 +21,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    var rootViewController: UITabBarController {
+        get {
+            let navigationController = self.window?.rootViewController as UINavigationController
+            let rootViewController = navigationController.topViewController as UITabBarController
+            return rootViewController
+        }
+    }
+    
+    var taskListViewController: TaskListViewController {
+        get {
+            let taskListViewController = self.rootViewController.viewControllers!.first as TaskListViewController
+            return taskListViewController
+        }
+    }
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         println(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String)
         DBOperate.db_init()
@@ -33,35 +47,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Application Status
     
     func applicationWillResignActive(application: UIApplication) {
-        if self.currentModelViewController.isKindOfClass(WorkWithItemViewController) {
-            let isWorking = (self.currentModelViewController as WorkWithItemViewController).taskRunner.isWorking
-            let secondsLeft = (self.currentModelViewController as WorkWithItemViewController).seconds
-            
-           NSUserDefaults.standardUserDefaults().setBool(isWorking, forKey: GlobalConstants.kBOOL_ISWORKING)
-            if isWorking {
-                NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: GlobalConstants.k_NOWDATE)
-                NSUserDefaults.standardUserDefaults().setInteger(secondsLeft, forKey: GlobalConstants.k_SECONDS_LEFT)
-                self.addNotification()
-            }
+        
+//        if self.currentModelViewController.isKindOfClass(WorkWithItemViewController) {
+//            let isWorking = (self.currentModelViewController as WorkWithItemViewController).taskRunner.isWorking
+//            let secondsLeft = (self.currentModelViewController as WorkWithItemViewController).seconds
+//            
+//            NSUserDefaults.standardUserDefaults().setBool(isWorking, forKey: GlobalConstants.kBOOL_ISWORKING)
+//            if isWorking {
+//                NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: GlobalConstants.k_NOWDATE)
+//                NSUserDefaults.standardUserDefaults().setInteger(secondsLeft, forKey: GlobalConstants.k_SECONDS_LEFT)
+//                self.addNotification()
+//            }
+//        }
+        
+        var isWorking = false
+        if self.taskListViewController.runningTask != nil {
+            isWorking = true
+//            let secondsLeft = (self.currentModelViewController as WorkWithItemViewController).seconds
+//            let secondsLeft = self.taskListViewController.
+//            NSUserDefaults.standardUserDefaults().setInteger(secondsLeft, forKey: GlobalConstants.k_SECONDS_LEFT)
+//            NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: GlobalConstants.k_NOWDATE)
+            println("isWorking! resign active")
+
         }
+        NSUserDefaults.standardUserDefaults().setBool(isWorking, forKey: GlobalConstants.kBOOL_ISWORKING)
+
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         
-        if self.currentModelViewController.isKindOfClass(WorkWithItemViewController) {
-            if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_ISWORKING) {
-                let controller = self.currentModelViewController as WorkWithItemViewController
-                let dateWhenResignActive: NSDate = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_NOWDATE) as NSDate
-                let secondsLeftWhenResignActive = NSUserDefaults.standardUserDefaults().integerForKey(GlobalConstants.k_SECONDS_LEFT)
-                let passedTimeInterval = dateWhenResignActive.timeIntervalSinceNow
-                
-                if secondsLeftWhenResignActive + Int(passedTimeInterval) > 0 {
-                    controller.seconds = secondsLeftWhenResignActive + Int(passedTimeInterval)
-                } else {
-                    controller.taskRunner.complete()
-                }
-            }
+//        if self.currentModelViewController.isKindOfClass(WorkWithItemViewController) {
+//            if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_ISWORKING) {
+//                let controller = self.currentModelViewController as WorkWithItemViewController
+//                let dateWhenResignActive: NSDate = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_NOWDATE) as NSDate
+//                let secondsLeftWhenResignActive = NSUserDefaults.standardUserDefaults().integerForKey(GlobalConstants.k_SECONDS_LEFT)
+//                let passedTimeInterval = dateWhenResignActive.timeIntervalSinceNow
+//                
+//                if secondsLeftWhenResignActive + Int(passedTimeInterval) > 0 {
+//                    controller.seconds = secondsLeftWhenResignActive + Int(passedTimeInterval)
+//                } else {
+//                    controller.taskRunner.complete()
+//                }
+//            }
+//        }
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_ISWORKING) {
+//            let dateWhenResignActive: NSDate = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_NOWDATE) as NSDate
+//            let secondsLeftWhenResignActive = NSUserDefaults.standardUserDefaults().integerForKey(GlobalConstants.k_SECONDS_LEFT)
+//            let passedTimeInterval = dateWhenResignActive.timeIntervalSinceNow
+//            if secondsLeftWhenResignActive + Int(passedTimeInterval) > 0 {
+//                self.taskListViewController.sec = secondsLeftWhenResignActive + Int(passedTimeInterval)
+//            } else {
+//                controller.taskRunner.complete()
+//            }
+            println("isWorking! become active")
         }
     }
     
