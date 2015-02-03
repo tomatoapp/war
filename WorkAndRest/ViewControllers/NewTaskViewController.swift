@@ -56,6 +56,7 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
         if self.taskItem == nil {
             return
         }
+        self.taskItem!.minutes = self.minutes
         if self.delegate != nil {
             self.delegate!.newTaskViewController(self, didFinishAddingTask: self.taskItem, runningNow: true)
         }
@@ -66,6 +67,7 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
         if self.taskItem == nil {
             return
         }
+        self.taskItem!.minutes = self.minutes
         if self.delegate != nil {
             self.delegate!.newTaskViewController(self, didFinishAddingTask: self.taskItem, runningNow: false)
         }
@@ -104,5 +106,6 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
     // MARK: - TimeSelectorViewDelegate
     func timeSelectorView(selectorView: TimeSelectorView!, didSelectTime minutes: Int) {
         self.minutes = minutes
+        
     }
 }

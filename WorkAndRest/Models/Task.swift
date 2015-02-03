@@ -16,7 +16,8 @@ class Task: NSObject, NSCopying {
     var costWorkTimes: Int
     var date: NSDate
     var lastUpdateTime: NSDate
-    
+    var minutes: Int
+
     override init() {
 
         self.taskId = 0
@@ -26,6 +27,7 @@ class Task: NSObject, NSCopying {
         self.costWorkTimes = 0
         self.date = NSDate()
         self.lastUpdateTime = NSDate()
+        self.minutes = 0
         super.init()
     }
     
@@ -38,6 +40,7 @@ class Task: NSObject, NSCopying {
         copy.costWorkTimes = self.costWorkTimes
         copy.date = self.date
         copy.lastUpdateTime = self.lastUpdateTime
+        copy.minutes = self.minutes
         return copy
     }
     

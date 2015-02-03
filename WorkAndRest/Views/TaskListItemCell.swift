@@ -64,7 +64,8 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         self.running = true
         
         println("start() - \(taskItem?.title)" )
-        self.seconds = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.integerValue * 60 / 15
+        //self.seconds = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.integerValue * 60 / 15
+        self.seconds = self.taskItem!.minutes * 60
         taskRunner = TaskRunner(task: self.taskItem, seconds: self.seconds)
         taskRunner?.delegate = self
         taskRunner?.start()

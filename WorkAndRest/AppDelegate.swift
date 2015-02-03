@@ -111,6 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func createSampleTask() {
         let sampleTask = Task()
         sampleTask.title = NSLocalizedString("Task Sample", comment: "")
+        sampleTask.minutes = GlobalConstants.DEFAULT_MINUTES
         DBOperate .insertTask(sampleTask)
     }
 }
