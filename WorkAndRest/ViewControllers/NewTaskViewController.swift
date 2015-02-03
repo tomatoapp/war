@@ -8,12 +8,14 @@
 
 import UIKit
 
+
+
 protocol NewTaskViewControllerDelegate {
     func newTaskViewController(controller: NewTaskViewController!, didFinishAddingTask item: Task!, runningNow run: Bool)
     //func newTaskViewControllerDidCancel(controller: ItemDetailViewController!)
 }
 
-class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegate {
+class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegate, TimeSelectorViewDelegate {
 
     // MARK: - Properties
     
@@ -21,22 +23,23 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
     @IBOutlet var startNowButton: UIButton!
     @IBOutlet var startLaterButton: UIButton!
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var timeSelector: TimeSelectorView!
     
     var taskItem: Task?
     var delegate: NewTaskViewControllerDelegate?
+    var minutes = GlobalConstants.DEFAULT_MINUTES
     
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.timeSelector.delegate = self
         self.titleLabel.hidden = true
-
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -98,5 +101,8 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
         
     }
     
-    
+    // MARK: - TimeSelectorViewDelegate
+    func timeSelectorView(selectorView: TimeSelectorView!, didSelectTime minutes: Int) {
+        self.minutes = minutes
+    }
 }

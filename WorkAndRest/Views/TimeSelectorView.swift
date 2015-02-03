@@ -7,18 +7,27 @@
 //
 
 import UIKit
+ protocol TimeSelectorViewDelegate {
+    func timeSelectorView(selectorView: TimeSelectorView!, didSelectTime minutes:Int)
+}
 
-class TimeSelectorView: UIPickerView, V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource {
+class TimeSelectorView: UIView, V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource {
 
     // MARK: - Properties
     
-    @IBOutlet var pickerView: V8HorizontalPickerView!
+    var delegate: TimeSelectorViewDelegate?
+    var pickerView: V8HorizontalPickerView?
     var titleArray: [String]!
 
     // MARK: - Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        //self.setup()
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         self.setup()
     }
     
@@ -26,8 +35,19 @@ class TimeSelectorView: UIPickerView, V8HorizontalPickerViewDelegate, V8Horizont
     
     func setup() {
         titleArray = ["10:00", "15:00", "20:00", "25:00", "30:00", "35:00", "40:00", "45:00"]
-        self.pickerView.selectionPoint = CGPointMake((self.frame.size.width) / 2, 0);
-        self.pickerView.selectionIndicatorView = UIImageView(image: UIImage(named: "indicator"))
+
+        self.pickerView = V8HorizontalPickerView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
+        self.pickerView!.backgroundColor = UIColor(red: 187.0/255.0, green: 47.0/255.0, blue: 68.0/255.0, alpha: 1.0)
+        self.pickerView!.selectionPoint = CGPointMake(self.frame.size.width / 2, 0)
+        self.pickerView!.selectionIndicatorView = UIImageView(image: UIImage(named: "indicator"))
+        self.pickerView!.delegate = self
+        self.pickerView!.dataSource = self
+        self.pickerView!.scrollToElement(3, animated: false) // Set the default time is 25 minutes
+        if self.delegate != nil {
+            self.delegate!.timeSelectorView(self, didSelectTime: 25)
+        }
+        self.addSubview(pickerView!)
+
     }
     
     // MARK: - V8HorizontalPickerViewDelegate
@@ -41,7 +61,18 @@ class TimeSelectorView: UIPickerView, V8HorizontalPickerViewDelegate, V8Horizont
     }
     
     func horizontalPickerView(picker: V8HorizontalPickerView!, didSelectElementAtIndex index: Int) {
+        let item = self.titleArray[index]
         
+//        let result: String = (item as NSString).substringToIndex(2)
+//        let minutes = result.toInt()
+
+        let index: String.Index = advance(item.startIndex, 2)
+        let result = item.substringToIndex(index)
+        let minutes = result.toInt()
+        println("\(minutes)")
+        if self.delegate != nil {
+            self.delegate?.timeSelectorView(self, didSelectTime: minutes!)
+        }
     }
     // MARK: - V8HorizontalPickerViewDataSource
 

@@ -40,7 +40,6 @@
 		6497FE561A75A77800174307 /* Work.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497FE551A75A77800174307 /* Work.swift */; };
 		64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */; };
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
-		64B67F131A8063C0002127BC /* TimeSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64B67F121A8063C0002127BC /* TimeSelectorView.xib */; };
 		64B67F151A8063D0002127BC /* TimeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B67F141A8063D0002127BC /* TimeSelectorView.swift */; };
 		64BD3D0B1A7B247000941B07 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BD3D0A1A7B247000941B07 /* SettingViewController.swift */; };
 		64C99A581A7902A100F1D796 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C99A571A7902A100F1D796 /* Launch Screen.xib */; };
@@ -106,7 +105,6 @@
 		6497FE581A75A91600174307 /* WorkAndRest-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WorkAndRest-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		64B67F121A8063C0002127BC /* TimeSelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeSelectorView.xib; sourceTree = "<group>"; };
 		64B67F141A8063D0002127BC /* TimeSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSelectorView.swift; sourceTree = "<group>"; };
 		64BD3D0A1A7B247000941B07 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		64C99A571A7902A100F1D796 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 			children = (
 				644554631A7CADD100F48164 /* TaskListItemCell.xib */,
 				649308521A7AE22D00480677 /* TaskListItemCell.swift */,
-				64B67F121A8063C0002127BC /* TimeSelectorView.xib */,
 				64B67F141A8063D0002127BC /* TimeSelectorView.swift */,
 			);
 			path = Views;
@@ -420,7 +417,6 @@
 				644554641A7CADD100F48164 /* TaskListItemCell.xib in Resources */,
 				645FDE131A7D9BA9002EC8EF /* SecondBeep.wav in Resources */,
 				645FDE121A7D9BA9002EC8EF /* sec.wav in Resources */,
-				64B67F131A8063C0002127BC /* TimeSelectorView.xib in Resources */,
 				6434828518C5D344009BF110 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

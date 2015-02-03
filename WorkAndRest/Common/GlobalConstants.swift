@@ -18,4 +18,6 @@ class GlobalConstants {
     class var kBOOL_SECOND_SOUND: String { return "SecondSound" }
     class var kBOOL_KEEP_LIGHT: String { return "KeepLight" }
     class var k_SECONDS: String { return "Seconds" }
+    
+    class var DEFAULT_MINUTES: Int { return 25 }
 }

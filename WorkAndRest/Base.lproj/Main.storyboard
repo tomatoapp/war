@@ -120,18 +120,28 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVb-yt-thQ" customClass="TimeSelectorView" customModule="WorkAndRest" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="257" width="320" height="70"/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.74117647060000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="0eQ-8R-uq3"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Vbh-c0-SMz" firstAttribute="top" secondItem="prc-Lp-Xgz" secondAttribute="bottom" constant="165" id="6DB-gd-Bio"/>
+                            <constraint firstItem="dVb-yt-thQ" firstAttribute="trailing" secondItem="A1W-Vw-dDY" secondAttribute="trailingMargin" constant="16" id="6V2-LC-pcu"/>
                             <constraint firstAttribute="centerX" secondItem="Vbh-c0-SMz" secondAttribute="centerX" id="7UR-Cu-sOf"/>
                             <constraint firstAttribute="centerX" secondItem="nr4-Se-J1E" secondAttribute="centerX" constant="0.5" id="8IJ-IP-WNk"/>
                             <constraint firstAttribute="centerX" secondItem="nhL-qJ-3Kl" secondAttribute="centerX" constant="0.5" id="Bh1-1Y-hE2"/>
+                            <constraint firstItem="dVb-yt-thQ" firstAttribute="top" secondItem="prc-Lp-Xgz" secondAttribute="bottom" constant="61" id="HUe-OZ-n5Q"/>
                             <constraint firstAttribute="centerX" secondItem="prc-Lp-Xgz" secondAttribute="centerX" id="Ocr-rb-IQp"/>
                             <constraint firstAttribute="bottomMargin" secondItem="GC9-IE-2wq" secondAttribute="bottom" constant="45" id="UlV-Vd-OtV"/>
                             <constraint firstItem="nhL-qJ-3Kl" firstAttribute="width" secondItem="Vbh-c0-SMz" secondAttribute="width" constant="50" id="XcU-Kq-FUM"/>
                             <constraint firstAttribute="bottomMargin" secondItem="EH0-bE-GLF" secondAttribute="bottom" constant="45" id="a9K-V0-IZ6"/>
                             <constraint firstItem="GC9-IE-2wq" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="5" id="av6-Gw-Gac"/>
+                            <constraint firstItem="dVb-yt-thQ" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-16" id="brg-N3-9OB"/>
                             <constraint firstItem="EH0-bE-GLF" firstAttribute="trailing" secondItem="A1W-Vw-dDY" secondAttribute="trailingMargin" constant="-5" id="kTa-JZ-iQc"/>
                             <constraint firstItem="nhL-qJ-3Kl" firstAttribute="top" secondItem="prc-Lp-Xgz" secondAttribute="bottom" constant="165" id="veg-0V-77d"/>
                             <constraint firstItem="nr4-Se-J1E" firstAttribute="top" secondItem="mpJ-or-Bcp" secondAttribute="bottom" constant="25" id="xP8-P5-dRt"/>
@@ -144,6 +154,7 @@
                         <outlet property="editTaskTitleButton" destination="nhL-qJ-3Kl" id="ei0-Ii-loX"/>
                         <outlet property="startLaterButton" destination="EH0-bE-GLF" id="r1E-NK-DB3"/>
                         <outlet property="startNowButton" destination="GC9-IE-2wq" id="uyW-dF-KKc"/>
+                        <outlet property="timeSelector" destination="dVb-yt-thQ" id="EZS-wW-XRq"/>
                         <outlet property="titleLabel" destination="Vbh-c0-SMz" id="S7K-8h-aHX"/>
                     </connections>
                 </viewController>

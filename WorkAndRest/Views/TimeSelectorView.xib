@@ -11,8 +11,16 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="69.5"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BPe-vw-lho" customClass="V8HorizontalPickerView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BPe-vw-lho" customClass="V8HorizontalPickerView">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="69.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8D2-JO-vti">
+                            <rect key="frame" x="98" y="24" width="42" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
                     <color key="backgroundColor" red="0.73333333333333328" green="0.18431372549019609" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="iN0-l3-epB" id="c1v-Y7-47Z"/>
@@ -21,9 +29,16 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="BPe-vw-lho" secondAttribute="bottom" id="EWc-qa-KKH"/>
+                <constraint firstAttribute="trailing" secondItem="BPe-vw-lho" secondAttribute="trailing" id="M3g-Fc-bSQ"/>
+                <constraint firstItem="BPe-vw-lho" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="N1q-sC-CsS"/>
+                <constraint firstItem="BPe-vw-lho" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dQP-qe-evd"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="label" destination="8D2-JO-vti" id="TLJ-ao-TQy"/>
                 <outlet property="pickerView" destination="BPe-vw-lho" id="EgI-iL-K2a"/>
             </connections>
             <point key="canvasLocation" x="261" y="113.75"/>
