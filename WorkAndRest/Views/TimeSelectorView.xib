@@ -8,12 +8,25 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TimeSelectorView" customModule="WorkAndRest" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="69.5"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BPe-vw-lho" customClass="V8HorizontalPickerView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="69.5"/>
+                    <color key="backgroundColor" red="0.73333333333333328" green="0.18431372549019609" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="c1v-Y7-47Z"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="dtp-xj-KsR"/>
+                    </connections>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="261" y="127"/>
+            <connections>
+                <outlet property="pickerView" destination="BPe-vw-lho" id="EgI-iL-K2a"/>
+            </connections>
+            <point key="canvasLocation" x="261" y="113.75"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
