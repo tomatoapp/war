@@ -23,12 +23,12 @@ class TimeSelectorView: UIView, V8HorizontalPickerViewDelegate, V8HorizontalPick
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //self.setup()
+        self.setup()
     }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.setup()
+        //self.setup()
     }
     
     // MARK: - Methods
@@ -38,7 +38,7 @@ class TimeSelectorView: UIView, V8HorizontalPickerViewDelegate, V8HorizontalPick
 
         self.pickerView = V8HorizontalPickerView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
         self.pickerView!.backgroundColor = UIColor(red: 187.0/255.0, green: 47.0/255.0, blue: 68.0/255.0, alpha: 1.0)
-        self.pickerView!.selectionPoint = CGPointMake(self.frame.size.width / 2, 0)
+        self.pickerView!.selectionPoint = CGPointMake(UIScreen.mainScreen().bounds.size.width / 2, 0)
         self.pickerView!.selectionIndicatorView = UIImageView(image: UIImage(named: "indicator"))
         self.pickerView!.delegate = self
         self.pickerView!.dataSource = self
@@ -48,6 +48,14 @@ class TimeSelectorView: UIView, V8HorizontalPickerViewDelegate, V8HorizontalPick
         }
         self.addSubview(pickerView!)
 
+        pickerView!.mas_makeConstraints { make in
+            make.width.equalTo()(self.mas_width)
+            make.height.equalTo()(self.mas_height)
+            make.centerX.equalTo()(self.mas_centerX)
+            make.centerY.equalTo()(self.mas_centerY)
+            
+            return ()
+        }
     }
     
     // MARK: - V8HorizontalPickerViewDelegate
@@ -57,7 +65,7 @@ class TimeSelectorView: UIView, V8HorizontalPickerViewDelegate, V8HorizontalPick
     }
     
     func horizontalPickerView(picker: V8HorizontalPickerView!, widthForElementAtIndex index: Int) -> Int {
-        return Int(49.0 + (self.frame.size.width - 49.0 * 3) / 2 - 10.0)
+        return Int(49.0 + (UIScreen.mainScreen().bounds.size.width - 49.0 * 3) / 2 - 10.0)
     }
     
     func horizontalPickerView(picker: V8HorizontalPickerView!, didSelectElementAtIndex index: Int) {
