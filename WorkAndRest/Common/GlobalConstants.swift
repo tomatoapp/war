@@ -10,7 +10,7 @@ import UIKit
 
 class GlobalConstants {
     class var k_APPID: String {return "868078759" }
-    class var k_HASRAN: String { return "HasRan" }
+    class var k_HASRAN_BEFORE: String { return "HasRanBefore" } // Not the first launch
 
     class var kBOOL_ISWORKING: String { return "isWorking" }
     class var k_FROZEN_DATE: String { return "FrozenDate" }

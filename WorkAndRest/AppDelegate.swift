@@ -47,84 +47,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Application Status
     
     func applicationWillResignActive(application: UIApplication) {
-        
-//        if self.currentModelViewController.isKindOfClass(WorkWithItemViewController) {
-//            let isWorking = (self.currentModelViewController as WorkWithItemViewController).taskRunner.isWorking
-//            let secondsLeft = (self.currentModelViewController as WorkWithItemViewController).seconds
-//            
-//            NSUserDefaults.standardUserDefaults().setBool(isWorking, forKey: GlobalConstants.kBOOL_ISWORKING)
-//            if isWorking {
-//                NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: GlobalConstants.k_NOWDATE)
-//                NSUserDefaults.standardUserDefaults().setInteger(secondsLeft, forKey: GlobalConstants.k_SECONDS_LEFT)
-//                self.addNotification()
-//            }
-//        }
-        
         var isWorking = false
         if self.taskListViewController.runningTaskRunner != nil {
             isWorking = true
-            //TaskManager.freezeTask(self.taskListViewController.runningTask)
-//            let secondsLeft = (self.currentModelViewController as WorkWithItemViewController).seconds
-//            let secondsLeft = self.taskListViewController.
-//            NSUserDefaults.standardUserDefaults().setInteger(secondsLeft, forKey: GlobalConstants.k_SECONDS_LEFT)
-//            NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: GlobalConstants.k_NOWDATE)
             println("isWorking! resign active")
             self.addNotificationWithSeconds(self.taskListViewController.runningTaskRunner!.seconds)
             self.taskListViewController.freezeTaskManager(self.taskListViewController.runningTaskRunner)
 
         }
         NSUserDefaults.standardUserDefaults().setBool(isWorking, forKey: GlobalConstants.kBOOL_ISWORKING)
-
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        
-//        if self.currentModelViewController.isKindOfClass(WorkWithItemViewController) {
-//            if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_ISWORKING) {
-//                let controller = self.currentModelViewController as WorkWithItemViewController
-//                let dateWhenResignActive: NSDate = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_NOWDATE) as NSDate
-//                let secondsLeftWhenResignActive = NSUserDefaults.standardUserDefaults().integerForKey(GlobalConstants.k_SECONDS_LEFT)
-//                let passedTimeInterval = dateWhenResignActive.timeIntervalSinceNow
-//                
-//                if secondsLeftWhenResignActive + Int(passedTimeInterval) > 0 {
-//                    controller.seconds = secondsLeftWhenResignActive + Int(passedTimeInterval)
-//                } else {
-//                    controller.taskRunner.complete()
-//                }
-//            }
-//        }
-        
         if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_ISWORKING) {
-            NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_ISWORKING)
-//            let dateWhenResignActive: NSDate = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_NOWDATE) as NSDate
-//            let secondsLeftWhenResignActive = NSUserDefaults.standardUserDefaults().integerForKey(GlobalConstants.k_SECONDS_LEFT)
-//            let passedTimeInterval = dateWhenResignActive.timeIntervalSinceNow
-//            if secondsLeftWhenResignActive + Int(passedTimeInterval) > 0 {
-//                self.taskListViewController.sec = secondsLeftWhenResignActive + Int(passedTimeInterval)
-//            } else {
-//                controller.taskRunner.complete()
-//            }
+            UIApplication.sharedApplication().cancelAllLocalNotifications()
             println("isWorking! become active")
+            println("cancelAllLocalNotifications")
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_ISWORKING)
             self.taskListViewController.activeFrozenTaskManager()
-            //TaskManager.activeFrozenTask()
         }
     }
     
-    // MARK: - Private Methods
+    // MARK: - Methods
     
     func firstRun() {
-        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.k_HASRAN) {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.k_HASRAN)
-            
+        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.k_HASRAN_BEFORE) {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.k_HASRAN_BEFORE)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SECOND_SOUND)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_KEEP_LIGHT)
-            NSUserDefaults.standardUserDefaults().setInteger(25, forKey: GlobalConstants.k_SECONDS)
-            
-            self.createSampleTask()
+            DBOperate.insertTask(self.createSampleTask())
         }
     }
-    
 
     func addNotificationWithSeconds(seconds: Int) {
         let notification = UILocalNotification()
@@ -142,6 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notification.fireDate = fireDate
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        println("addNotificationWithSeconds")
     }
     
     func initRater() {
@@ -154,10 +108,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Appirater.appLaunched(true)
     }
     
-    func createSampleTask() {
+    func createSampleTask() -> Task {
+        println("createSampleTask")
         let sampleTask = Task()
         sampleTask.title = NSLocalizedString("Task Sample", comment: "")
         sampleTask.minutes = GlobalConstants.DEFAULT_MINUTES
-        DBOperate .insertTask(sampleTask)
+        return sampleTask
     }
 }
