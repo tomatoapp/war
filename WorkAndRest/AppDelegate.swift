@@ -69,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            NSUserDefaults.standardUserDefaults().setInteger(secondsLeft, forKey: GlobalConstants.k_SECONDS_LEFT)
 //            NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: GlobalConstants.k_NOWDATE)
             println("isWorking! resign active")
+            self.addNotificationWithSeconds(self.taskListViewController.runningTaskRunner!.seconds)
             self.taskListViewController.freezeTaskManager(self.taskListViewController.runningTaskRunner)
 
         }
@@ -125,11 +126,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 
-    func addNotification() {
+    func addNotificationWithSeconds(seconds: Int) {
         let notification = UILocalNotification()
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.alertBody = NSLocalizedString("Time is up!", comment:"")
-        let secondsLeftTimeInterval = NSTimeInterval((self.currentModelViewController as WorkWithItemViewController).seconds)
+        let secondsLeftTimeInterval = NSTimeInterval(seconds)
         
         println("\(secondsLeftTimeInterval)")
         let fireDate = NSDate(timeIntervalSinceNow: secondsLeftTimeInterval)
