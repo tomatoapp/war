@@ -27,10 +27,10 @@ class TaskRunner: NSObject {
         super.init()
     }
     
-    convenience init(task: Task!, seconds:Int) {
+    convenience init(task: Task!) {
         self.init()
         self.taskItem = task
-        self.seconds = seconds
+        self.seconds = task.minutes * 60
     }
     
     // MARK: - Methods

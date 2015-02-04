@@ -12,11 +12,13 @@ enum HandleType: Int {
     case None, AddOrEdit, Start
 }
 
-class TaskListViewController: UITableViewController,ItemDetailViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate {
+class TaskListViewController: UITableViewController,ItemDetailViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, TaskRunnerManagerDelegate {
 
     var allTasks = [Task]()
-    var runningTask: Task?
+    //var runningTask: Task?
+    var runningTaskRunner: TaskRunner?
     var handleType = HandleType.None
+    var taskRunnerManager: TaskRunnerManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,9 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         line.frame = CGRectMake(19.5, 140, 1, self.tableView.frame.size.height-140)
         //self.tableView.addSubview(line)
         self.view.insertSubview(line, atIndex: 0)
+        
+        self.taskRunnerManager = TaskRunnerManager()
+        self.taskRunnerManager!.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,12 +68,13 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         cell.taskItem = (task.copy() as Task)
         cell.refresh()
         
-        if runningTask == nil {
+//        if runningTask == nil {
+        if runningTaskRunner == nil {
             cell.reset()
         } else {
-            println("runningTask: \(runningTask!.taskId) + \(runningTask!.title)")
+            println("runningTask: \(self.runningTaskRunner!.taskItem.taskId) + \(self.runningTaskRunner!.taskItem.title)")
             println("task: \(task.taskId) + \(task.title)")
-            if task.taskId == runningTask!.taskId {
+            if task.taskId == self.runningTaskRunner!.taskItem.taskId {
                 cell.start()
             } else {
                 cell.disable()
@@ -95,7 +101,8 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         let item = allTasks[indexPath.row]
-        if runningTask == nil  {
+//        if runningTask == nil  {
+        if self.runningTaskRunner == nil  {
             return UITableViewCellEditingStyle.Delete
         }
         return UITableViewCellEditingStyle.None
@@ -146,7 +153,8 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         if DBOperate.insertTask(item) {
             NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
             if runNow {
-                self.runningTask = item
+//                self.runningTask = item
+                self.runningTaskRunner = TaskRunner(task: item)
             }
         }
     }
@@ -154,18 +162,24 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     // MARK: - TaskListItemCellDelegate
     
     func started(sender: TaskListItemCell!) {
-        if self.runningTask != nil { // some task is running, can not start another task!
+//        if self.runningTask != nil { // some task is running, can not start another task!
+//            return
+//        }
+
+        if self.runningTaskRunner != nil {
             return
         }
         self.handleType = HandleType.Start
         sender.taskItem?.lastUpdateTime = NSDate()
-        self.runningTask = sender.taskItem
+//        self.runningTask = sender.taskItem
+        self.runningTaskRunner = sender.taskRunner
         DBOperate.updateTask(sender.taskItem!)
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: sender.taskItem, repeats: false)
     }
     
     func completed(sender: TaskListItemCell!) {
-        self.runningTask = nil
+//        self.runningTask = nil
+        self.runningTaskRunner = nil
         self.reloadTableViewWithTimeInterval(0.5)
     }
     
@@ -173,7 +187,18 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         
     }
     
-    // MARK: - Private Methods
+    // MARK: - TaskRunnerManagerDelegate
+    
+    func taskRunnerMangerWillFreezeTask(taskManager: TaskRunnerManager!) -> TaskRunner {
+        return self.runningTaskRunner!
+    }
+    
+    func taskRunnerManger(taskRunnerManager: TaskRunnerManager!, didActiveFrozenTaskRunner taskRunner: TaskRunner!) {
+//        self.runningTask = task
+        self.runningTaskRunner = taskRunner
+    }
+    
+    // MARK: - Methods
     
     func loadAllTasks() {
         var result = DBOperate.loadAllTasks()
@@ -275,5 +300,13 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     
     func reload() {
         self.tableView.reloadData()
+    }
+    
+    func freezeTaskManager(taskRunner: TaskRunner!) {
+        self.taskRunnerManager!.freezeTaskManager(taskRunner)
+    }
+    
+    func activeFrozenTaskManager() {
+        self.taskRunnerManager!.activeFrozenTaskManager()
     }
 }

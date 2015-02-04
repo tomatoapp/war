@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
         
         var isWorking = false
-        if self.taskListViewController.runningTask != nil {
+        if self.taskListViewController.runningTaskRunner != nil {
             isWorking = true
             //TaskManager.freezeTask(self.taskListViewController.runningTask)
 //            let secondsLeft = (self.currentModelViewController as WorkWithItemViewController).seconds
@@ -69,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            NSUserDefaults.standardUserDefaults().setInteger(secondsLeft, forKey: GlobalConstants.k_SECONDS_LEFT)
 //            NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: GlobalConstants.k_NOWDATE)
             println("isWorking! resign active")
+            self.taskListViewController.freezeTaskManager(self.taskListViewController.runningTaskRunner)
 
         }
         NSUserDefaults.standardUserDefaults().setBool(isWorking, forKey: GlobalConstants.kBOOL_ISWORKING)
@@ -94,6 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
         
         if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_ISWORKING) {
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_ISWORKING)
 //            let dateWhenResignActive: NSDate = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_NOWDATE) as NSDate
 //            let secondsLeftWhenResignActive = NSUserDefaults.standardUserDefaults().integerForKey(GlobalConstants.k_SECONDS_LEFT)
 //            let passedTimeInterval = dateWhenResignActive.timeIntervalSinceNow
@@ -103,6 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                controller.taskRunner.complete()
 //            }
             println("isWorking! become active")
+            self.taskListViewController.activeFrozenTaskManager()
             //TaskManager.activeFrozenTask()
         }
     }

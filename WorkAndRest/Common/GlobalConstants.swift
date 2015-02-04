@@ -13,7 +13,7 @@ class GlobalConstants {
     class var k_HASRAN: String { return "HasRan" }
 
     class var kBOOL_ISWORKING: String { return "isWorking" }
-    class var k_NOWDATE: String { return "NowDate" }
+    class var k_FROZEN_DATE: String { return "FrozenDate" }
     class var k_SECONDS_LEFT: String { return "SecondsLeft" }
     class var kBOOL_SECOND_SOUND: String { return "SecondSound" }
     class var kBOOL_KEEP_LIGHT: String { return "KeepLight" }

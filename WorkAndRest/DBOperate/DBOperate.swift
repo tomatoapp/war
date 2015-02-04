@@ -134,7 +134,7 @@ import UIKit
             let tempTask = Task()
             tempTask.taskId = rs.stringForColumn("task_id").toInt()!
             tempTask.title = rs.stringForColumn("title")
-            
+            tempTask.minutes = rs.stringForColumn("minutes").toInt()!
             tempTask.lastUpdateTime = rs.dateForColumn("lastUpdateTime")
             if tempTask.lastUpdateTime.description.hasPrefix("1970") {
                 let formatter = NSDateFormatter()

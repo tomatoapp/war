@@ -34,8 +34,8 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
         super.viewDidLoad()
         self.title = self.taskItem.title
 
-        self.seconds = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.integerValue * 60
-        self.taskRunner = TaskRunner(task: self.taskItem, seconds:self.seconds)
+        //self.seconds = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.integerValue * 60
+        self.taskRunner = TaskRunner(task: self.taskItem)
         self.taskRunner.delegate = self
         
         self.isPlaySecondSound = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.kBOOL_SECOND_SOUND)!.boolValue

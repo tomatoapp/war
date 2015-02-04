@@ -44,6 +44,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     @IBAction func startButtonClicked(sender: AnyObject) {
         
         if self.delegate != nil {
+            self.start()
             self.delegate!.started(self)
         }
     }
@@ -66,7 +67,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         println("start() - \(taskItem?.title)" )
         //self.seconds = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.integerValue * 60 / 15
         self.seconds = self.taskItem!.minutes * 60
-        taskRunner = TaskRunner(task: self.taskItem, seconds: self.seconds)
+        taskRunner = TaskRunner(task: self.taskItem)
         taskRunner?.delegate = self
         taskRunner?.start()
         self.timerLabel.text = self.getTimerString()
