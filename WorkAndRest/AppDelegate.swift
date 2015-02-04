@@ -21,20 +21,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    var rootViewController: UITabBarController {
+    var rootViewController: UITabBarController? {
         get {
             let navigationController = self.window?.rootViewController as UINavigationController
-            let rootViewController = navigationController.topViewController as UITabBarController
-            return rootViewController
+            if navigationController.topViewController.isKindOfClass(UITabBarController) {
+                let rootViewController = navigationController.topViewController as UITabBarController
+                return rootViewController
+            }
+            return nil
         }
     }
     
-    var taskListViewController: TaskListViewController {
+    var taskListViewController: TaskListViewController? {
         get {
-            let taskListViewController = self.rootViewController.viewControllers!.first as TaskListViewController
-            return taskListViewController
+            if self.rootViewController != nil {
+                let taskListViewController = self.rootViewController!.viewControllers!.first as TaskListViewController
+                return taskListViewController
+            }
+            return nil
         }
     }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         println(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String)
         DBOperate.db_init()
@@ -47,26 +54,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Application Status
     
     func applicationWillResignActive(application: UIApplication) {
+        println("applicationWillResignActive")
+ 
+    }
+    
+    func applicationDidEnterBackground(application: UIApplication) {
+        println("applicationDidEnterBackground")
         var isWorking = false
-        if self.taskListViewController.runningTaskRunner != nil {
+        
+        if self.taskListViewController != nil && self.taskListViewController!.runningTaskRunner != nil {
             isWorking = true
             println("isWorking! resign active")
-            self.addNotificationWithSeconds(self.taskListViewController.runningTaskRunner!.seconds)
-            self.taskListViewController.freezeTaskManager(self.taskListViewController.runningTaskRunner)
-
+            self.addNotificationWithSeconds(self.taskListViewController!.runningTaskRunner!.seconds)
+            self.taskListViewController!.freezeTaskManager(self.taskListViewController!.runningTaskRunner)
         }
         NSUserDefaults.standardUserDefaults().setBool(isWorking, forKey: GlobalConstants.kBOOL_ISWORKING)
     }
     
+    func applicationWillEnterForeground(application: UIApplication) {
+        println("applicationWillEnterForeground")
+
+        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    }
+    
     func applicationDidBecomeActive(application: UIApplication) {
+        println("applicationDidBecomeActive")
+        
         if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_ISWORKING) {
             UIApplication.sharedApplication().cancelAllLocalNotifications()
-            println("isWorking! become active")
             println("cancelAllLocalNotifications")
+            
+            println("isWorking! become active")
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_ISWORKING)
-            self.taskListViewController.activeFrozenTaskManager()
+            self.taskListViewController!.activeFrozenTaskManager()
         }
     }
+    
+    func applicationWillTerminate(application: UIApplication) {
+        println("applicationWillTerminate")
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
     
     // MARK: - Methods
     
@@ -75,6 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.k_HASRAN_BEFORE)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SECOND_SOUND)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_KEEP_LIGHT)
+            NSUserDefaults.standardUserDefaults().setInteger(25, forKey: GlobalConstants.k_SECONDS)
             DBOperate.insertTask(self.createSampleTask())
         }
     }

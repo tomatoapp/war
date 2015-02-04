@@ -33,7 +33,7 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController!.interactivePopGestureRecognizer.enabled = false
         self.timeSelector.delegate = self
         self.titleLabel.hidden = true
     }

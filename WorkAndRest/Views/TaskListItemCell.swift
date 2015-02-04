@@ -134,7 +134,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     // MARK: - TaskRunnerDelegate
     
     func tick(sender: TaskRunner?) {
-        println("tick" + "\(sender?.taskItem.title)")
+        println("tick" + "\(sender!.hashValue)" + "\(sender?.taskItem.title)")
         self.seconds = sender!.seconds
         self.timerLabel.text = self.getTimerString()
     }
