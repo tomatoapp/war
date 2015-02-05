@@ -20,6 +20,7 @@ class TaskRunnerManager: NSObject {
     func freezeTaskManager(taskRunner: TaskRunner!) {
         if self.delegate != nil {
             self.taskRunner = self.delegate!.taskRunnerMangerWillFreezeTask(self)
+            self.taskRunner!.pause()
             NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: GlobalConstants.k_FROZEN_DATE)
         }
     }
@@ -27,6 +28,7 @@ class TaskRunnerManager: NSObject {
     func activeFrozenTaskManager() {
         
         if self.delegate != nil && self.taskRunner != nil{
+            
             let frozenDate = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_FROZEN_DATE) as NSDate
             let elapsedSeconds = Int(NSDate().timeIntervalSinceDate(frozenDate))
             if elapsedSeconds >= self.taskRunner!.seconds {
@@ -34,6 +36,7 @@ class TaskRunnerManager: NSObject {
             } else {
                 self.taskRunner!.seconds -= elapsedSeconds
             }
+            self.taskRunner!.resume()
             self.delegate!.taskRunnerManger(self, didActiveFrozenTaskRunner: self.taskRunner)
         }
     }

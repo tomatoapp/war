@@ -19,5 +19,5 @@ class GlobalConstants {
     class var kBOOL_KEEP_LIGHT: String { return "KeepLight" }
     class var k_SECONDS: String { return "Seconds" }
     
-    class var DEFAULT_MINUTES: Int { return 25 }
+    class var DEFAULT_MINUTES: Int { return 1 }
 }

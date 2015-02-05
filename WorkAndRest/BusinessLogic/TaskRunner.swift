@@ -21,6 +21,7 @@ class TaskRunner: NSObject {
     var seconds = 0
 
     var isWorking = false
+    var isPause = false
     var timer: NSTimer!
     
     override init() {
@@ -50,10 +51,12 @@ class TaskRunner: NSObject {
     }
     
     func tick() {
-        if self.seconds-- > 0 {
-            self.delegate?.tick(self)
-        } else {
-            self.complete()
+        if !self.isPause {
+            if self.seconds-- > 0 {
+                self.delegate?.tick(self)
+            } else {
+                self.complete()
+            }
         }
     }
     
@@ -62,12 +65,19 @@ class TaskRunner: NSObject {
         self.delegate?.completed(self)
     }
     
-    func cancelTimer() {
+    func pause() {
+        self.isPause = true
+    }
+    
+    func resume() {
+        self.isPause = false
+    }
+    func cancel() {
         self.timer.invalidate()
     }
     
     func reset() {
-        self.cancelTimer()
+        self.cancel()
         self.isWorking = false
     }
 }
