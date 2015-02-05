@@ -46,22 +46,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_task_tomato_icon" translatesAutoresizingMaskIntoConstraints="NO" id="nr4-Se-J1E">
-                                <rect key="frame" x="128" y="89" width="63" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="63" id="Zla-kn-H1P"/>
-                                    <constraint firstAttribute="height" constant="55" id="kTB-HZ-TMr"/>
-                                </constraints>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starting_a_timer" translatesAutoresizingMaskIntoConstraints="NO" id="prc-Lp-Xgz">
-                                <rect key="frame" x="83" y="174" width="154" height="22"/>
+                                <rect key="frame" x="83" y="154" width="154" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="154" id="1o4-VH-aRK"/>
                                     <constraint firstAttribute="height" constant="22" id="9Xe-u1-mYM"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GC9-IE-2wq">
-                                <rect key="frame" x="21" y="451" width="72" height="72"/>
+                                <rect key="frame" x="16" y="481" width="72" height="72"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="72" id="B3u-TE-3xj"/>
                                     <constraint firstAttribute="height" constant="72" id="Vwq-vA-kiO"/>
@@ -80,7 +73,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EH0-bE-GLF">
-                                <rect key="frame" x="227" y="451" width="72" height="72"/>
+                                <rect key="frame" x="232" y="481" width="72" height="72"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="72" id="7Ng-Lg-Hn6"/>
                                     <constraint firstAttribute="height" constant="72" id="bDE-vn-Dwv"/>
@@ -99,7 +92,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhL-qJ-3Kl">
-                                <rect key="frame" x="42" y="361" width="235" height="22"/>
+                                <rect key="frame" x="42" y="306" width="235" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="4yA-Xm-Mbv"/>
                                     <constraint firstAttribute="width" constant="235" id="kc6-TU-tXR"/>
@@ -112,7 +105,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbh-c0-SMz">
-                                <rect key="frame" x="68" y="361" width="185" height="36"/>
+                                <rect key="frame" x="68" y="306" width="185" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="giC-4C-u4X"/>
                                 </constraints>
@@ -121,31 +114,38 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVb-yt-thQ" customClass="TimeSelectorView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="257" width="320" height="70"/>
+                                <rect key="frame" x="0.0" y="207" width="320" height="70"/>
                                 <color key="backgroundColor" red="0.21176470589999999" green="0.74117647060000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="0eQ-8R-uq3"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_task_tomato_icon" translatesAutoresizingMaskIntoConstraints="NO" id="nr4-Se-J1E">
+                                <rect key="frame" x="132.5" y="84" width="55" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="Zla-kn-H1P"/>
+                                    <constraint firstAttribute="height" constant="48" id="kTB-HZ-TMr"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Vbh-c0-SMz" firstAttribute="top" secondItem="prc-Lp-Xgz" secondAttribute="bottom" constant="165" id="6DB-gd-Bio"/>
+                            <constraint firstItem="Vbh-c0-SMz" firstAttribute="top" secondItem="prc-Lp-Xgz" secondAttribute="bottom" constant="130" id="6DB-gd-Bio"/>
                             <constraint firstItem="dVb-yt-thQ" firstAttribute="trailing" secondItem="A1W-Vw-dDY" secondAttribute="trailingMargin" constant="16" id="6V2-LC-pcu"/>
                             <constraint firstAttribute="centerX" secondItem="Vbh-c0-SMz" secondAttribute="centerX" id="7UR-Cu-sOf"/>
-                            <constraint firstAttribute="centerX" secondItem="nr4-Se-J1E" secondAttribute="centerX" constant="0.5" id="8IJ-IP-WNk"/>
+                            <constraint firstAttribute="centerX" secondItem="nr4-Se-J1E" secondAttribute="centerX" id="8IJ-IP-WNk"/>
                             <constraint firstAttribute="centerX" secondItem="nhL-qJ-3Kl" secondAttribute="centerX" constant="0.5" id="Bh1-1Y-hE2"/>
-                            <constraint firstItem="dVb-yt-thQ" firstAttribute="top" secondItem="prc-Lp-Xgz" secondAttribute="bottom" constant="61" id="HUe-OZ-n5Q"/>
+                            <constraint firstItem="dVb-yt-thQ" firstAttribute="top" secondItem="prc-Lp-Xgz" secondAttribute="bottom" constant="31" id="HUe-OZ-n5Q"/>
                             <constraint firstAttribute="centerX" secondItem="prc-Lp-Xgz" secondAttribute="centerX" id="Ocr-rb-IQp"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="GC9-IE-2wq" secondAttribute="bottom" constant="45" id="UlV-Vd-OtV"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="GC9-IE-2wq" secondAttribute="bottom" constant="15" id="UlV-Vd-OtV"/>
                             <constraint firstItem="nhL-qJ-3Kl" firstAttribute="width" secondItem="Vbh-c0-SMz" secondAttribute="width" constant="50" id="XcU-Kq-FUM"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="EH0-bE-GLF" secondAttribute="bottom" constant="45" id="a9K-V0-IZ6"/>
-                            <constraint firstItem="GC9-IE-2wq" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="5" id="av6-Gw-Gac"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="EH0-bE-GLF" secondAttribute="bottom" constant="15" id="a9K-V0-IZ6"/>
+                            <constraint firstItem="GC9-IE-2wq" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" id="av6-Gw-Gac"/>
                             <constraint firstItem="dVb-yt-thQ" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-16" id="brg-N3-9OB"/>
-                            <constraint firstItem="EH0-bE-GLF" firstAttribute="trailing" secondItem="A1W-Vw-dDY" secondAttribute="trailingMargin" constant="-5" id="kTa-JZ-iQc"/>
-                            <constraint firstItem="nhL-qJ-3Kl" firstAttribute="top" secondItem="prc-Lp-Xgz" secondAttribute="bottom" constant="165" id="veg-0V-77d"/>
-                            <constraint firstItem="nr4-Se-J1E" firstAttribute="top" secondItem="mpJ-or-Bcp" secondAttribute="bottom" constant="25" id="xP8-P5-dRt"/>
-                            <constraint firstItem="prc-Lp-Xgz" firstAttribute="top" secondItem="nr4-Se-J1E" secondAttribute="bottom" constant="30" id="zsl-fG-Ici"/>
+                            <constraint firstItem="EH0-bE-GLF" firstAttribute="trailing" secondItem="A1W-Vw-dDY" secondAttribute="trailingMargin" id="kTa-JZ-iQc"/>
+                            <constraint firstItem="nhL-qJ-3Kl" firstAttribute="top" secondItem="prc-Lp-Xgz" secondAttribute="bottom" constant="130" id="veg-0V-77d"/>
+                            <constraint firstItem="nr4-Se-J1E" firstAttribute="top" secondItem="mpJ-or-Bcp" secondAttribute="bottom" constant="20" id="xP8-P5-dRt"/>
+                            <constraint firstItem="prc-Lp-Xgz" firstAttribute="top" secondItem="nr4-Se-J1E" secondAttribute="bottom" constant="22" id="zsl-fG-Ici"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uOa-7G-T5S"/>
@@ -612,7 +612,7 @@
     </scenes>
     <resources>
         <image name="edit_task_title" width="235" height="22"/>
-        <image name="new_task_tomato_icon" width="63" height="55"/>
+        <image name="new_task_tomato_icon" width="55" height="48"/>
         <image name="start_later" width="72" height="72"/>
         <image name="start_now" width="72" height="72"/>
         <image name="starting_a_timer" width="154" height="22"/>
