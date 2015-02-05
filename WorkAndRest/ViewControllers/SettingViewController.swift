@@ -115,14 +115,17 @@ class SettingViewController: BaseTableViewController, UIAlertViewDelegate, MFMai
         self.secondsValue = Int((sender as UISlider).value)
         self.dataLabel.text = String(format: "00:%02d:00", self.secondsValue)
         NSUserDefaults.standardUserDefaults().setValue(self.secondsValue, forKey: GlobalConstants.k_SECONDS)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     @IBAction func secondSoundSwitchChanged(sender: AnyObject) {
         NSUserDefaults.standardUserDefaults().setObject(Int(self.switchControl.on), forKey: GlobalConstants.kBOOL_SECOND_SOUND)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     @IBAction func keepScreenLightSwitchChanged(sender: AnyObject) {
         NSUserDefaults.standardUserDefaults().setObject(Int(self.lightswitchControl.on), forKey: GlobalConstants.kBOOL_KEEP_LIGHT)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 
 }

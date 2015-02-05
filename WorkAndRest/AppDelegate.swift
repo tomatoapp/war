@@ -48,6 +48,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.firstRun()
         self.initRater()
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil))
+        
+        CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
+            nil,
+            LockNotifierCallback.notifierProc(),
+            "com.apple.springboard.lockcomplete",
+            nil,
+            CFNotificationSuspensionBehavior.DeliverImmediately)
+        
         return true
     }
     
@@ -60,6 +68,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidEnterBackground(application: UIApplication) {
         println("applicationDidEnterBackground")
+        
+        let state = UIApplication.sharedApplication().applicationState
+        switch state {
+        case UIApplicationState.Active:
+            println("Active")
+            break
+            
+        case UIApplicationState.Background:
+            if NSUserDefaults.standardUserDefaults().boolForKey("kDisplayStatusLocked") {
+                println("Sent to background by locking screen")
+            } else {
+                println("Sent to background by home button/switching to other app")
+            }
+            break
+            
+        case UIApplicationState.Inactive:
+            println("Inactive")
+            break
+        }
         var isWorking = false
         
         if self.taskListViewController != nil && self.taskListViewController!.runningTaskRunner != nil {
@@ -69,10 +96,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.taskListViewController!.freezeTaskManager(self.taskListViewController!.runningTaskRunner)
         }
         NSUserDefaults.standardUserDefaults().setBool(isWorking, forKey: GlobalConstants.kBOOL_ISWORKING)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
         println("applicationWillEnterForeground")
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "kDisplayStatusLocked")
+        NSUserDefaults.standardUserDefaults().synchronize()
 
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
@@ -86,6 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             println("isWorking! become active")
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_ISWORKING)
+            NSUserDefaults.standardUserDefaults().synchronize()
             self.taskListViewController!.activeFrozenTaskManager()
         }
     }
@@ -93,6 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         println("applicationWillTerminate")
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
     }
     
     
@@ -104,6 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SECOND_SOUND)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_KEEP_LIGHT)
             NSUserDefaults.standardUserDefaults().setInteger(GlobalConstants.DEFAULT_MINUTES, forKey: GlobalConstants.k_SECONDS)
+            NSUserDefaults.standardUserDefaults().synchronize()
             DBOperate.insertTask(self.createSampleTask())
         }
     }
@@ -145,3 +178,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return sampleTask
     }
 }
+
+
+
+
+
+
+
+

@@ -39,6 +39,7 @@
 		6493085B1A7AE88B00480677 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6493085A1A7AE88B00480677 /* ItemDetailViewController.swift */; };
 		6493085D1A7AEE4900480677 /* WorkWithItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6493085C1A7AEE4900480677 /* WorkWithItemViewController.swift */; };
 		6497FE561A75A77800174307 /* Work.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497FE551A75A77800174307 /* Work.swift */; };
+		649893931A83959B0091822A /* LockNotifierCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 649893921A83959B0091822A /* LockNotifierCallback.m */; };
 		64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */; };
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
 		64B67F151A8063D0002127BC /* TimeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B67F141A8063D0002127BC /* TimeSelectorView.swift */; };
@@ -105,6 +106,8 @@
 		6493085C1A7AEE4900480677 /* WorkWithItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkWithItemViewController.swift; sourceTree = "<group>"; };
 		6497FE551A75A77800174307 /* Work.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Work.swift; sourceTree = "<group>"; };
 		6497FE581A75A91600174307 /* WorkAndRest-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WorkAndRest-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		649893911A83959B0091822A /* LockNotifierCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockNotifierCallback.h; sourceTree = "<group>"; };
+		649893921A83959B0091822A /* LockNotifierCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockNotifierCallback.m; sourceTree = "<group>"; };
 		64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		64B67F141A8063D0002127BC /* TimeSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSelectorView.swift; sourceTree = "<group>"; };
@@ -325,6 +328,8 @@
 			children = (
 				64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */,
 				640B370E1A81908C0020C817 /* TaskRunnerManager.swift */,
+				649893911A83959B0091822A /* LockNotifierCallback.h */,
+				649893921A83959B0091822A /* LockNotifierCallback.m */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -490,6 +495,7 @@
 				645FDE161A7D9E8C002EC8EF /* GlobalConstants.swift in Sources */,
 				649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */,
 				64B67F151A8063D0002127BC /* TimeSelectorView.swift in Sources */,
+				649893931A83959B0091822A /* LockNotifierCallback.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

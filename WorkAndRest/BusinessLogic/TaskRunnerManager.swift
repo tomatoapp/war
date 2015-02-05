@@ -22,6 +22,7 @@ class TaskRunnerManager: NSObject {
             self.taskRunner = self.delegate!.taskRunnerMangerWillFreezeTask(self)
             self.taskRunner!.pause()
             NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: GlobalConstants.k_FROZEN_DATE)
+            NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
     

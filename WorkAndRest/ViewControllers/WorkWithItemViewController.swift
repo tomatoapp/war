@@ -73,6 +73,7 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
         self.isPlaySecondSound = !self.isPlaySecondSound
         self.setupMusicalMaskLabel()
         NSUserDefaults.standardUserDefaults().setBool(self.isPlaySecondSound, forKey: GlobalConstants.kBOOL_SECOND_SOUND)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 
     func enableButton(button: UIButton!) {
