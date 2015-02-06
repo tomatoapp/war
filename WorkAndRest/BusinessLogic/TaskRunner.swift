@@ -38,7 +38,7 @@ class TaskRunner: NSObject {
     
      func start() {
         self.isWorking = true
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.3,
+        timer = NSTimer.scheduledTimerWithTimeInterval(1,
             target: self,
             selector: Selector("tick"),
             userInfo: nil,

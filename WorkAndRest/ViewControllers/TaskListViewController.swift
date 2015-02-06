@@ -188,7 +188,7 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     }
     
     func breaked(sender: TaskListItemCell!) {
-        
+        println("breaked")
     }
     
     // MARK: - TaskRunnerManagerDelegate
