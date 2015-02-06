@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 protocol TaskListItemCellDelegate {
-    func started(sender: TaskListItemCell!)
+    func readyToStart(sender: TaskListItemCell!)
     func completed(sender: TaskListItemCell!)
     func breaked(sender: TaskListItemCell!)
 }
@@ -44,8 +44,10 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     @IBAction func startButtonClicked(sender: AnyObject) {
         
         if self.delegate != nil {
-            self.start()
-            self.delegate!.started(self)
+            //self.start()
+            taskRunner = TaskRunner(task: self.taskItem)
+            taskRunner?.delegate = self
+            self.delegate!.readyToStart(self)
         }
     }
     
@@ -67,11 +69,9 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         println("start() - \(taskItem?.title)" )
         //self.seconds = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.integerValue * 60 / 15
         self.seconds = self.taskItem!.minutes * 60
-        taskRunner = TaskRunner(task: self.taskItem)
-        taskRunner?.delegate = self
+        
         taskRunner?.start()
         self.timerLabel.text = self.getTimerString()
-
         UIView.animateWithDuration(1,
             animations: { () -> Void in
                 self.startButton.alpha = 0
@@ -136,7 +136,8 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     func tick(sender: TaskRunner?) {
         println("tick" + "\(sender!.hashValue)" + "\(sender?.taskItem.title)")
         self.seconds = sender!.seconds
-        self.timerLabel.text = self.getTimerString()
+        let result = self.getTimerString()
+        self.timerLabel.text = result
     }
     
     func completed(sender: TaskRunner?) {

@@ -31,14 +31,14 @@ class TaskRunner: NSObject {
     convenience init(task: Task!) {
         self.init()
         self.taskItem = task
-        self.seconds = task.minutes * 60
+        self.seconds = task.minutes * 10
     }
     
     // MARK: - Methods
     
      func start() {
         self.isWorking = true
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0,
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.2,
             target: self,
             selector: Selector("tick"),
             userInfo: nil,

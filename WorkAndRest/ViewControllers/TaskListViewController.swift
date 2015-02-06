@@ -75,6 +75,10 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
             println("runningTask: \(self.runningTaskRunner!.taskItem.taskId) + \(self.runningTaskRunner!.taskItem.title)")
             println("task: \(task.taskId) + \(task.title)")
             if task.taskId == self.runningTaskRunner!.taskItem.taskId {
+                if cell.taskRunner == nil {
+                    cell.taskRunner = self.runningTaskRunner
+                    self.runningTaskRunner!.delegate = cell
+                }
                 cell.start()
             } else {
                 cell.disable()
@@ -161,7 +165,7 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     
     // MARK: - TaskListItemCellDelegate
     
-    func started(sender: TaskListItemCell!) {
+    func readyToStart(sender: TaskListItemCell!) {
 //        if self.runningTask != nil { // some task is running, can not start another task!
 //            return
 //        }
@@ -278,6 +282,7 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         self.deleteItem(baseItem, withRowAnimation: UITableViewRowAnimation.Left)
         self.insertItem(baseItem, withRowAnimation: UITableViewRowAnimation.Left)
         baseItem.title = copyItem.title
+        
         self.scrollToTop()
         if handleType == HandleType.AddOrEdit {
             self.reloadTableViewWithTimeInterval(0.5)
