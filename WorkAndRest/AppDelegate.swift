@@ -56,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             nil,
             CFNotificationSuspensionBehavior.DeliverImmediately)
         
+        println("\(UIDevice.currentDevice().modelName)" + ":" + "\(WARDevice.getPhoneType().description())")
         return true
     }
     

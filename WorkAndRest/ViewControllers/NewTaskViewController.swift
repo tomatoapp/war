@@ -15,15 +15,14 @@ protocol NewTaskViewControllerDelegate {
     //func newTaskViewControllerDidCancel(controller: ItemDetailViewController!)
 }
 
-class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegate, TimeSelectorViewDelegate {
+class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegate, TimeSelectorViewDelegate, TaskTitleViewDelegate {
 
     // MARK: - Properties
     
-    @IBOutlet var editTaskTitleButton: UIButton!
     @IBOutlet var startNowButton: UIButton!
     @IBOutlet var startLaterButton: UIButton!
-    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var timeSelector: TimeSelectorView!
+    @IBOutlet var taskTitleView: TaskTitleView!
     
     var taskItem: Task?
     var delegate: NewTaskViewControllerDelegate?
@@ -35,7 +34,7 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
         super.viewDidLoad()
         self.navigationController!.interactivePopGestureRecognizer.enabled = false
         self.timeSelector.delegate = self
-        self.titleLabel.hidden = true
+        self.taskTitleView.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,25 +77,14 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
     
     func addTaskViewController(controller: ItemDetailViewController!, didFinishAddingTask item: Task!) {
         self.taskItem = item
-        if !item.title.isEmpty {
-            self.editTaskTitleButton.setImage(UIImage(named: "edit_task_title_empty"), forState: UIControlState.Normal)
-            self.titleLabel.text = item.title
-            self.titleLabel.hidden = false
-        }
+        self.taskTitleView.setTitle(item.title)
+        
         
     }
     
     func addTaskViewController(controller: ItemDetailViewController!, didFinishEditingTask item: Task!) {
         self.taskItem = item
-        if item.title.isEmpty {
-            self.editTaskTitleButton.setImage(UIImage(named: "edit_task_title"), forState: UIControlState.Normal)
-            self.titleLabel.text = item.title
-            self.titleLabel.hidden = true
-        } else {
-            self.editTaskTitleButton.setImage(UIImage(named: "edit_task_title_empty"), forState: UIControlState.Normal)
-            self.titleLabel.text = item.title
-            self.titleLabel.hidden = false
-        }
+        self.taskTitleView.setTitle(item.title)
     }
     
     func addTaskViewControllerDidCancel(controller: ItemDetailViewController!) {
@@ -104,8 +92,15 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
     }
     
     // MARK: - TimeSelectorViewDelegate
+    
     func timeSelectorView(selectorView: TimeSelectorView!, didSelectTime minutes: Int) {
         self.minutes = minutes
         
+    }
+    
+    // MARK: - TaskTitleViewDelegate
+    
+    func taskTitleView(view: TaskTitleView!, didClickedEditTitleButton sender: UIButton!) {
+        self.performSegueWithIdentifier("EditTaskTitleSegue", sender: nil)
     }
 }

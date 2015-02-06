@@ -38,18 +38,26 @@ class ItemDetailViewController: BaseTableViewController, UITextFieldDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        //self.textField.becomeFirstResponder()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.textField.becomeFirstResponder()
+        if !self.textField.isFirstResponder() {
+            self.textField.becomeFirstResponder()
+        }
+        
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
     }
     
     override func didReceiveMemoryWarning() {
