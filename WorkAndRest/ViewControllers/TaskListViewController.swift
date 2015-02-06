@@ -72,19 +72,17 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         if runningTaskRunner == nil {
             cell.reset()
         } else {
-            println("runningTask: \(self.runningTaskRunner!.taskItem.taskId) + \(self.runningTaskRunner!.taskItem.title)")
-            println("task: \(task.taskId) + \(task.title)")
             if task.taskId == self.runningTaskRunner!.taskItem.taskId {
-                if cell.taskRunner == nil {
+                if !self.runningTaskRunner!.isWorking {
+                    println("start running task: \(self.runningTaskRunner!.taskItem.taskId) + \(self.runningTaskRunner!.taskItem.title)")
                     cell.taskRunner = self.runningTaskRunner
                     self.runningTaskRunner!.delegate = cell
+                    cell.start()
                 }
-                cell.start()
             } else {
                 cell.disable()
             }
         }
-        
         return cell
     }
     
@@ -173,10 +171,12 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         if self.runningTaskRunner != nil {
             return
         }
+        self.runningTaskRunner = TaskRunner(task: sender.taskItem)
+        
         self.handleType = HandleType.Start
         sender.taskItem?.lastUpdateTime = NSDate()
 //        self.runningTask = sender.taskItem
-        self.runningTaskRunner = sender.taskRunner
+        //self.runningTaskRunner = sender.taskRunner
         DBOperate.updateTask(sender.taskItem!)
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: sender.taskItem, repeats: false)
     }

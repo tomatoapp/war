@@ -45,8 +45,8 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         
         if self.delegate != nil {
             //self.start()
-            taskRunner = TaskRunner(task: self.taskItem)
-            taskRunner?.delegate = self
+            //taskRunner = TaskRunner(task: self.taskItem)
+            //taskRunner?.delegate = self
             self.delegate!.readyToStart(self)
         }
     }
@@ -134,7 +134,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     // MARK: - TaskRunnerDelegate
     
     func tick(sender: TaskRunner?) {
-        println("tick" + "\(sender!.hashValue)" + "\(sender?.taskItem.title)")
+        println("tick: " + "\(sender?.taskItem.title)" + "\(sender!.seconds)")
         self.seconds = sender!.seconds
         let result = self.getTimerString()
         self.timerLabel.text = result
