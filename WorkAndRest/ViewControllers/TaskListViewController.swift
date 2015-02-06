@@ -189,6 +189,8 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     
     func breaked(sender: TaskListItemCell!) {
         println("breaked")
+        self.runningTaskRunner = nil
+        self.reloadTableViewWithTimeInterval(0.0)
     }
     
     // MARK: - TaskRunnerManagerDelegate

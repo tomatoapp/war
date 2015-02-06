@@ -95,9 +95,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     }
     
     func breakIt() {
-        self.taskRunner!.pause()
         self.taskRunner!.reset()
-        self.reset()
         self.delegate!.breaked(self)
     }
     
