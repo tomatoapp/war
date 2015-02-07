@@ -36,28 +36,23 @@ class ItemDetailViewController: BaseTableViewController, UITextFieldDelegate {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         if !self.textField.isFirstResponder() {
             self.textField.becomeFirstResponder()
         }
-        
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
     }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if !self.textField.isFirstResponder() {
+            self.textField.becomeFirstResponder()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,7 +65,8 @@ class ItemDetailViewController: BaseTableViewController, UITextFieldDelegate {
         if (self.delegate != nil) {
             self.delegate.addTaskViewControllerDidCancel(self)
         }
-        self.navigationController!.popViewControllerAnimated(true)
+//        self.navigationController!.popViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func done(sender: AnyObject) {
@@ -86,7 +82,8 @@ class ItemDetailViewController: BaseTableViewController, UITextFieldDelegate {
             copyTaskItem!.title = self.textField.text
             self.delegate.addTaskViewController(self, didFinishEditingTask: copyTaskItem)
         }
-        self.navigationController!.popViewControllerAnimated(true)
+//        self.navigationController!.popViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - UITableViewDelegate

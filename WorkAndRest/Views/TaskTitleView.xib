@@ -14,7 +14,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="70"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9zY-AV-hCx">
@@ -35,10 +35,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZh-lT-Lr0">
-                            <rect key="frame" x="78" y="0.0" width="244" height="49.5"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="5rq-qi-W9J"/>
-                            </constraints>
+                            <rect key="frame" x="78" y="0.0" width="244" height="50"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -57,33 +54,33 @@
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="pZh-lT-Lr0" secondAttribute="centerY" id="0Gi-5S-3SP"/>
                         <constraint firstItem="CtS-IT-UoZ" firstAttribute="leading" secondItem="9zY-AV-hCx" secondAttribute="leading" constant="40" id="6Hg-JC-JXI"/>
-                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="height" secondItem="gia-hW-oK2" secondAttribute="height" id="9b5-yS-SZJ"/>
-                        <constraint firstItem="gia-hW-oK2" firstAttribute="top" secondItem="9zY-AV-hCx" secondAttribute="top" id="DkQ-Il-BHN"/>
+                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="bottom" secondItem="CtS-IT-UoZ" secondAttribute="bottom" id="EVc-MI-WPX"/>
                         <constraint firstItem="NEr-Q0-QxP" firstAttribute="leading" secondItem="gia-hW-oK2" secondAttribute="trailing" constant="8" id="XMv-Rc-18f"/>
+                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="top" secondItem="gia-hW-oK2" secondAttribute="top" id="ZJ4-2R-wNB"/>
                         <constraint firstItem="gia-hW-oK2" firstAttribute="leading" secondItem="CtS-IT-UoZ" secondAttribute="trailing" constant="8" id="Zp3-Wk-SKZ"/>
                         <constraint firstItem="pZh-lT-Lr0" firstAttribute="leading" secondItem="CtS-IT-UoZ" secondAttribute="trailing" constant="8" id="anP-ny-s0i"/>
+                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="bottom" secondItem="gia-hW-oK2" secondAttribute="bottom" id="dU3-e6-rhv"/>
                         <constraint firstAttribute="centerY" secondItem="NEr-Q0-QxP" secondAttribute="centerY" constant="5" id="eee-ZZ-AI5"/>
                         <constraint firstAttribute="centerY" secondItem="CtS-IT-UoZ" secondAttribute="centerY" constant="5" id="eqV-r2-pgq"/>
                         <constraint firstAttribute="trailing" secondItem="NEr-Q0-QxP" secondAttribute="trailing" constant="40" id="fvw-33-ohD"/>
                         <constraint firstAttribute="centerX" secondItem="gia-hW-oK2" secondAttribute="centerX" id="gfh-ty-qxZ"/>
                         <constraint firstItem="NEr-Q0-QxP" firstAttribute="leading" secondItem="pZh-lT-Lr0" secondAttribute="trailing" constant="8" id="k0I-sh-4BT"/>
-                        <constraint firstAttribute="centerY" secondItem="gia-hW-oK2" secondAttribute="centerY" id="nTf-oI-UOf"/>
+                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="top" secondItem="9zY-AV-hCx" secondAttribute="top" id="o1W-S5-mes"/>
                         <constraint firstItem="pZh-lT-Lr0" firstAttribute="width" secondItem="gia-hW-oK2" secondAttribute="width" id="sPD-ym-iWs"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="9zY-AV-hCx" secondAttribute="bottom" id="48L-qC-D1N"/>
                 <constraint firstAttribute="trailing" secondItem="9zY-AV-hCx" secondAttribute="trailing" id="MvC-l0-Sy7"/>
                 <constraint firstItem="9zY-AV-hCx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="j5B-ia-1lm"/>
-                <constraint firstItem="9zY-AV-hCx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oni-rY-Lkl"/>
+                <constraint firstItem="9zY-AV-hCx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="py4-Cz-SGg"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="317" y="-10.5"/>
+            <point key="canvasLocation" x="317" y="-11"/>
         </view>
     </objects>
     <resources>

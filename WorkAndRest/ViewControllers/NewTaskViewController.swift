@@ -19,6 +19,7 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
 
     // MARK: - Properties
     
+    @IBOutlet var startButton: UIButton!
     @IBOutlet var startNowButton: UIButton!
     @IBOutlet var startLaterButton: UIButton!
     @IBOutlet var timeSelector: TimeSelectorView!
@@ -27,6 +28,7 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
     var taskItem: Task?
     var delegate: NewTaskViewControllerDelegate?
     var minutes = GlobalConstants.DEFAULT_MINUTES
+    var blurView: UIView?
     
     // MARK: - Lifecycle
 
@@ -43,13 +45,19 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "EditTaskTitleSegue" {
-            let controller = segue.destinationViewController as ItemDetailViewController
+//            let controller = segue.destinationViewController as ItemDetailViewController
+            let navigationController = segue.destinationViewController as UINavigationController
+            let controller = navigationController.topViewController as ItemDetailViewController
             controller.delegate = self
             controller.copyTaskItem = self.taskItem
         }
     }
     
     // MARK: - Events
+    
+    @IBAction func startButtonClick(sender: AnyObject) {
+        //self.addBlurView()
+    }
     
     @IBAction func startNowClick(sender: AnyObject) {
         if self.taskItem == nil {
@@ -102,5 +110,45 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
     
     func taskTitleView(view: TaskTitleView!, didClickedEditTitleButton sender: UIButton!) {
         self.performSegueWithIdentifier("EditTaskTitleSegue", sender: nil)
+    }
+    
+    func addBlurView() {
+        blurView = self.initBlurView()
+        self.view.addSubview(blurView!)
+        let tap = UITapGestureRecognizer(target: self, action: Selector("blurViewClick:"))
+        blurView!.addGestureRecognizer(tap)
+        blurView!.frame = CGRectMake(0, self.view.frame.size.height*2, self.view.frame.size.width, self.view.frame.size.height)
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.blurView!.frame = self.view.frame
+        }) { (finished) -> Void in
+            if finished {
+                self.navigationController!.navigationBarHidden = true
+            }
+        }
+    }
+    
+    func blurViewClick(sender: UITapGestureRecognizer!) {
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.blurView!.frame = CGRectMake(0, self.view.frame.size.height*2, self.view.frame.size.width, self.view.frame.size.height)
+            }) { (finished) -> Void in
+                if finished {
+                    self.navigationController!.navigationBarHidden = false
+                }
+        }
+    }
+    
+    func initBlurView() -> UIView! {
+        var blurView: UIView?
+        
+        if let theClass: AnyClass = NSClassFromString("UIBlurEffect") {
+            // iOS 8
+            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+            blurView = UIVisualEffectView(effect: blurEffect)
+        } else {
+            // iOS 7
+            blurView = UIToolbar()
+        }
+        blurView?.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return blurView
     }
 }
