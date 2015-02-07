@@ -46,43 +46,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starting_a_timer" translatesAutoresizingMaskIntoConstraints="NO" id="prc-Lp-Xgz">
+                            <imageView userInteractionEnabled="NO" tag="1002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starting_a_timer" translatesAutoresizingMaskIntoConstraints="NO" id="prc-Lp-Xgz">
                                 <rect key="frame" x="83" y="154" width="154" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="154" id="1o4-VH-aRK"/>
                                     <constraint firstAttribute="height" constant="22" id="9Xe-u1-mYM"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVb-yt-thQ" customClass="TimeSelectorView" customModule="WorkAndRest" customModuleProvider="target">
+                            <view tag="1003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVb-yt-thQ" customClass="TimeSelectorView" customModule="WorkAndRest" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="207" width="320" height="70"/>
                                 <color key="backgroundColor" red="0.21176470589999999" green="0.74117647060000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="0eQ-8R-uq3"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3q-r7-TPV" customClass="CompletionCycleView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="347" width="320" height="80"/>
+                            <view tag="1005" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3q-r7-TPV" customClass="CompletionCycleView" customModule="WorkAndRest" customModuleProvider="target">
+                                <rect key="frame" x="8" y="362" width="304" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="C8W-6x-ckj"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_task_tomato_icon" translatesAutoresizingMaskIntoConstraints="NO" id="nr4-Se-J1E">
+                            <imageView userInteractionEnabled="NO" tag="1001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_task_tomato_icon" translatesAutoresizingMaskIntoConstraints="NO" id="nr4-Se-J1E">
                                 <rect key="frame" x="132" y="84" width="55" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="Zla-kn-H1P"/>
                                     <constraint firstAttribute="height" constant="48" id="kTB-HZ-TMr"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poP-IU-mMV" customClass="TaskTitleView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="287" width="320" height="70"/>
+                            <view tag="1004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poP-IU-mMV" customClass="TaskTitleView" customModule="WorkAndRest" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="292" width="320" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="HLw-F0-eAA"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Sa-Oz-OYd">
-                                <rect key="frame" x="21" y="491" width="278" height="47"/>
+                            <button opaque="NO" tag="1006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Sa-Oz-OYd">
+                                <rect key="frame" x="26" y="491" width="268" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="HD0-Bq-EDn"/>
                                 </constraints>
@@ -98,18 +98,18 @@
                         <constraints>
                             <constraint firstItem="dVb-yt-thQ" firstAttribute="trailing" secondItem="A1W-Vw-dDY" secondAttribute="trailingMargin" constant="16" id="6V2-LC-pcu"/>
                             <constraint firstAttribute="centerX" secondItem="nr4-Se-J1E" secondAttribute="centerX" id="8IJ-IP-WNk"/>
-                            <constraint firstItem="g3q-r7-TPV" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-16" id="9BN-SN-uOk"/>
-                            <constraint firstItem="8Sa-Oz-OYd" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="5" id="E0i-jY-as4"/>
+                            <constraint firstItem="g3q-r7-TPV" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-8" id="9BN-SN-uOk"/>
+                            <constraint firstItem="8Sa-Oz-OYd" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="10" id="E0i-jY-as4"/>
                             <constraint firstItem="dVb-yt-thQ" firstAttribute="top" secondItem="prc-Lp-Xgz" secondAttribute="bottom" constant="31" id="HUe-OZ-n5Q"/>
                             <constraint firstAttribute="centerX" secondItem="prc-Lp-Xgz" secondAttribute="centerX" id="Ocr-rb-IQp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8Sa-Oz-OYd" secondAttribute="trailing" constant="5" id="R6e-DS-oSF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="g3q-r7-TPV" secondAttribute="trailing" constant="-16" id="V9v-ju-F2D"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8Sa-Oz-OYd" secondAttribute="trailing" constant="10" id="R6e-DS-oSF"/>
+                            <constraint firstItem="poP-IU-mMV" firstAttribute="top" secondItem="dVb-yt-thQ" secondAttribute="bottom" constant="15" id="Syq-ga-hmo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="g3q-r7-TPV" secondAttribute="trailing" constant="-8" id="V9v-ju-F2D"/>
                             <constraint firstItem="dVb-yt-thQ" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-16" id="brg-N3-9OB"/>
-                            <constraint firstItem="poP-IU-mMV" firstAttribute="trailing" secondItem="dVb-yt-thQ" secondAttribute="trailing" id="hXw-Xn-JvR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="poP-IU-mMV" secondAttribute="trailing" constant="-16" id="bul-g3-svR"/>
                             <constraint firstItem="Naa-3f-RwY" firstAttribute="top" secondItem="8Sa-Oz-OYd" secondAttribute="bottom" constant="30" id="hoz-kZ-Gze"/>
-                            <constraint firstItem="g3q-r7-TPV" firstAttribute="top" secondItem="poP-IU-mMV" secondAttribute="bottom" constant="-10" id="hyR-sH-gHY"/>
-                            <constraint firstItem="poP-IU-mMV" firstAttribute="leading" secondItem="dVb-yt-thQ" secondAttribute="leading" id="rwa-Ms-mgn"/>
-                            <constraint firstItem="poP-IU-mMV" firstAttribute="top" secondItem="dVb-yt-thQ" secondAttribute="bottom" constant="10" id="sow-Qm-XS4"/>
+                            <constraint firstItem="poP-IU-mMV" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-16" id="l8g-ab-vOD"/>
+                            <constraint firstItem="g3q-r7-TPV" firstAttribute="top" secondItem="poP-IU-mMV" secondAttribute="bottom" id="suY-iL-zS4"/>
                             <constraint firstItem="nr4-Se-J1E" firstAttribute="top" secondItem="mpJ-or-Bcp" secondAttribute="bottom" constant="20" id="xP8-P5-dRt"/>
                             <constraint firstItem="prc-Lp-Xgz" firstAttribute="top" secondItem="nr4-Se-J1E" secondAttribute="bottom" constant="22" id="zsl-fG-Ici"/>
                         </constraints>

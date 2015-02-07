@@ -37,6 +37,14 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
         self.navigationController!.interactivePopGestureRecognizer.enabled = false
         self.timeSelector.delegate = self
         self.taskTitleView.delegate = self
+        
+        //self.adapteDifferentScreenSize()
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -120,6 +128,144 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
         case .Cancel:
             break
         }
+    }
+    
+    let TAG_ICON = 1001
+    let TAG_STARTTEXT = 1002
+    let TAG_TIMESELECTOR = 1003
+    let TAG_TASKTITLE = 1004
+    let TAG_COMPLETIONCIRCLE = 1005
+    let TAG_STARTBUTTON = 1006
+    
+    func adapteDifferentScreenSize() {
         
+        switch WARDevice.getPhoneType() {
+        case .iPhone4:
+            self.adapte_iPhone4()
+            break
+            
+        case .iPhone6, .iPhone6Plus:
+            self.adapte_iPhone6()
+            break
+            
+        default:
+            break
+        }
+    }
+    
+    func adapte_iPhone4() {
+        let iconImageView = self.view.viewWithTag(TAG_ICON) as UIImageView!
+        let startTextImageView = self.view.viewWithTag(TAG_STARTTEXT) as UIImageView!
+        let timeSelectorView = self.view.viewWithTag(TAG_TIMESELECTOR)
+        let completionCirleView = self.view.viewWithTag(TAG_COMPLETIONCIRCLE)
+        let taskTitleView = self.view.viewWithTag(TAG_TASKTITLE)
+        let startButton = self.view.viewWithTag(TAG_STARTBUTTON)
+        
+        iconImageView!.removeFromSuperview()
+        self.view.addSubview(iconImageView!)
+        iconImageView.image = UIImage(named: "new_task_tomato_icon_small")
+        iconImageView.mas_makeConstraints { (make) -> Void in
+            make.centerX.mas_equalTo()(self.view.mas_centerX)
+            make.top.mas_equalTo()(75)
+            
+            make.height.mas_equalTo()(36)
+            make.width.mas_equalTo()(42)
+            return ()
+        }
+        
+        startTextImageView!.removeFromSuperview()
+        self.view.addSubview(startTextImageView!)
+        startTextImageView.image = UIImage(named: "starting a timer_small")
+        startTextImageView.mas_makeConstraints { (make) -> Void in
+            make.centerX.mas_equalTo()(self.view.mas_centerX)
+            make.top.mas_equalTo()(iconImageView!.mas_bottom).offset()(10)
+            make.height.mas_equalTo()(18)
+            make.width.mas_equalTo()(123)
+            return ()
+        }
+        
+        timeSelectorView!.removeFromSuperview()
+        self.view.addSubview(timeSelectorView!)
+        timeSelectorView!.mas_makeConstraints { (make) -> Void in
+            make.centerX.mas_equalTo()(self.view.mas_centerX)
+            make.top.mas_equalTo()(startTextImageView!.mas_bottom).offset()(10)
+            make.height.mas_equalTo()(70)
+            make.width.mas_equalTo()(self.view.mas_width)
+
+            return ()
+        }
+        
+        taskTitleView!.removeFromSuperview()
+        self.view.addSubview(taskTitleView!)
+        taskTitleView!.mas_makeConstraints { (make) -> Void in
+            make.centerX.mas_equalTo()(self.view.mas_centerX)
+            make.top.mas_equalTo()(timeSelectorView!.mas_bottom).offset()(10)
+            make.height.mas_equalTo()(70)
+            make.width.mas_equalTo()(self.view.mas_width)
+            return ()
+        }
+        
+        completionCirleView!.removeFromSuperview()
+        self.view.addSubview(completionCirleView!)
+        completionCirleView!.mas_makeConstraints { (make) -> Void in
+            make.centerX.mas_equalTo()(self.view.mas_centerX)
+            make.top.mas_equalTo()(taskTitleView!.mas_bottom).offset()(10)
+            make.height.mas_equalTo()(80)
+            make.width.mas_equalTo()(self.view.mas_width)
+            return ()
+        }
+        
+        startButton!.removeFromSuperview()
+        self.view.addSubview(startButton!)
+        startButton!.mas_makeConstraints { (make) -> Void in
+            make.centerX.mas_equalTo()(self.view.mas_centerX)
+            make.bottom.mas_equalTo()(self.view.mas_bottom).offset()(-10)
+            make.height.mas_equalTo()(47)
+            make.width.mas_equalTo()(self.view.mas_width).offset()(-50)
+            return ()
+        }
+    }
+    
+    func adapte_iPhone6() {
+        let timeSelectorView = self.view.viewWithTag(TAG_TIMESELECTOR)
+        let completionCirleView = self.view.viewWithTag(TAG_COMPLETIONCIRCLE)
+        let taskTitleView = self.view.viewWithTag(TAG_TASKTITLE)
+        let startButton = self.view.viewWithTag(TAG_STARTBUTTON)
+        
+        taskTitleView!.removeFromSuperview()
+        self.view.addSubview(taskTitleView!)
+        taskTitleView!.mas_makeConstraints { (make) -> Void in
+            make.centerX.mas_equalTo()(self.view.mas_centerX)
+            make.top.mas_equalTo()(timeSelectorView!.mas_bottom).offset()(20)
+            make.height.mas_equalTo()(70)
+            make.width.mas_equalTo()(self.view.mas_width)
+            return ()
+        }
+        
+        completionCirleView!.removeFromSuperview()
+        self.view.addSubview(completionCirleView!)
+        completionCirleView!.mas_makeConstraints { (make) -> Void in
+            make.centerX.mas_equalTo()(self.view.mas_centerX)
+            make.top.mas_equalTo()(taskTitleView!.mas_bottom).offset()(10)
+            make.height.mas_equalTo()(80)
+            make.width.mas_equalTo()(self.view.mas_width)
+            return ()
+        }
+        
+        startButton!.removeFromSuperview()
+        self.view.addSubview(startButton!)
+        startButton!.mas_makeConstraints { (make) -> Void in
+            make.centerX.mas_equalTo()(self.view.mas_centerX)
+            make.bottom.mas_equalTo()(self.view.mas_bottom).offset()(-50)
+            make.height.mas_equalTo()(47)
+            make.width.mas_equalTo()(self.view.mas_width).offset()(-80)
+            return ()
+        }
+
+    }
+    
+    override func updateViewConstraints() {
+        self.adapteDifferentScreenSize()
+        super.updateViewConstraints()
     }
 }
