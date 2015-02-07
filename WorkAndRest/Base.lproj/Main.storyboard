@@ -90,7 +90,7 @@
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="2gd-Yk-soa" kind="modal" id="cvM-TW-cY1"/>
+                                    <action selector="startButtonClick:" destination="Suk-oZ-58b" eventType="touchUpInside" id="xcQ-5S-IiO"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -121,6 +121,7 @@
                         <outlet property="taskTitleView" destination="poP-IU-mMV" id="NUd-ms-U1U"/>
                         <outlet property="timeSelector" destination="dVb-yt-thQ" id="EZS-wW-XRq"/>
                         <segue destination="UsD-oN-d9y" kind="modal" identifier="EditTaskTitleSegue" id="aGM-L8-aaO"/>
+                        <segue destination="2gd-Yk-soa" kind="modal" identifier="StartSegue" id="XbD-Cl-smv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omq-KS-Kve" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -148,6 +149,9 @@
                                 <state key="normal" image="start_now">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="startNowButtonClick:" destination="2gd-Yk-soa" eventType="touchUpInside" id="edz-1V-WqH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEK-t0-d1h">
                                 <rect key="frame" x="103" y="323" width="115" height="115"/>
@@ -158,6 +162,9 @@
                                 <state key="normal" image="start_later">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="startLaterButtonClick:" destination="2gd-Yk-soa" eventType="touchUpInside" id="PxI-Zw-5Yg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

@@ -8,7 +8,16 @@
 
 import UIKit
 
+enum StartType {
+    case Now, Later, Cancel
+}
+protocol StartViewControllerDelegate {
+    func startViewController(sender: StartViewController, didSelectItem item: StartType)
+}
+
 class StartViewController: UIViewController {
+    
+    var delegate: StartViewControllerDelegate?
     
     var blurView: UIView?
     
@@ -21,7 +30,21 @@ class StartViewController: UIViewController {
         super.init(coder: aDecoder)
         self.modalPresentationStyle = UIModalPresentationStyle.Custom
     }
-
+    
+    @IBAction func startNowButtonClick(sender: AnyObject) {
+        if self.delegate != nil {
+            self.delegate!.startViewController(self, didSelectItem: .Now)
+        }
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func startLaterButtonClick(sender: AnyObject) {
+        if self.delegate != nil {
+            self.delegate!.startViewController(self, didSelectItem: .Later)
+        }
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func addBlurView() {
         blurView = self.initBlurView()
         //self.view.addSubview(blurView!)
@@ -29,7 +52,7 @@ class StartViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: Selector("blurViewClick:"))
         blurView!.addGestureRecognizer(tap)
         self.blurView!.frame = self.view.frame
-
+        
     }
     
     func initBlurView() -> UIView! {
@@ -49,6 +72,8 @@ class StartViewController: UIViewController {
     
     func blurViewClick(sender: UITapGestureRecognizer!) {
         self.dismissViewControllerAnimated(true, completion: nil)
+        if self.delegate != nil {
+            self.delegate!.startViewController(self, didSelectItem: .Cancel)
+        }
     }
-    
 }
