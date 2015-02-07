@@ -47,7 +47,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DBOperate.db_init()
         self.firstRun()
         self.initRater()
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil))
+        
+        if application.respondsToSelector("isRegisteredForRemoteNotifications") {
+            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil))
+            application.registerForRemoteNotifications()
+        } else {
+            application.registerForRemoteNotificationTypes(.Sound | .Alert | .Badge)
+        }
         
         CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
             nil,
