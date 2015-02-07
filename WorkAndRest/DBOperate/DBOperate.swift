@@ -193,6 +193,25 @@ import UIKit
         dataBase.close()
         return work
     }
+    
+    class func SelectWorkListWithTaskId(taskId: Int) -> Array<Work>? {
+        if !dataBase.open() {
+            return nil
+        }
+        var workArray = [Work]()
+        let rs = dataBase.executeQuery("SELECT * from t_works WHERE task_id = ?", withArgumentsInArray: [taskId])
+        while rs.next() {
+            let workTemp = Work()
+            workTemp.workId = rs.stringForColumn("work_id").toInt()!
+            workTemp.taskId = rs.stringForColumn("task_id").toInt()!
+            workTemp.workTime = rs.dateForColumn("work_time")
+            workTemp.isFinished = rs.boolForColumn("is_finished")
+            workArray.append(workTemp)
+        }
+        dataBase.close()
+        println("load work list count: \(workArray.count)")
+        return workArray
+    }
 //    class func updateWork(work: Work) {
 //        if !dataBase.open() {
 //            return

@@ -78,6 +78,7 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
                     cell.taskRunner = self.runningTaskRunner
                     self.runningTaskRunner!.delegate = cell
                     cell.start()
+                    let workList = DBOperate.SelectWorkListWithTaskId(self.runningTaskRunner!.taskItem.taskId)
                 }
             } else {
                 cell.disable()
