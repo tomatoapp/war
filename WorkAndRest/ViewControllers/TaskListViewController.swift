@@ -183,12 +183,15 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     
     func completed(sender: TaskListItemCell!) {
 //        self.runningTask = nil
+        self.saveToWorkDB(true)
         self.runningTaskRunner = nil
         self.reloadTableViewWithTimeInterval(0.5)
+        
     }
     
     func breaked(sender: TaskListItemCell!) {
         println("breaked")
+        self.saveToWorkDB(false)
         self.runningTaskRunner = nil
         self.reloadTableViewWithTimeInterval(0.0)
     }
@@ -315,5 +318,12 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     
     func activeFrozenTaskManager() {
         self.taskRunnerManager!.activeFrozenTaskManager()
+    }
+    
+    func saveToWorkDB(isFinished: Bool) {
+        let work = Work()
+        work.taskId = self.runningTaskRunner!.taskItem.taskId
+        work.isFinished = isFinished
+        DBOperate.insertWork(work)
     }
 }

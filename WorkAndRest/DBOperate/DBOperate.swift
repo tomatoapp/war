@@ -152,7 +152,12 @@ import UIKit
     
     // MARK: - Work
     class func createWorkTable() {
-        let sql = "CREATE TABLE IF NOT EXISTS t_works(work_id DECIMAL(18,0) DEFAULT '0', title VARCHAR(1024))"
+        let sql = "CREATE TABLE IF NOT EXISTS t_works(" +
+        "work_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT DEFAULT 1," +
+        "task_id INTEGER NOT NULL DEFAULT 1," +
+        "work_time DATETIME DEFAULT CURRENT_TIMESTAMP," +
+        "is_finished BOOL DEFAULT 0" +
+        ")"
         if !dataBase.open() {
             println("Unable to open the db.")
             return
@@ -167,7 +172,7 @@ import UIKit
         if !dataBase.open() {
             return
         }
-        let success = dataBase.executeUpdate("INSERT INTO t_works(title) VALUES (:title)", withArgumentsInArray: [work.title])
+        let success = dataBase.executeUpdate("INSERT INTO t_works(task_id, is_finished) VALUES (:task_id, :is_finished)", withArgumentsInArray: [work.taskId, work.isFinished])
         if success {
             println("insert to work table success.")
         } else {
@@ -182,36 +187,36 @@ import UIKit
         var work = Work()
         let rs = dataBase.executeQuery("SELECT * from t_works WHERE work_id = ?", withArgumentsInArray: [workId])
         while rs.next() {
-            work.workId = rs.stringForColumn("task_id").toInt()!
-            work.title = rs.stringForColumn("title")
+            work.workId = rs.stringForColumn("work_id").toInt()!
+            work.taskId = rs.stringForColumn("task_id").toInt()!
         }
         dataBase.close()
         return work
     }
-    class func updateWork(work: Work) {
-        if !dataBase.open() {
-            return
-        }
-        let success = dataBase.executeUpdate("UPDATE t_works SET title = ? WHERE work_id = ?", withArgumentsInArray: [work.title, work.workId])
-        if success {
-            println("update work table success.")
-        } else {
-            println("update work table failed!")
-        }
-        dataBase.close()
-    }
-    class func deleteWork(work: Work) {
-        if !dataBase.open() {
-            return
-        }
-        let success = dataBase.executeUpdate("DELETE FROM t_works WHERE work_id = ?", withArgumentsInArray: [work.workId])
-        if success {
-            println("delete from work table success.")
-        } else {
-            println("delete from work table failed!")
-        }
-        dataBase.close()
-    }
+//    class func updateWork(work: Work) {
+//        if !dataBase.open() {
+//            return
+//        }
+//        let success = dataBase.executeUpdate("UPDATE t_works SET title = ? WHERE work_id = ?", withArgumentsInArray: [work.title, work.workId])
+//        if success {
+//            println("update work table success.")
+//        } else {
+//            println("update work table failed!")
+//        }
+//        dataBase.close()
+//    }
+//    class func deleteWork(work: Work) {
+//        if !dataBase.open() {
+//            return
+//        }
+//        let success = dataBase.executeUpdate("DELETE FROM t_works WHERE work_id = ?", withArgumentsInArray: [work.workId])
+//        if success {
+//            println("delete from work table success.")
+//        } else {
+//            println("delete from work table failed!")
+//        }
+//        dataBase.close()
+//    }
     class func loadAllWorks() -> Array<Work>? {
         if !dataBase.open() {
             return nil
@@ -221,7 +226,7 @@ import UIKit
         while rs.next() {
             let tempWork = Work()
             tempWork.workId = rs.stringForColumn("work_id").toInt()!
-            tempWork.title = rs.stringForColumn("title")
+            //tempWork.title = rs.stringForColumn("title")
             workArray.append(tempWork)
         }
         dataBase.close()
