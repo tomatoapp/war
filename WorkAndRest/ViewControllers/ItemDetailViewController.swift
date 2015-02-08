@@ -70,6 +70,12 @@ class ItemDetailViewController: BaseTableViewController, UITextFieldDelegate {
     }
     
     @IBAction func done(sender: AnyObject) {
+        
+        if self.textField.text.isEmpty {
+            self.cancel(nil)
+            return
+        }
+        
         if copyTaskItem == nil {
             let newItem = Task()
             newItem.title = self.textField.text

@@ -67,11 +67,6 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
     // MARK: - Events
     
     @IBAction func startButtonClick(sender: AnyObject) {
-        
-        if self.taskItem == nil {
-            self.taskItem = Task()
-            self.taskItem!.title = NSLocalizedString("Task", comment: "")
-        }
         self.performSegueWithIdentifier("StartSegue", sender: nil)
     }
     
@@ -107,21 +102,18 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
     
     // MARK: - StartViewControllerDelegate
     
-    func startViewController(sender: StartViewController, didSelectItem item: StartType) {
-        switch item {
-        case .Now:
-            self.navigationController!.popViewControllerAnimated(false)
-            if self.delegate != nil {
-                self.taskItem!.minutes = self.minutes
-                self.delegate!.newTaskViewController(self, didFinishAddingTask: self.taskItem, runningNow: true)
+    func startViewController(sender: StartViewController, didSelectItem type: StartType) {
+
+        switch type {
+        case .Now, .Later:
+            if self.taskItem == nil {
+                self.taskItem = Task()
+                self.taskItem!.title = NSLocalizedString("Task", comment: "")
             }
-            break
-            
-        case .Later:
             self.navigationController!.popViewControllerAnimated(false)
             if self.delegate != nil {
                 self.taskItem!.minutes = self.minutes
-                self.delegate!.newTaskViewController(self, didFinishAddingTask: self.taskItem, runningNow: false)
+                self.delegate!.newTaskViewController(self, didFinishAddingTask: self.taskItem, runningNow: type == .Now)
             }
             break
             
