@@ -69,8 +69,8 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
     @IBAction func startButtonClick(sender: AnyObject) {
         
         if self.taskItem == nil {
-            
-            return
+            self.taskItem = Task()
+            self.taskItem!.title = NSLocalizedString("Task", comment: "")
         }
         self.performSegueWithIdentifier("StartSegue", sender: nil)
     }
