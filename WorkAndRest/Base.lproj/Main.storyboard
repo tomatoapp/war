@@ -25,12 +25,18 @@
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <connections>
+                        <outlet property="headerView" destination="Pd8-HL-YTW" id="tdz-hu-Jj0"/>
                         <segue destination="6uC-ny-BXf" kind="push" identifier="ShowItem" id="bDt-xR-qPG"/>
                         <segue destination="UsD-oN-d9y" kind="push" identifier="EditItem" id="b1V-PN-NMD"/>
                         <segue destination="Suk-oZ-58b" kind="push" identifier="NewTaskSegue" id="j3d-Bi-yZi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bp6-Rd-dBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="Pd8-HL-YTW" customClass="TaskListHeaderView" customModule="WorkAndRest" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="485" y="-154"/>
         </scene>
@@ -662,6 +668,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aGM-L8-aaO"/>
+        <segue reference="b1V-PN-NMD"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -11,6 +11,7 @@ import AVFoundation
 
 protocol TaskListItemCellDelegate {
     func readyToStart(sender: TaskListItemCell!)
+    func tick(timeString: String)
     func completed(sender: TaskListItemCell!)
     func breaked(sender: TaskListItemCell!)
 }
@@ -145,6 +146,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         self.seconds = sender!.seconds
         let result = self.getTimerString()
         self.timerLabel.text = result
+        self.delegate?.tick(result)
     }
     
     func completed(sender: TaskRunner?) {
