@@ -15,7 +15,7 @@ class BaseViewController: UIViewController {
 
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "title"))
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "white"), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.translucent = false
     }
 
     override func didReceiveMemoryWarning() {
