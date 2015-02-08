@@ -107,4 +107,16 @@ class WARDevice {
             return .Unknown
         }
     }
+    
+    class func getPhoneVersion() -> Double {
+        return NSString(string: UIDevice.currentDevice().systemVersion).doubleValue
+    }
+    
+    class func isiOS8() -> Bool {
+        return getPhoneVersion() >= 8
+    }
+    
+    class func isiOS7() -> Bool {
+        return getPhoneVersion() >= 7  && getPhoneVersion() < 8
+    }
 }
