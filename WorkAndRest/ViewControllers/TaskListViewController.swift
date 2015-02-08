@@ -158,6 +158,8 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
             if runNow {
 //                self.runningTask = item
                 self.runningTaskRunner = TaskRunner(task: item)
+                self.reloadTableViewWithTimeInterval(1.0)
+                
             }
         }
     }
