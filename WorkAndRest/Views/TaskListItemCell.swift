@@ -31,6 +31,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     var taskRunner: TaskRunner?
     var delegate: TaskListItemCellDelegate?
     var running = false
+    var state = UITableViewCellStateMask.DefaultMask
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,13 +64,15 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     }
     
     func start() {
+        
+        if state != UITableViewCellStateMask.DefaultMask {
+            return
+        }
         if self.running {
             return
         }
         self.running = true
         
-        println("start() - \(taskItem?.title)" )
-        //self.seconds = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.integerValue * 60 / 15
         self.seconds = self.taskItem!.minutes * 60
         
         taskRunner?.start()
@@ -78,7 +81,6 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
             animations: { () -> Void in
                 self.startButton.alpha = 0
                 self.timerLabel.alpha = 1
-                
             })
             { (finished: Bool) -> Void in
                 self.changeToBreakButtonAfter2Seconds()
@@ -96,19 +98,16 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     }
     
     func breakIt() {
-        self.taskRunner!.reset()
-        self.delegate!.breaked(self)
+        self.taskRunner!.stop()
     }
     
     func disable() {
         self.reset()
-//        self.grayMaskView.alpha = 0.1
         UIView.animateWithDuration(1,
             animations: { () -> Void in
                 self.startButton.alpha = 0.5
             })
             { (finished: Bool) -> Void in
-                //self.startButton.enabled = false
         }
     }
     
@@ -121,7 +120,6 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
                 
             })
             { (finished: Bool) -> Void in
-                //self.startButton.enabled = true
         }
         
         UIView.transitionWithView(self.bgImageView,
@@ -139,6 +137,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     func getTimerString() -> String {
         return String(format: "%02d:%02d", arguments: [self.seconds % 3600 / 60, self.seconds % 3600 % 60])
     }
+    
     // MARK: - TaskRunnerDelegate
     
     func tick(sender: TaskRunner?) {
@@ -151,15 +150,13 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     
     func completed(sender: TaskRunner?) {
         println("completed")
-        let val = AVAudioSession.sharedInstance().outputVolume
-        println("outputVolume: \(val)")
         AudioServicesPlaySystemSound(1005)
         self.delegate?.completed(self)
         self.reset()
     }
     
     func breaked(sender: TaskRunner?) {
-        
+        self.delegate!.breaked(self)
     }
     
     func changeToBreakButtonAfter2Seconds() {
@@ -185,4 +182,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         }
     }
     
+    override func willTransitionToState(state: UITableViewCellStateMask) {
+        self.state = state
+    }
 }

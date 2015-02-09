@@ -15,7 +15,6 @@ enum HandleType: Int {
 class TaskListViewController: UITableViewController,ItemDetailViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, TaskRunnerManagerDelegate {
 
     var allTasks = [Task]()
-    //var runningTask: Task?
     var runningTaskRunner: TaskRunner?
     var handleType = HandleType.None
     var taskRunnerManager: TaskRunnerManager?
@@ -33,7 +32,6 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         
         let line = UIImageView(image: UIImage(named: "line"))
         line.frame = CGRectMake(19.5, 140, 1, self.tableView.frame.size.height-140)
-        //self.tableView.addSubview(line)
         self.view.insertSubview(line, atIndex: 0)
         
         self.taskRunnerManager = TaskRunnerManager()
@@ -69,7 +67,6 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         cell.taskItem = (task.copy() as Task)
         cell.refresh()
         
-//        if runningTask == nil {
         if runningTaskRunner == nil {
             cell.reset()
         } else {
@@ -91,7 +88,6 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = allTasks[indexPath.row]
         let copyItem = item.copy() as Task
-        //self.performSegueWithIdentifier("ShowItem", sender: copyItem)
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -105,7 +101,6 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         let item = allTasks[indexPath.row]
-//        if runningTask == nil  {
         if self.runningTaskRunner == nil  {
             return UITableViewCellEditingStyle.Delete
         }
@@ -137,8 +132,6 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         
     }
     
-   
-    
     func addTaskViewController(controller: ItemDetailViewController!, didFinishEditingTask item: Task!) {
         handleType = HandleType.AddOrEdit
         item.lastUpdateTime = NSDate()
@@ -157,7 +150,6 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         if DBOperate.insertTask(item) {
             NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
             if runNow {
-//                self.runningTask = item
                 self.runningTaskRunner = TaskRunner(task: item)
                 self.reloadTableViewWithTimeInterval(1.0)
                 
@@ -168,19 +160,12 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     // MARK: - TaskListItemCellDelegate
     
     func readyToStart(sender: TaskListItemCell!) {
-//        if self.runningTask != nil { // some task is running, can not start another task!
-//            return
-//        }
-
         if self.runningTaskRunner != nil {
             return
         }
         self.runningTaskRunner = TaskRunner(task: sender.taskItem)
-        
         self.handleType = HandleType.Start
         sender.taskItem?.lastUpdateTime = NSDate()
-//        self.runningTask = sender.taskItem
-        //self.runningTaskRunner = sender.taskRunner
         DBOperate.updateTask(sender.taskItem!)
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: sender.taskItem, repeats: false)
     }
@@ -189,16 +174,15 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     func tick(timeString: String) {
         self.headerView.updateTime(timeString)
         if ++times == 3 {
-            self.headerView.flip()
+            self.headerView.flipToTimerViewSide()
         }
     }
     
     func completed(sender: TaskListItemCell!) {
-//        self.runningTask = nil
         self.saveToWorkDB(true)
         self.runningTaskRunner = nil
         self.reloadTableViewWithTimeInterval(0.5)
-        self.headerView.flip()
+        self.headerView.flipToStartViewSide()
         times = 0
         
     }
@@ -208,7 +192,8 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         self.saveToWorkDB(false)
         self.runningTaskRunner = nil
         self.reloadTableViewWithTimeInterval(0.0)
-        self.headerView.flip()
+        self.headerView.flipToStartViewSide()
+        times = 0
     }
     
     // MARK: - TaskRunnerManagerDelegate
@@ -218,7 +203,6 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     }
     
     func taskRunnerManger(taskRunnerManager: TaskRunnerManager!, didActiveFrozenTaskRunner taskRunner: TaskRunner!) {
-//        self.runningTask = task
         self.runningTaskRunner = taskRunner
     }
     
@@ -238,43 +222,6 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     
     func createHeaderView() ->UIView {
         let baseView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 150))
-//        let headerView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 140))
-//        headerView.backgroundColor = UIColor.whiteColor()
-//        let button: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
-//        button.layer.masksToBounds = true
-//        button.layer.cornerRadius = 5
-//        button.adjustsImageWhenHighlighted = false
-//        button.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
-//        button.setImage(UIImage(named: "start_button"), forState: .Normal)
-//        button.setImage(UIImage(named: "start_button_pressed"), forState: .Selected)
-//        button.setImage(UIImage(named: "start_button_pressed"), forState: .Highlighted)
-//        button.addTarget(self, action: Selector("newTaskButtonClick:"), forControlEvents: .TouchUpInside)
-//        
-//        headerView.addSubview(button)
-//        
-//        let timerView = UIView()
-//        timerView.backgroundColor = UIColor.darkGrayColor()
-//        
-//        headerView.insertSubview(timerView, aboveSubview: button)
-//        
-//        
-//        baseView.addSubview(headerView)
-//        button.mas_makeConstraints { make in
-//            make.width.equalTo()(240)
-//            make.height.equalTo()(74)
-//            make.centerX.equalTo()(headerView.mas_centerX)
-//            make.centerY.equalTo()(headerView.mas_centerY)
-//            return ()
-//        }
-//        
-//        timerView.mas_makeConstraints { make in
-//            make.width.equalTo()(240)
-//            make.height.equalTo()(74)
-//            make.centerX.equalTo()(headerView.mas_centerX)
-//            make.centerY.equalTo()(headerView.mas_centerY)
-//            return ()
-//        }
-
         baseView.addSubview(self.headerView)
         self.headerView.mas_makeConstraints { (make) -> Void in
             make.width.equalTo()(baseView.frame.size.width)

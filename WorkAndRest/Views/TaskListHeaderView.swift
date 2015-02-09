@@ -58,7 +58,16 @@ class TaskListHeaderView: UIView {
         } else {
             UIView.transitionFromView(timerView, toView: startView, duration: 1.5, options: UIViewAnimationOptions.TransitionCrossDissolve, completion: nil)
         }
-        flag = !flag
+    }
+    
+    func flipToTimerViewSide() {
+        flag = false
+        self.flip()
+    }
+    
+    func flipToStartViewSide() {
+        flag = true
+        self.flip()
     }
     
     func initStartView() -> UIView {
