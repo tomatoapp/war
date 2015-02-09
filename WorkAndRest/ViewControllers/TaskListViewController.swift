@@ -12,7 +12,7 @@ enum HandleType: Int {
     case None, AddOrEdit, Start
 }
 
-class TaskListViewController: UITableViewController,ItemDetailViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, TaskRunnerManagerDelegate {
+class TaskListViewController: UITableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, TaskRunnerManagerDelegate, TaskDetailsViewControllerDelegate, TaskListHeaderViewDelegate {
 
     var allTasks = [Task]()
     var runningTaskRunner: TaskRunner?
@@ -20,6 +20,7 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     var taskRunnerManager: TaskRunnerManager?
     
     @IBOutlet var headerView: TaskListHeaderView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +37,8 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         
         self.taskRunnerManager = TaskRunnerManager()
         self.taskRunnerManager!.delegate = self
+        
+        self.headerView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,6 +91,7 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = allTasks[indexPath.row]
         let copyItem = item.copy() as Task
+        self.performSegueWithIdentifier("ShowItemDetailsSegue", sender: copyItem)
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -112,7 +116,7 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         println("identifier = \(segue.identifier)")
         
         if segue.identifier == "EditItem" {
-            let controller = segue.destinationViewController as ItemDetailViewController
+            let controller = segue.destinationViewController as TaskTitleViewController
             controller.copyTaskItem = sender as Task?
             controller.delegate = self
         } else if segue.identifier == "ShowItem" {
@@ -121,25 +125,29 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
         } else if segue.identifier == "NewTaskSegue" {
             let controller = segue.destinationViewController as NewTaskViewController
             controller.delegate = self
+        } else if segue.identifier == "ShowItemDetailsSegue" {
+            let controller = segue.destinationViewController as TaskDetailsViewController
+            controller.copyTaskItem = sender as Task!
+            controller.delegate = self
         }
     }
     
     
     // MARK: - ItemDetailViewControllerDelegate
     
-    func addTaskViewController(controller: ItemDetailViewController!, didFinishAddingTask item: Task!) {
+    func addTaskViewController(controller: TaskTitleViewController!, didFinishAddingTask item: Task!) {
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
         
     }
     
-    func addTaskViewController(controller: ItemDetailViewController!, didFinishEditingTask item: Task!) {
+    func addTaskViewController(controller: TaskTitleViewController!, didFinishEditingTask item: Task!) {
         handleType = HandleType.AddOrEdit
         item.lastUpdateTime = NSDate()
         DBOperate.updateTask(item)
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: item, repeats: false)
     }
     
-    func addTaskViewControllerDidCancel(controller: ItemDetailViewController!) {
+    func addTaskViewControllerDidCancel(controller: TaskTitleViewController!) {
         println("Clicked the cancel button.")
     }
     
@@ -205,6 +213,17 @@ class TaskListViewController: UITableViewController,ItemDetailViewControllerDele
     func taskRunnerManger(taskRunnerManager: TaskRunnerManager!, didActiveFrozenTaskRunner taskRunner: TaskRunner!) {
         self.runningTaskRunner = taskRunner
     }
+    
+    // MARK: - TaskListHeaderViewDelegate
+    
+    func taskListHeaderViewStartNewTask(sender: TaskListHeaderView) {
+         self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
+    }
+    
+    
+    // MARK: -TaskDetailsViewControllerDelegate
+    
+    
     
     // MARK: - Methods
     

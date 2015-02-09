@@ -15,7 +15,7 @@ protocol NewTaskViewControllerDelegate {
     //func newTaskViewControllerDidCancel(controller: ItemDetailViewController!)
 }
 
-class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegate, TimeSelectorViewDelegate, TaskTitleViewDelegate, StartViewControllerDelegate {
+class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate, TimeSelectorViewDelegate, TaskTitleViewDelegate, StartViewControllerDelegate {
 
     // MARK: - Properties
     
@@ -55,7 +55,7 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
         if segue.identifier == "EditTaskTitleSegue" {
 //            let controller = segue.destinationViewController as ItemDetailViewController
             let navigationController = segue.destinationViewController as UINavigationController
-            let controller = navigationController.topViewController as ItemDetailViewController
+            let controller = navigationController.topViewController as TaskTitleViewController
             controller.delegate = self
             controller.copyTaskItem = self.taskItem
         } else if segue.identifier == "StartSegue" {
@@ -72,19 +72,19 @@ class NewTaskViewController: BaseViewController, ItemDetailViewControllerDelegat
     
     // MARK: - ItemDetailViewControllerDelegate
     
-    func addTaskViewController(controller: ItemDetailViewController!, didFinishAddingTask item: Task!) {
+    func addTaskViewController(controller: TaskTitleViewController!, didFinishAddingTask item: Task!) {
         self.taskItem = item
         self.taskTitleView.setTitle(item.title)
         
         
     }
     
-    func addTaskViewController(controller: ItemDetailViewController!, didFinishEditingTask item: Task!) {
+    func addTaskViewController(controller: TaskTitleViewController!, didFinishEditingTask item: Task!) {
         self.taskItem = item
         self.taskTitleView.setTitle(item.title)
     }
     
-    func addTaskViewControllerDidCancel(controller: ItemDetailViewController!) {
+    func addTaskViewControllerDidCancel(controller: TaskTitleViewController!) {
         
     }
     

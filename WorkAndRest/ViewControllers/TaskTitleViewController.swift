@@ -1,5 +1,5 @@
 //
-//  ItemDetailViewController.swift
+//  TaskTitleViewController.swift
 //  WorkAndRest
 //
 //  Created by YangCun on 15/1/30.
@@ -8,19 +8,19 @@
 
 import UIKit
 
-protocol ItemDetailViewControllerDelegate {
-    func addTaskViewController(controller: ItemDetailViewController!, didFinishAddingTask item: Task!)
+protocol TaskTitleViewControllerDelegate {
+    func addTaskViewController(controller: TaskTitleViewController!, didFinishAddingTask item: Task!)
     
     
-    func addTaskViewController(controller: ItemDetailViewController!, didFinishEditingTask item: Task!)
-    func addTaskViewControllerDidCancel(controller: ItemDetailViewController!)
+    func addTaskViewController(controller: TaskTitleViewController!, didFinishEditingTask item: Task!)
+    func addTaskViewControllerDidCancel(controller: TaskTitleViewController!)
 }
 
-class ItemDetailViewController: BaseTableViewController, UITextFieldDelegate {
+class TaskTitleViewController: BaseTableViewController, UITextFieldDelegate {
 
     // MARK: - Properties
     
-    var delegate: ItemDetailViewControllerDelegate! = nil
+    var delegate: TaskTitleViewControllerDelegate! = nil
     @IBOutlet var textField: UITextField!
     var copyTaskItem: Task!
     
