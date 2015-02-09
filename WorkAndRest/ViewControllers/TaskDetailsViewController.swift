@@ -16,10 +16,32 @@ class TaskDetailsViewController: BaseTableViewController {
     var copyTaskItem: Task!
     var delegate: TaskDetailsViewControllerDelegate?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.titleView = nil
-        self.navigationItem.title = copyTaskItem.title
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            if WARDevice.getPhoneType() == PhoneType.iPhone4 {
+                return 80
+            } else if WARDevice.getPhoneType() == PhoneType.iPhone5 {
+                return 130
+            }else if WARDevice.getPhoneType() == PhoneType.iPhone6 {
+                return 160
+            } else if WARDevice.getPhoneType() == PhoneType.iPhone6Plus {
+                return 190
+            }
+        } else if indexPath.row == 4 {
+            if WARDevice.getPhoneType() == PhoneType.iPhone4 {
+                return 250
+            } else if WARDevice.getPhoneType() == PhoneType.iPhone5 {
+                return 260
+            } else {
+                return 274
+            }
+        }
+        return 30
     }
 }

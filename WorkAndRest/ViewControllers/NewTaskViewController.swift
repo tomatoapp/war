@@ -34,17 +34,20 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController!.interactivePopGestureRecognizer.enabled = false
+        
         self.timeSelector.delegate = self
         self.taskTitleView.delegate = self
-        
-        //self.adapteDifferentScreenSize()
-
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController!.interactivePopGestureRecognizer.enabled = false
         
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController!.interactivePopGestureRecognizer.enabled = true
     }
     
     override func didReceiveMemoryWarning() {
