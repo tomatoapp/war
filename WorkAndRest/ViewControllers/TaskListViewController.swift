@@ -109,10 +109,10 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         let item = allTasks[indexPath.row]
-        if self.runningTaskRunner == nil  {
-            return UITableViewCellEditingStyle.Delete
+        if self.runningTaskRunner.isWorking  {
+            return UITableViewCellEditingStyle.None
         }
-        return UITableViewCellEditingStyle.None
+        return UITableViewCellEditingStyle.Delete
     }
     
     // MARK: - Navigation

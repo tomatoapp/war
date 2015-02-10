@@ -40,7 +40,10 @@ class TaskRunner: NSObject {
     }
     
     func removeDelegate<T: NSObject where T: TaskRunnerDelegate>(object: T) {
-        self.delegates.removeAtIndex(find(self.delegates, object)!)
+        let index = find(self.delegates, object)
+        if index != nil {
+            self.delegates.removeAtIndex(index!)
+        }
     }
     
     func removeAllDelegate() {

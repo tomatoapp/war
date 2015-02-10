@@ -18,8 +18,8 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate {
         super.viewDidLoad()
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
         self.taskRunner?.removeDelegate(self)
     }
     
@@ -59,4 +59,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate {
     func tick(sender: TaskRunner?) {
         println("TaskDetailsViewController - tick")
     }
+    
+    // MARK: - Methods
+    
 }
