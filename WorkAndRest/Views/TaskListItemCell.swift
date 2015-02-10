@@ -19,7 +19,6 @@ protocol TaskListItemCellDelegate {
 
 class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     
-    
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var bgImageView: UIImageView!
     @IBOutlet var startButton: UIButton!
@@ -27,6 +26,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     //@IBOutlet var grayMaskView: UIView!
     @IBOutlet var pointImageView: UIImageView!
     
+    var ANIMATION_DURATION = 0.5
     var seconds = 0
     var taskItem: Task?
     var taskRunner: TaskRunner?
@@ -82,7 +82,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         
         taskRunner?.start()
         self.timerLabel.text = self.getTimerString()
-        UIView.animateWithDuration(1,
+        UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in
                 self.startButton.alpha = 0
                 self.timerLabel.alpha = 1
@@ -92,7 +92,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         }
         
         UIView.transitionWithView(self.bgImageView,
-            duration: 1,
+            duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 self.bgImageView.image = UIImage(named: "list_item_working_bg")
@@ -100,7 +100,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         
         
         UIView.transitionWithView(self.pointImageView,
-            duration: 1,
+            duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 self.pointImageView.image = UIImage(named: "point_green")
@@ -113,21 +113,21 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     
     func disable() {
         self.reset()
-        UIView.animateWithDuration(1,
+        UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in
                 self.startButton.alpha = 0.5
             })
     }
     
     func reset() {
-        UIView.animateWithDuration(1,
+        UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in
                 self.timerLabel.alpha = 0
                 self.startButton.alpha = 1
         })
         
         UIView.transitionWithView(self.bgImageView,
-            duration: 1,
+            duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 if self.taskItem!.completed {
@@ -139,7 +139,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         
         
         UIView.transitionWithView(self.startButton,
-            duration: 1,
+            duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 if self.taskItem!.completed {
@@ -150,7 +150,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
             }, completion: nil)
         
         UIView.transitionWithView(self.pointImageView,
-            duration: 1,
+            duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 if self.taskItem!.completed {
@@ -163,7 +163,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     
     func changeImageWithAnimations(view: UIView, duration: NSTimeInterval) {
         UIView.transitionWithView(self.startButton,
-            duration: 1,
+            duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 if self.taskItem!.completed {
@@ -210,7 +210,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     }
     
     func switchToBreakButton(sender: NSTimer!) {
-        UIView.animateWithDuration(1,
+        UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in
                 self.timerLabel.alpha = 0
                 self.startButton.alpha = 1
@@ -218,7 +218,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
             { (finished: Bool) -> Void in
         }
         UIView.transitionWithView(self.startButton,
-            duration: 1,
+            duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 self.startButton.setImage(UIImage(named: "break"), forState: UIControlState.Normal)
