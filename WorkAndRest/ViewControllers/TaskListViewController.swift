@@ -187,7 +187,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     func completed(sender: TaskListItemCell!) {
-        self.saveToWorkDB(true)
+        self.recordWork(true)
         self.runningTaskRunner = nil
         self.reloadTableViewWithTimeInterval(0.5)
         self.headerView.flipToStartViewSide()
@@ -197,11 +197,17 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     func breaked(sender: TaskListItemCell!) {
         println("breaked")
-        self.saveToWorkDB(false)
+        self.recordWork(false)
         self.runningTaskRunner = nil
         self.reloadTableViewWithTimeInterval(0.0)
         self.headerView.flipToStartViewSide()
         times = 0
+    }
+    
+    func activated(sender: TaskListItemCell!) {
+        var baseItem = allTasks.filter{ $0.taskId == sender.taskItem!.taskId }.first!
+        baseItem.completed = false
+        self.reloadTableViewWithTimeInterval(0.0)
     }
     
     // MARK: - TaskRunnerManagerDelegate
@@ -327,7 +333,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         self.taskRunnerManager!.activeFrozenTaskManager()
     }
     
-    func saveToWorkDB(isFinished: Bool) {
+    func recordWork(isFinished: Bool) {
         let work = Work()
         work.taskId = self.runningTaskRunner!.taskItem.taskId
         work.isFinished = isFinished

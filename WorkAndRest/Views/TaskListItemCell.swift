@@ -14,10 +14,11 @@ protocol TaskListItemCellDelegate {
     func tick(timeString: String)
     func completed(sender: TaskListItemCell!)
     func breaked(sender: TaskListItemCell!)
+    func activated(sender: TaskListItemCell!)
 }
 
 class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
-
+    
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var bgImageView: UIImageView!
@@ -37,19 +38,24 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         super.awakeFromNib()
         self.setup()
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-
+    
     @IBAction func startButtonClicked(sender: AnyObject) {
         
         if self.taskRunner != nil && self.taskRunner!.isWorking {
             self.breakIt()
         } else {
-        if self.delegate != nil {
-            self.delegate!.readyToStart(self)
+            if self.taskItem!.completed {
+                self.taskItem!.completed = false
+                if DBOperate.updateTask(self.taskItem!) {
+                    self.delegate?.activated(self)
+                }
+            } else {
+                self.delegate?.readyToStart(self)
             }
         }
     }
@@ -91,10 +97,15 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 self.bgImageView.image = UIImage(named: "list_item_working_bg")
+            }, completion: nil)
+        
+        
+        UIView.transitionWithView(self.pointImageView,
+            duration: 1,
+            options: .TransitionCrossDissolve,
+            animations: { () -> Void in
                 self.pointImageView.image = UIImage(named: "point_green")
-            })
-            { (finished: Bool) -> Void in
-        }
+            }, completion: nil)
     }
     
     func breakIt() {
@@ -107,31 +118,68 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
             animations: { () -> Void in
                 self.startButton.alpha = 0.5
             })
-            { (finished: Bool) -> Void in
-        }
     }
     
     func reset() {
         self.running = false
+        
         UIView.animateWithDuration(1,
             animations: { () -> Void in
                 self.timerLabel.alpha = 0
                 self.startButton.alpha = 1
-                
-            })
-            { (finished: Bool) -> Void in
-        }
+        })
         
         UIView.transitionWithView(self.bgImageView,
             duration: 1,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
-                self.bgImageView.image = UIImage(named: "list_item_normal_bg")
-            })
-            { (finished: Bool) -> Void in
-                self.pointImageView.image = UIImage(named: "point_yellow")
-                self.startButton.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
-        }
+                if self.taskItem!.completed {
+                    self.bgImageView.image = UIImage(named: "list_item_finished_bg")
+                } else {
+                    self.bgImageView.image = UIImage(named: "list_item_normal_bg")
+                }
+            }, completion: nil)
+        
+        
+        UIView.transitionWithView(self.startButton,
+            duration: 1,
+            options: .TransitionCrossDissolve,
+            animations: { () -> Void in
+                if self.taskItem!.completed {
+                    self.startButton.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
+                } else {
+                    self.startButton.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
+                }
+            }, completion: nil)
+        
+        UIView.transitionWithView(self.pointImageView,
+            duration: 1,
+            options: .TransitionCrossDissolve,
+            animations: { () -> Void in
+                if self.taskItem!.completed {
+                    self.pointImageView.image = UIImage(named: "point_gray")
+                } else {
+                    self.pointImageView.image = UIImage(named: "point_yellow")
+                }
+            }, completion: nil)
+    }
+    
+    func changeImageWithAnimations(view: UIView, duration: NSTimeInterval) {
+        UIView.transitionWithView(self.startButton,
+            duration: 1,
+            options: .TransitionCrossDissolve,
+            animations: { () -> Void in
+                if self.taskItem!.completed {
+                    self.startButton.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
+                } else {
+                    self.startButton.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
+                }
+            }, completion: nil)
+        
+        UIView.transitionWithView(view, duration: duration, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
+            
+            }, completion: nil)
+        
     }
     
     func getTimerString() -> String {

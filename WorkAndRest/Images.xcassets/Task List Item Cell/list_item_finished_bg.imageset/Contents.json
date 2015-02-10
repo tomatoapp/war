@@ -17,7 +17,7 @@
         }
       },
       "idiom" : "universal",
-      "filename" : "list_item_finished_bg@2x.png",
+      "filename" : "REDO.png",
       "scale" : "2x"
     },
     {
@@ -33,7 +33,7 @@
         }
       },
       "idiom" : "universal",
-      "filename" : "list_item_finished_bg@3x.png",
+      "filename" : "REDO@3x.png",
       "scale" : "3x"
     }
   ],

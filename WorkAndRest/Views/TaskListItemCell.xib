@@ -119,7 +119,7 @@
     <resources>
         <image name="list_item_normal_bg" width="10" height="55"/>
         <image name="point_yellow" width="14" height="14"/>
-        <image name="start" width="16" height="16"/>
+        <image name="start" width="18" height="18"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

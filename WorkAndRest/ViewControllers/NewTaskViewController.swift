@@ -241,7 +241,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         self.view.addSubview(completionCirleView!)
         completionCirleView!.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
-            make.top.mas_equalTo()(taskTitleView!.mas_bottom).offset()(10)
+            make.top.mas_equalTo()(taskTitleView!.mas_bottom).offset()(20)
             make.height.mas_equalTo()(80)
             make.width.mas_equalTo()(self.view.mas_width)
             return ()

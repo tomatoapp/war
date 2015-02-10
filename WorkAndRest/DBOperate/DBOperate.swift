@@ -97,9 +97,9 @@ import UIKit
         return lastRowId
     }
     
-    class func updateTask(task: Task) {
+    class func updateTask(task: Task) -> Bool {
         if !dataBase.open() {
-            return
+            return false
         }
         
         // also can use datetime('now'):
@@ -111,6 +111,7 @@ import UIKit
             println("update task table failed!")
         }
         dataBase.close()
+        return success
     }
     class func deleteTask(task: Task) {
         if !dataBase.open() {
