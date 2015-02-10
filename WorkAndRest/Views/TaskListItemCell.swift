@@ -24,15 +24,15 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     @IBOutlet var bgImageView: UIImageView!
     @IBOutlet var startButton: UIButton!
     @IBOutlet var timerLabel: UILabel!
-    @IBOutlet var grayMaskView: UIView!
+    //@IBOutlet var grayMaskView: UIView!
     @IBOutlet var pointImageView: UIImageView!
     
     var seconds = 0
     var taskItem: Task?
     var taskRunner: TaskRunner?
     var delegate: TaskListItemCellDelegate?
-    var running = false
-    var state = UITableViewCellStateMask.DefaultMask
+    //var running = false
+    //var state = UITableViewCellStateMask.DefaultMask
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -66,18 +66,17 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     
     func setup() {
         self.timerLabel.alpha = 0
-        self.grayMaskView.alpha = 0
+        //self.grayMaskView.alpha = 0
     }
     
     func start() {
         
-        if state != UITableViewCellStateMask.DefaultMask {
+//        if state != UITableViewCellStateMask.DefaultMask {
+//            return
+//        }
+        if !self.taskRunner!.canStart() {
             return
         }
-        if self.running {
-            return
-        }
-        self.running = true
         
         self.seconds = self.taskItem!.minutes * 60
         
@@ -121,8 +120,6 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     }
     
     func reset() {
-        self.running = false
-        
         UIView.animateWithDuration(1,
             animations: { () -> Void in
                 self.timerLabel.alpha = 0
@@ -189,7 +186,8 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     // MARK: - TaskRunnerDelegate
     
     func tick(sender: TaskRunner?) {
-        println("tick: " + "\(sender?.taskItem.title)" + "\(sender!.seconds)")
+        //println("tick: " + "\(sender?.taskItem.title)" + "\(sender!.seconds)")
+        println("TaskListItemCell - tick")
         self.seconds = sender!.seconds
         let result = self.getTimerString()
         self.timerLabel.text = result
@@ -208,15 +206,14 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     }
     
     func changeToBreakButtonAfter2Seconds() {
-        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("changeToBreakButton:"), userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("switchToBreakButton:"), userInfo: nil, repeats: false)
     }
     
-    func changeToBreakButton(sender: NSTimer!) {
+    func switchToBreakButton(sender: NSTimer!) {
         UIView.animateWithDuration(1,
             animations: { () -> Void in
                 self.timerLabel.alpha = 0
                 self.startButton.alpha = 1
-                
             })
             { (finished: Bool) -> Void in
         }
@@ -230,7 +227,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         }
     }
     
-    override func willTransitionToState(state: UITableViewCellStateMask) {
-        self.state = state
-    }
+//    override func willTransitionToState(state: UITableViewCellStateMask) {
+//        self.state = state
+//    }
 }

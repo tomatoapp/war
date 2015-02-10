@@ -8,18 +8,19 @@
 
 import UIKit
 
-protocol TaskDetailsViewControllerDelegate {
-    
-}
+class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate {
 
-class TaskDetailsViewController: BaseTableViewController {
     var copyTaskItem: Task!
-    var delegate: TaskDetailsViewControllerDelegate?
-    
+    var taskRunner: TaskRunner?
+    var taskRunnerManager: TaskRunnerManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.taskRunner?.removeDelegate(self)
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -43,5 +44,19 @@ class TaskDetailsViewController: BaseTableViewController {
             }
         }
         return 30
+    }
+    
+    // MARK: - TaskRunnerDelegate
+    
+    func completed(sender: TaskRunner?) {
+        println("TaskDetailsViewController - completed")
+    }
+    
+    func breaked(sender: TaskRunner?) {
+        println("TaskDetailsViewController - breaked")
+    }
+    
+    func tick(sender: TaskRunner?) {
+        println("TaskDetailsViewController - tick")
     }
 }

@@ -49,10 +49,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view alpha="0.29999999999999966" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9P-6H-JOT">
-                                <rect key="frame" x="0.0" y="0.0" width="389" height="84"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -64,14 +60,10 @@
                             <constraint firstAttribute="trailing" secondItem="gpZ-Ip-HHZ" secondAttribute="trailing" constant="8" id="NLK-Zm-dbe"/>
                             <constraint firstAttribute="trailing" secondItem="xtX-tg-YOQ" secondAttribute="trailing" constant="70" id="acC-G1-gZm"/>
                             <constraint firstAttribute="bottom" secondItem="xtX-tg-YOQ" secondAttribute="bottom" constant="8" id="dTZ-Ek-mAe"/>
-                            <constraint firstItem="w9P-6H-JOT" firstAttribute="leading" secondItem="uGh-N8-CML" secondAttribute="leading" id="fiM-fB-yCN"/>
                             <constraint firstAttribute="centerY" secondItem="gpZ-Ip-HHZ" secondAttribute="centerY" id="jKb-Da-cV3"/>
                             <constraint firstItem="xtX-tg-YOQ" firstAttribute="top" secondItem="uGh-N8-CML" secondAttribute="top" constant="8" id="oYf-1H-8bN"/>
                             <constraint firstAttribute="bottom" secondItem="SNV-J3-tCQ" secondAttribute="bottom" id="ofh-LO-8yi"/>
                             <constraint firstItem="SNV-J3-tCQ" firstAttribute="top" secondItem="uGh-N8-CML" secondAttribute="top" id="pyN-zb-qwR"/>
-                            <constraint firstAttribute="bottom" secondItem="w9P-6H-JOT" secondAttribute="bottom" id="vxQ-iM-0X9"/>
-                            <constraint firstItem="w9P-6H-JOT" firstAttribute="top" secondItem="uGh-N8-CML" secondAttribute="top" id="wCu-eA-TG1"/>
-                            <constraint firstAttribute="trailing" secondItem="w9P-6H-JOT" secondAttribute="trailing" id="yC4-8y-mGS"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwX-9F-9uO">
@@ -107,7 +99,6 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="bgImageView" destination="SNV-J3-tCQ" id="flv-mj-gwv"/>
-                <outlet property="grayMaskView" destination="w9P-6H-JOT" id="gPp-bH-j0y"/>
                 <outlet property="pointImageView" destination="48e-US-JE7" id="jDi-ae-B7x"/>
                 <outlet property="startButton" destination="4s3-p9-bUw" id="5aX-Jg-h2f"/>
                 <outlet property="timerLabel" destination="gpZ-Ip-HHZ" id="nIi-WZ-ac5"/>

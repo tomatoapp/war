@@ -16,27 +16,58 @@ protocol TaskRunnerDelegate {
 
 class TaskRunner: NSObject {
     
+    var delegates = [NSObject]()
     var delegate: TaskRunnerDelegate?
     var taskItem: Task!
     var seconds = 0
 
+    var isReady = false
     var isWorking = false
     var isPause = false
     var timer: NSTimer!
     
     override init() {
         super.init()
+        //self.delegates = Array()
+
     }
     
     convenience init(task: Task!) {
         self.init()
         self.taskItem = task
         self.seconds = task.minutes * 10
+        
     }
+    
+    func addDelegate<T: NSObject where T: TaskRunnerDelegate>(object: T) {
+        //self.delegates?.addObject(object)
+        self.delegates.append(object)
+    }
+    
+    func removeDelegate<T: NSObject where T: TaskRunnerDelegate>(object: T) {
+        self.delegates.removeAtIndex(find(self.delegates, object)!)
+    }
+    
+    func removeAllDelegate() {
+        self.delegates.removeAll(keepCapacity: false)
+    }
+    
+
     
     // MARK: - Methods
     
+    func canStart() -> Bool {
+        return !self.isWorking && self.isReady && self.taskItem != nil
+    }
+    
+    func setup() {
+        self.seconds = self.taskItem.minutes * 10
+    }
+    
      func start() {
+        
+        self.setup()
+        
         self.isWorking = true
         timer = NSTimer.scheduledTimerWithTimeInterval(1,
             target: self,
@@ -47,13 +78,31 @@ class TaskRunner: NSObject {
     
      func stop() {
         self.reset()
-        self.delegate?.breaked(self)
+//        self.delegate?.breaked(self)
+        if self.delegates.count > 0 {
+            for item in self.delegates {
+                if let cell = item as? TaskListItemCell {
+                    cell.breaked(self)
+                } else if let vc = item as? TaskDetailsViewController {
+                    vc.breaked(self)
+                }
+            }
+        }
     }
     
     func tick() {
         if !self.isPause {
             if self.seconds-- > 0 {
-                self.delegate?.tick(self)
+//                self.delegate?.tick(self)
+                if self.delegates.count > 0 {
+                    for item in self.delegates {
+                        if let cell = item as? TaskListItemCell {
+                            cell.tick(self)
+                        } else if let vc = item as? TaskDetailsViewController {
+                            vc.tick(self)
+                        }
+                    }
+                }
             } else {
                 self.complete()
             }
@@ -62,7 +111,16 @@ class TaskRunner: NSObject {
     
     func complete() {
         self.reset()
-        self.delegate?.completed(self)
+//        self.delegate?.completed(self)
+        if self.delegates.count > 0 {
+            for item in self.delegates {
+                if let cell = item as? TaskListItemCell {
+                    cell.completed(self)
+                } else if let vc = item as? TaskDetailsViewController {
+                    vc.completed(self)
+                }
+            }
+        }
     }
     
     func pause() {
