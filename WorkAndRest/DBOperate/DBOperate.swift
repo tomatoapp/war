@@ -40,7 +40,8 @@ import UIKit
         "task_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT DEFAULT 1," +
         "title VARCHAR(1024) NOT NULL," +
         "lastUpdateTime DATETIME DEFAULT CURRENT_TIMESTAMP," +
-        "minutes INTEGER" +
+        "minutes INTEGER, " +
+        "completed BOOL DEFAULT 0" +
         ")"
         
         if !dataBase.open() {
@@ -58,7 +59,7 @@ import UIKit
         if !dataBase.open() {
             return false
         }
-        let success = dataBase.executeUpdate("INSERT INTO t_tasks(title, minutes) VALUES (:title, :minutes)", withArgumentsInArray: [task.title, task.minutes])
+        let success = dataBase.executeUpdate("INSERT INTO t_tasks(title, minutes, completed) VALUES (:title, :minutes, :completed)", withArgumentsInArray: [task.title, task.minutes, task.completed])
         if success {
             println("insert to task table success.")
         } else {
@@ -104,7 +105,7 @@ import UIKit
         
         // also can use datetime('now'):
         // lastUpdateTime = ? -> lastUpdateTime = datetime('now')
-        let success = dataBase.executeUpdate("UPDATE t_tasks SET title = ?, lastUpdateTime = ?, minutes = ? WHERE task_id = ?", withArgumentsInArray: [task.title, task.lastUpdateTime, task.minutes, task.taskId])
+        let success = dataBase.executeUpdate("UPDATE t_tasks SET title = ?, lastUpdateTime = ?, minutes = ?, completed = ? WHERE task_id = ?", withArgumentsInArray: [task.title, task.lastUpdateTime, task.minutes, task.completed, task.taskId])
         if success {
             println("update task table success.")
         } else {

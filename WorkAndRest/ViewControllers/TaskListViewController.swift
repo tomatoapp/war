@@ -38,7 +38,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         self.taskRunnerManager = TaskRunnerManager()
         self.taskRunnerManager!.delegate = self
         
-        self.runningTaskRunner = TaskRunner()
+        self.runningTaskRunner = TaskRunner(task: Task())
         self.headerView.delegate = self
     }
 

@@ -20,10 +20,10 @@ class Task: NSObject, NSCopying {
 
     override init() {
 
-        self.taskId = 0
+        self.taskId = -1
         self.title = ""
         self.text = ""
-        self.completed = true
+        self.completed = false
         self.costWorkTimes = 0
         self.date = NSDate()
         self.lastUpdateTime = NSDate()

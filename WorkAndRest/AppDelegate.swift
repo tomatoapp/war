@@ -180,6 +180,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func createSampleTask() -> Task {
         println("createSampleTask")
         let sampleTask = Task()
+        sampleTask.taskId = 0
         sampleTask.title = NSLocalizedString("Task Sample", comment: "")
         sampleTask.minutes = GlobalConstants.DEFAULT_MINUTES
         return sampleTask

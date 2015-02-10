@@ -28,19 +28,14 @@ class TaskRunner: NSObject {
     
     override init() {
         super.init()
-        //self.delegates = Array()
-
     }
     
     convenience init(task: Task!) {
         self.init()
         self.taskItem = task
-        self.seconds = task.minutes * 10
-        
     }
     
     func addDelegate<T: NSObject where T: TaskRunnerDelegate>(object: T) {
-        //self.delegates?.addObject(object)
         self.delegates.append(object)
     }
     
@@ -51,8 +46,6 @@ class TaskRunner: NSObject {
     func removeAllDelegate() {
         self.delegates.removeAll(keepCapacity: false)
     }
-    
-
     
     // MARK: - Methods
     
@@ -65,9 +58,7 @@ class TaskRunner: NSObject {
     }
     
      func start() {
-        
         self.setup()
-        
         self.isWorking = true
         timer = NSTimer.scheduledTimerWithTimeInterval(1,
             target: self,
@@ -78,7 +69,6 @@ class TaskRunner: NSObject {
     
      func stop() {
         self.reset()
-//        self.delegate?.breaked(self)
         if self.delegates.count > 0 {
             for item in self.delegates {
                 if let cell = item as? TaskListItemCell {
@@ -93,7 +83,6 @@ class TaskRunner: NSObject {
     func tick() {
         if !self.isPause {
             if self.seconds-- > 0 {
-//                self.delegate?.tick(self)
                 if self.delegates.count > 0 {
                     for item in self.delegates {
                         if let cell = item as? TaskListItemCell {
@@ -111,7 +100,6 @@ class TaskRunner: NSObject {
     
     func complete() {
         self.reset()
-//        self.delegate?.completed(self)
         if self.delegates.count > 0 {
             for item in self.delegates {
                 if let cell = item as? TaskListItemCell {
