@@ -103,6 +103,9 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
     
     // MARK: - TaskRunnerDelegate
     
+    func started(sender: TaskRunner!) {
+        
+    }
     func tick(sender: TaskRunner!) {
         self.seconds = sender!.seconds
         self.timerLabel.text = self.getTimerString()

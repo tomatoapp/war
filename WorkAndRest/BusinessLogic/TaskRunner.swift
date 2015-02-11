@@ -9,6 +9,7 @@
 import UIKit
 
 protocol TaskRunnerDelegate {
+    func started(sender: TaskRunner!)
     func completed(sender: TaskRunner!)
     func breaked(sender: TaskRunner!)
     func tick(sender: TaskRunner!)
@@ -22,7 +23,7 @@ class TaskRunner: NSObject {
     var seconds = 0
 
     var isReady = false
-    var isWorking = false
+    var isRunning = false
     var isPause = false
     var timer: NSTimer!
     
@@ -53,7 +54,7 @@ class TaskRunner: NSObject {
     // MARK: - Methods
     
     func canStart() -> Bool {
-        return !self.isWorking && self.isReady && self.taskItem != nil
+        return !self.isRunning && self.isReady && self.taskItem != nil
     }
     
     func setup() {
@@ -62,12 +63,21 @@ class TaskRunner: NSObject {
     
      func start() {
         self.setup()
-        self.isWorking = true
+        self.isRunning = true
         timer = NSTimer.scheduledTimerWithTimeInterval(1,
             target: self,
             selector: Selector("tick"),
             userInfo: nil,
             repeats: true)
+        if self.delegates.count > 0 {
+            for item in self.delegates {
+                if let cell = item as? TaskListItemCell {
+                    cell.started(self)
+                } else if let vc = item as? TaskDetailsViewController {
+                    vc.started(self)
+                }
+            }
+        }
     }
     
      func stop() {
@@ -86,15 +96,17 @@ class TaskRunner: NSObject {
     func tick() {
         if !self.isPause {
             if self.seconds-- > 0 {
-                println("TaskRunner: \(self.seconds)")
+                //println("TaskRunner: \(self.seconds)")
                 println("self.delegates.count: \(self.delegates.count)")
                 if self.delegates.count > 0 {
                     for item in self.delegates {
-                        println("item: \(item.description)")
+                        //println("item: \(item.description)")
                         if let cell = item as? TaskListItemCell {
-                            //cell.tick(self)
+                            println("item is task list item cell")
+                            cell.tick(self)
                         } else if let vc = item as? TaskDetailsViewController {
-                            //vc.tick(self)
+                            println("item is task details vc")
+                            vc.tick(self)
                         }
                     }
                 }
@@ -130,6 +142,6 @@ class TaskRunner: NSObject {
     
     func reset() {
         self.cancel()
-        self.isWorking = false
+        self.isRunning = false
     }
 }

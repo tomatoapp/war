@@ -12,6 +12,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
 
     var taskItem: Task!
     var taskRunner: TaskRunner!
+    var state = TaskState.Normal
     
     @IBOutlet var taskItemBaseView: TaskItemBaseView!
 
@@ -20,6 +21,17 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         self.taskItemBaseView.delegate = self
         self.taskItemBaseView.refreshTitle(self.taskItem.title)
         self.taskRunner.taskItem = self.taskItem
+        
+        if self.state == TaskState.Normal {
+            self.taskItemBaseView.seconds = self.taskItem!.minutes * 60
+        }
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.taskItemBaseView.refreshViewByState(self.state, animation: false)
+        self.taskItemBaseView.refreshViewBySeconds(self.taskRunner.seconds)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -58,30 +70,39 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     // MARK: - TaskRunnerDelegate
     
+    func started(sender: TaskRunner!) {
+        self.state = .Running
+        self.taskItemBaseView?.refreshViewByState(self.state)
+    }
+    
     func completed(sender: TaskRunner!) {
-        self.taskItemBaseView.refreshViewByState(.Normal)
+        self.state = .Normal
+        self.taskItemBaseView.refreshViewByState(self.state)
     }
     
     func breaked(sender: TaskRunner!) {
-        self.taskItemBaseView.refreshViewByState(.Normal)
+        self.state = .Normal
+        self.taskItemBaseView.refreshViewByState(self.state)
     }
     
     func tick(sender: TaskRunner!) {
         println("TaskListViewController: \(sender.seconds)")
-
         self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
     }
     
     // MARK: - TaskItemBaseViewDelegate
     
     func taskItemBaseView(view: UIView!, buttonClicked sender: UIButton!) {
-
-        taskRunner!.start()
-        
-        self.taskItemBaseView.seconds = self.taskItem!.minutes * 60
-        self.taskItemBaseView.refreshViewByState(TaskState.Running)
+       self.start()
     }
     
     // MARK: - Methods
     
+    func start() {
+        self.state = .Running
+        self.taskRunner.isReady = true
+        if self.taskRunner.canStart() {
+            taskRunner.start()
+        }
+    }
 }

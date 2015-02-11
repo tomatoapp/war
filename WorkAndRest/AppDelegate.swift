@@ -96,11 +96,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         var isWorking = false
         
-        if self.taskListViewController != nil && self.taskListViewController!.runningTaskRunner != nil {
+        if self.taskListViewController != nil && self.taskListViewController!.taskRunner != nil {
             isWorking = true
             println("isWorking! resign active")
-            self.addNotificationWithSeconds(self.taskListViewController!.runningTaskRunner!.seconds)
-            self.taskListViewController!.freezeTaskManager(self.taskListViewController!.runningTaskRunner)
+            self.addNotificationWithSeconds(self.taskListViewController!.taskRunner!.seconds)
+            self.taskListViewController!.freezeTaskManager(self.taskListViewController!.taskRunner)
         }
         NSUserDefaults.standardUserDefaults().setBool(isWorking, forKey: GlobalConstants.kBOOL_ISWORKING)
         NSUserDefaults.standardUserDefaults().synchronize()

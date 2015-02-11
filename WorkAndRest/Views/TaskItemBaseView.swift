@@ -9,7 +9,7 @@
 import UIKit
 
 enum TaskState {
-    case Normal, Running, Completed
+    case Unkown, Normal, Running, Completed
 }
 
 protocol TaskItemBaseViewDelegate {
@@ -55,23 +55,23 @@ class TaskItemBaseView: UIView {
         self.titleLabel.text = title
     }
     
-    func refreshViewByState(state: TaskState) {
+    func refreshViewByState(state: TaskState, animation: Bool = true) {
         switch state {
         case .Normal:
-            UIView.animateWithDuration(ANIMATION_DURATION,
+            UIView.animateWithDuration(animation ? ANIMATION_DURATION : 0,
                 animations: { () -> Void in
                     self.timerLabel.alpha = 0
                     self.startButton.alpha = 1
             })
 
             UIView.transitionWithView(self.bgImageView,
-                duration: ANIMATION_DURATION,
+                duration: animation ? ANIMATION_DURATION : 0,
                 options: .TransitionCrossDissolve,
                 animations: { () -> Void in
                     self.bgImageView.image = UIImage(named: "list_item_normal_bg")
                 }, completion: nil)
             UIView.transitionWithView(self.startButton,
-                duration: ANIMATION_DURATION,
+                duration: animation ? ANIMATION_DURATION : 0,
                 options: .TransitionCrossDissolve,
                 animations: { () -> Void in
                     self.startButton.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
@@ -81,45 +81,48 @@ class TaskItemBaseView: UIView {
             
         case .Running:
             self.timerLabel.text = self.getTimerString()
-            UIView.animateWithDuration(ANIMATION_DURATION,
+            UIView.animateWithDuration(animation ? ANIMATION_DURATION : 0,
                 animations: { () -> Void in
                     self.startButton.alpha = 0
                     self.timerLabel.alpha = 1
                 })
                 { (finished: Bool) -> Void in
-                    self.changeToBreakButtonAfter2Seconds()
+                    //self.changeToBreakButtonAfter2Seconds()
             }
             
             UIView.transitionWithView(self.bgImageView,
-                duration: ANIMATION_DURATION,
+                duration: animation ? ANIMATION_DURATION : 0,
                 options: .TransitionCrossDissolve,
                 animations: { () -> Void in
                     self.bgImageView.image = UIImage(named: "list_item_working_bg")
                 }, completion: nil)
             
-            UIView.transitionWithView(self.startButton,
-                duration: ANIMATION_DURATION,
-                options: .TransitionCrossDissolve,
-                animations: { () -> Void in
-                        self.startButton.setImage(UIImage(named: "break"), forState: UIControlState.Normal)
-                }, completion: nil)
+//            UIView.transitionWithView(self.startButton,
+//                duration: ANIMATION_DURATION,
+//                options: .TransitionCrossDissolve,
+//                animations: { () -> Void in
+//                        self.startButton.setImage(UIImage(named: "break"), forState: UIControlState.Normal)
+//                }, completion: nil)
 
             break
             
         case .Completed:
             self.bgImageView.image = UIImage(named: "list_item_finished_bg")
             UIView.transitionWithView(self.startButton,
-                duration: ANIMATION_DURATION,
+                duration: animation ? ANIMATION_DURATION : 0,
                 options: .TransitionCrossDissolve,
                 animations: { () -> Void in
                     self.startButton.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
                 }, completion: nil)
             break
+            
+        default:
+            break
         }
     }
     
     func refreshViewBySeconds(seconds: Int) {
-        println("refreshViewBySeconds： \(seconds)")
+        //println("refreshViewBySeconds： \(seconds)")
         self.seconds = seconds
         self.timerLabel.text = self.getTimerString()
     }
