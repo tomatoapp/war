@@ -9,9 +9,9 @@
 import UIKit
 
 protocol TaskRunnerDelegate {
-    func completed(sender: TaskRunner?)
-    func breaked(sender: TaskRunner?)
-    func tick(sender: TaskRunner?)
+    func completed(sender: TaskRunner!)
+    func breaked(sender: TaskRunner!)
+    func tick(sender: TaskRunner!)
 }
 
 class TaskRunner: NSObject {
@@ -86,12 +86,15 @@ class TaskRunner: NSObject {
     func tick() {
         if !self.isPause {
             if self.seconds-- > 0 {
+                println("TaskRunner: \(self.seconds)")
+                println("self.delegates.count: \(self.delegates.count)")
                 if self.delegates.count > 0 {
                     for item in self.delegates {
+                        println("item: \(item.description)")
                         if let cell = item as? TaskListItemCell {
-                            cell.tick(self)
+                            //cell.tick(self)
                         } else if let vc = item as? TaskDetailsViewController {
-                            vc.tick(self)
+                            //vc.tick(self)
                         }
                     }
                 }

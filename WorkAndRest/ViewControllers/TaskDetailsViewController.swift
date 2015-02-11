@@ -8,22 +8,23 @@
 
 import UIKit
 
-class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate {
+class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, TaskItemBaseViewDelegate {
 
-    var copyTaskItem: Task!
-    var taskRunner: TaskRunner?
-    var taskRunnerManager: TaskRunnerManager?
+    var taskItem: Task!
+    var taskRunner: TaskRunner!
     
     @IBOutlet var taskItemBaseView: TaskItemBaseView!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.taskItemBaseView.delegate = self
+        self.taskItemBaseView.refreshTitle(self.taskItem.title)
+        self.taskRunner.taskItem = self.taskItem
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        self.taskRunner?.removeDelegate(self)
+        self.taskRunner.removeDelegate(self)
     }
     
 
@@ -57,16 +58,28 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate {
     
     // MARK: - TaskRunnerDelegate
     
-    func completed(sender: TaskRunner?) {
-        println("TaskDetailsViewController - completed")
+    func completed(sender: TaskRunner!) {
+        self.taskItemBaseView.refreshViewByState(.Normal)
     }
     
-    func breaked(sender: TaskRunner?) {
-        println("TaskDetailsViewController - breaked")
+    func breaked(sender: TaskRunner!) {
+        self.taskItemBaseView.refreshViewByState(.Normal)
     }
     
-    func tick(sender: TaskRunner?) {
-        println("TaskDetailsViewController - tick")
+    func tick(sender: TaskRunner!) {
+        println("TaskListViewController: \(sender.seconds)")
+
+        self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
+    }
+    
+    // MARK: - TaskItemBaseViewDelegate
+    
+    func taskItemBaseView(view: UIView!, buttonClicked sender: UIButton!) {
+
+        taskRunner!.start()
+        
+        self.taskItemBaseView.seconds = self.taskItem!.minutes * 60
+        self.taskItemBaseView.refreshViewByState(TaskState.Running)
     }
     
     // MARK: - Methods

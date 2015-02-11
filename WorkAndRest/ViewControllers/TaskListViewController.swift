@@ -133,8 +133,8 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         } else if segue.identifier == "ShowItemDetailsSegue" {
             let controller = segue.destinationViewController as TaskDetailsViewController
             let selectedTask = sender as Task!
-            controller.copyTaskItem = selectedTask
-            if self.runningTaskRunner.taskItem.taskId == selectedTask.taskId {
+            controller.taskItem = selectedTask
+            if self.runningTaskRunner.taskItem.taskId == -1 || self.runningTaskRunner.taskItem.taskId == selectedTask.taskId {
                 controller.taskRunner = self.runningTaskRunner
                 self.runningTaskRunner?.addDelegate(controller)
             }
@@ -192,9 +192,10 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     var times = 0
-    func tick(timeString: String) {
-        self.headerView.updateTime(timeString)
-        if ++times == 3 {
+    func tick(seconds: Int) {
+        println("TaskListViewController: \(seconds)")
+        self.headerView.updateTime(self.getTimerStringBySeconds(seconds))
+        if ++times == 2 {
             self.headerView.flipToTimerViewSide()
         }
     }
@@ -353,5 +354,9 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         work.taskId = self.runningTaskRunner!.taskItem.taskId
         work.isFinished = isFinished
         DBOperate.insertWork(work)
+    }
+    
+    func getTimerStringBySeconds(seconds: Int) -> String {
+        return String(format: "%02d:%02d", arguments: [seconds % 3600 / 60, seconds % 3600 % 60])
     }
 }

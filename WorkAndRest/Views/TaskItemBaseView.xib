@@ -11,7 +11,7 @@
                 <outlet property="startButton" destination="DWN-NG-ScV" id="gVP-Jk-uio"/>
                 <outlet property="timerLabel" destination="Y8N-qu-b0l" id="ars-e4-gFW"/>
                 <outlet property="titleLabel" destination="Mzr-aw-9C1" id="Tbm-tx-yAS"/>
-                <outlet property="view" destination="9Kk-hG-Ejj" id="9Hg-yc-7sV"/>
+                <outlet property="view" destination="9Kk-hG-Ejj" id="xFl-eu-sWZ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

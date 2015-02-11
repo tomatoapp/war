@@ -103,7 +103,7 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
     
     // MARK: - TaskRunnerDelegate
     
-    func tick(sender: TaskRunner?) {
+    func tick(sender: TaskRunner!) {
         self.seconds = sender!.seconds
         self.timerLabel.text = self.getTimerString()
         if self.isPlaySecondSound {
@@ -111,14 +111,14 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
         }
     }
     
-    func breaked(sender: TaskRunner?) {
+    func breaked(sender: TaskRunner!) {
         println("breaked")
         self.reset()
         self.seconds = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_SECONDS)!.integerValue * 60
         self.timerLabel.text = self.getTimerString()
     }
     
-    func completed(sender: TaskRunner?) {
+    func completed(sender: TaskRunner!) {
         println("completed")
         AudioServicesPlaySystemSound(1005)
         let alert = UIAlertView(title: NSLocalizedString("Completed", comment: ""), message: NSLocalizedString("Time is up!", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("YES", comment: ""))
