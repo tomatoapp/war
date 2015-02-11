@@ -143,5 +143,6 @@ class TaskRunner: NSObject {
     func reset() {
         self.cancel()
         self.isRunning = false
+        self.taskItem = Task()
     }
 }

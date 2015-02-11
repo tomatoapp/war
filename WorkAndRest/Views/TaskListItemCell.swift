@@ -86,15 +86,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
         
         taskRunner?.start()
         
-        self.taskItemBaseView.seconds = self.taskItem!.minutes * 60
-        self.taskItemBaseView.refreshViewByState(TaskState.Running)
         
-        UIView.transitionWithView(self.pointImageView,
-            duration: ANIMATION_DURATION,
-            options: .TransitionCrossDissolve,
-            animations: { () -> Void in
-                self.pointImageView.image = UIImage(named: "point_green")
-            }, completion: nil)
     }
     
     func breakIt() {
@@ -190,8 +182,17 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     // MARK: - TaskRunnerDelegate
     
     func started(sender: TaskRunner!) {
+        self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
         self.taskItemBaseView.refreshViewByState(.Running)
+        
+        UIView.transitionWithView(self.pointImageView,
+            duration: ANIMATION_DURATION,
+            options: .TransitionCrossDissolve,
+            animations: { () -> Void in
+                self.pointImageView.image = UIImage(named: "point_green")
+            }, completion: nil)
     }
+    
     func tick(sender: TaskRunner!) {
         self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
         self.delegate?.tick(sender.seconds)

@@ -13,7 +13,7 @@ enum HandleType: Int {
 }
 
 class TaskListViewController: UITableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate {
-
+    
     var allTasks = [Task]()
     var taskRunner: TaskRunner!
     var handleType = HandleType.None
@@ -23,7 +23,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.tableView.registerNib(UINib(nibName: "TaskListItemCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         self.tableView.tableHeaderView = self.createHeaderView()
         self.tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, 1, 50))
@@ -41,25 +41,26 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         self.taskRunner = TaskRunner(task: Task())
         self.headerView.delegate = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.tableView.reloadData()
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allTasks.count
     }
-
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70
     }
@@ -71,24 +72,23 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         cell.taskItem = (task.copy() as Task)
         cell.refresh()
         
-//        if runningTaskRunner == nil {
-        if !self.taskRunner.isReady {
-            cell.reset()
-        } else {
+        if self.taskRunner.isReady {
             if task.taskId == self.taskRunner!.taskItem.taskId {
-                if !self.taskRunner!.isRunning {
-                    println("start running task: \(self.taskRunner!.taskItem.taskId) + \(self.taskRunner!.taskItem.title)")
-                    cell.taskRunner = self.taskRunner
-                    //self.runningTaskRunner!.delegate = cell
-                    self.taskRunner!.removeAllDelegate()
-                    self.taskRunner!.addDelegate(cell)
-                    
+                self.taskRunner.removeAllDelegate()
+                self.taskRunner.addDelegate(cell)
+                cell.taskRunner = self.taskRunner
+                
+                if self.taskRunner.isRunning {
+                    cell.started(self.taskRunner)
+                } else {
                     cell.start()
-                    let workList = DBOperate.SelectWorkListWithTaskId(self.taskRunner!.taskItem.taskId)
                 }
+            
             } else {
                 cell.disable()
             }
+        } else {
+            cell.reset()
         }
         return cell
     }
@@ -96,7 +96,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = allTasks[indexPath.row]
         let copyItem = item.copy() as Task
-         self.performSegueWithIdentifier("ShowItemDetailsSegue", sender: copyItem)
+        self.performSegueWithIdentifier("ShowItemDetailsSegue", sender: copyItem)
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -117,7 +117,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     // MARK: - Navigation
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         println("identifier = \(segue.identifier)")
         
@@ -135,13 +135,19 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             let controller = segue.destinationViewController as TaskDetailsViewController
             let selectedTask = sender as Task!
             controller.taskItem = selectedTask
-            if self.taskRunner.taskItem.taskId == -1 || self.taskRunner.taskItem.taskId == selectedTask.taskId {
-                controller.taskRunner = self.taskRunner
+//            if self.taskRunner.taskItem.taskId == -1 || self.taskRunner.taskItem.taskId == selectedTask.taskId {
+               // controller.taskRunner = self.taskRunner
                 self.taskRunner?.addDelegate(controller)
-                if self.taskRunner.isRunning && self.taskRunner.taskItem.taskId == selectedTask.taskId {
-                    controller.start()
+            
+            if self.taskRunner.isRunning && self.taskRunner.taskItem.taskId == selectedTask.taskId {
+                    self.taskRunner.taskItem = selectedTask
+                    //controller.start()
+                    controller.state  = TaskState.Running
                 }
-            }
+             controller.taskRunner = self.taskRunner
+            self.taskRunner.isReady = true
+
+//            }
         }
     }
     
@@ -180,9 +186,9 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     // MARK: - TaskListItemCellDelegate
     
     func readyToStart(sender: TaskListItemCell!) {
-//        if self.runningTaskRunner != nil {
-//            return
-//        }
+        //        if self.runningTaskRunner != nil {
+        //            return
+        //        }
         if self.taskRunner!.isRunning {
             return
         }
@@ -243,7 +249,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     // MARK: - TaskListHeaderViewDelegate
     
     func taskListHeaderViewStartNewTask(sender: TaskListHeaderView) {
-         //self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
+        self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
     }
     
     
@@ -334,7 +340,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     func newTaskButtonClick(sender: UIButton) {
         // self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
         
-    
+        
     }
     
     func reloadTableViewWithTimeInterval(ti: NSTimeInterval) {

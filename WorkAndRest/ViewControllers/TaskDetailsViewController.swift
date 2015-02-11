@@ -20,7 +20,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         super.viewDidLoad()
         self.taskItemBaseView.delegate = self
         self.taskItemBaseView.refreshTitle(self.taskItem.title)
-        self.taskRunner.taskItem = self.taskItem
+//        self.taskRunner?.taskItem = self.taskItem
         
         if self.state == TaskState.Normal {
             self.taskItemBaseView.seconds = self.taskItem!.minutes * 60
@@ -72,7 +72,8 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     func started(sender: TaskRunner!) {
         self.state = .Running
-        self.taskItemBaseView?.refreshViewByState(self.state)
+        self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
+        self.taskItemBaseView.refreshViewByState(self.state)
     }
     
     func completed(sender: TaskRunner!) {
@@ -100,7 +101,6 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     func start() {
         self.state = .Running
-        self.taskRunner.isReady = true
         if self.taskRunner.canStart() {
             taskRunner.start()
         }
