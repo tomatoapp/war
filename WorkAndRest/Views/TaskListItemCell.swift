@@ -17,12 +17,14 @@ protocol TaskListItemCellDelegate {
     func activated(sender: TaskListItemCell!)
 }
 
-class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
+class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDelegate {
     
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var bgImageView: UIImageView!
-    @IBOutlet var startButton: UIButton!
-    @IBOutlet var timerLabel: UILabel!
+    @IBOutlet var tempView: UIView!
+    @IBOutlet var taskItemBaseView: TaskItemBaseView!
+//    @IBOutlet var titleLabel: UILabel!
+    //@IBOutlet var bgImageView: UIImageView!
+//    @IBOutlet var startButton: UIButton!
+//    @IBOutlet var timerLabel: UILabel!
     //@IBOutlet var grayMaskView: UIView!
     @IBOutlet var pointImageView: UIImageView!
     
@@ -31,12 +33,11 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     var taskItem: Task?
     var taskRunner: TaskRunner?
     var delegate: TaskListItemCellDelegate?
-    //var running = false
-    //var state = UITableViewCellStateMask.DefaultMask
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setup()
+        println("awakeFromNib tempView w:\(self.tempView.frame.size.width)")
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
@@ -61,19 +62,22 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     }
     
     func refresh() {
-        self.titleLabel.text = taskItem?.title
+        self.taskItemBaseView.titleLabel.text = taskItem?.title
+    }
+    
+    override func updateConstraints() {
+        println("updateConstraints tempView w:\(self.tempView.frame.size.width)")
+        super.updateConstraints()
     }
     
     func setup() {
-        self.timerLabel.alpha = 0
-        //self.grayMaskView.alpha = 0
+        self.taskItemBaseView.delegate = self
+        self.taskItemBaseView.timerLabel.alpha = 0
     }
     
     func start() {
+        println("start tempView w:\(self.tempView.frame.size.width)")
         
-//        if state != UITableViewCellStateMask.DefaultMask {
-//            return
-//        }
         if !self.taskRunner!.canStart() {
             return
         }
@@ -81,21 +85,21 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         self.seconds = self.taskItem!.minutes * 60
         
         taskRunner?.start()
-        self.timerLabel.text = self.getTimerString()
+        self.taskItemBaseView.timerLabel.text = self.getTimerString()
         UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in
-                self.startButton.alpha = 0
-                self.timerLabel.alpha = 1
+                self.taskItemBaseView.startButton.alpha = 0
+                self.taskItemBaseView.timerLabel.alpha = 1
             })
             { (finished: Bool) -> Void in
                 self.changeToBreakButtonAfter2Seconds()
         }
         
-        UIView.transitionWithView(self.bgImageView,
+        UIView.transitionWithView(self.taskItemBaseView.bgImageView,
             duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
-                self.bgImageView.image = UIImage(named: "list_item_working_bg")
+                self.taskItemBaseView.bgImageView.image = UIImage(named: "list_item_working_bg")
             }, completion: nil)
         
         
@@ -115,37 +119,37 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         self.reset()
         UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in
-                self.startButton.alpha = 0.5
+                self.taskItemBaseView.startButton.alpha = 0.5
             })
     }
     
     func reset() {
         UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in
-                self.timerLabel.alpha = 0
-                self.startButton.alpha = 1
+                self.taskItemBaseView.timerLabel.alpha = 0
+                self.taskItemBaseView.startButton.alpha = 1
         })
         
-        UIView.transitionWithView(self.bgImageView,
+        UIView.transitionWithView(self.taskItemBaseView.bgImageView,
             duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 if self.taskItem!.completed {
-                    self.bgImageView.image = UIImage(named: "list_item_finished_bg")
+                    self.taskItemBaseView.bgImageView.image = UIImage(named: "list_item_finished_bg")
                 } else {
-                    self.bgImageView.image = UIImage(named: "list_item_normal_bg")
+                    self.taskItemBaseView.bgImageView.image = UIImage(named: "list_item_normal_bg")
                 }
             }, completion: nil)
         
         
-        UIView.transitionWithView(self.startButton,
+        UIView.transitionWithView(self.taskItemBaseView.startButton,
             duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 if self.taskItem!.completed {
-                    self.startButton.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
+                    self.taskItemBaseView.startButton.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
                 } else {
-                    self.startButton.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
+                    self.taskItemBaseView.startButton.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
                 }
             }, completion: nil)
         
@@ -162,14 +166,14 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     }
     
     func changeImageWithAnimations(view: UIView, duration: NSTimeInterval) {
-        UIView.transitionWithView(self.startButton,
+        UIView.transitionWithView(self.taskItemBaseView.startButton,
             duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 if self.taskItem!.completed {
-                    self.startButton.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
+                    self.taskItemBaseView.startButton.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
                 } else {
-                    self.startButton.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
+                    self.taskItemBaseView.startButton.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
                 }
             }, completion: nil)
         
@@ -190,7 +194,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
         println("TaskListItemCell - tick")
         self.seconds = sender!.seconds
         let result = self.getTimerString()
-        self.timerLabel.text = result
+        self.taskItemBaseView.timerLabel.text = result
         self.delegate?.tick(result)
     }
     
@@ -212,22 +216,41 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate {
     func switchToBreakButton(sender: NSTimer!) {
         UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in
-                self.timerLabel.alpha = 0
-                self.startButton.alpha = 1
+                self.taskItemBaseView.timerLabel.alpha = 0
+                self.taskItemBaseView.startButton.alpha = 1
             })
             { (finished: Bool) -> Void in
         }
-        UIView.transitionWithView(self.startButton,
+        UIView.transitionWithView(self.taskItemBaseView.startButton,
             duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
-                self.startButton.setImage(UIImage(named: "break"), forState: UIControlState.Normal)
+                self.taskItemBaseView.startButton.setImage(UIImage(named: "break"), forState: UIControlState.Normal)
             })
             { (finished: Bool) -> Void in
         }
     }
     
-//    override func willTransitionToState(state: UITableViewCellStateMask) {
-//        self.state = state
-//    }
+    // MARK: - TaskItemBaseViewDelegate
+    
+    func taskItemBaseView(view: UIView!, buttonClicked sender: UIButton!) {
+        if self.taskRunner != nil && self.taskRunner!.isWorking {
+            self.breakIt()
+        } else {
+            if self.taskItem!.completed {
+                self.taskItem!.completed = false
+                if DBOperate.updateTask(self.taskItem!) {
+                    self.delegate?.activated(self)
+                }
+            } else {
+                self.delegate?.readyToStart(self)
+            }
+        }
+    }
+    
+    override func layoutSubviews() {
+        println("layoutSubviews tempView - w:\(self.tempView.frame.size.width)")
+        self.taskItemBaseView.updateViewsWidth()
+        super.layoutSubviews()
+    }
 }

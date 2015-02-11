@@ -95,7 +95,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = allTasks[indexPath.row]
         let copyItem = item.copy() as Task
-         //self.performSegueWithIdentifier("ShowItemDetailsSegue", sender: copyItem)
+         self.performSegueWithIdentifier("ShowItemDetailsSegue", sender: copyItem)
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

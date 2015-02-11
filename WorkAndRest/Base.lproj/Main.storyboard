@@ -525,19 +525,10 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xbE-st-Jjc" id="e2b-tD-52U">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BW7-9i-RXR">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BW7-9i-RXR" customClass="TaskItemBaseView" customModule="WorkAndRest" customModuleProvider="target">
                                                     <rect key="frame" x="21" y="42.5" width="278" height="55"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_item_working_bg" translatesAutoresizingMaskIntoConstraints="NO" id="NEh-QE-834">
-                                                            <rect key="frame" x="0.0" y="0.0" width="278" height="55"/>
-                                                        </imageView>
-                                                    </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="NEh-QE-834" secondAttribute="trailing" id="5eq-EL-KLv"/>
-                                                        <constraint firstAttribute="bottom" secondItem="NEh-QE-834" secondAttribute="bottom" id="Ccs-e1-0cd"/>
-                                                        <constraint firstItem="NEh-QE-834" firstAttribute="leading" secondItem="BW7-9i-RXR" secondAttribute="leading" id="chn-gM-NHb"/>
-                                                        <constraint firstItem="NEh-QE-834" firstAttribute="top" secondItem="BW7-9i-RXR" secondAttribute="top" id="u90-wJ-hrh"/>
                                                         <constraint firstAttribute="height" constant="55" id="xeN-9L-4n2"/>
                                                     </constraints>
                                                 </view>
@@ -694,6 +685,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="cHb-Qw-2ON"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="taskItemBaseView" destination="BW7-9i-RXR" id="wpc-1j-4jz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3vN-Au-0KI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -845,7 +839,6 @@
     </scenes>
     <resources>
         <image name="finished number" width="206" height="206"/>
-        <image name="list_item_working_bg" width="10" height="55"/>
         <image name="new_task_start_button" width="50" height="47"/>
         <image name="new_task_tomato_icon" width="55" height="48"/>
         <image name="start_later" width="114" height="114"/>

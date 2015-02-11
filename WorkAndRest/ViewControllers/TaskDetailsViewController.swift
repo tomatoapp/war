@@ -14,6 +14,9 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate {
     var taskRunner: TaskRunner?
     var taskRunnerManager: TaskRunnerManager?
     
+    @IBOutlet var taskItemBaseView: TaskItemBaseView!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -21,6 +24,12 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate {
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         self.taskRunner?.removeDelegate(self)
+    }
+    
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.taskItemBaseView.updateViewsWidth()
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

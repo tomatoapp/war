@@ -50,6 +50,8 @@
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
 		64B67F151A8063D0002127BC /* TimeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B67F141A8063D0002127BC /* TimeSelectorView.swift */; };
 		64BD3D0B1A7B247000941B07 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BD3D0A1A7B247000941B07 /* SettingViewController.swift */; };
+		64C497F61A8AE7F10051E605 /* TaskItemBaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C497F51A8AE7F10051E605 /* TaskItemBaseView.xib */; };
+		64C497F81A8AE91D0051E605 /* TaskItemBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C497F71A8AE91D0051E605 /* TaskItemBaseView.swift */; };
 		64C99A581A7902A100F1D796 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C99A571A7902A100F1D796 /* Launch Screen.xib */; };
 		64C99A5D1A7905A300F1D796 /* DBOperate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C99A5C1A7905A300F1D796 /* DBOperate.swift */; };
 		64C99A5F1A7906EA00F1D796 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C99A5E1A7906EA00F1D796 /* Task.swift */; };
@@ -127,6 +129,8 @@
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		64B67F141A8063D0002127BC /* TimeSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSelectorView.swift; sourceTree = "<group>"; };
 		64BD3D0A1A7B247000941B07 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		64C497F51A8AE7F10051E605 /* TaskItemBaseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskItemBaseView.xib; sourceTree = "<group>"; };
+		64C497F71A8AE91D0051E605 /* TaskItemBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItemBaseView.swift; sourceTree = "<group>"; };
 		64C99A571A7902A100F1D796 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		64C99A5C1A7905A300F1D796 /* DBOperate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBOperate.swift; sourceTree = "<group>"; };
 		64C99A5E1A7906EA00F1D796 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -292,6 +296,8 @@
 		6458B66C1A7722E3004FD3D9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				64C497F51A8AE7F10051E605 /* TaskItemBaseView.xib */,
+				64C497F71A8AE91D0051E605 /* TaskItemBaseView.swift */,
 				644554631A7CADD100F48164 /* TaskListItemCell.xib */,
 				649308521A7AE22D00480677 /* TaskListItemCell.swift */,
 				64B67F141A8063D0002127BC /* TimeSelectorView.swift */,
@@ -453,6 +459,7 @@
 				64012C931900B979006FC2B2 /* AppiraterLocalizable.strings in Resources */,
 				64C99A581A7902A100F1D796 /* Launch Screen.xib in Resources */,
 				644554641A7CADD100F48164 /* TaskListItemCell.xib in Resources */,
+				64C497F61A8AE7F10051E605 /* TaskItemBaseView.xib in Resources */,
 				645FDE131A7D9BA9002EC8EF /* SecondBeep.wav in Resources */,
 				645FDE121A7D9BA9002EC8EF /* sec.wav in Resources */,
 				6434828518C5D344009BF110 /* Main.storyboard in Resources */,
@@ -520,6 +527,7 @@
 				646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */,
 				64BD3D0B1A7B247000941B07 /* SettingViewController.swift in Sources */,
 				6497FE561A75A77800174307 /* Work.swift in Sources */,
+				64C497F81A8AE91D0051E605 /* TaskItemBaseView.swift in Sources */,
 				640B370F1A81908C0020C817 /* TaskRunnerManager.swift in Sources */,
 				649D54061A84522A002593F8 /* TaskTitleView.swift in Sources */,
 				64C99A5F1A7906EA00F1D796 /* Task.swift in Sources */,
