@@ -18,7 +18,9 @@ class TaskListHeaderView: UIView {
     @IBOutlet var startView: UIView!
     @IBOutlet var timerView: UIView!
     @IBOutlet var startButton: UIView!
-    @IBOutlet var timerLabel: UILabel!
+//    @IBOutlet var timerLabel: UILabel!
+    @IBOutlet var minutesLabel: UILabel!
+    @IBOutlet var secondsLabel: UILabel!
     
     var flag = false
     var delegate: TaskListHeaderViewDelegate?
@@ -113,7 +115,8 @@ class TaskListHeaderView: UIView {
         self.delegate?.taskListHeaderViewStartNewTask(self)
     }
     
-    func updateTime(time: String) {
-        self.timerLabel.text = time
+    func updateTime(minutes: String, seconds: String) {
+        self.secondsLabel.text = seconds
+        self.minutesLabel.text = minutes
     }
 }

@@ -112,7 +112,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             return
         }
         
-        self.headerView.updateTime(self.getTimerStringBySeconds(self.taskRunner.seconds))
+        self.headerView.updateTime(self.getTimerMinutesStringBySeconds(self.taskRunner.seconds), seconds: self.getTimerSecondsStringBySeconds(self.taskRunner.seconds))
         if self.taskRunner.taskItem.minutes * 10 - 2 >= self.taskRunner.seconds && !self.headerView.isInTimersViewSide() {
             self.headerView.flipToTimerViewSide()
         }
@@ -212,7 +212,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     func tick(sender: TaskListItemCell!, seconds: Int) {
-        self.headerView.updateTime(self.getTimerStringBySeconds(seconds))
+        self.headerView.updateTime(self.getTimerMinutesStringBySeconds(seconds), seconds: self.getTimerSecondsStringBySeconds(seconds))
         
         if sender.taskItem!.minutes * 10 - 2 == seconds {
             self.headerView.flipToTimerViewSide()
@@ -338,7 +338,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     func newTaskButtonClick(sender: UIButton) {
-        self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
+        //self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
         
         
     }
@@ -366,7 +366,15 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         DBOperate.insertWork(work)
     }
     
-    func getTimerStringBySeconds(seconds: Int) -> String {
-        return String(format: "%02d:%02d", arguments: [seconds % 3600 / 60, seconds % 3600 % 60])
+//    func getTimerStringBySeconds(seconds: Int) -> String {
+//        return String(format: "%02d:%02d", arguments: [seconds % 3600 / 60, seconds % 3600 % 60])
+//    }
+//    
+    func getTimerMinutesStringBySeconds(seconds: Int) -> String {
+        return String(format: "%02d", seconds % 3600 / 60)
+    }
+    
+    func getTimerSecondsStringBySeconds(seconds: Int) -> String {
+        return String(format: "%02d", seconds % 3600 % 60)
     }
 }
