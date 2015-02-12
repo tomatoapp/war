@@ -32,7 +32,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         self.tableView.reloadData()
         
         let line = UIImageView(image: UIImage(named: "line"))
-        line.frame = CGRectMake(19.5, 140, 1, self.tableView.frame.size.height-140)
+        line.frame = CGRectMake(19.5, 140, 1, self.tableView.frame.size.height)
         self.view.insertSubview(line, atIndex: 0)
         
         self.taskRunnerManager = TaskRunnerManager()
@@ -272,7 +272,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     func createHeaderView() ->UIView {
-        let baseView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 150))
+        let baseView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 140))
         baseView.addSubview(self.headerView)
         self.headerView.mas_makeConstraints { (make) -> Void in
             make.width.equalTo()(baseView.frame.size.width)

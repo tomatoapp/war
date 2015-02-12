@@ -76,39 +76,6 @@ class TaskListHeaderView: UIView {
         return flag == false
     }
     
-    func initStartView() -> UIView {
-        let view = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 140))
-        view.backgroundColor = UIColor.whiteColor()
-        let button: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 5
-        button.adjustsImageWhenHighlighted = false
-        button.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
-        button.setImage(UIImage(named: "start_button"), forState: .Normal)
-        button.setImage(UIImage(named: "start_button_pressed"), forState: .Selected)
-        button.setImage(UIImage(named: "start_button_pressed"), forState: .Highlighted)
-        button.addTarget(self, action: Selector("newTaskButtonClick:"), forControlEvents: .TouchUpInside)
-        
-        view.addSubview(button)
-        
-        button.mas_makeConstraints { make in
-            make.width.equalTo()(240)
-            make.height.equalTo()(74)
-            make.centerX.equalTo()(view.mas_centerX)
-            make.centerY.equalTo()(view.mas_centerY)
-            return ()
-        }
-        
-        return view
-    }
-    
-    func initTimerView() -> UIView {
-        let view = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 140))
-        view.backgroundColor = UIColor.grayColor()
-        
-        return view
-    }
-    
     @IBAction func newTaskButtonClick(sender: UIButton) {
         println("newTaskButtonClick")
         //self.flip()
