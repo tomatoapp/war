@@ -13,6 +13,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     var taskItem: Task!
     var taskRunner: TaskRunner!
     var state = TaskState.Normal
+    var isAnimation = false
     
     @IBOutlet var taskItemBaseView: TaskItemBaseView!
 
@@ -26,12 +27,21 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
             self.taskItemBaseView.seconds = self.taskItem!.minutes * 60
         }
         
+        isAnimation = true
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.taskItemBaseView.refreshViewByState(self.state, animation: false)
-        self.taskItemBaseView.refreshViewBySeconds(self.taskRunner.seconds)
+        
+        if self.taskRunner.state == .Running {
+            
+            if  self.taskRunner.runningTaskID() == self.taskItem.taskId { // the running task is this task
+                self.started(self.taskRunner)
+            } else { // the running task is other task
+                self.taskItemBaseView.disable()
+            }
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -73,7 +83,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     func started(sender: TaskRunner!) {
         self.state = .Running
         self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
-        self.taskItemBaseView.refreshViewByState(self.state)
+        self.taskItemBaseView.refreshViewByState(self.state, animation:isAnimation)
     }
     
     func completed(sender: TaskRunner!) {
@@ -101,8 +111,11 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     func start() {
         self.state = .Running
-        if self.taskRunner.canStart() {
-            taskRunner.start()
+        if !self.taskRunner.canStart() {
+            println("Can not start!")
+            return
         }
+        self.taskRunner.setupTaskItem(self.taskItem)
+        taskRunner.start()
     }
 }

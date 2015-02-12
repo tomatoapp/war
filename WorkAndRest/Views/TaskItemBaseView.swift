@@ -154,5 +154,13 @@ class TaskItemBaseView: UIView {
         }
     }
 
-
+    func disable() {
+        self.refreshViewByState(TaskState.Normal)
+        
+        UIView.animateWithDuration(ANIMATION_DURATION,
+            animations: { () -> Void in
+                self.startButton.alpha = 0.5
+        })
+        
+    }
 }

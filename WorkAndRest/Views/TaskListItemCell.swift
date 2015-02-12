@@ -37,7 +37,6 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setup()
-        println("awakeFromNib tempView w:\(self.tempView.frame.size.width)")
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
@@ -66,7 +65,6 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     }
     
     override func updateConstraints() {
-        println("updateConstraints tempView w:\(self.tempView.frame.size.width)")
         super.updateConstraints()
     }
     
@@ -76,17 +74,12 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     }
     
     func start() {
-        println("start tempView w:\(self.tempView.frame.size.width)")
         
         if !self.taskRunner!.canStart() {
+            println("Can not start!")
             return
         }
-        
-        //        self.seconds = self.taskItem!.minutes * 60
-        
         taskRunner?.start()
-        
-        
     }
     
     func breakIt() {
@@ -94,13 +87,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     }
     
     func disable() {
-        self.taskItemBaseView.refreshViewByState(TaskState.Normal)
-        
-        UIView.animateWithDuration(ANIMATION_DURATION,
-            animations: { () -> Void in
-                self.taskItemBaseView.startButton.alpha = 0.5
-        })
-        
+        self.taskItemBaseView.disable()
     }
     
     func reset() {
@@ -237,7 +224,11 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     
     func taskItemBaseView(view: UIView!, buttonClicked sender: UIButton!) {
         if self.taskRunner != nil && self.taskRunner!.isRunning {
-            self.breakIt()
+            if self.taskRunner?.runningTaskID() == self.taskItem?.taskId {
+                self.breakIt()
+            } else {
+                println("Can not start!")
+            }
         } else {
             if self.taskItem!.completed {
                 self.taskItem!.completed = false
@@ -251,7 +242,6 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     }
     
     override func layoutSubviews() {
-        println("layoutSubviews tempView - w:\(self.tempView.frame.size.width)")
         self.taskItemBaseView.updateViewsWidth()
         super.layoutSubviews()
     }

@@ -8,6 +8,23 @@
 
 import UIKit
 
+enum TaskRunnerState {
+    case UnReady, Ready, Running
+    
+    func description() -> String {
+        switch self {
+        case .UnReady:
+            return "UnReady"
+            
+        case .Ready:
+            return "Ready"
+            
+        case Running:
+            return "Running"
+        }
+    }
+}
+
 protocol TaskRunnerDelegate {
     func started(sender: TaskRunner!)
     func completed(sender: TaskRunner!)
@@ -22,18 +39,32 @@ class TaskRunner: NSObject {
     var taskItem: Task!
     var seconds = 0
 
-    var isReady = false
+    //var isReady = false
     var isRunning = false
     var isPause = false
     var timer: NSTimer!
+    var state = TaskRunnerState.UnReady
     
     override init() {
         super.init()
     }
+
+    func readyTaskID() -> Int {
+        if self.state == TaskRunnerState.Ready {
+            return self.taskItem.taskId
+        }
+        return -1
+    }
     
-    convenience init(task: Task!) {
-        self.init()
-        self.taskItem = task
+    func runningTaskID() -> Int {
+        if self.state == TaskRunnerState.Running {
+            return self.taskItem.taskId
+        }
+        return -1
+    }
+    
+    func isReady() -> Bool {
+       return self.taskItem != nil
     }
     
     func addDelegate<T: NSObject where T: TaskRunnerDelegate>(object: T) {
@@ -54,22 +85,33 @@ class TaskRunner: NSObject {
     // MARK: - Methods
     
     func canStart() -> Bool {
-        return !self.isRunning && self.isReady && self.taskItem != nil
+        return !self.isRunning && self.isReady()
     }
     
     func setup() {
         self.seconds = self.taskItem.minutes * 10
     }
     
+    func setupTaskItem(task: Task) {
+        self.taskItem = task
+        
+        if self.state == TaskRunnerState.Ready {
+            println("－－－－－－－－－－－－The state is Ready Now！")
+        }
+        self.state = TaskRunnerState.Ready
+    }
+    
      func start() {
         self.setup()
         self.isRunning = true
-        timer = NSTimer.scheduledTimerWithTimeInterval(1,
+        self.state = TaskRunnerState.Running
+        timer = NSTimer.scheduledTimerWithTimeInterval(3,
             target: self,
             selector: Selector("tick"),
             userInfo: nil,
             repeats: true)
         if self.delegates.count > 0 {
+            println("self.delegates.count: \(self.delegates.count)")
             for item in self.delegates {
                 if let cell = item as? TaskListItemCell {
                     cell.started(self)
@@ -81,8 +123,8 @@ class TaskRunner: NSObject {
     }
     
      func stop() {
-        self.reset()
         if self.delegates.count > 0 {
+            println("self.delegates.count: \(self.delegates.count)")
             for item in self.delegates {
                 if let cell = item as? TaskListItemCell {
                     cell.breaked(self)
@@ -91,12 +133,13 @@ class TaskRunner: NSObject {
                 }
             }
         }
+        self.reset()
     }
     
     func tick() {
         if !self.isPause {
             if self.seconds-- > 0 {
-                //println("TaskRunner: \(self.seconds)")
+                println("TaskRunner state: \(self.state.description())")
                 println("self.delegates.count: \(self.delegates.count)")
                 if self.delegates.count > 0 {
                     for item in self.delegates {
@@ -117,8 +160,8 @@ class TaskRunner: NSObject {
     }
     
     func complete() {
-        self.reset()
         if self.delegates.count > 0 {
+            println("self.delegates.count: \(self.delegates.count)")
             for item in self.delegates {
                 if let cell = item as? TaskListItemCell {
                     cell.completed(self)
@@ -127,6 +170,7 @@ class TaskRunner: NSObject {
                 }
             }
         }
+        self.reset()
     }
     
     func pause() {
@@ -143,6 +187,7 @@ class TaskRunner: NSObject {
     func reset() {
         self.cancel()
         self.isRunning = false
-        self.taskItem = Task()
+        self.state = TaskRunnerState.UnReady
+        self.taskItem = nil
     }
 }
