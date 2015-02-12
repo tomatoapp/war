@@ -161,10 +161,10 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         iconImageView.image = UIImage(named: "new_task_tomato_icon_small")
         iconImageView.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
-            make.top.mas_equalTo()(75)
+            make.top.mas_equalTo()(20)
             
-            make.height.mas_equalTo()(36)
-            make.width.mas_equalTo()(42)
+            make.height.mas_equalTo()(50)
+            make.width.mas_equalTo()(50)
             return ()
         }
         
@@ -183,7 +183,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         self.view.addSubview(timeSelectorView!)
         timeSelectorView!.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
-            make.top.mas_equalTo()(startTextImageView!.mas_bottom).offset()(10)
+            make.top.mas_equalTo()(startTextImageView!.mas_bottom).offset()(15)
             make.height.mas_equalTo()(70)
             make.width.mas_equalTo()(self.view.mas_width)
 
@@ -194,8 +194,8 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         self.view.addSubview(taskTitleView!)
         taskTitleView!.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
-            make.top.mas_equalTo()(timeSelectorView!.mas_bottom).offset()(10)
-            make.height.mas_equalTo()(70)
+            make.top.mas_equalTo()(timeSelectorView!.mas_bottom).offset()(25)
+            make.height.mas_equalTo()(50)
             make.width.mas_equalTo()(self.view.mas_width)
             return ()
         }
@@ -204,7 +204,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         self.view.addSubview(completionCirleView!)
         completionCirleView!.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
-            make.top.mas_equalTo()(taskTitleView!.mas_bottom).offset()(10)
+            make.top.mas_equalTo()(taskTitleView!.mas_bottom).offset()(-10)
             make.height.mas_equalTo()(80)
             make.width.mas_equalTo()(self.view.mas_width)
             return ()

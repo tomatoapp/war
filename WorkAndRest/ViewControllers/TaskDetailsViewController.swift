@@ -19,10 +19,12 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         super.viewDidLoad()
         self.taskItemBaseView.delegate = self
         self.taskItemBaseView.isBreakButtonEnable = false
+   println("viewDidLoad")
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        println("viewWillAppear")
         
         self.taskItemBaseView.refreshTitle(self.taskItem.title)
 

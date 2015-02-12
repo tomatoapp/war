@@ -53,35 +53,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" tag="1002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starting_a_timer" translatesAutoresizingMaskIntoConstraints="NO" id="prc-Lp-Xgz">
-                                <rect key="frame" x="83" y="154" width="154" height="22"/>
+                                <rect key="frame" x="83" y="181" width="154" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="154" id="1o4-VH-aRK"/>
                                     <constraint firstAttribute="height" constant="22" id="9Xe-u1-mYM"/>
                                 </constraints>
                             </imageView>
                             <view tag="1003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVb-yt-thQ" customClass="TimeSelectorView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="207" width="320" height="70"/>
+                                <rect key="frame" x="0.0" y="234" width="320" height="70"/>
                                 <color key="backgroundColor" red="0.21176470589999999" green="0.74117647060000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="0eQ-8R-uq3"/>
                                 </constraints>
                             </view>
                             <view tag="1005" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3q-r7-TPV" customClass="CompletionCycleView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="8" y="362" width="304" height="80"/>
+                                <rect key="frame" x="8" y="389" width="304" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="C8W-6x-ckj"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" tag="1001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_task_tomato_icon" translatesAutoresizingMaskIntoConstraints="NO" id="nr4-Se-J1E">
-                                <rect key="frame" x="132" y="84" width="55" height="48"/>
+                                <rect key="frame" x="122.5" y="84" width="75" height="75"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="55" id="Zla-kn-H1P"/>
-                                    <constraint firstAttribute="height" constant="48" id="kTB-HZ-TMr"/>
+                                    <constraint firstAttribute="width" constant="75" id="Zla-kn-H1P"/>
+                                    <constraint firstAttribute="height" constant="75" id="kTB-HZ-TMr"/>
                                 </constraints>
                             </imageView>
                             <view tag="1004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poP-IU-mMV" customClass="TaskTitleView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="292" width="320" height="70"/>
+                                <rect key="frame" x="0.0" y="319" width="320" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="HLw-F0-eAA"/>
@@ -839,8 +839,8 @@
     </scenes>
     <resources>
         <image name="finished number" width="206" height="206"/>
-        <image name="new_task_start_button" width="50" height="47"/>
-        <image name="new_task_tomato_icon" width="55" height="48"/>
+        <image name="new_task_start_button" width="22" height="47"/>
+        <image name="new_task_tomato_icon" width="75" height="75"/>
         <image name="start_later" width="114" height="114"/>
         <image name="start_now" width="114" height="114"/>
         <image name="starting_a_timer" width="154" height="22"/>
