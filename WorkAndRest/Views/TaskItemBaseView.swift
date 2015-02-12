@@ -9,7 +9,7 @@
 import UIKit
 
 enum TaskState {
-    case Unkown, Normal, Running, Completed
+    case Normal, Running, Completed
 }
 
 protocol TaskItemBaseViewDelegate {
@@ -154,10 +154,10 @@ class TaskItemBaseView: UIView {
         }
     }
 
-    func disable() {
+    func disable(animation: Bool = true) {
         self.refreshViewByState(TaskState.Normal)
         
-        UIView.animateWithDuration(ANIMATION_DURATION,
+        UIView.animateWithDuration(animation ? ANIMATION_DURATION : 0,
             animations: { () -> Void in
                 self.startButton.alpha = 0.5
         })

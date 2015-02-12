@@ -12,35 +12,35 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
 
     var taskItem: Task!
     var taskRunner: TaskRunner!
-    var state = TaskState.Normal
-    var isAnimation = false
+    //var state = TaskState.Normal
     
     @IBOutlet var taskItemBaseView: TaskItemBaseView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.taskItemBaseView.delegate = self
-        self.taskItemBaseView.refreshTitle(self.taskItem.title)
-//        self.taskRunner?.taskItem = self.taskItem
-        
-        if self.state == TaskState.Normal {
-            self.taskItemBaseView.seconds = self.taskItem!.minutes * 60
-        }
-        
-        isAnimation = true
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.taskItemBaseView.refreshTitle(self.taskItem.title)
+
         if self.taskRunner.state == .Running {
             
-            if  self.taskRunner.runningTaskID() == self.taskItem.taskId { // the running task is this task
-                self.started(self.taskRunner)
+            if self.taskRunner.runningTaskID() == self.taskItem.taskId { // the running task is this task
+                self.taskItemBaseView.refreshViewBySeconds(self.taskRunner.seconds)
+                
+                if self.taskItem.completed {
+                    self.taskItemBaseView.refreshViewByState(.Completed, animation:false)
+                } else {
+                    self.taskItemBaseView.refreshViewByState(.Running, animation:false)
+                }
             } else { // the running task is other task
-                self.taskItemBaseView.disable()
+                self.taskItemBaseView.disable(animation: false)
             }
+        } else {
+            self.taskItemBaseView.refreshViewByState(.Normal, animation:false)
         }
     }
     
@@ -81,41 +81,57 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     // MARK: - TaskRunnerDelegate
     
     func started(sender: TaskRunner!) {
-        self.state = .Running
+        //self.state = .Running
         self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
-        self.taskItemBaseView.refreshViewByState(self.state, animation:isAnimation)
+        self.taskItemBaseView.refreshViewByState(.Running)
     }
     
     func completed(sender: TaskRunner!) {
-        self.state = .Normal
-        self.taskItemBaseView.refreshViewByState(self.state)
+        //self.state = .Normal
+        self.taskItemBaseView.refreshViewByState(.Normal)
     }
     
     func breaked(sender: TaskRunner!) {
-        self.state = .Normal
-        self.taskItemBaseView.refreshViewByState(self.state)
+        //self.state = .Normal
+        self.taskItemBaseView.refreshViewByState(.Normal)
     }
     
     func tick(sender: TaskRunner!) {
-        println("TaskListViewController: \(sender.seconds)")
+        println("TaskDetailsViewController: \(sender.seconds)")
         self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
     }
     
     // MARK: - TaskItemBaseViewDelegate
     
     func taskItemBaseView(view: UIView!, buttonClicked sender: UIButton!) {
-       self.start()
+        
+        if self.taskItem.completed {
+            return
+        }
+
+        if self.taskRunner.state == .Running && self.taskRunner.runningTaskID() != self.taskItem.taskId {
+            println("Some other task is running, you can not stop it!")
+            return
+        }
+
+        if self.taskRunner.state == .Running {
+            self.breakIt()
+        } else if self.taskRunner.state == .UnReady {
+            self.start()
+        }
     }
     
     // MARK: - Methods
     
     func start() {
-        self.state = .Running
-        if !self.taskRunner.canStart() {
-            println("Can not start!")
-            return
-        }
         self.taskRunner.setupTaskItem(self.taskItem)
-        taskRunner.start()
+        if self.taskRunner.canStart() {
+            taskRunner.start()
+        }
+    }
+    
+    func breakIt() {
+        self.taskRunner.stop()
+        
     }
 }

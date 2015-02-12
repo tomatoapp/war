@@ -18,6 +18,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     var taskRunner: TaskRunner!
     var handleType = HandleType.None
     var taskRunnerManager: TaskRunnerManager?
+    var isAnimation = false
     
     @IBOutlet var headerView: TaskListHeaderView!
     
@@ -48,6 +49,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.isAnimation = false
         self.tableView.reloadData()
     }
     
@@ -94,7 +96,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
 
         switch self.taskRunner.state {
         case .UnReady:
-            cell.reset()
+            cell.reset(animation: isAnimation)
             break
             
         case .Ready:
@@ -161,7 +163,8 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             let controller = segue.destinationViewController as TaskDetailsViewController
             let selectedTask = sender as Task!
             controller.taskItem = selectedTask
-            self.taskRunner?.addDelegate(controller)
+            self.taskRunner.removeAllDelegate()
+            self.taskRunner.addDelegate(controller)
             //self.taskRunner.setupTaskItem(selectedTask)
              controller.taskRunner = self.taskRunner
 //            if self.taskRunner.state == TaskRunnerState.Running {

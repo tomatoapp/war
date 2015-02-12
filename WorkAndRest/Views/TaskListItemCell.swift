@@ -90,8 +90,12 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
         self.taskItemBaseView.disable()
     }
     
-    func reset() {
-        self.taskItemBaseView.refreshViewByState(TaskState.Normal)
+    func reset(animation: Bool = true) {
+        if self.taskItem!.completed  {
+            self.taskItemBaseView.refreshViewByState(TaskState.Completed, animation: animation)
+        } else {
+            self.taskItemBaseView.refreshViewByState(TaskState.Normal, animation: animation)
+        }
         
         UIView.transitionWithView(self.pointImageView,
             duration: ANIMATION_DURATION,
