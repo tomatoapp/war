@@ -17,11 +17,11 @@ protocol TaskItemBaseViewDelegate {
 }
 
 class TaskItemBaseView: UIView {
-
+    
     var delegate: TaskItemBaseViewDelegate?
     var ANIMATION_DURATION = 0.5
     var seconds = 0
-
+    var isBreakButtonEnable = true
     @IBOutlet var view: UIView!
     
     @IBOutlet var titleLabel: UILabel!
@@ -37,10 +37,9 @@ class TaskItemBaseView: UIView {
         super.init(coder: aDecoder)
         self.setup()
     }
-
+    
     func setup() {
         NSBundle.mainBundle().loadNibNamed("TaskItemBaseView", owner: self, options: nil)
-        //self.updateViewsWidth()
         self.addSubview(self.view)
         self.timerLabel.alpha = 0
     }
@@ -63,7 +62,7 @@ class TaskItemBaseView: UIView {
                     self.timerLabel.alpha = 0
                     self.startButton.alpha = 1
             })
-
+            
             UIView.transitionWithView(self.bgImageView,
                 duration: animation ? ANIMATION_DURATION : 0,
                 options: .TransitionCrossDissolve,
@@ -76,7 +75,7 @@ class TaskItemBaseView: UIView {
                 animations: { () -> Void in
                     self.startButton.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
                 }, completion: nil)
-
+            
             break
             
         case .Running:
@@ -87,7 +86,9 @@ class TaskItemBaseView: UIView {
                     self.timerLabel.alpha = 1
                 })
                 { (finished: Bool) -> Void in
-                    //self.changeToBreakButtonAfter2Seconds()
+//                    if self.isBreakButtonEnable {
+//                        self.changeToBreakButtonAfter2Seconds()
+//                    }
             }
             
             UIView.transitionWithView(self.bgImageView,
@@ -96,14 +97,6 @@ class TaskItemBaseView: UIView {
                 animations: { () -> Void in
                     self.bgImageView.image = UIImage(named: "list_item_working_bg")
                 }, completion: nil)
-            
-//            UIView.transitionWithView(self.startButton,
-//                duration: ANIMATION_DURATION,
-//                options: .TransitionCrossDissolve,
-//                animations: { () -> Void in
-//                        self.startButton.setImage(UIImage(named: "break"), forState: UIControlState.Normal)
-//                }, completion: nil)
-
             break
             
         case .Completed:
@@ -122,7 +115,6 @@ class TaskItemBaseView: UIView {
     }
     
     func refreshViewBySeconds(seconds: Int) {
-        //println("refreshViewBySeconds： \(seconds)")
         self.seconds = seconds
         self.timerLabel.text = self.getTimerString()
     }
@@ -132,11 +124,11 @@ class TaskItemBaseView: UIView {
     }
     
     
-    func changeToBreakButtonAfter2Seconds() {
-        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("switchToBreakButton:"), userInfo: nil, repeats: false)
-    }
-    
-    func switchToBreakButton(sender: NSTimer!) {
+//    func changeToBreakButtonAfter2Seconds() {
+//        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("switchToBreakButton:"), userInfo: nil, repeats: false)
+//    }
+//    
+    func switchToBreakButton() {
         UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in
                 self.timerLabel.alpha = 0
@@ -153,7 +145,7 @@ class TaskItemBaseView: UIView {
             { (finished: Bool) -> Void in
         }
     }
-
+    
     func disable(animation: Bool = true) {
         self.refreshViewByState(TaskState.Normal)
         
@@ -161,6 +153,5 @@ class TaskItemBaseView: UIView {
             animations: { () -> Void in
                 self.startButton.alpha = 0.5
         })
-        
     }
 }

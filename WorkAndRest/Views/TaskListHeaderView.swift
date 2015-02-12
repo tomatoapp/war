@@ -70,6 +70,10 @@ class TaskListHeaderView: UIView {
         self.flip()
     }
     
+    func isInTimersViewSide() -> Bool {
+        return flag == false
+    }
+    
     func initStartView() -> UIView {
         let view = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 140))
         view.backgroundColor = UIColor.whiteColor()

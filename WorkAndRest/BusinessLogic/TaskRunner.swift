@@ -7,22 +7,10 @@
 //
 
 import UIKit
+import AVFoundation
 
 enum TaskRunnerState {
     case UnReady, Ready, Running
-    
-    func description() -> String {
-        switch self {
-        case .UnReady:
-            return "UnReady"
-            
-        case .Ready:
-            return "Ready"
-            
-        case Running:
-            return "Running"
-        }
-    }
 }
 
 protocol TaskRunnerDelegate {
@@ -34,12 +22,10 @@ protocol TaskRunnerDelegate {
 
 class TaskRunner: NSObject {
     
-    var delegates = [NSObject]()
     var delegate: TaskRunnerDelegate?
     var taskItem: Task!
     var seconds = 0
 
-    //var isReady = false
     var isRunning = false
     var isPause = false
     var timer: NSTimer!
@@ -66,22 +52,7 @@ class TaskRunner: NSObject {
     func isReady() -> Bool {
        return self.taskItem != nil
     }
-    
-    func addDelegate<T: NSObject where T: TaskRunnerDelegate>(object: T) {
-        self.delegates.append(object)
-    }
-    
-    func removeDelegate<T: NSObject where T: TaskRunnerDelegate>(object: T) {
-        let index = find(self.delegates, object)
-        if index != nil {
-            self.delegates.removeAtIndex(index!)
-        }
-    }
-    
-    func removeAllDelegate() {
-        self.delegates.removeAll(keepCapacity: false)
-    }
-    
+
     // MARK: - Methods
     
     func canStart() -> Bool {
@@ -94,10 +65,6 @@ class TaskRunner: NSObject {
     
     func setupTaskItem(task: Task) {
         self.taskItem = task
-        
-        if self.state == TaskRunnerState.Ready {
-            println("－－－－－－－－－－－－The state is Ready Now！")
-        }
         self.state = TaskRunnerState.Ready
     }
     
@@ -105,54 +72,23 @@ class TaskRunner: NSObject {
         self.setup()
         self.isRunning = true
         self.state = TaskRunnerState.Running
-        timer = NSTimer.scheduledTimerWithTimeInterval(3,
+        timer = NSTimer.scheduledTimerWithTimeInterval(1,
             target: self,
             selector: Selector("tick"),
             userInfo: nil,
             repeats: true)
-        if self.delegates.count > 0 {
-            println("self.delegates.count: \(self.delegates.count)")
-            for item in self.delegates {
-                if let cell = item as? TaskListItemCell {
-                    cell.started(self)
-                } else if let vc = item as? TaskDetailsViewController {
-                    vc.started(self)
-                }
-            }
-        }
+        self.delegate?.started(self)
     }
     
      func stop() {
-        if self.delegates.count > 0 {
-            println("self.delegates.count: \(self.delegates.count)")
-            for item in self.delegates {
-                if let cell = item as? TaskListItemCell {
-                    cell.breaked(self)
-                } else if let vc = item as? TaskDetailsViewController {
-                    vc.breaked(self)
-                }
-            }
-        }
+        self.delegate?.breaked(self)
         self.reset()
     }
     
     func tick() {
         if !self.isPause {
             if self.seconds-- > 0 {
-                println("TaskRunner state: \(self.state.description())")
-                println("self.delegates.count: \(self.delegates.count)")
-                if self.delegates.count > 0 {
-                    for item in self.delegates {
-                        //println("item: \(item.description)")
-                        if let cell = item as? TaskListItemCell {
-                            println("item is task list item cell")
-                            cell.tick(self)
-                        } else if let vc = item as? TaskDetailsViewController {
-                            println("item is task details vc")
-                            vc.tick(self)
-                        }
-                    }
-                }
+                self.delegate?.tick(self)
             } else {
                 self.complete()
             }
@@ -160,16 +96,8 @@ class TaskRunner: NSObject {
     }
     
     func complete() {
-        if self.delegates.count > 0 {
-            println("self.delegates.count: \(self.delegates.count)")
-            for item in self.delegates {
-                if let cell = item as? TaskListItemCell {
-                    cell.completed(self)
-                } else if let vc = item as? TaskDetailsViewController {
-                    vc.completed(self)
-                }
-            }
-        }
+        AudioServicesPlaySystemSound(1005)
+        self.delegate?.completed(self)
         self.reset()
     }
     

@@ -18,7 +18,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     var taskRunner: TaskRunner!
     var handleType = HandleType.None
     var taskRunnerManager: TaskRunnerManager?
-    var isAnimation = false
     
     @IBOutlet var headerView: TaskListHeaderView!
     
@@ -49,8 +48,8 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.isAnimation = false
         self.tableView.reloadData()
+        self.refreshHeaderView()
     }
     
     // MARK: - Table view data source
@@ -77,41 +76,29 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         
         cell.taskRunner = self.taskRunner
         
-
-//        if self.taskRunner.isReady() {
-//            if task.taskId == self.taskRunner!.taskItem.taskId {
-//                if self.taskRunner.isRunning {
-//                    cell.started(self.taskRunner)
-//                } else {
-//                    if self.taskRunner.canStart() {
-//                        cell.start()
-//                    }
-//                }
-//            } else {
-//                cell.disable()
-//            }
-//        } else {
-//            cell.reset()
-//        }
-
         switch self.taskRunner.state {
         case .UnReady:
-            cell.reset(animation: isAnimation)
+            cell.reset(animation: false)
             break
             
         case .Ready:
             if self.taskRunner.readyTaskID() == task.taskId {
-                self.taskRunner.removeAllDelegate()
-                self.taskRunner.addDelegate(cell)
+                self.taskRunner.delegate = cell
                  cell.start()
             }
             break
             
         case .Running:
             if self.taskRunner.runningTaskID() == task.taskId {
-                self.taskRunner.removeAllDelegate()
-                self.taskRunner.addDelegate(cell)
-                cell.started(self.taskRunner)
+                self.taskRunner.delegate = cell
+                //cell.started(self.taskRunner)
+                cell.switchToRunningPoint()
+                cell.switchViewToRunningState()
+
+                if cell.taskItem!.minutes * 10 - 2 >= self.taskRunner.seconds {
+                    cell.taskItemBaseView.switchToBreakButton()
+                }
+                
             } else {
                 cell.disable()
             }
@@ -120,6 +107,17 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         return cell
     }
     
+    func refreshHeaderView() {
+        if self.taskRunner.taskItem == nil {
+            return
+        }
+        
+        self.headerView.updateTime(self.getTimerStringBySeconds(self.taskRunner.seconds))
+        if self.taskRunner.taskItem.minutes * 10 - 2 >= self.taskRunner.seconds && !self.headerView.isInTimersViewSide() {
+            self.headerView.flipToTimerViewSide()
+        }
+    }
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = allTasks[indexPath.row]
         let copyItem = item.copy() as Task
@@ -163,13 +161,8 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             let controller = segue.destinationViewController as TaskDetailsViewController
             let selectedTask = sender as Task!
             controller.taskItem = selectedTask
-            self.taskRunner.removeAllDelegate()
-            self.taskRunner.addDelegate(controller)
-            //self.taskRunner.setupTaskItem(selectedTask)
+            self.taskRunner.delegate = controller
              controller.taskRunner = self.taskRunner
-//            if self.taskRunner.state == TaskRunnerState.Running {
-//                controller.started(self.taskRunner)
-//            }
         }
     }
     
@@ -198,8 +191,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         if DBOperate.insertTask(item) {
             NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
             if runNow {
-//                self.taskRunner = TaskRunner()
-//                self.taskRunner.taskItem = item
                 self.taskRunner.setupTaskItem(item)
                 self.reloadTableViewWithTimeInterval(1.0)
                 
@@ -210,15 +201,9 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     // MARK: - TaskListItemCellDelegate
     
     func readyToStart(sender: TaskListItemCell!) {
-        //        if self.runningTaskRunner != nil {
-        //            return
-        //        }
         if self.taskRunner!.isRunning {
             return
         }
-        //self.runningTaskRunner = TaskRunner(task: sender.taskItem)
-        //self.taskRunner.isReady = true
-//        self.taskRunner.taskItem = sender.taskItem
         self.taskRunner.setupTaskItem(sender.taskItem!)
         self.handleType = HandleType.Start
         sender.taskItem?.lastUpdateTime = NSDate()
@@ -226,33 +211,28 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: sender.taskItem, repeats: false)
     }
     
-    var times = 0
-    func tick(seconds: Int) {
-        println("TaskListViewController: \(seconds)")
+    func tick(sender: TaskListItemCell!, seconds: Int) {
         self.headerView.updateTime(self.getTimerStringBySeconds(seconds))
-        if ++times == 2 {
+        
+        if sender.taskItem!.minutes * 10 - 2 == seconds {
             self.headerView.flipToTimerViewSide()
+            sender.taskItemBaseView.switchToBreakButton()
         }
+        
     }
     
     func completed(sender: TaskListItemCell!) {
         self.recordWork(true)
-        //self.runningTaskRunner = nil
-        //self.taskRunner.isReady = false
         self.reloadTableViewWithTimeInterval(0.5)
         self.headerView.flipToStartViewSide()
-        times = 0
         
     }
     
     func breaked(sender: TaskListItemCell!) {
         println("breaked")
         self.recordWork(false)
-        //self.runningTaskRunner = nil
-//        self.taskRunner.isReady = false
         self.reloadTableViewWithTimeInterval(0.0)
         self.headerView.flipToStartViewSide()
-        times = 0
     }
     
     func activated(sender: TaskListItemCell!) {
@@ -276,11 +256,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     func taskListHeaderViewStartNewTask(sender: TaskListHeaderView) {
         self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
     }
-    
-    
-    // MARK: -TaskDetailsViewControllerDelegate
-    
-    
     
     // MARK: - Methods
     
@@ -363,7 +338,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     func newTaskButtonClick(sender: UIButton) {
-        // self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
+        self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
         
         
     }

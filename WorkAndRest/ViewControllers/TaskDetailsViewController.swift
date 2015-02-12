@@ -12,13 +12,13 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
 
     var taskItem: Task!
     var taskRunner: TaskRunner!
-    //var state = TaskState.Normal
     
     @IBOutlet var taskItemBaseView: TaskItemBaseView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.taskItemBaseView.delegate = self
+        self.taskItemBaseView.isBreakButtonEnable = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -46,9 +46,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        self.taskRunner.removeDelegate(self)
     }
-    
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -81,18 +79,15 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     // MARK: - TaskRunnerDelegate
     
     func started(sender: TaskRunner!) {
-        //self.state = .Running
         self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
         self.taskItemBaseView.refreshViewByState(.Running)
     }
     
     func completed(sender: TaskRunner!) {
-        //self.state = .Normal
         self.taskItemBaseView.refreshViewByState(.Normal)
     }
     
     func breaked(sender: TaskRunner!) {
-        //self.state = .Normal
         self.taskItemBaseView.refreshViewByState(.Normal)
     }
     
@@ -132,6 +127,5 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     func breakIt() {
         self.taskRunner.stop()
-        
     }
 }
