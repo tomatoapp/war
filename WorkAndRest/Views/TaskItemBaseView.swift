@@ -50,6 +50,11 @@ class TaskItemBaseView: UIView {
         }
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.updateViewsWidth()
+    }
+
     func refreshTitle(title: String) {
         self.titleLabel.text = title
     }

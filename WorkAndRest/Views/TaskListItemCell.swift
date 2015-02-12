@@ -161,9 +161,9 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
             }
         }
     }
-    
-    override func layoutSubviews() {
-        self.taskItemBaseView.updateViewsWidth()
-        super.layoutSubviews()
-    }
+//    
+//    override func layoutSubviews() {
+//        self.taskItemBaseView.updateViewsWidth()
+//        super.layoutSubviews()
+//    }
 }

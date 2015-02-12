@@ -50,10 +50,10 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         super.viewDidDisappear(animated)
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        self.taskItemBaseView.updateViewsWidth()
-    }
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//        self.taskItemBaseView.updateViewsWidth()
+//    }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0 {
