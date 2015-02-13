@@ -23,7 +23,7 @@ class Task: NSObject, NSCopying {
         self.taskId = -1
         self.title = ""
         self.text = ""
-        self.completed = false
+        self.completed = true
         self.costWorkTimes = 0
         self.date = NSDate()
         self.lastUpdateTime = NSDate()

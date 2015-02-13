@@ -9,51 +9,49 @@
 import UIKit
 
 class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, TaskItemBaseViewDelegate {
-
+    
     var taskItem: Task!
     var taskRunner: TaskRunner!
     
     @IBOutlet var taskItemBaseView: TaskItemBaseView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.taskItemBaseView.delegate = self
         self.taskItemBaseView.isBreakButtonEnable = false
-   println("viewDidLoad")
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        println("viewWillAppear")
         
         self.taskItemBaseView.refreshTitle(self.taskItem.title)
-
+        
         if self.taskRunner.state == .Running {
             
             if self.taskRunner.runningTaskID() == self.taskItem.taskId { // the running task is this task
                 self.taskItemBaseView.refreshViewBySeconds(self.taskRunner.seconds)
+                self.taskItemBaseView.refreshViewByState(.Running, animation:false)
                 
-                if self.taskItem.completed {
-                    self.taskItemBaseView.refreshViewByState(.Completed, animation:false)
-                } else {
-                    self.taskItemBaseView.refreshViewByState(.Running, animation:false)
-                }
             } else { // the running task is other task
                 self.taskItemBaseView.disable(animation: false)
             }
         } else {
-            self.taskItemBaseView.refreshViewByState(.Normal, animation:false)
+            if self.taskItem.completed {
+                self.taskItemBaseView.refreshViewByState(.Completed, animation:false)
+            } else {
+                self.taskItemBaseView.refreshViewByState(.Normal, animation:false)
+            }
         }
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
     }
-
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//        self.taskItemBaseView.updateViewsWidth()
-//    }
+    
+    //    override func viewWillLayoutSubviews() {
+    //        super.viewWillLayoutSubviews()
+    //        self.taskItemBaseView.updateViewsWidth()
+    //    }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0 {
@@ -105,12 +103,12 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         if self.taskItem.completed {
             return
         }
-
+        
         if self.taskRunner.state == .Running && self.taskRunner.runningTaskID() != self.taskItem.taskId {
             println("Some other task is running, you can not stop it!")
             return
         }
-
+        
         if self.taskRunner.state == .Running {
             self.breakIt()
         } else if self.taskRunner.state == .UnReady {

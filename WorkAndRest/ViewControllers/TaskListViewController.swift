@@ -108,8 +108,12 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     func refreshHeaderView() {
-        if self.taskRunner.taskItem == nil {
+        if self.taskRunner.taskItem == nil && self.headerView.isInTimersViewSide(){
             self.headerView.flipToStartViewSide()
+            return
+        }
+        
+        if self.taskRunner.taskItem == nil {
             return
         }
         

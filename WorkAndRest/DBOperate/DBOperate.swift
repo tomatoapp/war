@@ -138,6 +138,7 @@ import UIKit
             tempTask.title = rs.stringForColumn("title")
             tempTask.minutes = rs.stringForColumn("minutes").toInt()!
             tempTask.lastUpdateTime = rs.dateForColumn("lastUpdateTime")
+            tempTask.completed = rs.boolForColumn("completed")
             if tempTask.lastUpdateTime.description.hasPrefix("1970") {
                 let formatter = NSDateFormatter()
                 let GMTzone = NSTimeZone(forSecondsFromGMT: 0)
