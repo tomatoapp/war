@@ -183,6 +183,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sampleTask.taskId = 0
         sampleTask.title = NSLocalizedString("Task Sample", comment: "")
         sampleTask.minutes = GlobalConstants.DEFAULT_MINUTES
+        sampleTask.completed = false
         return sampleTask
     }
 }
