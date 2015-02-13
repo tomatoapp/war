@@ -27,9 +27,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         self.tableView.tableHeaderView = self.createHeaderView()
         self.tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, 1, 50))
         
-        self.loadAllTasks()
-        self.tableView.reloadData()
-        
         let line = UIImageView(image: UIImage(named: "line"))
         line.frame = CGRectMake(19.5, CGFloat(self.headerHeight()), 1, self.tableView.frame.size.height)
         self.view.insertSubview(line, atIndex: 0)
@@ -54,6 +51,12 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let result = self.loadAllTasks()
+        if result == nil {
+            return
+        }
+        allTasks = self.sortTasks(result!)!
         self.tableView.reloadData()
         self.refreshHeaderView()
     }
@@ -90,6 +93,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         case .Ready:
             if self.taskRunner.readyTaskID() == task.taskId {
                 self.taskRunner.delegate = cell
+                
                 cell.start()
             }
             break
@@ -200,8 +204,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         }
         self.taskRunner.setupTaskItem(sender.taskItem!)
         self.handleType = HandleType.Start
-        sender.taskItem?.lastUpdateTime = NSDate()
-        DBOperate.updateTask(sender.taskItem!)
+        
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: sender.taskItem, repeats: false)
     }
     
@@ -253,19 +256,23 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     // MARK: - Methods
     
-    func loadAllTasks() {
+    func loadAllTasks() -> Array<Task>? {
         var result = DBOperate.loadAllTasks()
-        for item in result! {
-            let formatter = NSDateFormatter()
-            formatter.timeZone = NSTimeZone.defaultTimeZone()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let timeStr = formatter.stringFromDate(item.lastUpdateTime)
-            println(item.taskId.description + " " + item.title + " " + timeStr)
-        }
-        allTasks = result!.sorted { $0.lastUpdateTime.compare($1.lastUpdateTime) == NSComparisonResult.OrderedDescending }
+//        for item in result! {
+//            let formatter = NSDateFormatter()
+//            formatter.timeZone = NSTimeZone.defaultTimeZone()
+//            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//            let timeStr = formatter.stringFromDate(item.lastUpdateTime)
+//            println(item.taskId.description + " " + item.title + " " + timeStr)
+//        }
+       return result
     }
     
-    func createHeaderView() ->UIView {
+    func sortTasks(list: Array<Task>) -> Array<Task>? {
+        return list.sorted { $0.lastUpdateTime.compare($1.lastUpdateTime) == NSComparisonResult.OrderedDescending }
+    }
+    
+    func createHeaderView() -> UIView {
         let baseView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, CGFloat(self.headerHeight())))
         baseView.backgroundColor = UIColor.whiteColor()
         headerView = TaskListHeaderView(frame: CGRectMake(0, 0, baseView.frame.size.width, 86))

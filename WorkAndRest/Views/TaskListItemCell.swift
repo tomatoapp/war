@@ -56,6 +56,8 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
             return
         }
         taskRunner?.start()
+        self.taskItem!.lastUpdateTime = NSDate()
+        DBOperate.updateTask(self.taskItem!)
     }
     
     func breakIt() {

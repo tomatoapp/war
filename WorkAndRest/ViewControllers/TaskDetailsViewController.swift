@@ -122,6 +122,8 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         self.taskRunner.setupTaskItem(self.taskItem)
         if self.taskRunner.canStart() {
             taskRunner.start()
+            self.taskItem!.lastUpdateTime = NSDate()
+            DBOperate.updateTask(self.taskItem!)
         }
     }
     
