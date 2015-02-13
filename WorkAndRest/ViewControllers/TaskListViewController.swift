@@ -109,6 +109,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     func refreshHeaderView() {
         if self.taskRunner.taskItem == nil {
+            self.headerView.flipToStartViewSide()
             return
         }
         
