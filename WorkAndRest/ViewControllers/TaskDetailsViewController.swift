@@ -105,33 +105,38 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     func taskItemBaseView(view: UIView!, buttonClicked sender: UIButton!) {
         
         if self.taskItem.completed {
+            // If the task is completed, then you can active it.
+            self.taskItem.completed = false
+            DBOperate.updateTask(self.taskItem)
+            
+            // If some other task is running, you can't start the actived stask.
+            if self.taskRunner.state == .Running {
+                self.taskItemBaseView.disableWithTaskState(TaskState.Normal, animation: true)
+            } else {
+                self.taskItemBaseView.refreshViewByState(TaskState.Normal, animation: true)
+            }
             return
         }
         
-        if self.taskRunner.state == .Running && self.taskRunner.runningTaskID() != self.taskItem.taskId {
-            println("Some other task is running, you can not stop it!")
-            return
-        }
+        // This is a normal task.
         
+        // But perhaps some task is running, and the running task mebye just youself.
         if self.taskRunner.state == .Running {
-            self.breakIt()
-        } else if self.taskRunner.state == .UnReady {
-            self.start()
+            
+            if self.taskRunner.runningTaskID() == self.taskItem.taskId {
+                self.taskRunner.stop()
+            } else {
+                println("Some other task is running, you can do nothing")
+            }
+            return
         }
-    }
-    
-    // MARK: - Methods
-    
-    func start() {
+        
+        // This is a normal task and this is no a running task, so start it now! setup the task and go!
         self.taskRunner.setupTaskItem(self.taskItem)
         if self.taskRunner.canStart() {
-            taskRunner.start()
+            self.taskRunner.start()
             self.taskItem!.lastUpdateTime = NSDate()
             DBOperate.updateTask(self.taskItem!)
         }
-    }
-    
-    func breakIt() {
-        self.taskRunner.stop()
     }
 }
