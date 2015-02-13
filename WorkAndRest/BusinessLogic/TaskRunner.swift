@@ -56,7 +56,7 @@ class TaskRunner: NSObject {
     // MARK: - Methods
     
     func canStart() -> Bool {
-        return !self.isRunning && self.isReady()
+        return !self.isRunning && self.isReady() && !self.taskItem.completed
     }
     
     func setup() {

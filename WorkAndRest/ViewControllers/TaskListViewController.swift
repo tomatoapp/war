@@ -109,7 +109,12 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
                 }
                 
             } else {
-                cell.disable()
+                // Some other task is running now. so disable you... I'm sorry... :(
+                if task.completed {
+                    cell.disable(TaskState.Completed, animation: true)
+                } else {
+                    cell.disable(TaskState.Normal, animation: true)
+                }
             }
             break
         }
@@ -185,6 +190,11 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     // MARK: - NewTaskViewControllerDelegate
     
     func newTaskViewController(controller: NewTaskViewController!, didFinishAddingTask item: Task!, runningNow runNow: Bool) {
+        
+        
+//        for _ in 1...100 {
+//             DBOperate.insertTask(item)
+//        }
         
         if DBOperate.insertTask(item) {
             NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
@@ -336,7 +346,11 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     func moveItemToTop(val: NSTimer) {
         let copyItem = val.userInfo as Task
-        var baseItem = allTasks.filter{ $0.taskId == copyItem.taskId }.first!
+        let result = allTasks.filter{ $0.taskId == copyItem.taskId }
+        if result.count <= 0 { // Can not found it, maybe deleted it just now.
+            return
+        }
+        var baseItem = result.first!
         if find(allTasks, baseItem) == 0 { // if this item is already in the top, then return
             baseItem.title = copyItem.title
             self.tableView.reloadData()

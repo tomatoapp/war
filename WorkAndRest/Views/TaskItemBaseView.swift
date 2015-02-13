@@ -87,8 +87,8 @@ class TaskItemBaseView: UIView {
             self.timerLabel.text = self.getTimerString()
             UIView.animateWithDuration(animation ? ANIMATION_DURATION : 0,
                 animations: { () -> Void in
-                    self.startButton.alpha = 0
                     self.timerLabel.alpha = 1
+                    self.startButton.alpha = 0
                 })
                 { (finished: Bool) -> Void in
             }
@@ -102,6 +102,12 @@ class TaskItemBaseView: UIView {
             break
             
         case .Completed:
+            UIView.animateWithDuration(animation ? ANIMATION_DURATION : 0,
+                animations: { () -> Void in
+                    self.timerLabel.alpha = 0
+                    self.startButton.alpha = 1
+            })
+
             self.bgImageView.image = UIImage(named: "list_item_finished_bg")
             UIView.transitionWithView(self.startButton,
                 duration: animation ? ANIMATION_DURATION : 0,
@@ -143,8 +149,8 @@ class TaskItemBaseView: UIView {
         }
     }
     
-    func disable(animation: Bool = true) {
-        self.refreshViewByState(TaskState.Normal)
+    func disableWithTaskState(state: TaskState, animation: Bool = true) {
+        self.refreshViewByState(state)
         
         UIView.animateWithDuration(animation ? ANIMATION_DURATION : 0,
             animations: { () -> Void in

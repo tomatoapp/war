@@ -64,8 +64,12 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
         self.taskRunner!.stop()
     }
     
-    func disable() {
-        self.taskItemBaseView.disable()
+    func disable(state: TaskState, animation: Bool) {
+        if self.taskItem!.completed {
+            self.taskItemBaseView.disableWithTaskState(state, animation: animation)
+        } else {
+            self.taskItemBaseView.disableWithTaskState(state, animation: animation)
+        }
     }
     
     func reset(animation: Bool = true) {
@@ -146,20 +150,57 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     // MARK: - TaskItemBaseViewDelegate
     
     func taskItemBaseView(view: UIView!, buttonClicked sender: UIButton!) {
-        if self.taskRunner != nil && self.taskRunner!.isRunning {
-            if self.taskRunner?.runningTaskID() == self.taskItem?.taskId {
-                self.breakIt()
-            } else {
-                println("Can not start!")
-            }
-        } else {
-            if self.taskItem!.completed {
-                self.taskItem!.completed = false
-                if DBOperate.updateTask(self.taskItem!) {
-                    self.delegate?.activated(self)
+//        if self.taskRunner != nil && self.taskRunner!.isRunning {
+//            if self.taskRunner?.runningTaskID() == self.taskItem?.taskId {
+//                self.breakIt()
+//            } else {
+//                println("Can not break it, it's not YOU!")
+//                return
+//            }
+//        } else {
+//            if self.taskItem!.completed {
+//                self.taskItem!.completed = false
+//                if DBOperate.updateTask(self.taskItem!) {
+//                    self.delegate?.activated(self)
+//                }
+//            } else {
+//                self.delegate?.readyToStart(self)
+//            }
+//        }
+        
+        if !self.taskItem!.completed {
+            // This task you haven't completed. you can start it now.
+            // But if some other task is running, you can not start it; if the running task is youself, then break youself.
+            
+            if self.taskRunner!.isRunning {
+                if self.taskRunner!.runningTaskID() == self.taskItem!.taskId {
+                    self.breakIt()
+                } else {
+                    println("You can not start it, some other task is running!")
                 }
-            } else {
+                return
+            }
+            
+            // No one is running, setup the task item and then you can start now! go go go!
+            self.taskRunner!.setupTaskItem(self.taskItem!)
+            if self.taskRunner!.canStart() {
                 self.delegate?.readyToStart(self)
+            }
+            
+        }
+        
+        if self.taskItem!.completed {
+            // This is completed task, active it.
+            self.taskItem!.completed = false
+            DBOperate.updateTask(self.taskItem!)
+            self.delegate?.activated(self)
+            
+            if self.taskRunner!.isRunning {
+                // Some task is running, you can active it still.
+                // but when the task is activeted, the start button must be in the disabled state.
+                self.disable(TaskState.Completed, animation: true)
+            } else {
+                self.disable(TaskState.Normal, animation: true)
             }
         }
     }
