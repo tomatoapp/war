@@ -54,7 +54,7 @@ class TaskItemBaseView: UIView {
         super.layoutSubviews()
         self.updateViewsWidth()
     }
-
+    
     func refreshTitle(title: String) {
         self.titleLabel.text = title
     }
@@ -91,9 +91,6 @@ class TaskItemBaseView: UIView {
                     self.timerLabel.alpha = 1
                 })
                 { (finished: Bool) -> Void in
-//                    if self.isBreakButtonEnable {
-//                        self.changeToBreakButtonAfter2Seconds()
-//                    }
             }
             
             UIView.transitionWithView(self.bgImageView,
@@ -128,11 +125,6 @@ class TaskItemBaseView: UIView {
         return String(format: "%02d:%02d", arguments: [self.seconds % 3600 / 60, self.seconds % 3600 % 60])
     }
     
-    
-//    func changeToBreakButtonAfter2Seconds() {
-//        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("switchToBreakButton:"), userInfo: nil, repeats: false)
-//    }
-//    
     func switchToBreakButton() {
         UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in

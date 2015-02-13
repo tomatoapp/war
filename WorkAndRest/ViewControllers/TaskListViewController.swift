@@ -18,11 +18,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     var taskRunner: TaskRunner!
     var handleType = HandleType.None
     var taskRunnerManager: TaskRunnerManager?
-    //let HEADERHEIGHT = 130
-    
-    
-    
-     var headerView: TaskListHeaderView!
+    var headerView: TaskListHeaderView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,17 +90,16 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         case .Ready:
             if self.taskRunner.readyTaskID() == task.taskId {
                 self.taskRunner.delegate = cell
-                 cell.start()
+                cell.start()
             }
             break
             
         case .Running:
             if self.taskRunner.runningTaskID() == task.taskId {
                 self.taskRunner.delegate = cell
-                //cell.started(self.taskRunner)
                 cell.switchToRunningPoint()
                 cell.switchViewToRunningState()
-
+                
                 if cell.taskItem!.minutes * 10 - 2 >= self.taskRunner.seconds {
                     cell.taskItemBaseView.switchToBreakButton()
                 }
@@ -117,22 +112,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         return cell
     }
     
-    func refreshHeaderView() {
-        if self.taskRunner.taskItem == nil && self.headerView.isInTimersViewSide(){
-            self.headerView.flipToStartViewSide()
-            return
-        }
-        
-        if self.taskRunner.taskItem == nil {
-            return
-        }
-        
-        self.headerView.updateTime(self.getTimerMinutesStringBySeconds(self.taskRunner.seconds), seconds: self.getTimerSecondsStringBySeconds(self.taskRunner.seconds))
-        if self.taskRunner.taskItem.minutes * 10 - 2 >= self.taskRunner.seconds && !self.headerView.isInTimersViewSide() {
-            self.headerView.flipToTimerViewSide()
-        }
-    }
-
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = allTasks[indexPath.row]
         let copyItem = item.copy() as Task
@@ -177,7 +156,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             let selectedTask = sender as Task!
             controller.taskItem = selectedTask
             self.taskRunner.delegate = controller
-             controller.taskRunner = self.taskRunner
+            controller.taskRunner = self.taskRunner
         }
     }
     
@@ -291,7 +270,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         baseView.backgroundColor = UIColor.whiteColor()
         headerView = TaskListHeaderView(frame: CGRectMake(0, 0, baseView.frame.size.width, 86))
         baseView.addSubview(headerView)
-       
+        
         headerView.mas_makeConstraints { make in
             make.width.equalTo()(baseView.frame.size.width)
             make.height.equalTo()(86)
@@ -300,8 +279,23 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             return ()
         }
         headerView.delegate = self
-//        baseView.addSubview(self.headerView)
         return baseView
+    }
+    
+    func refreshHeaderView() {
+        if self.taskRunner.taskItem == nil && self.headerView.isInTimersViewSide(){
+            self.headerView.flipToStartViewSide()
+            return
+        }
+        
+        if self.taskRunner.taskItem == nil {
+            return
+        }
+        
+        self.headerView.updateTime(self.getTimerMinutesStringBySeconds(self.taskRunner.seconds), seconds: self.getTimerSecondsStringBySeconds(self.taskRunner.seconds))
+        if self.taskRunner.taskItem.minutes * 10 - 2 >= self.taskRunner.seconds && !self.headerView.isInTimersViewSide() {
+            self.headerView.flipToTimerViewSide()
+        }
     }
     
     func insertItem(val: NSTimer) {
@@ -386,10 +380,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         DBOperate.insertWork(work)
     }
     
-//    func getTimerStringBySeconds(seconds: Int) -> String {
-//        return String(format: "%02d:%02d", arguments: [seconds % 3600 / 60, seconds % 3600 % 60])
-//    }
-//    
     func getTimerMinutesStringBySeconds(seconds: Int) -> String {
         return String(format: "%02d", seconds % 3600 / 60)
     }

@@ -13,12 +13,11 @@ protocol TaskListHeaderViewDelegate {
 }
 
 class TaskListHeaderView: UIView {
-
+    
     @IBOutlet var view: UIView!
     @IBOutlet var startView: UIView!
     @IBOutlet var timerView: UIView!
     @IBOutlet var startButton: UIView!
-//    @IBOutlet var timerLabel: UILabel!
     @IBOutlet var minutesLabel: UILabel!
     @IBOutlet var secondsLabel: UILabel!
     
@@ -42,18 +41,7 @@ class TaskListHeaderView: UIView {
     
     func setup() {
         NSBundle.mainBundle().loadNibNamed("TaskListHeaderView", owner: self, options: nil)
-        //self.startView = self.initStartView()
-        //self.timerView = self.initTimerView()
-        
         self.addSubview(self.view)
-        
-        let tap = UITapGestureRecognizer(target: self, action: Selector("tap:"))
-        self.timerView.addGestureRecognizer(tap)
-    }
-    
-    func tap(sender: UITapGestureRecognizer) {
-        println("tap")
-        //self.flip()
     }
     
     override func updateConstraints() {
@@ -65,8 +53,6 @@ class TaskListHeaderView: UIView {
             make.centerY.equalTo()(self.mas_centerY)
             return ()
         }
-
-       // self.view.frame = self.bounds
     }
     
     override func layoutSubviews() {
@@ -78,19 +64,17 @@ class TaskListHeaderView: UIView {
             make.centerY.equalTo()(self.mas_centerY)
             return ()
         }
-        
         self.startView.frame = self.view.bounds
         self.timerView.frame = self.view.bounds
-      //  self.view.frame = self.bounds
-
     }
+    
     func flip() {
         println("flip")
         if !flag {
             
             UIView.transitionFromView(startView, toView: timerView, duration: 0.3, options: UIViewAnimationOptions.TransitionCrossDissolve, completion: nil)
         } else {
-
+            
             UIView.transitionFromView(timerView, toView: startView, duration: 0.3, options: UIViewAnimationOptions.TransitionCrossDissolve, completion: nil)
         }
     }
@@ -111,7 +95,6 @@ class TaskListHeaderView: UIView {
     
     @IBAction func newTaskButtonClick(sender: UIButton) {
         println("newTaskButtonClick")
-        //self.flip()
         self.delegate?.taskListHeaderViewStartNewTask(self)
     }
     

@@ -16,7 +16,7 @@ protocol NewTaskViewControllerDelegate {
 }
 
 class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate, TimeSelectorViewDelegate, TaskTitleViewDelegate, StartViewControllerDelegate {
-
+    
     // MARK: - Properties
     
     @IBOutlet var startButton: UIButton!
@@ -31,7 +31,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     var blurView: UIView?
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,10 +53,10 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "EditTaskTitleSegue" {
-//            let controller = segue.destinationViewController as ItemDetailViewController
+            //            let controller = segue.destinationViewController as ItemDetailViewController
             let navigationController = segue.destinationViewController as UINavigationController
             let controller = navigationController.topViewController as TaskTitleViewController
             controller.delegate = self
@@ -106,7 +106,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     // MARK: - StartViewControllerDelegate
     
     func startViewController(sender: StartViewController, didSelectItem type: StartType) {
-
+        
         switch type {
         case .Now, .Later:
             if self.taskItem == nil {
@@ -150,7 +150,6 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     
     func adapte_iPhone4() {
         let iconImageView = self.view.viewWithTag(TAG_ICON) as UIImageView!
-        //let startTextImageView = self.view.viewWithTag(TAG_STARTTEXT) as UIImageView!
         let startTextLabel = self.view.viewWithTag(TAG_STARTTEXT) as UILabel!
         let timeSelectorView = self.view.viewWithTag(TAG_TIMESELECTOR)
         let completionCirleView = self.view.viewWithTag(TAG_COMPLETIONCIRCLE)
@@ -159,23 +158,15 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         
         iconImageView!.removeFromSuperview()
         self.view.addSubview(iconImageView!)
-        //iconImageView.image = UIImage(named: "new_task_tomato_icon_small")
         iconImageView.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
             make.top.mas_equalTo()(10)
-            
-            //make.height.mas_equalTo()(60)
-            //make.width.mas_equalTo()(60)
             return ()
         }
         
-//        startTextImageView!.removeFromSuperview()
         startTextLabel.removeFromSuperview()
-//        self.view.addSubview(startTextImageView!)
         self.view.addSubview(startTextLabel)
-//        startTextImageView.image = UIImage(named: "starting a timer_small")
         startTextLabel.font = UIFont.systemFontOfSize(17)
-//         startTextImageView.mas_makeConstraints { (make) -> Void in
         startTextLabel.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
             make.top.mas_equalTo()(iconImageView!.mas_bottom).offset()(0)
@@ -188,11 +179,10 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         self.view.addSubview(timeSelectorView!)
         timeSelectorView!.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
-//            make.top.mas_equalTo()(startTextImageView!.mas_bottom).offset()(15)
             make.top.mas_equalTo()(startTextLabel!.mas_bottom).offset()(15)
             make.height.mas_equalTo()(70)
             make.width.mas_equalTo()(self.view.mas_width)
-
+            
             return ()
         }
         
@@ -262,7 +252,6 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
             make.width.mas_equalTo()(self.view.mas_width).offset()(-80)
             return ()
         }
-
     }
     
     override func updateViewConstraints() {
