@@ -159,13 +159,13 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         
         iconImageView!.removeFromSuperview()
         self.view.addSubview(iconImageView!)
-        iconImageView.image = UIImage(named: "new_task_tomato_icon_small")
+        //iconImageView.image = UIImage(named: "new_task_tomato_icon_small")
         iconImageView.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
-            make.top.mas_equalTo()(20)
+            make.top.mas_equalTo()(10)
             
-            make.height.mas_equalTo()(50)
-            make.width.mas_equalTo()(50)
+            //make.height.mas_equalTo()(60)
+            //make.width.mas_equalTo()(60)
             return ()
         }
         
@@ -178,7 +178,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
 //         startTextImageView.mas_makeConstraints { (make) -> Void in
         startTextLabel.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
-            make.top.mas_equalTo()(iconImageView!.mas_bottom).offset()(10)
+            make.top.mas_equalTo()(iconImageView!.mas_bottom).offset()(0)
             make.height.mas_equalTo()(18)
             make.width.mas_equalTo()(123)
             return ()

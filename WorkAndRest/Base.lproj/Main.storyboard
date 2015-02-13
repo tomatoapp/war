@@ -25,7 +25,6 @@
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <connections>
-                        <outlet property="headerView" destination="Pd8-HL-YTW" id="tdz-hu-Jj0"/>
                         <segue destination="6uC-ny-BXf" kind="push" identifier="ShowItem" id="bDt-xR-qPG"/>
                         <segue destination="Suk-oZ-58b" kind="push" identifier="NewTaskSegue" id="j3d-Bi-yZi"/>
                         <segue destination="bcI-2F-yMi" kind="push" identifier="ShowItemDetailsSegue" id="uhY-P2-clw"/>

@@ -18,8 +18,11 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     var taskRunner: TaskRunner!
     var handleType = HandleType.None
     var taskRunnerManager: TaskRunnerManager?
+    //let HEADERHEIGHT = 130
     
-    @IBOutlet var headerView: TaskListHeaderView!
+    
+    
+     var headerView: TaskListHeaderView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +35,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         self.tableView.reloadData()
         
         let line = UIImageView(image: UIImage(named: "line"))
-        line.frame = CGRectMake(19.5, 140, 1, self.tableView.frame.size.height)
+        line.frame = CGRectMake(19.5, CGFloat(self.headerHeight()), 1, self.tableView.frame.size.height)
         self.view.insertSubview(line, atIndex: 0)
         
         self.taskRunnerManager = TaskRunnerManager()
@@ -42,6 +45,13 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         self.headerView.delegate = self
     }
     
+    
+    func headerHeight() -> Int {
+        if WARDevice.getPhoneType() == PhoneType.iPhone4 {
+            return 90
+        }
+        return 130
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -277,15 +287,20 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     func createHeaderView() ->UIView {
-        let baseView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 140))
-        baseView.addSubview(self.headerView)
-        self.headerView.mas_makeConstraints { (make) -> Void in
+        let baseView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, CGFloat(self.headerHeight())))
+        baseView.backgroundColor = UIColor.whiteColor()
+        headerView = TaskListHeaderView(frame: CGRectMake(0, 0, baseView.frame.size.width, 86))
+        baseView.addSubview(headerView)
+       
+        headerView.mas_makeConstraints { make in
             make.width.equalTo()(baseView.frame.size.width)
-            make.height.equalTo()(baseView.frame.size.height)
+            make.height.equalTo()(86)
             make.centerX.equalTo()(baseView.mas_centerX)
             make.centerY.equalTo()(baseView.mas_centerY)
             return ()
         }
+        headerView.delegate = self
+//        baseView.addSubview(self.headerView)
         return baseView
     }
     

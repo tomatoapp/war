@@ -30,19 +30,22 @@ class TaskListHeaderView: UIView {
         self.setup()
     }
     
+    override init() {
+        super.init()
+        self.setup()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setup()
+    }
+    
     func setup() {
         NSBundle.mainBundle().loadNibNamed("TaskListHeaderView", owner: self, options: nil)
         //self.startView = self.initStartView()
         //self.timerView = self.initTimerView()
         
         self.addSubview(self.view)
-        self.view.mas_updateConstraints { make in
-            make.width.equalTo()(self.frame.size.width)
-            make.height.equalTo()(self.frame.size.height)
-            make.centerX.equalTo()(self.mas_centerX)
-            make.centerY.equalTo()(self.mas_centerY)
-            return ()
-        }
         
         let tap = UITapGestureRecognizer(target: self, action: Selector("tap:"))
         self.timerView.addGestureRecognizer(tap)
@@ -53,11 +56,41 @@ class TaskListHeaderView: UIView {
         //self.flip()
     }
     
+    override func updateConstraints() {
+        super.updateConstraints()
+        self.view.mas_remakeConstraints { make in
+            make.width.equalTo()(self.frame.size.width)
+            make.height.equalTo()(self.frame.size.height)
+            make.centerX.equalTo()(self.mas_centerX)
+            make.centerY.equalTo()(self.mas_centerY)
+            return ()
+        }
+
+       // self.view.frame = self.bounds
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.view.mas_remakeConstraints { make in
+            make.width.equalTo()(self.frame.size.width)
+            make.height.equalTo()(self.frame.size.height)
+            make.centerX.equalTo()(self.mas_centerX)
+            make.centerY.equalTo()(self.mas_centerY)
+            return ()
+        }
+        
+        self.startView.frame = self.view.bounds
+        self.timerView.frame = self.view.bounds
+      //  self.view.frame = self.bounds
+
+    }
     func flip() {
         println("flip")
         if !flag {
+            
             UIView.transitionFromView(startView, toView: timerView, duration: 0.3, options: UIViewAnimationOptions.TransitionCrossDissolve, completion: nil)
         } else {
+
             UIView.transitionFromView(timerView, toView: startView, duration: 0.3, options: UIViewAnimationOptions.TransitionCrossDissolve, completion: nil)
         }
     }
