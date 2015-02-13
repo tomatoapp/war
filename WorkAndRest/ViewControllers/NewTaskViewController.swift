@@ -150,7 +150,8 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     
     func adapte_iPhone4() {
         let iconImageView = self.view.viewWithTag(TAG_ICON) as UIImageView!
-        let startTextImageView = self.view.viewWithTag(TAG_STARTTEXT) as UIImageView!
+        //let startTextImageView = self.view.viewWithTag(TAG_STARTTEXT) as UIImageView!
+        let startTextLabel = self.view.viewWithTag(TAG_STARTTEXT) as UILabel!
         let timeSelectorView = self.view.viewWithTag(TAG_TIMESELECTOR)
         let completionCirleView = self.view.viewWithTag(TAG_COMPLETIONCIRCLE)
         let taskTitleView = self.view.viewWithTag(TAG_TASKTITLE)
@@ -168,10 +169,14 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
             return ()
         }
         
-        startTextImageView!.removeFromSuperview()
-        self.view.addSubview(startTextImageView!)
-        startTextImageView.image = UIImage(named: "starting a timer_small")
-        startTextImageView.mas_makeConstraints { (make) -> Void in
+//        startTextImageView!.removeFromSuperview()
+        startTextLabel.removeFromSuperview()
+//        self.view.addSubview(startTextImageView!)
+        self.view.addSubview(startTextLabel)
+//        startTextImageView.image = UIImage(named: "starting a timer_small")
+        startTextLabel.font = UIFont.systemFontOfSize(17)
+//         startTextImageView.mas_makeConstraints { (make) -> Void in
+        startTextLabel.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
             make.top.mas_equalTo()(iconImageView!.mas_bottom).offset()(10)
             make.height.mas_equalTo()(18)
@@ -183,7 +188,8 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         self.view.addSubview(timeSelectorView!)
         timeSelectorView!.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
-            make.top.mas_equalTo()(startTextImageView!.mas_bottom).offset()(15)
+//            make.top.mas_equalTo()(startTextImageView!.mas_bottom).offset()(15)
+            make.top.mas_equalTo()(startTextLabel!.mas_bottom).offset()(15)
             make.height.mas_equalTo()(70)
             make.width.mas_equalTo()(self.view.mas_width)
 
