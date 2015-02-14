@@ -490,13 +490,7 @@
         <scene sceneID="CDL-It-PC3">
             <objects>
                 <tabBarController id="aC1-Pi-pp5" customClass="RootViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="uWk-te-FZ3">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="KKZ-Fr-jZl">
-                            <connections>
-                                <segue destination="WxZ-x7-fyd" kind="push" identifier="settingsSegue" id="k9x-wR-d3S"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="uWk-te-FZ3"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="6Oz-k6-Eie">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>

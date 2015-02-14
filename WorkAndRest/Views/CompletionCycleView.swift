@@ -17,7 +17,7 @@ class CompletionCycleView: UIView {
 
     var delegate: CompletionCycleViewDelegate?
     
-    var number = 1
+    var number = GlobalConstants.DEFAULT_NUMBER
 
     @IBOutlet var view: UIView!
     @IBOutlet var numberLabel: UILabel!

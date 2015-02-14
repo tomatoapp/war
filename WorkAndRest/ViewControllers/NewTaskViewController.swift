@@ -29,8 +29,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     var taskItem: Task?
     var delegate: NewTaskViewControllerDelegate?
     var minutes = GlobalConstants.DEFAULT_MINUTES
-    var blurView: UIView?
-    var number = 0
+    var number = GlobalConstants.DEFAULT_NUMBER
     
     // MARK: - Lifecycle
     

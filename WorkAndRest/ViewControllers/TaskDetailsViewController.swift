@@ -53,7 +53,12 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
                 }
             }
         }
+        self.refreshUI()
         
+    }
+    
+    
+    func refreshUI() {
         self.nameLabel.text = self.taskItem.title
         self.detailLabel.text = "Task, \(self.taskItem.expect_times) times"
         self.lengthLabel.text = "\(self.taskItem.minutes) Minutes / Task"
@@ -102,7 +107,8 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     func completed(sender: TaskRunner!) {
         self.taskItemBaseView.refreshViewByState(.Normal)
-        self.taskManager.completeOneTimer(self.taskRunner.taskItem)
+        self.taskManager.completeOneTimer(self.taskItem)
+        self.refreshUI()
     }
     
     func breaked(sender: TaskRunner!) {

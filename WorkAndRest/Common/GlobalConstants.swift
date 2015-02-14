@@ -20,4 +20,5 @@ class GlobalConstants {
     class var k_SECONDS: String { return "Seconds" }
     
     class var DEFAULT_MINUTES: Int { return 1 }
+    class var DEFAULT_NUMBER: Int { return 1 }
 }
