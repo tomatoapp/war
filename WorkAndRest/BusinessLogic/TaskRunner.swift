@@ -59,17 +59,13 @@ class TaskRunner: NSObject {
         return !self.isRunning && self.isReady() && !self.taskItem.completed
     }
     
-    func setup() {
-        self.seconds = self.taskItem.minutes * 10
-    }
-    
     func setupTaskItem(task: Task) {
         self.taskItem = task
+        self.seconds = task.minutes * 10
         self.state = TaskRunnerState.Ready
     }
     
      func start() {
-        self.setup()
         self.isRunning = true
         self.state = TaskRunnerState.Running
         timer = NSTimer.scheduledTimerWithTimeInterval(1,
@@ -117,5 +113,6 @@ class TaskRunner: NSObject {
         self.isRunning = false
         self.state = TaskRunnerState.UnReady
         self.taskItem = nil
+        self.seconds = 0
     }
 }

@@ -87,6 +87,7 @@ class TaskListHeaderView: UIView {
     func flipToStartViewSide() {
         flag = true
         self.flip()
+        self.resetTime()
     }
     
     func isInTimersViewSide() -> Bool {
@@ -101,5 +102,10 @@ class TaskListHeaderView: UIView {
     func updateTime(minutes: String, seconds: String) {
         self.secondsLabel.text = seconds
         self.minutesLabel.text = minutes
+    }
+    
+    func resetTime() {
+        self.secondsLabel.text = "00"
+        self.minutesLabel.text = "00"
     }
 }

@@ -213,6 +213,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
             if runNow {
                 self.taskRunner.setupTaskItem(item)
+                self.refreshHeaderView()
                 self.reloadTableViewWithTimeInterval(1.0)
             }
         }
@@ -321,6 +322,10 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     // MARK: - TaskListHeaderViewDelegate
     
     func taskListHeaderViewStartNewTask(sender: TaskListHeaderView) {
+        if self.taskRunner.isRunning {
+            println("There is a task is running, you can not create a new task.")
+            return
+        }
         self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
     }
     
