@@ -68,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
                 println("Sent to background by home button/switching to other app")
                 if TaskRunner.sharedInstance.isRunning {
                     TaskRunner.sharedInstance.stop()
+                    self.showBreakNotification()
                 }
             }
             break
@@ -140,6 +141,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         println("addNotificationWithSeconds")
+    }
+    
+    func showBreakNotification() {
+        let notification = UILocalNotification()
+        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.alertBody = "You breaked this timer"
+        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
     
     func showAlertWithSeconds(seconds: Int) {
