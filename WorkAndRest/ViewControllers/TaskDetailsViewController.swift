@@ -27,26 +27,22 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         
         self.taskItemBaseView.refreshTitle(self.taskItem.title)
         
+        if self.taskItem.completed {
+            self.taskItemBaseView.refreshViewByState(.Completed, animation:false)
+        } else {
+            self.taskItemBaseView.refreshViewByState(.Normal, animation:false)
+        }
+        
         if self.taskRunner.state == .Running {
-            
-            if self.taskRunner.runningTaskID() == self.taskItem.taskId { // the running task is this task
+            if self.taskRunner.runningTaskID() == self.taskItem.taskId {
+                // the running task is this task
                 self.taskItemBaseView.refreshViewBySeconds(self.taskRunner.seconds)
                 self.taskItemBaseView.refreshViewByState(.Running, animation:false)
-                
-            } else { // the running task is other task
-                if self.taskItem.completed {
-                    self.taskItemBaseView.refreshViewByState(TaskState.Completed, animation: false)
-                    //self.taskItemBaseView.disableWithTaskState(TaskState.Completed, animation: false)
-                } else {
-                    self.taskItemBaseView.refreshViewByState(TaskState.Normal, animation: false)
+            } else {
+                // the running task is other task
+                if !self.taskItem.completed {
                     self.taskItemBaseView.disableWithTaskState(TaskState.Normal, animation: false)
                 }
-            }
-        } else {
-            if self.taskItem.completed {
-                self.taskItemBaseView.refreshViewByState(.Completed, animation:false)
-            } else {
-                self.taskItemBaseView.refreshViewByState(.Normal, animation:false)
             }
         }
     }
