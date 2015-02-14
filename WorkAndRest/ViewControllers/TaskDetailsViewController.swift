@@ -113,6 +113,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     func breaked(sender: TaskRunner!) {
         self.taskItemBaseView.refreshViewByState(.Normal)
+        self.taskManager.breakOneTimer(self.taskRunner.taskItem)
     }
     
     func tick(sender: TaskRunner!) {

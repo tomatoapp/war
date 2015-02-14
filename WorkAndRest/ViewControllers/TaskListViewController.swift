@@ -32,10 +32,10 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         line.frame = CGRectMake(19.5, CGFloat(self.headerHeight()), 1, self.tableView.frame.size.height)
         //self.view.insertSubview(line, atIndex: 0)
         
-        self.taskRunnerManager = TaskRunnerManager()
+        self.taskRunnerManager = TaskRunnerManager.sharedInstance
         self.taskRunnerManager!.delegate = self
         
-        self.taskRunner = TaskRunner()
+        self.taskRunner = TaskRunner.sharedInstance
         self.headerView.delegate = self
         
         self.taskManager.delegate = self

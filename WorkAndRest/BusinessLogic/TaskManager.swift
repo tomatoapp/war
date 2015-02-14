@@ -67,6 +67,7 @@ class TaskManager: NSObject {
     }
     
     func completeOneTimer(task: Task!) -> Bool {
+        println("completeOneTimer")
         task.lastUpdateTime = NSDate()
         task.finished_times += 1
         
@@ -84,12 +85,13 @@ class TaskManager: NSObject {
     }
     
     func breakOneTimer(task: Task!) -> Bool {
+        println("breakOneTimer")
         task.lastUpdateTime = NSDate()
         
         // Update the cache
         let target = cacheTaskList.filter { $0.taskId == task.taskId }.first!
         target.lastUpdateTime = task.lastUpdateTime
-        
+        target.break_times += 1
         // Update the database.
         let success = DBOperate.updateTask(task)
         if success {

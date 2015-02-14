@@ -9,38 +9,9 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     
     var window: UIWindow?
-    
-    var currentModelViewController: UIViewController {
-        get {
-            let navigationController = self.window?.rootViewController as UINavigationController
-            let activeViewController = navigationController.visibleViewController
-            return activeViewController
-        }
-    }
-    
-    var rootViewController: UITabBarController? {
-        get {
-            let navigationController = self.window?.rootViewController as UINavigationController
-            if navigationController.topViewController.isKindOfClass(UITabBarController) {
-                let rootViewController = navigationController.topViewController as UITabBarController
-                return rootViewController
-            }
-            return nil
-        }
-    }
-    
-    var taskListViewController: TaskListViewController? {
-        get {
-            if self.rootViewController != nil {
-                let taskListViewController = self.rootViewController!.viewControllers!.first as TaskListViewController
-                return taskListViewController
-            }
-            return nil
-        }
-    }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         println(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String)
@@ -85,8 +56,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case UIApplicationState.Background:
             if NSUserDefaults.standardUserDefaults().boolForKey("kDisplayStatusLocked") {
                 println("Sent to background by locking screen")
+                if TaskRunner.sharedInstance.isRunning {
+//                    println("isWorking! resign active")
+                    self.addNotificationWithSeconds(TaskRunner.sharedInstance.seconds)
+                    //self.showAlertWithSeconds(TaskRunner.sharedInstance.seconds)
+                    TaskRunnerManager.sharedInstance.freezeTaskManager(TaskRunner.sharedInstance)
+                }
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_ISWORKING)
+                NSUserDefaults.standardUserDefaults().synchronize()
             } else {
                 println("Sent to background by home button/switching to other app")
+                if TaskRunner.sharedInstance.isRunning {
+                    TaskRunner.sharedInstance.stop()
+                }
             }
             break
             
@@ -96,14 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         var isWorking = false
         
-        if self.taskListViewController != nil && self.taskListViewController!.taskRunner != nil {
-            isWorking = true
-            println("isWorking! resign active")
-            self.addNotificationWithSeconds(self.taskListViewController!.taskRunner!.seconds)
-            self.taskListViewController!.freezeTaskManager(self.taskListViewController!.taskRunner)
-        }
-        NSUserDefaults.standardUserDefaults().setBool(isWorking, forKey: GlobalConstants.kBOOL_ISWORKING)
-        NSUserDefaults.standardUserDefaults().synchronize()
+        
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
@@ -122,9 +97,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             println("cancelAllLocalNotifications")
             
             println("isWorking! become active")
+            TaskRunnerManager.sharedInstance.activeFrozenTaskManager()
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_ISWORKING)
             NSUserDefaults.standardUserDefaults().synchronize()
-            self.taskListViewController!.activeFrozenTaskManager()
         }
     }
     
@@ -154,17 +129,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notification.alertBody = NSLocalizedString("Time is up!", comment:"")
         let secondsLeftTimeInterval = NSTimeInterval(seconds)
         
-        println("\(secondsLeftTimeInterval)")
+//        println("\(secondsLeftTimeInterval)")
         let fireDate = NSDate(timeIntervalSinceNow: secondsLeftTimeInterval)
-        let formatter = NSDateFormatter()
-        formatter.timeZone = NSTimeZone.defaultTimeZone()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let timeStr = formatter.stringFromDate(fireDate)
-        println(timeStr)
+//        let formatter = NSDateFormatter()
+//        formatter.timeZone = NSTimeZone.defaultTimeZone()
+//        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        let timeStr = formatter.stringFromDate(fireDate)
+//        println(timeStr)
         notification.fireDate = fireDate
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         println("addNotificationWithSeconds")
+    }
+    
+    func showAlertWithSeconds(seconds: Int) {
+        let alert = UIAlertView(title: "Time is up!", message: "Time is up!", delegate: self, cancelButtonTitle: "OK")
+        alert.show()
     }
     
     func initRater() {

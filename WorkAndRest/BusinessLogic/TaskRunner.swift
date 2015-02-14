@@ -20,6 +20,7 @@ protocol TaskRunnerDelegate {
     func tick(sender: TaskRunner!)
 }
 
+private let singleInstance = TaskRunner()
 class TaskRunner: NSObject {
     
     var delegate: TaskRunnerDelegate?
@@ -30,6 +31,10 @@ class TaskRunner: NSObject {
     var isPause = false
     var timer: NSTimer!
     var state = TaskRunnerState.UnReady
+    
+    class var sharedInstance: TaskRunner {
+        return singleInstance
+    }
     
     override init() {
         super.init()

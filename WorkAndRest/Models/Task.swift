@@ -18,6 +18,7 @@ class Task: NSObject, NSCopying {
     var minutes: Int
     var expect_times: Int
     var finished_times: Int
+    var break_times: Int
 
     override init() {
 
@@ -30,6 +31,7 @@ class Task: NSObject, NSCopying {
         self.minutes = 0
         self.expect_times = 0
         self.finished_times = 0
+        self.break_times = 0
         super.init()
     }
     
@@ -44,6 +46,7 @@ class Task: NSObject, NSCopying {
         copy.minutes = self.minutes
         copy.expect_times = self.expect_times
         copy.finished_times = self.finished_times
+        copy.break_times = self.break_times
         return copy
     }
     

@@ -15,7 +15,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "title"))
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "white"), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.translucent = true
         
         
         //self.tabBarController!.delegate = self

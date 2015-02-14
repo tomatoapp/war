@@ -13,9 +13,15 @@ protocol TaskRunnerManagerDelegate {
     func taskRunnerManger(taskManager: TaskRunnerManager!, didActiveFrozenTaskRunner taskRunner:TaskRunner!)
 }
 
+private let singleInstance = TaskRunnerManager()
+
 class TaskRunnerManager: NSObject {
     var delegate:TaskRunnerManagerDelegate?
     var taskRunner: TaskRunner?
+    
+    class var sharedInstance: TaskRunnerManager {
+        return singleInstance
+    }
     
     func freezeTaskManager(taskRunner: TaskRunner!) {
         if self.delegate != nil {

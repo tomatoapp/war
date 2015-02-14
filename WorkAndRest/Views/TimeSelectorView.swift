@@ -28,7 +28,7 @@ class TimeSelectorView: UIView, V8HorizontalPickerViewDelegate, V8HorizontalPick
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        //self.setup()
+        self.setup()
     }
     
     // MARK: - Methods
