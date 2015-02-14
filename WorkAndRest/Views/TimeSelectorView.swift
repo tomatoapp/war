@@ -46,6 +46,8 @@ class TimeSelectorView: UIView, V8HorizontalPickerViewDelegate, V8HorizontalPick
         if self.delegate != nil {
             self.delegate!.timeSelectorView(self, didSelectTime: 25)
         }
+        
+        
         self.addSubview(pickerView!)
 
         pickerView!.mas_makeConstraints { make in

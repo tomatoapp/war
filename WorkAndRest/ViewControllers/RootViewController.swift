@@ -17,6 +17,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "white"), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.translucent = false
         
+        
         //self.tabBarController!.delegate = self
         self.delegate = self
     }

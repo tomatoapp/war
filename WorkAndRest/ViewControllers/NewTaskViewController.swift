@@ -38,6 +38,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         
         self.timeSelector.delegate = self
         self.taskTitleView.delegate = self
+        self.completionCycleView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -128,6 +129,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     
     func completionCycleView(sender: CompletionCycleView, didSelectedNumber number: Int) {
         self.number = number
+        println("\(self.number)")
     }
     
     let TAG_ICON = 1001

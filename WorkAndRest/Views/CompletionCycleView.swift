@@ -15,35 +15,82 @@ protocol CompletionCycleViewDelegate {
 
 class CompletionCycleView: UIView {
 
+    let MAX_NUMBER = 999
     var delegate: CompletionCycleViewDelegate?
     
     var number = GlobalConstants.DEFAULT_NUMBER
-
+    var timer: NSTimer!
+    var isMinusButtonFlag = true
+    
     @IBOutlet var view: UIView!
     @IBOutlet var numberLabel: UILabel!
     @IBOutlet var minusButton: UIButton!
     @IBOutlet var plusButton: UIButton!
     
     @IBAction func plusButtonClick(sender: AnyObject) {
-        AudioServicesPlaySystemSound(1103)
-        number++
-        self.refreshView()
-        self.delegate?.completionCycleView(self, didSelectedNumber: number)
+        if number < MAX_NUMBER {
+            number += 1
+            AudioServicesPlaySystemSound(1103)
+            self.refreshView()
+            self.delegate?.completionCycleView(self, didSelectedNumber: number)
+        }
     }
     
     @IBAction func minusButtonClick(sender: AnyObject) {
-        AudioServicesPlaySystemSound(1103)
-        number--
-        self.refreshView()
-        self.delegate?.completionCycleView(self, didSelectedNumber: number)
+        if number > 1 {
+            number -= 1
+            AudioServicesPlaySystemSound(1103)
+            self.refreshView()
+            self.delegate?.completionCycleView(self, didSelectedNumber: number)
+        }
     }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setup()
         self.refreshView()
+        self.minusButton.addTarget(self, action: Selector("buttonDown:"), forControlEvents: UIControlEvents.TouchDown)
+        self.minusButton.addTarget(self, action: Selector("buttonUp:"), forControlEvents: UIControlEvents.TouchUpInside | UIControlEvents.TouchUpOutside)
+        
+        self.plusButton.addTarget(self, action: Selector("buttonDown:"), forControlEvents: UIControlEvents.TouchDown)
+        self.plusButton.addTarget(self, action: Selector("buttonUp:"), forControlEvents: UIControlEvents.TouchUpInside | UIControlEvents.TouchUpOutside)
     }
     
+    func buttonDown(sender: UIButton!) {
+        if sender == self.minusButton {
+            self.isMinusButtonFlag = true
+        } else if sender == self.plusButton {
+            self.isMinusButtonFlag = false
+        }
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1,
+            target: self,
+            selector: Selector("changeNumber"),
+            userInfo: nil,
+            repeats: true)
+    }
+    
+    func buttonUp(sender: AnyObject) {
+        self.timer.invalidate()
+    }
+    
+    func changeNumber() {
+        
+        if self.isMinusButtonFlag {
+            if number > 1 {
+                number -= 1
+                AudioServicesPlaySystemSound(1103)
+                self.refreshView()
+                self.delegate?.completionCycleView(self, didSelectedNumber: number)
+            }
+        } else {
+            if number < 999 {
+                number += 1
+                AudioServicesPlaySystemSound(1103)
+                self.refreshView()
+                self.delegate?.completionCycleView(self, didSelectedNumber: number)
+            }
+        }
+    }
 
     func setup() {
         NSBundle.mainBundle().loadNibNamed("CompletionCycleView", owner: self, options: nil)
@@ -61,6 +108,6 @@ class CompletionCycleView: UIView {
     func refreshView() {
         self.numberLabel.text = "\(number)"
         self.minusButton.enabled = number > 1
-        self.plusButton.enabled = number < 250
+        self.plusButton.enabled = number < MAX_NUMBER
     }
 }
