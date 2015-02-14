@@ -154,8 +154,9 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
     }
     
     func completedOneWorkTime() {
-        self.taskItem.costWorkTimes++
-        DBOperate.updateTask(self.taskItem)
+//        self.taskItem.costWorkTimes++
+//        DBOperate.updateTask(self.taskItem)
+        TaskManager.sharedInstance.completeOneTimer(self.taskItem)
     }
     
     // MARK: - UIAlertViewDelegate

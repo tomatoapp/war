@@ -56,8 +56,9 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
             return
         }
         self.taskRunner!.start()
-        self.taskRunner!.taskItem.lastUpdateTime = NSDate()
-        DBOperate.updateTask(self.taskRunner!.taskItem)
+//        self.taskRunner!.taskItem.lastUpdateTime = NSDate()
+//        DBOperate.updateTask(self.taskRunner!.taskItem)
+        TaskManager.sharedInstance.startTask(self.taskRunner!.taskItem)
     }
     
     func breakIt() {
@@ -187,8 +188,9 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
         
         if self.taskItem!.completed {
             // This is completed task, active it.
-            self.taskItem!.completed = false
-            DBOperate.updateTask(self.taskItem!)
+//            self.taskItem!.completed = false
+//            DBOperate.updateTask(self.taskItem!)
+            TaskManager.sharedInstance.activeTask(self.taskItem!)
             self.taskEventDelegate?.activated(self)
             
             if self.taskRunner!.isRunning {

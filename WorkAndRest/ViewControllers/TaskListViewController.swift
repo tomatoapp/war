@@ -12,13 +12,14 @@ enum HandleType: Int {
     case None, AddOrEdit, Start
 }
 
-class TaskListViewController: UITableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, SWTableViewCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate {
+class TaskListViewController: UITableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, SWTableViewCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate, TaskManagerDelegate {
     
     var allTasks = [Task]()
     var taskRunner: TaskRunner!
     var handleType = HandleType.None
     var taskRunnerManager: TaskRunnerManager?
     var headerView: TaskListHeaderView!
+    var taskManager = TaskManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,8 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         
         self.taskRunner = TaskRunner()
         self.headerView.delegate = self
+        
+        self.taskManager.delegate = self
         
         let result = self.loadAllTasks()
         if result == nil {
@@ -126,10 +129,13 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
                 }
                 
             } else {
-                // Some other task is running now. so disable you... I'm sorry... :(
+                // Some other task is running now. so I need to disable you... I'm sorry... :(
                 if task.completed {
-                    cell.disable(TaskState.Completed, animation: true)
+//                    cell.taskItemBaseView.refreshViewByState(TaskState.Completed, animation: true)
+                    //cell.disable(TaskState.Completed, animation: true)
+                    cell.reset(TaskState.Completed, animation: true)
                 } else {
+                    cell.reset(TaskState.Normal, animation: true)
                     cell.disable(TaskState.Normal, animation: true)
                 }
             }
@@ -147,7 +153,8 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             let task = allTasks[indexPath.row]
-            DBOperate.deleteTask(task)
+//            DBOperate.deleteTask(task)
+            self.taskManager.removeTask(task)
             let indexPaths = [indexPath]
             self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
         }
@@ -191,8 +198,8 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     func addTaskViewController(controller: TaskTitleViewController!, didFinishEditingTask item: Task!) {
         handleType = HandleType.AddOrEdit
-        item.lastUpdateTime = NSDate()
-        DBOperate.updateTask(item)
+//        item.lastUpdateTime = NSDate()
+//        DBOperate.updateTask(item)
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: item, repeats: false)
     }
     
@@ -209,7 +216,8 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
 //             DBOperate.insertTask(item)
 //        }
         
-        if DBOperate.insertTask(item) {
+//        if DBOperate.insertTask(item) {
+          if self.taskManager.addTask(item) {
             NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
             if runNow {
                 self.taskRunner.setupTaskItem(item)
@@ -242,17 +250,21 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     func completed(sender: TaskListItemCell!) {
-        self.recordWork(true)
+//        self.recordWork(true)
         self.reloadTableViewWithTimeInterval(0.5)
         self.headerView.flipToStartViewSide()
+        
+        self.taskManager.completeOneTimer(self.taskRunner.taskItem)
         
     }
     
     func breaked(sender: TaskListItemCell!) {
         println("breaked")
-        self.recordWork(false)
+//        self.recordWork(false)
         self.reloadTableViewWithTimeInterval(0.0)
         self.headerView.flipToStartViewSide()
+        
+        self.taskManager.breakOneTimer(self.taskRunner.taskItem)
     }
     
     func activated(sender: TaskListItemCell!) {
@@ -272,15 +284,17 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         case 0:
             if taskItem.completed {
                 // Delete it from the database.
-                DBOperate.deleteTask(taskItem)
+//                DBOperate.deleteTask(taskItem)
+                self.taskManager.removeTask(taskItem)
                 
                 // Remove it from the tableView.
                 self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
             } else {
                 
                 // Save it to the database.
-                task.completed = true
-                DBOperate.updateTask(task)
+//                task.completed = true
+//                DBOperate.updateTask(task)
+                self.taskManager.markDoneTask(task)
                 
                 // Refresh the tableview.
                 let indexPath = NSIndexPath(forRow: find(allTasks, task)!, inSection: 0)
@@ -290,8 +304,8 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             break
             
         case 1:
-            DBOperate.deleteTask(taskItem)
-            
+//            DBOperate.deleteTask(taskItem)
+            self.taskManager.removeTask(taskItem)
             // Remove it from the tableView.
             self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
             break
@@ -329,10 +343,20 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
     }
     
+    // MARK: - TaskManagerDelegate
+    
+    func taskManger(taskManager: TaskManager, didActivatedATask task: Task!) {
+        let target = allTasks.filter { $0.taskId == task.taskId }.first!
+        target.completed = false
+        
+        allTasks = self.sortTasks(allTasks)!
+        self.tableView.reloadData()
+    }
+    
     // MARK: - Methods
     
     func loadAllTasks() -> Array<Task>? {
-        var result = DBOperate.loadAllTasks()
+        var result = self.taskManager.loadTaskList()
 //        for item in result! {
 //            let formatter = NSDateFormatter()
 //            formatter.timeZone = NSTimeZone.defaultTimeZone()
@@ -460,12 +484,12 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         self.taskRunnerManager!.activeFrozenTaskManager()
     }
     
-    func recordWork(isFinished: Bool) {
-        let work = Work()
-        work.taskId = self.taskRunner!.taskItem.taskId
-        work.isFinished = isFinished
-        DBOperate.insertWork(work)
-    }
+//    func recordWork(isFinished: Bool) {
+//        let work = Work()
+//        work.taskId = self.taskRunner!.taskItem.taskId
+//        work.isFinished = isFinished
+//        DBOperate.insertWork(work)
+//    }
     
     func getTimerMinutesStringBySeconds(seconds: Int) -> String {
         return String(format: "%02d", seconds % 3600 / 60)

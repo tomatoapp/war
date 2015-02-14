@@ -114,9 +114,9 @@ import UIKit
         dataBase.close()
         return success
     }
-    class func deleteTask(task: Task) {
+    class func deleteTask(task: Task) -> Bool {
         if !dataBase.open() {
-            return
+            return false
         }
         let success = dataBase.executeUpdate("DELETE FROM t_tasks WHERE task_id = ?", withArgumentsInArray: [task.taskId])
         if success {
@@ -125,6 +125,7 @@ import UIKit
             println("delete from task failed!")
         }
         dataBase.close()
+        return success
     }
     class func loadAllTasks() -> Array<Task>? {
         if !dataBase.open() {

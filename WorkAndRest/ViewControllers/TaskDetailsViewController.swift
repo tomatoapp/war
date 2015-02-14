@@ -12,6 +12,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     var taskItem: Task!
     var taskRunner: TaskRunner!
+    var taskManager = TaskManager.sharedInstance
     
     @IBOutlet var taskItemBaseView: TaskItemBaseView!
     
@@ -34,8 +35,10 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
                 
             } else { // the running task is other task
                 if self.taskItem.completed {
-                    self.taskItemBaseView.disableWithTaskState(TaskState.Completed, animation: false)
+                    self.taskItemBaseView.refreshViewByState(TaskState.Completed, animation: false)
+                    //self.taskItemBaseView.disableWithTaskState(TaskState.Completed, animation: false)
                 } else {
+                    self.taskItemBaseView.refreshViewByState(TaskState.Normal, animation: false)
                     self.taskItemBaseView.disableWithTaskState(TaskState.Normal, animation: false)
                 }
             }
@@ -109,8 +112,9 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         
         if self.taskItem.completed {
             // If the task is completed, then you can active it.
-            self.taskItem.completed = false
-            DBOperate.updateTask(self.taskItem)
+//            self.taskItem.completed = false
+//            DBOperate.updateTask(self.taskItem)
+            self.taskManager.activeTask(self.taskItem)
             
             // If some other task is running, you can't start the actived stask.
             if self.taskRunner.state == .Running {
@@ -138,8 +142,9 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         self.taskRunner.setupTaskItem(self.taskItem)
         if self.taskRunner.canStart() {
             self.taskRunner.start()
-            self.taskItem!.lastUpdateTime = NSDate()
-            DBOperate.updateTask(self.taskItem!)
+//            self.taskItem!.lastUpdateTime = NSDate()
+//            DBOperate.updateTask(self.taskItem!)
+            self.taskManager.startTask(self.taskItem!)
         }
     }
 }
