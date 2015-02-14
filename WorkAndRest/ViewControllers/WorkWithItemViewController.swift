@@ -45,7 +45,7 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
         self.soundSwitch.transform = CGAffineTransformMakeScale(0.65, 0.65)
         self.setupMusicalMaskLabel()
         
-        self.workTimesLabel.text = NSLocalizedString("work times: %@", comment: "").stringByAppendingString("\(self.taskItem.costWorkTimes)")
+        //self.workTimesLabel.text = NSLocalizedString("work times: %@", comment: "").stringByAppendingString("\(self.taskItem.costWorkTimes)")
         self.timerLabel.text = self.getTimerString()
         
         
@@ -171,7 +171,7 @@ class WorkWithItemViewController: BaseViewController, UIAlertViewDelegate, TaskR
             self.reset()
             self.timerLabel.text = self.getTimerString()
             self.completedOneWorkTime()
-            self.workTimesLabel.text = NSLocalizedString("work times: %@", comment: "").stringByAppendingString("\(self.taskItem.costWorkTimes)")
+            //self.workTimesLabel.text = NSLocalizedString("work times: %@", comment: "").stringByAppendingString("\(self.taskItem.costWorkTimes)")
         } else if alertView.title == NSLocalizedString("Break this work?", comment: "") {
             if buttonIndex == 1 {
                 self.taskRunner.stop()

@@ -9,8 +9,14 @@
 import UIKit
 import AVFoundation
 
+protocol CompletionCycleViewDelegate {
+    func completionCycleView(sender: CompletionCycleView, didSelectedNumber number: Int)
+}
+
 class CompletionCycleView: UIView {
 
+    var delegate: CompletionCycleViewDelegate?
+    
     var number = 1
 
     @IBOutlet var view: UIView!
@@ -22,12 +28,14 @@ class CompletionCycleView: UIView {
         AudioServicesPlaySystemSound(1103)
         number++
         self.refreshView()
+        self.delegate?.completionCycleView(self, didSelectedNumber: number)
     }
     
     @IBAction func minusButtonClick(sender: AnyObject) {
         AudioServicesPlaySystemSound(1103)
         number--
         self.refreshView()
+        self.delegate?.completionCycleView(self, didSelectedNumber: number)
     }
     
     required init(coder aDecoder: NSCoder) {

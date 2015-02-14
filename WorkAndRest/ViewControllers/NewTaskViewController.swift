@@ -15,7 +15,7 @@ protocol NewTaskViewControllerDelegate {
     //func newTaskViewControllerDidCancel(controller: ItemDetailViewController!)
 }
 
-class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate, TimeSelectorViewDelegate, TaskTitleViewDelegate, StartViewControllerDelegate {
+class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate, TimeSelectorViewDelegate, TaskTitleViewDelegate, StartViewControllerDelegate, CompletionCycleViewDelegate {
     
     // MARK: - Properties
     
@@ -24,11 +24,13 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     @IBOutlet var startLaterButton: UIButton!
     @IBOutlet var timeSelector: TimeSelectorView!
     @IBOutlet var taskTitleView: TaskTitleView!
+    @IBOutlet var completionCycleView: CompletionCycleView!
     
     var taskItem: Task?
     var delegate: NewTaskViewControllerDelegate?
     var minutes = GlobalConstants.DEFAULT_MINUTES
     var blurView: UIView?
+    var number = 0
     
     // MARK: - Lifecycle
     
@@ -106,23 +108,27 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     // MARK: - StartViewControllerDelegate
     
     func startViewController(sender: StartViewController, didSelectItem type: StartType) {
-        
         switch type {
         case .Now, .Later:
             if self.taskItem == nil {
                 self.taskItem = Task()
                 self.taskItem!.title = NSLocalizedString("Task", comment: "")
+                self.taskItem!.expect_times = self.number
             }
-            self.navigationController!.popViewControllerAnimated(false)
-            if self.delegate != nil {
-                self.taskItem!.minutes = self.minutes
-                self.delegate!.newTaskViewController(self, didFinishAddingTask: self.taskItem, runningNow: type == .Now)
-            }
+            self.taskItem!.minutes = self.minutes
+            self.delegate?.newTaskViewController(self, didFinishAddingTask: self.taskItem, runningNow: type == .Now)
             break
             
         case .Cancel:
             break
         }
+        self.navigationController!.popViewControllerAnimated(false)
+    }
+    
+    // MARK: - CompletionCycleViewDelegate
+    
+    func completionCycleView(sender: CompletionCycleView, didSelectedNumber number: Int) {
+        self.number = number
     }
     
     let TAG_ICON = 1001

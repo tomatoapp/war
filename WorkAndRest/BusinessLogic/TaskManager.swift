@@ -68,12 +68,12 @@ class TaskManager: NSObject {
     
     func completeOneTimer(task: Task!) -> Bool {
         task.lastUpdateTime = NSDate()
-        task.costWorkTimes += 1
+        task.finished_times += 1
         
         // Update the cache
         let target = cacheTaskList.filter { $0.taskId == task.taskId }.first!
         target.lastUpdateTime = task.lastUpdateTime
-        target.costWorkTimes += 1
+        target.finished_times += 1
         
         // Update the database.
         let success = DBOperate.updateTask(task)

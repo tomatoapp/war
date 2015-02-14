@@ -41,6 +41,8 @@ import UIKit
         "title VARCHAR(1024) NOT NULL," +
         "lastUpdateTime DATETIME DEFAULT CURRENT_TIMESTAMP," +
         "minutes INTEGER, " +
+        "expect_times INTERGER, " +
+        "finished_times INTERGER, " +
         "completed BOOL DEFAULT 0" +
         ")"
         
@@ -59,7 +61,7 @@ import UIKit
         if !dataBase.open() {
             return false
         }
-        let success = dataBase.executeUpdate("INSERT INTO t_tasks(title, minutes, completed) VALUES (:title, :minutes, :completed)", withArgumentsInArray: [task.title, task.minutes, task.completed])
+        let success = dataBase.executeUpdate("INSERT INTO t_tasks(title, minutes, completed, expect_times, finished_times) VALUES (:title, :minutes, :completed, :expect_times, :finished_times)", withArgumentsInArray: [task.title, task.minutes, task.completed, task.expect_times, task.finished_times])
         if success {
             println("insert to task table success.")
         } else {
@@ -82,6 +84,8 @@ import UIKit
             task.title = rs.stringForColumn("title")
             task.lastUpdateTime = rs.dateForColumn("lastUpdateTime")
             task.minutes = rs.stringForColumn("minutes").toInt()!
+            task.expect_times = rs.stringForColumn("expect_times").toInt()!
+            task.finished_times = rs.stringForColumn("finished_times").toInt()!
 
         }
         dataBase.close()
@@ -105,7 +109,7 @@ import UIKit
         
         // also can use datetime('now'):
         // lastUpdateTime = ? -> lastUpdateTime = datetime('now')
-        let success = dataBase.executeUpdate("UPDATE t_tasks SET title = ?, lastUpdateTime = ?, minutes = ?, completed = ? WHERE task_id = ?", withArgumentsInArray: [task.title, task.lastUpdateTime, task.minutes, task.completed, task.taskId])
+        let success = dataBase.executeUpdate("UPDATE t_tasks SET title = ?, lastUpdateTime = ?, minutes = ?, completed = ?, finished_times = ? WHERE task_id = ?", withArgumentsInArray: [task.title, task.lastUpdateTime, task.minutes, task.completed, task.finished_times, task.taskId])
         if success {
             println("update task table success.")
         } else {
@@ -147,6 +151,8 @@ import UIKit
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 tempTask.lastUpdateTime = formatter.dateFromString(rs.stringForColumn("lastUpdateTime"))!
             }
+            tempTask.expect_times = rs.stringForColumn("expect_times").toInt()!
+            tempTask.finished_times = rs.stringForColumn("finished_times").toInt()!
             taskArray.append(tempTask)
         }
         dataBase.close()

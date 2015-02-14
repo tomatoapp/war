@@ -16,10 +16,18 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     @IBOutlet var taskItemBaseView: TaskItemBaseView!
     
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var detailLabel: UILabel!
+    @IBOutlet var lengthLabel: UILabel!
+    
+    @IBOutlet var expectTimesLabel: UILabel!
+    @IBOutlet var finishedTimesLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.taskItemBaseView.delegate = self
         self.taskItemBaseView.isBreakButtonEnable = false
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -45,6 +53,12 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
                 }
             }
         }
+        
+        self.nameLabel.text = self.taskItem.title
+        self.detailLabel.text = "Task, \(self.taskItem.expect_times) times"
+        self.lengthLabel.text = "\(self.taskItem.minutes) Minutes / Task"
+        self.expectTimesLabel.text = "\(self.taskItem.expect_times)"
+        self.finishedTimesLabel.text = "\(self.taskItem.finished_times)"
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -88,6 +102,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     func completed(sender: TaskRunner!) {
         self.taskItemBaseView.refreshViewByState(.Normal)
+        self.taskManager.completeOneTimer(self.taskRunner.taskItem)
     }
     
     func breaked(sender: TaskRunner!) {

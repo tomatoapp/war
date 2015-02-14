@@ -13,10 +13,11 @@ class Task: NSObject, NSCopying {
     var title: String
     var text: String
     var completed: Bool
-    var costWorkTimes: Int
     var date: NSDate
     var lastUpdateTime: NSDate
     var minutes: Int
+    var expect_times: Int
+    var finished_times: Int
 
     override init() {
 
@@ -24,10 +25,11 @@ class Task: NSObject, NSCopying {
         self.title = ""
         self.text = ""
         self.completed = false
-        self.costWorkTimes = 0
         self.date = NSDate()
         self.lastUpdateTime = NSDate()
         self.minutes = 0
+        self.expect_times = 0
+        self.finished_times = 0
         super.init()
     }
     
@@ -37,10 +39,11 @@ class Task: NSObject, NSCopying {
         copy.title = self.title
         copy.text = self.text
         copy.completed = self.completed
-        copy.costWorkTimes = self.costWorkTimes
         copy.date = self.date
         copy.lastUpdateTime = self.lastUpdateTime
         copy.minutes = self.minutes
+        copy.expect_times = self.expect_times
+        copy.finished_times = self.finished_times
         return copy
     }
     
