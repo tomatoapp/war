@@ -11,6 +11,8 @@ pod 'FMDB'
 
 pod 'Masonry'
 
+pod 'SWTableViewCell', '~> 0.3.7'
+
 end
 
 target 'WorkAndRestTests' do

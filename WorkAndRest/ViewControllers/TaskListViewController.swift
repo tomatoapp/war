@@ -12,7 +12,7 @@ enum HandleType: Int {
     case None, AddOrEdit, Start
 }
 
-class TaskListViewController: UITableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate {
+class TaskListViewController: UITableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, SWTableViewCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate {
     
     var allTasks = [Task]()
     var taskRunner: TaskRunner!
@@ -76,9 +76,16 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath) as TaskListItemCell
-        cell.delegate = self
         let task = allTasks[indexPath.row]
+
+        let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath) as TaskListItemCell
+        cell.taskEventDelegate = self
+        cell.delegate = self
+        if task.completed {
+            cell.leftUtilityButtons = self.leftUtilityButtonsByTaskState(TaskState.Completed)
+        } else {
+            cell.leftUtilityButtons = self.leftUtilityButtonsByTaskState(TaskState.Normal)
+        }
         cell.taskItem = (task.copy() as Task)
         cell.refresh()
         
@@ -87,7 +94,11 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         
         switch self.taskRunner.state {
         case .UnReady:
-            cell.reset(animation: false)
+            if task.completed {
+                cell.reset(TaskState.Completed, animation: false)
+            } else {
+                cell.reset(TaskState.Normal, animation: false)
+            }
             break
             
         case .Ready:
@@ -137,11 +148,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        let item = allTasks[indexPath.row]
-        if self.taskRunner.isRunning {
-            return UITableViewCellEditingStyle.None
-        }
-        return UITableViewCellEditingStyle.Delete
+        return UITableViewCellEditingStyle.None
     }
     
     // MARK: - Navigation
@@ -246,6 +253,55 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         var baseItem = allTasks.filter{ $0.taskId == sender.taskItem!.taskId }.first!
         baseItem.completed = false
         self.reloadTableViewWithTimeInterval(0.0)
+    }
+    
+    // MARK: - SWTableViewCellDelegate
+    
+    func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
+        
+        cell.hideUtilityButtonsAnimated(true)
+        let taskItem = (cell as TaskListItemCell).taskItem!
+        let task = allTasks.filter{ $0.taskId == taskItem.taskId }.first!
+        
+        switch index {
+        case 0:
+            if taskItem.completed {
+                // Delete it from the database.
+                DBOperate.deleteTask(taskItem)
+                
+                // Remove it from the tableView.
+                self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
+            } else {
+                
+                // Save it to the database.
+                task.completed = true
+                DBOperate.updateTask(task)
+                
+                // Refresh the tableview.
+                let indexPath = NSIndexPath(forRow: find(allTasks, task)!, inSection: 0)
+                let indexPaths = [indexPath]
+                self.tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Fade)
+            }
+            break
+            
+        case 1:
+            DBOperate.deleteTask(taskItem)
+            
+            // Remove it from the tableView.
+            self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
+            break
+            
+        default:
+            break
+        }
+    }
+    
+    func swipeableTableViewCell(cell: SWTableViewCell!, canSwipeToState state: SWCellState) -> Bool {
+        return !self.taskRunner.isRunning
+    }
+    
+    func swipeableTableViewCellShouldHideUtilityButtonsOnSwipe(cell: SWTableViewCell!) -> Bool {
+        return true
     }
     
     // MARK: - TaskRunnerManagerDelegate
@@ -408,4 +464,39 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     func getTimerSecondsStringBySeconds(seconds: Int) -> String {
         return String(format: "%02d", seconds % 3600 % 60)
     }
+    
+    func leftUtilityButtonsByTaskState(state: TaskState) -> NSMutableArray {
+        var leftUtilityButtons = NSMutableArray()
+        if state == TaskState.Normal {
+            leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.clearColor(), normalIcon: UIImage(named: "swipe_item_markdone"), selectedIcon: UIImage(named: "swipe_item_markdone"))
+        }
+        leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.clearColor(), normalIcon: UIImage(named: "swipe_item_delete"), selectedIcon: UIImage(named: "swipe_item_delete"))
+        
+        return leftUtilityButtons
+    }
+    
+//    func handleLeftUtilityButtonsEventByTaskState(state: TaskState, withButtonIndex index: Int) {
+//        if state == TaskState.Normal {
+//            if index == 0 {
+//                // Mark done
+//                println("mark done")
+//            } else if index == 1 {
+//                // delete
+//                println("del")
+//                let task = allTasks[indexPath.row]
+//                DBOperate.deleteTask(task)
+//                let indexPaths = [indexPath]
+//                self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
+//            }
+//        } else {
+//            // delete
+//            println("del")
+//            let task = allTasks[indexPath.row]
+//            DBOperate.deleteTask(task)
+//            let indexPaths = [indexPath]
+//            self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
+//        }
+//    }
+    
+    
 }

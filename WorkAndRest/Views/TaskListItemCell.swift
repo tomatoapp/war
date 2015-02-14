@@ -16,7 +16,7 @@ protocol TaskListItemCellDelegate {
     func activated(sender: TaskListItemCell!)
 }
 
-class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDelegate {
+class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDelegate {
     
     @IBOutlet var tempView: UIView!
     @IBOutlet var taskItemBaseView: TaskItemBaseView!
@@ -26,7 +26,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     var seconds = 0
     var taskItem: Task?
     var taskRunner: TaskRunner?
-    var delegate: TaskListItemCellDelegate?
+    var taskEventDelegate: TaskListItemCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -72,12 +72,8 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
         }
     }
     
-    func reset(animation: Bool = true) {
-        if self.taskItem!.completed  {
-            self.taskItemBaseView.refreshViewByState(TaskState.Completed, animation: animation)
-        } else {
-            self.taskItemBaseView.refreshViewByState(TaskState.Normal, animation: animation)
-        }
+    func reset(state: TaskState, animation: Bool = true) {
+        self.taskItemBaseView.refreshViewByState(state, animation: animation)
         
         UIView.transitionWithView(self.pointImageView,
             duration: ANIMATION_DURATION,
@@ -134,17 +130,17 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     
     func tick(sender: TaskRunner!) {
         self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
-        self.delegate?.tick(self, seconds: sender.seconds)
+        self.taskEventDelegate?.tick(self, seconds: sender.seconds)
     }
     
     func completed(sender: TaskRunner!) {
         self.taskItemBaseView.refreshViewByState(.Normal)
-        self.delegate?.completed(self)
+        self.taskEventDelegate?.completed(self)
     }
     
     func breaked(sender: TaskRunner!) {
         self.taskItemBaseView.refreshViewByState(.Normal)
-        self.delegate!.breaked(self)
+        self.taskEventDelegate!.breaked(self)
     }
     
     // MARK: - TaskItemBaseViewDelegate
@@ -184,7 +180,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
             // No one is running, setup the task item and then you can start now! go go go!
             self.taskRunner!.setupTaskItem(self.taskItem!)
             if self.taskRunner!.canStart() {
-                self.delegate?.readyToStart(self)
+                self.taskEventDelegate?.readyToStart(self)
             }
             
         }
@@ -193,7 +189,7 @@ class TaskListItemCell: UITableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
             // This is completed task, active it.
             self.taskItem!.completed = false
             DBOperate.updateTask(self.taskItem!)
-            self.delegate?.activated(self)
+            self.taskEventDelegate?.activated(self)
             
             if self.taskRunner!.isRunning {
                 // Some task is running, you can active it still.

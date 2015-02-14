@@ -10,3 +10,4 @@
 #import "Appirater.h"
 #import "V8HorizontalPickerView.h"
 #import "LockNotifierCallback.h"
+#import "SWTableViewCell.h"
