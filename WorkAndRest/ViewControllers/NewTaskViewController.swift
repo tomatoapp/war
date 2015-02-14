@@ -117,12 +117,13 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
             }
             self.taskItem!.minutes = self.minutes
             self.delegate?.newTaskViewController(self, didFinishAddingTask: self.taskItem, runningNow: type == .Now)
+            self.navigationController!.popViewControllerAnimated(false)
+
             break
             
         case .Cancel:
             break
         }
-        self.navigationController!.popViewControllerAnimated(false)
     }
     
     // MARK: - CompletionCycleViewDelegate
@@ -219,7 +220,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
             make.centerX.mas_equalTo()(self.view.mas_centerX)
             make.bottom.mas_equalTo()(self.view.mas_bottom).offset()(-10)
             make.height.mas_equalTo()(47)
-            make.width.mas_equalTo()(self.view.mas_width).offset()(-50)
+            make.width.mas_equalTo()(self.view.mas_width).offset()(-20)
             return ()
         }
     }
@@ -256,7 +257,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
             make.centerX.mas_equalTo()(self.view.mas_centerX)
             make.bottom.mas_equalTo()(self.view.mas_bottom).offset()(-50)
             make.height.mas_equalTo()(47)
-            make.width.mas_equalTo()(self.view.mas_width).offset()(-80)
+            make.width.mas_equalTo()(self.view.mas_width).offset()(-20)
             return ()
         }
     }

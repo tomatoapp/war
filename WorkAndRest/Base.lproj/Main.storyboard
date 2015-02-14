@@ -80,7 +80,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" tag="1006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Sa-Oz-OYd">
-                                <rect key="frame" x="26" y="491" width="268" height="47"/>
+                                <rect key="frame" x="8" y="491" width="304" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="HD0-Bq-EDn"/>
                                 </constraints>
@@ -108,10 +108,10 @@
                             <constraint firstItem="dVb-yt-thQ" firstAttribute="trailing" secondItem="A1W-Vw-dDY" secondAttribute="trailingMargin" constant="16" id="6V2-LC-pcu"/>
                             <constraint firstAttribute="centerX" secondItem="nr4-Se-J1E" secondAttribute="centerX" id="8IJ-IP-WNk"/>
                             <constraint firstItem="g3q-r7-TPV" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-8" id="9BN-SN-uOk"/>
-                            <constraint firstItem="8Sa-Oz-OYd" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="10" id="E0i-jY-as4"/>
+                            <constraint firstItem="8Sa-Oz-OYd" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-8" id="E0i-jY-as4"/>
                             <constraint firstItem="dVb-yt-thQ" firstAttribute="top" secondItem="0Jt-2x-xws" secondAttribute="bottom" constant="25" id="Fm9-65-s81"/>
                             <constraint firstItem="0Jt-2x-xws" firstAttribute="top" secondItem="nr4-Se-J1E" secondAttribute="bottom" constant="13" id="Ja5-o4-R7v"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8Sa-Oz-OYd" secondAttribute="trailing" constant="10" id="R6e-DS-oSF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8Sa-Oz-OYd" secondAttribute="trailing" constant="-8" id="R6e-DS-oSF"/>
                             <constraint firstItem="poP-IU-mMV" firstAttribute="top" secondItem="dVb-yt-thQ" secondAttribute="bottom" constant="22" id="Syq-ga-hmo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="g3q-r7-TPV" secondAttribute="trailing" constant="-8" id="V9v-ju-F2D"/>
                             <constraint firstItem="dVb-yt-thQ" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-16" id="brg-N3-9OB"/>
