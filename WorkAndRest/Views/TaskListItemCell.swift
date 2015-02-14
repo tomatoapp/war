@@ -55,9 +55,9 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
             println("Can not start!")
             return
         }
-        taskRunner?.start()
-        self.taskItem!.lastUpdateTime = NSDate()
-        DBOperate.updateTask(self.taskItem!)
+        self.taskRunner!.start()
+        self.taskRunner!.taskItem.lastUpdateTime = NSDate()
+        DBOperate.updateTask(self.taskRunner!.taskItem)
     }
     
     func breakIt() {

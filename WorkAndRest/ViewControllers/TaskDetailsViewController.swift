@@ -34,9 +34,9 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
                 
             } else { // the running task is other task
                 if self.taskItem.completed {
-                    self.taskItemBaseView.disableWithTaskState(TaskState.Normal, animation: false)
-                } else {
                     self.taskItemBaseView.disableWithTaskState(TaskState.Completed, animation: false)
+                } else {
+                    self.taskItemBaseView.disableWithTaskState(TaskState.Normal, animation: false)
                 }
             }
         } else {

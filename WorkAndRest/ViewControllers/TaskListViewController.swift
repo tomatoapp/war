@@ -44,17 +44,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         allTasks = self.sortTasks(result!)!
     }
     
-    
-    func headerHeight() -> Int {
-        if WARDevice.getPhoneType() == PhoneType.iPhone4 {
-            return 90
-        }
-        return 130
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -67,6 +56,18 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         self.refreshHeaderView()
     }
     
+    
+    func headerHeight() -> Int {
+        if WARDevice.getPhoneType() == PhoneType.iPhone4 {
+            return 90
+        }
+        return 130
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -110,7 +111,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         case .Ready:
             if self.taskRunner.readyTaskID() == task.taskId {
                 self.taskRunner.delegate = cell
-                
                 cell.start()
             }
             break
