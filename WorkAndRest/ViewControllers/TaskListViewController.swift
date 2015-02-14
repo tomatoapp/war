@@ -30,7 +30,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         
         let line = UIImageView(image: UIImage(named: "line"))
         line.frame = CGRectMake(19.5, CGFloat(self.headerHeight()), 1, self.tableView.frame.size.height)
-        self.view.insertSubview(line, atIndex: 0)
+        //self.view.insertSubview(line, atIndex: 0)
         
         self.taskRunnerManager = TaskRunnerManager()
         self.taskRunnerManager!.delegate = self
@@ -502,9 +502,9 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     func leftUtilityButtonsByTaskState(state: TaskState) -> NSMutableArray {
         var leftUtilityButtons = NSMutableArray()
         if state == TaskState.Normal {
-            leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.clearColor(), normalIcon: UIImage(named: "swipe_item_markdone"), selectedIcon: UIImage(named: "swipe_item_markdone"))
+            leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.clearColor(), normalIcon: UIImage(named: "swipe_item_markdone"), selectedIcon: UIImage(named: "swipe_item_markdone_press"))
         }
-        leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.clearColor(), normalIcon: UIImage(named: "swipe_item_delete"), selectedIcon: UIImage(named: "swipe_item_delete"))
+        leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.clearColor(), normalIcon: UIImage(named: "swipe_item_delete"), selectedIcon: UIImage(named: "swipe_item_delete_press"))
         
         return leftUtilityButtons
     }
