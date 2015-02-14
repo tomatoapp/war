@@ -36,6 +36,12 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         
         self.taskRunner = TaskRunner()
         self.headerView.delegate = self
+        
+        let result = self.loadAllTasks()
+        if result == nil {
+            return
+        }
+        allTasks = self.sortTasks(result!)!
     }
     
     
@@ -52,11 +58,11 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        let result = self.loadAllTasks()
-        if result == nil {
-            return
+        if self.taskRunner.isRunning {
+            let task = allTasks.filter { $0.taskId == self.taskRunner.runningTaskID() }.first!
+            task.lastUpdateTime = self.taskRunner.taskItem.lastUpdateTime
         }
-        allTasks = self.sortTasks(result!)!
+        allTasks = self.sortTasks(allTasks)!
         self.tableView.reloadData()
         self.refreshHeaderView()
     }
@@ -208,7 +214,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             if runNow {
                 self.taskRunner.setupTaskItem(item)
                 self.reloadTableViewWithTimeInterval(1.0)
-                
             }
         }
     }
@@ -262,7 +267,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         cell.hideUtilityButtonsAnimated(true)
         let taskItem = (cell as TaskListItemCell).taskItem!
         let task = allTasks.filter{ $0.taskId == taskItem.taskId }.first!
-        
         switch index {
         case 0:
             if taskItem.completed {
@@ -392,6 +396,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     func deleteItem(item: Task!, withRowAnimation animation: UITableViewRowAnimation) {
+        
         self.tableView.beginUpdates()
         let indexPath = NSIndexPath(forRow: find(allTasks, item)!, inSection: 0)
         let indexPaths = [indexPath]
@@ -412,8 +417,8 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             self.tableView.reloadData()
             return
         }
-        self.deleteItem(baseItem, withRowAnimation: UITableViewRowAnimation.Left)
-        self.insertItem(baseItem, withRowAnimation: UITableViewRowAnimation.Left)
+        self.deleteItem(baseItem, withRowAnimation: UITableViewRowAnimation.Top)
+        self.insertItem(baseItem, withRowAnimation: UITableViewRowAnimation.Bottom)
         baseItem.title = copyItem.title
         
         self.scrollToTop()

@@ -97,6 +97,9 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     func tick(sender: TaskRunner!) {
         println("TaskDetailsViewController: \(sender.seconds)")
+        if self.taskItemBaseView  == nil {
+            return
+        }
         self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
     }
     
