@@ -32,7 +32,8 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        println("viewWillAppear - TaskDetailsViewController")
+        self.taskRunner.delegate = self
         self.taskItemBaseView.refreshTitle(self.taskItem.title)
         
         if self.taskItem.completed {

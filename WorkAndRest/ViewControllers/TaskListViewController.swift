@@ -49,7 +49,8 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        println("viewWillAppear - TaskListViewController")
+
         if self.taskRunner.isRunning {
             let task = allTasks.filter { $0.taskId == self.taskRunner.runningTaskID() }.first!
             task.lastUpdateTime = self.taskRunner.taskItem.lastUpdateTime
@@ -184,7 +185,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             let controller = segue.destinationViewController as TaskDetailsViewController
             let selectedTask = sender as Task!
             controller.taskItem = selectedTask
-            self.taskRunner.delegate = controller
+            //self.taskRunner.delegate = controller
             controller.taskRunner = self.taskRunner
         }
     }
