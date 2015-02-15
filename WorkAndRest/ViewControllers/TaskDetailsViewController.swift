@@ -110,7 +110,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         self.taskManager.completeOneTimer(self.taskItem)
         self.refreshUI()
     }
-    
+
     func breaked(sender: TaskRunner!) {
         self.taskItemBaseView.refreshViewByState(.Normal)
         self.taskManager.breakOneTimer(self.taskRunner.taskItem)

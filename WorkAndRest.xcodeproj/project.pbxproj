@@ -38,6 +38,7 @@
 		649308591A7AE68200480677 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308581A7AE68200480677 /* BaseTableViewController.swift */; };
 		6493085B1A7AE88B00480677 /* TaskTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6493085A1A7AE88B00480677 /* TaskTitleViewController.swift */; };
 		6493085D1A7AEE4900480677 /* WorkWithItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6493085C1A7AEE4900480677 /* WorkWithItemViewController.swift */; };
+		6493C5A81A9032890036B5AE /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6493C5A71A9032890036B5AE /* HelpViewController.swift */; };
 		6497FC6C1A85C5F70098535D /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497FC6B1A85C5F70098535D /* StartViewController.swift */; };
 		6497FE561A75A77800174307 /* Work.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497FE551A75A77800174307 /* Work.swift */; };
 		649893931A83959B0091822A /* LockNotifierCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 649893921A83959B0091822A /* LockNotifierCallback.m */; };
@@ -48,6 +49,7 @@
 		649D54081A849978002593F8 /* WARDevide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D54071A849978002593F8 /* WARDevide.swift */; };
 		64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */; };
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
+		64A9A7231A904B1C005B9687 /* AboutSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64A9A7221A904B1C005B9687 /* AboutSubView.xib */; };
 		64B67F151A8063D0002127BC /* TimeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B67F141A8063D0002127BC /* TimeSelectorView.swift */; };
 		64BD3D0B1A7B247000941B07 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BD3D0A1A7B247000941B07 /* SettingViewController.swift */; };
 		64C497F61A8AE7F10051E605 /* TaskItemBaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C497F51A8AE7F10051E605 /* TaskItemBaseView.xib */; };
@@ -116,6 +118,7 @@
 		649308581A7AE68200480677 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		6493085A1A7AE88B00480677 /* TaskTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTitleViewController.swift; sourceTree = "<group>"; };
 		6493085C1A7AEE4900480677 /* WorkWithItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkWithItemViewController.swift; sourceTree = "<group>"; };
+		6493C5A71A9032890036B5AE /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		6497FC6B1A85C5F70098535D /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		6497FE551A75A77800174307 /* Work.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Work.swift; sourceTree = "<group>"; };
 		6497FE581A75A91600174307 /* WorkAndRest-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WorkAndRest-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
@@ -128,6 +131,7 @@
 		649D54071A849978002593F8 /* WARDevide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARDevide.swift; sourceTree = "<group>"; };
 		64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		64A9A7221A904B1C005B9687 /* AboutSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutSubView.xib; sourceTree = "<group>"; };
 		64B67F141A8063D0002127BC /* TimeSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSelectorView.swift; sourceTree = "<group>"; };
 		64BD3D0A1A7B247000941B07 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		64C497F51A8AE7F10051E605 /* TaskItemBaseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskItemBaseView.xib; sourceTree = "<group>"; };
@@ -291,6 +295,7 @@
 				64BD3D0A1A7B247000941B07 /* SettingViewController.swift */,
 				6497FC6B1A85C5F70098535D /* StartViewController.swift */,
 				64CCE5321A89600C008D5A08 /* TaskDetailsViewController.swift */,
+				6493C5A71A9032890036B5AE /* HelpViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				649D54051A84522A002593F8 /* TaskTitleView.swift */,
 				64E3C1AC1A8752CF00418426 /* TaskListHeaderView.xib */,
 				64E3C1AA1A8752C400418426 /* TaskListHeaderView.swift */,
+				64A9A7221A904B1C005B9687 /* AboutSubView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -460,6 +466,7 @@
 				6434827C18C5D344009BF110 /* InfoPlist.strings in Resources */,
 				64228ECA18FE2ED300461550 /* Localizable.strings in Resources */,
 				64012C931900B979006FC2B2 /* AppiraterLocalizable.strings in Resources */,
+				64A9A7231A904B1C005B9687 /* AboutSubView.xib in Resources */,
 				64C99A581A7902A100F1D796 /* Launch Screen.xib in Resources */,
 				644554641A7CADD100F48164 /* TaskListItemCell.xib in Resources */,
 				64C497F61A8AE7F10051E605 /* TaskItemBaseView.xib in Resources */,
@@ -544,6 +551,7 @@
 				649893951A842F790091822A /* CompletionCycleView.swift in Sources */,
 				64CF8A2E1A8EE48F000565C4 /* TaskManager.swift in Sources */,
 				649893931A83959B0091822A /* LockNotifierCallback.m in Sources */,
+				6493C5A81A9032890036B5AE /* HelpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

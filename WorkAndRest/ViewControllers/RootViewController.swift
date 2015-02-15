@@ -15,9 +15,14 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "title"))
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "white"), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.translucent = false
         
         
+        let helpButton = UIButton(frame: CGRectMake(0, 0, 36, 17))
+        helpButton.setImage(UIImage(named: "help"), forState: UIControlState.Normal)
+        helpButton.setImage(UIImage(named: "help"), forState: UIControlState.Highlighted)
+        helpButton.addTarget(self, action: Selector("rightBarButtonClick:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: helpButton)
         //self.tabBarController!.delegate = self
         self.delegate = self
     }
@@ -28,6 +33,10 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func rightBarButtonClick(sender: UIButton!) {
+        self.performSegueWithIdentifier("helpSegue", sender: nil)
     }
     
     // MARK: - UITabBarControllerDelegate

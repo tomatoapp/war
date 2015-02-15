@@ -57,9 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             if NSUserDefaults.standardUserDefaults().boolForKey("kDisplayStatusLocked") {
                 println("Sent to background by locking screen")
                 if TaskRunner.sharedInstance.isRunning {
-//                    println("isWorking! resign active")
                     self.addNotificationWithSeconds(TaskRunner.sharedInstance.seconds)
-                    //self.showAlertWithSeconds(TaskRunner.sharedInstance.seconds)
                     TaskRunnerManager.sharedInstance.freezeTaskManager(TaskRunner.sharedInstance)
                 }
                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_ISWORKING)
@@ -117,7 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.k_HASRAN_BEFORE) {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.k_HASRAN_BEFORE)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SECOND_SOUND)
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_KEEP_LIGHT)
+            //NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_KEEP_LIGHT)
             NSUserDefaults.standardUserDefaults().setInteger(GlobalConstants.DEFAULT_MINUTES, forKey: GlobalConstants.k_SECONDS)
             NSUserDefaults.standardUserDefaults().synchronize()
             DBOperate.insertTask(self.createSampleTask())
@@ -130,13 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         notification.alertBody = NSLocalizedString("Time is up!", comment:"")
         let secondsLeftTimeInterval = NSTimeInterval(seconds)
         
-//        println("\(secondsLeftTimeInterval)")
         let fireDate = NSDate(timeIntervalSinceNow: secondsLeftTimeInterval)
-//        let formatter = NSDateFormatter()
-//        formatter.timeZone = NSTimeZone.defaultTimeZone()
-//        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//        let timeStr = formatter.stringFromDate(fireDate)
-//        println(timeStr)
         notification.fireDate = fireDate
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
@@ -148,11 +140,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.alertBody = "You breaked this timer"
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-    }
-    
-    func showAlertWithSeconds(seconds: Int) {
-        let alert = UIAlertView(title: "Time is up!", message: "Time is up!", delegate: self, cancelButtonTitle: "OK")
-        alert.show()
     }
     
     func initRater() {
