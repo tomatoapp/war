@@ -9,9 +9,8 @@
 import UIKit
 
 protocol TaskTitleViewControllerDelegate {
+    
     func addTaskViewController(controller: TaskTitleViewController!, didFinishAddingTask item: Task!)
-    
-    
     func addTaskViewController(controller: TaskTitleViewController!, didFinishEditingTask item: Task!)
     func addTaskViewControllerDidCancel(controller: TaskTitleViewController!)
 }

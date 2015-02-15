@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, TaskItemBaseViewDelegate {
+class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, TaskItemBaseViewDelegate, TaskTitleViewControllerDelegate {
     
     var taskItem: Task!
     var taskRunner: TaskRunner!
@@ -16,13 +16,17 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     @IBOutlet var taskItemBaseView: TaskItemBaseView!
     
-    @IBOutlet var nameLabel: UILabel!
+//    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var nameButton: UIButton!
     @IBOutlet var detailLabel: UILabel!
     @IBOutlet var lengthLabel: UILabel!
     
     @IBOutlet var expectTimesLabel: UILabel!
     @IBOutlet var finishedTimesLabel: UILabel!
     
+    @IBAction func changeNameButtonClick(sender: AnyObject) {
+        self.performSegueWithIdentifier("EditTaskTitleSegue", sender: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.taskItemBaseView.delegate = self
@@ -57,10 +61,18 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         self.refreshUI()
         
     }
-    
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "EditTaskTitleSegue" {
+            let navigationController = segue.destinationViewController as UINavigationController
+            let controller = navigationController.topViewController as TaskTitleViewController
+            controller.delegate = self
+            controller.copyTaskItem = self.taskItem
+        }
+    }
     
     func refreshUI() {
-        self.nameLabel.text = self.taskItem.title
+        self.nameButton.setTitle(self.taskItem.title, forState: UIControlState.Normal)
         self.detailLabel.text = "Task, \(self.taskItem.expect_times) times"
         self.lengthLabel.text = "\(self.taskItem.minutes) Minutes / Task"
         self.expectTimesLabel.text = "\(self.taskItem.expect_times)"
@@ -161,9 +173,24 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         self.taskRunner.setupTaskItem(self.taskItem)
         if self.taskRunner.canStart() {
             self.taskRunner.start()
-//            self.taskItem!.lastUpdateTime = NSDate()
-//            DBOperate.updateTask(self.taskItem!)
             self.taskManager.startTask(self.taskItem!)
         }
+    }
+    
+    // MARK: - TaskTitleViewControllerDelegate
+
+    func addTaskViewController(controller: TaskTitleViewController!, didFinishAddingTask item: Task!) {
+        
+    }
+    
+    func addTaskViewControllerDidCancel(controller: TaskTitleViewController!) {
+        
+    }
+    
+    func addTaskViewController(controller: TaskTitleViewController!, didFinishEditingTask item: Task!) {
+        self.taskItem.title = item.title
+        self.taskItemBaseView.refreshTitle(self.taskItem.title)
+        self.nameButton.setTitle(self.taskItem.title, forState: UIControlState.Normal)
+        self.taskManager.updateTask(self.taskItem)
     }
 }

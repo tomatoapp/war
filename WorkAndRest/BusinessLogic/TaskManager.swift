@@ -126,6 +126,17 @@ class TaskManager: NSObject {
         self.delegate?.taskManger(self, didActivatedATask: task)
     }
     
+    
+    func updateTask(task: Task!) {
+        
+        // Update the cache.
+        let target = cacheTaskList.filter { $0.taskId == task.taskId }.first!
+        target.title = task.title
+        
+        // Update the database.
+        DBOperate.updateTask(task)
+    }
+    
     func record(task: Task, isFinished: Bool) {
         let work = Work()
         work.taskId = task.taskId

@@ -587,6 +587,9 @@
                                                 <constraint firstAttribute="centerY" secondItem="BW7-9i-RXR" secondAttribute="centerY" id="XXg-dU-rwc"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="UsD-oN-d9y" kind="modal" identifier="EditTaskTitleSegue" id="CHf-Sm-tQ0"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="30" id="Sa9-nz-qrX">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -594,7 +597,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tU-Fj-6eA">
-                                                    <rect key="frame" x="33" y="6.5" width="41" height="17"/>
+                                                    <rect key="frame" x="33" y="6" width="41" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="AMj-jn-t24"/>
                                                         <constraint firstAttribute="width" constant="41" id="B2y-0Y-9cp"/>
@@ -603,18 +606,22 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAe-F7-y7F">
-                                                    <rect key="frame" x="105" y="6" width="182" height="17"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ph7-Ir-vl8">
+                                                    <rect key="frame" x="105" y="0.5" width="182" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <state key="normal" title="Label">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="changeNameButtonClick:" destination="bcI-2F-yMi" eventType="touchUpInside" id="VFE-bW-J3e"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="iAe-F7-y7F" secondAttribute="trailing" constant="25" id="CUy-Z7-eSD"/>
+                                                <constraint firstAttribute="centerY" secondItem="Ph7-Ir-vl8" secondAttribute="centerY" id="WNT-xC-Vln"/>
+                                                <constraint firstItem="Ph7-Ir-vl8" firstAttribute="leading" secondItem="4tU-Fj-6eA" secondAttribute="trailing" constant="31" id="eae-L2-Khj"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Ph7-Ir-vl8" secondAttribute="trailing" constant="25" id="hYI-UR-bcr"/>
                                                 <constraint firstAttribute="centerY" secondItem="4tU-Fj-6eA" secondAttribute="centerY" id="jXH-e0-wBD"/>
-                                                <constraint firstAttribute="centerY" secondItem="iAe-F7-y7F" secondAttribute="centerY" id="kZh-hY-bAq"/>
-                                                <constraint firstItem="iAe-F7-y7F" firstAttribute="leading" secondItem="4tU-Fj-6eA" secondAttribute="trailing" constant="31" id="ozE-lh-BKa"/>
                                                 <constraint firstItem="4tU-Fj-6eA" firstAttribute="leading" secondItem="ujz-gD-Vbj" secondAttribute="leadingMargin" constant="25" id="t8X-kS-dY8"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -785,7 +792,7 @@
                         <outlet property="expectTimesLabel" destination="Kn0-ws-ibf" id="gGg-hJ-64a"/>
                         <outlet property="finishedTimesLabel" destination="YMA-Pf-5Cq" id="wFk-ff-yaa"/>
                         <outlet property="lengthLabel" destination="ra2-4B-EYG" id="VvW-fG-hJJ"/>
-                        <outlet property="nameLabel" destination="iAe-F7-y7F" id="k2T-tb-Kcb"/>
+                        <outlet property="nameButton" destination="Ph7-Ir-vl8" id="ig4-Rg-7pI"/>
                         <outlet property="taskItemBaseView" destination="BW7-9i-RXR" id="wpc-1j-4jz"/>
                     </connections>
                 </tableViewController>
@@ -951,4 +958,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="CHf-Sm-tQ0"/>
+    </inferredMetricsTieBreakers>
 </document>
