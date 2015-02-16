@@ -18,12 +18,15 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
         self.navigationController?.navigationBar.translucent = false
         
         
-        let helpButton = UIButton(frame: CGRectMake(0, 0, 36, 17))
-        helpButton.setImage(UIImage(named: "help"), forState: UIControlState.Normal)
-        helpButton.setImage(UIImage(named: "help"), forState: UIControlState.Highlighted)
-        helpButton.addTarget(self, action: Selector("rightBarButtonClick:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: helpButton)
+//        let helpButton = UIButton(frame: CGRectMake(0, 0, 36, 17))
+//        helpButton.setImage(UIImage(named: "help"), forState: UIControlState.Normal)
+//        helpButton.setImage(UIImage(named: "help"), forState: UIControlState.Highlighted)
+//        helpButton.addTarget(self, action: Selector("rightBarButtonClick:"), forControlEvents: UIControlEvents.TouchUpInside)
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: helpButton)
         //self.tabBarController!.delegate = self
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 65/255, green: 117/255, blue: 5/255, alpha: 1)
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 65/255, green: 117/255, blue: 5/255, alpha: 1)
         self.delegate = self
     }
     
@@ -34,11 +37,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    func rightBarButtonClick(sender: UIButton!) {
-        self.performSegueWithIdentifier("helpSegue", sender: nil)
-    }
-    
+
     // MARK: - UITabBarControllerDelegate
     
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {

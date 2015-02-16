@@ -539,7 +539,13 @@
         <scene sceneID="CDL-It-PC3">
             <objects>
                 <tabBarController id="aC1-Pi-pp5" customClass="RootViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="uWk-te-FZ3"/>
+                    <navigationItem key="navigationItem" id="uWk-te-FZ3">
+                        <barButtonItem key="rightBarButtonItem" title="Help" id="9Br-aj-7jQ">
+                            <connections>
+                                <segue destination="URA-8B-37k" kind="push" identifier="helpSegue" id="4nk-Th-fUC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="6Oz-k6-Eie">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -549,7 +555,6 @@
                     <connections>
                         <segue destination="bBY-k6-fbP" kind="relationship" relationship="viewControllers" id="nwU-QQ-M9S"/>
                         <segue destination="G6S-QO-VTb" kind="relationship" relationship="viewControllers" id="und-vU-1pO"/>
-                        <segue destination="URA-8B-37k" kind="push" identifier="helpSegue" id="loe-pv-pmH"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p5P-eG-HTx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -693,16 +698,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bWx-1R-2FX" id="Qbk-7k-PjN">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMPLETION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8i-Af-Nkd">
-                                                    <rect key="frame" x="33" y="6" width="93" height="17"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="17" id="OoE-bi-Twl"/>
-                                                        <constraint firstAttribute="width" constant="93" id="s5d-gh-Idm"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bSF-bg-ekl">
                                                     <rect key="frame" x="57" y="50" width="206" height="206"/>
                                                     <subviews>
@@ -772,8 +767,6 @@
                                             <constraints>
                                                 <constraint firstItem="bSF-bg-ekl" firstAttribute="bottom" secondItem="Qbk-7k-PjN" secondAttribute="bottomMargin" constant="-10" id="0MO-9W-AdW"/>
                                                 <constraint firstAttribute="centerX" secondItem="bSF-bg-ekl" secondAttribute="centerX" id="oI6-za-XJf"/>
-                                                <constraint firstItem="V8i-Af-Nkd" firstAttribute="leading" secondItem="Qbk-7k-PjN" secondAttribute="leadingMargin" constant="25" id="tBh-Tr-FZt"/>
-                                                <constraint firstItem="V8i-Af-Nkd" firstAttribute="top" secondItem="Qbk-7k-PjN" secondAttribute="topMargin" constant="-1.5" id="uPW-dn-nIS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
