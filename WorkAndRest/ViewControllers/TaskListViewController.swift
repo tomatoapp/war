@@ -174,9 +174,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             let controller = segue.destinationViewController as TaskTitleViewController
             controller.copyTaskItem = sender as Task?
             controller.delegate = self
-        } else if segue.identifier == "ShowItem" {
-            let controller = segue.destinationViewController as WorkWithItemViewController
-            controller.taskItem = sender as Task?
         } else if segue.identifier == "NewTaskSegue" {
             let controller = segue.destinationViewController as NewTaskViewController
             controller.delegate = self
