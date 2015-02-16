@@ -14,6 +14,7 @@
 		64012C931900B979006FC2B2 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64012C911900B979006FC2B2 /* AppiraterLocalizable.strings */; };
 		64012C951900D68F006FC2B2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64012C941900D68F006FC2B2 /* AudioToolbox.framework */; };
 		640B370F1A81908C0020C817 /* TaskRunnerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640B370E1A81908C0020C817 /* TaskRunnerManager.swift */; };
+		6415C60B1A9234D400A9FBCA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6415C60A1A9234D400A9FBCA /* SettingsViewController.swift */; };
 		64228ECA18FE2ED300461550 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64228ECC18FE2ED300461550 /* Localizable.strings */; };
 		6434827218C5D344009BF110 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827118C5D344009BF110 /* Foundation.framework */; };
 		6434827418C5D344009BF110 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827318C5D344009BF110 /* CoreGraphics.framework */; };
@@ -85,6 +86,7 @@
 		64012C921900B979006FC2B2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		64012C941900D68F006FC2B2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		640B370E1A81908C0020C817 /* TaskRunnerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRunnerManager.swift; sourceTree = "<group>"; };
+		6415C60A1A9234D400A9FBCA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		64228EC918FE2E7300461550 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		64228ECB18FE2ED300461550 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64228ECD18FE2EE300461550 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				6497FC6B1A85C5F70098535D /* StartViewController.swift */,
 				64CCE5321A89600C008D5A08 /* TaskDetailsViewController.swift */,
 				6493C5A71A9032890036B5AE /* HelpViewController.swift */,
+				6415C60A1A9234D400A9FBCA /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				6497FC6C1A85C5F70098535D /* StartViewController.swift in Sources */,
 				649308591A7AE68200480677 /* BaseTableViewController.swift in Sources */,
 				645FDE161A7D9E8C002EC8EF /* GlobalConstants.swift in Sources */,
+				6415C60B1A9234D400A9FBCA /* SettingsViewController.swift in Sources */,
 				649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */,
 				64B67F151A8063D0002127BC /* TimeSelectorView.swift in Sources */,
 				649893951A842F790091822A /* CompletionCycleView.swift in Sources */,
