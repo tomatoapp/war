@@ -24,6 +24,7 @@ class TaskTitleView: UIView {
         self.setup()
     }
     
+    
     @IBAction func buttonClick(sender: UIButton!) {
         if self.delegate != nil {
             self.delegate!.taskTitleView(self, didClickedEditTitleButton: sender)
@@ -38,7 +39,12 @@ class TaskTitleView: UIView {
         } else {
             // Show the label and hide the edit task title.
             self.titleLabel.hidden = false
+            self.titleLabel.numberOfLines = 0
             self.titleLabel.text = title
+
+            self.titleLabel.sizeToFit()
+            let size = self.titleLabel.frame.size
+             self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y, 100, self.titleLabel.frame.size.height)
             self.button.setImage(UIImage(named: ""), forState: UIControlState.Normal)
         }
     }

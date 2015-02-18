@@ -9,7 +9,9 @@
 import UIKit
 
 class GlobalConstants {
-    class var k_APPID: String {return "868078759" }
+    class var k_APPID: String { return "868078759" }
+    class var APPSTORE_URL: String { return "itms-apps://itunes.apple.com/app/id868078759" }
+    class var EMAIL_ADDRESS: String {return "lunars.service@yahoo.com" }
     class var k_HASRAN_BEFORE: String { return "HasRanBefore" } // Not the first launch
 
     class var kBOOL_ISWORKING: String { return "isWorking" }
@@ -21,4 +23,8 @@ class GlobalConstants {
     
     class var DEFAULT_MINUTES: Int { return 1 }
     class var DEFAULT_NUMBER: Int { return 1 }
+    
+    class var TITLE_MAXLENGTH: Int { return 50 }
+    
+    class var VERSION: String { return "2.0.0" }
 }

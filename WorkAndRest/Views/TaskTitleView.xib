@@ -18,30 +18,32 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9zY-AV-hCx">
-                    <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="70"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="open_quote" translatesAutoresizingMaskIntoConstraints="NO" id="CtS-IT-UoZ">
-                            <rect key="frame" x="40" y="-10" width="30" height="60"/>
+                            <rect key="frame" x="126" y="26.5" width="9" height="7"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="60" id="0Vd-Le-TiJ"/>
-                                <constraint firstAttribute="width" constant="30" id="6jA-Oh-Hp7"/>
+                                <constraint firstAttribute="width" constant="9" id="FgR-5l-GVD"/>
+                                <constraint firstAttribute="height" constant="7" id="SCD-hb-HRL"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close_quote" translatesAutoresizingMaskIntoConstraints="NO" id="NEr-Q0-QxP">
-                            <rect key="frame" x="330" y="-10" width="30" height="60"/>
+                            <rect key="frame" x="264" y="26.5" width="9" height="7"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="4jS-sc-wZO"/>
-                                <constraint firstAttribute="height" constant="60" id="c3U-00-rK9"/>
+                                <constraint firstAttribute="height" constant="7" id="Q8q-XK-Og3"/>
+                                <constraint firstAttribute="width" constant="9" id="Rm3-Xy-aNu"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZh-lT-Lr0">
-                            <rect key="frame" x="78" y="0.0" width="244" height="50"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZh-lT-Lr0">
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gia-hW-oK2">
-                            <rect key="frame" x="78" y="0.0" width="244" height="50"/>
+                            <rect key="frame" x="145" y="24" width="109" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="9Fg-Jp-hRc"/>
+                            </constraints>
                             <state key="normal" image="edit_task_title">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -53,19 +55,14 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="pZh-lT-Lr0" secondAttribute="centerY" id="0Gi-5S-3SP"/>
-                        <constraint firstItem="CtS-IT-UoZ" firstAttribute="leading" secondItem="9zY-AV-hCx" secondAttribute="leading" constant="40" id="6Hg-JC-JXI"/>
-                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="bottom" secondItem="CtS-IT-UoZ" secondAttribute="bottom" id="EVc-MI-WPX"/>
-                        <constraint firstItem="NEr-Q0-QxP" firstAttribute="leading" secondItem="gia-hW-oK2" secondAttribute="trailing" constant="8" id="XMv-Rc-18f"/>
-                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="top" secondItem="gia-hW-oK2" secondAttribute="top" id="ZJ4-2R-wNB"/>
-                        <constraint firstItem="gia-hW-oK2" firstAttribute="leading" secondItem="CtS-IT-UoZ" secondAttribute="trailing" constant="8" id="Zp3-Wk-SKZ"/>
-                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="leading" secondItem="CtS-IT-UoZ" secondAttribute="trailing" constant="8" id="anP-ny-s0i"/>
-                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="bottom" secondItem="gia-hW-oK2" secondAttribute="bottom" id="dU3-e6-rhv"/>
-                        <constraint firstAttribute="centerY" secondItem="NEr-Q0-QxP" secondAttribute="centerY" constant="5" id="eee-ZZ-AI5"/>
-                        <constraint firstAttribute="centerY" secondItem="CtS-IT-UoZ" secondAttribute="centerY" constant="5" id="eqV-r2-pgq"/>
-                        <constraint firstAttribute="trailing" secondItem="NEr-Q0-QxP" secondAttribute="trailing" constant="40" id="fvw-33-ohD"/>
-                        <constraint firstAttribute="centerX" secondItem="gia-hW-oK2" secondAttribute="centerX" id="gfh-ty-qxZ"/>
-                        <constraint firstItem="NEr-Q0-QxP" firstAttribute="leading" secondItem="pZh-lT-Lr0" secondAttribute="trailing" constant="8" id="k0I-sh-4BT"/>
-                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="top" secondItem="9zY-AV-hCx" secondAttribute="top" id="o1W-S5-mes"/>
+                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="width" relation="lessThanOrEqual" secondItem="9zY-AV-hCx" secondAttribute="width" constant="-60" id="66E-Yb-MPO"/>
+                        <constraint firstAttribute="centerY" secondItem="NEr-Q0-QxP" secondAttribute="centerY" constant="5" id="8nC-yg-fWD"/>
+                        <constraint firstItem="NEr-Q0-QxP" firstAttribute="leading" secondItem="pZh-lT-Lr0" secondAttribute="trailing" constant="10" id="A6c-IG-Jx7"/>
+                        <constraint firstAttribute="centerY" secondItem="CtS-IT-UoZ" secondAttribute="centerY" constant="5" id="Ndc-W1-9g0"/>
+                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="centerX" secondItem="9zY-AV-hCx" secondAttribute="centerX" id="NnW-u9-Phe"/>
+                        <constraint firstAttribute="centerY" secondItem="gia-hW-oK2" secondAttribute="centerY" id="QSq-fr-VnX"/>
+                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="leading" secondItem="CtS-IT-UoZ" secondAttribute="trailing" constant="10" id="elc-hH-SNA"/>
+                        <constraint firstAttribute="centerX" secondItem="gia-hW-oK2" secondAttribute="centerX" id="ofA-rY-j3L"/>
                         <constraint firstItem="pZh-lT-Lr0" firstAttribute="width" secondItem="gia-hW-oK2" secondAttribute="width" id="sPD-ym-iWs"/>
                     </constraints>
                 </view>
@@ -73,6 +70,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="9zY-AV-hCx" secondAttribute="trailing" id="MvC-l0-Sy7"/>
+                <constraint firstAttribute="bottom" secondItem="9zY-AV-hCx" secondAttribute="bottom" id="a5L-ju-e0h"/>
                 <constraint firstItem="9zY-AV-hCx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="j5B-ia-1lm"/>
                 <constraint firstItem="9zY-AV-hCx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="py4-Cz-SGg"/>
             </constraints>
@@ -84,9 +82,9 @@
         </view>
     </objects>
     <resources>
-        <image name="close_quote" width="8" height="7"/>
-        <image name="edit_task_title" width="86" height="11"/>
-        <image name="open_quote" width="8" height="7"/>
+        <image name="close_quote" width="9" height="7"/>
+        <image name="edit_task_title" width="109" height="14"/>
+        <image name="open_quote" width="9" height="7"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

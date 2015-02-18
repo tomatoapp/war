@@ -19,7 +19,7 @@ class HelpViewController: BaseTableViewController {
     var SCREEN_WIDTH: CGFloat = 0.0
     var SCREEN_HEIGHT: CGFloat = 0.0
     
-    var TABLEVIEW_HEADER_HEIGHT: CGFloat = 85.0
+    var TABLEVIEW_HEADER_HEIGHT: CGFloat = 85.0 + 15.0
     var TABLEVIEW_FOOTER_HEIGHT: CGFloat = 0.0
     
     var FIRST_SECTION_HEADER_HEIGHT: CGFloat = 0
@@ -102,12 +102,24 @@ class HelpViewController: BaseTableViewController {
     func creatHeaderView() -> UIView {
         let view = UIView(frame: CGRectMake(0, 0, SCREEN_WIDTH, TABLEVIEW_HEADER_HEIGHT))
         view.backgroundColor = UIColor.whiteColor()
-        let iconImageView = UIImageView(image: UIImage(named: "new_task_icon"))
+        let iconImageView = UIImageView(image: UIImage(named: "icon"))
 //        iconImageView.contentMode = UIViewContentMode.Center
         iconImageView.contentMode = UIViewContentMode.ScaleAspectFit
         iconImageView.frame = CGRectMake(0, 0, 70, 70)
         iconImageView.center = view.center
         
+        let versionLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
+        versionLabel.text = "Tomato! \(GlobalConstants.VERSION)"
+        versionLabel.sizeToFit()
+        versionLabel.textAlignment = NSTextAlignment.Center
+        versionLabel.font = UIFont.systemFontOfSize(14)
+        versionLabel.textColor = UIColor.grayColor()
+        view.addSubview(versionLabel)
+        versionLabel.mas_makeConstraints { (make) -> Void in
+            make.bottom.equalTo()(view.mas_bottom).offset()(0)
+            make.width.equalTo()(view.mas_width)
+            //make.height.equalTo()(20)
+        }
         view.addSubview(iconImageView)
         return view
     }
@@ -143,7 +155,7 @@ class HelpViewController: BaseTableViewController {
         aboutTextLabel.textAlignment = NSTextAlignment.Center
         aboutTextLabel.font = UIFont.systemFontOfSize(15)
         
-        let creditsLabel = UILabel(frame: CGRectMake(LEFT_MARGIN, aboutTextLabel.frame.size.height + 20, SCREEN_WIDTH, 0))
+        let creditsLabel = UILabel(frame: CGRectMake(LEFT_MARGIN, aboutTextLabel.frame.size.height + 35, SCREEN_WIDTH, 0))
         creditsLabel.text = "Credits"
         creditsLabel.font = UIFont.boldSystemFontOfSize(16)
         creditsLabel.numberOfLines = 0
@@ -176,7 +188,7 @@ class HelpViewController: BaseTableViewController {
         designerNameLabel.sizeToFit()
         designerNameLabel.frame = CGRectMake(SCREEN_WIDTH - LEFT_MARGIN - designerNameLabel.frame.size.width, coderLabel.frame.origin.y + coderLabel.frame.size.height, designerNameLabel.frame.size.width, designerNameLabel.frame.size.height)
         
-        let view = UIView(frame: CGRectMake(0, 0, SCREEN_WIDTH, designerLabel.frame.origin.y + designerLabel.frame.size.height + BOTTOM_MARGIN + 8 + SECOND_SECTION_HEADER_HEIGHT))
+        let view = UIView(frame: CGRectMake(0, 0, SCREEN_WIDTH, designerLabel.frame.origin.y + designerLabel.frame.size.height + BOTTOM_MARGIN + SECOND_SECTION_HEADER_HEIGHT))
         view.addSubview(aboutTextLabel)
         view.addSubview(creditsLabel)
         view.addSubview(coderLabel)

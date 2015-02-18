@@ -12,12 +12,12 @@
           "width" : 1
         },
         "capInsets" : {
-          "right" : 15,
-          "left" : 15
+          "right" : 16,
+          "left" : 16
         }
       },
       "idiom" : "universal",
-      "filename" : "Group@2x.png",
+      "filename" : "Rectangle 9@2x.png",
       "scale" : "2x"
     },
     {
@@ -28,12 +28,12 @@
           "width" : 1
         },
         "capInsets" : {
-          "right" : 21,
+          "right" : 22,
           "left" : 21
         }
       },
       "idiom" : "universal",
-      "filename" : "Group@3x.png",
+      "filename" : "Rectangle 9@3x.png",
       "scale" : "3x"
     }
   ],
