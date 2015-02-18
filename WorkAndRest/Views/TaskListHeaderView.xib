@@ -59,7 +59,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="fP7-51-y1U">
-                                    <rect key="frame" x="0.0" y="14" width="289" height="58"/>
+                                    <rect key="frame" x="23" y="14" width="243" height="57"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="start_a_new_timer_normal">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -69,20 +69,6 @@
                                         <action selector="newTaskButtonClick:" destination="-1" eventType="touchUpInside" id="FLh-6J-lso"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start a new timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g34-SO-yxL">
-                                    <rect key="frame" x="124" y="49" width="103" height="16"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <color key="textColor" red="0.9882352941176471" green="0.8901960784313725" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8L4-dq-ulo">
-                                    <rect key="frame" x="124" y="26" width="102" height="24"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <color key="textColor" red="0.98431372549019602" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -99,8 +85,8 @@
         </view>
     </objects>
     <resources>
-        <image name="start_a_new_timer_normal" width="289" height="58"/>
-        <image name="start_a_new_timer_pressed" width="289" height="58"/>
+        <image name="start_a_new_timer_normal" width="243" height="57"/>
+        <image name="start_a_new_timer_pressed" width="243" height="57"/>
         <image name="timer_dot" width="4" height="38"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

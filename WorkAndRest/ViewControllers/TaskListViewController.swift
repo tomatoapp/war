@@ -12,6 +12,8 @@ enum HandleType: Int {
     case None, AddOrEdit, Start
 }
 
+let HEADER_HEIGHT: CGFloat = 125
+
 class TaskListViewController: UITableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, SWTableViewCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate, TaskManagerDelegate {
     
     var allTasks = [Task]()
@@ -27,10 +29,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         self.tableView.registerNib(UINib(nibName: "TaskListItemCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         self.tableView.tableHeaderView = self.createHeaderView()
         self.tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, 1, 50))
-        
-        let line = UIImageView(image: UIImage(named: "line"))
-        line.frame = CGRectMake(19.5, CGFloat(self.headerHeight()), 1, self.tableView.frame.size.height)
-        //self.view.insertSubview(line, atIndex: 0)
         
         self.taskRunnerManager = TaskRunnerManager.sharedInstance
         self.taskRunnerManager!.delegate = self
@@ -61,11 +59,11 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     
-    func headerHeight() -> Int {
+    func headerHeight() -> CGFloat {
         if WARDevice.getPhoneType() == PhoneType.iPhone4 {
             return 90
         }
-        return 130
+        return HEADER_HEIGHT
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -83,7 +81,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 70
+        return 73
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -369,20 +367,34 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         return list.sorted { $0.lastUpdateTime.compare($1.lastUpdateTime) == NSComparisonResult.OrderedDescending }
     }
     
+    let HEADERVIEW_OFFSET: CGFloat = 8
+    let LINE_HEIGHT: CGFloat = 0.5
+    
     func createHeaderView() -> UIView {
-        let baseView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, CGFloat(self.headerHeight())))
-        baseView.backgroundColor = UIColor.whiteColor()
-        headerView = TaskListHeaderView(frame: CGRectMake(0, 0, baseView.frame.size.width, 86))
+        let baseView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.headerHeight() + HEADERVIEW_OFFSET))
+        //baseView.backgroundColor = UIColor.whiteColor()
+        headerView = TaskListHeaderView(frame: CGRectMake(0, 0, baseView.frame.size.width, self.headerHeight()))
         baseView.addSubview(headerView)
         
         headerView.mas_makeConstraints { make in
             make.width.equalTo()(baseView.frame.size.width)
-            make.height.equalTo()(86)
-            make.centerX.equalTo()(baseView.mas_centerX)
-            make.centerY.equalTo()(baseView.mas_centerY)
+            make.height.equalTo()(self.headerHeight())
+//            make.centerX.equalTo()(baseView.mas_centerX)
+            make.top.equalTo()(baseView.mas_top)
+//            make.centerY.equalTo()(baseView.mas_centerY)
             return ()
         }
         headerView.delegate = self
+        
+        let line = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, LINE_HEIGHT))
+        line.backgroundColor = UIColor(red: 206/255, green: 206/255, blue: 206/255, alpha: 0.8)
+        baseView.addSubview(line)
+        line.mas_makeConstraints { (make) -> Void in
+            make.bottom.equalTo()(baseView.mas_bottom).offset()(-self.HEADERVIEW_OFFSET)
+            make.width.equalTo()(baseView.frame.size.width)
+            make.height.equalTo()(self.LINE_HEIGHT)
+            return ()
+        }
         return baseView
     }
     
