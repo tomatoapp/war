@@ -51,35 +51,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view tag="1003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVb-yt-thQ" customClass="TimeSelectorView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="213" width="320" height="70"/>
+                                <rect key="frame" x="0.0" y="201" width="320" height="63"/>
                                 <color key="backgroundColor" red="0.21176470589999999" green="0.74117647060000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="0eQ-8R-uq3"/>
+                                    <constraint firstAttribute="height" constant="63" id="0eQ-8R-uq3"/>
                                 </constraints>
                             </view>
                             <view tag="1005" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3q-r7-TPV" customClass="CompletionCycleView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="8" y="377" width="304" height="80"/>
+                                <rect key="frame" x="8" y="369" width="304" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="C8W-6x-ckj"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" tag="1001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_task_tomato_icon" translatesAutoresizingMaskIntoConstraints="NO" id="nr4-Se-J1E">
-                                <rect key="frame" x="122" y="76" width="75" height="75"/>
+                            <imageView userInteractionEnabled="NO" tag="1001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="nr4-Se-J1E">
+                                <rect key="frame" x="125" y="72" width="70" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="75" id="Zla-kn-H1P"/>
-                                    <constraint firstAttribute="height" constant="75" id="kTB-HZ-TMr"/>
+                                    <constraint firstAttribute="width" constant="70" id="Zla-kn-H1P"/>
+                                    <constraint firstAttribute="height" constant="70" id="kTB-HZ-TMr"/>
                                 </constraints>
                             </imageView>
                             <view tag="1004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poP-IU-mMV" customClass="TaskTitleView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="307" width="320" height="70"/>
+                                <rect key="frame" x="0.0" y="279" width="320" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="HLw-F0-eAA"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" tag="1006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Sa-Oz-OYd">
-                                <rect key="frame" x="8" y="491" width="304" height="47"/>
+                                <rect key="frame" x="16" y="481" width="288" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="HD0-Bq-EDn"/>
                                 </constraints>
@@ -91,7 +91,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starting a timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Jt-2x-xws">
-                                <rect key="frame" x="83" y="159" width="154" height="28"/>
+                                <rect key="frame" x="83" y="147" width="154" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="154" id="Cgn-sG-Q73"/>
                                     <constraint firstAttribute="height" constant="28" id="b7s-B9-BZD"/>
@@ -107,18 +107,18 @@
                             <constraint firstItem="dVb-yt-thQ" firstAttribute="trailing" secondItem="A1W-Vw-dDY" secondAttribute="trailingMargin" constant="16" id="6V2-LC-pcu"/>
                             <constraint firstAttribute="centerX" secondItem="nr4-Se-J1E" secondAttribute="centerX" id="8IJ-IP-WNk"/>
                             <constraint firstItem="g3q-r7-TPV" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-8" id="9BN-SN-uOk"/>
-                            <constraint firstItem="8Sa-Oz-OYd" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-8" id="E0i-jY-as4"/>
+                            <constraint firstItem="8Sa-Oz-OYd" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" id="E0i-jY-as4"/>
                             <constraint firstItem="dVb-yt-thQ" firstAttribute="top" secondItem="0Jt-2x-xws" secondAttribute="bottom" constant="26" id="Fm9-65-s81"/>
-                            <constraint firstItem="0Jt-2x-xws" firstAttribute="top" secondItem="nr4-Se-J1E" secondAttribute="bottom" constant="8" id="Ja5-o4-R7v"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8Sa-Oz-OYd" secondAttribute="trailing" constant="-8" id="R6e-DS-oSF"/>
-                            <constraint firstItem="poP-IU-mMV" firstAttribute="top" secondItem="dVb-yt-thQ" secondAttribute="bottom" constant="24" id="Syq-ga-hmo"/>
+                            <constraint firstItem="0Jt-2x-xws" firstAttribute="top" secondItem="nr4-Se-J1E" secondAttribute="bottom" constant="5" id="Ja5-o4-R7v"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8Sa-Oz-OYd" secondAttribute="trailing" id="R6e-DS-oSF"/>
+                            <constraint firstItem="poP-IU-mMV" firstAttribute="top" secondItem="dVb-yt-thQ" secondAttribute="bottom" constant="15" id="Syq-ga-hmo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="g3q-r7-TPV" secondAttribute="trailing" constant="-8" id="V9v-ju-F2D"/>
                             <constraint firstItem="dVb-yt-thQ" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-16" id="brg-N3-9OB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="poP-IU-mMV" secondAttribute="trailing" constant="-16" id="bul-g3-svR"/>
-                            <constraint firstItem="Naa-3f-RwY" firstAttribute="top" secondItem="8Sa-Oz-OYd" secondAttribute="bottom" constant="30" id="hoz-kZ-Gze"/>
+                            <constraint firstItem="Naa-3f-RwY" firstAttribute="top" secondItem="8Sa-Oz-OYd" secondAttribute="bottom" constant="40" id="hoz-kZ-Gze"/>
                             <constraint firstItem="poP-IU-mMV" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-16" id="l8g-ab-vOD"/>
-                            <constraint firstItem="g3q-r7-TPV" firstAttribute="top" secondItem="poP-IU-mMV" secondAttribute="bottom" id="suY-iL-zS4"/>
-                            <constraint firstItem="nr4-Se-J1E" firstAttribute="top" secondItem="mpJ-or-Bcp" secondAttribute="bottom" constant="12" id="xP8-P5-dRt"/>
+                            <constraint firstItem="g3q-r7-TPV" firstAttribute="top" secondItem="poP-IU-mMV" secondAttribute="bottom" constant="20" id="suY-iL-zS4"/>
+                            <constraint firstItem="nr4-Se-J1E" firstAttribute="top" secondItem="mpJ-or-Bcp" secondAttribute="bottom" constant="8" id="xP8-P5-dRt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uOa-7G-T5S"/>
@@ -487,8 +487,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How Does Tomato! Work?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSY-aV-QS6">
-                                                    <rect key="frame" x="16" y="12" width="189" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <rect key="frame" x="16" y="11" width="200" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -505,8 +505,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watch The Tutorial Video " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSt-xf-3AB">
-                                                    <rect key="frame" x="16" y="12" width="185" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <rect key="frame" x="16" y="11" width="196" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -527,8 +527,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Tomato!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqF-6a-cWn">
-                                                    <rect key="frame" x="16" y="12" width="106.5" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <rect key="frame" x="16" y="11" width="113" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -548,8 +548,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate Tomato!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxt-St-Rqu">
-                                                    <rect key="frame" x="16" y="12" width="96.5" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <rect key="frame" x="16" y="11" width="102" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -570,8 +570,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yC-rB-ikd">
-                                                    <rect key="frame" x="16" y="12" width="82.5" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <rect key="frame" x="16" y="11" width="87" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -704,9 +704,6 @@
                                                 <constraint firstAttribute="centerY" secondItem="BW7-9i-RXR" secondAttribute="centerY" id="XXg-dU-rwc"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="UsD-oN-d9y" kind="modal" identifier="EditTaskTitleSegue" id="CHf-Sm-tQ0"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="30" id="Sa9-nz-qrX">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -900,6 +897,7 @@
                         <outlet property="lengthLabel" destination="ra2-4B-EYG" id="VvW-fG-hJJ"/>
                         <outlet property="nameButton" destination="Ph7-Ir-vl8" id="ig4-Rg-7pI"/>
                         <outlet property="taskItemBaseView" destination="BW7-9i-RXR" id="wpc-1j-4jz"/>
+                        <segue destination="UsD-oN-d9y" kind="modal" identifier="EditTaskTitleSegue" id="IsP-1t-QkO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3vN-Au-0KI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -928,8 +926,8 @@
     </scenes>
     <resources>
         <image name="finished number" width="206" height="206"/>
+        <image name="icon" width="70" height="70"/>
         <image name="new_task_start_button" width="22" height="47"/>
-        <image name="new_task_tomato_icon" width="75" height="75"/>
         <image name="start_later" width="114" height="114"/>
         <image name="start_now" width="114" height="114"/>
         <image name="tab_item_1" width="27" height="18"/>

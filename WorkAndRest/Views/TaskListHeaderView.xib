@@ -41,7 +41,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer_dot" id="F39-PL-ZPg">
-                                    <rect key="frame" x="93" y="29" width="3.5" height="26"/>
+                                    <rect key="frame" x="93" y="32" width="3.5" height="26"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                             </subviews>
@@ -85,8 +85,8 @@
         </view>
     </objects>
     <resources>
-        <image name="start_a_new_timer_normal" width="243" height="57"/>
-        <image name="start_a_new_timer_pressed" width="243" height="57"/>
+        <image name="start_a_new_timer_normal" width="485" height="114"/>
+        <image name="start_a_new_timer_pressed" width="485" height="114"/>
         <image name="timer_dot" width="4" height="38"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

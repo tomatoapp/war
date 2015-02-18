@@ -8,7 +8,7 @@
 
 import UIKit
 
-
+let TIMER_HEIGHT = 63
 
 protocol NewTaskViewControllerDelegate {
     func newTaskViewController(controller: NewTaskViewController!, didFinishAddingTask item: Task!, runningNow run: Bool)
@@ -188,7 +188,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         timeSelectorView!.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
             make.top.mas_equalTo()(startTextLabel!.mas_bottom).offset()(15)
-            make.height.mas_equalTo()(70)
+            make.height.mas_equalTo()(TIMER_HEIGHT)
             make.width.mas_equalTo()(self.view.mas_width)
             
             return ()
@@ -236,7 +236,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         taskTitleView!.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
             make.top.mas_equalTo()(timeSelectorView!.mas_bottom).offset()(20)
-            make.height.mas_equalTo()(70)
+            make.height.mas_equalTo()(TIMER_HEIGHT)
             make.width.mas_equalTo()(self.view.mas_width)
             return ()
         }

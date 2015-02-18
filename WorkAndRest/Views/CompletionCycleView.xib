@@ -45,12 +45,12 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocL-Pi-epW">
-                    <rect key="frame" x="158" y="15" width="54" height="39"/>
+                    <rect key="frame" x="154" y="11" width="63" height="46"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="39" id="39S-hI-c0F"/>
-                        <constraint firstAttribute="width" constant="54" id="dgX-rj-TIe"/>
+                        <constraint firstAttribute="height" constant="46" id="39S-hI-c0F"/>
+                        <constraint firstAttribute="width" constant="63" id="dgX-rj-TIe"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
