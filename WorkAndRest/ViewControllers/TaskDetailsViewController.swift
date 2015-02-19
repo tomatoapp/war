@@ -87,30 +87,30 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     //        super.viewWillLayoutSubviews()
     //        self.taskItemBaseView.updateViewsWidth()
     //    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            if WARDevice.getPhoneType() == PhoneType.iPhone4 {
-                return 80
-            } else if WARDevice.getPhoneType() == PhoneType.iPhone5 {
-                return 130
-            }else if WARDevice.getPhoneType() == PhoneType.iPhone6 {
-                return 160
-            } else if WARDevice.getPhoneType() == PhoneType.iPhone6Plus {
-                return 190
-            }
-        } else if indexPath.row == 4 {
-            if WARDevice.getPhoneType() == PhoneType.iPhone4 {
-                return 250
-            } else if WARDevice.getPhoneType() == PhoneType.iPhone5 {
-                return 260
-            } else {
-                return 274
-            }
-        }
-        return 30
-    }
-    
+//    
+//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if indexPath.row == 0 {
+//            if WARDevice.getPhoneType() == PhoneType.iPhone4 {
+//                return 80
+//            } else if WARDevice.getPhoneType() == PhoneType.iPhone5 {
+//                return 150
+//            }else if WARDevice.getPhoneType() == PhoneType.iPhone6 {
+//                return 160
+//            } else if WARDevice.getPhoneType() == PhoneType.iPhone6Plus {
+//                return 190
+//            }
+//        } else if indexPath.row == 4 {
+//            if WARDevice.getPhoneType() == PhoneType.iPhone4 {
+//                return 250
+//            } else if WARDevice.getPhoneType() == PhoneType.iPhone5 {
+//                return 260
+//            } else {
+//                return 274
+//            }
+//        }
+//        return 35
+//    }
+//    
     // MARK: - TaskRunnerDelegate
     
     func started(sender: TaskRunner!) {
