@@ -630,7 +630,7 @@
         <!--Statistics-->
         <scene sceneID="DpI-S4-den">
             <objects>
-                <viewController id="G6S-QO-VTb" sceneMemberID="viewController">
+                <viewController id="G6S-QO-VTb" customClass="StatisticsViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="osI-gv-NFq"/>
                         <viewControllerLayoutGuide type="bottom" id="eQA-3H-fQl"/>

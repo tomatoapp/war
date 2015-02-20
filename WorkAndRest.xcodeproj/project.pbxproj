@@ -34,6 +34,7 @@
 		645FDE131A7D9BA9002EC8EF /* SecondBeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 645FDE111A7D9BA9002EC8EF /* SecondBeep.wav */; };
 		645FDE161A7D9E8C002EC8EF /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FDE151A7D9E8B002EC8EF /* GlobalConstants.swift */; };
 		646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 646141A41A80C11E0010E19E /* V8HorizontalPickerView.m */; };
+		648311BE1A96B8E100F445AE /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648311BD1A96B8E100F445AE /* StatisticsViewController.swift */; };
 		649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308521A7AE22D00480677 /* TaskListItemCell.swift */; };
 		649308571A7AE65C00480677 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308561A7AE65C00480677 /* BaseViewController.swift */; };
 		649308591A7AE68200480677 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308581A7AE68200480677 /* BaseTableViewController.swift */; };
@@ -113,6 +114,7 @@
 		646141A31A80C11E0010E19E /* V8HorizontalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V8HorizontalPickerView.h; sourceTree = "<group>"; };
 		646141A41A80C11E0010E19E /* V8HorizontalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V8HorizontalPickerView.m; sourceTree = "<group>"; };
 		646141A51A80C11E0010E19E /* V8HorizontalPickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V8HorizontalPickerViewProtocol.h; sourceTree = "<group>"; };
+		648311BD1A96B8E100F445AE /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		649308521A7AE22D00480677 /* TaskListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListItemCell.swift; sourceTree = "<group>"; };
 		649308561A7AE65C00480677 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		649308581A7AE68200480677 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				64CCE5321A89600C008D5A08 /* TaskDetailsViewController.swift */,
 				6493C5A71A9032890036B5AE /* HelpViewController.swift */,
 				6415C60A1A9234D400A9FBCA /* SettingsViewController.swift */,
+				648311BD1A96B8E100F445AE /* StatisticsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				6458B66B1A7722BD004FD3D9 /* RootViewController.swift in Sources */,
 				6497FC6C1A85C5F70098535D /* StartViewController.swift in Sources */,
 				649308591A7AE68200480677 /* BaseTableViewController.swift in Sources */,
+				648311BE1A96B8E100F445AE /* StatisticsViewController.swift in Sources */,
 				645FDE161A7D9E8C002EC8EF /* GlobalConstants.swift in Sources */,
 				6415C60B1A9234D400A9FBCA /* SettingsViewController.swift in Sources */,
 				649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */,
