@@ -698,9 +698,9 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="295" height="193"/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statisics_line" translatesAutoresizingMaskIntoConstraints="NO" id="fvi-rL-MzT">
-                                                            <rect key="frame" x="25" y="157" width="245" height="3"/>
+                                                            <rect key="frame" x="12" y="158" width="271" height="2"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="3" id="AOM-Sc-tZl"/>
+                                                                <constraint firstAttribute="height" constant="2" id="AOM-Sc-tZl"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -709,9 +709,9 @@
                                                         <constraint firstItem="1v8-dx-aI2" firstAttribute="leading" secondItem="K4t-eU-vno" secondAttribute="leading" id="6pJ-dM-USs"/>
                                                         <constraint firstAttribute="height" constant="193" id="9dd-gX-dqc"/>
                                                         <constraint firstAttribute="bottom" secondItem="fvi-rL-MzT" secondAttribute="bottom" constant="33" id="Apo-oE-i99"/>
-                                                        <constraint firstItem="fvi-rL-MzT" firstAttribute="leading" secondItem="K4t-eU-vno" secondAttribute="leading" constant="25" id="CcN-9M-K1c"/>
+                                                        <constraint firstItem="fvi-rL-MzT" firstAttribute="leading" secondItem="K4t-eU-vno" secondAttribute="leading" constant="12" id="CcN-9M-K1c"/>
                                                         <constraint firstItem="1v8-dx-aI2" firstAttribute="top" secondItem="K4t-eU-vno" secondAttribute="top" id="Uzx-Ra-fYA"/>
-                                                        <constraint firstAttribute="trailing" secondItem="fvi-rL-MzT" secondAttribute="trailing" constant="25" id="e3n-0z-MNf"/>
+                                                        <constraint firstAttribute="trailing" secondItem="fvi-rL-MzT" secondAttribute="trailing" constant="12" id="e3n-0z-MNf"/>
                                                         <constraint firstAttribute="trailing" secondItem="1v8-dx-aI2" secondAttribute="trailing" id="gZP-9m-Mr3"/>
                                                         <constraint firstAttribute="bottom" secondItem="1v8-dx-aI2" secondAttribute="bottom" id="vyp-A2-5S3"/>
                                                     </constraints>
@@ -795,6 +795,7 @@
                     <connections>
                         <outlet property="rateSwitch" destination="5Fe-7Y-tjP" id="YmZ-pU-Sos"/>
                         <outlet property="showPercentageSwitch" destination="vli-ao-4Rq" id="Slk-DP-nTU"/>
+                        <outlet property="statisticsView" destination="K4t-eU-vno" id="n3e-79-oab"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eW4-yH-2Hh" userLabel="First Responder" sceneMemberID="firstResponder"/>
