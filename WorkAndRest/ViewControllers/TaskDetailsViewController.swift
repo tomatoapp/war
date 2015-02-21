@@ -75,7 +75,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         self.nameButton.setTitle(self.taskItem.title, forState: UIControlState.Normal)
         self.detailLabel.text = "Task, \(self.taskItem.expect_times) times"
         self.lengthLabel.text = "\(self.taskItem.minutes) Minutes / Task"
-        self.expectTimesLabel.text = "\(self.taskItem.expect_times)"
+        self.expectTimesLabel.text = "\(self.taskItem.break_times)"
         self.finishedTimesLabel.text = "\(self.taskItem.finished_times)"
     }
     
