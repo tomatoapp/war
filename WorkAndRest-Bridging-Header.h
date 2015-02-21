@@ -11,3 +11,6 @@
 #import "V8HorizontalPickerView.h"
 #import "LockNotifierCallback.h"
 #import "SWTableViewCell.h"
+#import "JBChartView/JBChartView.h"
+#import "JBChartView/JBBarChartView.h"
+#import "JBChartView/JBLineChartView.h"
