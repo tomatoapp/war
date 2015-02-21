@@ -600,10 +600,10 @@
         <scene sceneID="5zA-K1-OQq">
             <objects>
                 <tableViewController id="URA-8B-37k" customClass="HelpViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="AnA-ez-76e">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="AnA-ez-76e">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="FyP-9v-o5f">
                                 <cells>
@@ -697,12 +697,21 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statisics_bg" translatesAutoresizingMaskIntoConstraints="NO" id="1v8-dx-aI2">
                                                             <rect key="frame" x="0.0" y="0.0" width="295" height="193"/>
                                                         </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statisics_line" translatesAutoresizingMaskIntoConstraints="NO" id="fvi-rL-MzT">
+                                                            <rect key="frame" x="25" y="157" width="245" height="3"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="3" id="AOM-Sc-tZl"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="1v8-dx-aI2" firstAttribute="leading" secondItem="K4t-eU-vno" secondAttribute="leading" id="6pJ-dM-USs"/>
                                                         <constraint firstAttribute="height" constant="193" id="9dd-gX-dqc"/>
+                                                        <constraint firstAttribute="bottom" secondItem="fvi-rL-MzT" secondAttribute="bottom" constant="33" id="Apo-oE-i99"/>
+                                                        <constraint firstItem="fvi-rL-MzT" firstAttribute="leading" secondItem="K4t-eU-vno" secondAttribute="leading" constant="25" id="CcN-9M-K1c"/>
                                                         <constraint firstItem="1v8-dx-aI2" firstAttribute="top" secondItem="K4t-eU-vno" secondAttribute="top" id="Uzx-Ra-fYA"/>
+                                                        <constraint firstAttribute="trailing" secondItem="fvi-rL-MzT" secondAttribute="trailing" constant="25" id="e3n-0z-MNf"/>
                                                         <constraint firstAttribute="trailing" secondItem="1v8-dx-aI2" secondAttribute="trailing" id="gZP-9m-Mr3"/>
                                                         <constraint firstAttribute="bottom" secondItem="1v8-dx-aI2" secondAttribute="bottom" id="vyp-A2-5S3"/>
                                                     </constraints>
@@ -1023,6 +1032,7 @@
         <image name="start_later" width="114" height="114"/>
         <image name="start_now" width="114" height="114"/>
         <image name="statisics_bg" width="294" height="193"/>
+        <image name="statisics_line" width="245" height="3"/>
         <image name="tab_item_1" width="27" height="18"/>
         <image name="tab_item_2" width="27" height="20"/>
     </resources>
