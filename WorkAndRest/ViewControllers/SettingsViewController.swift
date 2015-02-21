@@ -35,6 +35,9 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     */
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 20
+        }
         return 15
     }
 
