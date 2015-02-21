@@ -54,43 +54,26 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.chatView.minimumValue = 0.0
         self.chatView.maximumValue = 200
         
-        self.data.append(19)
-        self.data.append(20)
-        self.data.append(44)
-        self.data.append(40)
-        self.data.append(50)
-        self.data.append(111)
-        self.data.append(70)
-        self.data.append(60)
-        self.data.append(97)
-        self.data.append(49)
-        self.data.append(30)
-        self.data.append(26)
+        self.reloadDataSource()
         self.chatView.reloadData()
     }
-
-//    override func viewWillAppear(animated: Bool) {
-//   
-//        super.viewWillAppear(animated)
-//        
-//        var frame: CGRect!
-//        
-//        switch WARDevice.getPhoneType() {
-//        case .iPhone4, .iPhone5:
-//            frame = CGRectMake((self.statisticsView.frame.width - 222) / 2, 0, 222, 157)
-//            break
-//            
-//        case .iPhone6, .iPhone6Plus:
-//            frame = CGRectMake((self.statisticsView.frame.width - 311) / 2, 0, 311, 157)
-//            break
-//            
-//        default:
-//            break
-//        }
-//        
-//        self.chatView.frame = frame
-//    }
     
+    func reloadDataSource() {
+        self.data = [CGFloat]()
+        for _ in 0...10 {
+            self.data.append(CGFloat(arc4random_uniform(100)))
+        }
+    }
+
+    func setStateToExpanded() {
+        self.chatView.setState(.Expanded, animated: true)
+    }
+    
+    func setStateToCollapsed() {
+        self.chatView.setState(.Collapsed, animated: true)
+
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -122,6 +105,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         default:
             break
         }
+        self.setStateToCollapsed()
+        self.reloadDataSource()
+        self.chatView.reloadData()
+        self.setStateToExpanded()
     }
 
     // MARK: - UITableViewDelegate
