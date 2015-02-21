@@ -66,6 +66,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
 
     func setStateToExpanded() {
+        self.reloadDataSource()
+        self.chatView.reloadData()
+        
         self.chatView.setState(.Expanded, animated: true)
     }
     
@@ -92,10 +95,12 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         switch (sender as UISegmentedControl).selectedSegmentIndex {
         case 0:
             // Week
+
             break
             
         case 1:
             // Month
+
             break
             
         case 2:
@@ -106,9 +111,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             break
         }
         self.setStateToCollapsed()
-        self.reloadDataSource()
-        self.chatView.reloadData()
-        self.setStateToExpanded()
+        
+        
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("setStateToExpanded"), userInfo: nil, repeats: false)
     }
 
     // MARK: - UITableViewDelegate
