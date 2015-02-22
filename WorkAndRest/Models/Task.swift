@@ -49,6 +49,4 @@ class Task: NSObject, NSCopying {
         copy.break_times = self.break_times
         return copy
     }
-    
-    
 }
