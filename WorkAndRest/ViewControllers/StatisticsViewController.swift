@@ -128,7 +128,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         println("\(view.backgroundColor)")
     }
-    
 
     // MARK: - Methods
     
