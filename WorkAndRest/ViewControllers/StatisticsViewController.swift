@@ -92,24 +92,30 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
 
     @IBAction func segmentControlValueChanged(sender: AnyObject) {
+        var type = TimeSpanType.Month
         switch (sender as UISegmentedControl).selectedSegmentIndex {
         case 0:
             // Week
-
+            type = .Week
             break
             
         case 1:
             // Month
-
+            type = .Month
             break
             
         case 2:
-            // Year
+            // Year  
+            type = .Year
             break
             
         default:
             break
         }
+        
+        let result = WorkManager.sharedInstance.selectWorksByTimeType(type)
+        println("result.count: \(result.count)")
+
         self.setStateToCollapsed()
         
         

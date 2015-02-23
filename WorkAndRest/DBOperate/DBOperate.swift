@@ -236,6 +236,13 @@ import UIKit
             tempWork.workId = rs.stringForColumn("work_id").toInt()!
             tempWork.taskId = rs.stringForColumn("task_id").toInt()!
             tempWork.workTime = rs.dateForColumn("work_time")
+            if tempWork.workTime.description.hasPrefix("1970") {
+                let formatter = NSDateFormatter()
+                let GMTzone = NSTimeZone(forSecondsFromGMT: 0)
+                formatter.timeZone = GMTzone
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                tempWork.workTime = formatter.dateFromString(rs.stringForColumn("work_time"))!
+            }
             tempWork.isFinished = rs.boolForColumn("is_finished")
             workArray.append(tempWork)
         }

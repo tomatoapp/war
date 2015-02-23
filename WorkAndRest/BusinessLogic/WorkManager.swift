@@ -34,9 +34,9 @@ class WorkManager: NSObject {
     }
     
     func selectWorksByTimeType(type: TimeSpanType) -> Array<Work> {
-        var result = [Work]()
-        
-        return result
+        let date = self.getDateTimeByTimeSpanType(type)
+        let allTasks = self.loadWorkList()
+        return allTasks.filter { $0.workTime.compare(date) != NSComparisonResult.OrderedAscending }
     }
     
     func getDateTimeByTimeSpanType(type: TimeSpanType) -> NSDate {
