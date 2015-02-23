@@ -224,30 +224,7 @@ import UIKit
         println("load work list count: \(workArray.count)")
         return workArray
     }
-//    class func updateWork(work: Work) {
-//        if !dataBase.open() {
-//            return
-//        }
-//        let success = dataBase.executeUpdate("UPDATE t_works SET title = ? WHERE work_id = ?", withArgumentsInArray: [work.title, work.workId])
-//        if success {
-//            println("update work table success.")
-//        } else {
-//            println("update work table failed!")
-//        }
-//        dataBase.close()
-//    }
-//    class func deleteWork(work: Work) {
-//        if !dataBase.open() {
-//            return
-//        }
-//        let success = dataBase.executeUpdate("DELETE FROM t_works WHERE work_id = ?", withArgumentsInArray: [work.workId])
-//        if success {
-//            println("delete from work table success.")
-//        } else {
-//            println("delete from work table failed!")
-//        }
-//        dataBase.close()
-//    }
+
     class func loadAllWorks() -> Array<Work>? {
         if !dataBase.open() {
             return nil
@@ -257,7 +234,9 @@ import UIKit
         while rs.next() {
             let tempWork = Work()
             tempWork.workId = rs.stringForColumn("work_id").toInt()!
-            //tempWork.title = rs.stringForColumn("title")
+            tempWork.taskId = rs.stringForColumn("task_id").toInt()!
+            tempWork.workTime = rs.dateForColumn("work_time")
+            tempWork.isFinished = rs.boolForColumn("is_finished")
             workArray.append(tempWork)
         }
         dataBase.close()

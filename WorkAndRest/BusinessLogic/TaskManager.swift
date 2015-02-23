@@ -27,6 +27,11 @@ class TaskManager: NSObject {
     }
     
     func loadTaskList() -> Array<Task> {
+        
+        if self.cacheTaskList.count > 0 {
+            return self.cacheTaskList
+        }
+        
         let result = DBOperate.loadAllTasks()
         if result != nil {
             self.cacheTaskList = result!
