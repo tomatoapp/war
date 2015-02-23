@@ -147,23 +147,6 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     // MARK: - TaskItemBaseViewDelegate
     
     func taskItemBaseView(view: UIView!, buttonClicked sender: UIButton!) {
-//        if self.taskRunner != nil && self.taskRunner!.isRunning {
-//            if self.taskRunner?.runningTaskID() == self.taskItem?.taskId {
-//                self.breakIt()
-//            } else {
-//                println("Can not break it, it's not YOU!")
-//                return
-//            }
-//        } else {
-//            if self.taskItem!.completed {
-//                self.taskItem!.completed = false
-//                if DBOperate.updateTask(self.taskItem!) {
-//                    self.delegate?.activated(self)
-//                }
-//            } else {
-//                self.delegate?.readyToStart(self)
-//            }
-//        }
         
         if !self.taskItem!.completed {
             // This task you haven't completed. you can start it now.

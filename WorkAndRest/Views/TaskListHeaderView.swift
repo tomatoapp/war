@@ -69,7 +69,6 @@ class TaskListHeaderView: UIView {
     }
     
     func flip() {
-        println("flip")
         if !flag {
             
             UIView.transitionFromView(startView, toView: timerView, duration: 0.3, options: UIViewAnimationOptions.TransitionCrossDissolve, completion: nil)
@@ -95,7 +94,6 @@ class TaskListHeaderView: UIView {
     }
     
     @IBAction func newTaskButtonClick(sender: UIButton) {
-        println("newTaskButtonClick")
         self.delegate?.taskListHeaderViewStartNewTask(self)
     }
     

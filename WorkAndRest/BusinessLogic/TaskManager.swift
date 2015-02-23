@@ -72,7 +72,6 @@ class TaskManager: NSObject {
     }
     
     func completeOneTimer(task: Task!) -> Bool {
-        println("completeOneTimer")
         task.lastUpdateTime = NSDate()
         task.finished_times += 1
         
@@ -90,7 +89,6 @@ class TaskManager: NSObject {
     }
     
     func breakOneTimer(task: Task!) -> Bool {
-        println("breakOneTimer")
         task.lastUpdateTime = NSDate()
         
         // Update the cache

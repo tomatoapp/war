@@ -72,14 +72,9 @@ class TimeSelectorView: UIView, V8HorizontalPickerViewDelegate, V8HorizontalPick
     
     func horizontalPickerView(picker: V8HorizontalPickerView!, didSelectElementAtIndex index: Int) {
         let item = self.titleArray[index]
-        
-//        let result: String = (item as NSString).substringToIndex(2)
-//        let minutes = result.toInt()
-
         let index: String.Index = advance(item.startIndex, 2)
         let result = item.substringToIndex(index)
         let minutes = result.toInt()
-        println("\(minutes)")
         if self.delegate != nil {
             self.delegate?.timeSelectorView(self, didSelectTime: minutes!)
         }

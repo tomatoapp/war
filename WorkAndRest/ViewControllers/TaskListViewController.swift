@@ -47,7 +47,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        println("viewWillAppear - TaskListViewController")
 
         if self.taskRunner.isRunning {
             let task = allTasks.filter { $0.taskId == self.taskRunner.runningTaskID() }.first!
@@ -166,7 +165,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println("identifier = \(segue.identifier)")
         
         if segue.identifier == "EditItem" {
             let controller = segue.destinationViewController as TaskTitleViewController
@@ -200,7 +198,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     func addTaskViewControllerDidCancel(controller: TaskTitleViewController!) {
-        println("Clicked the cancel button.")
     }
     
     // MARK: - NewTaskViewControllerDelegate
@@ -255,8 +252,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     func breaked(sender: TaskListItemCell!) {
-        println("breaked")
-//        self.recordWork(false)
         self.reloadTableViewWithTimeInterval(0.0)
         self.headerView.flipToStartViewSide()
         
@@ -352,15 +347,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     // MARK: - Methods
     
     func loadAllTasks() -> Array<Task>? {
-        var result = self.taskManager.loadTaskList()
-//        for item in result! {
-//            let formatter = NSDateFormatter()
-//            formatter.timeZone = NSTimeZone.defaultTimeZone()
-//            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//            let timeStr = formatter.stringFromDate(item.lastUpdateTime)
-//            println(item.taskId.description + " " + item.title + " " + timeStr)
-//        }
-       return result
+        return self.taskManager.loadTaskList()
     }
     
     func sortTasks(list: Array<Task>) -> Array<Task>? {
@@ -415,7 +402,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     func insertItem(val: NSTimer) {
-        println("\(val.userInfo)")
         let item = val.userInfo as Task
         self.tableView.beginUpdates()
         allTasks.insert(item, atIndex: 0)
@@ -494,13 +480,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         self.taskRunnerManager!.activeFrozenTaskManager()
     }
     
-//    func recordWork(isFinished: Bool) {
-//        let work = Work()
-//        work.taskId = self.taskRunner!.taskItem.taskId
-//        work.isFinished = isFinished
-//        DBOperate.insertWork(work)
-//    }
-    
     func getTimerMinutesStringBySeconds(seconds: Int) -> String {
         return String(format: "%02d", seconds % 3600 / 60)
     }
@@ -518,29 +497,4 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         
         return leftUtilityButtons
     }
-    
-//    func handleLeftUtilityButtonsEventByTaskState(state: TaskState, withButtonIndex index: Int) {
-//        if state == TaskState.Normal {
-//            if index == 0 {
-//                // Mark done
-//                println("mark done")
-//            } else if index == 1 {
-//                // delete
-//                println("del")
-//                let task = allTasks[indexPath.row]
-//                DBOperate.deleteTask(task)
-//                let indexPaths = [indexPath]
-//                self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
-//            }
-//        } else {
-//            // delete
-//            println("del")
-//            let task = allTasks[indexPath.row]
-//            DBOperate.deleteTask(task)
-//            let indexPaths = [indexPath]
-//            self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
-//        }
-//    }
-    
-    
 }
