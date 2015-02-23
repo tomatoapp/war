@@ -21,10 +21,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.changeTheSwitchControlSmaller(self.rateSwitch)
-        self.changeTheSwitchControlSmaller(self.showPercentageSwitch)
-        
-        
         var frame: CGRect!
         
         switch WARDevice.getPhoneType() {
@@ -118,10 +114,11 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.data.removeAll(keepCapacity: false)
         let capacity = self.getCapacity()
 
-        for var i = 0; i <= capacity; i++ {
-//            let tempWorks = result.filter { $0.workTime.compare(NSDate().dateByAddingTimeInterval(ti: 1 * 60 *60 *24)
-            }
-            
+//        for var i = 0; i <= capacity; i++ {
+//            let tempWorks = result.filter { $0.workTime.compare(NSDate().dateByAddingTimeInterval(ti: 1 * 60 * 60 * 24))  }
+//            NSCalendar.currentCalendar().component(NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitYear, fromDate: <#NSDate#>)
+//            }
+        
         switch type {
         case .Week:
             
@@ -163,10 +160,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
 
     // MARK: - Methods
-    
-    func changeTheSwitchControlSmaller(control: UISwitch) {
-        control.transform = CGAffineTransformMakeScale(0.80, 0.80)
-    }
+
     
     // MARK: - JBBarChartViewDelegate
     
