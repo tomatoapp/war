@@ -14,6 +14,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     @IBOutlet var showPercentageSwitch: UISwitch!
     @IBOutlet var statisticsView: UIView!
     
+    var chatType =  TimeSpanType.Month
     var chatView: JBBarChartView!
     var data = [CGFloat]()
 
@@ -114,12 +115,38 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         }
         
         let result = WorkManager.sharedInstance.selectWorksByTimeType(type)
+        self.data.removeAll(keepCapacity: false)
+        let capacity = self.getCapacity()
+
+        for var i = 0; i <= capacity; i++ {
+//            let tempWorks = result.filter { $0.workTime.compare(NSDate().dateByAddingTimeInterval(ti: 1 * 60 *60 *24)
+            }
+            
+        switch type {
+        case .Week:
+            
+            break
+            
+        case .Month:
+            break
+            
+        case .Year:
+            break
+            
+        }
         println("result.count: \(result.count)")
 
         self.setStateToCollapsed()
         
         
         NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("setStateToExpanded"), userInfo: nil, repeats: false)
+    }
+    
+    func getCapacity() -> Int {
+        if WARDevice.getPhoneType() == PhoneType.iPhone6 || WARDevice.getPhoneType() == PhoneType.iPhone6Plus {
+            return 4
+        }
+        return 3
     }
 
     // MARK: - UITableViewDelegate

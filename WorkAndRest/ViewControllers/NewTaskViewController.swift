@@ -130,7 +130,6 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     
     func completionCycleView(sender: CompletionCycleView, didSelectedNumber number: Int) {
         self.number = number
-        println("\(self.number)")
     }
     
     let TAG_ICON = 1001

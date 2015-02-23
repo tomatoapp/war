@@ -56,21 +56,45 @@ class CompletionCycleView: UIView {
         self.plusButton.addTarget(self, action: Selector("buttonUp:"), forControlEvents: UIControlEvents.TouchUpInside | UIControlEvents.TouchUpOutside)
     }
     
+    var isHolding = false
     func buttonDown(sender: UIButton!) {
+        isHolding = true
         if sender == self.minusButton {
             self.isMinusButtonFlag = true
         } else if sender == self.plusButton {
             self.isMinusButtonFlag = false
         }
+        
         self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1,
             target: self,
-            selector: Selector("changeNumber"),
+            selector: Selector("holding"),
             userInfo: nil,
             repeats: true)
     }
     
+    
     func buttonUp(sender: AnyObject) {
+        isHolding = false
         self.timer.invalidate()
+    }
+    
+    func holding() {
+        NSThread(target: self, selector: Selector("startTiming"), object: nil).start()
+    }
+    
+    func startTiming() {
+        var i = 0
+        
+        // Start auto change the number when press the button after 0.5 second
+        while isHolding && i < 5 {
+            NSThread.sleepForTimeInterval(0.1)
+            i++
+        }
+        
+        if isHolding {
+            println("go")
+            self.changeNumber()
+        }
     }
     
     func changeNumber() {
