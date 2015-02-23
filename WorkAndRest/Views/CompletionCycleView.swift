@@ -86,7 +86,7 @@ class CompletionCycleView: UIView {
         var i = 0
         
         // Start auto change the number when press the button after 0.5 second
-        while isHolding && i < 5 {
+        while isHolding && i < 4 {
             NSThread.sleepForTimeInterval(0.1)
             i++
         }
