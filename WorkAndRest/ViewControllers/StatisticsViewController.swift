@@ -49,21 +49,22 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.chatView.delegate = self
         self.chatView.dataSource = self
         self.chatView.minimumValue = 0.0
-        self.chatView.maximumValue = 200
+        self.chatView.maximumValue = 20
         
-        self.reloadDataSource()
+        //self.reloadDataSource()
+        self.loadDataSourceByType(TimeSpanType.Week)
         self.chatView.reloadData()
     }
     
-    func reloadDataSource() {
-        self.data = [CGFloat]()
-        for _ in 0...10 {
-            self.data.append(CGFloat(arc4random_uniform(100)))
-        }
-    }
+//    func reloadDataSource() {
+//        self.data = [CGFloat]()
+//        for _ in 0...10 {
+//            self.data.append(CGFloat(arc4random_uniform(100)))
+//        }
+//    }
 
     func setStateToExpanded() {
-        self.reloadDataSource()
+        //self.reloadDataSource()
         self.chatView.reloadData()
         
         self.chatView.setState(.Expanded, animated: true)
@@ -109,46 +110,114 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         default:
             break
         }
+        self.loadDataSourceByType(type)
         
+    }
+    
+    
+    func loadDataSourceByType(type: TimeSpanType) {
         let allTasks = WorkManager.sharedInstance.selectWorksByTimeType(type)
         self.data.removeAll(keepCapacity: false)
-        let capacity = self.getCapacity()
-
-
-        let components = NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitWeekday | .CalendarUnitDay, fromDate: NSDate())
         
-        switch type {
-        case .Week:
-            components.day -= capacity
-            break
-            
-        case .Month:
-            components.day -= capacity * 7
-            break
-            
-        case .Year:
-            components.day -= capacity * 30
-            break
-            
+        let dic = self.getWorksCount(allTasks, byType: type)
+        println(dic)
+        
+        for (index, works) in dic {
+            var finishedCount = 0
+            var stopedCount = 0
+            for work in works {
+                if work.isFinished {
+                    finishedCount++
+                } else {
+                    stopedCount++
+                }
+            }
+            self.data.append(CGFloat(finishedCount))
+            self.data.append(CGFloat(stopedCount))
         }
-        
-        let startDate = NSCalendar.currentCalendar().dateFromComponents(components)!
-        let result = allTasks.filter { $0.workTime.compare(startDate) != .OrderedAscending }
-        
-        println("result.count: \(allTasks.count)")
-
         self.setStateToCollapsed()
-        
         
         NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("setStateToExpanded"), userInfo: nil, repeats: false)
     }
     
     func getCapacity() -> Int {
         if WARDevice.getPhoneType() == PhoneType.iPhone6 || WARDevice.getPhoneType() == PhoneType.iPhone6Plus {
-            return 4
+            return 3
         }
-        return 3
+        return 2
     }
+    
+    func getWorksCount(list: Array<Work>, byType type: TimeSpanType) -> [Int: Array<Work>]{
+        
+        var dic = [Int: Array<Work>]()
+        
+        let startComponents = NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitWeekday | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitMinute | NSCalendarUnit.CalendarUnitSecond , fromDate: NSDate())
+        
+        let endComponents = NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitWeekday | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitMinute | NSCalendarUnit.CalendarUnitSecond , fromDate: NSDate())
+        
+        startComponents.hour = 0
+        startComponents.minute = 0
+        startComponents.second = 1
+        endComponents.hour = 23
+        endComponents.minute = 59
+        startComponents.second = 59
+        
+        let capacity = self.getCapacity()
+        
+        switch type {
+        case .Week:
+            
+            for i in 0...capacity {
+                startComponents.day = startComponents.day - (i == 0 ? 0 : 1)
+                endComponents.day = startComponents.day
+                
+                let startDate = NSCalendar.currentCalendar().dateFromComponents(startComponents)!
+                let endDate = NSCalendar.currentCalendar().dateFromComponents(endComponents)!
+                
+                var result = self.filterWorkList(list, byStartDate: startDate, andEndDate: endDate)
+                dic[i] = result
+            }
+            break
+            
+        case .Month:
+            startComponents.day = startComponents.day - startComponents.weekday + 1
+            
+            for i in 0...capacity {
+                startComponents.day = startComponents.day - ((i == 0 ? 0 : 1) * 7)
+                endComponents.day = startComponents.day + 6
+                
+                let startDate = NSCalendar.currentCalendar().dateFromComponents(startComponents)!
+                let endDate = NSCalendar.currentCalendar().dateFromComponents(endComponents)!
+                
+                let result = self.filterWorkList(list, byStartDate: startDate, andEndDate: endDate)
+                dic[i] = result
+            }
+            break
+            
+        case .Year:
+            startComponents.day = 1
+            endComponents.day = 0
+            
+            for i in 0...capacity {
+                startComponents.month = startComponents.month - (i == 0 ? 0 : 1)
+                endComponents.month = startComponents.month + 1
+                
+                let startDate = NSCalendar.currentCalendar().dateFromComponents(startComponents)!
+                let endDate = NSCalendar.currentCalendar().dateFromComponents(endComponents)!
+                
+                let result = self.filterWorkList(list, byStartDate: startDate, andEndDate: endDate)
+                dic[i] = result
+            }
+            break
+        }
+        
+        return dic
+    }
+    
+    func filterWorkList(list: Array<Work>, byStartDate startDate: NSDate, andEndDate endDate: NSDate) -> Array<Work> {
+        return list.filter { $0.workTime.compare(startDate) != NSComparisonResult.OrderedAscending && $0.workTime.compare(endDate) != NSComparisonResult.OrderedDescending }
+    }
+    
 
     // MARK: - UITableViewDelegate
     
