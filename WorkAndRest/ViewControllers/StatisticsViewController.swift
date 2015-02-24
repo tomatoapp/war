@@ -110,28 +110,32 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             break
         }
         
-        let result = WorkManager.sharedInstance.selectWorksByTimeType(type)
+        let allTasks = WorkManager.sharedInstance.selectWorksByTimeType(type)
         self.data.removeAll(keepCapacity: false)
         let capacity = self.getCapacity()
 
-//        for var i = 0; i <= capacity; i++ {
-//            let tempWorks = result.filter { $0.workTime.compare(NSDate().dateByAddingTimeInterval(ti: 1 * 60 * 60 * 24))  }
-//            NSCalendar.currentCalendar().component(NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitYear, fromDate: <#NSDate#>)
-//            }
+
+        let components = NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitWeekday | .CalendarUnitDay, fromDate: NSDate())
         
         switch type {
         case .Week:
-            
+            components.day -= capacity
             break
             
         case .Month:
+            components.day -= capacity * 7
             break
             
         case .Year:
+            components.day -= capacity * 30
             break
             
         }
-        println("result.count: \(result.count)")
+        
+        let startDate = NSCalendar.currentCalendar().dateFromComponents(components)!
+        let result = allTasks.filter { $0.workTime.compare(startDate) != .OrderedAscending }
+        
+        println("result.count: \(allTasks.count)")
 
         self.setStateToCollapsed()
         
