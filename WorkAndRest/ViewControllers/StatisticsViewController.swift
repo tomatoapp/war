@@ -13,6 +13,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     @IBOutlet var rateSwitch: UISwitch!
     @IBOutlet var showPercentageSwitch: UISwitch!
     @IBOutlet var statisticsView: UIView!
+    @IBOutlet var segmentedControl: UISegmentedControl!
     
     var chatType =  TimeSpanType.Month
     var chatView: JBBarChartView!
@@ -49,11 +50,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.chatView.delegate = self
         self.chatView.dataSource = self
         self.chatView.minimumValue = 0.0
-        self.chatView.maximumValue = 20
+        //self.chatView.maximumValue = 20
         
         //self.reloadDataSource()
-        self.loadDataSourceByType(TimeSpanType.Week)
-        self.chatView.reloadData()
+//        self.loadDataSourceByType(TimeSpanType.Week)
     }
     
 //    func reloadDataSource() {
@@ -80,18 +80,29 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.loaDataSourceBySegmentedControlSelectedIndex(self.segmentedControl.selectedSegmentIndex)
+        self.chatView.reloadData()
+    }
+    
     // MARK: - Events
     
     @IBAction func rateSwitchValueChanged(sender: AnyObject) {
-        
+       
     }
     
     @IBAction func showPercentageSwitchValueChanged(sender: AnyObject) {
     }
 
     @IBAction func segmentControlValueChanged(sender: AnyObject) {
-        var type = TimeSpanType.Month
-        switch (sender as UISegmentedControl).selectedSegmentIndex {
+         self.loaDataSourceBySegmentedControlSelectedIndex((sender as UISegmentedControl).selectedSegmentIndex)
+    }
+    
+    func loaDataSourceBySegmentedControlSelectedIndex(index: Int) {
+        var type: TimeSpanType = .Week
+        switch index {
         case 0:
             // Week
             type = .Week
@@ -103,7 +114,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             break
             
         case 2:
-            // Year  
+            // Year
             type = .Year
             break
             
@@ -111,11 +122,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             break
         }
         self.loadDataSourceByType(type)
-        
     }
     
-    
     func loadDataSourceByType(type: TimeSpanType) {
+        
         let allTasks = WorkManager.sharedInstance.selectWorksByTimeType(type)
         self.data.removeAll(keepCapacity: false)
         
@@ -142,9 +152,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         while self.data.count < self.getNumberOfBarsByPhoneSize() {
             self.data.append(CGFloat(0))
         }
-        
+        self.setChatViewMaximumValue(maxElement(self.data))
         self.setStateToCollapsed()
-        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("setStateToExpanded"), userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("setStateToExpanded"), userInfo: nil, repeats: false)
     }
     
     func getCapacity() -> Int {
@@ -154,6 +164,14 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         return 2
     }
     
+    func setChatViewMaximumValue(value: CGFloat) {
+        if value > 20 { // 20 = 30 / 1.4858
+            // If the value too large, then set the max height of the chat to the_max_number * 1.4858
+            self.chatView.maximumValue = value * 1.4858
+        } else {
+            self.chatView.maximumValue = 30
+        }
+    }
     func getWorksCount(list: Array<Work>, byType type: TimeSpanType) -> [Int: Array<Work>]{
         
         var dic = [Int: Array<Work>]()

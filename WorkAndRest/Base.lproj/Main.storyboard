@@ -794,6 +794,7 @@
                     <tabBarItem key="tabBarItem" title="Statistics" image="tab_item_2" id="4KG-It-Eka"/>
                     <connections>
                         <outlet property="rateSwitch" destination="5Fe-7Y-tjP" id="YmZ-pU-Sos"/>
+                        <outlet property="segmentedControl" destination="DHL-AT-Az8" id="2E0-kd-ssn"/>
                         <outlet property="showPercentageSwitch" destination="vli-ao-4Rq" id="Slk-DP-nTU"/>
                         <outlet property="statisticsView" destination="K4t-eU-vno" id="n3e-79-oab"/>
                     </connections>
