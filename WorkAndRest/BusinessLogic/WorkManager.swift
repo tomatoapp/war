@@ -16,6 +16,8 @@ private let _singletonInstance = WorkManager()
     
 class WorkManager: NSObject {
     
+    var hasNewValue = true
+    
     class var sharedInstance: WorkManager {
         return _singletonInstance
     }
@@ -23,12 +25,13 @@ class WorkManager: NSObject {
     var cacheWorkList = [Work]()
     
     func loadWorkList() -> Array<Work> {
-        if self.cacheWorkList.count > 0 {
+        if !self.hasNewValue && self.cacheWorkList.count > 0 {
             return self.cacheWorkList
         }
         let result = DBOperate.loadAllWorks()
         if result != nil {
             self.cacheWorkList = result!
+            self.hasNewValue = false
         }
         return self.cacheWorkList
     }
@@ -56,5 +59,11 @@ class WorkManager: NSObject {
             break
         }
         return calendar.dateByAddingComponents(comps, toDate: NSDate(), options: NSCalendarOptions.allZeros)!
+    }
+    
+    func insertWork(work: Work) {
+        DBOperate.insertWork(work)
+        self.hasNewValue = true
+
     }
 }

@@ -144,6 +144,6 @@ class TaskManager: NSObject {
         let work = Work()
         work.taskId = task.taskId
         work.isFinished = isFinished
-        DBOperate.insertWork(work)
+        WorkManager.sharedInstance.insertWork(work)
     }
 }
