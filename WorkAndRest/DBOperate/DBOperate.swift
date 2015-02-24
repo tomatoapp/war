@@ -184,7 +184,7 @@ import UIKit
         if !dataBase.open() {
             return
         }
-        let success = dataBase.executeUpdate("INSERT INTO t_works(task_id, is_finished) VALUES (:task_id, :is_finished)", withArgumentsInArray: [work.taskId, work.isFinished])
+        let success = dataBase.executeUpdate("INSERT INTO t_works(task_id, is_finished, work_time) VALUES (:task_id, :is_finished, :work_time)", withArgumentsInArray: [work.taskId, work.isFinished, work.workTime])
         if success {
             println("insert to work table success.")
         } else {

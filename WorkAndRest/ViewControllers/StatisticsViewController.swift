@@ -165,7 +165,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     func setChatViewMaximumValue(value: CGFloat) {
-        if value > 20 { // 20 = 30 / 1.4858
+        if value > 20 {
+            // 20 = 30 / 1.4858
             // If the value too large, then set the max height of the chat to the_max_number * 1.4858
             self.chatView.maximumValue = value * 1.4858
         } else {
