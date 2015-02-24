@@ -132,11 +132,18 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                     stopedCount++
                 }
             }
-            self.data.append(CGFloat(finishedCount))
-            self.data.append(CGFloat(stopedCount))
+            if finishedCount > 0 || stopedCount > 0 {
+                self.data.append(CGFloat(finishedCount))
+                self.data.append(CGFloat(stopedCount))
+            }
         }
-        self.setStateToCollapsed()
         
+        // Move the zero to the end of the data souce.
+        while self.data.count < self.getNumberOfBarsByPhoneSize() {
+            self.data.append(CGFloat(0))
+        }
+        
+        self.setStateToCollapsed()
         NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("setStateToExpanded"), userInfo: nil, repeats: false)
     }
     
@@ -238,8 +245,13 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     // MARK: - JBBarChartViewDelegate
     
     func numberOfBarsInBarChartView(barChartView: JBBarChartView!) -> UInt {
+         return UInt(self.getNumberOfBarsByPhoneSize())
+    }
+    
+    func getNumberOfBarsByPhoneSize() -> Int {
         switch WARDevice.getPhoneType() {
         case .iPhone4, .iPhone5:
+            
             return 6
             
         case .iPhone6, .iPhone6Plus:
@@ -248,6 +260,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         default:
             return 0
         }
+
     }
     
     // MARK: - JBBarChartViewDataSource
