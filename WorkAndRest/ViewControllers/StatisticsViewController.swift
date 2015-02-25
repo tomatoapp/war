@@ -130,9 +130,32 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.data.removeAll(keepCapacity: false)
         
         let dic = self.getWorksCount(allTasks, byType: type)
-        println(dic)
         
-        for (index, works) in dic {
+//        for (index, works) in dic {
+//            var finishedCount = 0
+//            var stopedCount = 0
+//            for work in works {
+//                if work.isFinished {
+//                    finishedCount++
+//                } else {
+//                    stopedCount++
+//                }
+//            }
+//            
+////            if finishedCount <= 0 && stopedCount <= 0 && self.data.count <= 0 {
+////                continue
+////            }
+//            if finishedCount > 0 || stopedCount > 0 {
+//                println("finishedCount:\(finishedCount)")
+//                self.data.append(CGFloat(finishedCount))
+//                self.data.append(CGFloat(stopedCount))
+////                self.data.insert(CGFloat(finishedCount), atIndex: 0)
+////                self.data.insert(CGFloat(stopedCount), atIndex: 1)
+//            }
+//        }
+        
+        for index in 0...dic.count-1 {
+            let works = dic[index]! as Array<Work>
             var finishedCount = 0
             var stopedCount = 0
             for work in works {
@@ -142,13 +165,30 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                     stopedCount++
                 }
             }
-            if finishedCount > 0 || stopedCount > 0 {
-                self.data.append(CGFloat(finishedCount))
-                self.data.append(CGFloat(stopedCount))
-            }
+            
+//            if finishedCount == 0 && stopedCount == 0 && self.data.count > 0 {
+//                continue
+//            }
+            
+//            if finishedCount > 0 || stopedCount > 0 {
+//                println("finishedCount:\(finishedCount)")
+//                self.data.append(CGFloat(finishedCount))
+//                self.data.append(CGFloat(stopedCount))
+                self.data.insert(CGFloat(finishedCount), atIndex: 0)
+                self.data.insert(CGFloat(stopedCount), atIndex: 1)
+//            }
         }
         
-        // Move the zero to the end of the data souce.
+
+        
+        
+        // Move the zero to the end of the data souce:
+        // 1. Remove the zero from the top of the data source.
+        while self.data.count >= 2 && (self.data[0] == 0 && self.data[1] == 0) {
+            self.data.removeAtIndex(0)
+            self.data.removeAtIndex(0)
+        }
+        // 2. Add the zero to the end of the data source.
         while self.data.count < self.getNumberOfBarsByPhoneSize() {
             self.data.append(CGFloat(0))
         }
@@ -156,6 +196,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.setStateToCollapsed()
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("setStateToExpanded"), userInfo: nil, repeats: false)
     }
+    
     
     func getCapacity() -> Int {
         if WARDevice.getPhoneType() == PhoneType.iPhone6 || WARDevice.getPhoneType() == PhoneType.iPhone6Plus {
