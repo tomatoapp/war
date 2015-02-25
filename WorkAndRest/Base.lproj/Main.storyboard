@@ -703,6 +703,34 @@
                                                                 <constraint firstAttribute="height" constant="2" id="AOM-Sc-tZl"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t9w-0O-b4q">
+                                                            <rect key="frame" x="202" y="4" width="85" height="27"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Completions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKZ-xZ-mVz">
+                                                                    <rect key="frame" x="14" y="0.0" width="71" height="15"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stops" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wA0-FQ-gMe">
+                                                                    <rect key="frame" x="14" y="15" width="71" height="12"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="statisics_competed" translatesAutoresizingMaskIntoConstraints="NO" id="fJt-10-apY">
+                                                                    <rect key="frame" x="-1" y="3" width="10" height="10"/>
+                                                                </imageView>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="statisics_breaked" translatesAutoresizingMaskIntoConstraints="NO" id="gSc-Ek-btd">
+                                                                    <rect key="frame" x="-1" y="16" width="10" height="10"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="27" id="Bny-bX-BgQ"/>
+                                                                <constraint firstAttribute="width" constant="85" id="YWu-EE-jD1"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -710,9 +738,11 @@
                                                         <constraint firstAttribute="height" constant="193" id="9dd-gX-dqc"/>
                                                         <constraint firstAttribute="bottom" secondItem="fvi-rL-MzT" secondAttribute="bottom" constant="33" id="Apo-oE-i99"/>
                                                         <constraint firstItem="fvi-rL-MzT" firstAttribute="leading" secondItem="K4t-eU-vno" secondAttribute="leading" constant="12" id="CcN-9M-K1c"/>
+                                                        <constraint firstAttribute="trailing" secondItem="t9w-0O-b4q" secondAttribute="trailing" constant="8" id="NQb-9h-PiJ"/>
                                                         <constraint firstItem="1v8-dx-aI2" firstAttribute="top" secondItem="K4t-eU-vno" secondAttribute="top" id="Uzx-Ra-fYA"/>
                                                         <constraint firstAttribute="trailing" secondItem="fvi-rL-MzT" secondAttribute="trailing" constant="12" id="e3n-0z-MNf"/>
                                                         <constraint firstAttribute="trailing" secondItem="1v8-dx-aI2" secondAttribute="trailing" id="gZP-9m-Mr3"/>
+                                                        <constraint firstItem="t9w-0O-b4q" firstAttribute="top" secondItem="K4t-eU-vno" secondAttribute="top" constant="4" id="tFp-fp-ivt"/>
                                                         <constraint firstAttribute="bottom" secondItem="1v8-dx-aI2" secondAttribute="bottom" id="vyp-A2-5S3"/>
                                                     </constraints>
                                                 </view>
@@ -1034,6 +1064,8 @@
         <image name="start_later" width="114" height="114"/>
         <image name="start_now" width="114" height="114"/>
         <image name="statisics_bg" width="294" height="193"/>
+        <image name="statisics_breaked" width="9" height="9"/>
+        <image name="statisics_competed" width="9" height="9"/>
         <image name="statisics_line" width="245" height="3"/>
         <image name="tab_item_1" width="27" height="18"/>
         <image name="tab_item_2" width="27" height="20"/>

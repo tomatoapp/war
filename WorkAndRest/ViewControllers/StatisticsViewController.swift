@@ -237,7 +237,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        println("\(view.backgroundColor)")
+
     }
     
     // MARK: - JBBarChartViewDelegate
@@ -266,7 +266,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     func barChartView(barChartView: JBBarChartView!, colorForBarViewAtIndex index: UInt) -> UIColor! {
-        return UIColor(red: 211/255, green: 235/255, blue: 225/255, alpha: 1)
+        return index % 2 == 0 ?
+            UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.9) :
+            UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.6)
     }
     
     func barPaddingForBarChartView(barChartView: JBBarChartView!) -> CGFloat {
