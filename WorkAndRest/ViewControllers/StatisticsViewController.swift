@@ -9,7 +9,7 @@
 import UIKit
 
 class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate, JBBarChartViewDataSource {
-
+    
     @IBOutlet var rateSwitch: UISwitch!
     @IBOutlet var showPercentageSwitch: UISwitch!
     @IBOutlet var statisticsView: UIView!
@@ -18,7 +18,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     var chatType =  TimeSpanType.Month
     var chatView: JBBarChartView!
     var data = [CGFloat]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,7 +38,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         }
         self.chatView = JBBarChartView(frame: frame)
         self.statisticsView.addSubview(self.chatView)
-
+        
         self.chatView.mas_makeConstraints { (make) -> Void in
             make.centerX.equalTo()(self.statisticsView.mas_centerX)
             make.centerY.equalTo()(self.statisticsView.mas_centerY).offset()(-17)
@@ -50,31 +50,18 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.chatView.delegate = self
         self.chatView.dataSource = self
         self.chatView.minimumValue = 0.0
-        //self.chatView.maximumValue = 20
-        
-        //self.reloadDataSource()
-//        self.loadDataSourceByType(TimeSpanType.Week)
     }
     
-//    func reloadDataSource() {
-//        self.data = [CGFloat]()
-//        for _ in 0...10 {
-//            self.data.append(CGFloat(arc4random_uniform(100)))
-//        }
-//    }
-
     func setStateToExpanded() {
-        //self.reloadDataSource()
         self.chatView.reloadData()
-        
         self.chatView.setState(.Expanded, animated: true)
     }
     
     func setStateToCollapsed() {
         self.chatView.setState(.Collapsed, animated: true)
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -90,15 +77,17 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     // MARK: - Events
     
     @IBAction func rateSwitchValueChanged(sender: AnyObject) {
-       
+        
     }
     
     @IBAction func showPercentageSwitchValueChanged(sender: AnyObject) {
     }
-
+    
     @IBAction func segmentControlValueChanged(sender: AnyObject) {
-         self.loaDataSourceBySegmentedControlSelectedIndex((sender as UISegmentedControl).selectedSegmentIndex)
+        self.loaDataSourceBySegmentedControlSelectedIndex((sender as UISegmentedControl).selectedSegmentIndex)
     }
+    
+    // MARK: - Methods
     
     func loaDataSourceBySegmentedControlSelectedIndex(index: Int) {
         var type: TimeSpanType = .Week
@@ -129,31 +118,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         let allTasks = WorkManager.sharedInstance.selectWorksByTimeType(type)
         self.data.removeAll(keepCapacity: false)
         
-        let dic = self.getWorksCount(allTasks, byType: type)
-        
-//        for (index, works) in dic {
-//            var finishedCount = 0
-//            var stopedCount = 0
-//            for work in works {
-//                if work.isFinished {
-//                    finishedCount++
-//                } else {
-//                    stopedCount++
-//                }
-//            }
-//            
-////            if finishedCount <= 0 && stopedCount <= 0 && self.data.count <= 0 {
-////                continue
-////            }
-//            if finishedCount > 0 || stopedCount > 0 {
-//                println("finishedCount:\(finishedCount)")
-//                self.data.append(CGFloat(finishedCount))
-//                self.data.append(CGFloat(stopedCount))
-////                self.data.insert(CGFloat(finishedCount), atIndex: 0)
-////                self.data.insert(CGFloat(stopedCount), atIndex: 1)
-//            }
-//        }
-        
+        let dic = self.getWorksCountWithGroup(allTasks, byType: type)
         for index in 0...dic.count-1 {
             let works = dic[index]! as Array<Work>
             var finishedCount = 0
@@ -165,22 +130,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                     stopedCount++
                 }
             }
-            
-//            if finishedCount == 0 && stopedCount == 0 && self.data.count > 0 {
-//                continue
-//            }
-            
-//            if finishedCount > 0 || stopedCount > 0 {
-//                println("finishedCount:\(finishedCount)")
-//                self.data.append(CGFloat(finishedCount))
-//                self.data.append(CGFloat(stopedCount))
-                self.data.insert(CGFloat(finishedCount), atIndex: 0)
-                self.data.insert(CGFloat(stopedCount), atIndex: 1)
-//            }
+            self.data.insert(CGFloat(finishedCount), atIndex: 0)
+            self.data.insert(CGFloat(stopedCount), atIndex: 1)
         }
-        
-
-        
         
         // Move the zero to the end of the data souce:
         // 1. Remove the zero from the top of the data source.
@@ -197,9 +149,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("setStateToExpanded"), userInfo: nil, repeats: false)
     }
     
-    
     func getCapacity() -> Int {
-        if WARDevice.getPhoneType() == PhoneType.iPhone6 || WARDevice.getPhoneType() == PhoneType.iPhone6Plus {
+        if WARDevice.getPhoneType() == .iPhone6 || WARDevice.getPhoneType() == .iPhone6Plus {
             return 3
         }
         return 2
@@ -214,7 +165,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             self.chatView.maximumValue = 30
         }
     }
-    func getWorksCount(list: Array<Work>, byType type: TimeSpanType) -> [Int: Array<Work>]{
+    
+    func getWorksCountWithGroup(list: Array<Work>, byType type: TimeSpanType) -> [Int: Array<Work>]{
         
         var dic = [Int: Array<Work>]()
         
@@ -233,30 +185,24 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         switch type {
         case .Week:
-            
             for i in 0...capacity {
                 startComponents.day = startComponents.day - (i == 0 ? 0 : 1)
                 endComponents.day = startComponents.day
-                
                 let startDate = NSCalendar.currentCalendar().dateFromComponents(startComponents)!
                 let endDate = NSCalendar.currentCalendar().dateFromComponents(endComponents)!
-                
-                var result = self.filterWorkList(list, byStartDate: startDate, andEndDate: endDate)
+                var result = self.filterWorks(list, byStartDate: startDate, andEndDate: endDate)
                 dic[i] = result
             }
             break
             
         case .Month:
             startComponents.day = startComponents.day - startComponents.weekday + 1
-            
             for i in 0...capacity {
                 startComponents.day = startComponents.day - ((i == 0 ? 0 : 1) * 7)
                 endComponents.day = startComponents.day + 6
-                
                 let startDate = NSCalendar.currentCalendar().dateFromComponents(startComponents)!
                 let endDate = NSCalendar.currentCalendar().dateFromComponents(endComponents)!
-                
-                let result = self.filterWorkList(list, byStartDate: startDate, andEndDate: endDate)
+                let result = self.filterWorks(list, byStartDate: startDate, andEndDate: endDate)
                 dic[i] = result
             }
             break
@@ -264,28 +210,23 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         case .Year:
             startComponents.day = 1
             endComponents.day = 0
-            
             for i in 0...capacity {
                 startComponents.month = startComponents.month - (i == 0 ? 0 : 1)
                 endComponents.month = startComponents.month + 1
-                
                 let startDate = NSCalendar.currentCalendar().dateFromComponents(startComponents)!
                 let endDate = NSCalendar.currentCalendar().dateFromComponents(endComponents)!
-                
-                let result = self.filterWorkList(list, byStartDate: startDate, andEndDate: endDate)
+                let result = self.filterWorks(list, byStartDate: startDate, andEndDate: endDate)
                 dic[i] = result
             }
             break
         }
-        
         return dic
     }
     
-    func filterWorkList(list: Array<Work>, byStartDate startDate: NSDate, andEndDate endDate: NSDate) -> Array<Work> {
+    func filterWorks(list: Array<Work>, byStartDate startDate: NSDate, andEndDate endDate: NSDate) -> Array<Work> {
         return list.filter { $0.workTime.compare(startDate) != NSComparisonResult.OrderedAscending && $0.workTime.compare(endDate) != NSComparisonResult.OrderedDescending }
     }
     
-
     // MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -298,20 +239,16 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         println("\(view.backgroundColor)")
     }
-
-    // MARK: - Methods
-
     
     // MARK: - JBBarChartViewDelegate
     
     func numberOfBarsInBarChartView(barChartView: JBBarChartView!) -> UInt {
-         return UInt(self.getNumberOfBarsByPhoneSize())
+        return UInt(self.getNumberOfBarsByPhoneSize())
     }
     
     func getNumberOfBarsByPhoneSize() -> Int {
         switch WARDevice.getPhoneType() {
         case .iPhone4, .iPhone5:
-            
             return 6
             
         case .iPhone6, .iPhone6Plus:
@@ -320,7 +257,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         default:
             return 0
         }
-
     }
     
     // MARK: - JBBarChartViewDataSource
@@ -337,7 +273,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         return 10.0
     }
     
-    
     func barGroupPaddingForBarChartView(barChatView: JBBarChartView!) -> CGFloat {
         return 50.0
     }
@@ -345,5 +280,4 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     func itemsCountInOneGroup() -> Int32 {
         return 2
     }
-
 }
