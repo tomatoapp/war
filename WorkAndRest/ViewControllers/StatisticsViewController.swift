@@ -18,6 +18,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     var chatType =  TimeSpanType.Month
     var chatView: JBBarChartView!
     var data = [CGFloat]()
+    var baseData: [Int: Array<Work>] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,6 +112,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             break
         }
         self.loadDataSourceByType(type)
+        self.addDateFooterLabelToTheChartViewByType(type)
     }
     
     func loadDataSourceByType(type: TimeSpanType) {
@@ -119,6 +121,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.data.removeAll(keepCapacity: false)
         
         let dic = self.getWorksCountWithGroup(allTasks, byType: type)
+        self.baseData = dic
         for index in 0...dic.count-1 {
             let works = dic[index]! as Array<Work>
             var finishedCount = 0
@@ -225,6 +228,78 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     
     func filterWorks(list: Array<Work>, byStartDate startDate: NSDate, andEndDate endDate: NSDate) -> Array<Work> {
         return list.filter { $0.workTime.compare(startDate) != NSComparisonResult.OrderedAscending && $0.workTime.compare(endDate) != NSComparisonResult.OrderedDescending }
+    }
+    
+    func addDateFooterLabelToTheChartViewByType(type: TimeSpanType) {
+        let LABEL_WIDTH: CGFloat = 40
+        let LABEL_HEIGHT: CGFloat = 25
+        let baseContainerView = UIView(frame: CGRectMake(0, 0, self.chatView.frame.width, LABEL_HEIGHT))
+        
+        let components = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday | NSCalendarUnit.CalendarUnitDay, fromDate: NSDate())
+        switch type {
+        case .Week:
+            for i in 0...self.getCapacity() {
+                let tempLabel = UILabel()
+                components.weekday -= (i == 0 ? 0 : 1)
+                println("\(self.getWeekDayStringByWeekDayNumber(components.weekday))")
+                tempLabel.text = self.getWeekDayStringByWeekDayNumber(components.weekday)
+                let capacity = self.getCapacity()
+                tempLabel.frame = CGRectMake(CGFloat(((Int(((baseContainerView.frame.width - LABEL_WIDTH) / CGFloat(capacity))) * i))), 0, LABEL_WIDTH, LABEL_HEIGHT)
+                tempLabel.textColor = UIColor.whiteColor()
+                tempLabel.font = UIFont.systemFontOfSize(12)
+                tempLabel.textAlignment = NSTextAlignment.Center
+                baseContainerView.addSubview(tempLabel)
+            }
+            break
+            
+        case .Month:
+            break
+            
+        case .Year:
+            break
+            
+        }
+        self.statisticsView.addSubview(baseContainerView)
+        baseContainerView.mas_makeConstraints { (make) -> Void in
+            make.centerX.equalTo()(self.statisticsView.mas_centerX)
+            make.bottom.equalTo()(self.statisticsView.mas_bottom)
+            make.width.equalTo()(self.chatView.frame.width)
+            make.height.equalTo()(LABEL_HEIGHT)
+            return ()
+        }
+    }
+    
+    func getWeekDayStringByWeekDayNumber(weekDay: Int) -> String {
+        switch weekDay {
+            
+        case 1:
+            return "Sun"
+            
+        case 2:
+            return "Mon"
+            
+        case 3:
+            return "Tue"
+            
+        case 4:
+            return "Wed"
+            
+        case 5:
+            return "Thu"
+            
+        case 6:
+            return "Fri"
+        
+        case 7:
+            return "Sat"
+            
+        default:
+            return "Unk"
+        }
+    }
+    
+    func addPercentageLabelToTheChartView() {
+        
     }
     
     // MARK: - UITableViewDelegate
