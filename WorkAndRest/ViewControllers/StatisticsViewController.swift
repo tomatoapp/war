@@ -16,7 +16,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     @IBOutlet var segmentedControl: UISegmentedControl!
     
     var chatType =  TimeSpanType.Month
-    var chatView: JBBarChartView!
+    var chartView: JBBarChartView!
+    var chartViewFooterView: UIView!
     var data = [CGFloat]()
     var baseData: [Int: Array<Work>] = [:]
     
@@ -37,10 +38,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         default:
             break
         }
-        self.chatView = JBBarChartView(frame: frame)
-        self.statisticsView.addSubview(self.chatView)
+        self.chartView = JBBarChartView(frame: frame)
+        self.statisticsView.addSubview(self.chartView)
         
-        self.chatView.mas_makeConstraints { (make) -> Void in
+        self.chartView.mas_makeConstraints { (make) -> Void in
             make.centerX.equalTo()(self.statisticsView.mas_centerX)
             make.centerY.equalTo()(self.statisticsView.mas_centerY).offset()(-17)
             make.width.equalTo()(frame.size.width)
@@ -48,18 +49,26 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             return ()
         }
         
-        self.chatView.delegate = self
-        self.chatView.dataSource = self
-        self.chatView.minimumValue = 0.0
+        self.chartView.delegate = self
+        self.chartView.dataSource = self
+        self.chartView.minimumValue = 0.0
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if self.chartViewFooterView != nil && self.chartViewFooterView.superview != nil {
+            self.chartViewFooterView.removeFromSuperview()
+        }
     }
     
     func setStateToExpanded() {
-        self.chatView.reloadData()
-        self.chatView.setState(.Expanded, animated: true)
+        self.chartView.reloadData()
+        self.chartView.setState(.Expanded, animated: true)
     }
     
     func setStateToCollapsed() {
-        self.chatView.setState(.Collapsed, animated: true)
+        self.chartView.setState(.Collapsed, animated: true)
         
     }
     
@@ -72,7 +81,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         super.viewWillAppear(animated)
         
         self.loaDataSourceBySegmentedControlSelectedIndex(self.segmentedControl.selectedSegmentIndex)
-        self.chatView.reloadData()
+        self.chartView.reloadData()
     }
     
     // MARK: - Events
@@ -163,9 +172,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         if value > 20 {
             // 20 = 30 / 1.4858
             // If the value too large, then set the max height of the chat to the_max_number * 1.4858
-            self.chatView.maximumValue = value * 1.4858
+            self.chartView.maximumValue = value * 1.4858
         } else {
-            self.chatView.maximumValue = 30
+            self.chartView.maximumValue = 30
         }
     }
     
@@ -233,7 +242,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     func addDateFooterLabelToTheChartViewByType(type: TimeSpanType) {
         let LABEL_WIDTH: CGFloat = 40
         let LABEL_HEIGHT: CGFloat = 25
-        let baseContainerView = UIView(frame: CGRectMake(0, 0, self.chatView.frame.width, LABEL_HEIGHT))
+        chartViewFooterView = UIView(frame: CGRectMake(0, 0, self.chartView.frame.width, LABEL_HEIGHT))
         
         let components = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday | NSCalendarUnit.CalendarUnitDay, fromDate: NSDate())
         switch type {
@@ -241,14 +250,14 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             for i in 0...self.getCapacity() {
                 let tempLabel = UILabel()
                 components.weekday -= (i == 0 ? 0 : 1)
-                println("\(self.getWeekDayStringByWeekDayNumber(components.weekday))")
+                println("\(components.weekday)")
                 tempLabel.text = self.getWeekDayStringByWeekDayNumber(components.weekday)
                 let capacity = self.getCapacity()
-                tempLabel.frame = CGRectMake(CGFloat(((Int(((baseContainerView.frame.width - LABEL_WIDTH) / CGFloat(capacity))) * i))), 0, LABEL_WIDTH, LABEL_HEIGHT)
+                tempLabel.frame = CGRectMake(CGFloat(((Int(((chartViewFooterView.frame.width - LABEL_WIDTH) / CGFloat(capacity))) * i))), 0, LABEL_WIDTH, LABEL_HEIGHT)
                 tempLabel.textColor = UIColor.whiteColor()
                 tempLabel.font = UIFont.systemFontOfSize(12)
                 tempLabel.textAlignment = NSTextAlignment.Center
-                baseContainerView.addSubview(tempLabel)
+                chartViewFooterView.addSubview(tempLabel)
             }
             break
             
@@ -259,11 +268,11 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             break
             
         }
-        self.statisticsView.addSubview(baseContainerView)
-        baseContainerView.mas_makeConstraints { (make) -> Void in
+        self.statisticsView.addSubview(chartViewFooterView)
+        chartViewFooterView.mas_makeConstraints { (make) -> Void in
             make.centerX.equalTo()(self.statisticsView.mas_centerX)
-            make.bottom.equalTo()(self.statisticsView.mas_bottom)
-            make.width.equalTo()(self.chatView.frame.width)
+            make.bottom.equalTo()(self.statisticsView.mas_bottom).offset()(-10)
+            make.width.equalTo()(self.chartView.frame.width)
             make.height.equalTo()(LABEL_HEIGHT)
             return ()
         }
