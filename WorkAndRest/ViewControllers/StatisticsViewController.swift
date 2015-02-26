@@ -56,10 +56,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-
-        if self.chartViewFooterView != nil && self.chartViewFooterView.superview != nil {
-            self.chartViewFooterView.removeFromSuperview()
-        }
+        self.removeFooterViewFromTheStatisticsView()
     }
     
     func setStateToExpanded() {
@@ -121,7 +118,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             break
         }
         self.loadDataSourceByType(type)
-        self.addDateFooterLabelToTheChartViewByType(type)
+        self.addFooterViewToTheStatisticsView(type)
     }
     
     func loadDataSourceByType(type: TimeSpanType) {
@@ -133,6 +130,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.baseData = dic
         for index in 0...dic.count-1 {
             let works = dic[index]! as Array<Work>
+//            if works.count == 0 {
+//                continue
+//            }
             var finishedCount = 0
             var stopedCount = 0
             for work in works {
@@ -146,13 +146,13 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             self.data.insert(CGFloat(stopedCount), atIndex: 1)
         }
         
-        // Move the zero to the end of the data souce:
-        // 1. Remove the zero from the top of the data source.
+        // 1. Remove the zero item from the top of the data source.
         while self.data.count >= 2 && (self.data[0] == 0 && self.data[1] == 0) {
+            println("******************************* Remove ******************************")
             self.data.removeAtIndex(0)
             self.data.removeAtIndex(0)
         }
-        // 2. Add the zero to the end of the data source.
+
         while self.data.count < self.getNumberOfBarsByPhoneSize() {
             self.data.append(CGFloat(0))
         }
@@ -239,26 +239,115 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         return list.filter { $0.workTime.compare(startDate) != NSComparisonResult.OrderedAscending && $0.workTime.compare(endDate) != NSComparisonResult.OrderedDescending }
     }
     
-    func addDateFooterLabelToTheChartViewByType(type: TimeSpanType) {
+    func removeFooterViewFromTheStatisticsView() {
+        if self.chartViewFooterView != nil && self.chartViewFooterView.superview != nil {
+            self.chartViewFooterView.removeFromSuperview()
+        }
+    }
+    
+    func addFooterViewToTheStatisticsView(type: TimeSpanType) {
         let LABEL_WIDTH: CGFloat = 40
         let LABEL_HEIGHT: CGFloat = 25
-        chartViewFooterView = UIView(frame: CGRectMake(0, 0, self.chartView.frame.width, LABEL_HEIGHT))
+        self.chartViewFooterView = UIView(frame: CGRectMake(0, 0, self.chartView.frame.width, LABEL_HEIGHT))
         
-        let components = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday | NSCalendarUnit.CalendarUnitDay, fromDate: NSDate())
+        let todayComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekday, fromDate: NSDate())
         switch type {
         case .Week:
-            for i in 0...self.getCapacity() {
-                let tempLabel = UILabel()
-                components.weekday -= (i == 0 ? 0 : 1)
-                println("\(components.weekday)")
-                tempLabel.text = self.getWeekDayStringByWeekDayNumber(components.weekday)
-                let capacity = self.getCapacity()
-                tempLabel.frame = CGRectMake(CGFloat(((Int(((chartViewFooterView.frame.width - LABEL_WIDTH) / CGFloat(capacity))) * i))), 0, LABEL_WIDTH, LABEL_HEIGHT)
-                tempLabel.textColor = UIColor.whiteColor()
-                tempLabel.font = UIFont.systemFontOfSize(12)
-                tempLabel.textAlignment = NSTextAlignment.Center
-                chartViewFooterView.addSubview(tempLabel)
+//            for i in 0...self.getCapacity() {
+//                let tempLabel = UILabel()
+//                components.weekday += (i == 0 ? 0 : 1)
+//                println("\(components.weekday)")
+//                tempLabel.text = self.getWeekDayStringByWeekDayNumber(components.weekday)
+//                let capacity = self.getCapacity()
+//                tempLabel.frame = CGRectMake(CGFloat(((Int(((chartViewFooterView.frame.width - LABEL_WIDTH) / CGFloat(capacity))) * i))), 0, LABEL_WIDTH, LABEL_HEIGHT)
+//                tempLabel.textColor = UIColor.whiteColor()
+//                tempLabel.font = UIFont.systemFontOfSize(12)
+//                tempLabel.textAlignment = NSTextAlignment.Center
+//                chartViewFooterView.addSubview(tempLabel)
+//            }
+            
+//            var todayIndex = -1
+//            for index in 0...self.baseData.count-1 {
+//                let works = self.baseData[index]! as Array<Work>
+//                if works.count > 0 {
+//                    let workItemComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekday, fromDate: works.first!.workTime)
+//                    if workItemComponents.year == todayComponents.year &&
+//                        workItemComponents.month == todayComponents.month &&
+//                        workItemComponents.day == workItemComponents.day {
+//                        // today
+//                        todayIndex = index
+//                    }
+//                }
+//            }
+//            
+//            // The user hasn't finished any works, so today
+//            if todayIndex == -1 {
+//                
+//            }
+            
+//            var labelList = [Int]()
+//            while todayIndex >= 0 {
+//                
+//                labelList.insert(todayIndex, atIndex: 0)
+//                todayIndex--
+//            }
+            
+//            println(labelList)
+            
+//            for i in 0...self.getCapacity() {
+//                let tempLabel = UILabel()
+//                todayComponents.weekday += (i == 0 ? 0 : 1)
+//                println("\(todayComponents.weekday)")
+//                tempLabel.text = self.getWeekDayStringByWeekDayNumber(todayComponents.weekday)
+//                let capacity = self.getCapacity()
+//                tempLabel.frame = CGRectMake(CGFloat(((Int(((chartViewFooterView.frame.width - LABEL_WIDTH) / CGFloat(capacity))) * i))), 0, LABEL_WIDTH, LABEL_HEIGHT)
+//                tempLabel.textColor = UIColor.whiteColor()
+//                tempLabel.font = UIFont.systemFontOfSize(12)
+//                tempLabel.textAlignment = NSTextAlignment.Center
+//                chartViewFooterView.addSubview(tempLabel)
+//            }
+//            
+//            // 1. Remove the zero item from the top of the data source.
+//            while self.data.count >= 2 && (self.data[0] == 0 && self.data[1] == 0) {
+//                self.data.removeAtIndex(0)
+//                self.data.removeAtIndex(0)
+//            }
+//            
+//            while self.data.count < self.getNumberOfBarsByPhoneSize() {
+//                self.data.append(CGFloat(0))
+//            }
+            
+            
+            var dates = [NSDate?]()
+            for index in 0...self.baseData.count-1 {
+                let works = self.baseData[index]! as Array<Work>
+                //            if works.count == 0 {
+                //                continue
+                //            }
+//                var finishedCount = 0
+//                var stopedCount = 0
+//                for work in works {
+////                    if work.isFinished {
+////                        finishedCount++
+////                    } else {
+////                        stopedCount++
+////                    }
+//                }
+//                self.data.insert(CGFloat(finishedCount), atIndex: 0)
+//                self.data.insert(CGFloat(stopedCount), atIndex: 1)
+                dates.insert(works.first?.workTime, atIndex: 0)
+                
+                while dates.count >= 1 && dates.first == nil {
+                    println("******************************* Remove ******************************")
+                    dates.removeAtIndex(0)
+                }
+                
+                while dates.count < self.getCapacity()+1  {
+                    dates.append(nil)
+                }
             }
+            
+            println("datas: \(dates)")
             break
             
         case .Month:
@@ -303,7 +392,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             return "Sat"
             
         default:
-            return "Unk"
+            return self.getWeekDayStringByWeekDayNumber(weekDay - 7)
         }
     }
     
