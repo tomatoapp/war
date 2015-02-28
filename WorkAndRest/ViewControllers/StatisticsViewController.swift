@@ -148,7 +148,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         // 1. Remove the zero item from the top of the data source.
         while self.data.count >= 2 && (self.data[0] == 0 && self.data[1] == 0) {
-            println("******************************* Remove ******************************")
             self.data.removeAtIndex(0)
             self.data.removeAtIndex(0)
         }
@@ -336,18 +335,51 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
 //                self.data.insert(CGFloat(finishedCount), atIndex: 0)
 //                self.data.insert(CGFloat(stopedCount), atIndex: 1)
                 dates.insert(works.first?.workTime, atIndex: 0)
-                
-                while dates.count >= 1 && dates.first == nil {
-                    println("******************************* Remove ******************************")
-                    dates.removeAtIndex(0)
+            }
+            
+            while dates.count > 0 && dates[0] == nil {
+                dates.removeAtIndex(0)
+            }
+            
+            while dates.count < self.getCapacity()+1  {
+                dates.append(nil)
+            }
+            println("datas: \(dates)")
+            
+            // Find today
+            var todayIndex = 0
+            for index in 0...dates.count-1 {
+                let date = dates[index]
+                if date == nil {
+                    continue
                 }
-                
-                while dates.count < self.getCapacity()+1  {
-                    dates.append(nil)
+                if self.isSameDay(NSDate(), date2: date) { // today
+                    todayIndex = index
                 }
             }
             
-            println("datas: \(dates)")
+            // Covert the number to Week day string.
+            
+            var weekDayNames = [String]()
+            let todayComponents = self.getComponentsByDate(NSDate())
+            weekDayNames.append(self.getWeekDayStringByWeekDayNumber(todayComponents.weekday))
+            
+            // if todayIndex is zero, mean that today is the first day.
+            // if todayIndex is not zero, mean that today is not the first day. maybe in the middle, and maybe in the end.
+            
+            if todayIndex > 0 {
+                for index in 1...todayIndex {
+                    weekDayNames.insert(self.getWeekDayStringByWeekDayNumber(todayComponents.weekday-index), atIndex: 0)
+                }
+            }
+            
+            if todayIndex < dates.count-1 {
+                for index in (todayIndex + 1)...(dates.count - todayIndex - 1) {
+                    weekDayNames.append(self.getWeekDayStringByWeekDayNumber(todayComponents.weekday+index))
+                }
+            }
+            
+            println("labels: \(weekDayNames)")
             break
             
         case .Month:
@@ -398,6 +430,18 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     
     func addPercentageLabelToTheChartView() {
         
+    }
+    
+    func isSameDay(components1: NSDateComponents!, components2: NSDateComponents!) -> Bool {
+        return components1.year == components2.year && components1.month == components2.month && components1.day == components2.day
+    }
+    
+    func isSameDay(date1: NSDate!, date2: NSDate!) -> Bool {
+        return self.isSameDay(self.getComponentsByDate(date1), components2: self.getComponentsByDate(date2))
+    }
+    
+    func getComponentsByDate(date: NSDate!) -> NSDateComponents! {
+        return NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitWeekday | .CalendarUnitWeekOfMonth | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond, fromDate: date)
     }
     
     // MARK: - UITableViewDelegate
