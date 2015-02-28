@@ -158,7 +158,7 @@ import UIKit
             taskArray.append(tempTask)
         }
         dataBase.close()
-        println("load task list count: \(taskArray.count)")
+//        println("load task list count: \(taskArray.count)")
         return taskArray
     }
     
