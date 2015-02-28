@@ -130,9 +130,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.baseData = dic
         for index in 0...dic.count-1 {
             let works = dic[index]! as Array<Work>
-//            if works.count == 0 {
-//                continue
-//            }
+            //            if works.count == 0 {
+            //                continue
+            //            }
             var finishedCount = 0
             var stopedCount = 0
             for work in works {
@@ -151,7 +151,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             self.data.removeAtIndex(0)
             self.data.removeAtIndex(0)
         }
-
+        
         while self.data.count < self.getNumberOfBarsByPhoneSize() {
             self.data.append(CGFloat(0))
         }
@@ -252,69 +252,69 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         let todayComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekday, fromDate: NSDate())
         switch type {
         case .Week:
-//            for i in 0...self.getCapacity() {
-//                let tempLabel = UILabel()
-//                components.weekday += (i == 0 ? 0 : 1)
-//                println("\(components.weekday)")
-//                tempLabel.text = self.getWeekDayStringByWeekDayNumber(components.weekday)
-//                let capacity = self.getCapacity()
-//                tempLabel.frame = CGRectMake(CGFloat(((Int(((chartViewFooterView.frame.width - LABEL_WIDTH) / CGFloat(capacity))) * i))), 0, LABEL_WIDTH, LABEL_HEIGHT)
-//                tempLabel.textColor = UIColor.whiteColor()
-//                tempLabel.font = UIFont.systemFontOfSize(12)
-//                tempLabel.textAlignment = NSTextAlignment.Center
-//                chartViewFooterView.addSubview(tempLabel)
-//            }
+            //            for i in 0...self.getCapacity() {
+            //                let tempLabel = UILabel()
+            //                components.weekday += (i == 0 ? 0 : 1)
+            //                println("\(components.weekday)")
+            //                tempLabel.text = self.getWeekDayStringByWeekDayNumber(components.weekday)
+            //                let capacity = self.getCapacity()
+            //                tempLabel.frame = CGRectMake(CGFloat(((Int(((chartViewFooterView.frame.width - LABEL_WIDTH) / CGFloat(capacity))) * i))), 0, LABEL_WIDTH, LABEL_HEIGHT)
+            //                tempLabel.textColor = UIColor.whiteColor()
+            //                tempLabel.font = UIFont.systemFontOfSize(12)
+            //                tempLabel.textAlignment = NSTextAlignment.Center
+            //                chartViewFooterView.addSubview(tempLabel)
+            //            }
             
-//            var todayIndex = -1
-//            for index in 0...self.baseData.count-1 {
-//                let works = self.baseData[index]! as Array<Work>
-//                if works.count > 0 {
-//                    let workItemComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekday, fromDate: works.first!.workTime)
-//                    if workItemComponents.year == todayComponents.year &&
-//                        workItemComponents.month == todayComponents.month &&
-//                        workItemComponents.day == workItemComponents.day {
-//                        // today
-//                        todayIndex = index
-//                    }
-//                }
-//            }
-//            
-//            // The user hasn't finished any works, so today
-//            if todayIndex == -1 {
-//                
-//            }
+            //            var todayIndex = -1
+            //            for index in 0...self.baseData.count-1 {
+            //                let works = self.baseData[index]! as Array<Work>
+            //                if works.count > 0 {
+            //                    let workItemComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekday, fromDate: works.first!.workTime)
+            //                    if workItemComponents.year == todayComponents.year &&
+            //                        workItemComponents.month == todayComponents.month &&
+            //                        workItemComponents.day == workItemComponents.day {
+            //                        // today
+            //                        todayIndex = index
+            //                    }
+            //                }
+            //            }
+            //
+            //            // The user hasn't finished any works, so today
+            //            if todayIndex == -1 {
+            //
+            //            }
             
-//            var labelList = [Int]()
-//            while todayIndex >= 0 {
-//                
-//                labelList.insert(todayIndex, atIndex: 0)
-//                todayIndex--
-//            }
+            //            var labelList = [Int]()
+            //            while todayIndex >= 0 {
+            //
+            //                labelList.insert(todayIndex, atIndex: 0)
+            //                todayIndex--
+            //            }
             
-//            println(labelList)
+            //            println(labelList)
             
-//            for i in 0...self.getCapacity() {
-//                let tempLabel = UILabel()
-//                todayComponents.weekday += (i == 0 ? 0 : 1)
-//                println("\(todayComponents.weekday)")
-//                tempLabel.text = self.getWeekDayStringByWeekDayNumber(todayComponents.weekday)
-//                let capacity = self.getCapacity()
-//                tempLabel.frame = CGRectMake(CGFloat(((Int(((chartViewFooterView.frame.width - LABEL_WIDTH) / CGFloat(capacity))) * i))), 0, LABEL_WIDTH, LABEL_HEIGHT)
-//                tempLabel.textColor = UIColor.whiteColor()
-//                tempLabel.font = UIFont.systemFontOfSize(12)
-//                tempLabel.textAlignment = NSTextAlignment.Center
-//                chartViewFooterView.addSubview(tempLabel)
-//            }
-//            
-//            // 1. Remove the zero item from the top of the data source.
-//            while self.data.count >= 2 && (self.data[0] == 0 && self.data[1] == 0) {
-//                self.data.removeAtIndex(0)
-//                self.data.removeAtIndex(0)
-//            }
-//            
-//            while self.data.count < self.getNumberOfBarsByPhoneSize() {
-//                self.data.append(CGFloat(0))
-//            }
+            //            for i in 0...self.getCapacity() {
+            //                let tempLabel = UILabel()
+            //                todayComponents.weekday += (i == 0 ? 0 : 1)
+            //                println("\(todayComponents.weekday)")
+            //                tempLabel.text = self.getWeekDayStringByWeekDayNumber(todayComponents.weekday)
+            //                let capacity = self.getCapacity()
+            //                tempLabel.frame = CGRectMake(CGFloat(((Int(((chartViewFooterView.frame.width - LABEL_WIDTH) / CGFloat(capacity))) * i))), 0, LABEL_WIDTH, LABEL_HEIGHT)
+            //                tempLabel.textColor = UIColor.whiteColor()
+            //                tempLabel.font = UIFont.systemFontOfSize(12)
+            //                tempLabel.textAlignment = NSTextAlignment.Center
+            //                chartViewFooterView.addSubview(tempLabel)
+            //            }
+            //
+            //            // 1. Remove the zero item from the top of the data source.
+            //            while self.data.count >= 2 && (self.data[0] == 0 && self.data[1] == 0) {
+            //                self.data.removeAtIndex(0)
+            //                self.data.removeAtIndex(0)
+            //            }
+            //
+            //            while self.data.count < self.getNumberOfBarsByPhoneSize() {
+            //                self.data.append(CGFloat(0))
+            //            }
             
             
             var dates = [NSDate?]()
@@ -323,17 +323,17 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 //            if works.count == 0 {
                 //                continue
                 //            }
-//                var finishedCount = 0
-//                var stopedCount = 0
-//                for work in works {
-////                    if work.isFinished {
-////                        finishedCount++
-////                    } else {
-////                        stopedCount++
-////                    }
-//                }
-//                self.data.insert(CGFloat(finishedCount), atIndex: 0)
-//                self.data.insert(CGFloat(stopedCount), atIndex: 1)
+                //                var finishedCount = 0
+                //                var stopedCount = 0
+                //                for work in works {
+                ////                    if work.isFinished {
+                ////                        finishedCount++
+                ////                    } else {
+                ////                        stopedCount++
+                ////                    }
+                //                }
+                //                self.data.insert(CGFloat(finishedCount), atIndex: 0)
+                //                self.data.insert(CGFloat(stopedCount), atIndex: 1)
                 dates.insert(works.first?.workTime, atIndex: 0)
             }
             
@@ -362,24 +362,36 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             
             var weekDayNames = [String]()
             let todayComponents = self.getComponentsByDate(NSDate())
-            weekDayNames.append(self.getWeekDayStringByWeekDayNumber(todayComponents.weekday))
+            //            weekDayNames.append(self.getWeekDayStringByWeekDayNumber(todayComponents.weekday))
+            weekDayNames.append("Today")
             
             // if todayIndex is zero, mean that today is the first day.
             // if todayIndex is not zero, mean that today is not the first day. maybe in the middle, and maybe in the end.
             
             if todayIndex > 0 {
                 for index in 1...todayIndex {
-                    weekDayNames.insert(self.getWeekDayStringByWeekDayNumber(todayComponents.weekday-index), atIndex: 0)
+                    weekDayNames.insert(self.getWeekDayStringByWeekDayNumber(todayComponents.weekday - index), atIndex: 0)
                 }
             }
             
-            if todayIndex < dates.count-1 {
+            if todayIndex < (dates.count - 1) {
                 for index in (todayIndex + 1)...(dates.count - todayIndex - 1) {
-                    weekDayNames.append(self.getWeekDayStringByWeekDayNumber(todayComponents.weekday+index))
+                    weekDayNames.append(self.getWeekDayStringByWeekDayNumber(++todayComponents.weekday))
                 }
             }
             
             println("labels: \(weekDayNames)")
+            for i in 0...weekDayNames.count - 1 {
+                let tempLabel = UILabel()
+                tempLabel.text = weekDayNames[i]
+                let capacity = self.getCapacity()
+                tempLabel.frame = CGRectMake(CGFloat(((Int(((chartViewFooterView.frame.width - LABEL_WIDTH) / CGFloat(capacity))) * i))), 0, LABEL_WIDTH, LABEL_HEIGHT)
+                tempLabel.textColor = UIColor.whiteColor()
+                tempLabel.font = UIFont.systemFontOfSize(12)
+                tempLabel.textAlignment = NSTextAlignment.Center
+                chartViewFooterView.addSubview(tempLabel)
+            }
+            
             break
             
         case .Month:
@@ -419,12 +431,16 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             
         case 6:
             return "Fri"
-        
+            
         case 7:
             return "Sat"
             
         default:
-            return self.getWeekDayStringByWeekDayNumber(weekDay - 7)
+            if weekDay > 7 {
+                return self.getWeekDayStringByWeekDayNumber(weekDay - 7)
+            } else {
+                return self.getWeekDayStringByWeekDayNumber(weekDay + 7)
+            }
         }
     }
     
@@ -454,7 +470,17 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-
+        
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            return 300
+        }
+        if indexPath.section == 1 {
+            return 44
+        }
+        return 0
     }
     
     // MARK: - JBBarChartViewDelegate

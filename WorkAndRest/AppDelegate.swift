@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     
     func applicationWillResignActive(application: UIApplication) {
         println("applicationWillResignActive")
- 
+        
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         println("applicationWillEnterForeground")
         NSUserDefaults.standardUserDefaults().setBool(false, forKey: "kDisplayStatusLocked")
         NSUserDefaults.standardUserDefaults().synchronize()
-
+        
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
     
@@ -121,7 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             DBOperate.insertTask(self.createSampleTask())
         }
     }
-
+    
     func addNotificationWithSeconds(seconds: Int) {
         let notification = UILocalNotification()
         notification.soundName = UILocalNotificationDefaultSoundName
