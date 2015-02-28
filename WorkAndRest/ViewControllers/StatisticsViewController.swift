@@ -349,30 +349,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             }
             
             println("dates: \(firstDayOfTheWeekDates) (firstDayOfTheWeekDates)")
-            
-//            var todayIndex = -1
-//            let theFirstDateComponets = self.getComponentsByDate(dates[0])
-//            let result = NSCalendar.currentCalendar().components(NSCalendarUnit.DayCalendarUnit, fromDate: dates[0]!, toDate: NSDate(), options: NSCalendarOptions.allZeros)
-//            
-//            println("result.day: \(result.day)")
-//            
-//            todayIndex = result.day
-//            
-//            println("todayIndex: \(todayIndex)")
-            
-            // Covert the number to Week day string.
+
             var weekDayNames = [String]()
-//            weekDayNames.append("Today")
-//            
-//            // if todayIndex is zero, mean that today is the first day.
-//            // if todayIndex is not zero, mean that today is not the first day. maybe in the middle, and maybe in the end.
-//            
-//            if todayIndex > 0 {
-//                for index in 1...todayIndex {
-//                    weekDayNames.insert(self.getWeekDayStringByWeekDayNumber(todayComponents.weekday - index), atIndex: 0)
-//                }
-//            }
-            
             for date in firstDayOfTheWeekDates {
                 if date == nil {
                     weekDayNames.append("nil")
@@ -380,14 +358,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 }
                 weekDayNames.append(self.getStringByDate(date!))
             }
-            
-            
-//            
-            //            if todayIndex < (dates.count - 1) {
-            //                for index in (todayIndex + 1)...(dates.count - 1) {
-            //                    weekDayNames.append(self.getWeekDayStringByWeekDayNumber(++todayComponents.weekday))
-            //                }
-            //            }
             
             println("labels: \(weekDayNames)")
             
@@ -401,7 +371,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 tempLabel.textAlignment = NSTextAlignment.Center
                 chartViewFooterView.addSubview(tempLabel)
             }
-            
             
             break
             
