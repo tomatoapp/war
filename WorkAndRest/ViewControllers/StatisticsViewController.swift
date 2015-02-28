@@ -28,11 +28,11 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         switch WARDevice.getPhoneType() {
         case .iPhone4, .iPhone5:
-            frame = CGRectMake(0, 0, 222, 157)
+            frame = CGRectMake(0, 0, 222, 157) // 270
             break
             
         case .iPhone6, .iPhone6Plus:
-            frame = CGRectMake(0, 0, 311, 157)
+            frame = CGRectMake(0, 0, 311, 157) // 360
             break
             
         default:
@@ -326,9 +326,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 dates.removeAtIndex(0)
             }
             
-            while dates.count < self.getCapacity()+1  {
-                dates.append(nil)
-            }
+//            while dates.count < self.getCapacity()+1  {
+//                dates.append(nil)
+//            }
             println("dates: \(dates)")
             
             // If the dates[0] is nil, mean that all the list is nil.
@@ -350,14 +350,80 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             
             println("dates: \(firstDayOfTheWeekDates) (firstDayOfTheWeekDates)")
 
+            
+            
+            
+            
+            
+            var todayIndex = -1
+            let theFirstDateComponets = self.getComponentsByDate(firstDayOfTheWeekDates[0])
+            let result = NSCalendar.currentCalendar().components(NSCalendarUnit.DayCalendarUnit, fromDate: dates[0]!, toDate: NSDate(), options: NSCalendarOptions.allZeros)
+            
+            
+            println("result.day: \(result.day)")
+            let f = CGFloat(result.day) / 7.0
+            let up = ceil(f)
+            todayIndex = Int(up)
+            
+            println("todayIndex: \(todayIndex)")
+            
+            // Covert the number to Week day string.
             var weekDayNames = [String]()
-            for date in firstDayOfTheWeekDates {
-                if date == nil {
-                    weekDayNames.append("nil")
-                    continue
+            let components = self.getComponentsByDate(NSDate())
+            components.day = components.day - components.weekday + 1
+            
+            weekDayNames.append(self.getStringByDate(NSCalendar.currentCalendar().dateFromComponents(components)))
+
+            if todayIndex > 0 {
+                for index in 0...todayIndex-1 {
+//                    weekDayNames.insert(self.getWeekDayStringByWeekDayNumber(todayComponents.weekday - index), atIndex: 0)
+                    let tempDate = firstDayOfTheWeekDates[index]
+                    if tempDate != nil {
+                        weekDayNames.insert(self.getStringByDate(tempDate), atIndex: weekDayNames.count-1)
+                    }
                 }
-                weekDayNames.append(self.getStringByDate(date!))
             }
+//            
+//            
+//            
+//            
+//            var currentWeekIndex = -1
+//            for index in 0...(firstDayOfTheWeekDates.count - 1) {
+//                let date = firstDayOfTheWeekDates[index]
+//                if date == nil {
+//                    continue
+//                }
+//                
+//                let components = self.getComponentsByDate(date)
+//                if components.year == todayComponents.year && components.month == todayComponents.month && components.weekOfMonth == components.weekOfMonth {
+//                    // same week
+//                    currentWeekIndex = index
+//                    break
+//                }
+//            }
+//            if currentWeekIndex == -1 {
+//                // Can not find the result.
+//            }
+//            
+//
+//            var currentWeekIndex1 = -1
+//            let theFirstDateComponets1 = self.getComponentsByDate(dates[0])
+////            if theFirstDateComponets1.year == todayComponents.year && theFirstDateComponets1.month == todayComponents.month && theFirstDateComponets1.weekOfMonth == todayComponents.weekOfMonth {
+////                
+////            }
+//            
+//            
+//            
+            
+            
+//            var weekDayNames = [String]()
+//            for date in firstDayOfTheWeekDates {
+//                if date == nil {
+//                    weekDayNames.append("nil")
+//                    continue
+//                }
+//                weekDayNames.append(self.getStringByDate(date!))
+//            }
             
             println("labels: \(weekDayNames)")
             
@@ -365,7 +431,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 let tempLabel = UILabel()
                 tempLabel.text = weekDayNames[i]
                 let capacity = self.getCapacity()
-                tempLabel.frame = CGRectMake(CGFloat(((Int(((chartViewFooterView.frame.width - LABEL_WIDTH) / CGFloat(capacity))) * i))), 0, LABEL_WIDTH, LABEL_HEIGHT)
+                tempLabel.frame = CGRectMake(CGFloat(((Int(((chartViewFooterView.frame.width - LABEL_WIDTH+20) / CGFloat(capacity))) * i))), 0, LABEL_WIDTH+20, LABEL_HEIGHT)
+                
                 tempLabel.textColor = UIColor.whiteColor()
                 tempLabel.font = UIFont.systemFontOfSize(12)
                 tempLabel.textAlignment = NSTextAlignment.Center
@@ -470,9 +537,21 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     func getStringByDate(date: NSDate!) -> String {
-        let components = self.getComponentsByDate(date)
-        let monthStr = self.getMonthStringByMonthNumber(components.month)
-        return "\(monthStr) \(components.day)"
+        var result = ""
+        let startComponents = self.getComponentsByDate(date)
+        let startMonthStr = self.getMonthStringByMonthNumber(startComponents.month)
+        
+        var copy: NSDateComponents = startComponents.copy() as NSDateComponents
+        copy.day += 6
+        let endDate = NSCalendar.currentCalendar().dateFromComponents(copy)
+        let endDateComponents = self.getComponentsByDate(endDate)
+        let endMonthStr = self.getMonthStringByMonthNumber(endDateComponents.month)
+        
+        if startMonthStr == endMonthStr {
+            return "\(startMonthStr) \(startComponents.day)-\(endDateComponents.day)"
+        } else {
+            return "\(startMonthStr) \(startComponents.day)-\(endMonthStr) \(endDateComponents.day)"
+        }
     }
     
     func addPercentageLabelToTheChartView() {
