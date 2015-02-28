@@ -288,8 +288,16 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             // if todayIndex is not zero, mean that today is not the first day. maybe in the middle, and maybe in the end.
             
             if todayIndex > 0 {
-                for index in 1...todayIndex {
-                    weekDayNames.insert(self.getWeekDayStringByWeekDayNumber(todayComponents.weekday - index), atIndex: 0)
+//                for index in 1...todayIndex {
+//                    weekDayNames.insert(self.getWeekDayStringByWeekDayNumber(todayComponents.weekday - index), atIndex: 0)
+//                }
+                for index in 0...todayIndex-1 {
+                    //                    weekDayNames.insert(self.getWeekDayStringByWeekDayNumber(todayComponents.weekday - index), atIndex: 0)
+                    let tempDate = dates[index]
+                    if tempDate != nil {
+                        let components = self.getComponentsByDate(tempDate)
+                        weekDayNames.insert(self.self.getWeekDayStringByWeekDayNumber(components.weekday), atIndex: weekDayNames.count-1)
+                    }
                 }
             }
             
