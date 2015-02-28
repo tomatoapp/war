@@ -249,7 +249,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         let LABEL_HEIGHT: CGFloat = 25
         self.chartViewFooterView = UIView(frame: CGRectMake(0, 0, self.chartView.frame.width, LABEL_HEIGHT))
         
-        let todayComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekday, fromDate: NSDate())
+        let todayComponents = self.getComponentsByDate(NSDate())
         switch type {
         case .Week:
             //            for i in 0...self.getCapacity() {
@@ -346,22 +346,39 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             }
             println("datas: \(dates)")
             
-            // Find today
-            var todayIndex = 0
-            for index in 0...dates.count-1 {
-                let date = dates[index]
-                if date == nil {
-                    continue
-                }
-                if self.isSameDay(NSDate(), date2: date) { // today
-                    todayIndex = index
-                }
+            // If the dates[0] is nil, mean that all the list is nil.
+            if dates[0] == nil {
+                dates[0] = NSDate()
             }
+            // Find today
+//            var todayIndex = 0
+//            for index in 0...dates.count-1 {
+//                let date = dates[index]
+//                if date == nil {
+//                    continue
+//                }
+//                if self.isSameDay(NSDate(), date2: date) { // today
+//                    todayIndex = index
+//                }
+//            }
             
+            var todayIndex = -1
+            let theFirstDateComponets = self.getComponentsByDate(dates[0])
+//            if self.isSameDay(theFirstDateComponets, components2: todayComponents) {
+//                todayIndex = 0
+//            } else if NSDate().compare(dates[0]!) == NSComparisonResult.OrderedAscending {
+//                
+//            }
+            let result = NSCalendar.currentCalendar().components(NSCalendarUnit.DayCalendarUnit, fromDate: dates[0]!, toDate: NSDate(), options: NSCalendarOptions.allZeros)
+            
+            println("result.day: \(result.day)")
+            
+            todayIndex = result.day
+            
+            println("todayIndex: \(todayIndex)")
             // Covert the number to Week day string.
             
             var weekDayNames = [String]()
-            let todayComponents = self.getComponentsByDate(NSDate())
             //            weekDayNames.append(self.getWeekDayStringByWeekDayNumber(todayComponents.weekday))
             weekDayNames.append("Today")
             
@@ -375,7 +392,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             }
             
             if todayIndex < (dates.count - 1) {
-                for index in (todayIndex + 1)...(dates.count - todayIndex - 1) {
+                for index in (todayIndex + 1)...(dates.count - 1) {
                     weekDayNames.append(self.getWeekDayStringByWeekDayNumber(++todayComponents.weekday))
                 }
             }
