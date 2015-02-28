@@ -53,7 +53,7 @@ import UIKit
         }
         let success = dataBase.executeUpdate(sql, withArgumentsInArray: nil)
         if success {
-            println("Create the task table success.")
+//            println("Create the task table success.")
         }
         dataBase.close()
     }
@@ -64,9 +64,9 @@ import UIKit
         }
         let success = dataBase.executeUpdate("INSERT INTO t_tasks(title, minutes, completed, expect_times, finished_times, break_times) VALUES (:title, :minutes, :completed, :expect_times, :finished_times, :break_times)", withArgumentsInArray: [task.title, task.minutes, task.completed, task.expect_times, task.finished_times, task.break_times])
         if success {
-            println("insert to task table success.")
+//            println("insert to task table success.")
         } else {
-            println("insert to task table failed!")
+//            println("insert to task table failed!")
         }
         let lastRowId = Int(dataBase.lastInsertRowId())
         println("lastRowId: \(lastRowId)")
@@ -112,9 +112,9 @@ import UIKit
         // lastUpdateTime = ? -> lastUpdateTime = datetime('now')
         let success = dataBase.executeUpdate("UPDATE t_tasks SET title = ?, lastUpdateTime = ?, minutes = ?, completed = ?, finished_times = ?, break_times = ? WHERE task_id = ?", withArgumentsInArray: [task.title, task.lastUpdateTime, task.minutes, task.completed, task.finished_times, task.break_times, task.taskId])
         if success {
-            println("update task table success.")
+//            println("update task table success.")
         } else {
-            println("update task table failed!")
+//            println("update task table failed!")
         }
         dataBase.close()
         return success
@@ -125,9 +125,9 @@ import UIKit
         }
         let success = dataBase.executeUpdate("DELETE FROM t_tasks WHERE task_id = ?", withArgumentsInArray: [task.taskId])
         if success {
-            println("delete from task success.")
+//            println("delete from task success.")
         } else {
-            println("delete from task failed!")
+//            println("delete from task failed!")
         }
         dataBase.close()
         return success
@@ -176,7 +176,7 @@ import UIKit
         }
         let success = dataBase.executeUpdate(sql, withArgumentsInArray: nil)
         if success {
-            println("Create the work table success.")
+//            println("Create the work table success.")
         }
         dataBase.close()
     }
@@ -186,9 +186,9 @@ import UIKit
         }
         let success = dataBase.executeUpdate("INSERT INTO t_works(task_id, is_finished, work_time) VALUES (:task_id, :is_finished, :work_time)", withArgumentsInArray: [work.taskId, work.isFinished, work.workTime])
         if success {
-            println("insert to work table success.")
+//            println("insert to work table success.")
         } else {
-            println("inert to work table failed!")
+//            println("inert to work table failed!")
         }
         dataBase.close()
     }
@@ -221,7 +221,7 @@ import UIKit
             workArray.append(workTemp)
         }
         dataBase.close()
-        println("load work list count: \(workArray.count)")
+//        println("load work list count: \(workArray.count)")
         return workArray
     }
 
