@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             CFNotificationSuspensionBehavior.DeliverImmediately)
         
 //        println("\(UIDevice.currentDevice().modelName)" + ":" + "\(WARDevice.getPhoneType().description())")
+        NSThread.sleepForTimeInterval(1.0)
         return true
     }
     
