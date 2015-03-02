@@ -18,8 +18,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     var chatType =  TimeSpanType.Month
     var chartView: JBBarChartView!
     var chartViewFooterView: UIView!
+    var chartViewHeaderView: UIView!
     var data = [CGFloat]()
     var baseData: [Int: Array<Work>] = [:]
+    var currentIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,8 +115,12 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             break
         }
         self.loadDataSourceByType(type)
+        
         self.removeFooterViewFromTheStatisticsView()
         self.addFooterViewToTheStatisticsView(type)
+        
+        self.removeHeaderViewFromTheStatisticsView()
+        self.addHeaderViewToTheStatisticsView()
     }
     
     func loadDataSourceByType(type: TimeSpanType) {
@@ -239,6 +245,13 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             self.chartViewFooterView.removeFromSuperview()
         }
     }
+
+    func removeHeaderViewFromTheStatisticsView() {
+        if self.chartViewHeaderView != nil && self.chartViewHeaderView.superview != nil {
+            self.chartViewHeaderView.removeFromSuperview()
+        }
+    }
+
     
     func addFooterViewToTheStatisticsView(type: TimeSpanType) {
         let LABEL_WIDTH: CGFloat = 40
@@ -268,7 +281,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         if dates[0] == nil {
             dates[0] = NSDate()
         }
-        var currentIndex = -1
+//        currentIndex = -1
         switch type {
         case .Week:
             currentIndex = self.daysBetweenDateFromDate(dates[0]!, toDate: NSDate())
@@ -356,7 +369,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             }
             break
         }
-        
         println("weekDayNames - labels: \(weekDayNames)")
         for index in 0...weekDayNames.count - 1 {
             let tempLabel = UILabel()
@@ -538,6 +550,77 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         let difference = calendar.components(NSCalendarUnit.MonthCalendarUnit, fromDate: fromDate!, toDate: toDate!, options: nil)
         return difference.month
+    }
+    
+    func addHeaderViewToTheStatisticsView() {
+        let VIEW_HEIGHT: CGFloat = 157
+        let LABEL_WIDTH: CGFloat = 40
+        let LABEL_HEIGHT: CGFloat = 25
+        
+        self.chartViewHeaderView = UIView(frame: CGRectMake(0, 0, self.chartView.frame.width + 50, VIEW_HEIGHT))
+        self.chartViewHeaderView.backgroundColor = UIColor.redColor()
+        var weekDayNames = [String]()
+        for index in 0...self.getCapacity() - 1 {
+            let finishedValue = self.data[2 * index]
+            let breakedValue = self.data[2 * index + 1]
+            if finishedValue + breakedValue == 0 {
+                if index == currentIndex {
+                    weekDayNames.append("0%")
+                } else {
+                    weekDayNames.append("-")
+                }
+            } else if finishedValue == 0 {
+                weekDayNames.append("0%")
+            } else {
+                let percentage = finishedValue / (finishedValue + breakedValue)
+                let str = "\(Int(percentage * 100))%"
+                weekDayNames.append(str)
+            }
+        }
+        
+        if weekDayNames.count <= 0 {
+            weekDayNames.append("0%")
+        }
+        
+        while weekDayNames.count > 0 && weekDayNames[weekDayNames.count - 1] == "-" {
+            weekDayNames.removeAtIndex(weekDayNames.count - 1)
+        }
+        
+        if weekDayNames.count <= 0 {
+            return
+        }
+        
+        for index in 0...weekDayNames.count - 1 {
+            let tempLabel = UILabel()
+            tempLabel.text = weekDayNames[index]
+            let capacity = self.getCapacity()
+            let itemWidth: CGFloat = chartViewHeaderView.frame.width / CGFloat(capacity)
+            
+            var y = VIEW_HEIGHT - LABEL_HEIGHT
+            let finishedValue = self.data[2 * index]
+            let breakedValue = self.data[2 * index + 1]
+            let value = max(finishedValue, breakedValue)
+            if value > 0 {
+                let maximumValue = self.chartView.maximumValue
+                let result = value / maximumValue
+                y -= result * 157
+            }
+            
+            tempLabel.frame = CGRectMake(itemWidth * CGFloat(index), y, itemWidth, LABEL_HEIGHT)
+            tempLabel.textColor = UIColor.whiteColor()
+            tempLabel.font = UIFont.systemFontOfSize(12)
+            tempLabel.textAlignment = NSTextAlignment.Center
+            chartViewHeaderView.addSubview(tempLabel)
+        }
+        
+        self.statisticsView.insertSubview(self.chartViewHeaderView, belowSubview: self.chartView)
+        chartViewHeaderView.mas_makeConstraints { (make) -> Void in
+            make.centerX.equalTo()(self.statisticsView.mas_centerX)
+            make.top.equalTo()(self.statisticsView.mas_top).offset()
+            make.width.equalTo()(self.chartView.frame.width+50)
+            make.height.equalTo()(VIEW_HEIGHT)
+            return ()
+        }
     }
     
     // MARK: - UITableViewDelegate
