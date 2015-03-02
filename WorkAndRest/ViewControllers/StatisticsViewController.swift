@@ -474,11 +474,11 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             let capacity = self.getCapacity()
             let itemWidth: CGFloat = chartViewFooterView.frame.width / CGFloat(capacity)
             tempLabel.frame = CGRectMake(itemWidth * CGFloat(index), 0, itemWidth, LABEL_HEIGHT)
-            tempLabel.backgroundColor = UIColor.redColor()
+//            tempLabel.backgroundColor = UIColor.redColor()
             if index == currentIndex {
-                tempLabel.textColor = UIColor.greenColor()
+                tempLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
             } else {
-                tempLabel.textColor = UIColor.whiteColor()
+                tempLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.6)
             }
             tempLabel.font = UIFont.systemFontOfSize(12)
             tempLabel.textAlignment = NSTextAlignment.Center
