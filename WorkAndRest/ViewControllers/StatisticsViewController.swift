@@ -558,7 +558,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         let LABEL_HEIGHT: CGFloat = 25
         
         self.chartViewHeaderView = UIView(frame: CGRectMake(0, 0, self.chartView.frame.width + 50, VIEW_HEIGHT))
-        self.chartViewHeaderView.backgroundColor = UIColor.redColor()
+//        self.chartViewHeaderView.backgroundColor = UIColor.redColor()
         var weekDayNames = [String]()
         for index in 0...self.getCapacity() - 1 {
             let finishedValue = self.data[2 * index]
