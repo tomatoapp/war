@@ -313,12 +313,22 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             components.day = components.day - components.weekday + 1
             
             weekDayNames.append(self.getWeekStringByDate(NSCalendar.currentCalendar().dateFromComponents(components)))
-
+            var preUnNilDate: NSDate!
             if currentIndex > 0 {
                 for index in 0...currentIndex-1 {
-                    let tempDate = firstDayOfTheWeekDates[index]
+                    var tempDate = firstDayOfTheWeekDates[index]
                     if tempDate != nil {
+                        preUnNilDate = tempDate
                         weekDayNames.insert(self.getWeekStringByDate(tempDate), atIndex: weekDayNames.count-1)
+                    } else {
+                        // If the tempDate is nil, this mean that the firstDayOfTheWeekDates has empty item.
+                        let preTempDateComponents = self.getComponentsByDate(preUnNilDate)
+                        preTempDateComponents.day += 7 // Move to next week.
+                        let lastWeek = NSCalendar.currentCalendar().dateFromComponents(preTempDateComponents)
+                        let lastWeekComponents = self.getComponentsByDate(lastWeek)
+                        lastWeekComponents.day = lastWeekComponents.day - lastWeekComponents.weekday + 1
+                        let theFirstDayOfLaskWeek = NSCalendar.currentCalendar().dateFromComponents(lastWeekComponents)
+                        weekDayNames.insert(self.getWeekStringByDate(theFirstDayOfLaskWeek), atIndex: weekDayNames.count-1)
                     }
                 }
             }
