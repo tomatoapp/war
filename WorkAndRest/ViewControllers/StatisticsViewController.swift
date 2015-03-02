@@ -22,7 +22,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     var data = [CGFloat]()
     var baseData: [Int: Array<Work>] = [:]
     var currentIndex = -1
-    
+    var isShowPercentage = true
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,6 +85,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     @IBAction func showPercentageSwitchValueChanged(sender: AnyObject) {
+        self.isShowPercentage = (sender as UISwitch).on
+        self.chartViewHeaderView.hidden = !isShowPercentage
     }
     
     @IBAction func segmentControlValueChanged(sender: AnyObject) {
@@ -121,6 +123,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         self.removeHeaderViewFromTheStatisticsView()
         self.addHeaderViewToTheStatisticsView()
+        self.chartViewHeaderView.hidden = !self.isShowPercentage
     }
     
     func loadDataSourceByType(type: TimeSpanType) {
