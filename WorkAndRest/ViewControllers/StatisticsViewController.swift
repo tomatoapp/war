@@ -304,14 +304,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 firstDayOfTheWeekDates.append(NSCalendar.currentCalendar().dateFromComponents(components))
             }
             println("dates: \(firstDayOfTheWeekDates) (firstDayOfTheWeekDates)")
-
-            let theFirstDateComponets = self.getComponentsByDate(firstDayOfTheWeekDates[0])
-            let result = NSCalendar.currentCalendar().components(NSCalendarUnit.WeekCalendarUnit | NSCalendarUnit.WeekdayOrdinalCalendarUnit, fromDate: dates[0]!, toDate: NSDate(), options: NSCalendarOptions.allZeros)
-            println("result.weekdayOrdinal: \(result.weekdayOrdinal)")
             
-            let theFristMonthComponts = self.getComponentsByDate(dates[0])
-            println("\(theFristMonthComponts.weekOfYear) - \(todayComponents.weekOfYear)")
-            currentIndex = abs(theFristMonthComponts.weekOfYear -  todayComponents.weekOfYear)
+            currentIndex = abs(self.weeksBetweenDateFromDate(firstDayOfTheWeekDates[0]!, toDate: NSDate()))
             println("todayIndex: \(currentIndex)")
             
             // Covert the number to Week day string.
@@ -332,12 +326,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             
         case .Year:
             
-            let result = NSCalendar.currentCalendar().components(NSCalendarUnit.MonthCalendarUnit, fromDate: dates[0]!, toDate: NSDate(), options: NSCalendarOptions.allZeros)
-            println("result.month: \(result.month)")
-            
-            let theFristMonthComponts = self.getComponentsByDate(dates[0])
-            currentIndex = abs(theFristMonthComponts.month -  todayComponents.month)
-            
+            currentIndex = abs(self.monthsBetweenDateFromDate(dates[0]!, toDate: NSDate()))
             println("todayIndex: \(currentIndex)")
 
             // Covert the number to Week day string.
@@ -513,7 +502,33 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         return difference.day
     }
 
+    func weeksBetweenDateFromDate(date1: NSDate, toDate date2: NSDate) -> Int {
+        var fromDate: NSDate?
+        var toDate: NSDate?
+        var duration: NSTimeInterval = 0
+        
+        let calendar = NSCalendar.currentCalendar()
+        
+        calendar.rangeOfUnit(NSCalendarUnit.WeekOfYearCalendarUnit, startDate: &fromDate, interval: &duration, forDate: date1)
+        calendar.rangeOfUnit(NSCalendarUnit.WeekOfYearCalendarUnit, startDate: &toDate, interval: &duration, forDate: date2)
+        
+        let difference = calendar.components(NSCalendarUnit.WeekOfYearCalendarUnit, fromDate: fromDate!, toDate: toDate!, options: nil)
+        return difference.weekOfYear
+    }
     
+    func monthsBetweenDateFromDate(date1: NSDate, toDate date2: NSDate) -> Int {
+        var fromDate: NSDate?
+        var toDate: NSDate?
+        var duration: NSTimeInterval = 0
+        
+        let calendar = NSCalendar.currentCalendar()
+        
+        calendar.rangeOfUnit(NSCalendarUnit.MonthCalendarUnit, startDate: &fromDate, interval: &duration, forDate: date1)
+        calendar.rangeOfUnit(NSCalendarUnit.MonthCalendarUnit, startDate: &toDate, interval: &duration, forDate: date2)
+        
+        let difference = calendar.components(NSCalendarUnit.MonthCalendarUnit, fromDate: fromDate!, toDate: toDate!, options: nil)
+        return difference.month
+    }
     
     // MARK: - UITableViewDelegate
     
