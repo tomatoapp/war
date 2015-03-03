@@ -24,7 +24,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     var baseData: [Int: Array<Work>] = [:]
     var currentIndex = -1
     var tooltipVisible = false
-    var chartViewHeaderViewVisible = true
+    var isChartViewHeaderViewVisible = true
     
     var tooltip: UILabel!
     
@@ -64,6 +64,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     func setStateToExpanded() {
         self.chartView.reloadData()
         self.chartView.setState(.Expanded, animated: true)
+        self.setChartViewHeaderViewVisible(true, withAmination: true)
     }
     
     func setStateToCollapsed() {
@@ -90,8 +91,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     @IBAction func showPercentageSwitchValueChanged(sender: AnyObject) {
-        self.chartViewHeaderViewVisible = (sender as UISwitch).on
-        self.setChartViewHeaderViewVisible(self.chartViewHeaderViewVisible)
+        self.isChartViewHeaderViewVisible = (sender as UISwitch).on
+        self.setChartViewHeaderViewVisible(self.isChartViewHeaderViewVisible, withAmination: true)
     }
     
     @IBAction func segmentControlValueChanged(sender: AnyObject) {
@@ -128,13 +129,38 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         self.removeHeaderViewFromTheStatisticsView()
         self.addHeaderViewToTheStatisticsView()
-        
-        self.setChartViewHeaderViewVisible(true)
     }
     
-    func setChartViewHeaderViewVisible(visible: Bool) {
-        self.chartViewHeaderView.hidden = !visible
+    func setChartViewHeaderViewVisible(visible: Bool, withAmination animation: Bool) {
+        if self.chartViewHeaderView == nil {
+            return
+        }
+        
+        if !self.isChartViewHeaderViewVisible {
+            return
+        }
+        
+        let setVisible: () -> Void = {
+            self.chartViewHeaderView.alpha = visible ? 1.0 : 0.0
+        }
+        
+        if animation {
+            UIView.animateWithDuration(0.3,
+                animations: { () -> Void in
+                    setVisible()
+                }, completion: nil)
+        } else {
+            setVisible()
+        }
     }
+    
+    func setCommentsViewVisible(visible: Bool) {
+        UIView.animateWithDuration(0.3,
+            animations: { () -> Void in
+                self.commentsView.alpha = visible ? 1.0 : 0.0
+            }, completion: nil)
+    }
+    
     func loadDataSourceByType(type: TimeSpanType) {
         
         let allTasks = WorkManager.sharedInstance.selectWorksByTimeType(type)
@@ -171,6 +197,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         }
         self.setChatViewMaximumValue(maxElement(self.data))
         self.setStateToCollapsed()
+
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("setStateToExpanded"), userInfo: nil, repeats: false)
     }
     
@@ -625,6 +652,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             chartViewHeaderView.addSubview(tempLabel)
         }
         
+        self.setChartViewHeaderViewVisible(false, withAmination: false)
+        
         self.statisticsView.insertSubview(self.chartViewHeaderView, belowSubview: self.chartView)
         chartViewHeaderView.mas_makeConstraints { (make) -> Void in
             make.centerX.equalTo()(self.statisticsView.mas_centerX)
@@ -702,18 +731,16 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     func barChartView(barChartView: JBBarChartView!, didSelectBarAtIndex index: UInt) {
-        self.commentsView.alpha = 0.0
+        self.setCommentsViewVisible(false)
         self.setTooltipVisible(true, animated: true, atIndex: Int(index))
-        self.setChartViewHeaderViewVisible(false)
+        self.setChartViewHeaderViewVisible(false, withAmination: true)
         self.setTooltipValue(self.data[Int(index)])
     }
     
     func didDeselectBarChartView(barChartView: JBBarChartView!) {
-        self.commentsView.alpha = 1.0
+        self.setCommentsViewVisible(true)
+        self.setChartViewHeaderViewVisible(true, withAmination: true)
         self.tooltip.alpha = 0.0
-        if self.chartViewHeaderViewVisible {
-            self.setChartViewHeaderViewVisible(true)
-        }
     }
     
     func setTooltipValue(value: CGFloat) {
@@ -749,7 +776,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         if animated {
             adjustTooltipPosition()
-            UIView.animateWithDuration(0.25, animations: { () -> Void in
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
                 adjustTooltipVisibility()
             }, completion: { (finished) -> Void in
             })
