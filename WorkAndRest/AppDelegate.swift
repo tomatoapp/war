@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         
         imageView.alpha = 1.0
         UIView.animateWithDuration(0.8,
-            delay: 0.1,
+            delay: 0.4,
             options: UIViewAnimationOptions.CurveEaseOut,
             animations: { () -> Void in
                 imageView.alpha = 0.0
