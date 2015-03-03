@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         self.window?.rootViewController?.view.bringSubviewToFront(imageView)
         
         imageView.alpha = 1.0
-        UIView.animateWithDuration(0.8,
+        UIView.animateWithDuration(0.71,
             delay: 0.25,
             options: UIViewAnimationOptions.CurveEaseOut,
             animations: { () -> Void in
