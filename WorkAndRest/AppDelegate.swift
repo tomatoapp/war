@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-//        println(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String)
+        //        println(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String)
         DBOperate.db_init()
         self.firstRun()
         self.initRater()
@@ -33,30 +33,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             nil,
             CFNotificationSuspensionBehavior.DeliverImmediately)
         
-//        println("\(UIDevice.currentDevice().modelName)" + ":" + "\(WARDevice.getPhoneType().description())")
-        NSThread.sleepForTimeInterval(1.0)
+        self.hideIconWithAnimation()
+        
         return true
     }
+    
+    func hideIconWithAnimation() {
+        let imageView = UIImageView(image: UIImage(named: "launch page icon"))
+        imageView.frame = CGRectMake(85, 148, 151, 142)
+        
+        self.window?.rootViewController?.view.addSubview(imageView)
+        self.window?.rootViewController?.view.bringSubviewToFront(imageView)
+        imageView.alpha = 1.0
+        UIView.animateWithDuration(0.71,
+            delay: 0.1,
+            options: UIViewAnimationOptions.CurveEaseOut,
+            animations: { () -> Void in
+                imageView.alpha = 0.0
+                imageView.transform = CGAffineTransformMakeScale(1.5, 1.5)
+                imageView.center = CGPointMake(imageView.center.x, imageView.center.y + 35)
+                
+            }) { (finished) -> Void in
+                imageView.removeFromSuperview()
+        }
+    }
+    
     
     // MARK: - Application Status
     
     func applicationWillResignActive(application: UIApplication) {
-//        println("applicationWillResignActive")
+        //        println("applicationWillResignActive")
         
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
-//        println("applicationDidEnterBackground")
+        //        println("applicationDidEnterBackground")
         
         let state = UIApplication.sharedApplication().applicationState
         switch state {
         case UIApplicationState.Active:
-//            println("Active")
+            //            println("Active")
             break
             
         case UIApplicationState.Background:
             if NSUserDefaults.standardUserDefaults().boolForKey("kDisplayStatusLocked") {
-//                println("Sent to background by locking screen")
+                //                println("Sent to background by locking screen")
                 if TaskRunner.sharedInstance.isRunning {
                     self.addNotificationWithSeconds(TaskRunner.sharedInstance.seconds)
                     TaskRunnerManager.sharedInstance.freezeTaskManager(TaskRunner.sharedInstance)
@@ -64,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_ISWORKING)
                 NSUserDefaults.standardUserDefaults().synchronize()
             } else {
-//                println("Sent to background by home button/switching to other app")
+                //                println("Sent to background by home button/switching to other app")
                 if TaskRunner.sharedInstance.isRunning {
                     TaskRunner.sharedInstance.stop()
                     self.showBreakNotification()
@@ -82,7 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
-//        println("applicationWillEnterForeground")
+        //        println("applicationWillEnterForeground")
         NSUserDefaults.standardUserDefaults().setBool(false, forKey: "kDisplayStatusLocked")
         NSUserDefaults.standardUserDefaults().synchronize()
         
@@ -90,13 +111,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
-//        println("applicationDidBecomeActive")
+        //        println("applicationDidBecomeActive")
         
         if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_ISWORKING) {
             UIApplication.sharedApplication().cancelAllLocalNotifications()
-//            println("cancelAllLocalNotifications")
+            //            println("cancelAllLocalNotifications")
             
-//            println("isWorking! become active")
+            //            println("isWorking! become active")
             TaskRunnerManager.sharedInstance.activeFrozenTaskManager()
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_ISWORKING)
             NSUserDefaults.standardUserDefaults().synchronize()
@@ -104,7 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     }
     
     func applicationWillTerminate(application: UIApplication) {
-//        println("applicationWillTerminate")
+        //        println("applicationWillTerminate")
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         UIApplication.sharedApplication().cancelAllLocalNotifications()
     }
@@ -165,11 +186,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         return sampleTask
     }
 }
-
-
-
-
-
-
-
-
