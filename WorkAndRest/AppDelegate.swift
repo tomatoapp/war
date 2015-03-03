@@ -40,12 +40,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     
     func hideIconWithAnimation() {
         let imageView = UIImageView(image: UIImage(named: "launch page icon"))
-        imageView.frame = CGRectMake(85, 148, 151, 142)
+        imageView.frame = CGRectMake((self.window!.frame.width-151)/2, 148, 151, 142)
         
         self.window?.rootViewController?.view.addSubview(imageView)
         self.window?.rootViewController?.view.bringSubviewToFront(imageView)
+        
         imageView.alpha = 1.0
-        UIView.animateWithDuration(0.71,
+        UIView.animateWithDuration(0.8,
             delay: 0.1,
             options: UIViewAnimationOptions.CurveEaseOut,
             animations: { () -> Void in
@@ -137,7 +138,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.k_HASRAN_BEFORE) {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.k_HASRAN_BEFORE)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SECOND_SOUND)
-            //NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_KEEP_LIGHT)
             NSUserDefaults.standardUserDefaults().setInteger(GlobalConstants.DEFAULT_MINUTES, forKey: GlobalConstants.k_SECONDS)
             NSUserDefaults.standardUserDefaults().synchronize()
             DBOperate.insertTask(self.createSampleTask())
