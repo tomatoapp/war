@@ -14,7 +14,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     @IBOutlet var showPercentageSwitch: UISwitch!
     @IBOutlet var statisticsView: UIView!
     @IBOutlet var segmentedControl: UISegmentedControl!
-    
+    @IBOutlet var commentsView: UIView!
+
     var chatType =  TimeSpanType.Month
     var chartView: JBBarChartView!
     var chartViewFooterView: UIView!
@@ -22,7 +23,11 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     var data = [CGFloat]()
     var baseData: [Int: Array<Work>] = [:]
     var currentIndex = -1
-    var isShowPercentage = true
+    var tooltipVisible = false
+    var chartViewHeaderViewVisible = true
+    
+    var tooltip: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,8 +90,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     @IBAction func showPercentageSwitchValueChanged(sender: AnyObject) {
-        self.isShowPercentage = (sender as UISwitch).on
-        self.chartViewHeaderView.hidden = !isShowPercentage
+        self.chartViewHeaderViewVisible = (sender as UISwitch).on
+        self.setChartViewHeaderViewVisible(self.chartViewHeaderViewVisible)
     }
     
     @IBAction func segmentControlValueChanged(sender: AnyObject) {
@@ -123,9 +128,13 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         self.removeHeaderViewFromTheStatisticsView()
         self.addHeaderViewToTheStatisticsView()
-        self.chartViewHeaderView.hidden = !self.isShowPercentage
+        
+        self.setChartViewHeaderViewVisible(true)
     }
     
+    func setChartViewHeaderViewVisible(visible: Bool) {
+        self.chartViewHeaderView.hidden = !visible
+    }
     func loadDataSourceByType(type: TimeSpanType) {
         
         let allTasks = WorkManager.sharedInstance.selectWorksByTimeType(type)
@@ -691,4 +700,91 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     func itemsCountInOneGroup() -> Int32 {
         return 2
     }
+    
+    func barChartView(barChartView: JBBarChartView!, didSelectBarAtIndex index: UInt) {
+        self.commentsView.alpha = 0.0
+        self.setTooltipVisible(true, animated: true, atIndex: Int(index))
+        self.setChartViewHeaderViewVisible(false)
+        self.setTooltipValue(self.data[Int(index)])
+    }
+    
+    func didDeselectBarChartView(barChartView: JBBarChartView!) {
+        self.commentsView.alpha = 1.0
+        self.tooltip.alpha = 0.0
+        if self.chartViewHeaderViewVisible {
+            self.setChartViewHeaderViewVisible(true)
+        }
+    }
+    
+    func setTooltipValue(value: CGFloat) {
+        self.tooltip.text = "\(Int(value))"
+    }
+    
+    func setTooltipVisible(visible: Bool, animated:Bool, atIndex index: Int) {
+        if self.tooltip == nil {
+//            self.tooltip = UIView(frame: CGRectMake(0, 0, 16, 8))
+            self.tooltip = UILabel(frame: CGRectMake(0, 0, 30, 10))
+//            self.tooltip.backgroundColor = UIColor.redColor()
+            self.tooltip.font = UIFont.systemFontOfSize(12)
+            self.tooltip.textColor = UIColor.whiteColor()
+            self.tooltip.textAlignment = NSTextAlignment.Center
+            
+            self.statisticsView.addSubview(self.tooltip)
+        }
+        
+        let adjustTooltipPosition:() -> Void = {
+            let spaceWidth = (self.getCapacity() - 1) * 50 + self.getCapacity() * 10
+            let itemWidth = (self.chartView.frame.size.width - CGFloat(spaceWidth)) / CGFloat(self.getCapacity() * 2)
+
+            let itemSpace = ceil(CGFloat(index) / 2) * 10
+            let groupSpace = CGFloat(index / 2) * 50
+            let itemsWidth = CGFloat(index) * itemWidth
+            var x: CGFloat = (self.statisticsView.frame.size.width - self.chartView.frame.size.width) / 2 + itemSpace + groupSpace + itemsWidth
+            self.tooltip.frame = CGRectMake(CGFloat(x - (self.tooltip.frame.size.width - itemWidth) / 2), 20, self.tooltip.frame.size.width, self.tooltip.frame.size.height)
+        }
+        
+        let adjustTooltipVisibility:() -> Void = {
+            self.tooltip.alpha = visible ? 1.0 : 0.0
+        }
+        
+        if animated {
+            adjustTooltipPosition()
+            UIView.animateWithDuration(0.25, animations: { () -> Void in
+                adjustTooltipVisibility()
+            }, completion: { (finished) -> Void in
+            })
+        } else {
+            adjustTooltipVisibility()
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

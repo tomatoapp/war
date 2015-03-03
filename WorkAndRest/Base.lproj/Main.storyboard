@@ -658,7 +658,7 @@
         <scene sceneID="BA7-SR-C60">
             <objects>
                 <tableViewController id="ZJe-9j-U1K" customClass="StatisticsViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="MDP-ch-pVb">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="MDP-ch-pVb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -823,6 +823,7 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Statistics" image="tab_item_2" id="4KG-It-Eka"/>
                     <connections>
+                        <outlet property="commentsView" destination="t9w-0O-b4q" id="dNC-5F-fHK"/>
                         <outlet property="rateSwitch" destination="5Fe-7Y-tjP" id="YmZ-pU-Sos"/>
                         <outlet property="segmentedControl" destination="DHL-AT-Az8" id="2E0-kd-ssn"/>
                         <outlet property="showPercentageSwitch" destination="vli-ao-4Rq" id="Slk-DP-nTU"/>
