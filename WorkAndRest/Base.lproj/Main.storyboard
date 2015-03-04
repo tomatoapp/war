@@ -149,10 +149,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNQ-ZN-Sle">
-                                <rect key="frame" x="103" y="150" width="115" height="115"/>
+                                <rect key="frame" x="111" y="158" width="98" height="99"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="115" id="EEg-1m-5cp"/>
-                                    <constraint firstAttribute="height" constant="115" id="JmW-ds-sF1"/>
+                                    <constraint firstAttribute="width" constant="98" id="EEg-1m-5cp"/>
+                                    <constraint firstAttribute="height" constant="99" id="JmW-ds-sF1"/>
                                 </constraints>
                                 <state key="normal" image="start_now">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -162,10 +162,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEK-t0-d1h">
-                                <rect key="frame" x="103" y="323" width="115" height="115"/>
+                                <rect key="frame" x="111" y="323" width="98" height="99"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="115" id="2XH-Ru-dlS"/>
-                                    <constraint firstAttribute="width" constant="115" id="fV1-Qs-Sn8"/>
+                                    <constraint firstAttribute="height" constant="99" id="2XH-Ru-dlS"/>
+                                    <constraint firstAttribute="width" constant="98" id="fV1-Qs-Sn8"/>
                                 </constraints>
                                 <state key="normal" image="start_later">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -178,7 +178,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="EEK-t0-d1h" secondAttribute="centerX" id="Oo8-9h-hvd"/>
-                            <constraint firstAttribute="centerY" secondItem="EEK-t0-d1h" secondAttribute="centerY" constant="-96.5" id="sen-Wq-uy3"/>
+                            <constraint firstAttribute="centerY" secondItem="EEK-t0-d1h" secondAttribute="centerY" constant="-88.5" id="sen-Wq-uy3"/>
                             <constraint firstAttribute="centerX" secondItem="aNQ-ZN-Sle" secondAttribute="centerX" id="tpS-FV-oeB"/>
                             <constraint firstAttribute="centerY" secondItem="aNQ-ZN-Sle" secondAttribute="centerY" constant="76.5" id="xJz-bz-rl0"/>
                         </constraints>
@@ -1035,8 +1035,8 @@
         <image name="finished number" width="167" height="164"/>
         <image name="icon" width="70" height="70"/>
         <image name="new_task_start_button" width="22" height="47"/>
-        <image name="start_later" width="114" height="114"/>
-        <image name="start_now" width="114" height="114"/>
+        <image name="start_later" width="98" height="99"/>
+        <image name="start_now" width="98" height="99"/>
         <image name="statisics_bg" width="294" height="193"/>
         <image name="statisics_breaked" width="9" height="9"/>
         <image name="statisics_competed" width="9" height="9"/>
