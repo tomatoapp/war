@@ -481,39 +481,29 @@
                         <sections>
                             <tableViewSection headerTitle=" " id="QWt-Oj-unl">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="41m-dI-NxT">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="41m-dI-NxT">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="41m-dI-NxT" id="wNR-Sl-Wml">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How Does Tomato! Work?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSY-aV-QS6">
-                                                    <rect key="frame" x="16" y="11" width="200" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badge App Icon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSY-aV-QS6">
+                                                    <rect key="frame" x="16" y="11.5" width="124.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4MA-wg-bDz">
+                                                    <rect key="frame" x="255" y="5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="badgeAppIconSwitchValueChanged:" destination="6Vf-xC-iCf" eventType="valueChanged" id="ZXb-kp-yLo"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="4MA-wg-bDz" firstAttribute="trailing" secondItem="wNR-Sl-Wml" secondAttribute="trailingMargin" constant="-8" id="KMl-cw-VeW"/>
                                                 <constraint firstItem="iSY-aV-QS6" firstAttribute="leading" secondItem="wNR-Sl-Wml" secondAttribute="leadingMargin" constant="8" id="WUv-0n-0J2"/>
                                                 <constraint firstAttribute="centerY" secondItem="iSY-aV-QS6" secondAttribute="centerY" id="jcQ-iV-OAL"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="VEJ-AT-mdy">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VEJ-AT-mdy" id="v2N-XI-qNz">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watch The Tutorial Video " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSt-xf-3AB">
-                                                    <rect key="frame" x="16" y="11" width="196" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="eSt-xf-3AB" firstAttribute="leading" secondItem="v2N-XI-qNz" secondAttribute="leadingMargin" constant="8" id="Rsv-gS-5qd"/>
-                                                <constraint firstAttribute="centerY" secondItem="eSt-xf-3AB" secondAttribute="centerY" id="hzz-Gu-Z1m"/>
+                                                <constraint firstAttribute="centerY" secondItem="4MA-wg-bDz" secondAttribute="centerY" constant="1.25" id="w95-FJ-sQF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -591,6 +581,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="FBm-Xo-ZaJ"/>
+                    <connections>
+                        <outlet property="badgeAppIconSwitch" destination="4MA-wg-bDz" id="LyU-M3-EXr"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZrE-93-ian" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -773,14 +766,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vli-ao-4Rq">
-                                                    <rect key="frame" x="263" y="6" width="51" height="31"/>
+                                                    <rect key="frame" x="255" y="6" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="showPercentageSwitchValueChanged:" destination="ZJe-9j-U1K" eventType="valueChanged" id="j7K-27-Dt8"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="vli-ao-4Rq" firstAttribute="trailing" secondItem="VNo-Vh-ifr" secondAttribute="trailingMargin" id="8Sg-6W-XEU"/>
+                                                <constraint firstItem="vli-ao-4Rq" firstAttribute="trailing" secondItem="VNo-Vh-ifr" secondAttribute="trailingMargin" constant="-8" id="8Sg-6W-XEU"/>
                                                 <constraint firstAttribute="centerY" secondItem="vli-ao-4Rq" secondAttribute="centerY" id="Hdw-pW-poK"/>
                                                 <constraint firstItem="jTc-HD-zuI" firstAttribute="leading" secondItem="VNo-Vh-ifr" secondAttribute="leadingMargin" constant="4" id="lWc-vT-QC1"/>
                                                 <constraint firstAttribute="centerY" secondItem="jTc-HD-zuI" secondAttribute="centerY" constant="0.25" id="yae-DU-cCM"/>

@@ -17,7 +17,8 @@ class IconBadgeNumberManager: NSObject {
     }
     
     func setBadgeNumber() {
+        let isShowBadgeAppIcon = NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_BADGEAPPICON)
         let number = TaskManager.sharedInstance.loadUnCompletedTaskList().count
-        UIApplication.sharedApplication().applicationIconBadgeNumber = number
+        UIApplication.sharedApplication().applicationIconBadgeNumber = isShowBadgeAppIcon ? number : 0
     }
 }

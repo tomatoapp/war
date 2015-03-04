@@ -11,34 +11,52 @@ import MessageUI
 
 class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMailComposeViewControllerDelegate {
 
+    @IBOutlet var badgeAppIconSwitch: UISwitch!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.badgeAppIconSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_BADGEAPPICON)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+
+    @IBAction func badgeAppIconSwitchValueChanged(sender: AnyObject) {
+        let isShowBadgeAppIcon = (sender as UISwitch).on
+        NSUserDefaults.standardUserDefaults().setBool(isShowBadgeAppIcon, forKey: GlobalConstants.kBOOL_BADGEAPPICON)
     }
     
-
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 20
         }
+        if section == 1 {
+            return 40
+        }
         return 15
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+      
+        if section != 1 {
+            return nil
+        }
+        let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
+        view.backgroundColor = UIColor.clearColor()
+        let label = UILabel(frame: CGRectMake(16, -5, view.frame.size.width - 32, 40))
+        label.numberOfLines = 2
+        label.font = UIFont.systemFontOfSize(12)
+        label.textColor = UIColor.lightGrayColor()
+        label.text = "Show incomplete task count badge on the app icon"
+        label.sizeToFit()
+        view.addSubview(label)
+        
+        return view
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -58,6 +76,9 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         }
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 44.0
+    }
     
     // MARK: - AlertViewDelegate
     
