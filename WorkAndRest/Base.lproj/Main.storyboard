@@ -481,7 +481,7 @@
                         <sections>
                             <tableViewSection headerTitle=" " id="QWt-Oj-unl">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="41m-dI-NxT">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="41m-dI-NxT">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="41m-dI-NxT" id="wNR-Sl-Wml">
                                             <autoresizingMask key="autoresizingMask"/>

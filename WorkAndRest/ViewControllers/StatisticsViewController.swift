@@ -93,6 +93,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     @IBAction func showPercentageSwitchValueChanged(sender: AnyObject) {
         self.isShowPercentageSwitchOn = (sender as UISwitch).on
         self.setChartViewHeaderViewVisible(self.isShowPercentageSwitchOn, withAmination: true)
+        
+        NSUserDefaults.standardUserDefaults().setBool(self.isShowPercentageSwitchOn, forKey: GlobalConstants.kBOOL_SHOWPERCENTAGE)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     @IBAction func segmentControlValueChanged(sender: AnyObject) {

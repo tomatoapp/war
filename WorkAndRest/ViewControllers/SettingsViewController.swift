@@ -27,6 +27,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     @IBAction func badgeAppIconSwitchValueChanged(sender: AnyObject) {
         let isShowBadgeAppIcon = (sender as UISwitch).on
         NSUserDefaults.standardUserDefaults().setBool(isShowBadgeAppIcon, forKey: GlobalConstants.kBOOL_BADGEAPPICON)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     // MARK: - Navigation
