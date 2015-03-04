@@ -46,13 +46,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         self.window?.rootViewController?.view.bringSubviewToFront(imageView)
         
         imageView.alpha = 1.0
-        UIView.animateWithDuration(0.71,
-            delay: 0.35,
+        UIView.animateWithDuration(0.6,
+            delay: 0.30,
             options: UIViewAnimationOptions.CurveEaseOut,
             animations: { () -> Void in
                 imageView.alpha = 0.0
-                imageView.transform = CGAffineTransformMakeScale(1.6, 1.6)
-                imageView.center = CGPointMake(imageView.center.x, imageView.center.y + 35)
+                imageView.transform = CGAffineTransformMakeScale(1.7, 1.7)
+                imageView.center = CGPointMake(imageView.center.x, imageView.center.y + 40)
                 
             }) { (finished) -> Void in
                 imageView.removeFromSuperview()
