@@ -58,6 +58,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.chartView.delegate = self
         self.chartView.dataSource = self
         self.chartView.minimumValue = 0.0
+        
+        self.isShowPercentageSwitchOn = NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_SHOWPERCENTAGE)
+        self.showPercentageSwitch.on = self.isShowPercentageSwitchOn
     }
     
     func setStateToExpanded() {
