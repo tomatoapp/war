@@ -120,18 +120,29 @@ class CompletionCycleView: UIView {
         NSBundle.mainBundle().loadNibNamed("CompletionCycleView", owner: self, options: nil)
         self.addSubview(self.view)
 
-        self.view.mas_updateConstraints { make in
-            make.width.equalTo()(self.frame.size.width-40)
-            make.height.equalTo()(self.frame.size.height)
-            make.centerX.equalTo()(self.mas_centerX)
-            make.centerY.equalTo()(self.mas_centerY)
-            return ()
-        }
+//        self.view.mas_updateConstraints { make in
+//            make.width.equalTo()(self.frame.size.width)
+//            make.height.equalTo()(self.frame.size.height)
+//            make.centerX.equalTo()(self.mas_centerX)
+//            make.centerY.equalTo()(self.mas_centerY)
+//            return ()
+//        }
     }
     
     func refreshView() {
         self.numberLabel.text = "\(number)"
         self.minusButton.enabled = number > 1
         self.plusButton.enabled = number < MAX_NUMBER
+    }
+    
+    func updateViewsWidth() {
+        if self.view.frame.size.width != self.frame.size.width {
+            self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.frame.size.width, self.view.frame.size.height)
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.updateViewsWidth()
     }
 }

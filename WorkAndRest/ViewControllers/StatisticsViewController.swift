@@ -10,7 +10,6 @@ import UIKit
 
 class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate, JBBarChartViewDataSource {
     
-    @IBOutlet var rateSwitch: UISwitch!
     @IBOutlet var showPercentageSwitch: UISwitch!
     @IBOutlet var statisticsView: UIView!
     @IBOutlet var segmentedControl: UISegmentedControl!
@@ -87,10 +86,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     // MARK: - Events
-    
-    @IBAction func rateSwitchValueChanged(sender: AnyObject) {
-        
-    }
     
     @IBAction func showPercentageSwitchValueChanged(sender: AnyObject) {
         self.isShowPercentageSwitchOn = (sender as UISwitch).on

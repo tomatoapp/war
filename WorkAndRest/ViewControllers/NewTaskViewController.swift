@@ -225,10 +225,22 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     }
     
     func adapte_iPhone6() {
+        let startTextLabel = self.view.viewWithTag(TAG_STARTTEXT)
         let timeSelectorView = self.view.viewWithTag(TAG_TIMESELECTOR)
         let completionCirleView = self.view.viewWithTag(TAG_COMPLETIONCIRCLE)
         let taskTitleView = self.view.viewWithTag(TAG_TASKTITLE)
         let startButton = self.view.viewWithTag(TAG_STARTBUTTON)
+        
+        timeSelectorView!.removeFromSuperview()
+        self.view.addSubview(timeSelectorView!)
+        timeSelectorView?.mas_makeConstraints({ (make) -> Void in
+            make.centerX.mas_equalTo()(self.view.mas_centerX)
+            make.top.mas_equalTo()(startTextLabel!.mas_bottom).offset()(50)
+            make.height.mas_equalTo()(TIMER_HEIGHT)
+            make.width.mas_equalTo()(self.view.mas_width)
+            return ()
+        })
+        
         
         taskTitleView!.removeFromSuperview()
         self.view.addSubview(taskTitleView!)
@@ -246,7 +258,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
             make.centerX.mas_equalTo()(self.view.mas_centerX)
             make.top.mas_equalTo()(taskTitleView!.mas_bottom).offset()(20)
             make.height.mas_equalTo()(80)
-            make.width.mas_equalTo()(self.view.mas_width)
+            make.width.mas_equalTo()(self.view.mas_width).offset()(-70)
             return ()
         }
         
