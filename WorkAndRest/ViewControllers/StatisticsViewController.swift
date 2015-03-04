@@ -661,6 +661,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1 {
+            if WARDevice.getPhoneType() == PhoneType.iPhone4 {
+                return 1
+            }
             return 15
         }
         return 0.01

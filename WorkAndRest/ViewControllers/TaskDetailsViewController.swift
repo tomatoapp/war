@@ -87,19 +87,19 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     //        super.viewWillLayoutSubviews()
     //        self.taskItemBaseView.updateViewsWidth()
     //    }
-//    
-//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        if indexPath.row == 0 {
-//            if WARDevice.getPhoneType() == PhoneType.iPhone4 {
-//                return 80
-//            } else if WARDevice.getPhoneType() == PhoneType.iPhone5 {
-//                return 150
-//            }else if WARDevice.getPhoneType() == PhoneType.iPhone6 {
-//                return 160
-//            } else if WARDevice.getPhoneType() == PhoneType.iPhone6Plus {
-//                return 190
-//            }
-//        } else if indexPath.row == 4 {
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            if WARDevice.getPhoneType() == PhoneType.iPhone4 {
+                return 80
+            } else if WARDevice.getPhoneType() == PhoneType.iPhone5 {
+                return 150
+            }else if WARDevice.getPhoneType() == PhoneType.iPhone6 {
+                return 180
+            } else if WARDevice.getPhoneType() == PhoneType.iPhone6Plus {
+                return 190
+            }
+        } else if indexPath.row == 4 {
 //            if WARDevice.getPhoneType() == PhoneType.iPhone4 {
 //                return 250
 //            } else if WARDevice.getPhoneType() == PhoneType.iPhone5 {
@@ -107,10 +107,11 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
 //            } else {
 //                return 274
 //            }
-//        }
-//        return 35
-//    }
-//    
+            return 249
+        }
+        return 35
+    }
+    
     // MARK: - TaskRunnerDelegate
     
     func started(sender: TaskRunner!) {

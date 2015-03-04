@@ -42,6 +42,7 @@ class TaskListHeaderView: UIView {
     func setup() {
         NSBundle.mainBundle().loadNibNamed("TaskListHeaderView", owner: self, options: nil)
         self.addSubview(self.view)
+        self.layoutIfNeeded()
     }
     
     override func updateConstraints() {
@@ -66,6 +67,9 @@ class TaskListHeaderView: UIView {
         }
         self.startView.frame = self.view.bounds
         self.timerView.frame = self.view.bounds
+        
+        super.layoutSubviews()
+
     }
     
     func flip() {
