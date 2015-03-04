@@ -39,6 +39,13 @@ class TaskManager: NSObject {
         return self.cacheTaskList
     }
     
+    func loadUnCompletedTaskList() -> Array<Task> {
+        let tasks = self.loadTaskList()
+        let unCompletedTasks = tasks.filter { $0.completed == false }
+        return unCompletedTasks
+    }
+    
+    
     func removeTask(task: Task!) -> Bool {
         
         // Remove it from the cache.

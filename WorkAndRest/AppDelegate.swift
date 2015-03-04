@@ -98,9 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             println("Inactive")
             break
         }
-        var isWorking = false
-        
-        
+        IconBadgeNumberManager.sharedInstance.setBadgeNumber()
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
@@ -129,6 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         //        println("applicationWillTerminate")
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         UIApplication.sharedApplication().cancelAllLocalNotifications()
+//        IconBadgeNumberManager.sharedInstance.setBadgeNumber()
     }
     
     

@@ -35,6 +35,7 @@
 		645FDE161A7D9E8C002EC8EF /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FDE151A7D9E8B002EC8EF /* GlobalConstants.swift */; };
 		646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 646141A41A80C11E0010E19E /* V8HorizontalPickerView.m */; };
 		646B04ED1A9A99C00083E065 /* WorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646B04EC1A9A99C00083E065 /* WorkManager.swift */; };
+		64802BF11AA6B7FF00B49E2C /* IconBadgeNumberManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64802BF01AA6B7FF00B49E2C /* IconBadgeNumberManager.swift */; };
 		648311BE1A96B8E100F445AE /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648311BD1A96B8E100F445AE /* StatisticsViewController.swift */; };
 		649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308521A7AE22D00480677 /* TaskListItemCell.swift */; };
 		649308571A7AE65C00480677 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308561A7AE65C00480677 /* BaseViewController.swift */; };
@@ -116,6 +117,7 @@
 		646141A41A80C11E0010E19E /* V8HorizontalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V8HorizontalPickerView.m; sourceTree = "<group>"; };
 		646141A51A80C11E0010E19E /* V8HorizontalPickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V8HorizontalPickerViewProtocol.h; sourceTree = "<group>"; };
 		646B04EC1A9A99C00083E065 /* WorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkManager.swift; sourceTree = "<group>"; };
+		64802BF01AA6B7FF00B49E2C /* IconBadgeNumberManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconBadgeNumberManager.swift; sourceTree = "<group>"; };
 		648311BD1A96B8E100F445AE /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		649308521A7AE22D00480677 /* TaskListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListItemCell.swift; sourceTree = "<group>"; };
 		649308561A7AE65C00480677 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				640B370E1A81908C0020C817 /* TaskRunnerManager.swift */,
 				649893911A83959B0091822A /* LockNotifierCallback.h */,
 				649893921A83959B0091822A /* LockNotifierCallback.m */,
+				64802BF01AA6B7FF00B49E2C /* IconBadgeNumberManager.swift */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				6497FC6C1A85C5F70098535D /* StartViewController.swift in Sources */,
 				649308591A7AE68200480677 /* BaseTableViewController.swift in Sources */,
 				648311BE1A96B8E100F445AE /* StatisticsViewController.swift in Sources */,
+				64802BF11AA6B7FF00B49E2C /* IconBadgeNumberManager.swift in Sources */,
 				645FDE161A7D9E8C002EC8EF /* GlobalConstants.swift in Sources */,
 				6415C60B1A9234D400A9FBCA /* SettingsViewController.swift in Sources */,
 				649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */,
