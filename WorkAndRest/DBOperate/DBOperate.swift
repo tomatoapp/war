@@ -44,6 +44,7 @@ import UIKit
             "expect_times INTERGER, " +
             "finished_times INTERGER, " +
             "break_times INTERGER, " +
+            "completedTime DATETIME, " +
             "completed BOOL DEFAULT 0" +
         ")"
         
@@ -62,7 +63,7 @@ import UIKit
         if !dataBase.open() {
             return false
         }
-        let success = dataBase.executeUpdate("INSERT INTO t_tasks(title, minutes, completed, expect_times, finished_times, break_times) VALUES (:title, :minutes, :completed, :expect_times, :finished_times, :break_times)", withArgumentsInArray: [task.title, task.minutes, task.completed, task.expect_times, task.finished_times, task.break_times])
+        let success = dataBase.executeUpdate("INSERT INTO t_tasks(title, minutes, completed, expect_times, finished_times, break_times, completedTime) VALUES (:title, :minutes, :completed, :expect_times, :finished_times, :break_times, :completedTime)", withArgumentsInArray: [task.title, task.minutes, task.completed, task.expect_times, task.finished_times, task.break_times, task.completedTime])
         if success {
 //            println("insert to task table success.")
         } else {
@@ -110,7 +111,7 @@ import UIKit
         
         // also can use datetime('now'):
         // lastUpdateTime = ? -> lastUpdateTime = datetime('now')
-        let success = dataBase.executeUpdate("UPDATE t_tasks SET title = ?, lastUpdateTime = ?, minutes = ?, completed = ?, finished_times = ?, break_times = ? WHERE task_id = ?", withArgumentsInArray: [task.title, task.lastUpdateTime, task.minutes, task.completed, task.finished_times, task.break_times, task.taskId])
+        let success = dataBase.executeUpdate("UPDATE t_tasks SET title = ?, lastUpdateTime = ?, minutes = ?, completed = ?, finished_times = ?, break_times = ?, completedTime = ? WHERE task_id = ?", withArgumentsInArray: [task.title, task.lastUpdateTime, task.minutes, task.completed, task.finished_times, task.break_times, task.completedTime, task.taskId])
         if success {
 //            println("update task table success.")
         } else {
@@ -155,6 +156,8 @@ import UIKit
             tempTask.expect_times = rs.stringForColumn("expect_times").toInt()!
             tempTask.finished_times = rs.stringForColumn("finished_times").toInt()!
             tempTask.break_times = rs.stringForColumn("break_times").toInt()!
+            tempTask.completedTime = rs.dateForColumn("completedTime")
+
             taskArray.append(tempTask)
         }
         dataBase.close()

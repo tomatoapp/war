@@ -19,6 +19,7 @@ class Task: NSObject, NSCopying {
     var expect_times: Int
     var finished_times: Int
     var break_times: Int
+    var completedTime : NSDate
 
     override init() {
 
@@ -32,6 +33,7 @@ class Task: NSObject, NSCopying {
         self.expect_times = 0
         self.finished_times = 0
         self.break_times = 0
+        self.completedTime = NSDate(timeIntervalSince1970: 0)
         super.init()
     }
     
@@ -47,6 +49,7 @@ class Task: NSObject, NSCopying {
         copy.expect_times = self.expect_times
         copy.finished_times = self.finished_times
         copy.break_times = self.break_times
+        copy.completedTime = self.completedTime
         return copy
     }
 }
