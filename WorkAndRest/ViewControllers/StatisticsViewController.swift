@@ -24,7 +24,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     var baseData: [Int: Array<Work>] = [:]
     var currentIndex = -1
     var tooltipVisible = false
-    var isChartViewHeaderViewVisible = true
+    var isShowPercentageSwitchOn = true
     
     var tooltip: UILabel!
     
@@ -64,7 +64,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     func setStateToExpanded() {
         self.chartView.reloadData()
         self.chartView.setState(.Expanded, animated: true)
-        self.setChartViewHeaderViewVisible(true, withAmination: true)
+        if self.isShowPercentageSwitchOn {
+            self.setChartViewHeaderViewVisible(true, withAmination: true)
+        }
     }
     
     func setStateToCollapsed() {
@@ -91,8 +93,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     @IBAction func showPercentageSwitchValueChanged(sender: AnyObject) {
-        self.isChartViewHeaderViewVisible = (sender as UISwitch).on
-        self.setChartViewHeaderViewVisible(self.isChartViewHeaderViewVisible, withAmination: true)
+        self.isShowPercentageSwitchOn = (sender as UISwitch).on
+        self.setChartViewHeaderViewVisible(self.isShowPercentageSwitchOn, withAmination: true)
     }
     
     @IBAction func segmentControlValueChanged(sender: AnyObject) {
@@ -133,10 +135,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     
     func setChartViewHeaderViewVisible(visible: Bool, withAmination animation: Bool) {
         if self.chartViewHeaderView == nil {
-            return
-        }
-        
-        if !self.isChartViewHeaderViewVisible {
             return
         }
         
@@ -739,7 +737,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     
     func didDeselectBarChartView(barChartView: JBBarChartView!) {
         self.setCommentsViewVisible(true)
-        self.setChartViewHeaderViewVisible(true, withAmination: true)
+        if self.isShowPercentageSwitchOn {
+            self.setChartViewHeaderViewVisible(true, withAmination: true)
+        }
         self.tooltip.alpha = 0.0
     }
     
