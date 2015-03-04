@@ -132,6 +132,7 @@ class TaskItemBaseView: UIView {
     }
     
     func switchToBreakButton() {
+        println("switchToBreakButton")
         UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in
                 self.timerLabel.alpha = 0
