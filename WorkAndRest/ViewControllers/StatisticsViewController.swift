@@ -14,7 +14,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     @IBOutlet var statisticsView: UIView!
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var commentsView: UIView!
-
+    @IBOutlet var statisticsBg: UIImageView!
+    
     var chatType =  TimeSpanType.Month
     var chartView: JBBarChartView!
     var chartViewFooterView: UIView!
@@ -84,10 +85,26 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.loaDataSourceBySegmentedControlSelectedIndex(self.segmentedControl.selectedSegmentIndex)
-        self.chartView.reloadData()
+        if self.needLockTheChart() {
+            self.lockTheChart()
+        } else {
+            self.loaDataSourceBySegmentedControlSelectedIndex(self.segmentedControl.selectedSegmentIndex)
+            self.chartView.reloadData()
+        }
     }
     
+    func lockTheChart() {
+//        let locker = UIImageView(image: UIImage(named: "lock chart"))
+//        locker.frame = CGRectMake(0, 0, self.view.frame.size.width - 26, 193)
+        
+        let locker = StatisticsLocker(frame: CGRectMake(0, 0, self.view.frame.size.width - 26, 193))
+        self.statisticsView.addSubview(locker)
+        self.statisticsView.bringSubviewToFront(locker)
+    }
+    
+    func needLockTheChart() -> Bool {
+        return true
+    }
     // MARK: - Events
     
     @IBAction func showPercentageSwitchValueChanged(sender: AnyObject) {
@@ -423,7 +440,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             tempLabel.textAlignment = NSTextAlignment.Center
             chartViewFooterView.addSubview(tempLabel)
         }
-        self.statisticsView.addSubview(chartViewFooterView)
+//        self.statisticsView.addSubview(chartViewFooterView)
+        self.statisticsView.insertSubview(chartViewFooterView, belowSubview: self.chartView)
         chartViewFooterView.mas_makeConstraints { (make) -> Void in
             make.centerX.equalTo()(self.statisticsView.mas_centerX)
             make.bottom.equalTo()(self.statisticsView.mas_bottom).offset()(-10)

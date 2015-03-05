@@ -815,6 +815,7 @@
                         <outlet property="commentsView" destination="t9w-0O-b4q" id="dNC-5F-fHK"/>
                         <outlet property="segmentedControl" destination="DHL-AT-Az8" id="2E0-kd-ssn"/>
                         <outlet property="showPercentageSwitch" destination="vli-ao-4Rq" id="Slk-DP-nTU"/>
+                        <outlet property="statisticsBg" destination="1v8-dx-aI2" id="n9c-42-y91"/>
                         <outlet property="statisticsView" destination="K4t-eU-vno" id="n3e-79-oab"/>
                     </connections>
                 </tableViewController>
