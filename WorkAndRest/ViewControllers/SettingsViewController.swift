@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-let SecondSectionHeight: CGFloat = 50
+let SubTitleSectionHeight: CGFloat = 50
 class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet var badgeAppIconSwitch: UISwitch!
@@ -37,27 +37,34 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         if section == 0 {
             return 20
         }
-        if section == 1 {
-            return SecondSectionHeight
+        if section == 1 || section == 3 {
+            return SubTitleSectionHeight
         }
         return 15
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
       
-        if section != 1 {
+        if section != 1 && section != 3 {
             return nil
         }
-        let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, SecondSectionHeight))
+        
+        let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, SubTitleSectionHeight))
         view.backgroundColor = UIColor.clearColor()
-        let label = UILabel(frame: CGRectMake(16, -3, view.frame.size.width - 32, SecondSectionHeight))
+        let label = UILabel(frame: CGRectMake(16, -3, view.frame.size.width - 32, SubTitleSectionHeight))
         label.numberOfLines = 2
         label.font = UIFont.systemFontOfSize(12)
         label.textColor = UIColor.lightGrayColor()
-        label.text = "Show incomplete task count badge on the app icon."
+        
+        if section == 1 {
+            label.text = "Show incomplete task count badge on the app icon."
+        }
+        if section == 3 {
+            label.text = "The free version balabalabala....."
+        }
+        
         label.sizeToFit()
         view.addSubview(label)
-        
         return view
     }
 
