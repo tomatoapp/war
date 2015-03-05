@@ -97,13 +97,14 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
 //        let locker = UIImageView(image: UIImage(named: "lock chart"))
 //        locker.frame = CGRectMake(0, 0, self.view.frame.size.width - 26, 193)
         
-        let locker = StatisticsLocker(frame: CGRectMake(0, 0, self.view.frame.size.width - 26, 193))
+        let locker = StatisticsLocker(frame: CGRectMake(0, 0, self.view.frame.size.width - 25, 193))
         self.statisticsView.addSubview(locker)
         self.statisticsView.bringSubviewToFront(locker)
     }
     
     func needLockTheChart() -> Bool {
-        return true
+        let firstLaunchDate: NSDate = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_FirstLauchDate) as NSDate
+        return NSDate(timeIntervalSinceNow: 60 * 60 * 24 * -7).compare(firstLaunchDate) == NSComparisonResult.OrderedDescending
     }
     // MARK: - Events
     
