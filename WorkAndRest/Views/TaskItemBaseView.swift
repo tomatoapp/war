@@ -22,6 +22,8 @@ class TaskItemBaseView: UIView {
     var ANIMATION_DURATION = 0.5
     var seconds = 0
     var isBreakButtonEnable = true
+    var title = ""
+    
     @IBOutlet var view: UIView!
     
     @IBOutlet var titleLabel: UILabel!
@@ -55,10 +57,13 @@ class TaskItemBaseView: UIView {
         self.updateViewsWidth()
     }
     
-    func refreshTitle(title: String) {
-        self.titleLabel.text = title
+    func refreshTitle(title: String, withTextStrikethrough: Bool = false) {
+        self.title = title
+        let attributeString = NSMutableAttributedString(string: title)
+        attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: withTextStrikethrough ? 1 : 0, range: NSMakeRange(0, attributeString.length))
+        self.titleLabel.attributedText = attributeString
     }
-    
+
     func refreshViewByState(state: TaskState, animation: Bool = true) {
         switch state {
         case .Normal:
@@ -106,6 +111,7 @@ class TaskItemBaseView: UIView {
                 animations: { () -> Void in
                     self.timerLabel.alpha = 0
                     self.startButton.alpha = 1
+                    self.refreshTitle(self.title, withTextStrikethrough: true)
             })
 
             self.bgImageView.image = UIImage(named: "list_item_finished_bg")

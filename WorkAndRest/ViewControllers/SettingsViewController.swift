@@ -9,6 +9,7 @@
 import UIKit
 import MessageUI
 
+let SecondSectionHeight: CGFloat = 50
 class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet var badgeAppIconSwitch: UISwitch!
@@ -37,7 +38,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
             return 20
         }
         if section == 1 {
-            return 40
+            return SecondSectionHeight
         }
         return 15
     }
@@ -47,13 +48,13 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         if section != 1 {
             return nil
         }
-        let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
+        let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, SecondSectionHeight))
         view.backgroundColor = UIColor.clearColor()
-        let label = UILabel(frame: CGRectMake(16, -5, view.frame.size.width - 32, 40))
+        let label = UILabel(frame: CGRectMake(16, -3, view.frame.size.width - 32, SecondSectionHeight))
         label.numberOfLines = 2
         label.font = UIFont.systemFontOfSize(12)
         label.textColor = UIColor.lightGrayColor()
-        label.text = "Show incomplete task count badge on the app icon"
+        label.text = "Show incomplete task count badge on the app icon."
         label.sizeToFit()
         view.addSubview(label)
         
