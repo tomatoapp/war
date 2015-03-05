@@ -65,15 +65,18 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         
-        if indexPath.section == 0 && indexPath.row == 0 {
+        if indexPath.section == 1 && indexPath.row == 0 {
             // about
         }
         if indexPath.section == 1 && indexPath.row == 1 {
             // rate
             UIApplication.sharedApplication().openURL(NSURL(string: GlobalConstants.APPSTORE_URL)!)
         }
-        
         if indexPath.section == 2 && indexPath.row == 0 {
+            // go premium
+        }
+        
+        if indexPath.section == 3 && indexPath.row == 0 {
             self.showSendEmailAlert()
         }
     }
