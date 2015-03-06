@@ -29,5 +29,5 @@ class GlobalConstants {
     
     class var VERSION: String { return "2.0.0" }
     
-    class var kBOOL_isPaid: String { return "is paid" }
+    class var kBOOL_Purchased: String { return "Purchased" }
 }

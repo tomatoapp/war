@@ -23,7 +23,7 @@ class ApplicationStateManager: NSObject {
 
     func setup() {
         NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: GlobalConstants.k_FirstLauchDate)
-        NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_isPaid)
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_Purchased)
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
@@ -33,13 +33,13 @@ class ApplicationStateManager: NSObject {
         return NSDate(timeIntervalSinceNow: timeInterval).compare(firstLaunchDate) == NSComparisonResult.OrderedDescending
     }
     
-    func paid() {
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_isPaid)
+    func purchasedSuccess() {
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_Purchased)
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     func versionType() -> VersionType {
-        let isPaid = NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_isPaid)
+        let isPaid = NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_Purchased)
         return isPaid ? .Pro : .Free
     }
 }

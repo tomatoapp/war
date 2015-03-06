@@ -79,8 +79,16 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
             // rate
             UIApplication.sharedApplication().openURL(NSURL(string: GlobalConstants.APPSTORE_URL)!)
         }
+        
+        if indexPath.section == 2 {
+            return
+        }
+        
         if indexPath.section == 2 && indexPath.row == 0 {
             // go premium
+        }
+        if indexPath.section == 2 && indexPath.row == 1 {
+            // restore purchase
         }
         
         if indexPath.section == 3 && indexPath.row == 0 {
