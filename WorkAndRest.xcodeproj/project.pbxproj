@@ -35,6 +35,7 @@
 		645FDE161A7D9E8C002EC8EF /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FDE151A7D9E8B002EC8EF /* GlobalConstants.swift */; };
 		646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 646141A41A80C11E0010E19E /* V8HorizontalPickerView.m */; };
 		646B04ED1A9A99C00083E065 /* WorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646B04EC1A9A99C00083E065 /* WorkManager.swift */; };
+		647603041AA9CD4500B1373E /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 647603031AA9CD4500B1373E /* CMPopTipView.m */; };
 		64802BF11AA6B7FF00B49E2C /* IconBadgeNumberManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64802BF01AA6B7FF00B49E2C /* IconBadgeNumberManager.swift */; };
 		648311BE1A96B8E100F445AE /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648311BD1A96B8E100F445AE /* StatisticsViewController.swift */; };
 		649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308521A7AE22D00480677 /* TaskListItemCell.swift */; };
@@ -122,6 +123,8 @@
 		646141A41A80C11E0010E19E /* V8HorizontalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V8HorizontalPickerView.m; sourceTree = "<group>"; };
 		646141A51A80C11E0010E19E /* V8HorizontalPickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V8HorizontalPickerViewProtocol.h; sourceTree = "<group>"; };
 		646B04EC1A9A99C00083E065 /* WorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkManager.swift; sourceTree = "<group>"; };
+		647603021AA9CD4500B1373E /* CMPopTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPopTipView.h; sourceTree = "<group>"; };
+		647603031AA9CD4500B1373E /* CMPopTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPopTipView.m; sourceTree = "<group>"; };
 		64802BF01AA6B7FF00B49E2C /* IconBadgeNumberManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconBadgeNumberManager.swift; sourceTree = "<group>"; };
 		648311BD1A96B8E100F445AE /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		649308521A7AE22D00480677 /* TaskListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListItemCell.swift; sourceTree = "<group>"; };
@@ -204,6 +207,7 @@
 		64012C861900B870006FC2B2 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				647603011AA9CD4500B1373E /* CMPopTipView */,
 				646141A21A80C11E0010E19E /* V8HorizontalPickerView */,
 				64012C871900B887006FC2B2 /* Appirater */,
 			);
@@ -363,6 +367,15 @@
 				646141A51A80C11E0010E19E /* V8HorizontalPickerViewProtocol.h */,
 			);
 			path = V8HorizontalPickerView;
+			sourceTree = "<group>";
+		};
+		647603011AA9CD4500B1373E /* CMPopTipView */ = {
+			isa = PBXGroup;
+			children = (
+				647603021AA9CD4500B1373E /* CMPopTipView.h */,
+				647603031AA9CD4500B1373E /* CMPopTipView.m */,
+			);
+			path = CMPopTipView;
 			sourceTree = "<group>";
 		};
 		6497FE4C1A75A28B00174307 /* DBOperate */ = {
@@ -557,6 +570,7 @@
 				6442291D1A7A2F2000E516C1 /* TaskListViewController.swift in Sources */,
 				645FDE0E1A7D98FB002EC8EF /* AppDelegate.swift in Sources */,
 				649308571A7AE65C00480677 /* BaseViewController.swift in Sources */,
+				647603041AA9CD4500B1373E /* CMPopTipView.m in Sources */,
 				646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */,
 				64BD3D0B1A7B247000941B07 /* SettingViewController.swift in Sources */,
 				6497FE561A75A77800174307 /* Work.swift in Sources */,

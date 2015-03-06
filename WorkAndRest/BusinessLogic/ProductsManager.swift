@@ -45,7 +45,7 @@ class ProductsManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
     func restore() {
         println("TransactionState -> restore()")
         SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
-        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
+//        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
     }
     
     // MARK: - SKProductsRequestDelegate

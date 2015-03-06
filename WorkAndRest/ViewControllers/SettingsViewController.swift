@@ -13,8 +13,11 @@ let SubTitleSectionHeight: CGFloat = 50
 class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, ProductsManagerDelegate {
 
     @IBOutlet var badgeAppIconSwitch: UISwitch!
-    @IBOutlet var currentVersionLabel: UILabel!
+    @IBOutlet var currentVersionButton: UIButton!
     let versionType = ApplicationStateManager.sharedInstance.versionType()
+    var popTipView: CMPopTipView?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,6 +40,16 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
+    @IBAction func versionTypeButtonClicked(sender: AnyObject) {
+        if self.versionType == .Free {
+            if self.popTipView == nil {
+                self.popTipView = CMPopTipView(message: "Tomato! is free for a 7 day trial, If you like it then you can purchase Pro version.")
+            }
+            self.popTipView?.dismissAnimated(false)
+            self.popTipView?.presentPointingAtView(self.currentVersionButton, inView: self.view, animated: true)
+        }
+    }
+    
     // MARK: - Navigation
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -46,20 +59,12 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         if section == 1 {
             return SubTitleSectionHeight
         }
-
-        if section == 2 {
-            if versionType == .Free {
-                return SubTitleSectionHeight
-            } else {
-                return 15
-            }
-        }
         return 15
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
       
-        if section != 1 && section != 2 {
+        if section != 1 {
             return nil
         }
         
@@ -69,16 +74,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         label.numberOfLines = 2
         label.font = UIFont.systemFontOfSize(12)
         label.textColor = UIColor.lightGrayColor()
-        
-        if section == 1 {
-            label.text = "Show incomplete task count badge on the app icon."
-        }
-        if section == 2 {
-            if versionType == .Free {
-                label.text = "The free version balabalabala....."
-            }
-        }
-        
+        label.text = "Show the incomplete task count badge on the app icon."
         label.sizeToFit()
         view.addSubview(label)
         return view
@@ -90,6 +86,10 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
 //        if indexPath.section == 1 {
 //            return
 //        }
+        
+        if indexPath.section == 1 && indexPath.row == 0 {
+            self.popTipView?.dismissAnimated(true)
+        }
         
         if indexPath.section == 1 && indexPath.row == 1 {
             // go premium
@@ -207,11 +207,11 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     func refreshThePaymentItem(versionType: VersionType) {
         switch versionType {
         case .Free:
-            self.currentVersionLabel.text = "Free"
+            self.currentVersionButton.setTitle("Free", forState: .Normal)
             break
             
         case .Pro:
-            self.currentVersionLabel.text = "Pro"
+            self.currentVersionButton.setTitle("Pro", forState: .Normal)
             break
         }
     }
