@@ -16,7 +16,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     @IBOutlet var currentVersionButton: UIButton!
     var versionType = ApplicationStateManager.sharedInstance.versionType()
     var popTipView: CMPopTipView?
-    
+    var HUD: MBProgressHUD!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,8 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.badgeAppIconSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_BADGEAPPICON)
         ProductsManager.sharedInstance.delegate = self
+        HUD = MBProgressHUD(view: self.view)
+        self.view.addSubview(HUD)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -88,29 +90,23 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-//        if indexPath.section == 1 {
-//            return
-//        }
-        
         if indexPath.section == 1 && indexPath.row == 0 {
-            self.showPopTipView()
+            if self.versionType == .Free {
+                self.showPopTipView()
+            }
         }
         
         if indexPath.section == 1 && indexPath.row == 1 {
             // go premium
-            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-            isInpaymentTransactionProcess = true
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5,
-                target: self,
-                selector: Selector("hideHUBWhenTheAlertIsShowed"),
-                userInfo: nil,
-                repeats: true)
+            HUD.show(true)
             ProductsManager.sharedInstance.purchasePro()
+            HUD.hide(true, afterDelay: 2)
         }
         if indexPath.section == 1 && indexPath.row == 2 {
             // restore purchase
-            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            HUD.show(true)
             ProductsManager.sharedInstance.restore()
+            HUD.hide(true, afterDelay: 2)
         }
         
         if indexPath.section == 3 && indexPath.row == 0 {
@@ -140,13 +136,18 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         }
         
         if indexPath.section == 1 && self.versionType == .Pro && indexPath.row == 0 {
-            if cell.respondsToSelector(Selector("setLayoutMargins:")) {
-                cell.layoutMargins = UIEdgeInsetsZero
+            // Remove seperator inset
+            if cell.respondsToSelector("setSeparatorInset:") {
+                cell.separatorInset = UIEdgeInsetsZero
             }
-            if cell.respondsToSelector(Selector("setPreservesSuperviewLayoutMargins")) {
+            // Prevent the cell from inheriting the Table View's margin settings
+            if cell.respondsToSelector("setPreservesSuperviewLayoutMargins:") {
                 cell.preservesSuperviewLayoutMargins = false
             }
-            cell.separatorInset = UIEdgeInsetsZero
+            // Explictly set your cell's layout margins
+            if cell.respondsToSelector("setLayoutMargins:") {
+                cell.layoutMargins = UIEdgeInsetsZero
+            }
         }
     }
     
@@ -189,11 +190,31 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     }
     
     func showThanksAlert() {
-        let alert = UIAlertView(title: "",
-            message: NSLocalizedString("Thanks for your help", comment: ""),
-            delegate: self,
-            cancelButtonTitle: NSLocalizedString("Yes", comment: ""))
-        alert.show()
+//        let alert = UIAlertView(title: "",
+//            message: NSLocalizedString("Thanks for your help", comment: ""),
+//            delegate: self,
+//            cancelButtonTitle: NSLocalizedString("Yes", comment: ""))
+//        alert.show()
+        self.showCheckMarkHUDWithText("Thanks for your help")
+    }
+    
+    func showProAlert() {
+//        let alert = UIAlertView(title: "",
+//            message: NSLocalizedString("Now your using the Pro version.", comment: ""),
+//            delegate: self,
+//            cancelButtonTitle: NSLocalizedString("Yes", comment: ""))
+//        alert.show()
+        self.showCheckMarkHUDWithText("Update Succeeded")
+    }
+    
+    func showCheckMarkHUDWithText(text: String) {
+        let thanksHUD = MBProgressHUD(view: self.view)
+        thanksHUD.customView = UIImageView(image: UIImage(named: "checkmark"))
+        thanksHUD.mode = MBProgressHUDMode.CustomView
+        thanksHUD.labelText = text
+        self.view.addSubview(thanksHUD)
+        thanksHUD.show(true)
+        thanksHUD.hide(true, afterDelay: 2.5)
     }
     
     // MARK: - ProductsManagerDelegate
@@ -203,34 +224,38 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
             
         case SKPaymentTransactionState.Purchasing:
             println("ProductsManagerDelegate - Purchasing")
-            
-            //MBProgressHUD.hideHUDForView(self.view, animated: true)
+//            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+//                Int64(1 * Double(NSEC_PER_SEC)))
+//            dispatch_after(delayTime, dispatch_get_main_queue(), {
+//                self.HUD.hide(true)
+//                return
+//            })
             break
             
         case SKPaymentTransactionState.Purchased:
             println("ProductsManagerDelegate - Purchased")
-            MBProgressHUD.hideHUDForView(self.view, animated: true)
-            isInpaymentTransactionProcess = false
+            self.HUD.hide(true)
             break
             
         case SKPaymentTransactionState.Restored:
             println("ProductsManagerDelegate - Restored")
-            MBProgressHUD.hideHUDForView(self.view, animated: true)
-            isInpaymentTransactionProcess = false
+            self.HUD.hide(true)
             break
             
         case SKPaymentTransactionState.Failed:
             println("ProductsManagerDelegate - Failed")
-            MBProgressHUD.hideHUDForView(self.view, animated: true)
-            isInpaymentTransactionProcess = false
+            self.HUD.hide(true)
             break
             
         default:
             break
         }
         self.versionType = ApplicationStateManager.sharedInstance.versionType()
-        self.tableView.reloadData()
-        self.refreshThePaymentItem(self.versionType)
+        if self.versionType == .Pro {
+            self.tableView.reloadData()
+            self.refreshThePaymentItem(self.versionType)
+            self.showProAlert()
+        }
     }
     
     func refreshThePaymentItem(versionType: VersionType) {
@@ -244,63 +269,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
             break
         }
     }
-    
-    var timer: NSTimer!
-    var isInpaymentTransactionProcess = false
-    
-//    func hideHUDWhileShowedTheAlertView() {
-//        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5,
-//            target: self,
-//            selector: Selector("hideHUBWhenTheAlertIsShowed"),
-//            userInfo: nil,
-//            repeats: true)
-//    }
-    
-    func hideHUBWhenTheAlertIsShowed() {
-        println("hideHUBWhenTheAlertIsShowed")
-        if !isInpaymentTransactionProcess {
-            self.timer.invalidate()
-        }
-        for window in UIApplication.sharedApplication().windows {
-            for subView in window.subviews {
-                println(subView)
-                
-                if subView.isKindOfClass(UIAlertView) {
-                    println("subView.isKindOfClass(UIAlertView) -> true")
-                    MBProgressHUD.hideHUDForView(self.view, animated: true)
-                    // Stop the timer
-                    self.timer.invalidate()
-                    // Start a new timer to check whether the alert is dismissed.
-                    self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5,
-                        target: self,
-                        selector: Selector("showHUBWhenTheAlertIsDismissed"),
-                        userInfo: nil,
-                        repeats: true)
-                }
-            }
-        }
-    }
-    
-    func showHUBWhenTheAlertIsDismissed() {
-        println("showHUBWhenTheAlertIsDismissed")
-        if !isInpaymentTransactionProcess {
-            self.timer.invalidate()
-        }
-        
-        var isFindedTheAlertView = false
-        for window in UIApplication.sharedApplication().windows {
-            for subView in window.subviews {
-                if subView.isKindOfClass(UIAlertView) {
-                    isFindedTheAlertView = true
-                    self.timer.invalidate()
-                }
-            }
-        }
-        if !isFindedTheAlertView {
-            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        }
-    }
-}
+ }
 
 
 
