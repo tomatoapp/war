@@ -190,20 +190,10 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     }
     
     func showThanksAlert() {
-//        let alert = UIAlertView(title: "",
-//            message: NSLocalizedString("Thanks for your help", comment: ""),
-//            delegate: self,
-//            cancelButtonTitle: NSLocalizedString("Yes", comment: ""))
-//        alert.show()
         self.showCheckMarkHUDWithText("Thanks for your help")
     }
     
     func showProAlert() {
-//        let alert = UIAlertView(title: "",
-//            message: NSLocalizedString("Now your using the Pro version.", comment: ""),
-//            delegate: self,
-//            cancelButtonTitle: NSLocalizedString("Yes", comment: ""))
-//        alert.show()
         self.showCheckMarkHUDWithText("Update Succeeded")
     }
     
@@ -224,12 +214,6 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
             
         case SKPaymentTransactionState.Purchasing:
             println("ProductsManagerDelegate - Purchasing")
-//            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-//                Int64(1 * Double(NSEC_PER_SEC)))
-//            dispatch_after(delayTime, dispatch_get_main_queue(), {
-//                self.HUD.hide(true)
-//                return
-//            })
             break
             
         case SKPaymentTransactionState.Purchased:
