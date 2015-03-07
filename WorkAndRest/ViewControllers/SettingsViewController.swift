@@ -258,6 +258,17 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         }
     }
     
+    func productsManagerRestoreFailed(productsManager: ProductsManager) {
+        self.HUD.hide(false)
+        let failedHUD = MBProgressHUD(view: self.view)
+        failedHUD.customView = UIImageView(image: UIImage(named: "checkmark"))
+        failedHUD.mode = MBProgressHUDMode.CustomView
+        failedHUD.labelText = "You haven't bought it before"
+        self.view.addSubview(failedHUD)
+        failedHUD.show(true)
+        failedHUD.hide(true, afterDelay: 2.0)
+    }
+    
     func refreshThePaymentItem(versionType: VersionType) {
         switch versionType {
         case .Free:

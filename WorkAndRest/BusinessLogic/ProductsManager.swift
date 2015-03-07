@@ -8,8 +8,11 @@
 
 import UIKit
 
-protocol ProductsManagerDelegate {
+@objc protocol ProductsManagerDelegate {
     func productsManager(productsManager: ProductsManager, paymentTransactionState state: SKPaymentTransactionState)
+    
+    optional
+    func productsManagerRestoreFailed(productsManager: ProductsManager)
 }
 
 private let _singletonInstance = ProductsManager()
@@ -114,17 +117,21 @@ class ProductsManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
         }
     }
     
-//    func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue!) {
-//        println("Received restored transactions: \(queue.transactions.count)")
-//        for transaction in queue.transactions {
-//            if transaction.transactionState == SKPaymentTransactionState.Restored {
-//                println("paymentQueueRestoreCompletedTransactionsFinished - TransactionState -> Restored")
-//                self.doRemoveAds()
-//                SKPaymentQueue.defaultQueue().finishTransaction(transaction as SKPaymentTransaction)
-//                break
-//            }
-//        }
-//    }
+    func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue!) {
+        println("Received restored transactions: \(queue.transactions.count)")
+        if queue.transactions.count == 0 {
+            self.delegate?.productsManagerRestoreFailed!(self)
+            return
+        }
+        for transaction in queue.transactions {
+            if transaction.transactionState == SKPaymentTransactionState.Restored {
+                println("paymentQueueRestoreCompletedTransactionsFinished - TransactionState -> Restored")
+                self.doRemoveAds()
+                SKPaymentQueue.defaultQueue().finishTransaction(transaction as SKPaymentTransaction)
+                break
+            }
+        }
+    }
     
     func doRemoveAds() {
         println("doRemoveAds")

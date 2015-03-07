@@ -817,6 +817,15 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     // MARK: - StatisticsLockerDelegate
     
     func statisticsLockerDidClickedBuyButton(sender: StatisticsLocker) {
+        
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+            Int64(1 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue(), {
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            return
+        })
+
         ProductsManager.sharedInstance.purchasePro()
     }
     
@@ -841,8 +850,23 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         }
         let versionType = ApplicationStateManager.sharedInstance.versionType()
         if versionType == .Pro {
+            self.showProAlert()
             self.locker?.removeFromSuperview()
         }
+    }
+    
+    func showProAlert() {
+        self.showCheckMarkHUDWithText("Update Succeeded")
+    }
+    
+    func showCheckMarkHUDWithText(text: String) {
+        let thanksHUD = MBProgressHUD(view: self.view)
+        thanksHUD.customView = UIImageView(image: UIImage(named: "checkmark"))
+        thanksHUD.mode = MBProgressHUDMode.CustomView
+        thanksHUD.labelText = text
+        self.view.addSubview(thanksHUD)
+        thanksHUD.show(true)
+        thanksHUD.hide(true, afterDelay: 2.5)
     }
 }
 
