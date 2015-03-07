@@ -15,3 +15,4 @@
 #import "JBChartView/JBBarChartView.h"
 #import "JBChartView/JBLineChartView.h"
 #import "CMPopTipView.h"
+#import "MBProgressHUD.h"

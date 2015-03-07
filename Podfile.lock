@@ -6,18 +6,21 @@ PODS:
     - FMDB/common
   - JBChartView (2.8.10)
   - Masonry (0.6.0)
+  - MBProgressHUD (0.9.1)
   - SWTableViewCell (0.3.7)
 
 DEPENDENCIES:
   - FMDB
   - JBChartView (~> 2.8.10)
   - Masonry
+  - MBProgressHUD (~> 0.9.1)
   - SWTableViewCell (~> 0.3.7)
 
 SPEC CHECKSUMS:
   FMDB: 0efa188cf0dd1ce82c27a478cd5f5fa245308677
   JBChartView: 50b221ef68d0934f5aea417a369a5b02167848a9
   Masonry: 0bc111d6902e3a55ff8423bcbdf7155261806547
+  MBProgressHUD: f3747dcbd45a9e855a6b0674550651e0b7ed250c
   SWTableViewCell: 25de71898e3fcd11cf75707ef90245acf990ec03
 
 COCOAPODS: 0.35.0

@@ -511,7 +511,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="xkN-jm-Gv9">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="xaD-3C-KF2">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="xaD-3C-KF2">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xaD-3C-KF2" id="eu0-AI-AJm">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -523,7 +523,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UoA-MC-b0d">
-                                                    <rect key="frame" x="268" y="6" width="32" height="32"/>
+                                                    <rect key="frame" x="266" y="6" width="32" height="32"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <state key="normal" title="Free">
                                                         <color key="titleColor" red="0.23137254900000001" green="0.74117647060000003" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
@@ -536,7 +536,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="iY0-en-hub" firstAttribute="leading" secondItem="eu0-AI-AJm" secondAttribute="leadingMargin" constant="8" id="59b-Oq-TIU"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="UoA-MC-b0d" secondAttribute="trailing" constant="12" id="UbI-4A-hS8"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="UoA-MC-b0d" secondAttribute="trailing" constant="14" id="UbI-4A-hS8"/>
                                                 <constraint firstAttribute="centerY" secondItem="iY0-en-hub" secondAttribute="centerY" id="ne7-KT-2w3"/>
                                                 <constraint firstAttribute="centerY" secondItem="UoA-MC-b0d" secondAttribute="centerY" id="rIe-Jz-Wn3"/>
                                             </constraints>

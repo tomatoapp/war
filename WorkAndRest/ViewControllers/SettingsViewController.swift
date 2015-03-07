@@ -43,12 +43,16 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     
     @IBAction func versionTypeButtonClicked(sender: AnyObject) {
         if self.versionType == .Free {
-            if self.popTipView == nil {
-                self.popTipView = CMPopTipView(message: "Tomato! is free for a 7 day trial, If you like it then you can purchase Pro version.")
-            }
-            self.popTipView?.dismissAnimated(false)
-            self.popTipView?.presentPointingAtView(self.currentVersionButton, inView: self.view, animated: true)
+            self.showPopTipView()
         }
+    }
+    
+    func showPopTipView() {
+        if self.popTipView == nil {
+            self.popTipView = CMPopTipView(message: "Tomato! is free for a 7 day trial, If you like it then you can purchase Pro version.")
+        }
+        self.popTipView?.dismissAnimated(false)
+        self.popTipView?.presentPointingAtView(self.currentVersionButton, inView: self.view, animated: true)
     }
     
     // MARK: - Navigation
@@ -89,15 +93,23 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
 //        }
         
         if indexPath.section == 1 && indexPath.row == 0 {
-            self.popTipView?.dismissAnimated(true)
+            self.showPopTipView()
         }
         
         if indexPath.section == 1 && indexPath.row == 1 {
             // go premium
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            isInpaymentTransactionProcess = true
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5,
+                target: self,
+                selector: Selector("hideHUBWhenTheAlertIsShowed"),
+                userInfo: nil,
+                repeats: true)
             ProductsManager.sharedInstance.purchasePro()
         }
         if indexPath.section == 1 && indexPath.row == 2 {
             // restore purchase
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
             ProductsManager.sharedInstance.restore()
         }
         
@@ -119,7 +131,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         if indexPath.section == 1 && self.versionType == .Pro && (indexPath.row == 1 || indexPath.row == 2) {
             return 0.0
         }
-        return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        return 44.0
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -188,16 +200,29 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     
     func productsManager(productsManager: ProductsManager, paymentTransactionState state: SKPaymentTransactionState) {
         switch state {
+            
+        case SKPaymentTransactionState.Purchasing:
+            println("ProductsManagerDelegate - Purchasing")
+            
+            //MBProgressHUD.hideHUDForView(self.view, animated: true)
+            break
+            
         case SKPaymentTransactionState.Purchased:
             println("ProductsManagerDelegate - Purchased")
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            isInpaymentTransactionProcess = false
             break
             
         case SKPaymentTransactionState.Restored:
             println("ProductsManagerDelegate - Restored")
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            isInpaymentTransactionProcess = false
             break
             
         case SKPaymentTransactionState.Failed:
             println("ProductsManagerDelegate - Failed")
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            isInpaymentTransactionProcess = false
             break
             
         default:
@@ -217,6 +242,62 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         case .Pro:
             self.currentVersionButton.setTitle("Pro", forState: .Normal)
             break
+        }
+    }
+    
+    var timer: NSTimer!
+    var isInpaymentTransactionProcess = false
+    
+//    func hideHUDWhileShowedTheAlertView() {
+//        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5,
+//            target: self,
+//            selector: Selector("hideHUBWhenTheAlertIsShowed"),
+//            userInfo: nil,
+//            repeats: true)
+//    }
+    
+    func hideHUBWhenTheAlertIsShowed() {
+        println("hideHUBWhenTheAlertIsShowed")
+        if !isInpaymentTransactionProcess {
+            self.timer.invalidate()
+        }
+        for window in UIApplication.sharedApplication().windows {
+            for subView in window.subviews {
+                println(subView)
+                
+                if subView.isKindOfClass(UIAlertView) {
+                    println("subView.isKindOfClass(UIAlertView) -> true")
+                    MBProgressHUD.hideHUDForView(self.view, animated: true)
+                    // Stop the timer
+                    self.timer.invalidate()
+                    // Start a new timer to check whether the alert is dismissed.
+                    self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5,
+                        target: self,
+                        selector: Selector("showHUBWhenTheAlertIsDismissed"),
+                        userInfo: nil,
+                        repeats: true)
+                }
+            }
+        }
+    }
+    
+    func showHUBWhenTheAlertIsDismissed() {
+        println("showHUBWhenTheAlertIsDismissed")
+        if !isInpaymentTransactionProcess {
+            self.timer.invalidate()
+        }
+        
+        var isFindedTheAlertView = false
+        for window in UIApplication.sharedApplication().windows {
+            for subView in window.subviews {
+                if subView.isKindOfClass(UIAlertView) {
+                    isFindedTheAlertView = true
+                    self.timer.invalidate()
+                }
+            }
+        }
+        if !isFindedTheAlertView {
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         }
     }
 }
