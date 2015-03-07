@@ -62,6 +62,10 @@ class ProductsManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
         if count > 0 {
             println("Products availabel!")
             validProduct = response.products[0] as? SKProduct
+            println("price: \(validProduct!.price)")
+            println("description: \(validProduct!.localizedDescription)")
+            println("localizedTitle: \(validProduct!.localizedTitle)")
+            self.purchase(validProduct!)
         } else if validProduct == nil {
             println("No products available.")
         }
@@ -95,7 +99,7 @@ class ProductsManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
             case SKPaymentTransactionState.Failed:
                 println("TransactionState -> Failed")
                 
-                if transaction.errorStatusCode == SKErrorPaymentCancelled {
+                if (transaction as SKPaymentTransaction).error.code == SKErrorPaymentCancelled {
                     // The user cancelled the payment
                     println("TransactionState -> Cancelled")
                     
@@ -106,7 +110,7 @@ class ProductsManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
             default:
                 break
             }
-            //self.delegate?.productsManager(self, paymentTransactionState: transaction.transactionState)
+            self.delegate?.productsManager(self, paymentTransactionState: transaction.transactionState)
         }
     }
     

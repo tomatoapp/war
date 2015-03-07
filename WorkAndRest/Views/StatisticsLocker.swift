@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol StatisticsLockerDelegate {
+    func statisticsLockerDidClickedBuyButton(sender: StatisticsLocker)
+}
 class StatisticsLocker: UIView {
 
+    var delegate: StatisticsLockerDelegate?
+    
     @IBOutlet var view: UIView!
 
     override init(frame: CGRect) {
@@ -39,5 +44,6 @@ class StatisticsLocker: UIView {
     
     @IBAction func buyButtonClicked(sender: AnyObject) {
         println("buy")
+        self.delegate?.statisticsLockerDidClickedBuyButton(self)
     }
 }

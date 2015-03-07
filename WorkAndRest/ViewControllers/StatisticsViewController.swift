@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate, JBBarChartViewDataSource {
+class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate, JBBarChartViewDataSource, StatisticsLockerDelegate, ProductsManagerDelegate {
     
     @IBOutlet var showPercentageSwitch: UISwitch!
     @IBOutlet var statisticsView: UIView!
@@ -27,6 +27,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     var isShowPercentageSwitchOn = true
     
     var tooltip: UILabel!
+    var locker: StatisticsLocker?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +63,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         self.isShowPercentageSwitchOn = NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_SHOWPERCENTAGE)
         self.showPercentageSwitch.on = self.isShowPercentageSwitchOn
+        
+        ProductsManager.sharedInstance.delegate = self
     }
     
     func setStateToExpanded() {
@@ -88,18 +91,20 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         if self.needLockTheChart() {
             self.lockTheChart()
         } else {
-            self.loaDataSourceBySegmentedControlSelectedIndex(self.segmentedControl.selectedSegmentIndex)
-            self.chartView.reloadData()
+            self.locker?.removeFromSuperview()
         }
+        self.loaDataSourceBySegmentedControlSelectedIndex(self.segmentedControl.selectedSegmentIndex)
+        self.chartView.reloadData()
     }
     
     func lockTheChart() {
 //        let locker = UIImageView(image: UIImage(named: "lock chart"))
 //        locker.frame = CGRectMake(0, 0, self.view.frame.size.width - 26, 193)
         
-        let locker = StatisticsLocker(frame: CGRectMake(0, 0, self.view.frame.size.width - 25, 193))
-        self.statisticsView.addSubview(locker)
-        self.statisticsView.bringSubviewToFront(locker)
+        self.locker = StatisticsLocker(frame: CGRectMake(0, 0, self.view.frame.size.width - 25, 193))
+        locker!.delegate = self
+        self.statisticsView.addSubview(locker!)
+        self.statisticsView.bringSubviewToFront(locker!)
     }
     
     func needLockTheChart() -> Bool {
@@ -806,6 +811,37 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             })
         } else {
             adjustTooltipVisibility()
+        }
+    }
+    
+    // MARK: - StatisticsLockerDelegate
+    
+    func statisticsLockerDidClickedBuyButton(sender: StatisticsLocker) {
+        ProductsManager.sharedInstance.purchasePro()
+    }
+    
+    // MARK: - ProductsManagerDelegate
+    
+    func productsManager(productsManager: ProductsManager, paymentTransactionState state: SKPaymentTransactionState) {
+        switch state {
+        case SKPaymentTransactionState.Purchased:
+            println("ProductsManagerDelegate - Purchased")
+            break
+            
+        case SKPaymentTransactionState.Restored:
+            println("ProductsManagerDelegate - Restored")
+            break
+            
+        case SKPaymentTransactionState.Failed:
+            println("ProductsManagerDelegate - Failed")
+            break
+            
+        default:
+            break
+        }
+        let versionType = ApplicationStateManager.sharedInstance.versionType()
+        if versionType == .Pro {
+            self.locker?.removeFromSuperview()
         }
     }
 }

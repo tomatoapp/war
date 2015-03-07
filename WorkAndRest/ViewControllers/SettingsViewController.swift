@@ -14,7 +14,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
 
     @IBOutlet var badgeAppIconSwitch: UISwitch!
     @IBOutlet var currentVersionButton: UIButton!
-    let versionType = ApplicationStateManager.sharedInstance.versionType()
+    var versionType = ApplicationStateManager.sharedInstance.versionType()
     var popTipView: CMPopTipView?
     
     
@@ -23,6 +23,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
 
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.badgeAppIconSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_BADGEAPPICON)
+        ProductsManager.sharedInstance.delegate = self
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -188,20 +189,23 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     func productsManager(productsManager: ProductsManager, paymentTransactionState state: SKPaymentTransactionState) {
         switch state {
         case SKPaymentTransactionState.Purchased:
-            println("Purchased")
+            println("ProductsManagerDelegate - Purchased")
             break
             
         case SKPaymentTransactionState.Restored:
-            println("Restored")
+            println("ProductsManagerDelegate - Restored")
             break
             
         case SKPaymentTransactionState.Failed:
-            println("Failed")
+            println("ProductsManagerDelegate - Failed")
             break
             
         default:
             break
         }
+        self.versionType = ApplicationStateManager.sharedInstance.versionType()
+        self.tableView.reloadData()
+        self.refreshThePaymentItem(self.versionType)
     }
     
     func refreshThePaymentItem(versionType: VersionType) {
