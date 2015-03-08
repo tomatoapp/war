@@ -36,6 +36,12 @@
 		646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 646141A41A80C11E0010E19E /* V8HorizontalPickerView.m */; };
 		646B04ED1A9A99C00083E065 /* WorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646B04EC1A9A99C00083E065 /* WorkManager.swift */; };
 		647603041AA9CD4500B1373E /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 647603031AA9CD4500B1373E /* CMPopTipView.m */; };
+		647A4B431AABD57B00EDFB72 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A4B421AABD57B00EDFB72 /* GuideViewController.swift */; };
+		647A4B481AABDDD400EDFB72 /* Guide1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A4B471AABDDD400EDFB72 /* Guide1ViewController.swift */; };
+		647A4B4A1AABDDE000EDFB72 /* Guide2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A4B491AABDDE000EDFB72 /* Guide2ViewController.swift */; };
+		647A4B4C1AABDDE900EDFB72 /* Guide3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A4B4B1AABDDE900EDFB72 /* Guide3ViewController.swift */; };
+		647A4B4E1AABDDF200EDFB72 /* Guide4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A4B4D1AABDDF200EDFB72 /* Guide4ViewController.swift */; };
+		647A4B501AABDDFA00EDFB72 /* Guide5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A4B4F1AABDDFA00EDFB72 /* Guide5ViewController.swift */; };
 		64802BF11AA6B7FF00B49E2C /* IconBadgeNumberManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64802BF01AA6B7FF00B49E2C /* IconBadgeNumberManager.swift */; };
 		648311BE1A96B8E100F445AE /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648311BD1A96B8E100F445AE /* StatisticsViewController.swift */; };
 		649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308521A7AE22D00480677 /* TaskListItemCell.swift */; };
@@ -125,6 +131,12 @@
 		646B04EC1A9A99C00083E065 /* WorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkManager.swift; sourceTree = "<group>"; };
 		647603021AA9CD4500B1373E /* CMPopTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPopTipView.h; sourceTree = "<group>"; };
 		647603031AA9CD4500B1373E /* CMPopTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPopTipView.m; sourceTree = "<group>"; };
+		647A4B421AABD57B00EDFB72 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
+		647A4B471AABDDD400EDFB72 /* Guide1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide1ViewController.swift; sourceTree = "<group>"; };
+		647A4B491AABDDE000EDFB72 /* Guide2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide2ViewController.swift; sourceTree = "<group>"; };
+		647A4B4B1AABDDE900EDFB72 /* Guide3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide3ViewController.swift; sourceTree = "<group>"; };
+		647A4B4D1AABDDF200EDFB72 /* Guide4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide4ViewController.swift; sourceTree = "<group>"; };
+		647A4B4F1AABDDFA00EDFB72 /* Guide5ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide5ViewController.swift; sourceTree = "<group>"; };
 		64802BF01AA6B7FF00B49E2C /* IconBadgeNumberManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconBadgeNumberManager.swift; sourceTree = "<group>"; };
 		648311BD1A96B8E100F445AE /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		649308521A7AE22D00480677 /* TaskListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListItemCell.swift; sourceTree = "<group>"; };
@@ -317,6 +329,8 @@
 				6493C5A71A9032890036B5AE /* HelpViewController.swift */,
 				6415C60A1A9234D400A9FBCA /* SettingsViewController.swift */,
 				648311BD1A96B8E100F445AE /* StatisticsViewController.swift */,
+				647A4B421AABD57B00EDFB72 /* GuideViewController.swift */,
+				647A4B461AABDDBD00EDFB72 /* Guide */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -376,6 +390,18 @@
 				647603031AA9CD4500B1373E /* CMPopTipView.m */,
 			);
 			path = CMPopTipView;
+			sourceTree = "<group>";
+		};
+		647A4B461AABDDBD00EDFB72 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				647A4B471AABDDD400EDFB72 /* Guide1ViewController.swift */,
+				647A4B491AABDDE000EDFB72 /* Guide2ViewController.swift */,
+				647A4B4B1AABDDE900EDFB72 /* Guide3ViewController.swift */,
+				647A4B4D1AABDDF200EDFB72 /* Guide4ViewController.swift */,
+				647A4B4F1AABDDFA00EDFB72 /* Guide5ViewController.swift */,
+			);
+			path = Guide;
 			sourceTree = "<group>";
 		};
 		6497FE4C1A75A28B00174307 /* DBOperate */ = {
@@ -563,6 +589,7 @@
 				64B563131AA7FC7000098532 /* StatisticsLocker.swift in Sources */,
 				64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */,
 				64E3C1AB1A8752C400418426 /* TaskListHeaderView.swift in Sources */,
+				647A4B4C1AABDDE900EDFB72 /* Guide3ViewController.swift in Sources */,
 				64CCE5331A89600C008D5A08 /* TaskDetailsViewController.swift in Sources */,
 				64EAEC2D1A7E37F70026C748 /* TaskRunner.swift in Sources */,
 				64012C8A1900B89D006FC2B2 /* Appirater.m in Sources */,
@@ -570,7 +597,9 @@
 				6442291D1A7A2F2000E516C1 /* TaskListViewController.swift in Sources */,
 				645FDE0E1A7D98FB002EC8EF /* AppDelegate.swift in Sources */,
 				649308571A7AE65C00480677 /* BaseViewController.swift in Sources */,
+				647A4B431AABD57B00EDFB72 /* GuideViewController.swift in Sources */,
 				647603041AA9CD4500B1373E /* CMPopTipView.m in Sources */,
+				647A4B501AABDDFA00EDFB72 /* Guide5ViewController.swift in Sources */,
 				646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */,
 				64BD3D0B1A7B247000941B07 /* SettingViewController.swift in Sources */,
 				6497FE561A75A77800174307 /* Work.swift in Sources */,
@@ -591,9 +620,12 @@
 				649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */,
 				64B67F151A8063D0002127BC /* TimeSelectorView.swift in Sources */,
 				649893951A842F790091822A /* CompletionCycleView.swift in Sources */,
+				647A4B4E1AABDDF200EDFB72 /* Guide4ViewController.swift in Sources */,
 				64CF8A2E1A8EE48F000565C4 /* TaskManager.swift in Sources */,
 				649893931A83959B0091822A /* LockNotifierCallback.m in Sources */,
 				6493C5A81A9032890036B5AE /* HelpViewController.swift in Sources */,
+				647A4B4A1AABDDE000EDFB72 /* Guide2ViewController.swift in Sources */,
+				647A4B481AABDDD400EDFB72 /* Guide1ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,9 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             nil,
             CFNotificationSuspensionBehavior.DeliverImmediately)
         
-        NSThread.sleepForTimeInterval(0.5)
-        self.hideIconWithAnimation()
-        
         return true
     }
     
@@ -128,7 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         //        println("applicationWillTerminate")
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         UIApplication.sharedApplication().cancelAllLocalNotifications()
-//        IconBadgeNumberManager.sharedInstance.setBadgeNumber()
+        //        IconBadgeNumberManager.sharedInstance.setBadgeNumber()
     }
     
     
@@ -137,6 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     func firstRun() {
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.k_HASRAN_BEFORE) {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.k_HASRAN_BEFORE)
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_firstLaunch)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SECOND_SOUND)
             NSUserDefaults.standardUserDefaults().setInteger(GlobalConstants.DEFAULT_MINUTES, forKey: GlobalConstants.k_SECONDS)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SHOWPERCENTAGE)
@@ -144,6 +142,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             NSUserDefaults.standardUserDefaults().synchronize()
             ApplicationStateManager.sharedInstance.setup()
             DBOperate.insertTask(self.createSampleTask())
+        } else {
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_firstLaunch)
         }
     }
     

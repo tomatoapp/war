@@ -13,6 +13,7 @@ class GlobalConstants {
     class var APPSTORE_URL: String { return "itms-apps://itunes.apple.com/app/id868078759" }
     class var EMAIL_ADDRESS: String {return "lunars.service@yahoo.com" }
     class var k_HASRAN_BEFORE: String { return "HasRanBefore" } // Not the first launch
+    class var kBOOL_firstLaunch: String { return "" }
     class var k_FirstLauchDate: String { return "FirstLauchDate" }
     class var kBOOL_ISWORKING: String { return "isWorking" }
     class var k_FROZEN_DATE: String { return "FrozenDate" }
