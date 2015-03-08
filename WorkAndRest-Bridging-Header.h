@@ -16,3 +16,5 @@
 #import "JBChartView/JBLineChartView.h"
 #import "CMPopTipView.h"
 #import "MBProgressHUD.h"
+#import "EAIntroView.h"
+#import "SMPageControl.h"

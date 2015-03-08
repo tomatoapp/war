@@ -8,8 +8,19 @@
 
 import UIKit
 
+protocol Guide5ViewControllerDelegate {
+    func guide5ViewControllerDidClickedFinishedButton(sender: Guide5ViewController)
+}
+
 class Guide5ViewController: UIViewController {
 
+    var delegate: Guide5ViewControllerDelegate?
+    
+    @IBAction func getStartedButtonClicked(sender: AnyObject) {
+        println("getStartedButtonClicked")
+        self.delegate?.guide5ViewControllerDidClickedFinishedButton(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
