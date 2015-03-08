@@ -14,64 +14,52 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        println("Root View Did Load")
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "title"))
-        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "white"), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.translucent = false
         self.delegate = self
 
-        self.navigationController?.navigationBarHidden = true
-        var pages = [EAIntroPage]()
-        for id in 1...5 {
-            let tempGuideViewController: UIViewController = storyboard?.instantiateViewControllerWithIdentifier("guideViewController\(id)") as UIViewController
-            tempGuideViewController.view.frame = self.view.bounds
-            let tempPage = EAIntroPage(customView: tempGuideViewController.view)
-            tempPage.customView.frame = self.view.bounds
-            pages.append(tempPage)
+        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) {
+            self.showIntroView()
         }
-        
-        introView = EAIntroView(frame: self.view.bounds, andPages: pages)
-        introView?.backgroundColor = UIColor.whiteColor()
-        introView?.showInView(self.view, animateDuration: 0)
-        introView?.delegate = self
-        introView?.swipeToExit = false
-        introView?.showSkipButtonOnlyOnLastPage = true
-        introView?.skipButtonAlignment = EAViewAlignment.Center
-        introView?.skipButtonY = 200
-        introView?.skipButton.titleLabel?.font = UIFont.systemFontOfSize(23)
-        introView?.skipButton.setTitleColor(UIColor(red: 74/255, green: 144/255, blue: 226/255, alpha: 1.0), forState: UIControlState.Normal)
-        introView?.skipButton.setTitle("Get Started", forState: UIControlState.Normal)
-        introView?.swipeToExit = false
-//        let *pageControl = SMPageControl()
-//        pageControl.pageIndicatorImage = [UIImage imageNamed:@"pageDot"];
-//        pageControl.currentPageIndicatorImage = [UIImage imageNamed:@"selectedPageDot"];
-//        [pageControl sizeToFit];
-//        intro.pageControl = (UIPageControl *)pageControl;
-//        intro.pageControlY = 130.f
-        
-        let pageControl = SMPageControl()
-        pageControl.pageIndicatorImage = UIImage(named: "indicator")
-        pageControl.currentPageIndicatorImage = UIImage(named: "currentIndicator")
-        pageControl.sizeToFit()
-        introView?.setupPageControl(pageControl)
-        introView?.pageControlY = 40.0
-        
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        println("root view will appear")
+    func hideIconWithAnimation() {
+        let imageView = UIImageView(image: UIImage(named: "launch page icon"))
+//        imageView.frame = CGRectMake((self.view.frame.width-151)/2, 148, 151, 142)
+        
+        self.view.addSubview(imageView)
+        self.view.bringSubviewToFront(imageView)
+        
+        imageView.mas_makeConstraints { (make) -> Void in
+            make.centerX.mas_equalTo()(self.view.mas_centerX)
+            //-self.navigationController!.navigationBar.frame.height\
+            make.centerY.mas_equalTo()(self.view.mas_centerY).offset()(-79)
+            make.width.mas_equalTo()(151)
+            make.height.mas_equalTo()(142)
+            return ()
+        }
+        
+        imageView.alpha = 1.0
+        UIView.animateWithDuration(0.6,
+            delay: 0.25,
+            options: UIViewAnimationOptions.CurveEaseOut,
+            animations: { () -> Void in
+                imageView.alpha = 0.0
+                imageView.transform = CGAffineTransformMakeScale(1.7, 1.7)
+                imageView.center = CGPointMake(imageView.center.x, imageView.center.y + 40)
+                
+            }) { (finished) -> Void in
+                imageView.removeFromSuperview()
+        }
     }
     
     // MARK: - EAIntroDelegate
 
     func introDidFinish(introView: EAIntroView!) {
-//        self.navigationController?.navigationBarHidden = false
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.hideIconWithAnimation()
     }
-
     
     // MARK: - UITabBarControllerDelegate
     
@@ -96,4 +84,41 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         }
         return true
     }
+    
+    // MARK: - Methods
+    
+    func showIntroView() {
+        self.navigationController?.navigationBarHidden = true
+        var pages = [EAIntroPage]()
+        for id in 2...5 {
+            let tempGuideViewController: UIViewController = storyboard?.instantiateViewControllerWithIdentifier("guideViewController\(id)") as UIViewController
+            tempGuideViewController.view.frame = self.view.bounds
+            let tempPage = EAIntroPage(customView: tempGuideViewController.view)
+            tempPage.customView.frame = self.view.bounds
+            pages.append(tempPage)
+        }
+        
+        introView = EAIntroView(frame: self.view.bounds, andPages: pages)
+        introView?.backgroundColor = UIColor.whiteColor()
+        introView?.delegate = self
+        introView?.swipeToExit = false
+        introView?.showSkipButtonOnlyOnLastPage = true
+        introView?.skipButtonAlignment = EAViewAlignment.Center
+        introView?.skipButtonY = 200
+        introView?.skipButton.titleLabel?.font = UIFont.systemFontOfSize(23)
+        introView?.skipButton.setTitleColor(UIColor(red: 74/255, green: 144/255, blue: 226/255, alpha: 1.0), forState: UIControlState.Normal)
+        introView?.skipButton.setTitle("Get Started", forState: UIControlState.Normal)
+        introView?.swipeToExit = false
+        
+        let pageControl = SMPageControl()
+        pageControl.pageIndicatorImage = UIImage(named: "baseIndicator")
+        pageControl.currentPageIndicatorImage = UIImage(named: "currentIndicator")
+        pageControl.sizeToFit()
+        introView?.setupPageControl(pageControl)
+        introView?.pageControlY = 40.0
+        
+        introView?.showInView(self.view, animateDuration: 0)
+
+    }
+    
 }

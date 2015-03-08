@@ -547,37 +547,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rfg-YE-WkT">
-                                <rect key="frame" x="85" y="110" width="151" height="291"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch page icon" translatesAutoresizingMaskIntoConstraints="NO" id="885-RN-Pl9">
-                                        <rect key="frame" x="0.0" y="0.0" width="151" height="142"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="142" id="IPA-6L-8Yp"/>
-                                            <constraint firstAttribute="width" constant="151" id="ePP-ya-dWk"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title" translatesAutoresizingMaskIntoConstraints="NO" id="4XV-CR-kR8">
-                                        <rect key="frame" x="37" y="141" width="76" height="16"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title" translatesAutoresizingMaskIntoConstraints="NO" id="4XV-CR-kR8">
+                                <rect key="frame" x="122" y="276" width="76" height="16"/>
                                 <constraints>
-                                    <constraint firstItem="4XV-CR-kR8" firstAttribute="top" secondItem="Rfg-YE-WkT" secondAttribute="top" constant="141" id="CSh-oo-MwW"/>
-                                    <constraint firstAttribute="trailing" secondItem="885-RN-Pl9" secondAttribute="trailing" id="EII-DV-XlD"/>
-                                    <constraint firstAttribute="centerX" secondItem="4XV-CR-kR8" secondAttribute="centerX" constant="0.5" id="HSG-qD-WLu"/>
-                                    <constraint firstAttribute="height" constant="291" id="KBh-hb-Ac6"/>
-                                    <constraint firstItem="885-RN-Pl9" firstAttribute="leading" secondItem="Rfg-YE-WkT" secondAttribute="leading" id="aSP-4X-cCV"/>
-                                    <constraint firstItem="4XV-CR-kR8" firstAttribute="top" secondItem="885-RN-Pl9" secondAttribute="bottom" constant="-1" id="gF2-r9-xxv"/>
-                                    <constraint firstAttribute="width" constant="151" id="ngE-Fk-uKR"/>
-                                    <constraint firstItem="885-RN-Pl9" firstAttribute="top" secondItem="Rfg-YE-WkT" secondAttribute="top" id="xOa-dD-fHR"/>
+                                    <constraint firstAttribute="height" constant="16" id="Qql-DX-EuZ"/>
                                 </constraints>
-                            </view>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch page icon" translatesAutoresizingMaskIntoConstraints="NO" id="885-RN-Pl9">
+                                <rect key="frame" x="85" y="126" width="151" height="142"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="142" id="IPA-6L-8Yp"/>
+                                    <constraint firstAttribute="width" constant="151" id="ePP-ya-dWk"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="Rfg-YE-WkT" secondAttribute="centerX" id="sQP-Rd-Lq2"/>
-                            <constraint firstAttribute="centerY" secondItem="Rfg-YE-WkT" secondAttribute="centerY" constant="28.5" id="xAL-2b-cKS"/>
+                            <constraint firstAttribute="centerY" secondItem="885-RN-Pl9" secondAttribute="centerY" constant="87" id="7En-kR-0cB"/>
+                            <constraint firstAttribute="centerY" secondItem="4XV-CR-kR8" secondAttribute="centerY" id="Kii-cs-Jih"/>
+                            <constraint firstAttribute="centerX" secondItem="885-RN-Pl9" secondAttribute="centerX" id="Xd4-2o-k3Q"/>
+                            <constraint firstItem="4XV-CR-kR8" firstAttribute="top" secondItem="885-RN-Pl9" secondAttribute="bottom" constant="8" id="e9i-zJ-gcw"/>
+                            <constraint firstAttribute="centerX" secondItem="4XV-CR-kR8" secondAttribute="centerX" id="jQ0-D2-gA4"/>
                         </constraints>
                     </view>
                 </viewController>

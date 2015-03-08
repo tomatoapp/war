@@ -25,6 +25,7 @@ class ProductsManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
     }
     // button
     func purchasePro() {
+        return
         println("User requests to purchase Pro.")
         
         if SKPaymentQueue.canMakePayments() {
@@ -46,6 +47,7 @@ class ProductsManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
     
     // button
     func restore() {
+        return
         println("TransactionState -> restore()")
         SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
         SKPaymentQueue.defaultQueue().addTransactionObserver(self)

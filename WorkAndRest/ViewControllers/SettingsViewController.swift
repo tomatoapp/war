@@ -245,7 +245,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     func productsManagerRestoreFailed(productsManager: ProductsManager) {
         self.HUD.hide(false)
         let failedHUD = MBProgressHUD(view: self.view)
-        failedHUD.customView = UIImageView(image: UIImage(named: "checkmark"))
+        failedHUD.customView = UIImageView(image: UIImage(named: "error"))
         failedHUD.mode = MBProgressHUDMode.CustomView
         failedHUD.labelText = "You haven't bought it before"
         self.view.addSubview(failedHUD)

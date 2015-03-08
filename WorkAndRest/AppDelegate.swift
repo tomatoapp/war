@@ -33,6 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             nil,
             CFNotificationSuspensionBehavior.DeliverImmediately)
         
+        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) {
+            NSThread.sleepForTimeInterval(0.5)
+            self.hideIconWithAnimation()
+        }
+        
         return true
     }
     
