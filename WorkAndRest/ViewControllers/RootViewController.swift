@@ -20,9 +20,6 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "white"), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.translucent = false
-        
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 65/255, green: 117/255, blue: 5/255, alpha: 1)
-        self.navigationController?.navigationBar.tintColor = UIColor(red: 65/255, green: 117/255, blue: 5/255, alpha: 1)
         self.delegate = self
 
         self.navigationController?.navigationBarHidden = true
@@ -46,7 +43,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         introView?.skipButton.titleLabel?.font = UIFont.systemFontOfSize(23)
         introView?.skipButton.setTitleColor(UIColor(red: 74/255, green: 144/255, blue: 226/255, alpha: 1.0), forState: UIControlState.Normal)
         introView?.skipButton.setTitle("Get Started", forState: UIControlState.Normal)
-        
+        introView?.swipeToExit = false
 //        let *pageControl = SMPageControl()
 //        pageControl.pageIndicatorImage = [UIImage imageNamed:@"pageDot"];
 //        pageControl.currentPageIndicatorImage = [UIImage imageNamed:@"selectedPageDot"];
@@ -71,7 +68,8 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
     // MARK: - EAIntroDelegate
 
     func introDidFinish(introView: EAIntroView!) {
-        self.navigationController?.navigationBarHidden = false
+//        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     

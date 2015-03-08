@@ -303,7 +303,7 @@
                                         <rect key="frame" x="106" y="185" width="76" height="16"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create, Start, Work and Check. This is how you can be effecient." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4S-UI-rSQ">
-                                        <rect key="frame" x="0.0" y="296" width="288" height="41"/>
+                                        <rect key="frame" x="12" y="296" width="264" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="1AH-N0-kd6"/>
                                         </constraints>
@@ -328,7 +328,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="337" id="5Ue-Fr-BBT"/>
-                                    <constraint firstAttribute="trailing" secondItem="j4S-UI-rSQ" secondAttribute="trailing" id="83M-AJ-B2h"/>
+                                    <constraint firstAttribute="trailing" secondItem="j4S-UI-rSQ" secondAttribute="trailing" constant="12" id="83M-AJ-B2h"/>
                                     <constraint firstAttribute="centerX" secondItem="rtc-tF-H5F" secondAttribute="centerX" id="BSI-PT-I3p"/>
                                     <constraint firstItem="llj-zB-dvX" firstAttribute="top" secondItem="Ms9-dI-K20" secondAttribute="bottom" constant="8" id="G5l-aT-WnR"/>
                                     <constraint firstItem="llj-zB-dvX" firstAttribute="leading" secondItem="X1t-hq-NiF" secondAttribute="leading" id="NJE-oI-iPK"/>
@@ -337,7 +337,7 @@
                                     <constraint firstAttribute="bottom" secondItem="j4S-UI-rSQ" secondAttribute="bottom" id="jfn-4t-azi"/>
                                     <constraint firstAttribute="bottom" secondItem="rtc-tF-H5F" secondAttribute="bottom" constant="136" id="sC7-sJ-kFy"/>
                                     <constraint firstAttribute="centerX" secondItem="Ms9-dI-K20" secondAttribute="centerX" id="teS-ng-3x8"/>
-                                    <constraint firstItem="j4S-UI-rSQ" firstAttribute="leading" secondItem="X1t-hq-NiF" secondAttribute="leading" id="wfX-Mz-d4E"/>
+                                    <constraint firstItem="j4S-UI-rSQ" firstAttribute="leading" secondItem="X1t-hq-NiF" secondAttribute="leading" constant="12" id="wfX-Mz-d4E"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -370,7 +370,7 @@
                                 <rect key="frame" x="0.0" y="82" width="320" height="351"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxK-DB-che">
-                                        <rect key="frame" x="12" y="37" width="296" height="72"/>
+                                        <rect key="frame" x="16" y="37" width="288" height="72"/>
                                         <string key="text">In this entirely new update, Tomato! obtains a fresh, clean and colorful look. We’ve designed it for optimum simplicity and elegance. </string>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.43137254901960786" green="0.43137254901960786" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
@@ -391,14 +391,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="vxK-DB-che" secondAttribute="trailing" constant="12" id="2Oc-VS-IVd"/>
+                                    <constraint firstAttribute="trailing" secondItem="vxK-DB-che" secondAttribute="trailing" constant="16" id="2Oc-VS-IVd"/>
                                     <constraint firstAttribute="trailing" secondItem="SSH-bG-xaY" secondAttribute="trailing" constant="3" id="7YQ-5t-zMN"/>
                                     <constraint firstAttribute="centerX" secondItem="l1z-31-A1X" secondAttribute="centerX" id="CRb-OJ-DMn"/>
                                     <constraint firstItem="l1z-31-A1X" firstAttribute="top" secondItem="5Kq-ue-Zyo" secondAttribute="top" id="E1u-IJ-fFt"/>
                                     <constraint firstItem="SSH-bG-xaY" firstAttribute="leading" secondItem="5Kq-ue-Zyo" secondAttribute="leading" constant="3" id="MQB-XU-aHg"/>
                                     <constraint firstItem="vxK-DB-che" firstAttribute="top" secondItem="l1z-31-A1X" secondAttribute="bottom" constant="8" id="MWg-IG-6CZ"/>
                                     <constraint firstAttribute="height" constant="351" id="a3P-2Q-0li"/>
-                                    <constraint firstItem="vxK-DB-che" firstAttribute="leading" secondItem="5Kq-ue-Zyo" secondAttribute="leading" constant="12" id="eXk-Lo-XlU"/>
+                                    <constraint firstItem="vxK-DB-che" firstAttribute="leading" secondItem="5Kq-ue-Zyo" secondAttribute="leading" constant="16" id="eXk-Lo-XlU"/>
                                     <constraint firstAttribute="bottom" secondItem="SSH-bG-xaY" secondAttribute="bottom" id="zw4-xL-8Ny"/>
                                 </constraints>
                             </view>
@@ -431,7 +431,7 @@
                                 <rect key="frame" x="0.0" y="82" width="320" height="406"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can split big tasks into smaller ones." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2n3-lm-aRi">
-                                        <rect key="frame" x="12" y="37" width="296" height="18"/>
+                                        <rect key="frame" x="16" y="37" width="288" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.43137254899999999" green="0.43137254899999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -451,10 +451,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="2n3-lm-aRi" secondAttribute="trailing" constant="12" id="9wZ-C5-klI"/>
+                                    <constraint firstAttribute="trailing" secondItem="2n3-lm-aRi" secondAttribute="trailing" constant="16" id="9wZ-C5-klI"/>
                                     <constraint firstAttribute="trailing" secondItem="Ljp-A3-cmZ" secondAttribute="trailing" constant="3" id="Sb4-Nh-gne"/>
                                     <constraint firstItem="JnC-VC-1jB" firstAttribute="top" secondItem="B6t-Qr-Bcu" secondAttribute="top" id="XQe-gB-UYJ"/>
-                                    <constraint firstItem="2n3-lm-aRi" firstAttribute="leading" secondItem="B6t-Qr-Bcu" secondAttribute="leading" constant="12" id="YBi-Sp-SiA"/>
+                                    <constraint firstItem="2n3-lm-aRi" firstAttribute="leading" secondItem="B6t-Qr-Bcu" secondAttribute="leading" constant="16" id="YBi-Sp-SiA"/>
                                     <constraint firstItem="2n3-lm-aRi" firstAttribute="top" secondItem="JnC-VC-1jB" secondAttribute="bottom" constant="8" id="aak-Tu-Vqy"/>
                                     <constraint firstAttribute="centerX" secondItem="JnC-VC-1jB" secondAttribute="centerX" id="bT7-oe-o7Q"/>
                                     <constraint firstItem="Ljp-A3-cmZ" firstAttribute="leading" secondItem="B6t-Qr-Bcu" secondAttribute="leading" constant="3" id="gri-3z-flw"/>
@@ -497,7 +497,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We provide a comprehensive of the ratio between completed tasks and stopped tasks." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15O-wW-Xdo">
-                                        <rect key="frame" x="12" y="37" width="296" height="54"/>
+                                        <rect key="frame" x="16" y="37" width="288" height="54"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.43137254899999999" green="0.43137254899999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -512,13 +512,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="15O-wW-Xdo" secondAttribute="trailing" constant="12" id="02W-ta-R8t"/>
+                                    <constraint firstAttribute="trailing" secondItem="15O-wW-Xdo" secondAttribute="trailing" constant="16" id="02W-ta-R8t"/>
                                     <constraint firstItem="4tI-dt-njc" firstAttribute="top" secondItem="dFF-wY-rUX" secondAttribute="top" id="3Fk-Gq-7Xw"/>
                                     <constraint firstAttribute="centerX" secondItem="4tI-dt-njc" secondAttribute="centerX" id="6yx-vS-FtC"/>
                                     <constraint firstAttribute="centerX" secondItem="ahj-3a-zQ2" secondAttribute="centerX" id="BpU-0X-67F"/>
                                     <constraint firstAttribute="height" constant="403" id="H8j-SE-3iZ"/>
                                     <constraint firstItem="15O-wW-Xdo" firstAttribute="top" secondItem="4tI-dt-njc" secondAttribute="bottom" constant="8" id="Wvw-E6-dKR"/>
-                                    <constraint firstItem="15O-wW-Xdo" firstAttribute="leading" secondItem="dFF-wY-rUX" secondAttribute="leading" constant="12" id="jOh-iV-yig"/>
+                                    <constraint firstItem="15O-wW-Xdo" firstAttribute="leading" secondItem="dFF-wY-rUX" secondAttribute="leading" constant="16" id="jOh-iV-yig"/>
                                     <constraint firstAttribute="width" constant="320" id="v02-Fh-Dpq"/>
                                     <constraint firstAttribute="bottom" secondItem="ahj-3a-zQ2" secondAttribute="bottom" constant="8" id="zXx-cD-heC"/>
                                 </constraints>
@@ -576,7 +576,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="Rfg-YE-WkT" secondAttribute="centerX" constant="-0.5" id="sQP-Rd-Lq2"/>
+                            <constraint firstAttribute="centerX" secondItem="Rfg-YE-WkT" secondAttribute="centerX" id="sQP-Rd-Lq2"/>
                             <constraint firstAttribute="centerY" secondItem="Rfg-YE-WkT" secondAttribute="centerY" constant="28.5" id="xAL-2b-cKS"/>
                         </constraints>
                     </view>
