@@ -86,7 +86,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         
         let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, SubTitleSectionHeight))
         view.backgroundColor = UIColor.clearColor()
-        let label = UILabel(frame: CGRectMake(16, -3, view.frame.size.width - 32, SubTitleSectionHeight))
+        let label = UILabel(frame: CGRectMake(16, -1, view.frame.size.width - 32, SubTitleSectionHeight))
         label.numberOfLines = 2
         label.font = UIFont.systemFontOfSize(12)
         label.textColor = UIColor.lightGrayColor()
