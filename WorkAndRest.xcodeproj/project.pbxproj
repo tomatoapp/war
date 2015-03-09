@@ -39,6 +39,8 @@
 		647603041AA9CD4500B1373E /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 647603031AA9CD4500B1373E /* CMPopTipView.m */; };
 		64802BF11AA6B7FF00B49E2C /* IconBadgeNumberManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64802BF01AA6B7FF00B49E2C /* IconBadgeNumberManager.swift */; };
 		648311BE1A96B8E100F445AE /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648311BD1A96B8E100F445AE /* StatisticsViewController.swift */; };
+		648A27D21AAD4DBD0002BF04 /* TaskDetailsTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648A27D11AAD4DBD0002BF04 /* TaskDetailsTutorialViewController.swift */; };
+		648A27D41AAD6F730002BF04 /* ChartTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648A27D31AAD6F730002BF04 /* ChartTutorialViewController.swift */; };
 		649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308521A7AE22D00480677 /* TaskListItemCell.swift */; };
 		649308571A7AE65C00480677 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308561A7AE65C00480677 /* BaseViewController.swift */; };
 		649308591A7AE68200480677 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649308581A7AE68200480677 /* BaseTableViewController.swift */; };
@@ -130,6 +132,8 @@
 		647603031AA9CD4500B1373E /* CMPopTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPopTipView.m; sourceTree = "<group>"; };
 		64802BF01AA6B7FF00B49E2C /* IconBadgeNumberManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconBadgeNumberManager.swift; sourceTree = "<group>"; };
 		648311BD1A96B8E100F445AE /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		648A27D11AAD4DBD0002BF04 /* TaskDetailsTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailsTutorialViewController.swift; sourceTree = "<group>"; };
+		648A27D31AAD6F730002BF04 /* ChartTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartTutorialViewController.swift; sourceTree = "<group>"; };
 		649308521A7AE22D00480677 /* TaskListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListItemCell.swift; sourceTree = "<group>"; };
 		649308561A7AE65C00480677 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		649308581A7AE68200480677 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
@@ -318,6 +322,7 @@
 		6458B6661A772279004FD3D9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				648A27CD1AAD4DA00002BF04 /* Tutorials */,
 				649308561A7AE65C00480677 /* BaseViewController.swift */,
 				649308581A7AE68200480677 /* BaseTableViewController.swift */,
 				6458B66A1A7722BD004FD3D9 /* RootViewController.swift */,
@@ -389,6 +394,15 @@
 				647603031AA9CD4500B1373E /* CMPopTipView.m */,
 			);
 			path = CMPopTipView;
+			sourceTree = "<group>";
+		};
+		648A27CD1AAD4DA00002BF04 /* Tutorials */ = {
+			isa = PBXGroup;
+			children = (
+				648A27D11AAD4DBD0002BF04 /* TaskDetailsTutorialViewController.swift */,
+				648A27D31AAD6F730002BF04 /* ChartTutorialViewController.swift */,
+			);
+			path = Tutorials;
 			sourceTree = "<group>";
 		};
 		6497FE4C1A75A28B00174307 /* DBOperate */ = {
@@ -575,6 +589,7 @@
 				64C99A5D1A7905A300F1D796 /* DBOperate.swift in Sources */,
 				64B563131AA7FC7000098532 /* StatisticsLocker.swift in Sources */,
 				64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */,
+				648A27D21AAD4DBD0002BF04 /* TaskDetailsTutorialViewController.swift in Sources */,
 				64E3C1AB1A8752C400418426 /* TaskListHeaderView.swift in Sources */,
 				64CCE5331A89600C008D5A08 /* TaskDetailsViewController.swift in Sources */,
 				64EAEC2D1A7E37F70026C748 /* TaskRunner.swift in Sources */,
@@ -587,6 +602,7 @@
 				646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */,
 				64BD3D0B1A7B247000941B07 /* SettingViewController.swift in Sources */,
 				6497FE561A75A77800174307 /* Work.swift in Sources */,
+				648A27D41AAD6F730002BF04 /* ChartTutorialViewController.swift in Sources */,
 				64C497F81A8AE91D0051E605 /* TaskItemBaseView.swift in Sources */,
 				640B370F1A81908C0020C817 /* TaskRunnerManager.swift in Sources */,
 				649D54061A84522A002593F8 /* TaskTitleView.swift in Sources */,

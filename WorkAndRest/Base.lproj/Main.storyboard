@@ -475,6 +475,116 @@
             </objects>
             <point key="canvasLocation" x="-3" y="-1558"/>
         </scene>
+        <!--Task Details Tutorial View Controller-->
+        <scene sceneID="ZGm-2i-dC8">
+            <objects>
+                <viewController storyboardIdentifier="tutorialDetailsPageIdentity" id="hL7-UV-RTZ" customClass="TaskDetailsTutorialViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lih-Rf-7Ic"/>
+                        <viewControllerLayoutGuide type="bottom" id="oZd-Hf-Td2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qC1-UX-mMd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Count lets you see the number times you’ve done a task, and the number of times you paused it." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPE-3N-5Ri">
+                                <rect key="frame" x="16" y="121" width="288" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_detail_page" translatesAutoresizingMaskIntoConstraints="NO" id="hJv-hV-xkL">
+                                <rect key="frame" x="76" y="263" width="168" height="164"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="164" id="Kt8-dF-UUQ"/>
+                                    <constraint firstAttribute="width" constant="168" id="ePI-kQ-Oag"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qb-bD-VqJ">
+                                <rect key="frame" x="115" y="498" width="91" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Understood">
+                                    <color key="titleColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="understoodButtonClicked:" destination="hL7-UV-RTZ" eventType="touchUpInside" id="7bN-NZ-Qcv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="4qb-bD-VqJ" secondAttribute="centerX" constant="-0.5" id="BbU-bI-mgX"/>
+                            <constraint firstAttribute="centerX" secondItem="hJv-hV-xkL" secondAttribute="centerX" id="DKE-rb-0vk"/>
+                            <constraint firstAttribute="centerY" secondItem="hJv-hV-xkL" secondAttribute="centerY" constant="-61" id="EfG-R3-w23"/>
+                            <constraint firstItem="dPE-3N-5Ri" firstAttribute="leading" secondItem="qC1-UX-mMd" secondAttribute="leadingMargin" id="TNJ-uu-IuF"/>
+                            <constraint firstItem="dPE-3N-5Ri" firstAttribute="trailing" secondItem="qC1-UX-mMd" secondAttribute="trailingMargin" id="qIa-3u-C6V"/>
+                            <constraint firstItem="oZd-Hf-Td2" firstAttribute="top" secondItem="4qb-bD-VqJ" secondAttribute="bottom" constant="37" id="xpC-Ka-aha"/>
+                            <constraint firstItem="hJv-hV-xkL" firstAttribute="top" secondItem="dPE-3N-5Ri" secondAttribute="bottom" constant="81" id="yrJ-a4-beT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="yRp-lp-C9y"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Tm-7g-QEJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1769" y="1060"/>
+        </scene>
+        <!--Chart Tutorial View Controller-->
+        <scene sceneID="D5Y-Wu-AdV">
+            <objects>
+                <viewController storyboardIdentifier="tutorialChartPageIdentity" id="k2j-8S-20R" customClass="ChartTutorialViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uo5-HQ-hk6"/>
+                        <viewControllerLayoutGuide type="bottom" id="Loz-1C-kP9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YDO-lT-B7w">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_chart_page" translatesAutoresizingMaskIntoConstraints="NO" id="iy2-7F-bWl">
+                                <rect key="frame" x="27" y="219" width="266" height="214"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="266" id="RNa-SY-Xix"/>
+                                    <constraint firstAttribute="height" constant="214" id="XCq-iV-DJO"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFX-Ik-WI9">
+                                <rect key="frame" x="115" y="498" width="91" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Understood">
+                                    <color key="titleColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="understoodButtonClicked:" destination="k2j-8S-20R" eventType="touchUpInside" id="0ma-An-FgF"/>
+                                    <action selector="understoodButtonClicked:" destination="hL7-UV-RTZ" eventType="touchUpInside" id="6Ec-QR-xKA"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1V-mc-dTN">
+                                <rect key="frame" x="16" y="75" width="288" height="101.5"/>
+                                <string key="text">The Statistics provides a comprehensive view of the ratio between the number of tasks you’ve done and the number of tasks you stopped in the middle.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="iy2-7F-bWl" secondAttribute="centerX" id="2pT-VM-nU0"/>
+                            <constraint firstAttribute="centerX" secondItem="fFX-Ik-WI9" secondAttribute="centerX" constant="-0.5" id="6nI-k7-fcV"/>
+                            <constraint firstItem="iy2-7F-bWl" firstAttribute="top" secondItem="g1V-mc-dTN" secondAttribute="bottom" constant="42" id="9c9-tE-gcB"/>
+                            <constraint firstAttribute="centerY" secondItem="iy2-7F-bWl" secondAttribute="centerY" constant="-42" id="FdL-Jh-cIy"/>
+                            <constraint firstItem="g1V-mc-dTN" firstAttribute="trailing" secondItem="YDO-lT-B7w" secondAttribute="trailingMargin" id="Lgr-gj-rtv"/>
+                            <constraint firstItem="g1V-mc-dTN" firstAttribute="leading" secondItem="YDO-lT-B7w" secondAttribute="leadingMargin" id="h6L-YI-h8O"/>
+                            <constraint firstAttribute="centerY" secondItem="iy2-7F-bWl" secondAttribute="centerY" constant="-42" id="htD-2p-ect"/>
+                            <constraint firstItem="Loz-1C-kP9" firstAttribute="top" secondItem="fFX-Ik-WI9" secondAttribute="bottom" constant="37" id="uKv-uD-res"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="29I-UL-ntZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1769" y="1804"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="CMr-Kc-H4X">
             <objects>
@@ -1221,6 +1331,7 @@
                         <outlet property="showPercentageSwitch" destination="vli-ao-4Rq" id="Slk-DP-nTU"/>
                         <outlet property="statisticsBg" destination="1v8-dx-aI2" id="n9c-42-y91"/>
                         <outlet property="statisticsView" destination="K4t-eU-vno" id="n3e-79-oab"/>
+                        <segue destination="k2j-8S-20R" kind="modal" identifier="showChartTutorialSegue" id="XOF-ib-ue3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eW4-yH-2Hh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1425,6 +1536,7 @@
                         <outlet property="nameButton" destination="Ph7-Ir-vl8" id="ig4-Rg-7pI"/>
                         <outlet property="taskItemBaseView" destination="BW7-9i-RXR" id="wpc-1j-4jz"/>
                         <segue destination="UsD-oN-d9y" kind="modal" identifier="EditTaskTitleSegue" id="IsP-1t-QkO"/>
+                        <segue destination="hL7-UV-RTZ" kind="modal" identifier="showTutorialsSegue" id="kCz-rC-3OW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3vN-Au-0KI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1468,6 +1580,8 @@
         <image name="tab_item_1" width="27" height="18"/>
         <image name="tab_item_2" width="27" height="20"/>
         <image name="title" width="76" height="16"/>
+        <image name="tutorial_chart_page" width="532" height="428"/>
+        <image name="tutorial_detail_page" width="335" height="328"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

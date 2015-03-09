@@ -13,7 +13,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     var taskItem: Task!
     var taskRunner: TaskRunner!
     var taskManager = TaskManager.sharedInstance
-    
+
     @IBOutlet var taskItemBaseView: TaskItemBaseView!
     
 //    @IBOutlet var nameLabel: UILabel!
@@ -31,12 +31,32 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         super.viewDidLoad()
         self.taskItemBaseView.delegate = self
         self.taskItemBaseView.isBreakButtonEnable = false
+    }
+    func showTurorial() {
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+            Int64(0.5 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue(), {
+            self.performSegueWithIdentifier("showTutorialsSegue", sender: nil)
+            return
+        })
         
     }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) && !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownDetailsTutorial) {
+            self.showTurorial()
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownDetailsTutorial)
+        }
+    }
+    
+    // MARK: - EAIntroDelegate
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        println("viewWillAppear - TaskDetailsViewController")
+       
         self.taskRunner.delegate = self
         self.taskItemBaseView.refreshTitle(self.taskItem.title)
         
@@ -59,7 +79,6 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
             }
         }
         self.refreshUI()
-        
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -100,13 +119,6 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
                 return 190
             }
         } else if indexPath.row == 4 {
-//            if WARDevice.getPhoneType() == PhoneType.iPhone4 {
-//                return 250
-//            } else if WARDevice.getPhoneType() == PhoneType.iPhone5 {
-//                return 260
-//            } else {
-//                return 274
-//            }
             return 249
         }
         return 35
@@ -144,8 +156,6 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         
         if self.taskItem.completed {
             // If the task is completed, then you can active it.
-//            self.taskItem.completed = false
-//            DBOperate.updateTask(self.taskItem)
             self.taskManager.activeTask(self.taskItem)
             
             // If some other task is running, you can't start the actived stask.

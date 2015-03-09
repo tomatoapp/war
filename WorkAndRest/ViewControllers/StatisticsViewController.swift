@@ -95,6 +95,22 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         }
         self.loaDataSourceBySegmentedControlSelectedIndex(self.segmentedControl.selectedSegmentIndex)
         self.chartView.reloadData()
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) && !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownChartTutorial) {
+            self.showTurorial()
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownChartTutorial)
+        }
+    }
+    
+    func showTurorial() {
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+            Int64(0.5 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue(), {
+            self.performSegueWithIdentifier("showChartTutorialSegue", sender: nil)
+            return
+        })
+        
     }
     
     func lockTheChart() {
