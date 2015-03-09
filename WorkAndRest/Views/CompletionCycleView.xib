@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompletionCycleView" customModule="WorkAndRest" customModuleProvider="target">
             <connections>
+                <outlet property="completionCycleLabel" destination="bfe-x8-OFU" id="AD5-FZ-ZHb"/>
                 <outlet property="minusButton" destination="wf3-2S-6dA" id="uKC-wU-uh1"/>
                 <outlet property="numberLabel" destination="ocL-Pi-epW" id="xat-h5-CtJ"/>
                 <outlet property="plusButton" destination="h0g-wO-edd" id="ldX-ed-QaV"/>
@@ -54,7 +55,7 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completion Cycle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfe-x8-OFU">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completion Cycle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfe-x8-OFU">
                     <rect key="frame" x="135" y="65" width="100" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="ari-tc-wO4"/>

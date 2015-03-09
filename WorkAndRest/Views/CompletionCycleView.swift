@@ -27,6 +27,7 @@ class CompletionCycleView: UIView {
     @IBOutlet var minusButton: UIButton!
     @IBOutlet var plusButton: UIButton!
     
+    @IBOutlet var completionCycleLabel: UILabel!
     @IBAction func plusButtonClick(sender: AnyObject) {
         if number < MAX_NUMBER {
             number += 1
@@ -133,6 +134,7 @@ class CompletionCycleView: UIView {
         self.numberLabel.text = "\(number)"
         self.minusButton.enabled = number > 1
         self.plusButton.enabled = number < MAX_NUMBER
+        self.completionCycleLabel.text = NSLocalizedString("CompletionCycleText", comment: "")
     }
     
     func updateViewsWidth() {

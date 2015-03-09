@@ -17,7 +17,7 @@ class TaskListHeaderView: UIView {
     @IBOutlet var view: UIView!
     @IBOutlet var startView: UIView!
     @IBOutlet var timerView: UIView!
-    @IBOutlet var startButton: UIView!
+    @IBOutlet var startButton: UIButton!
     @IBOutlet var minutesLabel: UILabel!
     @IBOutlet var secondsLabel: UILabel!
     
@@ -43,6 +43,8 @@ class TaskListHeaderView: UIView {
         NSBundle.mainBundle().loadNibNamed("TaskListHeaderView", owner: self, options: nil)
         self.addSubview(self.view)
         self.layoutIfNeeded()
+        self.startButton.setImage(UIImage(named: NSLocalizedString("start_a_new_timer_normal", comment: "")), forState: UIControlState.Normal)
+        self.startButton.setImage(UIImage(named: NSLocalizedString("start_a_new_timer_pressed", comment: "")), forState: UIControlState.Highlighted)
     }
     
     override func updateConstraints() {

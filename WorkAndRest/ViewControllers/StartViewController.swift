@@ -17,12 +17,18 @@ protocol StartViewControllerDelegate {
 
 class StartViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
     
+    @IBOutlet var startNowButton: UIButton!
+    @IBOutlet var startLaterButton: UIButton!
+    
     var delegate: StartViewControllerDelegate?
     
     var blurView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.startNowButton.setImage(UIImage(named: NSLocalizedString("Start Now", comment: "")), forState: UIControlState.Normal)
+        self.startLaterButton.setImage(UIImage(named: NSLocalizedString("Start Later", comment: "")), forState: UIControlState.Normal)
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -22,7 +22,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uGh-N8-CML" customClass="TaskItemBaseView" customModule="WorkAndRest" customModuleProvider="target">
-                        <rect key="frame" x="38" y="8" width="389" height="84"/>
+                        <rect key="frame" x="38" y="8" width="386" height="84"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwX-9F-9uO">
@@ -50,7 +50,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="wwX-9F-9uO" secondAttribute="bottom" constant="-8" id="Hiy-VO-FVo"/>
                     <constraint firstAttribute="bottomMargin" secondItem="uGh-N8-CML" secondAttribute="bottom" id="OHi-yP-cIN"/>
                     <constraint firstItem="Pal-IF-C4Y" firstAttribute="leading" secondItem="Uyv-Lt-81b" secondAttribute="leadingMargin" constant="30" id="R8i-kD-kkj"/>
-                    <constraint firstItem="Pal-IF-C4Y" firstAttribute="width" secondItem="uGh-N8-CML" secondAttribute="width" id="TNH-7x-l1W"/>
+                    <constraint firstItem="Pal-IF-C4Y" firstAttribute="width" secondItem="uGh-N8-CML" secondAttribute="width" constant="3" id="TNH-7x-l1W"/>
                     <constraint firstItem="wwX-9F-9uO" firstAttribute="leading" secondItem="Uyv-Lt-81b" secondAttribute="leadingMargin" constant="-8" id="Yf4-Io-HCj"/>
                     <constraint firstItem="uGh-N8-CML" firstAttribute="leading" secondItem="Uyv-Lt-81b" secondAttribute="leadingMargin" constant="30" id="YoC-0f-gB1"/>
                     <constraint firstItem="wwX-9F-9uO" firstAttribute="top" secondItem="Uyv-Lt-81b" secondAttribute="topMargin" constant="-8" id="eNn-gr-Y0o"/>

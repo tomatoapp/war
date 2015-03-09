@@ -23,3 +23,5 @@
 "Send email message" = "We appreciate all of our Tomato! users and want to continue to improve our app. If you have any ideas which can help make our app better, please send them to us. Thanks!";
 "Thanks for your help" = "Thank you for your helpful reply.";
 "Task" = "Task";
+"Get Started" = "Get Started";
+"Task_times" = "Task, %@ times";

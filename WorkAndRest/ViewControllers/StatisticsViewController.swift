@@ -478,25 +478,32 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         switch weekDay {
             
         case 1:
-            return "Sun"
+//            return "Sun"
+            return NSLocalizedString("Sun", comment: "")
             
         case 2:
-            return "Mon"
+//            return "Mon"
+            return NSLocalizedString("Mon", comment: "")
             
         case 3:
-            return "Tue"
+//            return "Tue"
+            return NSLocalizedString("Tue", comment: "")
             
         case 4:
-            return "Wed"
+//            return "Wed"
+            return NSLocalizedString("Wed", comment: "")
             
         case 5:
-            return "Thu"
+//            return "Thu"
+            return NSLocalizedString("Thu", comment: "")
             
         case 6:
-            return "Fri"
+//            return "Fri"
+            return NSLocalizedString("Fri", comment: "")
             
         case 7:
-            return "Sat"
+//            return "Sat"
+            return NSLocalizedString("Sat", comment: "")
             
         default:
             if weekDay > 7 {
@@ -511,40 +518,52 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         switch month {
             
         case 1:
-            return "Jan"
+//            return "Jan"
+            return NSLocalizedString("Jan", comment: "")
             
         case 2:
-            return "Feb"
+//            return "Feb"
+            return NSLocalizedString("Feb", comment: "")
             
         case 3:
-            return "Mar"
+//            return "Mar"
+            return NSLocalizedString("Mar", comment: "")
             
         case 4:
-            return "Apr"
+//            return "Apr"
+            return NSLocalizedString("Apr", comment: "")
             
         case 5:
-            return "May"
+//            return "May"
+            return NSLocalizedString("May", comment: "")
             
         case 6:
-            return "Jun"
+//            return "Jun"
+            return NSLocalizedString("Jun", comment: "")
             
         case 7:
-            return "Jul"
+//            return "Jul"
+            return NSLocalizedString("Jul", comment: "")
             
         case 8:
-            return "Aug"
+//            return "Aug"
+            return NSLocalizedString("Aug", comment: "")
             
         case 9:
-            return "Sept"
+//            return "Sept"
+            return NSLocalizedString("Sept", comment: "")
             
         case 10:
-            return "Oct"
+//            return "Oct"
+            return NSLocalizedString("Oct", comment: "")
             
         case 11:
-            return "Nov"
+//            return "Nov"
+            return NSLocalizedString("Nov", comment: "")
             
         case 12:
-            return "Dec"
+//            return "Dec"
+            return NSLocalizedString("Dec", comment: "")
             
         default:
             if month > 12 {

@@ -92,8 +92,10 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     func refreshUI() {
         self.nameButton.setTitle(self.taskItem.title, forState: UIControlState.Normal)
-        self.detailLabel.text = "Task, \(self.taskItem.expect_times) times"
-        self.lengthLabel.text = "\(self.taskItem.minutes) Minutes / Task"
+//        self.detailLabel.text = "Task, \(self.taskItem.expect_times) times"
+        self.detailLabel.text = String(format: NSLocalizedString("Task_times", comment: ""), "\(self.taskItem.expect_times)")
+//        self.lengthLabel.text = "\(self.taskItem.minutes) Minutes / Task"
+        self.lengthLabel.text = String(format: NSLocalizedString("Minutes_Task", comment: ""), "\(self.taskItem.minutes)")
         self.expectTimesLabel.text = "\(self.taskItem.break_times)"
         self.finishedTimesLabel.text = "\(self.taskItem.finished_times)"
     }

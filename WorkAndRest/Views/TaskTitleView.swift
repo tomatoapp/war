@@ -59,6 +59,8 @@ class TaskTitleView: UIView {
             make.centerY.equalTo()(self.mas_centerY)
             return ()
         }
+        
+        self.button.setImage(UIImage(named: NSLocalizedString("edit_task_title", comment: "")), forState: UIControlState.Normal)
     }
 
 }

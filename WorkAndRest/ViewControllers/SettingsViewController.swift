@@ -51,7 +51,9 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     
     func showPopTipView() {
         if self.popTipView == nil {
-            self.popTipView = CMPopTipView(message: "Tomato! is free for a 7 day trial, If you like it then you can purchase Pro version.")
+            
+//            self.popTipView = CMPopTipView(message: "Tomato! is free for a 7 day trial, If you like it then you can purchase Pro version.")
+            self.popTipView = CMPopTipView(message: NSLocalizedString("Tomato! is free for a 7 day trial, If you like it then you can purchase Pro version.", comment: ""))
         }
         
 //        self.popTipView?.customView = UIImageView(image: UIImage(named: "title"))
@@ -88,7 +90,8 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         label.numberOfLines = 2
         label.font = UIFont.systemFontOfSize(12)
         label.textColor = UIColor.lightGrayColor()
-        label.text = "Show the incomplete task count badge on the app icon."
+//        label.text = "Show the incomplete task count badge on the app icon."
+        label.text = NSLocalizedString("Show the incomplete task count badge on the app icon.", comment: "")
         label.sizeToFit()
         view.addSubview(label)
         return view
@@ -197,11 +200,13 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     }
     
     func showThanksAlert() {
-        self.showCheckMarkHUDWithText("Thanks for your help")
+//        self.showCheckMarkHUDWithText("Thanks for your help")
+        self.showCheckMarkHUDWithText(NSLocalizedString("Thanks for your help", comment: ""))
     }
     
     func showProAlert() {
-        self.showCheckMarkHUDWithText("Update Succeeded")
+//        self.showCheckMarkHUDWithText("Update Succeeded")
+        self.showCheckMarkHUDWithText(NSLocalizedString("Update Succeeded", comment: ""))
     }
     
     func showCheckMarkHUDWithText(text: String) {
@@ -254,7 +259,8 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         let failedHUD = MBProgressHUD(view: self.view)
         failedHUD.customView = UIImageView(image: UIImage(named: "error"))
         failedHUD.mode = MBProgressHUDMode.CustomView
-        failedHUD.labelText = "You haven't bought it before"
+//        failedHUD.labelText = "You haven't bought it before"
+        failedHUD.labelText = NSLocalizedString("You haven't bought it before", comment: "")
         self.view.addSubview(failedHUD)
         failedHUD.show(true)
         failedHUD.hide(true, afterDelay: 2.0)
@@ -263,11 +269,13 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     func refreshThePaymentItem(versionType: VersionType) {
         switch versionType {
         case .Free:
-            self.currentVersionButton.setTitle("Free", forState: .Normal)
+//            self.currentVersionButton.setTitle("Free", forState: .Normal)
+            self.currentVersionButton.setTitle(NSLocalizedString("Free", comment: ""), forState: .Normal)
             break
             
         case .Pro:
-            self.currentVersionButton.setTitle("Pro", forState: .Normal)
+//            self.currentVersionButton.setTitle("Pro", forState: .Normal)
+            self.currentVersionButton.setTitle(NSLocalizedString("Pro", comment: ""), forState: .Normal)
             break
         }
     }

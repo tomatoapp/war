@@ -1,54 +1,171 @@
 
+/* Class = "IBUILabel"; text = "Starting a timer"; ObjectID = "0Jt-2x-xws"; */
+"0Jt-2x-xws.text" = "Starting a timer";
+
+/* Class = "IBUILabel"; text = "DETAIL"; ObjectID = "0bQ-Ze-8oP"; */
+"0bQ-Ze-8oP.text" = "DETAIL";
+
+/* Class = "IBUILabel"; text = "We provide a comprehensive view of the ratio between completed tasks and stopped tasks."; ObjectID = "15O-wW-Xdo"; */
+"15O-wW-Xdo.text" = "We provide a comprehensive view of the ratio between completed tasks and stopped tasks.";
+
+/* Class = "IBUILabel"; text = "You can split big tasks into smaller ones."; ObjectID = "2n3-lm-aRi"; */
+"2n3-lm-aRi.text" = "You can split big tasks into smaller ones.";
+
 /* Class = "IBUILabel"; text = "00:25:00"; ObjectID = "3Wd-cv-w87"; */
 "3Wd-cv-w87.text" = "00:25:00";
 
-/* Class = "IBUILabel"; text = "Work Times: 1"; ObjectID = "6sy-7Q-i70"; */
-"6sy-7Q-i70.text" = "Work Times: 1";
+/* Class = "IBUILabel"; text = "LENGTH"; ObjectID = "3nC-UE-qnD"; */
+"3nC-UE-qnD.text" = "LENGTH";
 
-/* Class = "IBUIBarButtonItem"; title = "Setting"; ObjectID = "8KS-Dm-4TD"; */
-"8KS-Dm-4TD.title" = "Setting";
+/* Class = "IBUITabBarItem"; title = "Statistics"; ObjectID = "4KG-It-Eka"; */
+"4KG-It-Eka.title" = "Statistics";
 
-/* Class = "IBUINavigationItem"; title = "Setting"; ObjectID = "Ezq-Zv-W88"; */
-"Ezq-Zv-W88.title" = "Setting";
+/* Class = "IBUIButton"; normalTitle = "Understood"; ObjectID = "4qb-bD-VqJ"; */
+"4qb-bD-VqJ.normalTitle" = "Understood";
+
+/* Class = "IBUILabel"; text = "Day By Day"; ObjectID = "4tI-dt-njc"; */
+"4tI-dt-njc.text" = "Day By Day";
+
+/* Class = "IBUILabel"; text = "NAME"; ObjectID = "4tU-Fj-6eA"; */
+"4tU-Fj-6eA.text" = "NAME";
+
+/* Class = "IBUIButton"; normalTitle = "Start"; ObjectID = "8Sa-Oz-OYd"; */
+"8Sa-Oz-OYd.normalTitle" = "Start";
+
+/* Class = "IBUIBarButtonItem"; title = "Settings"; ObjectID = "9Br-aj-7jQ"; */
+"9Br-aj-7jQ.title" = "Settings";
+
+/* Class = "IBUILabel"; text = "Purchase Pro"; ObjectID = "9yC-rB-ikd"; */
+"9yC-rB-ikd.text" = "Purchase Pro";
+
+/* Class = "IBUISegmentedControl"; DHL-AT-Az8.segmentTitles[0] = "Week"; ObjectID = "DHL-AT-Az8"; */
+"DHL-AT-Az8.segmentTitles[0]" = "Week";
+
+/* Class = "IBUISegmentedControl"; DHL-AT-Az8.segmentTitles[1] = "Month"; ObjectID = "DHL-AT-Az8"; */
+"DHL-AT-Az8.segmentTitles[1]" = "Month";
+
+/* Class = "IBUISegmentedControl"; DHL-AT-Az8.segmentTitles[2] = "Year"; ObjectID = "DHL-AT-Az8"; */
+"DHL-AT-Az8.segmentTitles[2]" = "Year";
+
+/* Class = "IBUINavigationItem"; title = "Settings"; ObjectID = "Ezq-Zv-W88"; */
+"Ezq-Zv-W88.title" = "Settings";
 
 /* Class = "IBUILabel"; text = "Keep Screen Light"; ObjectID = "GPu-Ku-LJL"; */
 "GPu-Ku-LJL.text" = "Keep Screen Light";
 
+/* Class = "IBUILabel"; text = "Suggestions"; ObjectID = "HEk-VU-hNd"; */
+"HEk-VU-hNd.text" = "Suggestions";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "HFW-fv-JVt"; */
+"HFW-fv-JVt.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Step By Step"; ObjectID = "JnC-VC-1jB"; */
+"JnC-VC-1jB.text" = "Step By Step";
+
+/* Class = "IBUILabel"; text = "Contact Us"; ObjectID = "LkC-qV-e3Y"; */
+"LkC-qV-e3Y.text" = "Contact Us";
+
 /* Class = "IBUILabel"; text = "Second Sound"; ObjectID = "M8R-jH-z2L"; */
 "M8R-jH-z2L.text" = "Second Sound";
 
-/* Class = "IBUIButton"; normalTitle = "Stop"; ObjectID = "MLM-zZ-Gaj"; */
-"MLM-zZ-Gaj.normalTitle" = "Break";
+/* Class = "IBUILabel"; text = "Rate"; ObjectID = "MdJ-Qk-Jxi"; */
+"MdJ-Qk-Jxi.text" = "Rate";
 
-/* Class = "IBUITextField"; placeholder = "Name of the item"; ObjectID = "NcN-m5-KQX"; */
-"NcN-m5-KQX.placeholder" = "Name of the item";
+/* Class = "IBUITextField"; placeholder = "Title of the task"; ObjectID = "NcN-m5-KQX"; */
+"NcN-m5-KQX.placeholder" = "Title of the task";
 
-/* Class = "IBUIButton"; normalTitle = "Start"; ObjectID = "Q7U-39-CpS"; */
-"Q7U-39-CpS.normalTitle" = "Start";
+/* Class = "IBUIButton"; normalTitle = "Label"; ObjectID = "Ph7-Ir-vl8"; */
+"Ph7-Ir-vl8.normalTitle" = "Label";
 
-/* Class = "IBUINavigationItem"; title = "To-do"; ObjectID = "RuG-c6-gLl"; */
-"RuG-c6-gLl.title" = "To-do";
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "Q9N-hS-GrM"; */
+"Q9N-hS-GrM.text" = "Label";
 
-/* Class = "IBUINavigationItem"; title = "New Task"; ObjectID = "WeG-jc-PF4"; */
-"WeG-jc-PF4.title" = "New Task";
+/* Class = "IBUITableViewSection"; headerTitle = " "; ObjectID = "QWt-Oj-unl"; */
+"QWt-Oj-unl.headerTitle" = " ";
 
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "aPd-MS-y09"; */
-"aPd-MS-y09.text" = "Label";
+/* Class = "IBUIButton"; normalTitle = "Free"; ObjectID = "UoA-MC-b0d"; */
+"UoA-MC-b0d.normalTitle" = "Free";
 
-/* Class = "IBUIButton"; normalTitle = "♫"; ObjectID = "cbP-Xr-oFB"; */
-"cbP-Xr-oFB.normalTitle" = "♫";
+/* Class = "IBUILabel"; text = "Completions"; ObjectID = "WKZ-xZ-mVz"; */
+"WKZ-xZ-mVz.text" = "Completions";
+
+/* Class = "IBUILabel"; text = "COMPLETION RATE"; ObjectID = "Ycv-kD-H9C"; */
+"Ycv-kD-H9C.text" = "COMPLETION RATE";
+
+/* Class = "IBUILabel"; text = "stops"; ObjectID = "aLj-2B-1Lf"; */
+"aLj-2B-1Lf.text" = "stops";
+
+/* Class = "IBUILabel"; text = "done"; ObjectID = "awD-DG-OHz"; */
+"awD-DG-OHz.text" = "done";
+
+/* Class = "IBUITabBarItem"; title = "Main"; ObjectID = "cXu-sg-NQz"; */
+"cXu-sg-NQz.title" = "Main";
+
+/* Class = "IBUILabel"; text = "The Count lets you see the number times you’ve done a task, and the number of times you paused it."; ObjectID = "dPE-3N-5Ri"; */
+"dPE-3N-5Ri.text" = "The Count lets you see the number times you’ve done a task, and the number of times you paused it.";
+
+/* Class = "IBUITableViewSection"; headerTitle = "  "; ObjectID = "eec-hm-956"; */
+"eec-hm-956.headerTitle" = "  ";
+
+/* Class = "IBUIButton"; normalTitle = "Understood"; ObjectID = "fFX-Ik-WI9"; */
+"fFX-Ik-WI9.normalTitle" = "Understood";
+
+/* Class = "IBUILabel"; text = "About Tomato!"; ObjectID = "fqF-6a-cWn"; */
+"fqF-6a-cWn.text" = "About Tomato!";
+
+/* Class = "IBUILabel"; text = "The Statistics provides a comprehensive view of the ratio between the number of tasks you’ve done and the number of tasks you stopped in the middle."; ObjectID = "g1V-mc-dTN"; */
+"g1V-mc-dTN.text" = "The Statistics provides a comprehensive view of the ratio between the number of tasks you’ve done and the number of tasks you stopped in the middle.";
+
+/* Class = "IBUILabel"; text = "999"; ObjectID = "he7-gx-XHj"; */
+"he7-gx-XHj.text" = "999";
+
+/* Class = "IBUILabel"; text = "Badge App Icon"; ObjectID = "iSY-aV-QS6"; */
+"iSY-aV-QS6.text" = "Badge App Icon";
+
+/* Class = "IBUILabel"; text = "Current Version"; ObjectID = "iY0-en-hub"; */
+"iY0-en-hub.text" = "Current Version";
+
+/* Class = "IBUILabel"; text = "Create, Start, Work and Check. This is how you can be effecient."; ObjectID = "j4S-UI-rSQ"; */
+"j4S-UI-rSQ.text" = "Create, Start, Work and Check. This is how you can be effecient.";
+
+/* Class = "IBUILabel"; text = "Show Percentage"; ObjectID = "jTc-HD-zuI"; */
+"jTc-HD-zuI.text" = "Show Percentage";
+
+/* Class = "IBUILabel"; text = "Pixel By Pixel"; ObjectID = "l1z-31-A1X"; */
+"l1z-31-A1X.text" = "Pixel By Pixel";
 
 /* Class = "IBUILabel"; text = "Time"; ObjectID = "lhf-u6-GVa"; */
 "lhf-u6-GVa.text" = "Time";
 
-/* Class = "IBUILabel"; text = "00:25:00"; ObjectID = "nkp-Qx-wTa"; */
-"nkp-Qx-wTa.text" = "00:25:00";
+/* Class = "IBUILabel"; text = "Welcome to"; ObjectID = "llj-zB-dvX"; */
+"llj-zB-dvX.text" = "Welcome to";
 
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "vfc-Wt-w0b"; */
-"vfc-Wt-w0b.text" = "Label";
+/* Class = "IBUILabel"; text = "999"; ObjectID = "nf8-Qv-a4l"; */
+"nf8-Qv-a4l.text" = "999";
 
-/* Class = "IBUILabel"; text = "Suggestions"; ObjectID = "HEk-VU-hNd"; */
-"HEk-VU-hNd.text" = "Suggestions";
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "ra2-4B-EYG"; */
+"ra2-4B-EYG.text" = "Label";
 
-/* Class = "IBUILabel"; text = "Rate"; ObjectID = "MdJ-Qk-Jxi"; */
-"MdJ-Qk-Jxi.text" = "Rate";
+/* Class = "IBUILabel"; text = "Rate Tomato!"; ObjectID = "uxt-St-Rqu"; */
+"uxt-St-Rqu.text" = "Rate Tomato!";
+
+/* Class = "IBUILabel"; text = "In this entirely new update, Tomato! obtains a fresh, clean and colorful look. We’ve designed it for optimum simplicity and elegance. "; ObjectID = "vxK-DB-che"; */
+"vxK-DB-che.text" = "In this entirely new update, Tomato! obtains a fresh, clean and colorful look. We’ve designed it for optimum simplicity and elegance. ";
+
+/* Class = "IBUILabel"; text = "Stops"; ObjectID = "wA0-FQ-gMe"; */
+"wA0-FQ-gMe.text" = "Stops";
+
+/* Class = "IBUITableViewSection"; headerTitle = " "; ObjectID = "xkN-jm-Gv9"; */
+"xkN-jm-Gv9.headerTitle" = " ";
+
+/* Class = "IBUITableViewSection"; headerTitle = " "; ObjectID = "xmi-YM-WMf"; */
+"xmi-YM-WMf.headerTitle" = " ";
+
+/* Class = "IBUILabel"; text = "Restore Purchase"; ObjectID = "yFB-7x-cvv"; */
+"yFB-7x-cvv.text" = "Restore Purchase";
+
+/* Class = "IBUILabel"; text = "done"; ObjectID = "V0W-A2-335"; */
+"V0W-A2-335.text" = "done";
+
+/* Class = "IBUILabel"; text = "stops"; ObjectID = "4oK-O7-U8Z"; */
+"4oK-O7-U8Z.text" = "stops";

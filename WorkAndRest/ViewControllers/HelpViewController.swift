@@ -129,7 +129,8 @@ class HelpViewController: BaseTableViewController {
         let label = UILabel(frame: CGRectMake(LEFT_MARGIN, TOP_MARGIN, SCREEN_WIDTH - LEFT_MARGIN - RIGHT_MARGIN, 0))
         label.textColor = UIColor.lightGrayColor() // UIColor(red: 151.0/255.0, green: 151.0/255.0, blue: 151.0/255.0, alpha: 1.0)
         label.font = UIFont.systemFontOfSize(13)
-        label.text = "Pomodoro™ and The Pomodoro Technique™ are trademarks of Francesco Cirillo. This application is not affiliated or associated with or endorsed by Pomodoro™, The Pomodoro Technique™ or Francesco Cirillo."
+//        label.text = "Pomodoro™ and The Pomodoro Technique™ are trademarks of Francesco Cirillo. This application is not affiliated or associated with or endorsed by Pomodoro™, The Pomodoro Technique™ or Francesco Cirillo."
+        label.text = NSLocalizedString("TERMS", comment: "")
         label.numberOfLines = 0
         label.sizeToFit()
         var expectedSize = label.frame
@@ -147,7 +148,8 @@ class HelpViewController: BaseTableViewController {
     func createAboutView() -> UIView {
         
         let aboutTextLabel = UILabel(frame: CGRectMake(LEFT_MARGIN, TOP_MARGIN, SCREEN_WIDTH - LEFT_MARGIN - RIGHT_MARGIN, 0))
-        let text = "Tomato! is based on the Pomodoro Technique, and is perfected by the Lunars team. Tomato! is an elegant and clean app, and this is probably the best Pomodoro clock you will see or have seen."
+//        let text = "Tomato! is based on the Pomodoro Technique, and is perfected by the Lunars team. Tomato! is an elegant and clean app, and this is probably the best Pomodoro clock you will see or have seen."
+        let text = NSLocalizedString("ABOUT", comment: "")
         aboutTextLabel.text = text
         aboutTextLabel.numberOfLines = 0
         aboutTextLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
@@ -156,20 +158,24 @@ class HelpViewController: BaseTableViewController {
         aboutTextLabel.font = UIFont.systemFontOfSize(15)
         
         let creditsLabel = UILabel(frame: CGRectMake(LEFT_MARGIN, aboutTextLabel.frame.size.height + 35, SCREEN_WIDTH, 0))
-        creditsLabel.text = "Credits"
+        //        creditsLabel.text = "Credits"
+                creditsLabel.text = NSLocalizedString("Credits", comment: "")
         creditsLabel.font = UIFont.boldSystemFontOfSize(16)
         creditsLabel.numberOfLines = 0
         creditsLabel.sizeToFit()
         
         let coderLabel = UILabel(frame: CGRectMake(LEFT_MARGIN, creditsLabel.frame.origin.y + creditsLabel.frame.size.height,
             SCREEN_WIDTH / 2, 0))
-        coderLabel.text = "Software Engineering"
+        //        coderLabel.text = "Software Engineering"
+                coderLabel.text = NSLocalizedString("Software Engineering", comment: "")
+        
         coderLabel.font = UIFont.systemFontOfSize(15)
         creditsLabel.numberOfLines = 0
         coderLabel.sizeToFit()
         
         let coderNameLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
-        coderNameLabel.text = "Carl Yang"
+//        coderNameLabel.text = "Carl Yang"
+        coderNameLabel.text = NSLocalizedString("Carl Yang", comment: "")
         coderNameLabel.numberOfLines = 0
         coderNameLabel.font = UIFont.boldSystemFontOfSize(15)
         coderNameLabel.sizeToFit()
@@ -177,12 +183,14 @@ class HelpViewController: BaseTableViewController {
         
         let designerLabel = UILabel(frame: CGRectMake(LEFT_MARGIN, coderLabel.frame.origin.y + coderLabel.frame.size.height,
             SCREEN_WIDTH / 2, 100))
-        designerLabel.text = "Design"
+//        designerLabel.text = "Design"
+        designerLabel.text = NSLocalizedString("Design", comment: "")
         designerLabel.font = UIFont.systemFontOfSize(15)
         designerLabel.sizeToFit()
         
         let designerNameLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
-        designerNameLabel.text = "Marc Liu"
+//        designerNameLabel.text = "Marc Liu"
+        designerNameLabel.text = NSLocalizedString("Marc Liu", comment: "")
         designerNameLabel.numberOfLines = 0
         designerNameLabel.font = UIFont.boldSystemFontOfSize(15)
         designerNameLabel.sizeToFit()

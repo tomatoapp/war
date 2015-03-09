@@ -105,7 +105,9 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         introView?.skipButtonY = 200
         introView?.skipButton.titleLabel?.font = UIFont.systemFontOfSize(23)
         introView?.skipButton.setTitleColor(UIColor(red: 74/255, green: 144/255, blue: 226/255, alpha: 1.0), forState: UIControlState.Normal)
-        introView?.skipButton.setTitle("Get Started", forState: UIControlState.Normal)
+//        introView?.skipButton.setTitle("Get Started", forState: UIControlState.Normal)
+        introView?.skipButton.setTitle(NSLocalizedString("Get Started", comment: ""), forState: UIControlState.Normal)
+        
         introView?.swipeToExit = false
         
         let pageControl = SMPageControl()

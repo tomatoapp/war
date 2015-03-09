@@ -23,3 +23,52 @@
 "Send email message" = "We appreciate all of our Tomato! users and want to continue to improve our app. If you have any ideas which can help make our app better, please send them to us. Thanks!";
 "Thanks for your help" = "Thank you for your helpful reply.";
 "Task" = "Task";
+"Get Started" = "Get Started";
+"Task_times" = "Task, %@ times";
+"Minutes_Task" = "%@ Minutes / Task";
+"TERMS" = "Pomodoro™ and The Pomodoro Technique™ are trademarks of Francesco Cirillo. This application is not affiliated or associated with or endorsed by Pomodoro™, The Pomodoro Technique™ or Francesco Cirillo.";
+"ABOUT" = "Tomato! is made by the Lunars team. It is an elegant and clean app, and it is probably the best of the same category of apps you will see or have seen.";
+"Credits" = "Credits";
+"Software Engineering" = "Software Engineering";
+"Carl Yang" = "Carl Yang";
+"Design" = "Design";
+"Marc Liu" = "Marc Liu";
+"Show the incomplete task count badge on the app icon." = "Show the incomplete task count badge on the app icon.";
+"Thanks for your help" = "Thanks for your help";
+"Update Succeeded" = "Update Succeeded";
+"You haven't bought it before" = "You haven't bought it before";
+"Free" = "Free";
+"Pro" = "Pro";
+"Tomato! is free for a 7 day trial, If you like it then you can purchase Pro version." = "Tomato! is free for a 7 day trial, If you like it then you can purchase Pro version.";
+"Sun" = "Sun";
+"Mon" = "Mon";
+"Tue" = "Tue";
+"Wed" = "Wed";
+"Thu" = "Thu";
+"Fri" = "Fri";
+"Sat" = "Sat";
+
+
+"Jan" = "Jan";
+"Feb" = "Feb";
+"Mar" = "Mar";
+"Apr" = "Apr";
+"May" = "May";
+"Jun" = "Jun";
+"Jul" = "Jul";
+"Aug" = "Aug";
+"Sept" = "Sept";
+"Oct" = "Oct";
+"Nov" = "Nov";
+"Dec" = "Dec";
+
+"CompletionCycleText" = "Completion Cycle";
+
+
+"Start Now" = "start_now_en";
+"Start Later" = "start_later_en";
+"start_a_new_timer_normal" = "start_a_new_timer_normal_en";
+"start_a_new_timer_pressed" = "start_a_new_timer_pressed_en";
+
+"edit_task_title" = "edit_task_title_en";
+"You stoped the timer!" = "You stoped the timer!";
