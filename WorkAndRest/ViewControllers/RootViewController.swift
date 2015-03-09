@@ -19,7 +19,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         self.navigationController?.navigationBar.translucent = false
         self.delegate = self
 
-        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) {
+        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) {
             self.showIntroView()
         }
     }
