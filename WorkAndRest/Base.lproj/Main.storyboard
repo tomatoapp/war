@@ -515,16 +515,24 @@
                                     <action selector="understoodButtonClicked:" destination="hL7-UV-RTZ" eventType="touchUpInside" id="7bN-NZ-Qcv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="stops1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4oK-O7-U8Z">
-                                <rect key="frame" x="176" y="310" width="55" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.99607843139999996" green="0.95294117649999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="done1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0W-A2-335">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="done1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0W-A2-335">
                                 <rect key="frame" x="108" y="385" width="56" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="1WB-sw-Cwq"/>
+                                    <constraint firstAttribute="width" constant="56" id="94m-u7-ECN"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.93725490199999995" green="0.97647058819999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="stops1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4oK-O7-U8Z">
+                                <rect key="frame" x="176" y="310" width="55" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="55v-ih-Dy7"/>
+                                    <constraint firstAttribute="height" constant="21" id="Iw4-Mr-CEb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.99607843139999996" green="0.95294117649999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -533,7 +541,11 @@
                             <constraint firstAttribute="centerX" secondItem="4qb-bD-VqJ" secondAttribute="centerX" constant="-0.5" id="BbU-bI-mgX"/>
                             <constraint firstAttribute="centerX" secondItem="hJv-hV-xkL" secondAttribute="centerX" id="DKE-rb-0vk"/>
                             <constraint firstAttribute="centerY" secondItem="hJv-hV-xkL" secondAttribute="centerY" constant="-61" id="EfG-R3-w23"/>
+                            <constraint firstItem="V0W-A2-335" firstAttribute="bottom" secondItem="hJv-hV-xkL" secondAttribute="bottom" constant="-21" id="EpB-cK-0nC"/>
+                            <constraint firstItem="4oK-O7-U8Z" firstAttribute="top" secondItem="hJv-hV-xkL" secondAttribute="top" constant="47" id="Nb9-uu-Wwv"/>
                             <constraint firstItem="dPE-3N-5Ri" firstAttribute="leading" secondItem="qC1-UX-mMd" secondAttribute="leadingMargin" id="TNJ-uu-IuF"/>
+                            <constraint firstItem="V0W-A2-335" firstAttribute="leading" secondItem="hJv-hV-xkL" secondAttribute="leading" constant="32" id="loT-tP-tPd"/>
+                            <constraint firstItem="4oK-O7-U8Z" firstAttribute="trailing" secondItem="hJv-hV-xkL" secondAttribute="trailing" constant="-13" id="plp-Bx-acl"/>
                             <constraint firstItem="dPE-3N-5Ri" firstAttribute="trailing" secondItem="qC1-UX-mMd" secondAttribute="trailingMargin" id="qIa-3u-C6V"/>
                             <constraint firstItem="oZd-Hf-Td2" firstAttribute="top" secondItem="4qb-bD-VqJ" secondAttribute="bottom" constant="37" id="xpC-Ka-aha"/>
                             <constraint firstItem="hJv-hV-xkL" firstAttribute="top" secondItem="dPE-3N-5Ri" secondAttribute="bottom" constant="81" id="yrJ-a4-beT"/>
@@ -673,10 +685,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title" translatesAutoresizingMaskIntoConstraints="NO" id="4XV-CR-kR8">
-                                <rect key="frame" x="122" y="276" width="76" height="16"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tomato!_large" translatesAutoresizingMaskIntoConstraints="NO" id="4XV-CR-kR8">
+                                <rect key="frame" x="111" y="257" width="98" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="Qql-DX-EuZ"/>
+                                    <constraint firstAttribute="height" constant="21" id="Qql-DX-EuZ"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch page icon" translatesAutoresizingMaskIntoConstraints="NO" id="885-RN-Pl9">
@@ -690,9 +702,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="885-RN-Pl9" secondAttribute="centerY" constant="87" id="7En-kR-0cB"/>
-                            <constraint firstAttribute="centerY" secondItem="4XV-CR-kR8" secondAttribute="centerY" id="Kii-cs-Jih"/>
+                            <constraint firstAttribute="centerY" secondItem="4XV-CR-kR8" secondAttribute="centerY" constant="16.5" id="Kii-cs-Jih"/>
                             <constraint firstAttribute="centerX" secondItem="885-RN-Pl9" secondAttribute="centerX" id="Xd4-2o-k3Q"/>
-                            <constraint firstItem="4XV-CR-kR8" firstAttribute="top" secondItem="885-RN-Pl9" secondAttribute="bottom" constant="8" id="e9i-zJ-gcw"/>
+                            <constraint firstItem="4XV-CR-kR8" firstAttribute="top" secondItem="885-RN-Pl9" secondAttribute="bottom" constant="-11" id="e9i-zJ-gcw"/>
                             <constraint firstAttribute="centerX" secondItem="4XV-CR-kR8" secondAttribute="centerX" id="jQ0-D2-gA4"/>
                         </constraints>
                     </view>
@@ -1580,6 +1592,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Tomato!_large" width="98" height="21"/>
         <image name="finished number" width="167" height="164"/>
         <image name="guideImage2" width="385" height="183"/>
         <image name="guideImage3" width="420" height="290"/>
