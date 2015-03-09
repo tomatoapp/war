@@ -53,7 +53,14 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         if self.popTipView == nil {
             self.popTipView = CMPopTipView(message: "Tomato! is free for a 7 day trial, If you like it then you can purchase Pro version.")
         }
-        self.popTipView?.dismissAnimated(false)
+        
+//        self.popTipView?.customView = UIImageView(image: UIImage(named: "title"))
+        self.popTipView?.backgroundColor = UIColor(red: 57/255, green: 187/255, blue: 79/255, alpha: 1.0)
+        self.popTipView?.textColor = UIColor.whiteColor()
+        self.popTipView?.borderWidth = 0
+        self.popTipView?.dismissTapAnywhere = true
+        self.popTipView?.hasShadow = false
+        self.popTipView?.hasGradientBackground = false
         self.popTipView?.presentPointingAtView(self.currentVersionButton, inView: self.view, animated: true)
     }
     

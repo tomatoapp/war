@@ -26,14 +26,12 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
     
     func hideIconWithAnimation() {
         let imageView = UIImageView(image: UIImage(named: "launch page icon"))
-//        imageView.frame = CGRectMake((self.view.frame.width-151)/2, 148, 151, 142)
         
         self.view.addSubview(imageView)
         self.view.bringSubviewToFront(imageView)
         
         imageView.mas_makeConstraints { (make) -> Void in
             make.centerX.mas_equalTo()(self.view.mas_centerX)
-            //-self.navigationController!.navigationBar.frame.height\
             make.centerY.mas_equalTo()(self.view.mas_centerY).offset()(-79)
             make.width.mas_equalTo()(151)
             make.height.mas_equalTo()(142)
@@ -41,8 +39,8 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         }
         
         imageView.alpha = 1.0
-        UIView.animateWithDuration(0.6,
-            delay: 0.25,
+        UIView.animateWithDuration(0.7,
+            delay: 0.0,
             options: UIViewAnimationOptions.CurveEaseOut,
             animations: { () -> Void in
                 imageView.alpha = 0.0
