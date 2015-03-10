@@ -20,14 +20,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9zY-AV-hCx">
                     <rect key="frame" x="0.0" y="0.0" width="400" height="70"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="open_quote" translatesAutoresizingMaskIntoConstraints="NO" id="CtS-IT-UoZ">
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="open_quote" translatesAutoresizingMaskIntoConstraints="NO" id="CtS-IT-UoZ">
                             <rect key="frame" x="126" y="26.5" width="9" height="7"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="9" id="FgR-5l-GVD"/>
                                 <constraint firstAttribute="height" constant="7" id="SCD-hb-HRL"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close_quote" translatesAutoresizingMaskIntoConstraints="NO" id="NEr-Q0-QxP">
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="close_quote" translatesAutoresizingMaskIntoConstraints="NO" id="NEr-Q0-QxP">
                             <rect key="frame" x="264" y="26.5" width="9" height="7"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="7" id="Q8q-XK-Og3"/>
@@ -39,12 +39,12 @@
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gia-hW-oK2">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gia-hW-oK2">
                             <rect key="frame" x="145" y="24" width="109" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="9Fg-Jp-hRc"/>
                             </constraints>
-                            <state key="normal" image="edit_task_title">
+                            <state key="normal" image="edit_task_title_cn">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -83,7 +83,7 @@
     </objects>
     <resources>
         <image name="close_quote" width="9" height="7"/>
-        <image name="edit_task_title" width="109" height="14"/>
+        <image name="edit_task_title_cn" width="93" height="15"/>
         <image name="open_quote" width="9" height="7"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

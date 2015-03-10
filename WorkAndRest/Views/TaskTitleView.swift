@@ -35,7 +35,7 @@ class TaskTitleView: UIView {
         if title.isEmpty {
             // Hide the label and show the edit task title.
             self.titleLabel.hidden = true
-            self.button.setImage(UIImage(named: "edit_task_title"), forState: UIControlState.Normal)
+            self.button.setImage(UIImage(named: NSLocalizedString("edit_task_title", comment: "")), forState: UIControlState.Normal)
         } else {
             // Show the label and hide the edit task title.
             self.titleLabel.hidden = false

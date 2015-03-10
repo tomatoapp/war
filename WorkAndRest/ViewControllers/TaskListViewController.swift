@@ -26,7 +26,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        println("Task List viewDidLoad")
         self.tableView.registerNib(UINib(nibName: "TaskListItemCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         self.tableView.tableHeaderView = self.createHeaderView()
         self.tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, 1, 50))
@@ -48,9 +47,6 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        println("Task List viewWillAppear")
-        
-        // self.performSegueWithIdentifier("guide", sender: nil)
         
         if self.taskRunner.isRunning {
             let task = allTasks.filter { $0.taskId == self.taskRunner.runningTaskID() }.first!

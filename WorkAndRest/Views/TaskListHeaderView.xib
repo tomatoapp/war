@@ -61,10 +61,10 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="fP7-51-y1U">
                                     <rect key="frame" x="23" y="14" width="243" height="57"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" image="start_a_new_timer_normal">
+                                    <state key="normal" image="start_a_new_timer_normal_en">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
-                                    <state key="highlighted" image="start_a_new_timer_pressed"/>
+                                    <state key="highlighted" image="start_a_new_timer_pressed_en"/>
                                     <connections>
                                         <action selector="newTaskButtonClick:" destination="-1" eventType="touchUpInside" id="FLh-6J-lso"/>
                                     </connections>
@@ -85,8 +85,8 @@
         </view>
     </objects>
     <resources>
-        <image name="start_a_new_timer_normal" width="485" height="114"/>
-        <image name="start_a_new_timer_pressed" width="485" height="114"/>
+        <image name="start_a_new_timer_normal_en" width="243" height="57"/>
+        <image name="start_a_new_timer_pressed_en" width="243" height="57"/>
         <image name="timer_dot" width="4" height="38"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

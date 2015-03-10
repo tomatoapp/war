@@ -78,14 +78,14 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     // MARK: - ItemDetailViewControllerDelegate
     
     func addTaskViewController(controller: TaskTitleViewController!, didFinishAddingTask item: Task!) {
-        self.taskItem?.title = item.title
+        self.taskItem = item
         self.taskTitleView.setTitle(item.title)
         
         
     }
     
     func addTaskViewController(controller: TaskTitleViewController!, didFinishEditingTask item: Task!) {
-        self.taskItem?.title = item.title
+        self.taskItem = item
         self.taskTitleView.setTitle(item.title)
     }
     
@@ -113,8 +113,8 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
             if self.taskItem == nil {
                 self.taskItem = Task()
                 self.taskItem!.title = NSLocalizedString("Task", comment: "")
-                self.taskItem!.expect_times = self.number
             }
+            self.taskItem!.expect_times = self.number
             self.taskItem!.minutes = self.minutes
             self.delegate?.newTaskViewController(self, didFinishAddingTask: self.taskItem, runningNow: type == .Now)
             self.navigationController!.popViewControllerAnimated(false)

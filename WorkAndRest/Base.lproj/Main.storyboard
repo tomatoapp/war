@@ -154,7 +154,7 @@
                                     <constraint firstAttribute="width" constant="98" id="EEg-1m-5cp"/>
                                     <constraint firstAttribute="height" constant="99" id="JmW-ds-sF1"/>
                                 </constraints>
-                                <state key="normal" image="start_now">
+                                <state key="normal" image="start_now_en">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -167,7 +167,7 @@
                                     <constraint firstAttribute="height" constant="99" id="2XH-Ru-dlS"/>
                                     <constraint firstAttribute="width" constant="98" id="fV1-Qs-Sn8"/>
                                 </constraints>
-                                <state key="normal" image="start_later">
+                                <state key="normal" image="start_later_en">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1600,8 +1600,8 @@
         <image name="icon" width="70" height="70"/>
         <image name="launch page icon" width="151" height="142"/>
         <image name="new_task_start_button" width="22" height="47"/>
-        <image name="start_later" width="98" height="99"/>
-        <image name="start_now" width="98" height="99"/>
+        <image name="start_later_en" width="98" height="99"/>
+        <image name="start_now_en" width="98" height="99"/>
         <image name="statisics_bg" width="294" height="193"/>
         <image name="statisics_breaked" width="9" height="9"/>
         <image name="statisics_competed" width="9" height="9"/>
