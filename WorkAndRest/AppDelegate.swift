@@ -187,10 +187,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         let sampleTask = Task()
         sampleTask.taskId = 0
         sampleTask.title = NSLocalizedString("Task Sample", comment: "")
-        sampleTask.minutes = GlobalConstants.DEFAULT_MINUTES
+        sampleTask.minutes = 1
         sampleTask.completed = false
         sampleTask.expect_times = 3
-        sampleTask.finished_times = 1
+        sampleTask.finished_times = 0
         return sampleTask
     }
 }

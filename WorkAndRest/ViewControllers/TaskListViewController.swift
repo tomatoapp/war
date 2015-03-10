@@ -124,6 +124,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
                 
                 if cell.taskItem!.minutes * 60 - 2 >= self.taskRunner.seconds {
                     cell.taskItemBaseView.switchToBreakButton()
+                    self.headerView.flipToTimerViewSide()
                 }
                 
             } else {
