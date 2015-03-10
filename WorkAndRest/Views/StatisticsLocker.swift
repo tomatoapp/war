@@ -16,7 +16,10 @@ class StatisticsLocker: UIView {
     var delegate: StatisticsLockerDelegate?
     
     @IBOutlet var view: UIView!
-
+    @IBOutlet var lockTitle: UILabel!
+    @IBOutlet var lockSubTitle: UILabel!
+    @IBOutlet var buyButton: UIButton!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
@@ -29,6 +32,10 @@ class StatisticsLocker: UIView {
     func setup() {
         NSBundle.mainBundle().loadNibNamed("StatisticsLocker", owner: self, options: nil)
         self.addSubview(self.view)
+        
+        self.lockTitle.text = NSLocalizedString("Chart Functionality Locked", comment: "")
+        self.lockSubTitle.text = NSLocalizedString("To unlock, please", comment: "")
+        self.buyButton.setTitle(NSLocalizedString("Purchase Pro", comment: ""), forState: UIControlState.Normal)
     }
 
     func updateViewsWidth() {

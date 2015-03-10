@@ -39,7 +39,8 @@ class TaskRunnerManager: NSObject {
             let frozenDate = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_FROZEN_DATE) as NSDate
             let elapsedSeconds = Int(NSDate().timeIntervalSinceDate(frozenDate))
             if elapsedSeconds >= self.taskRunner!.seconds {
-            self.taskRunner!.seconds = 1
+//                self.taskRunner!.seconds = 1
+                self.taskRunner?.complete()
             } else {
                 self.taskRunner!.seconds -= elapsedSeconds
             }

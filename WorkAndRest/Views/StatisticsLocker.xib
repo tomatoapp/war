@@ -7,6 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatisticsLocker" customModule="WorkAndRest" customModuleProvider="target">
             <connections>
+                <outlet property="buyButton" destination="TeI-e9-G1I" id="asi-NV-MR5"/>
+                <outlet property="lockSubTitle" destination="nvf-fG-HAF" id="fqe-4c-NGq"/>
+                <outlet property="lockTitle" destination="nnr-1h-ecL" id="AZT-k8-eNC"/>
                 <outlet property="view" destination="iN0-l3-epB" id="OvU-dP-HeC"/>
             </connections>
         </placeholder>

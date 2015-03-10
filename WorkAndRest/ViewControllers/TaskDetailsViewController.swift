@@ -31,7 +31,11 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         super.viewDidLoad()
         self.taskItemBaseView.delegate = self
         self.taskItemBaseView.isBreakButtonEnable = false
+        
+       
     }
+    
+    
     func showTurorial() {
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW,
@@ -57,6 +61,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
        
+        
         self.taskRunner.delegate = self
         self.taskItemBaseView.refreshTitle(self.taskItem.title)
         
@@ -104,10 +109,6 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         super.viewDidDisappear(animated)
     }
     
-    //    override func viewWillLayoutSubviews() {
-    //        super.viewWillLayoutSubviews()
-    //        self.taskItemBaseView.updateViewsWidth()
-    //    }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0 {
@@ -142,6 +143,8 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     func breaked(sender: TaskRunner!) {
         self.taskItemBaseView.refreshViewByState(.Normal)
         self.taskManager.breakOneTimer(self.taskRunner.taskItem)
+        self.taskItem = taskManager.selectTask(self.taskItem.taskId)
+        self.refreshUI()
     }
     
     func tick(sender: TaskRunner!) {

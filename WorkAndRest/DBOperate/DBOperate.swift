@@ -113,7 +113,7 @@ import UIKit
         // lastUpdateTime = ? -> lastUpdateTime = datetime('now')
         let success = dataBase.executeUpdate("UPDATE t_tasks SET title = ?, lastUpdateTime = ?, minutes = ?, completed = ?, finished_times = ?, break_times = ?, completedTime = ? WHERE task_id = ?", withArgumentsInArray: [task.title, task.lastUpdateTime, task.minutes, task.completed, task.finished_times, task.break_times, task.completedTime, task.taskId])
         if success {
-//            println("update task table success.")
+            println("update task table success.")
         } else {
 //            println("update task table failed!")
         }

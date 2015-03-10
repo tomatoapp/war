@@ -78,14 +78,14 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     // MARK: - ItemDetailViewControllerDelegate
     
     func addTaskViewController(controller: TaskTitleViewController!, didFinishAddingTask item: Task!) {
-        self.taskItem = item
+        self.taskItem?.title = item.title
         self.taskTitleView.setTitle(item.title)
         
         
     }
     
     func addTaskViewController(controller: TaskTitleViewController!, didFinishEditingTask item: Task!) {
-        self.taskItem = item
+        self.taskItem?.title = item.title
         self.taskTitleView.setTitle(item.title)
     }
     

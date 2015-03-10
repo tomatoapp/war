@@ -88,7 +88,9 @@ class TaskManager: NSObject {
         // Update the cache
         let target = cacheTaskList.filter { $0.taskId == task.taskId }.first!
         target.lastUpdateTime = task.lastUpdateTime
-        target.finished_times += 1
+        target.finished_times = task.finished_times
+        
+        println("completeOneTimer: \(target.finished_times)")
         
         // Update the database.
         let success = DBOperate.updateTask(task)
@@ -149,6 +151,11 @@ class TaskManager: NSObject {
         
         // Update the database.
         DBOperate.updateTask(task)
+    }
+    
+    func selectTask(taskId: Int) -> Task {
+        let target = cacheTaskList.filter { $0.taskId == taskId }.first!
+        return target
     }
     
     func record(task: Task, isFinished: Bool) {
