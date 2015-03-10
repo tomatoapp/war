@@ -50,8 +50,8 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         super.viewWillAppear(animated)
         println("Task List viewWillAppear")
         
-       // self.performSegueWithIdentifier("guide", sender: nil)
-
+        // self.performSegueWithIdentifier("guide", sender: nil)
+        
         if self.taskRunner.isRunning {
             let task = allTasks.filter { $0.taskId == self.taskRunner.runningTaskID() }.first!
             task.lastUpdateTime = self.taskRunner.taskItem.lastUpdateTime
@@ -72,7 +72,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         super.didReceiveMemoryWarning()
     }
     
-
+    
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -89,7 +89,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let task = allTasks[indexPath.row]
-
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath) as TaskListItemCell
         cell.taskEventDelegate = self
         cell.delegate = self
@@ -133,7 +133,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             } else {
                 // Some other task is running now. so I need to disable you... I'm sorry... :(
                 if task.completed {
-//                    cell.taskItemBaseView.refreshViewByState(TaskState.Completed, animation: true)
+                    //                    cell.taskItemBaseView.refreshViewByState(TaskState.Completed, animation: true)
                     //cell.disable(TaskState.Completed, animation: true)
                     cell.reset(TaskState.Completed, animation: true)
                 } else {
@@ -155,7 +155,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             let task = allTasks[indexPath.row]
-//            DBOperate.deleteTask(task)
+            //            DBOperate.deleteTask(task)
             self.taskManager.removeTask(task)
             let indexPaths = [indexPath]
             self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
@@ -196,8 +196,8 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     
     func addTaskViewController(controller: TaskTitleViewController!, didFinishEditingTask item: Task!) {
         handleType = HandleType.AddOrEdit
-//        item.lastUpdateTime = NSDate()
-//        DBOperate.updateTask(item)
+        //        item.lastUpdateTime = NSDate()
+        //        DBOperate.updateTask(item)
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: item, repeats: false)
     }
     
@@ -209,12 +209,12 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     func newTaskViewController(controller: NewTaskViewController!, didFinishAddingTask item: Task!, runningNow runNow: Bool) {
         
         
-//        for _ in 1...100 {
-//             DBOperate.insertTask(item)
-//        }
+        //        for _ in 1...100 {
+        //             DBOperate.insertTask(item)
+        //        }
         
-//        if DBOperate.insertTask(item) {
-          if self.taskManager.addTask(item) {
+        //        if DBOperate.insertTask(item) {
+        if self.taskManager.addTask(item) {
             NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
             if runNow {
                 self.taskRunner.setupTaskItem(item)
@@ -247,12 +247,11 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     }
     
     func completed(sender: TaskListItemCell!) {
-//        self.recordWork(true)
+        //        self.recordWork(true)
         self.reloadTableViewWithTimeInterval(0.5)
         self.headerView.flipToStartViewSide()
         
         self.taskManager.completeOneTimer(self.taskRunner.taskItem)
-        
     }
     
     func breaked(sender: TaskListItemCell!) {
@@ -279,7 +278,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         case 0:
             if taskItem.completed {
                 // Delete it from the database.
-//                DBOperate.deleteTask(taskItem)
+                //                DBOperate.deleteTask(taskItem)
                 self.taskManager.removeTask(taskItem)
                 
                 // Remove it from the tableView.
@@ -287,9 +286,15 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             } else {
                 
                 // Save it to the database.
-//                task.completed = true
-//                DBOperate.updateTask(task)
+                //                task.completed = true
+                //                DBOperate.updateTask(task)
                 self.taskManager.markDoneTask(task)
+                
+                if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) &&
+                    !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownMarkDoneTutorial) {
+                        self.showTutorial()
+                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownMarkDoneTutorial)
+                }
                 
                 // Refresh the tableview.
                 let indexPath = NSIndexPath(forRow: find(allTasks, task)!, inSection: 0)
@@ -299,7 +304,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             break
             
         case 1:
-//            DBOperate.deleteTask(taskItem)
+            //            DBOperate.deleteTask(taskItem)
             self.taskManager.removeTask(taskItem)
             // Remove it from the tableView.
             self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
@@ -308,6 +313,19 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         default:
             break
         }
+    }
+    
+    func showTutorial() {
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+            Int64(0.5 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue(), {
+            let alert = UIAlertView()
+            alert.title = NSLocalizedString("MarkDoneAlertTitle", comment: "")
+            alert.message = NSLocalizedString("MarkDoneAlertMsg", comment: "")
+            alert.addButtonWithTitle(NSLocalizedString("MarkDoneAlertButton", comment: ""))
+            alert.show()
+            return
+        })
     }
     
     func swipeableTableViewCell(cell: SWTableViewCell!, canSwipeToState state: SWCellState) -> Bool {
@@ -370,9 +388,9 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
         headerView.mas_makeConstraints { make in
             make.width.equalTo()(baseView.frame.size.width)
             make.height.equalTo()(self.headerHeight())
-//            make.centerX.equalTo()(baseView.mas_centerX)
+            //            make.centerX.equalTo()(baseView.mas_centerX)
             make.top.equalTo()(baseView.mas_top)
-//            make.centerY.equalTo()(baseView.mas_centerY)
+            //            make.centerY.equalTo()(baseView.mas_centerY)
             return ()
         }
         headerView.delegate = self

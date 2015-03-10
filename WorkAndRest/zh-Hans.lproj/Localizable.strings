@@ -78,3 +78,7 @@
 "Purchase Pro" = "购买专业版 12元";
 "To unlock, please" = "如需解锁，请";
 "Chart Functionality Locked" = "统计图功能锁定";
+
+"MarkDoneAlertTitle" = "您刚刚将一个任务标记为“完成”";
+"MarkDoneAlertMsg" = "被标记为“完成”的任务若在7天内没有被您重新激活，将会被自动删除。";
+"MarkDoneAlertButton" = "好";

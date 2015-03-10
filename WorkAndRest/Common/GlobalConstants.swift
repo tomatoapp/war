@@ -16,6 +16,7 @@ class GlobalConstants {
     class var kBOOL_firstLaunch: String { return "FirstLaunch" }
     class var kBOOL_hasShownDetailsTutorial: String { return "ShownDetailsTutorial" }
     class var kBOOL_hasShownChartTutorial: String { return "ShownChartTutorial" }
+    class var kBOOL_hasShownMarkDoneTutorial: String { return "ShownMarkDoneTutorial" }
     class var k_FirstLauchDate: String { return "FirstLauchDate" }
     class var kBOOL_ISWORKING: String { return "isWorking" }
     class var k_FROZEN_DATE: String { return "FrozenDate" }

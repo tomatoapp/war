@@ -76,3 +76,7 @@
 "Purchase Pro" = "Purchase Pro $2.99";
 "To unlock, please" = "To unlock, please";
 "Chart Functionality Locked" = "Chart Functionality Locked";
+
+"MarkDoneAlertTitle" = "You Just Marked a Task as “Done”";
+"MarkDoneAlertMsg" = "If you don’t delete or activate this task again within seven days from marking “Done”, Tomato! will delete it for you.";
+"MarkDoneAlertButton" = "OK";

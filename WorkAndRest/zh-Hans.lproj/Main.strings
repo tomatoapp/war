@@ -128,7 +128,7 @@
 /* Class = "IBUILabel"; text = "Create, Start, Work and Check. This is how you can be effecient."; ObjectID = "j4S-UI-rSQ"; */
 "j4S-UI-rSQ.text" = "创建，开始，完成与检查。这是您变得高效的途径。";
 
-/* Class = "IBUILabel"; text = "Show Percentage"; ObjectID = "jTc-HD-zuI"; */
+/* Class = "IBUILabel"; text = "Show Efficiency"; ObjectID = "jTc-HD-zuI"; */
 "jTc-HD-zuI.text" = "显示效率百分比";
 
 /* Class = "IBUILabel"; text = "Pixel By Pixel"; ObjectID = "l1z-31-A1X"; */
