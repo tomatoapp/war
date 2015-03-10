@@ -108,18 +108,22 @@ class HelpViewController: BaseTableViewController {
         iconImageView.frame = CGRectMake(0, 0, 70, 70)
         iconImageView.center = view.center
         
-        let versionLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
+        let versionLabel = UILabel()
         versionLabel.text = "Tomato! \(GlobalConstants.VERSION)"
-        versionLabel.sizeToFit()
+       
+//        versionLabel.backgroundColor = UIColor.redColor()
         versionLabel.textAlignment = NSTextAlignment.Center
         versionLabel.font = UIFont.systemFontOfSize(14)
         versionLabel.textColor = UIColor.grayColor()
+        versionLabel.sizeToFit()
+
+         versionLabel.frame = CGRectMake((SCREEN_WIDTH  - versionLabel.frame.width) / 2, TABLEVIEW_HEADER_HEIGHT - versionLabel.frame.height, versionLabel.frame.width, versionLabel.frame.height)
         view.addSubview(versionLabel)
-        versionLabel.mas_makeConstraints { (make) -> Void in
-            make.bottom.equalTo()(view.mas_bottom).offset()(0)
-            make.width.equalTo()(view.mas_width)
-            //make.height.equalTo()(20)
-        }
+//        versionLabel.mas_makeConstraints { (make) -> Void in
+//            make.bottom.equalTo()(view.mas_bottom).offset()(0)
+//            make.width.equalTo()(view.mas_width)
+////            make.height.equalTo()(20)
+//        }
         view.addSubview(iconImageView)
         return view
     }

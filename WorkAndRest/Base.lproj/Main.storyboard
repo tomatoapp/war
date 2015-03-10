@@ -673,10 +673,10 @@
             </objects>
             <point key="canvasLocation" x="343" y="-1556"/>
         </scene>
-        <!--Guide View Controller-->
+        <!--View Controller-->
         <scene sceneID="Ore-Fq-f4E">
             <objects>
-                <viewController storyboardIdentifier="guideViewController5" id="u0E-OF-yit" customClass="GuideViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="guideViewController5" id="u0E-OF-yit" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ytR-yS-vcG"/>
                         <viewControllerLayoutGuide type="bottom" id="2KG-Tx-zUo"/>
@@ -712,34 +712,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ho-lG-vsA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="699" y="-1558"/>
-        </scene>
-        <!--Guide View Controller-->
-        <scene sceneID="MaC-GM-dB4">
-            <objects>
-                <viewController id="JLb-9q-jGA" customClass="GuideViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Fch-xO-U6R"/>
-                        <viewControllerLayoutGuide type="bottom" id="bon-ep-sBJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XHc-ub-Sji">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6PP-id-AFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-479" y="-820"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="TYa-Tf-y1f">
-            <objects>
-                <pageViewController storyboardIdentifier="pageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="AdX-Y5-H5m" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="jTy-3T-HIn"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="F5F-B3-VZ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="19" y="-820"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SE7-c6-teE">
