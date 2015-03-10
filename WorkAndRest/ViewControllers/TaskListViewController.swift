@@ -122,7 +122,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
                 cell.switchToRunningPoint()
                 cell.switchViewToRunningState()
                 
-                if cell.taskItem!.minutes * 10 - 2 >= self.taskRunner.seconds {
+                if cell.taskItem!.minutes * 60 - 2 >= self.taskRunner.seconds {
                     cell.taskItemBaseView.switchToBreakButton()
                 }
                 
@@ -235,7 +235,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
     func tick(sender: TaskListItemCell!, seconds: Int) {
         self.headerView.updateTime(self.getTimerMinutesStringBySeconds(seconds), seconds: self.getTimerSecondsStringBySeconds(seconds))
         
-        if sender.taskItem!.minutes * 10 - 2 == seconds {
+        if sender.taskItem!.minutes * 60 - 2 == seconds {
             self.headerView.flipToTimerViewSide()
             sender.taskItemBaseView.switchToBreakButton()
         }

@@ -39,7 +39,7 @@
                         <constraint firstAttribute="width" constant="147" id="FrR-bM-N5x"/>
                         <constraint firstAttribute="height" constant="28" id="HFu-Ia-bRP"/>
                     </constraints>
-                    <state key="normal" title="Purchase Pro $2.99" backgroundImage="buy_button_bg">
+                    <state key="normal" title="Purchase Pro $1.99" backgroundImage="buy_button_bg">
                         <color key="titleColor" red="0.9137254901960784" green="0.95686274509803915" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
