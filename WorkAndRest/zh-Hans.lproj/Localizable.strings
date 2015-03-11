@@ -82,3 +82,12 @@
 "MarkDoneAlertTitle" = "您刚刚将一个任务标记为“完成”";
 "MarkDoneAlertMsg" = "被标记为“完成”的任务若在7天内没有被您重新激活，将会被自动删除。";
 "MarkDoneAlertButton" = "好";
+
+"guide1Title" = "每个像素皆大放异彩";
+"guide1SubTitle" = "在这全新的升级中，Tomato! 的界面变得清爽与多彩。只为了最高的简洁与优雅而设计。";
+
+"guide2Title" = "积跬步至千里";
+"guide2SubTitle" = "利用番茄工作法，您可以将大的任务，细化成小的板块。";
+
+"guide3Title" = "一日复一日";
+"guide3SubTitle" = "我们提供了全面的视角，让您了解每天、每星期甚至每个月顺利完成的任务与半途而废的任务之间的比例关系。";

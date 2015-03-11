@@ -80,3 +80,12 @@
 "MarkDoneAlertTitle" = "You Just Marked a Task as “Done”";
 "MarkDoneAlertMsg" = "If you don’t delete or activate this task again within seven days from marking “Done”, Tomato! will delete it for you.";
 "MarkDoneAlertButton" = "OK";
+
+"guide1Title" = "Pixel By Pixel";
+"guide1SubTitle" = "In this entirely new update, Tomato! obtains a fresh, clean and colorful look. We’ve designed it for optimum simplicity and elegance.";
+
+"guide2Title" = "Step By Step";
+"guide2SubTitle" = "You can split big tasks into smaller ones.";
+
+"guide3Title" = "Day By Day";
+"guide3SubTitle" = "We provide a comprehensive view of the ratio between completed tasks and stopped tasks.";

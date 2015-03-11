@@ -19,37 +19,30 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         self.navigationController?.navigationBar.translucent = false
         self.delegate = self
 
-        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) {
+        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) {
             self.showIntroView()
         }
     }
     
     func hideIconWithAnimation() {
         let imageView = UIImageView(image: UIImage(named: "launch page icon"))
-        
+        imageView.frame = CGRectMake((self.view.frame.width-151)/2, self.view.frame.size.height/2 - 170 - 33, 151, 142)
+
         self.view.addSubview(imageView)
         self.view.bringSubviewToFront(imageView)
         
-        imageView.mas_makeConstraints { (make) -> Void in
-            make.centerX.mas_equalTo()(self.view.mas_centerX)
-            make.centerY.mas_equalTo()(self.view.mas_centerY).offset()(-79)
-            make.width.mas_equalTo()(151)
-            make.height.mas_equalTo()(142)
-            return ()
-        }
-        
-        imageView.alpha = 1.0
-        UIView.animateWithDuration(0.7,
-            delay: 0.0,
-            options: UIViewAnimationOptions.CurveEaseOut,
-            animations: { () -> Void in
-                imageView.alpha = 0.0
-                imageView.transform = CGAffineTransformMakeScale(1.7, 1.7)
-                imageView.center = CGPointMake(imageView.center.x, imageView.center.y + 40)
-                
-            }) { (finished) -> Void in
-                imageView.removeFromSuperview()
-        }
+//        imageView.alpha = 1.0
+//        UIView.animateWithDuration(0.7,
+//            delay: 0.0,
+//            options: UIViewAnimationOptions.CurveEaseOut,
+//            animations: { () -> Void in
+//                imageView.alpha = 0.0
+//                imageView.transform = CGAffineTransformMakeScale(1.7, 1.7)
+//                imageView.center = CGPointMake(imageView.center.x, imageView.center.y + 40)
+//                
+//            }) { (finished) -> Void in
+//                imageView.removeFromSuperview()
+//        }
     }
     
     // MARK: - EAIntroDelegate
@@ -88,13 +81,85 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
     func showIntroView() {
         self.navigationController?.navigationBarHidden = true
         var pages = [EAIntroPage]()
-        for id in 2...5 {
-            let tempGuideViewController: UIViewController = storyboard?.instantiateViewControllerWithIdentifier("guideViewController\(id)") as UIViewController
-            tempGuideViewController.view.frame = self.view.bounds
-            let tempPage = EAIntroPage(customView: tempGuideViewController.view)
-            tempPage.customView.frame = self.view.bounds
-            pages.append(tempPage)
-        }
+        
+        let guides = WARConfig.loadGuideItems()
+        
+        let page1 = EAIntroPage()
+        page1.title = NSLocalizedString("guide1Title", comment: "")
+        page1.titleFont = UIFont.systemFontOfSize(24)
+        page1.titlePositionY = self.view.frame.size.height/2 + 180 + 20
+        page1.titleColor = UIColor.blackColor()
+        
+        page1.desc = NSLocalizedString("guide1SubTitle", comment: "")
+        page1.descColor = UIColor(red: 110/255, green: 110/255, blue: 110/255, alpha: 1.0)
+        page1.descFont = UIFont.systemFontOfSize(15)
+        page1.descPositionY = self.view.frame.size.height/2 + 150 + 20
+        
+        page1.titleIconView = UIImageView(image: UIImage(named: "guide1Image"))
+//        page1.titleIconView.sizeToFit()
+        page1.titleIconView.frame = CGRectMake(0, 0, self.view.frame.size.width-6, self.view.frame.size.width)
+        page1.titleIconView.contentMode = UIViewContentMode.ScaleAspectFit
+        page1.titleIconPositionY = self.view.frame.size.height/2 - 100 - 30
+        pages.append(page1)
+        
+        let page2 = EAIntroPage()
+        page2.title = NSLocalizedString("guide2Title", comment: "")
+        page2.titleFont = UIFont.systemFontOfSize(24)
+        page2.titlePositionY = self.view.frame.size.height/2 + 180 + 20
+        page2.titleColor = UIColor.blackColor()
+        
+        page2.desc = NSLocalizedString("guide2SubTitle", comment: "")
+        page2.descColor = UIColor(red: 110/255, green: 110/255, blue: 110/255, alpha: 1.0)
+        page2.descFont = UIFont.systemFontOfSize(15)
+        page2.descPositionY = self.view.frame.size.height/2 + 150 + 20
+        
+        page2.titleIconView = UIImageView(image: UIImage(named: "guide2Image"))
+//        page2.titleIconView.sizeToFit()
+        page2.titleIconView.frame = CGRectMake(0, 0, self.view.frame.size.width-6, self.view.frame.size.width)
+        page2.titleIconView.contentMode = UIViewContentMode.ScaleAspectFit
+        page2.titleIconPositionY = self.view.frame.size.height/2 - 100 - 30
+        pages.append(page2)
+        
+        let page3 = EAIntroPage()
+        page3.title = NSLocalizedString("guide3Title", comment: "")
+        page3.titleFont = UIFont.systemFontOfSize(24)
+        page3.titlePositionY = self.view.frame.size.height/2 + 180 + 20
+        page3.titleColor = UIColor.blackColor()
+        
+        page3.desc = NSLocalizedString("guide3SubTitle", comment: "")
+        page3.descColor = UIColor(red: 110/255, green: 110/255, blue: 110/255, alpha: 1.0)
+        page3.descFont = UIFont.systemFontOfSize(15)
+        page3.descPositionY = self.view.frame.size.height/2 + 150 + 20
+        
+        page3.titleIconView = UIImageView(image: UIImage(named: "guide3Image"))
+//        page3.titleIconView.sizeToFit()
+        page3.titleIconView.frame = CGRectMake(0, 0, self.view.frame.size.width-6, self.view.frame.size.width-100)
+        page3.titleIconView.contentMode = UIViewContentMode.ScaleAspectFit
+        page3.titleIconPositionY = self.view.frame.size.height/2 - 50 - 30
+        pages.append(page3)
+
+        
+        let page4 = EAIntroPage()
+//        page3.title = NSLocalizedString("guide3Title", comment: "")
+//        page3.titleFont = UIFont.systemFontOfSize(24)
+//        page3.titlePositionY = self.view.frame.size.height/2 + 180
+//        page3.titleColor = UIColor.blackColor()
+//        
+//        page3.desc = NSLocalizedString("guide3SubTitle", comment: "")
+//        page3.descColor = UIColor(red: 110/255, green: 110/255, blue: 110/255, alpha: 1.0)
+//        page3.descFont = UIFont.systemFontOfSize(15)
+//        page3.descPositionY = self.view.frame.size.height/2 + 130
+//        
+        page4.titleIconView = UIImageView(image: UIImage(named: "guide4Image"))
+        page4.titleIconView.sizeToFit()
+//        page4.titleIconView.frame = CGRectMake(0, 0, self.view.frame.size.width-6, page1.titleIconView.frame.height)
+        page4.titleIconView.contentMode = UIViewContentMode.ScaleAspectFit
+        page4.titleIconPositionY = self.view.frame.size.height/2 - 170
+        pages.append(page4)
+
+        
+        
+        
         
         introView = EAIntroView(frame: self.view.bounds, andPages: pages)
         introView?.backgroundColor = UIColor.whiteColor()

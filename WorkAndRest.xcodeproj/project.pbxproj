@@ -67,6 +67,9 @@
 		64C99A5F1A7906EA00F1D796 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C99A5E1A7906EA00F1D796 /* Task.swift */; };
 		64CCE5331A89600C008D5A08 /* TaskDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CCE5321A89600C008D5A08 /* TaskDetailsViewController.swift */; };
 		64CF8A2E1A8EE48F000565C4 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CF8A2D1A8EE48F000565C4 /* TaskManager.swift */; };
+		64CFB5171AAF23BB00BCE4E6 /* WARConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CFB5161AAF23BB00BCE4E6 /* WARConfig.swift */; };
+		64CFB5191AAF240E00BCE4E6 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CFB5181AAF240E00BCE4E6 /* Guide.swift */; };
+		64CFB51B1AAF2EF800BCE4E6 /* MainConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64CFB51A1AAF2EF800BCE4E6 /* MainConfig.plist */; };
 		64E3C1AB1A8752C400418426 /* TaskListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E3C1AA1A8752C400418426 /* TaskListHeaderView.swift */; };
 		64E3C1AD1A8752CF00418426 /* TaskListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64E3C1AC1A8752CF00418426 /* TaskListHeaderView.xib */; };
 		64EAEC2D1A7E37F70026C748 /* TaskRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */; };
@@ -161,6 +164,9 @@
 		64C99A5E1A7906EA00F1D796 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		64CCE5321A89600C008D5A08 /* TaskDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailsViewController.swift; sourceTree = "<group>"; };
 		64CF8A2D1A8EE48F000565C4 /* TaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
+		64CFB5161AAF23BB00BCE4E6 /* WARConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARConfig.swift; sourceTree = "<group>"; };
+		64CFB5181AAF240E00BCE4E6 /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
+		64CFB51A1AAF2EF800BCE4E6 /* MainConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MainConfig.plist; sourceTree = "<group>"; };
 		64E3C1AA1A8752C400418426 /* TaskListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListHeaderView.swift; sourceTree = "<group>"; };
 		64E3C1AC1A8752CF00418426 /* TaskListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskListHeaderView.xib; sourceTree = "<group>"; };
 		64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRunner.swift; sourceTree = "<group>"; };
@@ -299,6 +305,7 @@
 				6434828318C5D344009BF110 /* Main.storyboard */,
 				64C99A571A7902A100F1D796 /* Launch Screen.xib */,
 				6434828918C5D344009BF110 /* Images.xcassets */,
+				64CFB51A1AAF2EF800BCE4E6 /* MainConfig.plist */,
 			);
 			path = WorkAndRest;
 			sourceTree = "<group>";
@@ -370,6 +377,7 @@
 			children = (
 				645FDE151A7D9E8B002EC8EF /* GlobalConstants.swift */,
 				649D54071A849978002593F8 /* WARDevide.swift */,
+				64CFB5161AAF23BB00BCE4E6 /* WARConfig.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -415,6 +423,7 @@
 			children = (
 				6497FE551A75A77800174307 /* Work.swift */,
 				64C99A5E1A7906EA00F1D796 /* Task.swift */,
+				64CFB5181AAF240E00BCE4E6 /* Guide.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -525,6 +534,7 @@
 				6434827C18C5D344009BF110 /* InfoPlist.strings in Resources */,
 				64228ECA18FE2ED300461550 /* Localizable.strings in Resources */,
 				64012C931900B979006FC2B2 /* AppiraterLocalizable.strings in Resources */,
+				64CFB51B1AAF2EF800BCE4E6 /* MainConfig.plist in Resources */,
 				64C99A581A7902A100F1D796 /* Launch Screen.xib in Resources */,
 				64B563111AA7FC5700098532 /* StatisticsLocker.xib in Resources */,
 				644554641A7CADD100F48164 /* TaskListItemCell.xib in Resources */,
@@ -594,6 +604,7 @@
 				649D54081A849978002593F8 /* WARDevide.swift in Sources */,
 				6442291D1A7A2F2000E516C1 /* TaskListViewController.swift in Sources */,
 				645FDE0E1A7D98FB002EC8EF /* AppDelegate.swift in Sources */,
+				64CFB5191AAF240E00BCE4E6 /* Guide.swift in Sources */,
 				649308571A7AE65C00480677 /* BaseViewController.swift in Sources */,
 				647603041AA9CD4500B1373E /* CMPopTipView.m in Sources */,
 				646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */,
@@ -602,6 +613,7 @@
 				64C497F81A8AE91D0051E605 /* TaskItemBaseView.swift in Sources */,
 				640B370F1A81908C0020C817 /* TaskRunnerManager.swift in Sources */,
 				649D54061A84522A002593F8 /* TaskTitleView.swift in Sources */,
+				64CFB5171AAF23BB00BCE4E6 /* WARConfig.swift in Sources */,
 				64C99A5F1A7906EA00F1D796 /* Task.swift in Sources */,
 				6493085B1A7AE88B00480677 /* TaskTitleViewController.swift in Sources */,
 				641B4A881AAC30EB0078E906 /* SMPageControl.m in Sources */,
