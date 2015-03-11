@@ -82,8 +82,6 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         self.navigationController?.navigationBarHidden = true
         var pages = [EAIntroPage]()
         
-        let guides = WARConfig.loadGuideItems()
-        
         let page1 = EAIntroPage()
         page1.title = NSLocalizedString("guide1Title", comment: "")
         page1.titleFont = UIFont.systemFontOfSize(24)

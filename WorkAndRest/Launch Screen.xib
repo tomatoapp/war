@@ -27,7 +27,6 @@
                 <constraint firstAttribute="bottom" secondItem="hP2-9H-Ax4" secondAttribute="bottom" constant="50" id="8eo-rn-VNg"/>
                 <constraint firstAttribute="centerX" secondItem="hP2-9H-Ax4" secondAttribute="centerX" id="Akf-Cm-qR1"/>
                 <constraint firstAttribute="centerX" secondItem="oKr-TX-MTt" secondAttribute="centerX" id="Co8-1d-xXf"/>
-                <constraint firstAttribute="centerY" secondItem="oKr-TX-MTt" secondAttribute="centerY" constant="65" id="bNc-ck-eSf"/>
                 <constraint firstItem="oKr-TX-MTt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="148" id="wFl-Uh-OIy"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
