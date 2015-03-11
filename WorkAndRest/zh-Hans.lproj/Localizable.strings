@@ -17,7 +17,7 @@
 "Break this work?" = "打断当前工作时间？";
 "It will be ineffective" = "打断将导致当前工作时间无效。";
 "Completed" = "已完成";
-"Time is up!" = "一个工作时间已完成！";
+"Time is up!" = "一个番茄时间已完成！";
 "Suggestions" = "意见和建议";
 "Send an email to the developers?" = "给开发者发封邮件？";
 "Send email message" = "我们非常重视每一位 Tomato! 用户，而且我们会继续完善这个应用，如果您有好的意见或建议望不吝赐教。多谢！";
@@ -25,8 +25,8 @@
 "Thanks for your help" = "感谢您的支持，我们将尽快回复您。";
 "Task" = "任务";
 "Get Started" = "立即开始";
-"Task_times" = "任务, %@ 次";
-"Minutes_Task" = "%@ 分钟 / 任务";
+"Task_times" = "预计 %@ 个番茄时间";
+"Minutes_Task" = "%@ 分钟 / 番茄时间";
 "TERMS" = "Pomodoro™ 和 The Pomodoro Technique™ 都是 Francesco Cirillo 所注册及拥有的商标。此应用程序与 Pomodoro™、 The Pomodoro Technique™ 以及 Fancesco Cirillo 无关，也没有被上述人员声明认可。";
 "ABOUT" = "Tomato! 由 Lunars 团队制作而成。它是一个优雅而简洁的应用，且也许是您将看到或已经看到的同类应用中最优秀的一个。";
 "Credits" = "制作者名单";
@@ -63,7 +63,7 @@
 "Nov" = "11月";
 "Dec" = "12月";
 
-"CompletionCycleText" = "预计所需番茄数";
+"CompletionCycleText" = "预计所需番茄时间";
 
 
 "Start Now" = "start_now_cn";
@@ -73,7 +73,7 @@
 "start_a_new_timer_pressed" = "start_a_new_timer_pressed_cn";
 
 "edit_task_title" = "edit_task_title_cn";
-"You stoped the timer!" = "当前番茄钟被打断！此番茄无效！";
+"You stoped the timer!" = "当前番茄时间被打断！";
 
 "Purchase Pro" = "购买专业版 12元";
 "To unlock, please" = "如需解锁，请";
@@ -90,4 +90,4 @@
 "guide2SubTitle" = "利用番茄工作法，您可以将大的任务，细化成小的板块。";
 
 "guide3Title" = "一日复一日";
-"guide3SubTitle" = "我们提供了全面的视角，让您了解每天、每星期甚至每个月顺利完成的任务与半途而废的任务之间的比例关系。";
+"guide3SubTitle" = "我们提供了全面的视角，让您了解每天、每星期甚至每个月顺利完成的番茄时间与半途而废的番茄时间之间的比例关系。";

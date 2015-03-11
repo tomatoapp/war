@@ -6,7 +6,7 @@
 "0bQ-Ze-8oP.text" = "详情";
 
 /* Class = "IBUILabel"; text = "We provide a comprehensive view of the ratio between completed tasks and stopped tasks."; ObjectID = "15O-wW-Xdo"; */
-"15O-wW-Xdo.text" = "我们提供了全面的视角，让您了解每天、每星期甚至每个月顺利完成的任务与半途而废的任务之间的比例关系。";
+"15O-wW-Xdo.text" = "我们提供了全面的视角，让您了解每天、每星期甚至每个月顺利完成的番茄与半途而废的番茄之间的比例关系。";
 
 /* Class = "IBUILabel"; text = "You can split big tasks into smaller ones."; ObjectID = "2n3-lm-aRi"; */
 "2n3-lm-aRi.text" = "利用番茄工作法，您可以将大的任务，细化成小的板块。";
@@ -15,7 +15,7 @@
 "3Wd-cv-w87.text" = "00:25:00";
 
 /* Class = "IBUILabel"; text = "LENGTH"; ObjectID = "3nC-UE-qnD"; */
-"3nC-UE-qnD.text" = "任务时长";
+"3nC-UE-qnD.text" = "番茄时长";
 
 /* Class = "IBUITabBarItem"; title = "Statistics"; ObjectID = "4KG-It-Eka"; */
 "4KG-It-Eka.title" = "统计图";
@@ -87,7 +87,7 @@
 "UoA-MC-b0d.normalTitle" = "免费版";
 
 /* Class = "IBUILabel"; text = "Completions"; ObjectID = "WKZ-xZ-mVz"; */
-"WKZ-xZ-mVz.text" = "完成任务数";
+"WKZ-xZ-mVz.text" = "完成番茄数";
 
 /* Class = "IBUILabel"; text = "COMPLETION RATE"; ObjectID = "Ycv-kD-H9C"; */
 "Ycv-kD-H9C.text" = "完成情况";
