@@ -209,7 +209,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
             make.centerX.mas_equalTo()(self.view.mas_centerX)
             make.top.mas_equalTo()(taskTitleView!.mas_bottom).offset()(-10)
             make.height.mas_equalTo()(80)
-            make.width.mas_equalTo()(self.view.mas_width)
+            make.width.mas_equalTo()(self.view.mas_width).offset()(-20)
             return ()
         }
         

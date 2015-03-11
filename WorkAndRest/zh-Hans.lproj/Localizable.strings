@@ -63,7 +63,7 @@
 "Nov" = "11月";
 "Dec" = "12月";
 
-"CompletionCycleText" = "完成周期数";
+"CompletionCycleText" = "预计所需番茄数";
 
 
 "Start Now" = "start_now_cn";

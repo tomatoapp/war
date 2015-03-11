@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch page icon" translatesAutoresizingMaskIntoConstraints="NO" id="oKr-TX-MTt">
-                    <rect key="frame" x="85" y="148" width="151" height="142"/>
+                    <rect key="frame" x="85" y="143" width="151" height="142"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch page name" translatesAutoresizingMaskIntoConstraints="NO" id="hP2-9H-Ax4">
                     <rect key="frame" x="111" y="462" width="98" height="56"/>
@@ -27,7 +27,7 @@
                 <constraint firstAttribute="bottom" secondItem="hP2-9H-Ax4" secondAttribute="bottom" constant="50" id="8eo-rn-VNg"/>
                 <constraint firstAttribute="centerX" secondItem="hP2-9H-Ax4" secondAttribute="centerX" id="Akf-Cm-qR1"/>
                 <constraint firstAttribute="centerX" secondItem="oKr-TX-MTt" secondAttribute="centerX" id="Co8-1d-xXf"/>
-                <constraint firstItem="oKr-TX-MTt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="148" id="wFl-Uh-OIy"/>
+                <constraint firstAttribute="centerY" secondItem="oKr-TX-MTt" secondAttribute="centerY" constant="70" id="bNc-ck-eSf"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <point key="canvasLocation" x="349.5" y="478.5"/>

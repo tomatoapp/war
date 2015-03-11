@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             CFNotificationSuspensionBehavior.DeliverImmediately)
         
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) {
-            NSThread.sleepForTimeInterval(0.5)
+            //NSThread.sleepForTimeInterval(0.5)
             self.hideIconWithAnimation()
         }
         
@@ -43,7 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     
     func hideIconWithAnimation() {
         let imageView = UIImageView(image: UIImage(named: "launch page icon"))
-        imageView.frame = CGRectMake((self.window!.frame.width-151)/2, 148, 151, 142)
+        var height: CGFloat = 148
+        if WARDevice.getPhoneType() == PhoneType.iPhone4 {
+            height = 146
+        }
+        
+        imageView.frame = CGRectMake((self.window!.frame.width-151)/2, height, 151, 142)
         
         self.window?.rootViewController?.view.addSubview(imageView)
         self.window?.rootViewController?.view.bringSubviewToFront(imageView)

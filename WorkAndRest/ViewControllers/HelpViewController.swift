@@ -50,7 +50,7 @@ class HelpViewController: BaseTableViewController {
         
         if WARDevice.getPhoneType() == PhoneType.iPhone4 {
             self.tableView.scrollEnabled = true
-            TABLEVIEW_FOOTER_HEIGHT = 150
+            TABLEVIEW_FOOTER_HEIGHT = 103
         }
     }
     

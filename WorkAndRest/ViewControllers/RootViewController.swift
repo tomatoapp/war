@@ -31,18 +31,18 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         self.view.addSubview(imageView)
         self.view.bringSubviewToFront(imageView)
         
-//        imageView.alpha = 1.0
-//        UIView.animateWithDuration(0.7,
-//            delay: 0.0,
-//            options: UIViewAnimationOptions.CurveEaseOut,
-//            animations: { () -> Void in
-//                imageView.alpha = 0.0
-//                imageView.transform = CGAffineTransformMakeScale(1.7, 1.7)
-//                imageView.center = CGPointMake(imageView.center.x, imageView.center.y + 40)
-//                
-//            }) { (finished) -> Void in
-//                imageView.removeFromSuperview()
-//        }
+        imageView.alpha = 1.0
+        UIView.animateWithDuration(0.7,
+            delay: 0.0,
+            options: UIViewAnimationOptions.CurveEaseOut,
+            animations: { () -> Void in
+                imageView.alpha = 0.0
+                imageView.transform = CGAffineTransformMakeScale(1.7, 1.7)
+                imageView.center = CGPointMake(imageView.center.x, imageView.center.y + 40)
+                
+            }) { (finished) -> Void in
+                imageView.removeFromSuperview()
+        }
     }
     
     // MARK: - EAIntroDelegate
@@ -94,6 +94,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         page1.descColor = UIColor(red: 110/255, green: 110/255, blue: 110/255, alpha: 1.0)
         page1.descFont = UIFont.systemFontOfSize(15)
         page1.descPositionY = self.view.frame.size.height/2 + 150 + 20
+        page1.descWidth = self.view.frame.size.width - 20
         
         page1.titleIconView = UIImageView(image: UIImage(named: "guide1Image"))
 //        page1.titleIconView.sizeToFit()
@@ -112,6 +113,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         page2.descColor = UIColor(red: 110/255, green: 110/255, blue: 110/255, alpha: 1.0)
         page2.descFont = UIFont.systemFontOfSize(15)
         page2.descPositionY = self.view.frame.size.height/2 + 150 + 20
+        page2.descWidth = self.view.frame.size.width - 20
         
         page2.titleIconView = UIImageView(image: UIImage(named: "guide2Image"))
 //        page2.titleIconView.sizeToFit()
@@ -130,6 +132,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         page3.descColor = UIColor(red: 110/255, green: 110/255, blue: 110/255, alpha: 1.0)
         page3.descFont = UIFont.systemFontOfSize(15)
         page3.descPositionY = self.view.frame.size.height/2 + 150 + 20
+        page3.descWidth = self.view.frame.size.width - 20
         
         page3.titleIconView = UIImageView(image: UIImage(named: "guide3Image"))
 //        page3.titleIconView.sizeToFit()
