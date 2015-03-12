@@ -14,7 +14,7 @@ enum HandleType: Int {
 
 let HEADER_HEIGHT: CGFloat = 125
 
-class TaskListViewController: UITableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, SWTableViewCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate, TaskManagerDelegate {
+class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, SWTableViewCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate, TaskManagerDelegate {
     
     var allTasks = [Task]()
     var taskRunner: TaskRunner!
@@ -172,7 +172,8 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
             controller.copyTaskItem = sender as Task?
             controller.delegate = self
         } else if segue.identifier == "NewTaskSegue" {
-            let controller = segue.destinationViewController as NewTaskViewController
+            let navigationController = segue.destinationViewController as UINavigationController
+            let controller = navigationController.topViewController as NewTaskViewController
             controller.delegate = self
         } else if segue.identifier == "ShowItemDetailsSegue" {
             

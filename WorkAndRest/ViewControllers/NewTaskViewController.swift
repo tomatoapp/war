@@ -33,6 +33,10 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     
     // MARK: - Lifecycle
     
+    @IBAction func cancleButtonClicked(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,13 +47,13 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController!.interactivePopGestureRecognizer.enabled = false
+        //self.navigationController!.interactivePopGestureRecognizer.enabled = false
         
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController!.interactivePopGestureRecognizer.enabled = true
+//        self.navigationController!.interactivePopGestureRecognizer.enabled = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -117,8 +121,6 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
             self.taskItem!.expect_times = self.number
             self.taskItem!.minutes = self.minutes
             self.delegate?.newTaskViewController(self, didFinishAddingTask: self.taskItem, runningNow: type == .Now)
-            self.navigationController!.popViewControllerAnimated(false)
-
             break
             
         case .Cancel:

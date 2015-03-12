@@ -56,7 +56,7 @@ class StartViewController: UIViewController, UIViewControllerTransitioningDelega
         if self.delegate != nil {
             self.delegate!.startViewController(self, didSelectItem: .Later)
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func addBlurView() {
