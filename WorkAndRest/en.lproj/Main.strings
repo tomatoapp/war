@@ -169,3 +169,20 @@
 
 /* Class = "IBUILabel"; text = "stops"; ObjectID = "4oK-O7-U8Z"; */
 "4oK-O7-U8Z.text" = "stops";
+
+
+
+/* Class = "IBUIBarButtonItem"; text = "Cancel"; ObjectID = "jjU-tT-wVa"; */
+"jjU-tT-wVa.title" = "Cancel";
+
+/* Class = "IBUIBarButtonItem"; text = "Settings"; ObjectID = "F75-uy-iQc"; */
+"F75-uy-iQc.title" = "Settings";
+
+/* Class = "IBUIBarButtonItem"; text = "Settings"; ObjectID = "LqU-ow-c4j"; */
+"LqU-ow-c4j.title" = "Settings";
+
+
+
+
+
+
