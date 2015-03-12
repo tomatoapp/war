@@ -287,8 +287,7 @@ class TaskListViewController: UITableViewController,TaskTitleViewControllerDeleg
                 //                DBOperate.updateTask(task)
                 self.taskManager.markDoneTask(task)
                 
-                if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) &&
-                    !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownMarkDoneTutorial) {
+                if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownMarkDoneTutorial) {
                         self.showTutorial()
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownMarkDoneTutorial)
                 }

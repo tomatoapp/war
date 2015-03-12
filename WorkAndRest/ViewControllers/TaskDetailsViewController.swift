@@ -50,7 +50,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) && !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownDetailsTutorial) {
+        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownDetailsTutorial) {
             self.showTurorial()
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownDetailsTutorial)
         }

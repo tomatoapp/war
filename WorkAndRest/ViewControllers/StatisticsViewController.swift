@@ -96,7 +96,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.loaDataSourceBySegmentedControlSelectedIndex(self.segmentedControl.selectedSegmentIndex)
         self.chartView.reloadData()
         
-        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) && !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownChartTutorial) {
+        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownChartTutorial) {
             self.showTurorial()
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownChartTutorial)
         }

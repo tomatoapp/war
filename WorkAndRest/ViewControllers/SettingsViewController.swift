@@ -110,13 +110,13 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
             // go premium
             HUD.show(true)
             ProductsManager.sharedInstance.purchasePro()
-            HUD.hide(true, afterDelay: 2)
+            HUD.hide(true, afterDelay: 4)
         }
         if indexPath.section == 1 && indexPath.row == 2 {
             // restore purchase
             HUD.show(true)
             ProductsManager.sharedInstance.restore()
-            HUD.hide(true, afterDelay: 2)
+            HUD.hide(true, afterDelay: 3)
         }
         
         if indexPath.section == 3 && indexPath.row == 0 {
