@@ -140,8 +140,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SECOND_SOUND)
             NSUserDefaults.standardUserDefaults().setInteger(GlobalConstants.DEFAULT_MINUTES, forKey: GlobalConstants.k_SECONDS)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SHOWPERCENTAGE)
-            NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: GlobalConstants.k_FirstLauchDate)
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_BADGEAPPICON)
             NSUserDefaults.standardUserDefaults().synchronize()
+            ApplicationStateManager.sharedInstance.setup()
             DBOperate.insertTask(self.createSampleTask())
         }
     }

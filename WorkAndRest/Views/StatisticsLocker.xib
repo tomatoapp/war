@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="294" height="193"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock chart" translatesAutoresizingMaskIntoConstraints="NO" id="w0m-KC-AuA">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statisics_bg" translatesAutoresizingMaskIntoConstraints="NO" id="w0m-KC-AuA">
                     <rect key="frame" x="0.0" y="0.0" width="294" height="193"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chart Functionality Locked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnr-1h-ecL">
@@ -45,11 +45,20 @@
                         <action selector="buyButtonClicked:" destination="-1" eventType="touchUpInside" id="nT4-WH-Yes"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locker" translatesAutoresizingMaskIntoConstraints="NO" id="scz-f1-bu5">
+                    <rect key="frame" x="128" y="18" width="38" height="58"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="58" id="UhE-Ws-lds"/>
+                        <constraint firstAttribute="width" constant="38" id="wwK-hX-PLq"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="TeI-e9-G1I" secondAttribute="centerX" constant="-0.5" id="3yo-L1-zig"/>
                 <constraint firstItem="w0m-KC-AuA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5zN-G9-a9F"/>
+                <constraint firstAttribute="centerX" secondItem="scz-f1-bu5" secondAttribute="centerX" id="BoK-8G-AHF"/>
+                <constraint firstItem="scz-f1-bu5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="18" id="CbC-uc-jec"/>
                 <constraint firstItem="TeI-e9-G1I" firstAttribute="top" secondItem="nvf-fG-HAF" secondAttribute="bottom" constant="15" id="E2r-6D-AwK"/>
                 <constraint firstAttribute="trailing" secondItem="nnr-1h-ecL" secondAttribute="trailing" constant="8" id="FI5-e1-Vpu"/>
                 <constraint firstAttribute="bottom" secondItem="TeI-e9-G1I" secondAttribute="bottom" constant="20" id="Mra-cq-NWJ"/>
@@ -71,7 +80,8 @@
     <resources>
         <image name="buy_button_bg" width="147" height="28"/>
         <image name="buy_button_bg_pressed" width="147" height="28"/>
-        <image name="lock chart" width="294" height="193"/>
+        <image name="locker" width="38" height="58"/>
+        <image name="statisics_bg" width="294" height="193"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

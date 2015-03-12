@@ -103,8 +103,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     func needLockTheChart() -> Bool {
-        let firstLaunchDate: NSDate = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_FirstLauchDate) as NSDate
-        return NSDate(timeIntervalSinceNow: 60 * 60 * 24 * -7).compare(firstLaunchDate) == NSComparisonResult.OrderedDescending
+        return ApplicationStateManager.sharedInstance.isExpired()
     }
     // MARK: - Events
     

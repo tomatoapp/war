@@ -54,6 +54,7 @@
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
 		64B563111AA7FC5700098532 /* StatisticsLocker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64B563101AA7FC5700098532 /* StatisticsLocker.xib */; };
 		64B563131AA7FC7000098532 /* StatisticsLocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B563121AA7FC7000098532 /* StatisticsLocker.swift */; };
+		64B563151AA8238300098532 /* ApplicationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B563141AA8238300098532 /* ApplicationStateManager.swift */; };
 		64B67F151A8063D0002127BC /* TimeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B67F141A8063D0002127BC /* TimeSelectorView.swift */; };
 		64BD3D0B1A7B247000941B07 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BD3D0A1A7B247000941B07 /* SettingViewController.swift */; };
 		64C497F61A8AE7F10051E605 /* TaskItemBaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C497F51A8AE7F10051E605 /* TaskItemBaseView.xib */; };
@@ -140,6 +141,7 @@
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		64B563101AA7FC5700098532 /* StatisticsLocker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticsLocker.xib; sourceTree = "<group>"; };
 		64B563121AA7FC7000098532 /* StatisticsLocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsLocker.swift; sourceTree = "<group>"; };
+		64B563141AA8238300098532 /* ApplicationStateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationStateManager.swift; sourceTree = "<group>"; };
 		64B67F141A8063D0002127BC /* TimeSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSelectorView.swift; sourceTree = "<group>"; };
 		64BD3D0A1A7B247000941B07 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		64C497F51A8AE7F10051E605 /* TaskItemBaseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskItemBaseView.xib; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 				649893911A83959B0091822A /* LockNotifierCallback.h */,
 				649893921A83959B0091822A /* LockNotifierCallback.m */,
 				64802BF01AA6B7FF00B49E2C /* IconBadgeNumberManager.swift */,
+				64B563141AA8238300098532 /* ApplicationStateManager.swift */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				64C99A5F1A7906EA00F1D796 /* Task.swift in Sources */,
 				6493085B1A7AE88B00480677 /* TaskTitleViewController.swift in Sources */,
 				646B04ED1A9A99C00083E065 /* WorkManager.swift in Sources */,
+				64B563151AA8238300098532 /* ApplicationStateManager.swift in Sources */,
 				6458B66B1A7722BD004FD3D9 /* RootViewController.swift in Sources */,
 				6497FC6C1A85C5F70098535D /* StartViewController.swift in Sources */,
 				649308591A7AE68200480677 /* BaseTableViewController.swift in Sources */,
