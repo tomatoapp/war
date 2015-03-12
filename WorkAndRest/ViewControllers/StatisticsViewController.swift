@@ -103,8 +103,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     func needLockTheChart() -> Bool {
-        return ApplicationStateManager.sharedInstance.isExpired()
+        return ApplicationStateManager.sharedInstance.isExpired() &&
+            ApplicationStateManager.sharedInstance.versionType() == .Free
     }
+    
     // MARK: - Events
     
     @IBAction func showPercentageSwitchValueChanged(sender: AnyObject) {
