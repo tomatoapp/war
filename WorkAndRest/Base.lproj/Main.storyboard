@@ -395,7 +395,7 @@
         <!--Settings View Controller-->
         <scene sceneID="9Bm-TI-e29">
             <objects>
-                <tableViewController id="6Vf-xC-iCf" customClass="SettingsViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="6Vf-xC-iCf" customClass="SettingsViewController" customModule="WorkAndRest" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="hXf-Nw-hH4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

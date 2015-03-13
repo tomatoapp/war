@@ -49,7 +49,7 @@ class StartViewController: UIViewController, UIViewControllerTransitioningDelega
         if self.delegate != nil {
             self.delegate!.startViewController(self, didSelectItem: .Now)
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func startLaterButtonClick(sender: AnyObject) {

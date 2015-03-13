@@ -132,7 +132,12 @@ class HelpViewController: BaseTableViewController {
         
         let label = UILabel(frame: CGRectMake(LEFT_MARGIN, TOP_MARGIN, SCREEN_WIDTH - LEFT_MARGIN - RIGHT_MARGIN, 0))
         label.textColor = UIColor.lightGrayColor() // UIColor(red: 151.0/255.0, green: 151.0/255.0, blue: 151.0/255.0, alpha: 1.0)
-        label.font = UIFont.systemFontOfSize(13)
+       
+        if WARDevice.getPhoneType() == PhoneType.iPhone6 {
+            label.font = UIFont.systemFontOfSize(14) // iPhone 6, simple chinese will break the line.
+        } else {
+            label.font = UIFont.systemFontOfSize(13)
+        }
 //        label.text = "Pomodoro™ and The Pomodoro Technique™ are trademarks of Francesco Cirillo. This application is not affiliated or associated with or endorsed by Pomodoro™, The Pomodoro Technique™ or Francesco Cirillo."
         label.text = NSLocalizedString("TERMS", comment: "")
         label.numberOfLines = 0
