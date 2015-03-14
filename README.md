@@ -1,3 +1,13 @@
 The iOS App: Tomato!
 ===========
-Now you can download it from the app store: [https://itunes.apple.com/en/app/tomato!/id868078759](https://itunes.apple.com/en/app/tomato!/id868078759)
+
+Description
+With Tomato!, you iPhone turns into a efficient time manager and helps you to accomplish more in a day.
+
+
+Download
+[https://itunes.apple.com/en/app/tomato!/id868078759](https://itunes.apple.com/en/app/tomato!/id868078759)
+
+Credits
+Coder       Carl Yang (GitHub: [https://github.com/backslash112](https://github.com/backslash112) Sina:[http://weibo.com/hiyangc](http://weibo.com/hiyangc))
+Designer    Marc Liu (Sina:[http://weibo.com/u/2829055915](http://weibo.com/u/2829055915))
