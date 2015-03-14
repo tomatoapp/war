@@ -1,3 +1,3 @@
-The iOS App: Work+Rest
+The iOS App: Tomato!
 ===========
-Now you can download it from the app store: [https://appsto.re/cn/NsDVZ.i](https://appsto.re/cn/NsDVZ.i)
+Now you can download it from the app store: [https://itunes.apple.com/en/app/tomato!/id868078759](https://itunes.apple.com/en/app/tomato!/id868078759)
