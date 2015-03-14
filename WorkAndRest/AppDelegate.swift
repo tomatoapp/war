@@ -90,9 +90,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
                 if TaskRunner.sharedInstance.isRunning {
                     self.addNotificationWithSeconds(TaskRunner.sharedInstance.seconds)
                     TaskRunnerManager.sharedInstance.freezeTaskManager(TaskRunner.sharedInstance)
+                    
+                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_ISWORKING)
+                    println("kBOOL_ISWORKING = true")
+                    NSUserDefaults.standardUserDefaults().synchronize()
+                } else {
+                    println("kBOOL_ISWORKING = false")
                 }
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_ISWORKING)
-                NSUserDefaults.standardUserDefaults().synchronize()
+                
             } else {
                 //                println("Sent to background by home button/switching to other app")
                 if TaskRunner.sharedInstance.isRunning {
@@ -122,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         
         if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_ISWORKING) {
             UIApplication.sharedApplication().cancelAllLocalNotifications()
-            //            println("cancelAllLocalNotifications")
+            println("cancelAllLocalNotifications")
             
             //            println("isWorking! become active")
             TaskRunnerManager.sharedInstance.activeFrozenTaskManager()
