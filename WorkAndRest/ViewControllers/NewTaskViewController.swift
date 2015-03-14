@@ -20,8 +20,8 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     // MARK: - Properties
     
     @IBOutlet var startButton: UIButton!
-    @IBOutlet var startNowButton: UIButton!
-    @IBOutlet var startLaterButton: UIButton!
+//    @IBOutlet var startNowButton: UIButton!
+//    @IBOutlet var startLaterButton: UIButton!
     @IBOutlet var timeSelector: TimeSelectorView!
     @IBOutlet var taskTitleView: TaskTitleView!
     @IBOutlet var completionCycleView: CompletionCycleView!
@@ -30,6 +30,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     var delegate: NewTaskViewControllerDelegate?
     var minutes = GlobalConstants.DEFAULT_MINUTES
     var number = GlobalConstants.DEFAULT_NUMBER
+    var startView: UIView?
     
     // MARK: - Lifecycle
     
@@ -76,7 +77,15 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     // MARK: - Events
     
     @IBAction func startButtonClick(sender: AnyObject) {
-        self.performSegueWithIdentifier("StartSegue", sender: nil)
+        if WARDevice.isiOS7() {
+            self.startView = self.getStartView()
+            let tap = UITapGestureRecognizer(target: self, action: "cancel:")
+            self.startView!.addGestureRecognizer(tap)
+            self.hideStartView(self.startView!, animated: false)
+            self.showStartView(self.startView!, animated: true)
+        } else {
+            self.performSegueWithIdentifier("StartSegue", sender: nil)
+        }
     }
     
     // MARK: - ItemDetailViewControllerDelegate
@@ -111,7 +120,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     
     // MARK: - StartViewControllerDelegate
     
-    func startViewController(sender: StartViewController, didSelectItem type: StartType) {
+    func startViewController(sender: StartViewController?, didSelectItem type: StartType) {
         switch type {
         case .Now, .Later:
             if self.taskItem == nil {
@@ -279,4 +288,94 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         self.adapteDifferentScreenSize()
         super.updateViewConstraints()
     }
+    
+    // MARK: - Methods
+    
+    func getStartView() -> UIView {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+
+        let bgView = UIView()
+        bgView.backgroundColor = UIColor.clearColor()
+        let toolBar = UIToolbar()
+        toolBar.autoresizingMask = self.view.autoresizingMask
+        bgView.insertSubview(toolBar, atIndex: 0)
+        self.view.addSubview(bgView)
+        
+        let startNowButton = UIButton()
+        let startLaterButton = UIButton()
+        startNowButton.frame = CGRectMake(0, 0, 98, 99)
+        startLaterButton.frame = CGRectMake(0, 0, 98, 99)
+        startNowButton.setImage(UIImage(named: NSLocalizedString("Start Now", comment: "")), forState: UIControlState.Normal)
+        startLaterButton.setImage(UIImage(named: NSLocalizedString("Start Later", comment: "")), forState: UIControlState.Normal)
+        
+        startNowButton.addTarget(self, action: "startNowButtonClicked:", forControlEvents: UIControlEvents.TouchUpInside)
+        startLaterButton.addTarget(self, action: "startLaterButtonClicked:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        bgView.addSubview(startNowButton)
+        bgView.addSubview(startLaterButton)
+        
+        startNowButton.mas_makeConstraints { (make) -> Void in
+            make.centerX.equalTo()(bgView.mas_centerX)
+            make.centerY.equalTo()(bgView.mas_centerY).offset()(-76.5)
+            return ()
+        }
+        
+        startLaterButton.mas_makeConstraints { (make) -> Void in
+            make.centerX.equalTo()(bgView.mas_centerX)
+            make.centerY.equalTo()(bgView.mas_centerY).offset()(88.5)
+            return ()
+        }
+        
+        return bgView
+        
+    }
+    
+    func updateView(view: UIView, newFrame: CGRect, withDuration duration: NSTimeInterval, animated: Bool) {
+        if animated {
+            UIView.animateWithDuration(duration, animations: { () -> Void in
+                view.frame = newFrame
+            })
+        } else {
+            view.frame = newFrame
+        }
+    }
+    
+    func showStartView(view: UIView, animated: Bool) {
+        let frame = self.view.frame
+        self.updateView(view, newFrame: frame, withDuration: 0.1, animated: animated)
+    }
+    
+    func hideStartView(view: UIView, animated: Bool) {
+        var frame = self.view.frame
+        frame.origin.y += frame.size.height
+        self.updateView(view, newFrame: frame, withDuration: 0.3, animated: animated)
+    }
+    
+    func cancel(sender: AnyClass?) {
+        self.hideStartView(self.startView!, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    func startNowButtonClicked(sender: UIButton!) {
+        self.cancel(nil)
+        self.startViewController(nil, didSelectItem: StartType.Now)
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func startLaterButtonClicked(sender: UIButton!) {
+        self.cancel(nil)
+        self.startViewController(nil, didSelectItem: StartType.Later)
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

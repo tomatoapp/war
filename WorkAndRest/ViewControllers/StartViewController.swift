@@ -12,7 +12,7 @@ enum StartType {
     case Now, Later, Cancel
 }
 protocol StartViewControllerDelegate {
-    func startViewController(sender: StartViewController, didSelectItem item: StartType)
+    func startViewController(sender: StartViewController?, didSelectItem item: StartType)
 }
 
 class StartViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
