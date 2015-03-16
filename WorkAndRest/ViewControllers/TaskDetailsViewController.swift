@@ -31,10 +31,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         super.viewDidLoad()
         self.taskItemBaseView.delegate = self
         self.taskItemBaseView.isBreakButtonEnable = false
-        
-       
     }
-    
     
     func showTurorial() {
         
@@ -44,7 +41,6 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
             self.performSegueWithIdentifier("showTutorialsSegue", sender: nil)
             return
         })
-        
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -60,7 +56,6 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-       
         
         self.taskRunner.delegate = self
         self.taskItemBaseView.refreshTitle(self.taskItem.title)
@@ -108,7 +103,6 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
     }
-    
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0 {
