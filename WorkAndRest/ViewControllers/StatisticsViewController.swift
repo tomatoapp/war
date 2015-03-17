@@ -29,6 +29,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     var tooltip: UILabel!
     var locker: StatisticsLocker?
     
+    var maximumHeight: CGFloat = 0.0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -251,10 +253,11 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         if value > 20 {
             // 20 = 30 / 1.4858
             // If the value too large, then set the max height of the chat to the_max_number * 1.4858
-            self.chartView.maximumValue = value * 1.4858
+             self.maximumHeight = value * 1.4858
         } else {
-            self.chartView.maximumValue = 30
+            self.maximumHeight = 30
         }
+    self.chartView.maximumValue = self.maximumHeight
     }
     
     func getWorksCountWithGroup(list: Array<Work>, byType type: TimeSpanType) -> [Int: Array<Work>]{
@@ -699,8 +702,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             let breakedValue = self.data[2 * index + 1]
             let value = max(finishedValue, breakedValue)
             if value > 0 {
-                let maximumValue = self.chartView.maximumValue
-                let result = value / maximumValue
+//                let maximumValue = self.chartView.maximumValue
+                let result = value / self.maximumHeight
                 y -= result * 157
             }
             
