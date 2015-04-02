@@ -26,8 +26,10 @@ class WorkManager: NSObject {
     
     func loadWorkList() -> Array<Work> {
         if !self.hasNewValue && self.cacheWorkList.count > 0 {
+            println("==cache works.")
             return self.cacheWorkList
         }
+        println("=====db works.")
         let result = DBOperate.loadAllWorks()
         if result != nil {
             self.cacheWorkList = result!

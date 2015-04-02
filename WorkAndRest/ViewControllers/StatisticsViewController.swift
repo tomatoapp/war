@@ -312,7 +312,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
 //
             println("result.day: \(result.day)")
 //
-            currentIndex = result.day + 1
+            currentIndex = result.day
 //            let theFristMonthComponts = self.getComponentsByDate(dates[0])
 //            currentIndex = abs(theFristMonthComponts.day -  todayComponents.day)
             
@@ -388,7 +388,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
 //            
             
             
-            let result = NSCalendar.currentCalendar().components(NSCalendarUnit.WeekCalendarUnit, fromDate: dates[0]!, toDate: NSDate(), options: NSCalendarOptions.allZeros)
+            let result = NSCalendar.currentCalendar().components(NSCalendarUnit.WeekCalendarUnit | NSCalendarUnit.WeekdayOrdinalCalendarUnit, fromDate: dates[0]!, toDate: NSDate(), options: NSCalendarOptions.allZeros)
             println("result.weekdayOrdinal: \(result.weekdayOrdinal)")
             
             
@@ -607,7 +607,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     func getComponentsByDate(date: NSDate!) -> NSDateComponents! {
-        return NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitWeekday | .CalendarUnitWeekOfMonth | .CalendarUnitWeekOfYear | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond, fromDate: date)
+        return NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitWeekday | .CalendarUnitWeekOfMonth | .CalendarUnitWeekdayOrdinal | .CalendarUnitWeekOfYear | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond, fromDate: date)
     }
     
     // MARK: - UITableViewDelegate
