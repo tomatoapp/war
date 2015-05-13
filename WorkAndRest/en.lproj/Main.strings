@@ -122,6 +122,9 @@
 /* Class = "IBUILabel"; text = "Badge App Icon"; ObjectID = "iSY-aV-QS6"; */
 "iSY-aV-QS6.text" = "Badge App Icon";
 
+/* Class = "IBUILabel"; text = "Running in Background"; OjbectID = "WYz-t0-4dq"; */
+"WYz-t0-4dq.text" = "Running in Background";
+
 /* Class = "IBUILabel"; text = "Current Version"; ObjectID = "iY0-en-hub"; */
 "iY0-en-hub.text" = "Current Version";
 

@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        println(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String)
+        println(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String)
         DBOperate.db_init()
         self.firstRun()
         self.initRater()
@@ -154,6 +154,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             NSUserDefaults.standardUserDefaults().setInteger(GlobalConstants.DEFAULT_MINUTES, forKey: GlobalConstants.k_SECONDS)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SHOWPERCENTAGE)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_BADGEAPPICON)
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_RUNNING_IN_BACKGROUND)
             NSUserDefaults.standardUserDefaults().synchronize()
             ApplicationStateManager.sharedInstance.setup()
             DBOperate.insertTask(self.createSampleTask())

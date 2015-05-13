@@ -133,7 +133,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     // MARK: - Events
     
     @IBAction func showPercentageSwitchValueChanged(sender: AnyObject) {
-        self.isShowPercentageSwitchOn = (sender as UISwitch).on
+        self.isShowPercentageSwitchOn = (sender as! UISwitch).on
         self.setChartViewHeaderViewVisible(self.isShowPercentageSwitchOn, withAmination: true)
         
         NSUserDefaults.standardUserDefaults().setBool(self.isShowPercentageSwitchOn, forKey: GlobalConstants.kBOOL_SHOWPERCENTAGE)
@@ -141,7 +141,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     @IBAction func segmentControlValueChanged(sender: AnyObject) {
-        self.loaDataSourceBySegmentedControlSelectedIndex((sender as UISegmentedControl).selectedSegmentIndex)
+        self.loaDataSourceBySegmentedControlSelectedIndex((sender as! UISegmentedControl).selectedSegmentIndex)
     }
     
     // MARK: - Methods
@@ -582,7 +582,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         let startComponents = self.getComponentsByDate(date)
         let startMonthStr = self.getMonthStringByMonthNumber(startComponents.month)
         
-        var copy: NSDateComponents = startComponents.copy() as NSDateComponents
+        var copy: NSDateComponents = startComponents.copy() as! NSDateComponents
         copy.day += 6
         let endDate = NSCalendar.currentCalendar().dateFromComponents(copy)
         let endDateComponents = self.getComponentsByDate(endDate)

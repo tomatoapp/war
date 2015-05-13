@@ -31,7 +31,7 @@ class ProductsManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
         if SKPaymentQueue.canMakePayments() {
             println("User can make payments.")
             
-            let productsRequest = SKProductsRequest(productIdentifiers: NSSet(object: kProProductIdentifier))
+            let productsRequest = SKProductsRequest(productIdentifiers: NSSet(object: kProProductIdentifier) as Set<NSObject>)
             productsRequest.delegate = self
             productsRequest.start()
         } else {
@@ -91,25 +91,25 @@ class ProductsManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
                 
                 // this is called when the user has successfully purchased the package (Cha-Ching!)
                 self.doRemoveAds()
-                SKPaymentQueue.defaultQueue().finishTransaction(transaction as SKPaymentTransaction)
+                SKPaymentQueue.defaultQueue().finishTransaction(transaction as! SKPaymentTransaction)
                 break
                 
             case SKPaymentTransactionState.Restored:
                 println("TransactionState -> Restored")
                 
                 self.doRemoveAds()
-                SKPaymentQueue.defaultQueue().finishTransaction(transaction as SKPaymentTransaction)
+                SKPaymentQueue.defaultQueue().finishTransaction(transaction as! SKPaymentTransaction)
                 break
                 
             case SKPaymentTransactionState.Failed:
                 println("TransactionState -> Failed")
                 
-                if (transaction as SKPaymentTransaction).error.code == SKErrorPaymentCancelled {
+                if (transaction as! SKPaymentTransaction).error.code == SKErrorPaymentCancelled {
                     // The user cancelled the payment
                     println("TransactionState -> Cancelled")
                     
                 }
-                SKPaymentQueue.defaultQueue().finishTransaction(transaction as SKPaymentTransaction)
+                SKPaymentQueue.defaultQueue().finishTransaction(transaction as! SKPaymentTransaction)
                 break
                 
             default:
@@ -129,7 +129,7 @@ class ProductsManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
             if transaction.transactionState == SKPaymentTransactionState.Restored {
                 println("paymentQueueRestoreCompletedTransactionsFinished - TransactionState -> Restored")
                 self.doRemoveAds()
-                SKPaymentQueue.defaultQueue().finishTransaction(transaction as SKPaymentTransaction)
+                SKPaymentQueue.defaultQueue().finishTransaction(transaction as! SKPaymentTransaction)
                 break
             }
         }

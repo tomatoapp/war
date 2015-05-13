@@ -29,8 +29,8 @@ class TaskListHeaderView: UIView {
         self.setup()
     }
     
-    override init() {
-        super.init()
+    convenience init() {
+        self.init(frame: CGRectZero)
         self.setup()
     }
     

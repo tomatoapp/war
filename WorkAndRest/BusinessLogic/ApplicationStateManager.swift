@@ -28,7 +28,7 @@ class ApplicationStateManager: NSObject {
     }
     
     func isExpired() -> Bool {
-        let firstLaunchDate: NSDate = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_FirstLauchDate) as NSDate
+        let firstLaunchDate: NSDate = NSUserDefaults.standardUserDefaults().valueForKey(GlobalConstants.k_FirstLauchDate) as! NSDate
         let timeInterval: NSTimeInterval = 60 * 60 * 24 * Probation * -1
         return NSDate(timeIntervalSinceNow: timeInterval).compare(firstLaunchDate) == NSComparisonResult.OrderedDescending
     }

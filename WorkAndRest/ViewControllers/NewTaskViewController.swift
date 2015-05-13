@@ -64,12 +64,12 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "EditTaskTitleSegue" {
             //            let controller = segue.destinationViewController as ItemDetailViewController
-            let navigationController = segue.destinationViewController as UINavigationController
-            let controller = navigationController.topViewController as TaskTitleViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! TaskTitleViewController
             controller.delegate = self
             controller.copyTaskItem = self.taskItem
         } else if segue.identifier == "StartSegue" {
-            let controller = segue.destinationViewController as StartViewController
+            let controller = segue.destinationViewController as! StartViewController
             controller.delegate = self
         }
     }
@@ -167,8 +167,8 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     }
     
     func adapte_iPhone4() {
-        let iconImageView = self.view.viewWithTag(TAG_ICON) as UIImageView!
-        let startTextLabel = self.view.viewWithTag(TAG_STARTTEXT) as UILabel!
+        let iconImageView = self.view.viewWithTag(TAG_ICON) as! UIImageView!
+        let startTextLabel = self.view.viewWithTag(TAG_STARTTEXT) as! UILabel!
         let timeSelectorView = self.view.viewWithTag(TAG_TIMESELECTOR)
         let completionCirleView = self.view.viewWithTag(TAG_COMPLETIONCIRCLE)
         let taskTitleView = self.view.viewWithTag(TAG_TASKTITLE)

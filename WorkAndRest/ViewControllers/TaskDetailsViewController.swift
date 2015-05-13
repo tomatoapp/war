@@ -83,8 +83,8 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "EditTaskTitleSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let controller = navigationController.topViewController as TaskTitleViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! TaskTitleViewController
             controller.delegate = self
             controller.copyTaskItem = self.taskItem
         }

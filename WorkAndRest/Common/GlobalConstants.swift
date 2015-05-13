@@ -26,6 +26,7 @@ class GlobalConstants {
     class var k_SECONDS: String { return "Seconds" }
     class var kBOOL_SHOWPERCENTAGE: String { return "showPercentage" }
     class var kBOOL_BADGEAPPICON: String { return "badgeAppIcon" }
+    class var kBOOL_RUNNING_IN_BACKGROUND: String { return "runningInBackground" }
     class var DEFAULT_MINUTES: Int { return 25 }
     class var DEFAULT_NUMBER: Int { return 1 }
     

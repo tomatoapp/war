@@ -86,15 +86,15 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let task = allTasks[indexPath.row]
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath) as TaskListItemCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath) as! TaskListItemCell
         cell.taskEventDelegate = self
         cell.delegate = self
         if task.completed {
-            cell.leftUtilityButtons = self.leftUtilityButtonsByTaskState(TaskState.Completed)
+            cell.leftUtilityButtons = self.leftUtilityButtonsByTaskState(TaskState.Completed) as [AnyObject]
         } else {
-            cell.leftUtilityButtons = self.leftUtilityButtonsByTaskState(TaskState.Normal)
+            cell.leftUtilityButtons = self.leftUtilityButtonsByTaskState(TaskState.Normal) as [AnyObject]
         }
-        cell.taskItem = (task.copy() as Task)
+        cell.taskItem = (task.copy() as! Task)
         cell.refresh()
         
         
@@ -145,7 +145,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = allTasks[indexPath.row]
-        let copyItem = item.copy() as Task
+        let copyItem = item.copy() as! Task
         self.performSegueWithIdentifier("ShowItemDetailsSegue", sender: copyItem)
     }
     
@@ -168,17 +168,17 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "EditItem" {
-            let controller = segue.destinationViewController as TaskTitleViewController
-            controller.copyTaskItem = sender as Task?
+            let controller = segue.destinationViewController as! TaskTitleViewController
+            controller.copyTaskItem = sender as! Task?
             controller.delegate = self
         } else if segue.identifier == "NewTaskSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let controller = navigationController.topViewController as NewTaskViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! NewTaskViewController
             controller.delegate = self
         } else if segue.identifier == "ShowItemDetailsSegue" {
             
-            let controller = segue.destinationViewController as TaskDetailsViewController
-            let selectedTask = sender as Task!
+            let controller = segue.destinationViewController as! TaskDetailsViewController
+            let selectedTask = sender as! Task!
             controller.taskItem = selectedTask
             //self.taskRunner.delegate = controller
             controller.taskRunner = self.taskRunner
@@ -270,7 +270,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
         
         cell.hideUtilityButtonsAnimated(true)
-        let taskItem = (cell as TaskListItemCell).taskItem!
+        let taskItem = (cell as! TaskListItemCell).taskItem!
         let task = allTasks.filter{ $0.taskId == taskItem.taskId }.first!
         switch index {
         case 0:
@@ -421,7 +421,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     
     func insertItem(val: NSTimer) {
-        let item = val.userInfo as Task
+        let item = val.userInfo as! Task
         self.tableView.beginUpdates()
         allTasks.insert(item, atIndex: 0)
         var indexPath = NSIndexPath(forRow: 0, inSection: 0)
@@ -450,7 +450,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     
     func moveItemToTop(val: NSTimer) {
-        let copyItem = val.userInfo as Task
+        let copyItem = val.userInfo as! Task
         let result = allTasks.filter{ $0.taskId == copyItem.taskId }
         if result.count <= 0 { // Can not found it, maybe deleted it just now.
             return

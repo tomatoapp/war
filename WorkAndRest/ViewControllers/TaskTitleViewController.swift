@@ -75,7 +75,7 @@ class TaskTitleViewController: BaseTableViewController, UITextFieldDelegate {
             return
         }
         
-        if countElements(self.textField.text!) > GlobalConstants.TITLE_MAXLENGTH {
+        if count(self.textField.text!) > GlobalConstants.TITLE_MAXLENGTH {
             let index: String.Index = advance(self.textField.text.startIndex, GlobalConstants.TITLE_MAXLENGTH)
             self.textField.text = self.textField.text.substringToIndex(index)
         }
@@ -121,7 +121,7 @@ class TaskTitleViewController: BaseTableViewController, UITextFieldDelegate {
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        if countElements(textField.text!) > GlobalConstants.TITLE_MAXLENGTH {
+        if count(textField.text!) > GlobalConstants.TITLE_MAXLENGTH {
             return false
         }
         return true

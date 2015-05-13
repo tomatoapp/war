@@ -11,8 +11,9 @@ import MessageUI
 
 let SubTitleSectionHeight: CGFloat = 50
 class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, ProductsManagerDelegate {
-
+    
     @IBOutlet var badgeAppIconSwitch: UISwitch!
+    @IBOutlet var runningInBackgrounSwitch: UISwitch! // 后台运行
     @IBOutlet var currentVersionButton: UIButton!
     var versionType = ApplicationStateManager.sharedInstance.versionType()
     var popTipView: CMPopTipView?
@@ -20,14 +21,15 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.badgeAppIconSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_BADGEAPPICON)
+        self.runningInBackgrounSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_RUNNING_IN_BACKGROUND)
         ProductsManager.sharedInstance.delegate = self
         HUD = MBProgressHUD(view: self.view)
         self.view.addSubview(HUD)
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
@@ -36,10 +38,16 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     @IBAction func badgeAppIconSwitchValueChanged(sender: AnyObject) {
-        let isShowBadgeAppIcon = (sender as UISwitch).on
+        let isShowBadgeAppIcon = (sender as! UISwitch).on
         NSUserDefaults.standardUserDefaults().setBool(isShowBadgeAppIcon, forKey: GlobalConstants.kBOOL_BADGEAPPICON)
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    @IBAction func runningInBackgroundSwitchValueChanged(sender: AnyObject) {
+        let runningInBackground = (sender as! UISwitch).on
+        NSUserDefaults.standardUserDefaults().setBool(runningInBackground, forKey: GlobalConstants.kBOOL_RUNNING_IN_BACKGROUND)
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
@@ -52,11 +60,11 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     func showPopTipView() {
         if self.popTipView == nil {
             
-//            self.popTipView = CMPopTipView(message: "Tomato! is free for a 7 day trial, If you like it then you can purchase Pro version.")
+            //            self.popTipView = CMPopTipView(message: "Tomato! is free for a 7 day trial, If you like it then you can purchase Pro version.")
             self.popTipView = CMPopTipView(message: NSLocalizedString("Tomato! is free for a 7 day trial, If you like it then you can purchase Pro version.", comment: ""))
         }
         
-//        self.popTipView?.customView = UIImageView(image: UIImage(named: "title"))
+        //        self.popTipView?.customView = UIImageView(image: UIImage(named: "title"))
         self.popTipView?.backgroundColor = UIColor(red: 57/255, green: 187/255, blue: 79/255, alpha: 1.0)
         self.popTipView?.textColor = UIColor.whiteColor()
         self.popTipView?.borderWidth = 0
@@ -67,7 +75,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     }
     
     // MARK: - Navigation
-
+    
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 20
@@ -79,7 +87,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-      
+        
         if section != 1 {
             return nil
         }
@@ -90,13 +98,16 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         label.numberOfLines = 2
         label.font = UIFont.systemFontOfSize(12)
         label.textColor = UIColor.lightGrayColor()
-//        label.text = "Show the incomplete task count badge on the app icon."
-        label.text = NSLocalizedString("Show the incomplete task count badge on the app icon.", comment: "")
+        
+        // 图标上显示数字项的Switch按钮的解释说明
+        if section == 1 {
+            label.text = NSLocalizedString("Show the incomplete task count badge on the app icon.", comment: "")
+        }
         label.sizeToFit()
         view.addSubview(label)
         return view
     }
-
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
@@ -200,12 +211,12 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     }
     
     func showThanksAlert() {
-//        self.showCheckMarkHUDWithText("Thanks for your help")
+        //        self.showCheckMarkHUDWithText("Thanks for your help")
         self.showCheckMarkHUDWithText(NSLocalizedString("Thanks for your help", comment: ""))
     }
     
     func showProAlert() {
-//        self.showCheckMarkHUDWithText("Update Succeeded")
+        //        self.showCheckMarkHUDWithText("Update Succeeded")
         self.showCheckMarkHUDWithText(NSLocalizedString("Update Succeeded", comment: ""))
     }
     
@@ -259,7 +270,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         let failedHUD = MBProgressHUD(view: self.view)
         failedHUD.customView = UIImageView(image: UIImage(named: "error"))
         failedHUD.mode = MBProgressHUDMode.CustomView
-//        failedHUD.labelText = "You haven't bought it before"
+        //        failedHUD.labelText = "You haven't bought it before"
         failedHUD.labelText = NSLocalizedString("You haven't bought it before", comment: "")
         self.view.addSubview(failedHUD)
         failedHUD.show(true)
@@ -269,17 +280,17 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     func refreshThePaymentItem(versionType: VersionType) {
         switch versionType {
         case .Free:
-//            self.currentVersionButton.setTitle("Free", forState: .Normal)
+            //            self.currentVersionButton.setTitle("Free", forState: .Normal)
             self.currentVersionButton.setTitle(NSLocalizedString("Free", comment: ""), forState: .Normal)
             break
             
         case .Pro:
-//            self.currentVersionButton.setTitle("Pro", forState: .Normal)
+            //            self.currentVersionButton.setTitle("Pro", forState: .Normal)
             self.currentVersionButton.setTitle(NSLocalizedString("Pro", comment: ""), forState: .Normal)
             break
         }
     }
- }
+}
 
 
 

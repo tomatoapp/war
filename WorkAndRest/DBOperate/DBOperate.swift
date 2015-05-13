@@ -20,7 +20,7 @@ import UIKit
     }
     
     class func db_init() {
-        let documentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let documentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         let path = documentsFolder.stringByAppendingPathComponent("db_demo.sqlite3")
         dataBase = FMDatabase(path: path)
 

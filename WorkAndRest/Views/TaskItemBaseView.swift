@@ -32,7 +32,7 @@ class TaskItemBaseView: UIView {
     @IBOutlet var timerLabel: UILabel!
     
     @IBAction func startButtonClicked(sender: AnyObject) {
-        self.delegate?.taskItemBaseView(self, buttonClicked: sender as UIButton)
+        self.delegate?.taskItemBaseView(self, buttonClicked: sender as! UIButton)
     }
     
     required init(coder aDecoder: NSCoder) {
