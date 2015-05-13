@@ -87,22 +87,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         case UIApplicationState.Background:
             if NSUserDefaults.standardUserDefaults().boolForKey("kDisplayStatusLocked") {
                 //                println("Sent to background by locking screen")
-                if TaskRunner.sharedInstance.isRunning {
-                    self.addNotificationWithSeconds(TaskRunner.sharedInstance.seconds)
-                    TaskRunnerManager.sharedInstance.freezeTaskManager(TaskRunner.sharedInstance)
-                    
-                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_ISWORKING)
-                    println("kBOOL_ISWORKING = true")
-                    NSUserDefaults.standardUserDefaults().synchronize()
-                } else {
-                    println("kBOOL_ISWORKING = false")
-                }
-                
+//                if TaskRunner.sharedInstance.isRunning {
+//                    self.addNotificationWithSeconds(TaskRunner.sharedInstance.seconds)
+//                    TaskRunnerManager.sharedInstance.freezeTaskManager(TaskRunner.sharedInstance)
+//                    
+//                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_ISWORKING)
+//                    println("kBOOL_ISWORKING = true")
+//                    NSUserDefaults.standardUserDefaults().synchronize()
+//                } else {
+//                    println("kBOOL_ISWORKING = false")
+//                }
+                self.freezeTask()
             } else {
                 //                println("Sent to background by home button/switching to other app")
-                if TaskRunner.sharedInstance.isRunning {
-                    TaskRunner.sharedInstance.stop()
-                    self.showBreakNotification()
+//                if TaskRunner.sharedInstance.isRunning {
+//                    TaskRunner.sharedInstance.stop()
+//                    self.showBreakNotification()
+//                }
+                if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_RUNNING_IN_BACKGROUND) {
+                    self.freezeTask()
+                } else {
+                    self.stopTask()
                 }
             }
             break
@@ -203,5 +208,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         sampleTask.expect_times = 3
         sampleTask.finished_times = 0
         return sampleTask
+    }
+    
+    func freezeTask() {
+        if TaskRunner.sharedInstance.isRunning {
+            self.addNotificationWithSeconds(TaskRunner.sharedInstance.seconds)
+            TaskRunnerManager.sharedInstance.freezeTaskManager(TaskRunner.sharedInstance)
+            
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_ISWORKING)
+            println("kBOOL_ISWORKING = true")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        } else {
+            println("kBOOL_ISWORKING = false")
+        }
+    }
+    
+    func stopTask() {
+        if TaskRunner.sharedInstance.isRunning {
+            TaskRunner.sharedInstance.stop()
+            self.showBreakNotification()
+        }
     }
 }
