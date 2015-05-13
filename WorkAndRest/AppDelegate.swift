@@ -104,10 +104,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 //                    TaskRunner.sharedInstance.stop()
 //                    self.showBreakNotification()
 //                }
-                if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_RUNNING_IN_BACKGROUND) {
-                    self.freezeTask()
-                } else {
+                if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_IS_DETERMINATION) { // 开启决心模式
                     self.stopTask()
+                } else {
+                    self.freezeTask()
                 }
             }
             break
@@ -159,7 +159,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             NSUserDefaults.standardUserDefaults().setInteger(GlobalConstants.DEFAULT_MINUTES, forKey: GlobalConstants.k_SECONDS)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SHOWPERCENTAGE)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_BADGEAPPICON)
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_RUNNING_IN_BACKGROUND)
+            // Disable the determied mode in the default
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_IS_DETERMINATION)
             NSUserDefaults.standardUserDefaults().synchronize()
             ApplicationStateManager.sharedInstance.setup()
             DBOperate.insertTask(self.createSampleTask())

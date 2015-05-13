@@ -13,7 +13,7 @@ let SubTitleSectionHeight: CGFloat = 50
 class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, ProductsManagerDelegate {
     
     @IBOutlet var badgeAppIconSwitch: UISwitch!
-    @IBOutlet var runningInBackgrounSwitch: UISwitch! // 后台运行
+    @IBOutlet var determinedModeSwitch: UISwitch! // 启用决心模式
     @IBOutlet var currentVersionButton: UIButton!
     var versionType = ApplicationStateManager.sharedInstance.versionType()
     var popTipView: CMPopTipView?
@@ -24,7 +24,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.badgeAppIconSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_BADGEAPPICON)
-        self.runningInBackgrounSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_RUNNING_IN_BACKGROUND)
+        self.determinedModeSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_IS_DETERMINATION)
         ProductsManager.sharedInstance.delegate = self
         HUD = MBProgressHUD(view: self.view)
         self.view.addSubview(HUD)
@@ -45,9 +45,9 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
-    @IBAction func runningInBackgroundSwitchValueChanged(sender: AnyObject) {
-        let runningInBackground = (sender as! UISwitch).on
-        NSUserDefaults.standardUserDefaults().setBool(runningInBackground, forKey: GlobalConstants.kBOOL_RUNNING_IN_BACKGROUND)
+    @IBAction func determinedModeSwitchValueChanged(sender: AnyObject) {
+        let enableDeterminationMode = (sender as! UISwitch).on
+        NSUserDefaults.standardUserDefaults().setBool(enableDeterminationMode, forKey: GlobalConstants.kBOOL_IS_DETERMINATION)
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
@@ -80,7 +80,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         if section == 0 {
             return 20
         }
-        if section == 1 {
+        if section == 1 || section == 2 {
             return SubTitleSectionHeight
         }
         return 15
@@ -88,7 +88,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        if section != 1 {
+        if section != 1 && section != 2 {
             return nil
         }
         
@@ -102,6 +102,9 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         // 图标上显示数字项的Switch按钮的解释说明
         if section == 1 {
             label.text = NSLocalizedString("Show the incomplete task count badge on the app icon.", comment: "")
+        }
+        if section == 2 {
+            label.text = NSLocalizedString("When turned on, you will not be able to open another app while running a timer in background.", comment: "")
         }
         label.sizeToFit()
         view.addSubview(label)

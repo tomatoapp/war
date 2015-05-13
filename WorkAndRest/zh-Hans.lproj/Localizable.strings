@@ -35,7 +35,7 @@
 "Design" = "设计";
 "Marc Liu" = "Marc Liu";
 "Show the incomplete task count badge on the app icon." = "在应用程序图标显示未完成任务个数。";
-" If turned on, Tomato! will stop the current running task when the user switch to another app or quit to the home screen." = "";
+"When turned on, you will not be able to open another app while running a timer in background." = "若打开决心模式，您将不能在后台运行番茄钟，否则当前番茄终将被作废。";
 "Thanks for your help" = "感谢您的帮助";
 "Update Succeeded" = "升级成功";
 "You haven't bought it before" = "您还没有购买过此应用";

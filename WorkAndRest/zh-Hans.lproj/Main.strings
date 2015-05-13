@@ -122,8 +122,8 @@
 /* Class = "IBUILabel"; text = "Badge App Icon"; ObjectID = "iSY-aV-QS6"; */
 "iSY-aV-QS6.text" = "应用程序图标标记";
 
-/* Class = "IBUILabel"; text = "Running in Background"; OjbectID = "WYz-t0-4dq"; */
-"WYz-t0-4dq.text" = "后台运行";
+/* Class = "IBUILabel"; text = "Determined Mode"; OjbectID = "WYz-t0-4dq"; */
+"WYz-t0-4dq.text" = "决心模式";
 
 /* Class = "IBUILabel"; text = "Current Version"; ObjectID = "iY0-en-hub"; */
 "iY0-en-hub.text" = "目前版本";

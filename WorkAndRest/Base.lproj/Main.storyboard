@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aC1-Pi-pp5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aC1-Pi-pp5">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -54,14 +54,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view tag="1003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVb-yt-thQ" customClass="TimeSelectorView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="210" width="320" height="63"/>
+                                <rect key="frame" x="0.0" y="211" width="320" height="63"/>
                                 <color key="backgroundColor" red="0.21176470589999999" green="0.74117647060000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="0eQ-8R-uq3"/>
                                 </constraints>
                             </view>
                             <view tag="1005" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3q-r7-TPV" customClass="CompletionCycleView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="16" y="368" width="288" height="80"/>
+                                <rect key="frame" x="16" y="369" width="288" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="C8W-6x-ckj"/>
@@ -75,7 +75,7 @@
                                 </constraints>
                             </imageView>
                             <view tag="1004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poP-IU-mMV" customClass="TaskTitleView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="288" width="320" height="70"/>
+                                <rect key="frame" x="0.0" y="289" width="320" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="HLw-F0-eAA"/>
@@ -94,7 +94,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starting a timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Jt-2x-xws">
-                                <rect key="frame" x="83.5" y="147" width="153.5" height="27.5"/>
+                                <rect key="frame" x="83" y="147" width="154" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -438,8 +438,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EXY-eY-sLL" id="xDe-MR-rTI">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Running in Background" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYz-t0-4dq">
-                                                    <rect key="frame" x="16" y="11" width="180" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Determined Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYz-t0-4dq">
+                                                    <rect key="frame" x="16" y="11" width="138" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -447,7 +447,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ann-XU-x6a">
                                                     <rect key="frame" x="255" y="5" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="runningInBackgroundSwitchValueChanged:" destination="6Vf-xC-iCf" eventType="valueChanged" id="PO2-Ic-xi2"/>
+                                                        <action selector="determinedModeSwitchValueChanged:" destination="6Vf-xC-iCf" eventType="valueChanged" id="FNx-da-Y05"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -607,7 +607,7 @@
                     <connections>
                         <outlet property="badgeAppIconSwitch" destination="4MA-wg-bDz" id="LyU-M3-EXr"/>
                         <outlet property="currentVersionButton" destination="UoA-MC-b0d" id="1c5-57-UOD"/>
-                        <outlet property="runningInBackgrounSwitch" destination="Ann-XU-x6a" id="iyP-w3-QP8"/>
+                        <outlet property="determinedModeSwitch" destination="Ann-XU-x6a" id="28A-f8-3fK"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZrE-93-ian" userLabel="First Responder" sceneMemberID="firstResponder"/>

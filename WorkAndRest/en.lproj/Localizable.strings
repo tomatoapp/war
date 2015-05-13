@@ -34,7 +34,7 @@
 "Design" = "Design";
 "Marc Liu" = "Marc Liu";
 "Show the incomplete task count badge on the app icon." = "Show the incomplete task count badge on the app icon.";
-" If turned on, Tomato! will stop the current running task when the user switch to another app or quit to the home screen." = " If turned on, Tomato! will stop the current running task when the user switch to another app or quit to the home screen.";
+"When turned on, you will not be able to open another app while running a timer in background." = "When turned on, you will not be able to open another app while running a timer in background.";
 "Thanks for your help" = "Thanks for your help";
 "Update Succeeded" = "Update Succeeded";
 "You haven't bought it before" = "You haven't bought it before";
