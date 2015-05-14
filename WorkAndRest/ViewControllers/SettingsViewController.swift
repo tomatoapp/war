@@ -114,52 +114,52 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        if indexPath.section == 1 && indexPath.row == 0 {
+        if indexPath.section == 2 && indexPath.row == 0 {
             if self.versionType == .Free {
                 self.showPopTipView()
             }
         }
         
-        if indexPath.section == 1 && indexPath.row == 1 {
+        if indexPath.section == 2 && indexPath.row == 1 {
             // go premium
             HUD.show(true)
             ProductsManager.sharedInstance.purchasePro()
             HUD.hide(true, afterDelay: 4)
         }
-        if indexPath.section == 1 && indexPath.row == 2 {
+        if indexPath.section == 2 && indexPath.row == 2 {
             // restore purchase
             HUD.show(true)
             ProductsManager.sharedInstance.restore()
             HUD.hide(true, afterDelay: 3)
         }
         
-        if indexPath.section == 3 && indexPath.row == 0 {
+        if indexPath.section == 4 && indexPath.row == 0 {
             self.showSendEmailAlert()
         }
         
         
-        if indexPath.section == 2 && indexPath.row == 0 {
+        if indexPath.section == 3 && indexPath.row == 0 {
             // about
         }
-        if indexPath.section == 2 && indexPath.row == 1 {
+        if indexPath.section == 3 && indexPath.row == 1 {
             // rate
             UIApplication.sharedApplication().openURL(NSURL(string: GlobalConstants.APPSTORE_URL)!)
         }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.section == 1 && self.versionType == .Pro && (indexPath.row == 1 || indexPath.row == 2) {
+        if indexPath.section == 2 && self.versionType == .Pro && (indexPath.row == 1 || indexPath.row == 2) {
             return 0.0
         }
         return 44.0
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 && self.versionType == .Pro && (indexPath.row == 1 || indexPath.row == 2) {
+        if indexPath.section == 2 && self.versionType == .Pro && (indexPath.row == 1 || indexPath.row == 2) {
             cell.hidden = true
         }
         
-        if indexPath.section == 1 && self.versionType == .Pro && indexPath.row == 0 {
+        if indexPath.section == 2 && self.versionType == .Pro && indexPath.row == 0 {
             // Remove seperator inset
             if cell.respondsToSelector("setSeparatorInset:") {
                 cell.separatorInset = UIEdgeInsetsZero
