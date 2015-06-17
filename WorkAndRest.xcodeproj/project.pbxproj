@@ -72,6 +72,14 @@
 		64EAEC2D1A7E37F70026C748 /* TaskRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */; };
 		64EBF6251AA9572C00ACA139 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EBF6241AA9572C00ACA139 /* StoreKit.framework */; };
 		64EBF6271AA9591200ACA139 /* ProductsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EBF6261AA9591200ACA139 /* ProductsManager.swift */; };
+		C33562B61B3140950051784D /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B51B3140950051784D /* InterfaceController.swift */; };
+		C33562B81B3140950051784D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B71B3140950051784D /* NotificationController.swift */; };
+		C33562BA1B3140950051784D /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B91B3140950051784D /* GlanceController.swift */; };
+		C33562BC1B3140950051784D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C33562BB1B3140950051784D /* Images.xcassets */; };
+		C33562C01B3140950051784D /* WorkAndRest WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = C33562BF1B3140950051784D /* WorkAndRest WatchKit App.app */; };
+		C33562C81B3140950051784D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C33562C61B3140950051784D /* Interface.storyboard */; };
+		C33562CA1B3140950051784D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C33562C91B3140950051784D /* Images.xcassets */; };
+		C33562CD1B3140950051784D /* WorkAndRest WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C33562B01B3140950051784D /* WorkAndRest WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +90,35 @@
 			remoteGlobalIDString = 6434826D18C5D344009BF110;
 			remoteInfo = WorkAndRest;
 		};
+		C33562C11B3140950051784D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6434826618C5D343009BF110 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C33562BE1B3140950051784D;
+			remoteInfo = "WorkAndRest WatchKit App";
+		};
+		C33562CB1B3140950051784D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6434826618C5D343009BF110 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C33562AF1B3140950051784D;
+			remoteInfo = "WorkAndRest WatchKit Extension";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C33562D41B3140950051784D /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C33562CD1B3140950051784D /* WorkAndRest WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1ABC0B3A45728AF8F7A1A7D1 /* libPods-WorkAndRest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WorkAndRest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +202,17 @@
 		64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRunner.swift; sourceTree = "<group>"; };
 		64EBF6241AA9572C00ACA139 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		64EBF6261AA9591200ACA139 /* ProductsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsManager.swift; sourceTree = "<group>"; };
+		C33562B01B3140950051784D /* WorkAndRest WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WorkAndRest WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C33562B31B3140950051784D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C33562B41B3140950051784D /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		C33562B51B3140950051784D /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		C33562B71B3140950051784D /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		C33562B91B3140950051784D /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		C33562BB1B3140950051784D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C33562BF1B3140950051784D /* WorkAndRest WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WorkAndRest WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C33562C51B3140950051784D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C33562C71B3140950051784D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		C33562C91B3140950051784D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C5A3E743E49F064E285AF8F1 /* Pods-WorkAndRest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkAndRest.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkAndRest/Pods-WorkAndRest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,6 +241,13 @@
 				6434829118C5D344009BF110 /* XCTest.framework in Frameworks */,
 				6434829318C5D344009BF110 /* UIKit.framework in Frameworks */,
 				6434829218C5D344009BF110 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C33562AD1B3140950051784D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +307,8 @@
 			children = (
 				64012C861900B870006FC2B2 /* Libs */,
 				6434827718C5D344009BF110 /* WorkAndRest */,
+				C33562B11B3140950051784D /* WorkAndRest WatchKit Extension */,
+				C33562C31B3140950051784D /* WorkAndRest WatchKit App */,
 				6434827018C5D344009BF110 /* Frameworks */,
 				6434826F18C5D344009BF110 /* Products */,
 				446B6C0ECC87852E3341038B /* Pods */,
@@ -264,6 +320,8 @@
 			children = (
 				6434826E18C5D344009BF110 /* WorkAndRest.app */,
 				6434828F18C5D344009BF110 /* WorkAndRestTests.xctest */,
+				C33562B01B3140950051784D /* WorkAndRest WatchKit Extension.appex */,
+				C33562BF1B3140950051784D /* WorkAndRest WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -435,6 +493,45 @@
 			path = BusinessLogic;
 			sourceTree = "<group>";
 		};
+		C33562B11B3140950051784D /* WorkAndRest WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C33562B51B3140950051784D /* InterfaceController.swift */,
+				C33562B71B3140950051784D /* NotificationController.swift */,
+				C33562B91B3140950051784D /* GlanceController.swift */,
+				C33562BB1B3140950051784D /* Images.xcassets */,
+				C33562B21B3140950051784D /* Supporting Files */,
+			);
+			path = "WorkAndRest WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		C33562B21B3140950051784D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C33562B31B3140950051784D /* Info.plist */,
+				C33562B41B3140950051784D /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C33562C31B3140950051784D /* WorkAndRest WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				C33562C61B3140950051784D /* Interface.storyboard */,
+				C33562C91B3140950051784D /* Images.xcassets */,
+				C33562C41B3140950051784D /* Supporting Files */,
+			);
+			path = "WorkAndRest WatchKit App";
+			sourceTree = "<group>";
+		};
+		C33562C41B3140950051784D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C33562C51B3140950051784D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -447,10 +544,12 @@
 				6434826B18C5D344009BF110 /* Frameworks */,
 				6434826C18C5D344009BF110 /* Resources */,
 				D3190410B09D907F3F9DAAC1 /* Copy Pods Resources */,
+				C33562D41B3140950051784D /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C33562CC1B3140950051784D /* PBXTargetDependency */,
 			);
 			name = WorkAndRest;
 			productName = WorkAndRest;
@@ -475,6 +574,39 @@
 			productReference = 6434828F18C5D344009BF110 /* WorkAndRestTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		C33562AF1B3140950051784D /* WorkAndRest WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C33562D11B3140950051784D /* Build configuration list for PBXNativeTarget "WorkAndRest WatchKit Extension" */;
+			buildPhases = (
+				C33562AC1B3140950051784D /* Sources */,
+				C33562AD1B3140950051784D /* Frameworks */,
+				C33562AE1B3140950051784D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C33562C21B3140950051784D /* PBXTargetDependency */,
+			);
+			name = "WorkAndRest WatchKit Extension";
+			productName = "WorkAndRest WatchKit Extension";
+			productReference = C33562B01B3140950051784D /* WorkAndRest WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		C33562BE1B3140950051784D /* WorkAndRest WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C33562CE1B3140950051784D /* Build configuration list for PBXNativeTarget "WorkAndRest WatchKit App" */;
+			buildPhases = (
+				C33562BD1B3140950051784D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WorkAndRest WatchKit App";
+			productName = "WorkAndRest WatchKit App";
+			productReference = C33562BF1B3140950051784D /* WorkAndRest WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -490,6 +622,13 @@
 					};
 					6434828E18C5D344009BF110 = {
 						TestTargetID = 6434826D18C5D344009BF110;
+					};
+					C33562AF1B3140950051784D = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = W536UCFWXT;
+					};
+					C33562BE1B3140950051784D = {
+						CreatedOnToolsVersion = 6.3.2;
 					};
 				};
 			};
@@ -509,6 +648,8 @@
 			targets = (
 				6434826D18C5D344009BF110 /* WorkAndRest */,
 				6434828E18C5D344009BF110 /* WorkAndRestTests */,
+				C33562AF1B3140950051784D /* WorkAndRest WatchKit Extension */,
+				C33562BE1B3140950051784D /* WorkAndRest WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -539,6 +680,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C33562AE1B3140950051784D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C33562BC1B3140950051784D /* Images.xcassets in Resources */,
+				C33562C01B3140950051784D /* WorkAndRest WatchKit App.app in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C33562BD1B3140950051784D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C33562C81B3140950051784D /* Interface.storyboard in Resources */,
+				C33562CA1B3140950051784D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +789,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C33562AC1B3140950051784D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C33562B81B3140950051784D /* NotificationController.swift in Sources */,
+				C33562B61B3140950051784D /* InterfaceController.swift in Sources */,
+				C33562BA1B3140950051784D /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -637,6 +806,16 @@
 			isa = PBXTargetDependency;
 			target = 6434826D18C5D344009BF110 /* WorkAndRest */;
 			targetProxy = 6434829418C5D344009BF110 /* PBXContainerItemProxy */;
+		};
+		C33562C21B3140950051784D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C33562BE1B3140950051784D /* WorkAndRest WatchKit App */;
+			targetProxy = C33562C11B3140950051784D /* PBXContainerItemProxy */;
+		};
+		C33562CC1B3140950051784D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C33562AF1B3140950051784D /* WorkAndRest WatchKit Extension */;
+			targetProxy = C33562CB1B3140950051784D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -676,6 +855,14 @@
 				648A27DC1AAD841B0002BF04 /* zh-Hans */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C33562C61B3140950051784D /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C33562C71B3140950051784D /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -836,6 +1023,95 @@
 			};
 			name = Release;
 		};
+		C33562CF1B3140950051784D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IBSC_MODULE = WorkAndRest_WatchKit_Extension;
+				INFOPLIST_FILE = "WorkAndRest WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		C33562D01B3140950051784D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IBSC_MODULE = WorkAndRest_WatchKit_Extension;
+				INFOPLIST_FILE = "WorkAndRest WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
+		C33562D21B3140950051784D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "WorkAndRest WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C33562D31B3140950051784D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "WorkAndRest WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -865,6 +1141,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C33562CE1B3140950051784D /* Build configuration list for PBXNativeTarget "WorkAndRest WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C33562CF1B3140950051784D /* Debug */,
+				C33562D01B3140950051784D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C33562D11B3140950051784D /* Build configuration list for PBXNativeTarget "WorkAndRest WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C33562D21B3140950051784D /* Debug */,
+				C33562D31B3140950051784D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
