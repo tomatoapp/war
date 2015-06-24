@@ -17,6 +17,7 @@ class GlobalConstants {
     class var kBOOL_hasShownDetailsTutorial: String { return "ShownDetailsTutorial" }
     class var kBOOL_hasShownChartTutorial: String { return "ShownChartTutorial" }
     class var kBOOL_hasShownMarkDoneTutorial: String { return "ShownMarkDoneTutorial" }
+    class var kBOOL_hasShownVersionDifferentTutorial: String { return "ShownVersionDifferentTutorial" } // The different between the free version and pro version.
     class var k_FirstLauchDate: String { return "FirstLauchDate" }
     class var kBOOL_ISWORKING: String { return "isWorking" }
     class var k_FROZEN_DATE: String { return "FrozenDate" }

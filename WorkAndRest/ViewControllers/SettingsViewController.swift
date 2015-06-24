@@ -29,12 +29,22 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         HUD = MBProgressHUD(view: self.view)
         self.view.addSubview(HUD)
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
         self.refreshThePaymentItem(self.versionType)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownVersionDifferentTutorial) {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownVersionDifferentTutorial)
+            self.showPopTipView()
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
