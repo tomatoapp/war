@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3724A4AE42E8FF4DF4C9AAB9 /* libPods-WorkAndRest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABC0B3A45728AF8F7A1A7D1 /* libPods-WorkAndRest.a */; };
 		6366CA4770DE1F5505F0A915 /* libPods-WorkAndRest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABC0B3A45728AF8F7A1A7D1 /* libPods-WorkAndRest.a */; };
 		64012C8A1900B89D006FC2B2 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 64012C891900B89D006FC2B2 /* Appirater.m */; };
 		64012C8C1900B8B4006FC2B2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64012C8B1900B8B4006FC2B2 /* CFNetwork.framework */; };
@@ -213,6 +214,7 @@
 		C33562C51B3140950051784D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C33562C71B3140950051784D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		C33562C91B3140950051784D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C373B9BC1B5504F600C8500F /* WorkAndRest WatchKit Extension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WorkAndRest WatchKit Extension-Bridging-Header.h"; sourceTree = "<group>"; };
 		C5A3E743E49F064E285AF8F1 /* Pods-WorkAndRest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkAndRest.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkAndRest/Pods-WorkAndRest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -248,6 +250,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3724A4AE42E8FF4DF4C9AAB9 /* libPods-WorkAndRest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +513,7 @@
 			children = (
 				C33562B31B3140950051784D /* Info.plist */,
 				C33562B41B3140950051784D /* PushNotificationPayload.apns */,
+				C373B9BC1B5504F600C8500F /* WorkAndRest WatchKit Extension-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -578,9 +582,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C33562D11B3140950051784D /* Build configuration list for PBXNativeTarget "WorkAndRest WatchKit Extension" */;
 			buildPhases = (
+				80DCCEA189E04C82F96FBCA1 /* Check Pods Manifest.lock */,
 				C33562AC1B3140950051784D /* Sources */,
 				C33562AD1B3140950051784D /* Frameworks */,
 				C33562AE1B3140950051784D /* Resources */,
+				F4A180AEFC8CD284AC903B22 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -720,7 +726,37 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		80DCCEA189E04C82F96FBCA1 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		D3190410B09D907F3F9DAAC1 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WorkAndRest/Pods-WorkAndRest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4A180AEFC8CD284AC903B22 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1077,7 +1113,9 @@
 		};
 		C33562D21B3140950051784D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 246F568FE59BA740870E8FD1 /* Pods-WorkAndRest.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1087,6 +1125,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					TARGET_IS_EXTENSION,
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "WorkAndRest WatchKit Extension/Info.plist";
@@ -1095,13 +1134,16 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WorkAndRest WatchKit Extension/WorkAndRest WatchKit Extension-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		C33562D31B3140950051784D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5A3E743E49F064E285AF8F1 /* Pods-WorkAndRest.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1109,6 +1151,11 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					TARGET_IS_EXTENSION,
+				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "WorkAndRest WatchKit Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
@@ -1116,6 +1163,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WorkAndRest WatchKit Extension/WorkAndRest WatchKit Extension-Bridging-Header.h";
 			};
 			name = Release;
 		};
