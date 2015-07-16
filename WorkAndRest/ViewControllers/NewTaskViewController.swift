@@ -15,21 +15,21 @@ protocol NewTaskViewControllerDelegate {
     //func newTaskViewControllerDidCancel(controller: ItemDetailViewController!)
 }
 
-class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate, TimeSelectorViewDelegate, TaskTitleViewDelegate, StartViewControllerDelegate, CompletionCycleViewDelegate {
+class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate, TaskTitleViewDelegate, StartViewControllerDelegate  {
     
     // MARK: - Properties
     
     @IBOutlet var startButton: UIButton!
 //    @IBOutlet var startNowButton: UIButton!
 //    @IBOutlet var startLaterButton: UIButton!
-    @IBOutlet var timeSelector: TimeSelectorView!
+//    @IBOutlet var timeSelector: TimeSelectorView!
     @IBOutlet var taskTitleView: TaskTitleView!
-    @IBOutlet var completionCycleView: CompletionCycleView!
+//    @IBOutlet var completionCycleView: CompletionCycleView!
     
     var taskItem: Task?
     var delegate: NewTaskViewControllerDelegate?
     var minutes = GlobalConstants.DEFAULT_MINUTES
-    var number = GlobalConstants.DEFAULT_NUMBER
+//    var number = GlobalConstants.DEFAULT_NUMBER
     var startView: UIView?
     
     // MARK: - Lifecycle
@@ -41,9 +41,9 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.timeSelector.delegate = self
+//        self.timeSelector.delegate = self
         self.taskTitleView.delegate = self
-        self.completionCycleView.delegate = self
+//        self.completionCycleView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -108,9 +108,12 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     
     // MARK: - TimeSelectorViewDelegate
     
+    /*
     func timeSelectorView(selectorView: TimeSelectorView!, didSelectTime minutes: Int) {
         self.minutes = minutes
     }
+    
+    */
     
     // MARK: - TaskTitleViewDelegate
     
@@ -127,7 +130,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
                 self.taskItem = Task()
                 self.taskItem!.title = NSLocalizedString("Task", comment: "")
             }
-            self.taskItem!.expect_times = self.number
+//            self.taskItem!.expect_times = self.number
             self.taskItem!.minutes = self.minutes
             self.delegate?.newTaskViewController(self, didFinishAddingTask: self.taskItem, runningNow: type == .Now)
             break
@@ -139,9 +142,13 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     
     // MARK: - CompletionCycleViewDelegate
     
+    /*
     func completionCycleView(sender: CompletionCycleView, didSelectedNumber number: Int) {
         self.number = number
     }
+    
+    */
+    /*
     
     let TAG_ICON = 1001
     let TAG_STARTTEXT = 1002
@@ -284,8 +291,9 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         }
     }
     
+    */
     override func updateViewConstraints() {
-        self.adapteDifferentScreenSize()
+//        self.adapteDifferentScreenSize()
         super.updateViewConstraints()
     }
     

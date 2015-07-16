@@ -53,29 +53,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view tag="1003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVb-yt-thQ" customClass="TimeSelectorView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="211" width="320" height="63"/>
-                                <color key="backgroundColor" red="0.21176470589999999" green="0.74117647060000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="0eQ-8R-uq3"/>
-                                </constraints>
-                            </view>
-                            <view tag="1005" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3q-r7-TPV" customClass="CompletionCycleView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="16" y="369" width="288" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="C8W-6x-ckj"/>
-                                </constraints>
-                            </view>
-                            <imageView userInteractionEnabled="NO" tag="1001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="nr4-Se-J1E">
-                                <rect key="frame" x="125" y="72" width="70" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="Zla-kn-H1P"/>
-                                    <constraint firstAttribute="height" constant="70" id="kTB-HZ-TMr"/>
-                                </constraints>
-                            </imageView>
                             <view tag="1004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poP-IU-mMV" customClass="TaskTitleView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="289" width="320" height="70"/>
+                                <rect key="frame" x="0.0" y="134" width="320" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="HLw-F0-eAA"/>
@@ -83,41 +62,44 @@
                             </view>
                             <button opaque="NO" tag="1006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Sa-Oz-OYd">
                                 <rect key="frame" x="16" y="481" width="288" height="47"/>
+                                <color key="backgroundColor" red="0.0" green="0.81960784310000001" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="HD0-Bq-EDn"/>
                                 </constraints>
-                                <state key="normal" title="Start" backgroundImage="new_task_start_button">
+                                <state key="normal" title="Start">
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="startButtonClick:" destination="Suk-oZ-58b" eventType="touchUpInside" id="xcQ-5S-IiO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starting a timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Jt-2x-xws">
-                                <rect key="frame" x="83" y="147" width="154" height="28"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASE-8s-itc">
+                                <rect key="frame" x="60" y="212" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="EBs-vQ-agi"/>
+                                    <constraint firstAttribute="width" constant="200" id="J0c-Y4-SC1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="179"/>
+                                <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="0Jt-2x-xws" secondAttribute="centerX" id="2sg-cy-dBo"/>
-                            <constraint firstItem="dVb-yt-thQ" firstAttribute="trailing" secondItem="A1W-Vw-dDY" secondAttribute="trailingMargin" constant="16" id="6V2-LC-pcu"/>
-                            <constraint firstAttribute="centerX" secondItem="nr4-Se-J1E" secondAttribute="centerX" id="8IJ-IP-WNk"/>
-                            <constraint firstItem="g3q-r7-TPV" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" id="9BN-SN-uOk"/>
+                            <constraint firstAttribute="centerX" secondItem="ASE-8s-itc" secondAttribute="centerX" id="8bA-iX-9O9"/>
                             <constraint firstItem="8Sa-Oz-OYd" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" id="E0i-jY-as4"/>
-                            <constraint firstItem="dVb-yt-thQ" firstAttribute="top" secondItem="0Jt-2x-xws" secondAttribute="bottom" constant="36" id="Fm9-65-s81"/>
-                            <constraint firstItem="0Jt-2x-xws" firstAttribute="top" secondItem="nr4-Se-J1E" secondAttribute="bottom" constant="5" id="Ja5-o4-R7v"/>
+                            <constraint firstItem="poP-IU-mMV" firstAttribute="top" secondItem="mpJ-or-Bcp" secondAttribute="bottom" constant="70" id="M1n-GA-1yA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8Sa-Oz-OYd" secondAttribute="trailing" id="R6e-DS-oSF"/>
-                            <constraint firstItem="poP-IU-mMV" firstAttribute="top" secondItem="dVb-yt-thQ" secondAttribute="bottom" constant="15" id="Syq-ga-hmo"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="g3q-r7-TPV" secondAttribute="trailing" id="V9v-ju-F2D"/>
-                            <constraint firstItem="dVb-yt-thQ" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-16" id="brg-N3-9OB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="poP-IU-mMV" secondAttribute="trailing" constant="-16" id="bul-g3-svR"/>
                             <constraint firstItem="Naa-3f-RwY" firstAttribute="top" secondItem="8Sa-Oz-OYd" secondAttribute="bottom" constant="40" id="hoz-kZ-Gze"/>
                             <constraint firstItem="poP-IU-mMV" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-16" id="l8g-ab-vOD"/>
-                            <constraint firstItem="g3q-r7-TPV" firstAttribute="top" secondItem="poP-IU-mMV" secondAttribute="bottom" constant="10" id="suY-iL-zS4"/>
-                            <constraint firstItem="nr4-Se-J1E" firstAttribute="top" secondItem="mpJ-or-Bcp" secondAttribute="bottom" constant="8" id="xP8-P5-dRt"/>
+                            <constraint firstItem="ASE-8s-itc" firstAttribute="top" secondItem="poP-IU-mMV" secondAttribute="bottom" constant="8" id="wKF-nL-7aw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uOa-7G-T5S">
@@ -129,10 +111,8 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="completionCycleView" destination="g3q-r7-TPV" id="o2d-Dz-gw1"/>
                         <outlet property="startButton" destination="8Sa-Oz-OYd" id="e42-ui-yZD"/>
                         <outlet property="taskTitleView" destination="poP-IU-mMV" id="NUd-ms-U1U"/>
-                        <outlet property="timeSelector" destination="dVb-yt-thQ" id="EZS-wW-XRq"/>
                         <segue destination="UsD-oN-d9y" kind="modal" identifier="EditTaskTitleSegue" id="aGM-L8-aaO"/>
                         <segue destination="2gd-Yk-soa" kind="modal" identifier="StartSegue" id="XbD-Cl-smv"/>
                     </connections>
@@ -1140,8 +1120,6 @@
     </scenes>
     <resources>
         <image name="finished number" width="167" height="164"/>
-        <image name="icon" width="70" height="70"/>
-        <image name="new_task_start_button" width="22" height="47"/>
         <image name="start_later_en" width="98" height="99"/>
         <image name="start_now_en" width="98" height="99"/>
         <image name="statisics_bg" width="294" height="193"/>
