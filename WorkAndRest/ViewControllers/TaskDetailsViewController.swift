@@ -18,7 +18,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     
 //    @IBOutlet var nameLabel: UILabel!
     @IBOutlet var nameButton: UIButton!
-    @IBOutlet var detailLabel: UILabel!
+//    @IBOutlet var detailLabel: UILabel!
     @IBOutlet var lengthLabel: UILabel!
     
     @IBOutlet var expectTimesLabel: UILabel!
@@ -93,7 +93,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     func refreshUI() {
         self.nameButton.setTitle(self.taskItem.title, forState: UIControlState.Normal)
 //        self.detailLabel.text = "Task, \(self.taskItem.expect_times) times"
-        self.detailLabel.text = String(format: NSLocalizedString("Task_times", comment: ""), "\(self.taskItem.expect_times)")
+//        self.detailLabel.text = String(format: NSLocalizedString("Task_times", comment: ""), "\(self.taskItem.expect_times)")
 //        self.lengthLabel.text = "\(self.taskItem.minutes) Minutes / Task"
         self.lengthLabel.text = String(format: NSLocalizedString("Minutes_Task", comment: ""), "\(self.taskItem.minutes)")
         self.expectTimesLabel.text = "\(self.taskItem.break_times)"
@@ -115,7 +115,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
             } else if WARDevice.getPhoneType() == PhoneType.iPhone6Plus {
                 return 190
             }
-        } else if indexPath.row == 4 {
+        } else if indexPath.row == 3 {
             return 249
         }
         return 35
