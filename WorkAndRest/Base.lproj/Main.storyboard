@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aC1-Pi-pp5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aC1-Pi-pp5">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -67,7 +67,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view tag="1004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poP-IU-mMV" customClass="TaskTitleView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="91" width="320" height="70"/>
+                                <rect key="frame" x="16" y="91" width="288" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="HLw-F0-eAA"/>
@@ -102,17 +102,29 @@
                                 <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QId-3m-KdG">
+                                <rect key="frame" x="239" y="314" width="18" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="PFB-A5-I2M"/>
+                                    <constraint firstAttribute="height" constant="18" id="ncP-nv-LZd"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="question-mark">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="ASE-8s-itc" secondAttribute="centerX" constant="-2.5" id="8bA-iX-9O9"/>
                             <constraint firstItem="8Sa-Oz-OYd" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" id="E0i-jY-as4"/>
                             <constraint firstAttribute="centerX" secondItem="AJc-Sd-tyd" secondAttribute="centerX" id="H5f-Op-DQo"/>
+                            <constraint firstItem="AJc-Sd-tyd" firstAttribute="top" secondItem="QId-3m-KdG" secondAttribute="bottom" constant="17" id="Ocp-2g-riq"/>
+                            <constraint firstItem="QId-3m-KdG" firstAttribute="leading" secondItem="ASE-8s-itc" secondAttribute="trailing" constant="-9" id="Puf-LH-lnX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8Sa-Oz-OYd" secondAttribute="trailing" id="R6e-DS-oSF"/>
                             <constraint firstItem="AJc-Sd-tyd" firstAttribute="top" secondItem="ASE-8s-itc" secondAttribute="bottom" constant="-4" id="buB-1R-hdB"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="poP-IU-mMV" secondAttribute="trailing" constant="-16" id="bul-g3-svR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="poP-IU-mMV" secondAttribute="trailing" id="bul-g3-svR"/>
                             <constraint firstItem="Naa-3f-RwY" firstAttribute="top" secondItem="8Sa-Oz-OYd" secondAttribute="bottom" constant="40" id="hoz-kZ-Gze"/>
-                            <constraint firstItem="poP-IU-mMV" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="-16" id="l8g-ab-vOD"/>
+                            <constraint firstItem="poP-IU-mMV" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" id="l8g-ab-vOD"/>
                             <constraint firstAttribute="centerY" secondItem="ASE-8s-itc" secondAttribute="centerY" constant="6" id="s02-3H-9sC"/>
                             <constraint firstItem="ASE-8s-itc" firstAttribute="top" secondItem="poP-IU-mMV" secondAttribute="bottom" constant="42" id="wKF-nL-7aw"/>
                         </constraints>
@@ -1104,6 +1116,7 @@
     <resources>
         <image name="Start 2" width="640" height="1136"/>
         <image name="finished number" width="167" height="164"/>
+        <image name="question-mark" width="17" height="17"/>
         <image name="start_later_en" width="98" height="99"/>
         <image name="start_now_en" width="98" height="99"/>
         <image name="statisics_bg" width="294" height="193"/>
@@ -1122,6 +1135,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="RhK-XE-Rp2"/>
-        <segue reference="IsP-1t-QkO"/>
+        <segue reference="aGM-L8-aaO"/>
     </inferredMetricsTieBreakers>
 </document>
