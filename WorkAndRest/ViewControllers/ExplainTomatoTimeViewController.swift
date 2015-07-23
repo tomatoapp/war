@@ -12,7 +12,8 @@ class ExplainTomatoTimeViewController: BaseTranslucentViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        super.setTransitionMode(TransitionMode.None)
         // Do any additional setup after loading the view.
     }
 
@@ -22,6 +23,9 @@ class ExplainTomatoTimeViewController: BaseTranslucentViewController {
     }
     
 
+    @IBAction func closeButtonClick(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 

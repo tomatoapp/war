@@ -8,6 +8,14 @@
 
 import UIKit
 
+enum TransitionMode {
+    case None
+    case FromButtom
+    case FromTop
+    case FromLeft
+    case FromRight
+}
+
 class BaseTranslucentViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning{
 
     var blurView: UIView!
@@ -56,6 +64,12 @@ class BaseTranslucentViewController: UIViewController, UIViewControllerTransitio
         return blurView
     }
 
+//    func getBlurEffectStyleByMode(mode: TransitionMode) -> UIBlurEffectStyle {
+//        switch mode {
+//        case .FromButtom:
+//            return UIBlurEffectStyle.
+//        }
+//    }
     func blurViewTap(sender: UITapGestureRecognizer!) {
         self.dismissViewControllerAnimated(true, completion: nil)
 //        if self.delegate != nil {
@@ -75,9 +89,9 @@ class BaseTranslucentViewController: UIViewController, UIViewControllerTransitio
     }
     
     // MARK: - UIViewControllerAnimatedTransitioning
-    
+    let TRANSITION_DURATION = 0.3
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
-        return 0.3
+        return TRANSITION_DURATION
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
@@ -95,7 +109,7 @@ class BaseTranslucentViewController: UIViewController, UIViewControllerTransitio
             presentingView.frame = presentedView.frame
             self.view.frame.origin.y += self.view.frame.height
             
-            UIView.animateWithDuration(0.3, animations: { () in
+            UIView.animateWithDuration(TRANSITION_DURATION, animations: { () in
                 self.view.frame.origin.y -= self.view.frame.height
                 self.view.transform = CGAffineTransformIdentity
                 }, completion: { finished in
@@ -106,16 +120,111 @@ class BaseTranslucentViewController: UIViewController, UIViewControllerTransitio
         } else {
             presentingView.frame = containterView.frame
             
-            UIView.animateWithDuration(0.3, animations: { () in
+            UIView.animateWithDuration(TRANSITION_DURATION, animations: { () in
                 self.view.frame.origin.y += self.view.frame.height
                 }, completion: { finished in
                     presentingView.tintAdjustmentMode = UIViewTintAdjustmentMode.Automatic
                     transitionContext.completeTransition(true)
             })
         }
+        //self.executeAnimationWithTransitionMode(self.transitionMode, presentingController: presentingController!, containterView: containterView, presentedView: presentedView, presentingView: presentingView, transitionContext: transitionContext)
     }
     
+    var transitionMode: TransitionMode = TransitionMode.None
+    func setTransitionMode(mode: TransitionMode) {
+        self.transitionMode = mode
+    }
+    
+    func executeAnimationWithTransitionMode(mode: TransitionMode, presentingController: UIViewController, containterView: UIView, presentedView: UIView, presentingView: UIView, transitionContext:UIViewControllerContextTransitioning) {
+        
+        var offset: CGFloat = 0.0
+        switch mode {
+        case .FromButtom:
+            offset = self.view.frame.height
+        case .FromLeft:
+            offset = self.view.frame.width
+        case .FromRight:
+            offset = -self.view.frame.width
+        case .FromTop:
+            offset = -self.view.frame.height
+        case .None:
+            offset = 0
+        }
+        
+        if presentingController == self {
+            containterView.addSubview(presentingView)
+            presentingView.frame = presentedView.frame
+            
+            let completion: CompletionBlock = { finished -> Void in
+                transitionContext.completeTransition(true)
+                self.view.setNeedsDisplay()
+            }
+        
+            switch mode {
+            case .FromButtom, .FromTop:
+                UIView.animateWithDuration(TRANSITION_DURATION, animations: { () -> Void in
+                    self.view.frame.origin.y += offset
+                    self.view.transform = CGAffineTransformIdentity
+                }, completion: completion)
+                
+            case .FromLeft, .FromRight, .None:
+                UIView.animateWithDuration(TRANSITION_DURATION, animations: { () -> Void in
+                    self.view.frame.origin.x += offset
+                }, completion: completion)
+            }
+            
+        } else {
+            
+            let dismissCompletion: CompletionBlock = { finished -> Void in
+                presentingView.tintAdjustmentMode = UIViewTintAdjustmentMode.Automatic
+                transitionContext.completeTransition(true)
+            }
+            presentingView.frame = containterView.frame
 
+            switch mode {
+            case .FromButtom, .FromTop:
+                UIView.animateWithDuration(TRANSITION_DURATION, animations: { () -> Void in
+                    self.view.frame.origin.y -= offset
+                    self.view.transform = CGAffineTransformIdentity
+                    }, completion: dismissCompletion)
+                
+            case .FromLeft, .FromRight, .None:
+                self.view.frame.origin.x -= offset
+                UIView.animateWithDuration(TRANSITION_DURATION, animations: { () -> Void in
+                    }, completion: dismissCompletion)
+            }
+
+        }
+        
+    }
+    
+    typealias CompletionBlock = (Bool)-> Void
+    func noneTransitionAnimation(presentedView: UIView, presentingView: UIView) {
+        UIView.animateWithDuration(0.0, animations: { () -> Void in
+        })
+    }
+    
+    func topToButtomTransitionAnimation(presentedView: UIView, presentingView: UIView) {
+        
+    }
+    
+    func buttomToTopTransitionAnimation(presentedView: UIView, presentingView: UIView, completion: CompletionBlock) {
+        presentingView.frame = presentedView.frame
+        self.view.frame.origin.y += self.view.frame.height
+        
+        UIView.animateWithDuration(TRANSITION_DURATION, animations: { () -> Void in
+            self.view.frame.origin.y -= self.view.frame.height
+            self.view.transform =  CGAffineTransformIdentity
+        }, completion: completion)
+    }
+    
+    func leftToRightTransitionAnimation(presentedView: UIView, presentingView: UIView) {
+        
+    }
+    
+    func rightToLeftTransitionAnimation(containerView: UIView, presentingView: UIView) {
+        
+    }
     
     /*
     // MARK: - Navigation
