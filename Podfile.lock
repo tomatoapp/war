@@ -10,6 +10,9 @@ PODS:
   - JBChartView (2.8.10)
   - Masonry (0.6.0)
   - MBProgressHUD (0.9.1)
+  - MMWormhole (1.2.0):
+    - MMWormhole/Core (= 1.2.0)
+  - MMWormhole/Core (1.2.0)
   - SWTableViewCell (0.3.7)
 
 DEPENDENCIES:
@@ -18,15 +21,17 @@ DEPENDENCIES:
   - JBChartView (~> 2.8.10)
   - Masonry
   - MBProgressHUD (~> 0.9.1)
+  - MMWormhole (~> 1.2.0)
   - SWTableViewCell (~> 0.3.7)
 
 SPEC CHECKSUMS:
-  EAIntroView: 2284bb6d9105035cb09f8952933e83591f0a81ca
-  EARestrictedScrollView: 6023847998f13e2d80dff2d575181c2598349507
-  FMDB: 0efa188cf0dd1ce82c27a478cd5f5fa245308677
-  JBChartView: 50b221ef68d0934f5aea417a369a5b02167848a9
-  Masonry: 0bc111d6902e3a55ff8423bcbdf7155261806547
-  MBProgressHUD: f3747dcbd45a9e855a6b0674550651e0b7ed250c
-  SWTableViewCell: 25de71898e3fcd11cf75707ef90245acf990ec03
+  EAIntroView: 9becdb1441712405346a3e6bc31b0d9a57b63b10
+  EARestrictedScrollView: 5ab3eadd9ea55282cc72df0daecb09803059e3a0
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  JBChartView: 187186c4730d806962da8ba99aa0d03a77aa35f7
+  Masonry: 695dcee5cf90504cc83d85c40e0bd3f4376ed583
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MMWormhole: 696de5a8d2ef93f028ade4cff34958943c3bfa1e
+  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.37.2

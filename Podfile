@@ -10,6 +10,9 @@ pod 'JBChartView', '~> 2.8.10'
 pod 'MBProgressHUD', '~> 0.9.1'
 pod 'EAIntroView', '~> 2.7.0'
 
+link_with 'WorkAndRest', 'WorkAndRest WatchKit Extension'
+pod 'MMWormhole', '~> 1.2.0'
+
 end
 
 target 'WorkAndRestTests' do

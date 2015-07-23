@@ -18,6 +18,8 @@ class InterfaceController: WKInterfaceController {
         // Configure interface objects here.
     }
 
+    let mmwornhole = MMWormhole(applicationGroupIdentifier: IdentifierDef.AppGroupIdentifier, optionalDirectory: nil)
+    
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
@@ -28,4 +30,7 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+    @IBAction func buttonClicked() {
+         self.mmwornhole.passMessageObject(nil, identifier: IdentifierDef.TestIdentifier)
+    }
 }

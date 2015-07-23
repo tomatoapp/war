@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TaskTitleView" customModule="WorkAndRest" customModuleProvider="target">
@@ -20,27 +20,21 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9zY-AV-hCx">
                     <rect key="frame" x="0.0" y="0.0" width="400" height="70"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="open_quote" translatesAutoresizingMaskIntoConstraints="NO" id="CtS-IT-UoZ">
-                            <rect key="frame" x="126" y="26.5" width="9" height="7"/>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="open_quote" translatesAutoresizingMaskIntoConstraints="NO" id="CtS-IT-UoZ">
+                            <rect key="frame" x="8" y="31" width="9" height="7"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="9" id="FgR-5l-GVD"/>
                                 <constraint firstAttribute="height" constant="7" id="SCD-hb-HRL"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="close_quote" translatesAutoresizingMaskIntoConstraints="NO" id="NEr-Q0-QxP">
-                            <rect key="frame" x="264" y="26.5" width="9" height="7"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="7" id="Q8q-XK-Og3"/>
-                                <constraint firstAttribute="width" constant="9" id="Rm3-Xy-aNu"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZh-lT-Lr0">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZh-lT-Lr0">
+                            <rect key="frame" x="200" y="35" width="0.0" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gia-hW-oK2">
-                            <rect key="frame" x="145" y="24" width="109" height="22"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gia-hW-oK2">
+                            <rect key="frame" x="71.5" y="24" width="257" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="9Fg-Jp-hRc"/>
                             </constraints>
@@ -51,19 +45,26 @@
                                 <action selector="buttonClick:" destination="-1" eventType="touchUpInside" id="D59-1n-gRE"/>
                             </connections>
                         </button>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close_quote" translatesAutoresizingMaskIntoConstraints="NO" id="NEr-Q0-QxP">
+                            <rect key="frame" x="383" y="31" width="9" height="7"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="7" id="Q8q-XK-Og3"/>
+                                <constraint firstAttribute="width" constant="9" id="Rm3-Xy-aNu"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="pZh-lT-Lr0" secondAttribute="centerY" id="0Gi-5S-3SP"/>
+                        <constraint firstItem="CtS-IT-UoZ" firstAttribute="leading" secondItem="9zY-AV-hCx" secondAttribute="leading" constant="8" id="3P2-Wp-idM"/>
                         <constraint firstItem="pZh-lT-Lr0" firstAttribute="width" relation="lessThanOrEqual" secondItem="9zY-AV-hCx" secondAttribute="width" constant="-60" id="66E-Yb-MPO"/>
-                        <constraint firstAttribute="centerY" secondItem="NEr-Q0-QxP" secondAttribute="centerY" constant="5" id="8nC-yg-fWD"/>
-                        <constraint firstItem="NEr-Q0-QxP" firstAttribute="leading" secondItem="pZh-lT-Lr0" secondAttribute="trailing" constant="10" id="A6c-IG-Jx7"/>
-                        <constraint firstAttribute="centerY" secondItem="CtS-IT-UoZ" secondAttribute="centerY" constant="5" id="Ndc-W1-9g0"/>
+                        <constraint firstAttribute="centerY" secondItem="NEr-Q0-QxP" secondAttribute="centerY" constant="0.5" id="8nC-yg-fWD"/>
+                        <constraint firstAttribute="centerY" secondItem="CtS-IT-UoZ" secondAttribute="centerY" constant="0.5" id="Ndc-W1-9g0"/>
                         <constraint firstItem="pZh-lT-Lr0" firstAttribute="centerX" secondItem="9zY-AV-hCx" secondAttribute="centerX" id="NnW-u9-Phe"/>
                         <constraint firstAttribute="centerY" secondItem="gia-hW-oK2" secondAttribute="centerY" id="QSq-fr-VnX"/>
-                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="leading" secondItem="CtS-IT-UoZ" secondAttribute="trailing" constant="10" id="elc-hH-SNA"/>
+                        <constraint firstAttribute="trailing" secondItem="NEr-Q0-QxP" secondAttribute="trailing" constant="8" id="nTn-9L-t14"/>
                         <constraint firstAttribute="centerX" secondItem="gia-hW-oK2" secondAttribute="centerX" id="ofA-rY-j3L"/>
-                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="width" secondItem="gia-hW-oK2" secondAttribute="width" id="sPD-ym-iWs"/>
+                        <constraint firstItem="pZh-lT-Lr0" firstAttribute="width" secondItem="gia-hW-oK2" secondAttribute="width" constant="-257" id="sPD-ym-iWs"/>
                     </constraints>
                 </view>
             </subviews>
