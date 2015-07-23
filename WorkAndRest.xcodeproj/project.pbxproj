@@ -73,7 +73,6 @@
 		64E3C1AB1A8752C400418426 /* TaskListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E3C1AA1A8752C400418426 /* TaskListHeaderView.swift */; };
 		64E3C1AD1A8752CF00418426 /* TaskListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64E3C1AC1A8752CF00418426 /* TaskListHeaderView.xib */; };
 		64EAEC2D1A7E37F70026C748 /* TaskRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */; };
-		64EBF6251AA9572C00ACA139 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EBF6241AA9572C00ACA139 /* StoreKit.framework */; };
 		64EBF6271AA9591200ACA139 /* ProductsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EBF6261AA9591200ACA139 /* ProductsManager.swift */; };
 		C33562B61B3140950051784D /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B51B3140950051784D /* InterfaceController.swift */; };
 		C33562B81B3140950051784D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B71B3140950051784D /* NotificationController.swift */; };
@@ -207,7 +206,6 @@
 		64E3C1AA1A8752C400418426 /* TaskListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListHeaderView.swift; sourceTree = "<group>"; };
 		64E3C1AC1A8752CF00418426 /* TaskListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskListHeaderView.xib; sourceTree = "<group>"; };
 		64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRunner.swift; sourceTree = "<group>"; };
-		64EBF6241AA9572C00ACA139 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		64EBF6261AA9591200ACA139 /* ProductsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsManager.swift; sourceTree = "<group>"; };
 		C33562B01B3140950051784D /* WorkAndRest WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WorkAndRest WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C33562B31B3140950051784D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -233,7 +231,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64EBF6251AA9572C00ACA139 /* StoreKit.framework in Frameworks */,
 				64012C951900D68F006FC2B2 /* AudioToolbox.framework in Frameworks */,
 				64012C8E1900B8C2006FC2B2 /* SystemConfiguration.framework in Frameworks */,
 				64012C8C1900B8B4006FC2B2 /* CFNetwork.framework in Frameworks */,
@@ -342,7 +339,6 @@
 		6434827018C5D344009BF110 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				64EBF6241AA9572C00ACA139 /* StoreKit.framework */,
 				64012C941900D68F006FC2B2 /* AudioToolbox.framework */,
 				64012C8D1900B8C2006FC2B2 /* SystemConfiguration.framework */,
 				64012C8B1900B8B4006FC2B2 /* CFNetwork.framework */,
@@ -652,6 +648,9 @@
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
 							};
 						};
 					};
