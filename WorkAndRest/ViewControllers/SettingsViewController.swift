@@ -39,10 +39,12 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        /*
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownVersionDifferentTutorial) {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownVersionDifferentTutorial)
             self.showPopTipView()
         }
+        */
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,6 +71,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     }
     */
     
+    /*
     func showPopTipView() {
         if self.popTipView == nil {
             
@@ -85,6 +88,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         self.popTipView?.hasGradientBackground = false
         self.popTipView?.presentPointingAtView(self.currentVersionButton, inView: self.view, animated: true)
     }
+    */
     
     // MARK: - Navigation
     

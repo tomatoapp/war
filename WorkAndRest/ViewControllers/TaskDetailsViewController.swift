@@ -33,8 +33,8 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         self.taskItemBaseView.isBreakButtonEnable = false
     }
     
+    /*
     func showTurorial() {
-        
         let delayTime = dispatch_time(DISPATCH_TIME_NOW,
             Int64(0.1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue(), {
@@ -42,14 +42,17 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
             return
         })
     }
+    */
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        /*
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownDetailsTutorial) {
             self.showTurorial()
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownDetailsTutorial)
         }
+        */
     }
     
     // MARK: - EAIntroDelegate

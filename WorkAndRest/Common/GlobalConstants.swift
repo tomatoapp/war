@@ -14,10 +14,10 @@ class GlobalConstants {
     class var EMAIL_ADDRESS: String {return "lunars.service@yahoo.com" }
     class var k_HASRAN_BEFORE: String { return "HasRanBefore" } // Not the first launch
     class var kBOOL_firstLaunch: String { return "FirstLaunch" }
-    class var kBOOL_hasShownDetailsTutorial: String { return "ShownDetailsTutorial" }
-    class var kBOOL_hasShownChartTutorial: String { return "ShownChartTutorial" }
+//    class var kBOOL_hasShownDetailsTutorial: String { return "ShownDetailsTutorial" }
+//    class var kBOOL_hasShownChartTutorial: String { return "ShownChartTutorial" }
     class var kBOOL_hasShownMarkDoneTutorial: String { return "ShownMarkDoneTutorial" }
-    class var kBOOL_hasShownVersionDifferentTutorial: String { return "ShownVersionDifferentTutorial" } // The different between the free version and pro version.
+//    class var kBOOL_hasShownVersionDifferentTutorial: String { return "ShownVersionDifferentTutorial" } // The different between the free version and pro version.
     class var k_FirstLauchDate: String { return "FirstLauchDate" }
     class var kBOOL_ISWORKING: String { return "isWorking" }
     class var k_FROZEN_DATE: String { return "FrozenDate" }
