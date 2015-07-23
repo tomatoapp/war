@@ -185,8 +185,12 @@
 "LqU-ow-c4j.title" = "Settings";
 
 /* Class = "IBUILabel"; text = "MInutes"; ObjectID = "AJc-Sd-tyd" */
-"AJc-Sd-tyd.text" = "Minutes";
+"AJc-Sd-tyd.text" = "minutes";
 
+/* Class = "IBUILabel"; text = "That's Right"; ObjectID = "GNy-lN-Wrc" */
+"GNy-lN-Wrc.text" = "That's Right";
 
+/* Class = "IBUILabel"; text = "That's Right Description"; ObjectID = "VbP-fd-RmU" */
+"VbP-fd-RmU.text" = "We’ve cancelled the function of customizing the length of a Tomato! timer. Part of the reason is that the Pomodoro Technique orignally came with only 25 minutes, and we decided to abide by that standard to express our repect. The other part of the reason is a surprise. Thanks!";
 
 
