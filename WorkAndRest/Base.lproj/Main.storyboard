@@ -56,7 +56,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Start 2" translatesAutoresizingMaskIntoConstraints="NO" id="W95-lv-UNp">
                                 <rect key="frame" x="0.0" y="0.0" width="0.0" height="568"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minutes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJc-Sd-tyd">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minutes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJc-Sd-tyd">
                                 <rect key="frame" x="125" y="349" width="70" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="4Pd-vE-RAr"/>
@@ -785,7 +785,7 @@
                                                         <segment title="Month"/>
                                                         <segment title="Year"/>
                                                     </segments>
-                                                    <color key="tintColor" red="0.21176470589999999" green="0.74117647060000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="0.22745098039215686" green="0.79607843137254897" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="segmentControlValueChanged:" destination="ZJe-9j-U1K" eventType="valueChanged" id="Ksp-KC-kmM"/>
                                                     </connections>
@@ -1140,6 +1140,9 @@
                     <tabBarItem key="tabBarItem" tag="1" title="Main" image="tab_item_1" id="cXu-sg-NQz">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="tab_item_1"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.32549019610000002" green="0.5450980392" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <toolbarItems/>
@@ -1160,7 +1163,13 @@
         <scene sceneID="Vzy-Pr-Dx1">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9qx-bZ-PYv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Statistics" image="tab_item_2" id="4KG-It-Eka"/>
+                    <tabBarItem key="tabBarItem" title="Statistics" image="tab_item_2" id="4KG-It-Eka">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.32549019610000002" green="0.5450980392" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XBd-fH-C05">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1201,7 +1210,7 @@
         <image name="question-mark" width="17" height="17"/>
         <image name="start_later_en" width="98" height="99"/>
         <image name="start_now_en" width="98" height="99"/>
-        <image name="statisics_bg" width="294" height="193"/>
+        <image name="statisics_bg" width="298" height="196"/>
         <image name="statisics_breaked" width="9" height="9"/>
         <image name="statisics_competed" width="9" height="9"/>
         <image name="statisics_line" width="245" height="3"/>
@@ -1216,7 +1225,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="RhK-XE-Rp2"/>
+        <segue reference="wl7-AJ-ruu"/>
         <segue reference="aGM-L8-aaO"/>
     </inferredMetricsTieBreakers>
 </document>

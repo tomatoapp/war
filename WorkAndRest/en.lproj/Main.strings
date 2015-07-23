@@ -184,7 +184,8 @@
 /* Class = "IBUIBarButtonItem"; text = "Settings"; ObjectID = "LqU-ow-c4j"; */
 "LqU-ow-c4j.title" = "Settings";
 
-
+/* Class = "IBUILabel"; text = "MInutes"; ObjectID = "AJc-Sd-tyd" */
+"AJc-Sd-tyd.text" = "Minutes";
 
 
 
