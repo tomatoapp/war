@@ -51,6 +51,7 @@ class TaskListHeaderView: UIView {
         let quotation = quotationManager.getQuotation()
         self.quotationLabel.text = quotation
         
+        self.flipToTimerViewSide()
     }
     
     override func updateConstraints() {
@@ -83,10 +84,21 @@ class TaskListHeaderView: UIView {
     func flip() {
         if !flag {
             
-            UIView.transitionFromView(startView, toView: timerView, duration: 0.3, options: UIViewAnimationOptions.TransitionCrossDissolve, completion: nil)
+            UIView.transitionFromView(startView, toView: timerView, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, completion: nil)
+            
+//            var newFrame = self.view.frame
+//            newFrame.size.height = 86
+//            self.view.frame = newFrame
+            //self.moveCenterContentView()
+            
         } else {
             
-            UIView.transitionFromView(timerView, toView: startView, duration: 0.3, options: UIViewAnimationOptions.TransitionCrossDissolve, completion: nil)
+            UIView.transitionFromView(timerView, toView: startView, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, completion: nil)
+            
+//            var newFrame = self.view.frame
+//            newFrame.size.height = 0
+//            self.view.frame = newFrame
+            
         }
     }
     
@@ -118,4 +130,15 @@ class TaskListHeaderView: UIView {
         self.secondsLabel.text = "00"
         self.minutesLabel.text = "00"
     }
+    
+    func moveOutContentView() {
+        var newFrame: CGRect! = self.timerView.frame
+        newFrame.origin.y -= newFrame.height
+        self.timerView.frame = newFrame
+    }
+    
+    func moveCenterContentView() {
+        self.timerView.frame = self.frame
+    }
+    
 }
