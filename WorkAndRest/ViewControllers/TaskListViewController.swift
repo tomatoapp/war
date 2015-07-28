@@ -21,6 +21,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     var handleType = HandleType.None
     var taskRunnerManager: TaskRunnerManager?
     var headerView: TaskListHeaderView?
+    var tableViewHeader: TableViewHeader?
+    
     var taskManager = TaskManager.sharedInstance
     
     override func viewDidLoad() {
@@ -554,8 +556,14 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     func disableTableViewHeaderView() {
         println("func disableTableViewHeaderView()")
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            let temp: AnyObject? = self.tableViewHeader?.copy()
+            let tempTableViewHeader: TableViewHeader = self.tableViewHeader?.copy() as! TableViewHeader
+            tempTableViewHeader.moveOutContentView()
+            
             self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
+
+            
         }) { (finished) -> Void in
             self.headerView = nil
         }
@@ -567,15 +575,21 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             self.setupHeaderView()
         }
         self.headerView!.moveOutContentView()
+        self.tableViewHeader?.moveOutContentView()
         
-        UIView.animateWithDuration(animate ? 0.3 : 0.0, animations: { () -> Void in
-            self.tableView.tableHeaderView = self.headerView
-            self.headerView!.moveCenterContentView()
+        UIView.animateWithDuration(animate ? 0.5 : 0.0, animations: { () -> Void in
+//            self.tableView.tableHeaderView = self.headerView
+//            self.headerView!.moveCenterContentView()
+            
+            self.tableView.tableHeaderView = self.tableViewHeader
+            self.tableViewHeader?.moveCenterContentView()
+            
             }) { (finished) -> Void in
         }
     }
     
     func setupHeaderView() {
-       self.createHeaderView()
+        self.createHeaderView()
+        self.tableViewHeader = TableViewHeader(frame: CGRectMake(0, 0, self.view.frame.width, 100))
     }
 }

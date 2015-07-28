@@ -87,6 +87,7 @@
 		C33562CD1B3140950051784D /* WorkAndRest WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C33562B01B3140950051784D /* WorkAndRest WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C354053C1B560C80008111C2 /* IdentifierDef.swift in Sources */ = {isa = PBXBuildFile; fileRef = C354053B1B560C80008111C2 /* IdentifierDef.swift */; };
 		C354053F1B560DA1008111C2 /* IdentifierDef.swift in Sources */ = {isa = PBXBuildFile; fileRef = C354053E1B560DA1008111C2 /* IdentifierDef.swift */; };
+		C36E43381B67707D00834902 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36E43371B67707D00834902 /* TableViewHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,6 +229,7 @@
 		C354053E1B560DA1008111C2 /* IdentifierDef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifierDef.swift; sourceTree = "<group>"; };
 		C35405401B560E37008111C2 /* WorkAndRest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WorkAndRest.entitlements; sourceTree = "<group>"; };
 		C35405411B560E84008111C2 /* WorkAndRest WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "WorkAndRest WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		C36E43371B67707D00834902 /* TableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		C373B9BC1B5504F600C8500F /* WorkAndRest WatchKit Extension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WorkAndRest WatchKit Extension-Bridging-Header.h"; sourceTree = "<group>"; };
 		C5A3E743E49F064E285AF8F1 /* Pods-WorkAndRest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkAndRest.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkAndRest/Pods-WorkAndRest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -430,6 +432,7 @@
 				64E3C1AA1A8752C400418426 /* TaskListHeaderView.swift */,
 				64B563101AA7FC5700098532 /* StatisticsLocker.xib */,
 				64B563121AA7FC7000098532 /* StatisticsLocker.swift */,
+				C36E43371B67707D00834902 /* TableViewHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -837,6 +840,7 @@
 				645FDE0E1A7D98FB002EC8EF /* AppDelegate.swift in Sources */,
 				C354053C1B560C80008111C2 /* IdentifierDef.swift in Sources */,
 				649308571A7AE65C00480677 /* BaseViewController.swift in Sources */,
+				C36E43381B67707D00834902 /* TableViewHeader.swift in Sources */,
 				647603041AA9CD4500B1373E /* CMPopTipView.m in Sources */,
 				646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */,
 				6497FE561A75A77800174307 /* Work.swift in Sources */,
