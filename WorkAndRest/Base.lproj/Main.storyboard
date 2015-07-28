@@ -20,7 +20,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="OeI-Wf-cfE">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="zkL-gV-0uP">
+                        <barButtonItem key="leftBarButtonItem" image="add" id="zkL-gV-0uP">
                             <connections>
                                 <action selector="createTaskButtonClick:" destination="bBY-k6-fbP" id="pC8-Pt-bjV"/>
                             </connections>
@@ -138,7 +138,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uOa-7G-T5S">
-                        <barButtonItem key="leftBarButtonItem" title="Cancle" id="jjU-tT-wVa">
+                        <barButtonItem key="leftBarButtonItem" image="close" id="jjU-tT-wVa">
                             <connections>
                                 <action selector="cancleButtonClicked:" destination="Suk-oZ-58b" id="cvU-Zt-LEu"/>
                             </connections>
@@ -336,8 +336,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="WeG-jc-PF4">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="K7Y-yK-MQl">
-                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="leftBarButtonItem" image="close" id="K7Y-yK-MQl">
+                            <color key="tintColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="cancel:" destination="gsS-3P-2PW" id="dzo-JD-KRy"/>
                             </connections>
@@ -1138,6 +1138,8 @@
     </scenes>
     <resources>
         <image name="Start 2" width="640" height="1136"/>
+        <image name="add" width="20" height="20"/>
+        <image name="close" width="15" height="15"/>
         <image name="close-tip-button" width="29" height="29"/>
         <image name="finished number" width="167" height="164"/>
         <image name="question-mark" width="17" height="17"/>
@@ -1160,6 +1162,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="wl7-AJ-ruu"/>
-        <segue reference="IsP-1t-QkO"/>
+        <segue reference="aGM-L8-aaO"/>
     </inferredMetricsTieBreakers>
 </document>

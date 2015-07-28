@@ -27,7 +27,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         super.viewDidLoad()
         
         self.tableView.registerNib(UINib(nibName: "TaskListItemCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
-//        self.tableView.tableHeaderView = self.createHeaderView()
+        self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
         self.tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, 1, 50))
         
         self.taskRunnerManager = TaskRunnerManager.sharedInstance
@@ -554,11 +554,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     func disableTableViewHeaderView() {
         println("func disableTableViewHeaderView()")
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
-            self.tableView.tableHeaderView = nil
-        })
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
-            self.tableView.tableHeaderView = nil
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
         }) { (finished) -> Void in
             self.headerView = nil
         }
@@ -571,7 +568,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
         self.headerView!.moveOutContentView()
         
-        UIView.animateWithDuration(animate ? 0.5 : 0.0, animations: { () -> Void in
+        UIView.animateWithDuration(animate ? 0.3 : 0.0, animations: { () -> Void in
             self.tableView.tableHeaderView = self.headerView
             self.headerView!.moveCenterContentView()
             }) { (finished) -> Void in
