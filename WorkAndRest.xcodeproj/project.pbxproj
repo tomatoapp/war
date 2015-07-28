@@ -59,6 +59,9 @@
 		649D54081A849978002593F8 /* WARDevide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D54071A849978002593F8 /* WARDevide.swift */; };
 		64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */; };
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
+		64A6D00E1B66ECE4000D7F2E /* QuotationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6D00D1B66ECE4000D7F2E /* QuotationManager.swift */; };
+		64A6D0101B66ED22000D7F2E /* Quotations-en.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64A6D00F1B66ED22000D7F2E /* Quotations-en.plist */; };
+		64A6D0121B66FE0A000D7F2E /* Quotations-cn.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64A6D0111B66FE0A000D7F2E /* Quotations-cn.plist */; };
 		64B563111AA7FC5700098532 /* StatisticsLocker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64B563101AA7FC5700098532 /* StatisticsLocker.xib */; };
 		64B563131AA7FC7000098532 /* StatisticsLocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B563121AA7FC7000098532 /* StatisticsLocker.swift */; };
 		64B563151AA8238300098532 /* ApplicationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B563141AA8238300098532 /* ApplicationStateManager.swift */; };
@@ -192,6 +195,9 @@
 		649D54071A849978002593F8 /* WARDevide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARDevide.swift; sourceTree = "<group>"; };
 		64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		64A6D00D1B66ECE4000D7F2E /* QuotationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotationManager.swift; sourceTree = "<group>"; };
+		64A6D00F1B66ED22000D7F2E /* Quotations-en.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Quotations-en.plist"; sourceTree = "<group>"; };
+		64A6D0111B66FE0A000D7F2E /* Quotations-cn.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Quotations-cn.plist"; sourceTree = "<group>"; };
 		64B563101AA7FC5700098532 /* StatisticsLocker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticsLocker.xib; sourceTree = "<group>"; };
 		64B563121AA7FC7000098532 /* StatisticsLocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsLocker.swift; sourceTree = "<group>"; };
 		64B563141AA8238300098532 /* ApplicationStateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationStateManager.swift; sourceTree = "<group>"; };
@@ -381,6 +387,8 @@
 				645FDE0F1A7D9BA9002EC8EF /* Sounds */,
 				64228ECC18FE2ED300461550 /* Localizable.strings */,
 				6434827A18C5D344009BF110 /* InfoPlist.strings */,
+				64A6D00F1B66ED22000D7F2E /* Quotations-en.plist */,
+				64A6D0111B66FE0A000D7F2E /* Quotations-cn.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -502,6 +510,7 @@
 				64802BF01AA6B7FF00B49E2C /* IconBadgeNumberManager.swift */,
 				64B563141AA8238300098532 /* ApplicationStateManager.swift */,
 				64EBF6261AA9591200ACA139 /* ProductsManager.swift */,
+				64A6D00D1B66ECE4000D7F2E /* QuotationManager.swift */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -699,8 +708,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64A6D0101B66ED22000D7F2E /* Quotations-en.plist in Resources */,
 				649D54041A84521D002593F8 /* TaskTitleView.xib in Resources */,
 				6434828A18C5D344009BF110 /* Images.xcassets in Resources */,
+				64A6D0121B66FE0A000D7F2E /* Quotations-cn.plist in Resources */,
 				64E3C1AD1A8752CF00418426 /* TaskListHeaderView.xib in Resources */,
 				649893971A842F8B0091822A /* CompletionCycleView.xib in Resources */,
 				6434827C18C5D344009BF110 /* InfoPlist.strings in Resources */,
@@ -813,6 +824,7 @@
 			files = (
 				64EBF6271AA9591200ACA139 /* ProductsManager.swift in Sources */,
 				64C99A5D1A7905A300F1D796 /* DBOperate.swift in Sources */,
+				64A6D00E1B66ECE4000D7F2E /* QuotationManager.swift in Sources */,
 				64B563131AA7FC7000098532 /* StatisticsLocker.swift in Sources */,
 				64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */,
 				648A27D21AAD4DBD0002BF04 /* TaskDetailsTutorialViewController.swift in Sources */,

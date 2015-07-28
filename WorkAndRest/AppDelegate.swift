@@ -160,7 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SHOWPERCENTAGE)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_BADGEAPPICON)
             // Disable the determied mode in the default
-            NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_IS_DETERMINATION)
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_IS_DETERMINATION)
             NSUserDefaults.standardUserDefaults().synchronize()
             ApplicationStateManager.sharedInstance.setup()
             DBOperate.insertTask(self.createSampleTask())

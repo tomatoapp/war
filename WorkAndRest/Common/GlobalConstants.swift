@@ -33,7 +33,7 @@ class GlobalConstants {
     
     class var TITLE_MAXLENGTH: Int { return 50 }
     
-    class var VERSION: String { return "2.0.0" }
+    class var VERSION: String { return "2.1.0" }
     
     class var kBOOL_Purchased: String { return "Purchased" }
 }

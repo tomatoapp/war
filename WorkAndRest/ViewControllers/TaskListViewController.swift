@@ -68,6 +68,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func createTaskButtonClick(sender: AnyObject) {
+        self.createTask()
+    }
     
     // MARK: - Table view data source
     
@@ -346,11 +349,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     // MARK: - TaskListHeaderViewDelegate
     
     func taskListHeaderViewStartNewTask(sender: TaskListHeaderView) {
-        if self.taskRunner.isRunning {
-            println("There is a task is running, you can not create a new task.")
-            return
-        }
-        self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
+        self.createTask()
     }
     
     // MARK: - TaskManagerDelegate
@@ -364,6 +363,14 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     
     // MARK: - Methods
+    
+    func createTask() {
+        if self.taskRunner.isRunning {
+            println("There is a task is running, you can not create a new task.")
+            return
+        }
+        self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
+    }
     
     func loadAllTasks() -> Array<Task>? {
         return self.taskManager.loadTaskList()

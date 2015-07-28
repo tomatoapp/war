@@ -158,7 +158,7 @@ class HelpViewController: BaseTableViewController {
         
         let aboutTextLabel = UILabel(frame: CGRectMake(LEFT_MARGIN, TOP_MARGIN, SCREEN_WIDTH - LEFT_MARGIN - RIGHT_MARGIN, 0))
 //        let text = "Tomato! is based on the Pomodoro Technique, and is perfected by the Lunars team. Tomato! is an elegant and clean app, and this is probably the best Pomodoro clock you will see or have seen."
-        let text = NSLocalizedString("ABOUT", comment: "")
+        let text = "" //NSLocalizedString("ABOUT", comment: "")
         aboutTextLabel.text = text
         aboutTextLabel.numberOfLines = 0
         aboutTextLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
