@@ -50,6 +50,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
     func introDidFinish(introView: EAIntroView!) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.hideIconWithAnimation()
+        NSNotificationCenter.defaultCenter().postNotificationName("introDidFinish", object: nil)
     }
     
     // MARK: - UITabBarControllerDelegate
@@ -168,8 +169,8 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         introView?.swipeToExit = false
         introView?.showSkipButtonOnlyOnLastPage = true
         introView?.skipButtonAlignment = EAViewAlignment.Center
-        introView?.skipButtonY = 200
-        introView?.skipButton.titleLabel?.font = UIFont.systemFontOfSize(23)
+        introView?.skipButtonY = 150
+        introView?.skipButton.titleLabel?.font = UIFont.systemFontOfSize(20)
         introView?.skipButton.setTitleColor(UIColor(red: 74/255, green: 144/255, blue: 226/255, alpha: 1.0), forState: UIControlState.Normal)
 //        introView?.skipButton.setTitle("Get Started", forState: UIControlState.Normal)
         introView?.skipButton.setTitle(NSLocalizedString("Get Started", comment: ""), forState: UIControlState.Normal)
@@ -184,7 +185,8 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         introView?.pageControlY = 40.0
         
         introView?.showInView(self.view, animateDuration: 0)
-
     }
+    
+    
     
 }

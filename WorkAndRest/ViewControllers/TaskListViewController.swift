@@ -45,6 +45,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             return
         }
         allTasks = self.sortTasks(result!)!
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setupSampleTask"), name: "introDidFinish", object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -56,9 +58,26 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
         allTasks = self.sortTasks(allTasks)!
         self.tableView.reloadData()
-        //self.refreshHeaderView()
     }
     
+    func setupSampleTask() {
+        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK) {
+            return
+        }
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+            Int64(0.9 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue(), {
+            let sampleTask = self.createSampleTask()
+            let success = self.taskManager.addTask(sampleTask)
+            if success {
+                self.insertItem(sampleTask, withRowAnimation: UITableViewRowAnimation.Left)
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK)
+            }
+            return
+        })
+        
+    }
     
     func headerHeight() -> CGFloat {
         if WARDevice.getPhoneType() == PhoneType.iPhone4 {
@@ -127,10 +146,10 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
                 cell.switchToRunningPoint()
                 cell.switchViewToRunningState()
                 self.enableTableViewHeaderViewWithAnimate( self.headerView == nil ? true : false)
-
+                
                 if cell.taskItem!.minutes * 60 - 2 >= self.taskRunner.seconds {
                     cell.taskItemBaseView.switchToBreakButton()
-//                    self.headerView.flipToTimerViewSide()
+                    //                    self.headerView.flipToTimerViewSide()
                 }
                 
             } else {
@@ -239,7 +258,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: sender.taskItem, repeats: false)
         
-//        self.tableView.tableHeaderView = self.createHeaderView()
+        //        self.tableView.tableHeaderView = self.createHeaderView()
         self.setupHeaderView()
         self.tableViewHeader?.updateTime(sender.taskItem!.getTimerMinutesString(), seconds: sender.taskItem!.getTimerSecondsString())
         self.enableTableViewHeaderViewWithAnimate(true)
@@ -249,7 +268,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         if self.headerView == nil {
             self.enableTableViewHeaderViewWithAnimate(true)
         }
-
+        
         self.headerView!.updateTime(self.getTimerMinutesStringBySeconds(seconds), seconds: self.getTimerSecondsStringBySeconds(seconds))
         self.tableViewHeader!.updateTime(self.getTimerMinutesStringBySeconds(seconds), seconds: self.getTimerSecondsStringBySeconds(seconds))
         
@@ -261,7 +280,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     func completed(sender: TaskListItemCell!) {
         //        self.recordWork(true)
         self.reloadTableViewWithTimeInterval(0.5)
-//        self.headerView.flipToStartViewSide()
+        //        self.headerView.flipToStartViewSide()
         //self.tableView.tableHeaderView = nil
         self.disableTableViewHeaderView()
         
@@ -270,7 +289,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     func breaked(sender: TaskListItemCell!) {
         self.reloadTableViewWithTimeInterval(0.5)
-//         self.headerView.flipToStartViewSide()
+        //         self.headerView.flipToStartViewSide()
         // self.tableView.tableHeaderView = nil
         self.disableTableViewHeaderView()
         
@@ -307,8 +326,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
                 self.taskManager.markDoneTask(task)
                 
                 if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownMarkDoneTutorial) {
-                        self.showTutorial()
-                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownMarkDoneTutorial)
+                    self.showTutorial()
+                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownMarkDoneTutorial)
                 }
                 
                 // Refresh the tableview.
@@ -435,8 +454,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         //self.enableTableViewHeaderView()
         
         if self.taskRunner.taskItem == nil && self.headerView!.isInTimersViewSide(){
-
-//             self.headerView.flipToStartViewSide()
+            
+            //             self.headerView.flipToStartViewSide()
             // self.tableView.tableHeaderView = nil
             //self.disableTableViewHeaderView()
             return
@@ -446,10 +465,10 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             return
         }
         
-//        if self.tableView.tableHeaderView == nil {
-//            self.tableView.tableHeaderView = self.createHeaderView()
-//            self.tableView.reloadData()
-//        }
+        //        if self.tableView.tableHeaderView == nil {
+        //            self.tableView.tableHeaderView = self.createHeaderView()
+        //            self.tableView.reloadData()
+        //        }
         
         self.headerView!.updateTime(self.getTimerMinutesStringBySeconds(self.taskRunner.seconds), seconds: self.getTimerSecondsStringBySeconds(self.taskRunner.seconds))
         if self.taskRunner.taskItem.minutes * 10 - 2 >= self.taskRunner.seconds && !self.headerView!.isInTimersViewSide() {
@@ -563,11 +582,11 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             
             tempTableViewHeader.moveOutContentView()
             self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
-
             
-        }) { (finished) -> Void in
-            self.headerView = nil
-            tempTableViewHeader.removeFromSuperview()
+            
+            }) { (finished) -> Void in
+                self.headerView = nil
+                tempTableViewHeader.removeFromSuperview()
         }
     }
     
@@ -590,5 +609,16 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     func setupHeaderView() {
         self.createHeaderView()
         self.tableViewHeader = TableViewHeader(frame: CGRectMake(0, 0, self.view.frame.width, 100))
+    }
+    
+    func createSampleTask() -> Task {
+        let sampleTask = Task()
+        sampleTask.taskId = 0
+        sampleTask.title = NSLocalizedString("Task Sample", comment: "")
+        sampleTask.minutes = 1
+        sampleTask.completed = false
+        sampleTask.expect_times = 3
+        sampleTask.finished_times = 0
+        return sampleTask
     }
 }

@@ -154,19 +154,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     func firstRun() {
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.k_HASRAN_BEFORE) {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_firstLaunch)
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.k_HASRAN_BEFORE)
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SECOND_SOUND)
-            NSUserDefaults.standardUserDefaults().setInteger(GlobalConstants.DEFAULT_MINUTES, forKey: GlobalConstants.k_SECONDS)
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SHOWPERCENTAGE)
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_BADGEAPPICON)
-            // Disable the determied mode in the default
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_IS_DETERMINATION)
-            NSUserDefaults.standardUserDefaults().synchronize()
+            
+            self.setup()
             ApplicationStateManager.sharedInstance.setup()
-            DBOperate.insertTask(self.createSampleTask())
+            //DBOperate.insertTask(self.createSampleTask())
         } else {
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_firstLaunch)
         }
+    }
+    
+    func setup() {
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.k_HASRAN_BEFORE)
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SECOND_SOUND)
+        NSUserDefaults.standardUserDefaults().setInteger(GlobalConstants.DEFAULT_MINUTES, forKey: GlobalConstants.k_SECONDS)
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SHOWPERCENTAGE)
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_BADGEAPPICON)
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_IS_DETERMINATION)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     func addNotificationWithSeconds(seconds: Int) {
@@ -197,18 +201,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         Appirater.setTimeBeforeReminding(2)
         Appirater.setDebug(false)
         Appirater.appLaunched(true)
-    }
-    
-    func createSampleTask() -> Task {
-        println("createSampleTask")
-        let sampleTask = Task()
-        sampleTask.taskId = 0
-        sampleTask.title = NSLocalizedString("Task Sample", comment: "")
-        sampleTask.minutes = 1
-        sampleTask.completed = false
-        sampleTask.expect_times = 3
-        sampleTask.finished_times = 0
-        return sampleTask
     }
     
     func freezeTask() {

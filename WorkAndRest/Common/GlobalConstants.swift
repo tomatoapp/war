@@ -36,4 +36,5 @@ class GlobalConstants {
     class var VERSION: String { return "2.1.0" }
     
     class var kBOOL_Purchased: String { return "Purchased" }
+    class var kBOOL_HAS_SETUP_SAMPLE_TASK: String { return "HasSetupSampleTask" }
 }
