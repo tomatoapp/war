@@ -51,7 +51,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         super.viewWillAppear(animated)
         
         if self.taskRunner.isRunning {
-            let task = allTasks.filter { $0.taskId == self.taskRunner.runningTaskID() }.first!
+            let task = allTasks.filter { $0.taskId == self.taskRunner.taskItem.taskId }.first!
             task.lastUpdateTime = self.taskRunner.taskItem.lastUpdateTime
         }
         allTasks = self.sortTasks(allTasks)!
@@ -115,14 +115,14 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             break
             
         case .Ready:
-            if self.taskRunner.readyTaskID() == task.taskId {
+            if self.taskRunner.isSameTask(task) {
                 self.taskRunner.delegate = cell
                 cell.start()
             }
             break
             
         case .Running:
-            if self.taskRunner.runningTaskID() == task.taskId {
+            if self.taskRunner.isSameTask(task) {
                 self.taskRunner.delegate = cell
                 cell.switchToRunningPoint()
                 cell.switchViewToRunningState()

@@ -153,7 +153,8 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
             // But if some other task is running, you can not start it; if the running task is youself, then break youself.
             
             if self.taskRunner!.isRunning {
-                if self.taskRunner!.runningTaskID() == self.taskItem!.taskId {
+                // if self.taskRunner!.runningTaskID() == self.taskItem!.taskId {
+                if self.taskRunner!.isSameTask(self.taskItem!) {
                     self.breakIt()
                 } else {
                     println("You can not start it, some other task is running!")

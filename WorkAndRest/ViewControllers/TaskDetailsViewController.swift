@@ -70,7 +70,8 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         }
         
         if self.taskRunner.state == .Running {
-            if self.taskRunner.runningTaskID() == self.taskItem.taskId {
+            // if self.taskRunner.runningTaskID() == self.taskItem.taskId {
+            if self.taskRunner.isSameTask(self.taskItem) {
                 // the running task is this task
                 self.taskItemBaseView.refreshViewBySeconds(self.taskRunner.seconds)
                 self.taskItemBaseView.refreshViewByState(.Running, animation:false)
@@ -174,7 +175,8 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         // But perhaps some task is running, and the running task mebye just youself.
         if self.taskRunner.state == .Running {
             
-            if self.taskRunner.runningTaskID() == self.taskItem.taskId {
+            // if self.taskRunner.runningTaskID() == self.taskItem.taskId {
+            if self.taskRunner.isSameTask(self.taskItem){
                 self.taskRunner.stop()
             } else {
                 println("Some other task is running, you can do nothing")
