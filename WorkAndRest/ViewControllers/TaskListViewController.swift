@@ -92,7 +92,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         let task = allTasks[indexPath.row]
         
         let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath) as! TaskListItemCell
-        cell.taskEventDelegate = self
+        cell.custom_delegate = self
         cell.delegate = self
         if task.completed {
             cell.leftUtilityButtons = self.leftUtilityButtonsByTaskState(TaskState.Completed) as [AnyObject]
@@ -230,7 +230,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     // MARK: - TaskListItemCellDelegate
     
-    func readyToStart(sender: TaskListItemCell!) {
+    func ready(sender: TaskListItemCell!) {
         if self.taskRunner!.isRunning {
             return
         }
@@ -240,6 +240,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: sender.taskItem, repeats: false)
         
 //        self.tableView.tableHeaderView = self.createHeaderView()
+        self.setupHeaderView()
+        self.tableViewHeader?.updateTime(sender.taskItem!.getTimerMinutesString(), seconds: sender.taskItem!.getTimerSecondsString())
         self.enableTableViewHeaderViewWithAnimate(true)
     }
     
@@ -252,11 +254,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.tableViewHeader!.updateTime(self.getTimerMinutesStringBySeconds(seconds), seconds: self.getTimerSecondsStringBySeconds(seconds))
         
         if sender.taskItem!.minutes * 60 - 2 == seconds {
-//            self.headerView.flipToTimerViewSide()
-            // self.tableView.tableHeaderView = self.createHeaderView()
             sender.taskItemBaseView.switchToBreakButton()
         }
-        
     }
     
     func completed(sender: TaskListItemCell!) {
