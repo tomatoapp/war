@@ -82,24 +82,24 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         self.navigationController?.navigationBarHidden = true
         var pages = [EAIntroPage]()
         
-        let page1 = EAIntroPage()
-        page1.title = NSLocalizedString("guide1Title", comment: "")
-        page1.titleFont = UIFont.systemFontOfSize(24)
-        page1.titlePositionY = self.view.frame.size.height/2 + 180 + 20
-        page1.titleColor = UIColor.blackColor()
-        
-        page1.desc = NSLocalizedString("guide1SubTitle", comment: "")
-        page1.descColor = UIColor(red: 110/255, green: 110/255, blue: 110/255, alpha: 1.0)
-        page1.descFont = UIFont.systemFontOfSize(15)
-        page1.descPositionY = self.view.frame.size.height/2 + 150 + 20
-        page1.descWidth = self.view.frame.size.width - 20
-        
-        page1.titleIconView = UIImageView(image: UIImage(named: "guide1Image"))
-//        page1.titleIconView.sizeToFit()
-        page1.titleIconView.frame = CGRectMake(0, 0, self.view.frame.size.width-6, self.view.frame.size.width)
-        page1.titleIconView.contentMode = UIViewContentMode.ScaleAspectFit
-        page1.titleIconPositionY = self.view.frame.size.height/2 - 100 - 30
-        pages.append(page1)
+//        let page1 = EAIntroPage()
+//        page1.title = NSLocalizedString("guide1Title", comment: "")
+//        page1.titleFont = UIFont.systemFontOfSize(24)
+//        page1.titlePositionY = self.view.frame.size.height/2 + 180 + 20
+//        page1.titleColor = UIColor.blackColor()
+//        
+//        page1.desc = NSLocalizedString("guide1SubTitle", comment: "")
+//        page1.descColor = UIColor(red: 110/255, green: 110/255, blue: 110/255, alpha: 1.0)
+//        page1.descFont = UIFont.systemFontOfSize(15)
+//        page1.descPositionY = self.view.frame.size.height/2 + 150 + 20
+//        page1.descWidth = self.view.frame.size.width - 20
+//        
+//        page1.titleIconView = UIImageView(image: UIImage(named: "guide1Image"))
+////        page1.titleIconView.sizeToFit()
+//        page1.titleIconView.frame = CGRectMake(0, 0, self.view.frame.size.width-6, self.view.frame.size.width)
+//        page1.titleIconView.contentMode = UIViewContentMode.ScaleAspectFit
+//        page1.titleIconPositionY = self.view.frame.size.height/2 - 100 - 30
+//        pages.append(page1)
         
         let page2 = EAIntroPage()
         page2.title = NSLocalizedString("guide2Title", comment: "")

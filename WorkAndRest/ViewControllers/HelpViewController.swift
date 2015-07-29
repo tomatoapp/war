@@ -20,7 +20,7 @@ class HelpViewController: BaseTableViewController {
     var SCREEN_HEIGHT: CGFloat = 0.0
     
     var TABLEVIEW_HEADER_HEIGHT: CGFloat = 85.0 + 15.0
-    var TABLEVIEW_FOOTER_HEIGHT: CGFloat = 0.0
+    var TABLEVIEW_FOOTER_HEIGHT: CGFloat = 120
     
     var FIRST_SECTION_HEADER_HEIGHT: CGFloat = 0
     var SECOND_SECTION_HEADER_HEIGHT: CGFloat = 30
@@ -38,6 +38,7 @@ class HelpViewController: BaseTableViewController {
         self.aboutView = self.createAboutView()
         ABOUT_TEXT_CELL_HEIGHT = self.aboutView!.frame.size.height
         
+        /*
         TABLEVIEW_FOOTER_HEIGHT =
             SCREEN_HEIGHT
             - TABLEVIEW_HEADER_HEIGHT
@@ -47,15 +48,17 @@ class HelpViewController: BaseTableViewController {
             - ABOUT_TEXT_CELL_HEIGHT
             - self.navigationController!.navigationBar.frame.height
             - UIApplication.sharedApplication().statusBarFrame.size.height
-        
-        if WARDevice.getPhoneType() == PhoneType.iPhone4 {
-            self.tableView.scrollEnabled = true
-            TABLEVIEW_FOOTER_HEIGHT = 103
-        }
+        */
+//        if WARDevice.getPhoneType() == PhoneType.iPhone4 {
+//            self.tableView.scrollEnabled = true
+//            TABLEVIEW_FOOTER_HEIGHT = 103
+//        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.view.backgroundColor = UIColor.whiteColor()
         self.tableView.tableHeaderView = self.creatHeaderView()
         self.tableView.tableFooterView = self.createFooterView()
     }
