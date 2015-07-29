@@ -249,6 +249,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
 
         self.headerView!.updateTime(self.getTimerMinutesStringBySeconds(seconds), seconds: self.getTimerSecondsStringBySeconds(seconds))
+        self.tableViewHeader!.updateTime(self.getTimerMinutesStringBySeconds(seconds), seconds: self.getTimerSecondsStringBySeconds(seconds))
         
         if sender.taskItem!.minutes * 60 - 2 == seconds {
 //            self.headerView.flipToTimerViewSide()

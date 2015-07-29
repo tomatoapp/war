@@ -91,4 +91,9 @@ class TableViewHeader: UIView, NSCopying {
     func copyWithZone(zone: NSZone) -> AnyObject {
         return TableViewHeader(frame: self.frame)
     }
+    
+    func updateTime(minutes: String, seconds: String) {
+        self.minuteLabel!.text = minutes
+        self.secondLabel!.text = seconds
+    }
 }
