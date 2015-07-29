@@ -556,16 +556,18 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     func disableTableViewHeaderView() {
         println("func disableTableViewHeaderView()")
+        let tempTableViewHeader: TableViewHeader = self.tableViewHeader?.copy() as! TableViewHeader
+        self.view.addSubview(tempTableViewHeader)
+        tempTableViewHeader.moveCenterContentView()
         UIView.animateWithDuration(0.5, animations: { () -> Void in
-            let temp: AnyObject? = self.tableViewHeader?.copy()
-            let tempTableViewHeader: TableViewHeader = self.tableViewHeader?.copy() as! TableViewHeader
-            tempTableViewHeader.moveOutContentView()
             
+            tempTableViewHeader.moveOutContentView()
             self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
 
             
         }) { (finished) -> Void in
             self.headerView = nil
+            tempTableViewHeader.removeFromSuperview()
         }
     }
     
@@ -578,9 +580,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.tableViewHeader?.moveOutContentView()
         
         UIView.animateWithDuration(animate ? 0.5 : 0.0, animations: { () -> Void in
-//            self.tableView.tableHeaderView = self.headerView
-//            self.headerView!.moveCenterContentView()
-            
             self.tableView.tableHeaderView = self.tableViewHeader
             self.tableViewHeader?.moveCenterContentView()
             

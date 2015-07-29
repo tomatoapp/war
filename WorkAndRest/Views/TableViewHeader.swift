@@ -9,7 +9,7 @@
 import UIKit
 
 
-class TableViewHeader: UIView {
+class TableViewHeader: UIView, NSCopying {
 
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -76,5 +76,19 @@ class TableViewHeader: UIView {
     
     func moveCenterContentView() {
         self.contentView?.frame = self.frame
+    }
+    
+    
+    override func copy() -> AnyObject {
+        if let asCopying = (self as AnyObject) as? NSCopying {
+            return asCopying.copyWithZone(nil)
+        } else {
+            return 0
+        }
+    }
+    
+    
+    func copyWithZone(zone: NSZone) -> AnyObject {
+        return TableViewHeader(frame: self.frame)
     }
 }
