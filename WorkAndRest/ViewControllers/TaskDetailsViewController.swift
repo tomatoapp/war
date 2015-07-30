@@ -17,9 +17,9 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     @IBOutlet var taskItemBaseView: TaskItemBaseView!
     
 //    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var nameButton: UIButton!
+//    @IBOutlet var nameButton: UIButton!
 //    @IBOutlet var detailLabel: UILabel!
-    @IBOutlet var lengthLabel: UILabel!
+//    @IBOutlet var lengthLabel: UILabel!
     
     @IBOutlet var expectTimesLabel: UILabel!
     @IBOutlet var finishedTimesLabel: UILabel!
@@ -95,11 +95,11 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     }
     
     func refreshUI() {
-        self.nameButton.setTitle(self.taskItem.title, forState: UIControlState.Normal)
+//        self.nameButton.setTitle(self.taskItem.title, forState: UIControlState.Normal)
 //        self.detailLabel.text = "Task, \(self.taskItem.expect_times) times"
 //        self.detailLabel.text = String(format: NSLocalizedString("Task_times", comment: ""), "\(self.taskItem.expect_times)")
 //        self.lengthLabel.text = "\(self.taskItem.minutes) Minutes / Task"
-        self.lengthLabel.text = String(format: NSLocalizedString("Minutes_Task", comment: ""), "\(self.taskItem.minutes)")
+//        self.lengthLabel.text = String(format: NSLocalizedString("Minutes_Task", comment: ""), "\(self.taskItem.minutes)")
         self.expectTimesLabel.text = "\(self.taskItem.break_times)"
         self.finishedTimesLabel.text = "\(self.taskItem.finished_times)"
     }
@@ -119,7 +119,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
             } else if WARDevice.getPhoneType() == PhoneType.iPhone6Plus {
                 return 190
             }
-        } else if indexPath.row == 3 {
+        } else if indexPath.row == 1 {
             return 249
         }
         return 35
@@ -205,7 +205,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     func addTaskViewController(controller: TaskTitleViewController!, didFinishEditingTask item: Task!) {
         self.taskItem.title = item.title
         self.taskItemBaseView.refreshTitle(self.taskItem.title)
-        self.nameButton.setTitle(self.taskItem.title, forState: UIControlState.Normal)
+//        self.nameButton.setTitle(self.taskItem.title, forState: UIControlState.Normal)
         self.taskManager.updateTask(self.taskItem)
     }
 }
