@@ -20,7 +20,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     var taskRunner: TaskRunner!
     var handleType = HandleType.None
     var taskRunnerManager: TaskRunnerManager?
-    var headerView: TaskListHeaderView?
+//    var headerView: TaskListHeaderView?
     var tableViewHeader: TableViewHeader?
     
     var taskManager = TaskManager.sharedInstance
@@ -145,12 +145,15 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
                 self.taskRunner.delegate = cell
                 cell.switchToRunningPoint()
                 cell.switchViewToRunningState()
-                self.enableTableViewHeaderViewWithAnimate( self.headerView == nil ? true : false)
+                self.enableTableViewHeaderViewWithAnimate( self.tableViewHeader == nil ? true : false)
                 
+                /*
                 if cell.taskItem!.minutes * 60 - 2 >= self.taskRunner.seconds {
                     cell.taskItemBaseView.switchToBreakButton()
                     //                    self.headerView.flipToTimerViewSide()
                 }
+                */
+                cell.taskItemBaseView.switchToBreakButton()
                 
             } else {
                 // Some other task is running now. so I need to disable you... I'm sorry... :(
@@ -241,7 +244,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
             if runNow {
                 self.taskRunner.setupTaskItem(item)
-                self.refreshHeaderView()
+                //self.refreshHeaderView()
                 self.reloadTableViewWithTimeInterval(1.0)
             }
         }
@@ -262,19 +265,23 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.setupHeaderView()
         self.tableViewHeader?.updateTime(sender.taskItem!.getTimerMinutesString(), seconds: sender.taskItem!.getTimerSecondsString())
         self.enableTableViewHeaderViewWithAnimate(true)
+        
+        sender.taskItemBaseView.switchToBreakButton()
     }
     
     func tick(sender: TaskListItemCell!, seconds: Int) {
-        if self.headerView == nil {
+        if self.tableViewHeader == nil {
             self.enableTableViewHeaderViewWithAnimate(true)
         }
         
-        self.headerView!.updateTime(self.getTimerMinutesStringBySeconds(seconds), seconds: self.getTimerSecondsStringBySeconds(seconds))
+       // self.headerView!.updateTime(self.getTimerMinutesStringBySeconds(seconds), seconds: self.getTimerSecondsStringBySeconds(seconds))
         self.tableViewHeader!.updateTime(self.getTimerMinutesStringBySeconds(seconds), seconds: self.getTimerSecondsStringBySeconds(seconds))
         
+        /*
         if sender.taskItem!.minutes * 60 - 2 == seconds {
             sender.taskItemBaseView.switchToBreakButton()
         }
+        */
     }
     
     func completed(sender: TaskListItemCell!) {
@@ -417,6 +424,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     let HEADERVIEW_OFFSET: CGFloat = 8
     let LINE_HEIGHT: CGFloat = 0.5
     
+    /*
     func createHeaderView() -> UIView {
         let baseView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.headerHeight() + HEADERVIEW_OFFSET))
         //baseView.backgroundColor = UIColor.whiteColor()
@@ -444,12 +452,15 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
         return baseView
     }
+    */
     
+    /*
     func refreshHeaderView() {
         
         if self.headerView == nil {
             return
         }
+        
         
         //self.enableTableViewHeaderView()
         
@@ -461,6 +472,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             return
         }
         
+        
+        
         if self.taskRunner.taskItem == nil {
             return
         }
@@ -470,11 +483,14 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         //            self.tableView.reloadData()
         //        }
         
-        self.headerView!.updateTime(self.getTimerMinutesStringBySeconds(self.taskRunner.seconds), seconds: self.getTimerSecondsStringBySeconds(self.taskRunner.seconds))
+        //self.headerView!.updateTime(self.getTimerMinutesStringBySeconds(self.taskRunner.seconds), seconds: self.getTimerSecondsStringBySeconds(self.taskRunner.seconds))
+        /*
         if self.taskRunner.taskItem.minutes * 10 - 2 >= self.taskRunner.seconds && !self.headerView!.isInTimersViewSide() {
             self.headerView!.flipToTimerViewSide()
         }
+        */
     }
+    */
     
     func insertItem(val: NSTimer) {
         let item = val.userInfo as! Task
@@ -585,17 +601,24 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             
             
             }) { (finished) -> Void in
-                self.headerView = nil
+                //self.headerView = nil
                 tempTableViewHeader.removeFromSuperview()
         }
     }
     
     func enableTableViewHeaderViewWithAnimate(animate: Bool) {
         println("func enableTableViewHeaderViewWithAnimate(\(animate))")
+        /*
         if self.headerView == nil {
             self.setupHeaderView()
         }
         self.headerView!.moveOutContentView()
+        */
+        
+        if self.tableViewHeader == nil {
+            self.setupHeaderView()
+        }
+        
         self.tableViewHeader?.moveOutContentView()
         
         UIView.animateWithDuration(animate ? 0.5 : 0.0, animations: { () -> Void in
@@ -607,7 +630,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     
     func setupHeaderView() {
-        self.createHeaderView()
+        //self.createHeaderView()
         self.tableViewHeader = TableViewHeader(frame: CGRectMake(0, 0, self.view.frame.width, 100))
     }
     

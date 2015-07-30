@@ -90,14 +90,14 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     }
     
     func changeImageWithAnimations(view: UIView, duration: NSTimeInterval) {
-        UIView.transitionWithView(self.taskItemBaseView.startButton,
+        UIView.transitionWithView(self.taskItemBaseView.button,
             duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 if self.taskItem!.completed {
-                    self.taskItemBaseView.startButton.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
+                    self.taskItemBaseView.button.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
                 } else {
-                    self.taskItemBaseView.startButton.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
+                    self.taskItemBaseView.button.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
                 }
             }, completion: nil)
         
@@ -106,7 +106,8 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     // MARK: - TaskRunnerDelegate
     
     func started(sender: TaskRunner!) {
-        self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
+        //self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
+        self.taskItemBaseView.switchToBreakButton()
         self.switchViewToRunningState()
         self.switchToRunningPoint()
     }
@@ -130,7 +131,8 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     }
     
     func tick(sender: TaskRunner!) {
-        self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
+//        self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
+        self.taskItemBaseView.switchToBreakButton()
         self.custom_delegate?.tick(self, seconds: sender.seconds)
     }
     
