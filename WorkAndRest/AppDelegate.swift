@@ -86,24 +86,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             
         case UIApplicationState.Background:
             if NSUserDefaults.standardUserDefaults().boolForKey("kDisplayStatusLocked") {
-                //                println("Sent to background by locking screen")
-//                if TaskRunner.sharedInstance.isRunning {
-//                    self.addNotificationWithSeconds(TaskRunner.sharedInstance.seconds)
-//                    TaskRunnerManager.sharedInstance.freezeTaskManager(TaskRunner.sharedInstance)
-//                    
-//                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_ISWORKING)
-//                    println("kBOOL_ISWORKING = true")
-//                    NSUserDefaults.standardUserDefaults().synchronize()
-//                } else {
-//                    println("kBOOL_ISWORKING = false")
-//                }
                 self.freezeTask()
             } else {
-                //                println("Sent to background by home button/switching to other app")
-//                if TaskRunner.sharedInstance.isRunning {
-//                    TaskRunner.sharedInstance.stop()
-//                    self.showBreakNotification()
-//                }
                 if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_IS_DETERMINATION) { // 开启决心模式
                     self.stopTask()
                 } else {
@@ -157,7 +141,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             
             self.setup()
             ApplicationStateManager.sharedInstance.setup()
-            //DBOperate.insertTask(self.createSampleTask())
         } else {
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_firstLaunch)
         }

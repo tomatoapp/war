@@ -20,7 +20,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     var taskRunner: TaskRunner!
     var handleType = HandleType.None
     var taskRunnerManager: TaskRunnerManager?
-//    var headerView: TaskListHeaderView?
     var tableViewHeader: TableViewHeader?
     
     var taskManager = TaskManager.sharedInstance
@@ -146,20 +145,11 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
                 cell.switchToRunningPoint()
                 cell.switchViewToRunningState()
                 self.enableTableViewHeaderViewWithAnimate( self.tableViewHeader == nil ? true : false)
-                
-                /*
-                if cell.taskItem!.minutes * 60 - 2 >= self.taskRunner.seconds {
-                    cell.taskItemBaseView.switchToBreakButton()
-                    //                    self.headerView.flipToTimerViewSide()
-                }
-                */
                 cell.taskItemBaseView.switchToBreakButton()
                 
             } else {
                 // Some other task is running now. so I need to disable you... I'm sorry... :(
                 if task.completed {
-                    //                    cell.taskItemBaseView.refreshViewByState(TaskState.Completed, animation: true)
-                    //cell.disable(TaskState.Completed, animation: true)
                     cell.reset(TaskState.Completed, animation: true)
                 } else {
                     cell.reset(TaskState.Normal, animation: true)
@@ -180,7 +170,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             let task = allTasks[indexPath.row]
-            //            DBOperate.deleteTask(task)
             self.taskManager.removeTask(task)
             let indexPaths = [indexPath]
             self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
@@ -222,8 +211,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     func addTaskViewController(controller: TaskTitleViewController!, didFinishEditingTask item: Task!) {
         handleType = HandleType.AddOrEdit
-        //        item.lastUpdateTime = NSDate()
-        //        DBOperate.updateTask(item)
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: item, repeats: false)
     }
     
@@ -274,21 +261,11 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             self.enableTableViewHeaderViewWithAnimate(true)
         }
         
-       // self.headerView!.updateTime(self.getTimerMinutesStringBySeconds(seconds), seconds: self.getTimerSecondsStringBySeconds(seconds))
         self.tableViewHeader!.updateTime(self.getTimerMinutesStringBySeconds(seconds), seconds: self.getTimerSecondsStringBySeconds(seconds))
-        
-        /*
-        if sender.taskItem!.minutes * 60 - 2 == seconds {
-            sender.taskItemBaseView.switchToBreakButton()
-        }
-        */
     }
     
     func completed(sender: TaskListItemCell!) {
-        //        self.recordWork(true)
         self.reloadTableViewWithTimeInterval(0.5)
-        //        self.headerView.flipToStartViewSide()
-        //self.tableView.tableHeaderView = nil
         self.disableTableViewHeaderView()
         
         self.taskManager.completeOneTimer(self.taskRunner.taskItem)
@@ -296,8 +273,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     func breaked(sender: TaskListItemCell!) {
         self.reloadTableViewWithTimeInterval(0.5)
-        //         self.headerView.flipToStartViewSide()
-        // self.tableView.tableHeaderView = nil
         self.disableTableViewHeaderView()
         
         self.taskManager.breakOneTimer(self.taskRunner.taskItem)
@@ -424,74 +399,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     let HEADERVIEW_OFFSET: CGFloat = 8
     let LINE_HEIGHT: CGFloat = 0.5
     
-    /*
-    func createHeaderView() -> UIView {
-        let baseView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.headerHeight() + HEADERVIEW_OFFSET))
-        //baseView.backgroundColor = UIColor.whiteColor()
-        headerView = TaskListHeaderView(frame: CGRectMake(0, 0, baseView.frame.size.width, self.headerHeight()))
-        baseView.addSubview(headerView!)
-        
-        headerView!.mas_makeConstraints { make in
-            make.width.equalTo()(baseView.frame.size.width)
-            make.height.equalTo()(self.headerHeight())
-            //            make.centerX.equalTo()(baseView.mas_centerX)
-            make.top.equalTo()(baseView.mas_top)
-            //            make.centerY.equalTo()(baseView.mas_centerY)
-            return ()
-        }
-        headerView!.delegate = self
-        
-        let line = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, LINE_HEIGHT))
-        line.backgroundColor = UIColor(red: 206/255, green: 206/255, blue: 206/255, alpha: 0.8)
-        baseView.addSubview(line)
-        line.mas_makeConstraints { (make) -> Void in
-            make.bottom.equalTo()(baseView.mas_bottom).offset()(-self.HEADERVIEW_OFFSET)
-            make.width.equalTo()(baseView.frame.size.width)
-            make.height.equalTo()(self.LINE_HEIGHT)
-            return ()
-        }
-        return baseView
-    }
-    */
-    
-    /*
-    func refreshHeaderView() {
-        
-        if self.headerView == nil {
-            return
-        }
-        
-        
-        //self.enableTableViewHeaderView()
-        
-        if self.taskRunner.taskItem == nil && self.headerView!.isInTimersViewSide(){
-            
-            //             self.headerView.flipToStartViewSide()
-            // self.tableView.tableHeaderView = nil
-            //self.disableTableViewHeaderView()
-            return
-        }
-        
-        
-        
-        if self.taskRunner.taskItem == nil {
-            return
-        }
-        
-        //        if self.tableView.tableHeaderView == nil {
-        //            self.tableView.tableHeaderView = self.createHeaderView()
-        //            self.tableView.reloadData()
-        //        }
-        
-        //self.headerView!.updateTime(self.getTimerMinutesStringBySeconds(self.taskRunner.seconds), seconds: self.getTimerSecondsStringBySeconds(self.taskRunner.seconds))
-        /*
-        if self.taskRunner.taskItem.minutes * 10 - 2 >= self.taskRunner.seconds && !self.headerView!.isInTimersViewSide() {
-            self.headerView!.flipToTimerViewSide()
-        }
-        */
-    }
-    */
-    
     func insertItem(val: NSTimer) {
         let item = val.userInfo as! Task
         self.tableView.beginUpdates()
@@ -549,12 +456,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.tableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
     }
     
-    func newTaskButtonClick(sender: UIButton) {
-        //self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
-        
-        
-    }
-    
     func reloadTableViewWithTimeInterval(ti: NSTimeInterval) {
         NSTimer.scheduledTimerWithTimeInterval(ti, target: self, selector: Selector("reload"), userInfo: nil, repeats: false)
     }
@@ -608,29 +509,19 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     func enableTableViewHeaderViewWithAnimate(animate: Bool) {
         println("func enableTableViewHeaderViewWithAnimate(\(animate))")
-        /*
-        if self.headerView == nil {
-            self.setupHeaderView()
-        }
-        self.headerView!.moveOutContentView()
-        */
-        
         if self.tableViewHeader == nil {
             self.setupHeaderView()
         }
-        
         self.tableViewHeader?.moveOutContentView()
         
         UIView.animateWithDuration(animate ? 0.5 : 0.0, animations: { () -> Void in
             self.tableView.tableHeaderView = self.tableViewHeader
             self.tableViewHeader?.moveCenterContentView()
-            
             }) { (finished) -> Void in
         }
     }
     
     func setupHeaderView() {
-        //self.createHeaderView()
         self.tableViewHeader = TableViewHeader(frame: CGRectMake(0, 0, self.view.frame.width, 100))
     }
     

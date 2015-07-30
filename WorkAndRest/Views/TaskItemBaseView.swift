@@ -89,15 +89,6 @@ class TaskItemBaseView: UIView {
             break
             
         case .Running:
-//            self.timerLabel.text = self.getTimerString()
-            UIView.animateWithDuration(animation ? ANIMATION_DURATION : 0,
-                animations: { () -> Void in
-                    //self.timerLabel.alpha = 1
-//                    self.button.alpha = 0
-                })
-                { (finished: Bool) -> Void in
-            }
-            
             UIView.transitionWithView(self.bgImageView,
                 duration: animation ? ANIMATION_DURATION : 0,
                 options: .TransitionCrossDissolve,
