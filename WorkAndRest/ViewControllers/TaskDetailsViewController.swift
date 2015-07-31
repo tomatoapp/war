@@ -107,6 +107,10 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
 //        self.lengthLabel.text = String(format: NSLocalizedString("Minutes_Task", comment: ""), "\(self.taskItem.minutes)")
         self.expectTimesLabel.text = "\(self.taskItem.break_times)"
         self.finishedTimesLabel.text = "\(self.taskItem.finished_times)"
+        
+        if self.taskRunner.isRunning && self.taskRunner.isSameTask(self.taskItem) {
+            self.tableViewHeader!.updateTime(self.getTimerMinutesStringBySeconds(self.taskRunner.seconds), seconds: self.getTimerSecondsStringBySeconds(self.taskRunner.seconds))
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -159,11 +163,13 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     }
     
     func tick(sender: TaskRunner!) {
+
+        if !sender.isSameTask(self.taskItem) {
+            return
+        }
+        
         println("TaskDetailsViewController: \(sender.seconds)")
-//        if self.taskItemBaseView  == nil {
-//            return
-//        }
-//        self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
+
         
         self.tableViewHeader!.updateTime(self.getTimerMinutesStringBySeconds(sender.seconds), seconds: self.getTimerSecondsStringBySeconds(sender.seconds))
     }
