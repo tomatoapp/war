@@ -1142,7 +1142,7 @@
         <image name="finished number" width="167" height="164"/>
         <image name="icon" width="70" height="70"/>
         <image name="question-mark" width="17" height="17"/>
-        <image name="settings" width="20" height="6"/>
+        <image name="settings" width="22" height="22"/>
         <image name="start_later_en" width="98" height="99"/>
         <image name="start_now_en" width="98" height="99"/>
         <image name="statisics_bg" width="298" height="196"/>
@@ -1161,6 +1161,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="wl7-AJ-ruu"/>
-        <segue reference="IsP-1t-QkO"/>
+        <segue reference="aGM-L8-aaO"/>
     </inferredMetricsTieBreakers>
 </document>
