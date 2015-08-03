@@ -57,6 +57,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
         allTasks = self.sortTasks(allTasks)!
         self.tableView.reloadData()
+        self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
     }
     
     func setupSampleTask() {
@@ -284,6 +285,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.reloadTableViewWithTimeInterval(0.0)
     }
     
+    
+    
     // MARK: - SWTableViewCellDelegate
     
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
@@ -491,7 +494,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     
     func disableTableViewHeaderView() {
-        println("func disableTableViewHeaderView()")
         let tempTableViewHeader: TableViewHeader = self.tableViewHeader?.copy() as! TableViewHeader
         self.view.addSubview(tempTableViewHeader)
         tempTableViewHeader.moveCenterContentView()
