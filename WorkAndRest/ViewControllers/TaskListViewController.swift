@@ -20,21 +20,22 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     var taskRunner: TaskRunner!
     var handleType = HandleType.None
     var taskRunnerManager: TaskRunnerManager?
-    var headerView: TaskListHeaderView!
+    var tableViewHeader: TableViewHeader?
+    
     var taskManager = TaskManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.registerNib(UINib(nibName: "TaskListItemCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
-        self.tableView.tableHeaderView = self.createHeaderView()
+        self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
         self.tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, 1, 50))
         
         self.taskRunnerManager = TaskRunnerManager.sharedInstance
         self.taskRunnerManager!.delegate = self
         
         self.taskRunner = TaskRunner.sharedInstance
-        self.headerView.delegate = self
+        //self.headerView.delegate = self
         
         self.taskManager.delegate = self
         
@@ -43,20 +44,40 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             return
         }
         allTasks = self.sortTasks(result!)!
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setupSampleTask"), name: "introDidFinish", object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         if self.taskRunner.isRunning {
-            let task = allTasks.filter { $0.taskId == self.taskRunner.runningTaskID() }.first!
+            let task = allTasks.filter { $0.taskId == self.taskRunner.taskItem.taskId }.first!
             task.lastUpdateTime = self.taskRunner.taskItem.lastUpdateTime
         }
         allTasks = self.sortTasks(allTasks)!
         self.tableView.reloadData()
-        self.refreshHeaderView()
+        self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
     }
     
+    func setupSampleTask() {
+        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK) {
+            return
+        }
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+            Int64(0.9 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue(), {
+            let sampleTask = self.createSampleTask()
+            let success = self.taskManager.addTask(sampleTask)
+            if success {
+                self.insertItem(sampleTask, withRowAnimation: UITableViewRowAnimation.Left)
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK)
+            }
+            return
+        })
+        
+    }
     
     func headerHeight() -> CGFloat {
         if WARDevice.getPhoneType() == PhoneType.iPhone4 {
@@ -68,6 +89,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func createTaskButtonClick(sender: AnyObject) {
+        self.createTask()
+    }
     
     // MARK: - Table view data source
     
@@ -87,7 +111,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         let task = allTasks[indexPath.row]
         
         let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath) as! TaskListItemCell
-        cell.taskEventDelegate = self
+        cell.custom_delegate = self
         cell.delegate = self
         if task.completed {
             cell.leftUtilityButtons = self.leftUtilityButtonsByTaskState(TaskState.Completed) as [AnyObject]
@@ -110,28 +134,23 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             break
             
         case .Ready:
-            if self.taskRunner.readyTaskID() == task.taskId {
+            if self.taskRunner.isSameTask(task) {
                 self.taskRunner.delegate = cell
                 cell.start()
             }
             break
             
         case .Running:
-            if self.taskRunner.runningTaskID() == task.taskId {
+            if self.taskRunner.isSameTask(task) {
                 self.taskRunner.delegate = cell
                 cell.switchToRunningPoint()
                 cell.switchViewToRunningState()
-                
-                if cell.taskItem!.minutes * 60 - 2 >= self.taskRunner.seconds {
-                    cell.taskItemBaseView.switchToBreakButton()
-                    self.headerView.flipToTimerViewSide()
-                }
+                self.enableTableViewHeaderViewWithAnimate( self.tableViewHeader == nil ? true : false)
+                cell.taskItemBaseView.switchToBreakButton()
                 
             } else {
                 // Some other task is running now. so I need to disable you... I'm sorry... :(
                 if task.completed {
-                    //                    cell.taskItemBaseView.refreshViewByState(TaskState.Completed, animation: true)
-                    //cell.disable(TaskState.Completed, animation: true)
                     cell.reset(TaskState.Completed, animation: true)
                 } else {
                     cell.reset(TaskState.Normal, animation: true)
@@ -152,7 +171,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             let task = allTasks[indexPath.row]
-            //            DBOperate.deleteTask(task)
             self.taskManager.removeTask(task)
             let indexPaths = [indexPath]
             self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
@@ -194,8 +212,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     func addTaskViewController(controller: TaskTitleViewController!, didFinishEditingTask item: Task!) {
         handleType = HandleType.AddOrEdit
-        //        item.lastUpdateTime = NSDate()
-        //        DBOperate.updateTask(item)
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: item, repeats: false)
     }
     
@@ -216,7 +232,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
             if runNow {
                 self.taskRunner.setupTaskItem(item)
-                self.refreshHeaderView()
+                //self.refreshHeaderView()
                 self.reloadTableViewWithTimeInterval(1.0)
             }
         }
@@ -224,7 +240,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     // MARK: - TaskListItemCellDelegate
     
-    func readyToStart(sender: TaskListItemCell!) {
+    func ready(sender: TaskListItemCell!) {
         if self.taskRunner!.isRunning {
             return
         }
@@ -232,29 +248,33 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.handleType = HandleType.Start
         
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: sender.taskItem, repeats: false)
+        
+        //        self.tableView.tableHeaderView = self.createHeaderView()
+        self.setupHeaderView()
+        self.tableViewHeader?.updateTime(sender.taskItem!.getTimerMinutesString(), seconds: sender.taskItem!.getTimerSecondsString())
+        self.enableTableViewHeaderViewWithAnimate(true)
+        
+        sender.taskItemBaseView.switchToBreakButton()
     }
     
     func tick(sender: TaskListItemCell!, seconds: Int) {
-        self.headerView.updateTime(self.getTimerMinutesStringBySeconds(seconds), seconds: self.getTimerSecondsStringBySeconds(seconds))
-        
-        if sender.taskItem!.minutes * 60 - 2 == seconds {
-            self.headerView.flipToTimerViewSide()
-            sender.taskItemBaseView.switchToBreakButton()
+        if self.tableViewHeader == nil {
+            self.enableTableViewHeaderViewWithAnimate(true)
         }
         
+        self.tableViewHeader!.updateTime(self.getTimerMinutesStringBySeconds(seconds), seconds: self.getTimerSecondsStringBySeconds(seconds))
     }
     
     func completed(sender: TaskListItemCell!) {
-        //        self.recordWork(true)
         self.reloadTableViewWithTimeInterval(0.5)
-        self.headerView.flipToStartViewSide()
+        self.disableTableViewHeaderView()
         
         self.taskManager.completeOneTimer(self.taskRunner.taskItem)
     }
     
     func breaked(sender: TaskListItemCell!) {
-        self.reloadTableViewWithTimeInterval(0.0)
-        self.headerView.flipToStartViewSide()
+        self.reloadTableViewWithTimeInterval(0.5)
+        self.disableTableViewHeaderView()
         
         self.taskManager.breakOneTimer(self.taskRunner.taskItem)
     }
@@ -264,6 +284,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         baseItem.completed = false
         self.reloadTableViewWithTimeInterval(0.0)
     }
+    
+    
     
     // MARK: - SWTableViewCellDelegate
     
@@ -289,8 +311,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
                 self.taskManager.markDoneTask(task)
                 
                 if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownMarkDoneTutorial) {
-                        self.showTutorial()
-                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownMarkDoneTutorial)
+                    self.showTutorial()
+                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownMarkDoneTutorial)
                 }
                 
                 // Refresh the tableview.
@@ -346,11 +368,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     // MARK: - TaskListHeaderViewDelegate
     
     func taskListHeaderViewStartNewTask(sender: TaskListHeaderView) {
-        if self.taskRunner.isRunning {
-            println("There is a task is running, you can not create a new task.")
-            return
-        }
-        self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
+        // self.createTask()
     }
     
     // MARK: - TaskManagerDelegate
@@ -365,6 +383,14 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     // MARK: - Methods
     
+    func createTask() {
+        if self.taskRunner.isRunning {
+            println("There is a task is running, you can not create a new task.")
+            return
+        }
+        self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
+    }
+    
     func loadAllTasks() -> Array<Task>? {
         return self.taskManager.loadTaskList()
     }
@@ -375,50 +401,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     let HEADERVIEW_OFFSET: CGFloat = 8
     let LINE_HEIGHT: CGFloat = 0.5
-    
-    func createHeaderView() -> UIView {
-        let baseView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.headerHeight() + HEADERVIEW_OFFSET))
-        //baseView.backgroundColor = UIColor.whiteColor()
-        headerView = TaskListHeaderView(frame: CGRectMake(0, 0, baseView.frame.size.width, self.headerHeight()))
-        baseView.addSubview(headerView)
-        
-        headerView.mas_makeConstraints { make in
-            make.width.equalTo()(baseView.frame.size.width)
-            make.height.equalTo()(self.headerHeight())
-            //            make.centerX.equalTo()(baseView.mas_centerX)
-            make.top.equalTo()(baseView.mas_top)
-            //            make.centerY.equalTo()(baseView.mas_centerY)
-            return ()
-        }
-        headerView.delegate = self
-        
-        let line = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, LINE_HEIGHT))
-        line.backgroundColor = UIColor(red: 206/255, green: 206/255, blue: 206/255, alpha: 0.8)
-        baseView.addSubview(line)
-        line.mas_makeConstraints { (make) -> Void in
-            make.bottom.equalTo()(baseView.mas_bottom).offset()(-self.HEADERVIEW_OFFSET)
-            make.width.equalTo()(baseView.frame.size.width)
-            make.height.equalTo()(self.LINE_HEIGHT)
-            return ()
-        }
-        return baseView
-    }
-    
-    func refreshHeaderView() {
-        if self.taskRunner.taskItem == nil && self.headerView.isInTimersViewSide(){
-            self.headerView.flipToStartViewSide()
-            return
-        }
-        
-        if self.taskRunner.taskItem == nil {
-            return
-        }
-        
-        self.headerView.updateTime(self.getTimerMinutesStringBySeconds(self.taskRunner.seconds), seconds: self.getTimerSecondsStringBySeconds(self.taskRunner.seconds))
-        if self.taskRunner.taskItem.minutes * 10 - 2 >= self.taskRunner.seconds && !self.headerView.isInTimersViewSide() {
-            self.headerView.flipToTimerViewSide()
-        }
-    }
     
     func insertItem(val: NSTimer) {
         let item = val.userInfo as! Task
@@ -477,12 +459,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.tableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
     }
     
-    func newTaskButtonClick(sender: UIButton) {
-        //self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
-        
-        
-    }
-    
     func reloadTableViewWithTimeInterval(ti: NSTimeInterval) {
         NSTimer.scheduledTimerWithTimeInterval(ti, target: self, selector: Selector("reload"), userInfo: nil, repeats: false)
     }
@@ -515,5 +491,50 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.clearColor(), normalIcon: UIImage(named: "swipe_item_delete"), selectedIcon: UIImage(named: "swipe_item_delete_press"))
         
         return leftUtilityButtons
+    }
+    
+    func disableTableViewHeaderView() {
+        let tempTableViewHeader: TableViewHeader = self.tableViewHeader?.copy() as! TableViewHeader
+        self.view.addSubview(tempTableViewHeader)
+        tempTableViewHeader.moveCenterContentView()
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            
+            tempTableViewHeader.moveOutContentView()
+            self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
+            
+            
+            }) { (finished) -> Void in
+                //self.headerView = nil
+                tempTableViewHeader.removeFromSuperview()
+        }
+    }
+    
+    func enableTableViewHeaderViewWithAnimate(animate: Bool) {
+        println("func enableTableViewHeaderViewWithAnimate(\(animate))")
+        if self.tableViewHeader == nil {
+            self.setupHeaderView()
+        }
+        self.tableViewHeader?.moveOutContentView()
+        
+        UIView.animateWithDuration(animate ? 0.5 : 0.0, animations: { () -> Void in
+            self.tableView.tableHeaderView = self.tableViewHeader
+            self.tableViewHeader?.moveCenterContentView()
+            }) { (finished) -> Void in
+        }
+    }
+    
+    func setupHeaderView() {
+        self.tableViewHeader = TableViewHeader(frame: CGRectMake(0, 0, self.view.frame.width, 100))
+    }
+    
+    func createSampleTask() -> Task {
+        let sampleTask = Task()
+        sampleTask.taskId = 0
+        sampleTask.title = NSLocalizedString("Task Sample", comment: "")
+        sampleTask.minutes = 1
+        sampleTask.completed = false
+        sampleTask.expect_times = 3
+        sampleTask.finished_times = 0
+        return sampleTask
     }
 }

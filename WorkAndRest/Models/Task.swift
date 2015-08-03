@@ -52,4 +52,22 @@ class Task: NSObject, NSCopying {
         copy.completedTime = self.completedTime
         return copy
     }
+    
+    
+    func getMinutes() -> Int {
+        return self.minutes
+    }
+    
+    func getSeconds() -> Int {
+        return self.minutes * 60
+    }
+    
+    func getTimerMinutesString() -> String {
+        return String(format: "%02d", self.getSeconds() % 3600 / 60)
+    }
+    
+    func getTimerSecondsString() -> String {
+        return String(format: "%02d", self.getSeconds() % 3600 % 60)
+    }
+    
 }

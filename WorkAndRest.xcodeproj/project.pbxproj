@@ -18,6 +18,8 @@
 		6415C60B1A9234D400A9FBCA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6415C60A1A9234D400A9FBCA /* SettingsViewController.swift */; };
 		641B4A881AAC30EB0078E906 /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 641B4A871AAC30EB0078E906 /* SMPageControl.m */; };
 		64228ECA18FE2ED300461550 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64228ECC18FE2ED300461550 /* Localizable.strings */; };
+		64293E851B6070360067BF05 /* BaseTranslucentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64293E841B6070360067BF05 /* BaseTranslucentViewController.swift */; };
+		64293E871B6071BA0067BF05 /* ExplainTomatoTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64293E861B6071BA0067BF05 /* ExplainTomatoTimeViewController.swift */; };
 		6434827218C5D344009BF110 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827118C5D344009BF110 /* Foundation.framework */; };
 		6434827418C5D344009BF110 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827318C5D344009BF110 /* CoreGraphics.framework */; };
 		6434827618C5D344009BF110 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6434827518C5D344009BF110 /* UIKit.framework */; };
@@ -57,6 +59,9 @@
 		649D54081A849978002593F8 /* WARDevide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D54071A849978002593F8 /* WARDevide.swift */; };
 		64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */; };
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
+		64A6D00E1B66ECE4000D7F2E /* QuotationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6D00D1B66ECE4000D7F2E /* QuotationManager.swift */; };
+		64A6D0101B66ED22000D7F2E /* Quotations-en.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64A6D00F1B66ED22000D7F2E /* Quotations-en.plist */; };
+		64A6D0121B66FE0A000D7F2E /* Quotations-cn.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64A6D0111B66FE0A000D7F2E /* Quotations-cn.plist */; };
 		64B563111AA7FC5700098532 /* StatisticsLocker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64B563101AA7FC5700098532 /* StatisticsLocker.xib */; };
 		64B563131AA7FC7000098532 /* StatisticsLocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B563121AA7FC7000098532 /* StatisticsLocker.swift */; };
 		64B563151AA8238300098532 /* ApplicationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B563141AA8238300098532 /* ApplicationStateManager.swift */; };
@@ -71,7 +76,6 @@
 		64E3C1AB1A8752C400418426 /* TaskListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E3C1AA1A8752C400418426 /* TaskListHeaderView.swift */; };
 		64E3C1AD1A8752CF00418426 /* TaskListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64E3C1AC1A8752CF00418426 /* TaskListHeaderView.xib */; };
 		64EAEC2D1A7E37F70026C748 /* TaskRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */; };
-		64EBF6251AA9572C00ACA139 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EBF6241AA9572C00ACA139 /* StoreKit.framework */; };
 		64EBF6271AA9591200ACA139 /* ProductsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EBF6261AA9591200ACA139 /* ProductsManager.swift */; };
 		C33562B61B3140950051784D /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B51B3140950051784D /* InterfaceController.swift */; };
 		C33562B81B3140950051784D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B71B3140950051784D /* NotificationController.swift */; };
@@ -83,6 +87,7 @@
 		C33562CD1B3140950051784D /* WorkAndRest WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C33562B01B3140950051784D /* WorkAndRest WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C354053C1B560C80008111C2 /* IdentifierDef.swift in Sources */ = {isa = PBXBuildFile; fileRef = C354053B1B560C80008111C2 /* IdentifierDef.swift */; };
 		C354053F1B560DA1008111C2 /* IdentifierDef.swift in Sources */ = {isa = PBXBuildFile; fileRef = C354053E1B560DA1008111C2 /* IdentifierDef.swift */; };
+		C36E43381B67707D00834902 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36E43371B67707D00834902 /* TableViewHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +146,8 @@
 		64228ECB18FE2ED300461550 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64228ECD18FE2EE300461550 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64228ECE18FE2EE300461550 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		64293E841B6070360067BF05 /* BaseTranslucentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTranslucentViewController.swift; sourceTree = "<group>"; };
+		64293E861B6071BA0067BF05 /* ExplainTomatoTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplainTomatoTimeViewController.swift; sourceTree = "<group>"; };
 		6434826E18C5D344009BF110 /* WorkAndRest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkAndRest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6434827118C5D344009BF110 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6434827318C5D344009BF110 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -189,6 +196,9 @@
 		649D54071A849978002593F8 /* WARDevide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARDevide.swift; sourceTree = "<group>"; };
 		64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		64A6D00D1B66ECE4000D7F2E /* QuotationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotationManager.swift; sourceTree = "<group>"; };
+		64A6D00F1B66ED22000D7F2E /* Quotations-en.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Quotations-en.plist"; sourceTree = "<group>"; };
+		64A6D0111B66FE0A000D7F2E /* Quotations-cn.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Quotations-cn.plist"; sourceTree = "<group>"; };
 		64B563101AA7FC5700098532 /* StatisticsLocker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticsLocker.xib; sourceTree = "<group>"; };
 		64B563121AA7FC7000098532 /* StatisticsLocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsLocker.swift; sourceTree = "<group>"; };
 		64B563141AA8238300098532 /* ApplicationStateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationStateManager.swift; sourceTree = "<group>"; };
@@ -203,7 +213,6 @@
 		64E3C1AA1A8752C400418426 /* TaskListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListHeaderView.swift; sourceTree = "<group>"; };
 		64E3C1AC1A8752CF00418426 /* TaskListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskListHeaderView.xib; sourceTree = "<group>"; };
 		64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRunner.swift; sourceTree = "<group>"; };
-		64EBF6241AA9572C00ACA139 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		64EBF6261AA9591200ACA139 /* ProductsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsManager.swift; sourceTree = "<group>"; };
 		C33562B01B3140950051784D /* WorkAndRest WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WorkAndRest WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C33562B31B3140950051784D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -220,6 +229,7 @@
 		C354053E1B560DA1008111C2 /* IdentifierDef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifierDef.swift; sourceTree = "<group>"; };
 		C35405401B560E37008111C2 /* WorkAndRest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WorkAndRest.entitlements; sourceTree = "<group>"; };
 		C35405411B560E84008111C2 /* WorkAndRest WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "WorkAndRest WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		C36E43371B67707D00834902 /* TableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		C373B9BC1B5504F600C8500F /* WorkAndRest WatchKit Extension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WorkAndRest WatchKit Extension-Bridging-Header.h"; sourceTree = "<group>"; };
 		C5A3E743E49F064E285AF8F1 /* Pods-WorkAndRest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkAndRest.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkAndRest/Pods-WorkAndRest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,7 +239,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64EBF6251AA9572C00ACA139 /* StoreKit.framework in Frameworks */,
 				64012C951900D68F006FC2B2 /* AudioToolbox.framework in Frameworks */,
 				64012C8E1900B8C2006FC2B2 /* SystemConfiguration.framework in Frameworks */,
 				64012C8C1900B8B4006FC2B2 /* CFNetwork.framework in Frameworks */,
@@ -338,7 +347,6 @@
 		6434827018C5D344009BF110 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				64EBF6241AA9572C00ACA139 /* StoreKit.framework */,
 				64012C941900D68F006FC2B2 /* AudioToolbox.framework */,
 				64012C8D1900B8C2006FC2B2 /* SystemConfiguration.framework */,
 				64012C8B1900B8B4006FC2B2 /* CFNetwork.framework */,
@@ -381,6 +389,8 @@
 				645FDE0F1A7D9BA9002EC8EF /* Sounds */,
 				64228ECC18FE2ED300461550 /* Localizable.strings */,
 				6434827A18C5D344009BF110 /* InfoPlist.strings */,
+				64A6D00F1B66ED22000D7F2E /* Quotations-en.plist */,
+				64A6D0111B66FE0A000D7F2E /* Quotations-cn.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -400,6 +410,8 @@
 				6493C5A71A9032890036B5AE /* HelpViewController.swift */,
 				6415C60A1A9234D400A9FBCA /* SettingsViewController.swift */,
 				648311BD1A96B8E100F445AE /* StatisticsViewController.swift */,
+				64293E841B6070360067BF05 /* BaseTranslucentViewController.swift */,
+				64293E861B6071BA0067BF05 /* ExplainTomatoTimeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -420,6 +432,7 @@
 				64E3C1AA1A8752C400418426 /* TaskListHeaderView.swift */,
 				64B563101AA7FC5700098532 /* StatisticsLocker.xib */,
 				64B563121AA7FC7000098532 /* StatisticsLocker.swift */,
+				C36E43371B67707D00834902 /* TableViewHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -500,6 +513,7 @@
 				64802BF01AA6B7FF00B49E2C /* IconBadgeNumberManager.swift */,
 				64B563141AA8238300098532 /* ApplicationStateManager.swift */,
 				64EBF6261AA9591200ACA139 /* ProductsManager.swift */,
+				64A6D00D1B66ECE4000D7F2E /* QuotationManager.swift */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -647,6 +661,9 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
 						};
 					};
 					6434828E18C5D344009BF110 = {
@@ -694,8 +711,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64A6D0101B66ED22000D7F2E /* Quotations-en.plist in Resources */,
 				649D54041A84521D002593F8 /* TaskTitleView.xib in Resources */,
 				6434828A18C5D344009BF110 /* Images.xcassets in Resources */,
+				64A6D0121B66FE0A000D7F2E /* Quotations-cn.plist in Resources */,
 				64E3C1AD1A8752CF00418426 /* TaskListHeaderView.xib in Resources */,
 				649893971A842F8B0091822A /* CompletionCycleView.xib in Resources */,
 				6434827C18C5D344009BF110 /* InfoPlist.strings in Resources */,
@@ -808,6 +827,7 @@
 			files = (
 				64EBF6271AA9591200ACA139 /* ProductsManager.swift in Sources */,
 				64C99A5D1A7905A300F1D796 /* DBOperate.swift in Sources */,
+				64A6D00E1B66ECE4000D7F2E /* QuotationManager.swift in Sources */,
 				64B563131AA7FC7000098532 /* StatisticsLocker.swift in Sources */,
 				64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */,
 				648A27D21AAD4DBD0002BF04 /* TaskDetailsTutorialViewController.swift in Sources */,
@@ -820,6 +840,7 @@
 				645FDE0E1A7D98FB002EC8EF /* AppDelegate.swift in Sources */,
 				C354053C1B560C80008111C2 /* IdentifierDef.swift in Sources */,
 				649308571A7AE65C00480677 /* BaseViewController.swift in Sources */,
+				C36E43381B67707D00834902 /* TableViewHeader.swift in Sources */,
 				647603041AA9CD4500B1373E /* CMPopTipView.m in Sources */,
 				646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */,
 				6497FE561A75A77800174307 /* Work.swift in Sources */,
@@ -834,6 +855,7 @@
 				64B563151AA8238300098532 /* ApplicationStateManager.swift in Sources */,
 				6458B66B1A7722BD004FD3D9 /* RootViewController.swift in Sources */,
 				6497FC6C1A85C5F70098535D /* StartViewController.swift in Sources */,
+				64293E871B6071BA0067BF05 /* ExplainTomatoTimeViewController.swift in Sources */,
 				649308591A7AE68200480677 /* BaseTableViewController.swift in Sources */,
 				648311BE1A96B8E100F445AE /* StatisticsViewController.swift in Sources */,
 				64802BF11AA6B7FF00B49E2C /* IconBadgeNumberManager.swift in Sources */,
@@ -841,6 +863,7 @@
 				6415C60B1A9234D400A9FBCA /* SettingsViewController.swift in Sources */,
 				649308531A7AE22D00480677 /* TaskListItemCell.swift in Sources */,
 				64B67F151A8063D0002127BC /* TimeSelectorView.swift in Sources */,
+				64293E851B6070360067BF05 /* BaseTranslucentViewController.swift in Sources */,
 				649893951A842F790091822A /* CompletionCycleView.swift in Sources */,
 				64CF8A2E1A8EE48F000565C4 /* TaskManager.swift in Sources */,
 				649893931A83959B0091822A /* LockNotifierCallback.m in Sources */,

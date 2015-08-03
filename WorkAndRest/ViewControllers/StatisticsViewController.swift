@@ -98,14 +98,16 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.loaDataSourceBySegmentedControlSelectedIndex(self.segmentedControl.selectedSegmentIndex)
         self.chartView.reloadData()
         
+        /*
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownChartTutorial) {
             self.showTurorial()
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownChartTutorial)
         }
+        */
     }
     
+    /*
     func showTurorial() {
-        
         let delayTime = dispatch_time(DISPATCH_TIME_NOW,
             Int64(0.1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue(), {
@@ -114,6 +116,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         })
         
     }
+    */
     
     func lockTheChart() {
 //        let locker = UIImageView(image: UIImage(named: "lock chart"))
@@ -126,8 +129,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     func needLockTheChart() -> Bool {
-        return ApplicationStateManager.sharedInstance.isExpired() &&
-            ApplicationStateManager.sharedInstance.versionType() == .Free
+        return false;
+        
+        // return ApplicationStateManager.sharedInstance.isExpired() &&
+        //    ApplicationStateManager.sharedInstance.versionType() == .Free
     }
     
     // MARK: - Events

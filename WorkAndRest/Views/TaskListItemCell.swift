@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TaskListItemCellDelegate {
-    func readyToStart(sender: TaskListItemCell!)
+    func ready(sender: TaskListItemCell!)
     func tick(sender: TaskListItemCell!, seconds: Int)
     func completed(sender: TaskListItemCell!)
     func breaked(sender: TaskListItemCell!)
@@ -26,7 +26,7 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     var seconds = 0
     var taskItem: Task?
     var taskRunner: TaskRunner?
-    var taskEventDelegate: TaskListItemCellDelegate?
+    var custom_delegate: TaskListItemCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -90,14 +90,14 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     }
     
     func changeImageWithAnimations(view: UIView, duration: NSTimeInterval) {
-        UIView.transitionWithView(self.taskItemBaseView.startButton,
+        UIView.transitionWithView(self.taskItemBaseView.button,
             duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
                 if self.taskItem!.completed {
-                    self.taskItemBaseView.startButton.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
+                    self.taskItemBaseView.button.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
                 } else {
-                    self.taskItemBaseView.startButton.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
+                    self.taskItemBaseView.button.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
                 }
             }, completion: nil)
         
@@ -106,7 +106,8 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     // MARK: - TaskRunnerDelegate
     
     func started(sender: TaskRunner!) {
-        self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
+        //self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
+        self.taskItemBaseView.switchToBreakButton()
         self.switchViewToRunningState()
         self.switchToRunningPoint()
     }
@@ -130,18 +131,19 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     }
     
     func tick(sender: TaskRunner!) {
-        self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
-        self.taskEventDelegate?.tick(self, seconds: sender.seconds)
+//        self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
+        self.taskItemBaseView.switchToBreakButton()
+        self.custom_delegate?.tick(self, seconds: sender.seconds)
     }
     
     func completed(sender: TaskRunner!) {
         self.taskItemBaseView.refreshViewByState(.Normal)
-        self.taskEventDelegate?.completed(self)
+        self.custom_delegate?.completed(self)
     }
     
     func breaked(sender: TaskRunner!) {
         self.taskItemBaseView.refreshViewByState(.Normal)
-        self.taskEventDelegate!.breaked(self)
+        self.custom_delegate!.breaked(self)
     }
     
     // MARK: - TaskItemBaseViewDelegate
@@ -153,7 +155,8 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
             // But if some other task is running, you can not start it; if the running task is youself, then break youself.
             
             if self.taskRunner!.isRunning {
-                if self.taskRunner!.runningTaskID() == self.taskItem!.taskId {
+                // if self.taskRunner!.runningTaskID() == self.taskItem!.taskId {
+                if self.taskRunner!.isSameTask(self.taskItem!) {
                     self.breakIt()
                 } else {
                     println("You can not start it, some other task is running!")
@@ -164,7 +167,7 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
             // No one is running, setup the task item and then you can start now! go go go!
             self.taskRunner!.setupTaskItem(self.taskItem!)
             if self.taskRunner!.canStart() {
-                self.taskEventDelegate?.readyToStart(self)
+                self.custom_delegate?.ready(self)
             }
             
         }
@@ -174,7 +177,7 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
 //            self.taskItem!.completed = false
 //            DBOperate.updateTask(self.taskItem!)
             TaskManager.sharedInstance.activeTask(self.taskItem!)
-            self.taskEventDelegate?.activated(self)
+            self.custom_delegate?.activated(self)
             
             if self.taskRunner!.isRunning {
                 // Some task is running, you can active it still.

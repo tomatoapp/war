@@ -19,7 +19,7 @@ protocol TaskItemBaseViewDelegate {
 class TaskItemBaseView: UIView {
     
     var delegate: TaskItemBaseViewDelegate?
-    var ANIMATION_DURATION = 0.5
+    var ANIMATION_DURATION = 0.3
     var seconds = 0
     var isBreakButtonEnable = true
     var title = ""
@@ -28,7 +28,7 @@ class TaskItemBaseView: UIView {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var bgImageView: UIImageView!
-    @IBOutlet var startButton: UIButton!
+    @IBOutlet var button: UIButton!
     @IBOutlet var timerLabel: UILabel!
     
     @IBAction func startButtonClicked(sender: AnyObject) {
@@ -70,7 +70,7 @@ class TaskItemBaseView: UIView {
             UIView.animateWithDuration(animation ? ANIMATION_DURATION : 0,
                 animations: { () -> Void in
                     self.timerLabel.alpha = 0
-                    self.startButton.alpha = 1
+                    self.button.alpha = 1
             })
             
             UIView.transitionWithView(self.bgImageView,
@@ -79,25 +79,16 @@ class TaskItemBaseView: UIView {
                 animations: { () -> Void in
                     self.bgImageView.image = UIImage(named: "list_item_normal_bg")
                 }, completion: nil)
-            UIView.transitionWithView(self.startButton,
+            UIView.transitionWithView(self.button,
                 duration: animation ? ANIMATION_DURATION : 0,
                 options: .TransitionCrossDissolve,
                 animations: { () -> Void in
-                    self.startButton.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
+                    self.button.setImage(UIImage(named: "start"), forState: UIControlState.Normal)
                 }, completion: nil)
             
             break
             
         case .Running:
-            self.timerLabel.text = self.getTimerString()
-            UIView.animateWithDuration(animation ? ANIMATION_DURATION : 0,
-                animations: { () -> Void in
-                    self.timerLabel.alpha = 1
-                    self.startButton.alpha = 0
-                })
-                { (finished: Bool) -> Void in
-            }
-            
             UIView.transitionWithView(self.bgImageView,
                 duration: animation ? ANIMATION_DURATION : 0,
                 options: .TransitionCrossDissolve,
@@ -110,16 +101,16 @@ class TaskItemBaseView: UIView {
             UIView.animateWithDuration(animation ? ANIMATION_DURATION : 0,
                 animations: { () -> Void in
                     self.timerLabel.alpha = 0
-                    self.startButton.alpha = 1
+                    self.button.alpha = 1
                     self.refreshTitle(self.title, withTextStrikethrough: true)
             })
 
             self.bgImageView.image = UIImage(named: "list_item_finished_bg")
-            UIView.transitionWithView(self.startButton,
+            UIView.transitionWithView(self.button,
                 duration: animation ? ANIMATION_DURATION : 0,
                 options: .TransitionCrossDissolve,
                 animations: { () -> Void in
-                    self.startButton.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
+                    self.button.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
                 }, completion: nil)
             break
             
@@ -128,29 +119,29 @@ class TaskItemBaseView: UIView {
         }
     }
     
-    func refreshViewBySeconds(seconds: Int) {
-        self.seconds = seconds
-        self.timerLabel.text = self.getTimerString()
-    }
+//    func refreshViewBySeconds(seconds: Int) {
+//        self.seconds = seconds
+//        self.timerLabel.text = self.getTimerString()
+//    }
     
-    func getTimerString() -> String {
-        return String(format: "%02d:%02d", arguments: [self.seconds % 3600 / 60, self.seconds % 3600 % 60])
-    }
+//    func getTimerString() -> String {
+//        return String(format: "%02d:%02d", arguments: [self.seconds % 3600 / 60, self.seconds % 3600 % 60])
+//    }
     
     func switchToBreakButton() {
         println("switchToBreakButton")
         UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in
                 self.timerLabel.alpha = 0
-                self.startButton.alpha = 1
+                self.button.alpha = 1
             })
             { (finished: Bool) -> Void in
         }
-        UIView.transitionWithView(self.startButton,
+        UIView.transitionWithView(self.button,
             duration: ANIMATION_DURATION,
             options: .TransitionCrossDissolve,
             animations: { () -> Void in
-                self.startButton.setImage(UIImage(named: "break"), forState: UIControlState.Normal)
+                self.button.setImage(UIImage(named: "break"), forState: UIControlState.Normal)
             })
             { (finished: Bool) -> Void in
         }
@@ -161,7 +152,7 @@ class TaskItemBaseView: UIView {
         
         UIView.animateWithDuration(animation ? ANIMATION_DURATION : 0,
             animations: { () -> Void in
-                self.startButton.alpha = 0.5
+                self.button.alpha = 0.5
         })
     }
 }

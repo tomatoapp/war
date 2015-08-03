@@ -30,7 +30,7 @@
 "4tU-Fj-6eA.text" = "任务名称";
 
 /* Class = "IBUIButton"; normalTitle = "Start"; ObjectID = "8Sa-Oz-OYd"; */
-"8Sa-Oz-OYd.normalTitle" = "开始";
+"8Sa-Oz-OYd.normalTitle" = "保存";
 
 /* Class = "IBUIBarButtonItem"; title = "Settings"; ObjectID = "9Br-aj-7jQ"; */
 "9Br-aj-7jQ.title" = "设置";
@@ -181,3 +181,14 @@
 
 /* Class = "IBUIBarButtonItem"; text = "Settings"; ObjectID = "LqU-ow-c4j"; */
 "LqU-ow-c4j.title" = "设置";
+
+/* Class = "IBUILabel"; text = "MInutes"; ObjectID = "AJc-Sd-tyd" */
+"AJc-Sd-tyd.text" = "分钟";
+
+/* Class = "IBUILabel"; text = "That's Right"; ObjectID = "GNy-lN-Wrc" */
+"GNy-lN-Wrc.text" = "这是合理的";
+
+/* Class = "IBUILabel"; text = "That's Right Description"; ObjectID = "VbP-fd-RmU" */
+"VbP-fd-RmU.text" = "警方立即啊的封疆大吏；房间；阿里放假啊理解法律将阿里咖啡机阿里科技法律；激发了；激发理解阿里可减肥阿里；激发了；就阿里看；假阿里空间阿里看世界拉开；假卡了；假离开；阿三";
+/* Class = "IBUILabel"; text = "TERMS"; ObjectID = "4yQ-lP-ynE" */
+"4yQ-lP-ynE.text" = "Pomodoro™ 和 The Pomodoro Technique™ 都是 Francesco Cirillo 所注册及拥有的商标。此应用程序与 Pomodoro™、 The Pomodoro Technique™ 以及 Fancesco Cirillo 无关，也没有被上述人员声明认可。";

@@ -50,6 +50,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
     func introDidFinish(introView: EAIntroView!) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.hideIconWithAnimation()
+        NSNotificationCenter.defaultCenter().postNotificationName("introDidFinish", object: nil)
     }
     
     // MARK: - UITabBarControllerDelegate
@@ -82,24 +83,24 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         self.navigationController?.navigationBarHidden = true
         var pages = [EAIntroPage]()
         
-        let page1 = EAIntroPage()
-        page1.title = NSLocalizedString("guide1Title", comment: "")
-        page1.titleFont = UIFont.systemFontOfSize(24)
-        page1.titlePositionY = self.view.frame.size.height/2 + 180 + 20
-        page1.titleColor = UIColor.blackColor()
-        
-        page1.desc = NSLocalizedString("guide1SubTitle", comment: "")
-        page1.descColor = UIColor(red: 110/255, green: 110/255, blue: 110/255, alpha: 1.0)
-        page1.descFont = UIFont.systemFontOfSize(15)
-        page1.descPositionY = self.view.frame.size.height/2 + 150 + 20
-        page1.descWidth = self.view.frame.size.width - 20
-        
-        page1.titleIconView = UIImageView(image: UIImage(named: "guide1Image"))
-//        page1.titleIconView.sizeToFit()
-        page1.titleIconView.frame = CGRectMake(0, 0, self.view.frame.size.width-6, self.view.frame.size.width)
-        page1.titleIconView.contentMode = UIViewContentMode.ScaleAspectFit
-        page1.titleIconPositionY = self.view.frame.size.height/2 - 100 - 30
-        pages.append(page1)
+//        let page1 = EAIntroPage()
+//        page1.title = NSLocalizedString("guide1Title", comment: "")
+//        page1.titleFont = UIFont.systemFontOfSize(24)
+//        page1.titlePositionY = self.view.frame.size.height/2 + 180 + 20
+//        page1.titleColor = UIColor.blackColor()
+//        
+//        page1.desc = NSLocalizedString("guide1SubTitle", comment: "")
+//        page1.descColor = UIColor(red: 110/255, green: 110/255, blue: 110/255, alpha: 1.0)
+//        page1.descFont = UIFont.systemFontOfSize(15)
+//        page1.descPositionY = self.view.frame.size.height/2 + 150 + 20
+//        page1.descWidth = self.view.frame.size.width - 20
+//        
+//        page1.titleIconView = UIImageView(image: UIImage(named: "guide1Image"))
+////        page1.titleIconView.sizeToFit()
+//        page1.titleIconView.frame = CGRectMake(0, 0, self.view.frame.size.width-6, self.view.frame.size.width)
+//        page1.titleIconView.contentMode = UIViewContentMode.ScaleAspectFit
+//        page1.titleIconPositionY = self.view.frame.size.height/2 - 100 - 30
+//        pages.append(page1)
         
         let page2 = EAIntroPage()
         page2.title = NSLocalizedString("guide2Title", comment: "")
@@ -168,8 +169,8 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         introView?.swipeToExit = false
         introView?.showSkipButtonOnlyOnLastPage = true
         introView?.skipButtonAlignment = EAViewAlignment.Center
-        introView?.skipButtonY = 200
-        introView?.skipButton.titleLabel?.font = UIFont.systemFontOfSize(23)
+        introView?.skipButtonY = 150
+        introView?.skipButton.titleLabel?.font = UIFont.systemFontOfSize(20)
         introView?.skipButton.setTitleColor(UIColor(red: 74/255, green: 144/255, blue: 226/255, alpha: 1.0), forState: UIControlState.Normal)
 //        introView?.skipButton.setTitle("Get Started", forState: UIControlState.Normal)
         introView?.skipButton.setTitle(NSLocalizedString("Get Started", comment: ""), forState: UIControlState.Normal)
@@ -184,7 +185,8 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         introView?.pageControlY = 40.0
         
         introView?.showInView(self.view, animateDuration: 0)
-
     }
+    
+    
     
 }

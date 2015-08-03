@@ -40,19 +40,19 @@ class TaskRunner: NSObject {
         super.init()
     }
 
-    func readyTaskID() -> Int {
-        if self.state == TaskRunnerState.Ready {
-            return self.taskItem.taskId
-        }
-        return -1
-    }
-    
-    func runningTaskID() -> Int {
-        if self.state == TaskRunnerState.Running {
-            return self.taskItem.taskId
-        }
-        return -1
-    }
+//    func readyTaskID() -> Int {
+//        if self.state == TaskRunnerState.Ready {
+//            return self.taskItem.taskId
+//        }
+//        return -1
+//    }
+//    
+//    func runningTaskID() -> Int {
+//        if self.state == TaskRunnerState.Running {
+//            return self.taskItem.taskId
+//        }
+//        return -1
+//    }
     
     func isReady() -> Bool {
        return self.taskItem != nil
@@ -119,5 +119,9 @@ class TaskRunner: NSObject {
         self.state = TaskRunnerState.UnReady
         self.taskItem = nil
         self.seconds = 0
+    }
+    
+    func isSameTask(task: Task) -> Bool {
+        return self.taskItem.taskId == task.taskId
     }
 }

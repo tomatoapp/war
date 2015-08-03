@@ -13,13 +13,14 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     var taskItem: Task!
     var taskRunner: TaskRunner!
     var taskManager = TaskManager.sharedInstance
+    var tableViewHeader: TableViewHeader?
 
     @IBOutlet var taskItemBaseView: TaskItemBaseView!
     
 //    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var nameButton: UIButton!
+//    @IBOutlet var nameButton: UIButton!
 //    @IBOutlet var detailLabel: UILabel!
-    @IBOutlet var lengthLabel: UILabel!
+//    @IBOutlet var lengthLabel: UILabel!
     
     @IBOutlet var expectTimesLabel: UILabel!
     @IBOutlet var finishedTimesLabel: UILabel!
@@ -33,8 +34,8 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         self.taskItemBaseView.isBreakButtonEnable = false
     }
     
+    /*
     func showTurorial() {
-        
         let delayTime = dispatch_time(DISPATCH_TIME_NOW,
             Int64(0.1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue(), {
@@ -42,14 +43,17 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
             return
         })
     }
+    */
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        /*
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownDetailsTutorial) {
             self.showTurorial()
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownDetailsTutorial)
         }
+        */
     }
     
     // MARK: - EAIntroDelegate
@@ -67,9 +71,14 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         }
         
         if self.taskRunner.state == .Running {
-            if self.taskRunner.runningTaskID() == self.taskItem.taskId {
+            // if self.taskRunner.runningTaskID() == self.taskItem.taskId {
+            if self.taskRunner.isSameTask(self.taskItem) {
                 // the running task is this task
-                self.taskItemBaseView.refreshViewBySeconds(self.taskRunner.seconds)
+                //self.taskItemBaseView.refreshViewBySeconds(self.taskRunner.seconds)
+                self.taskItemBaseView.switchToBreakButton()
+                self.setupHeaderView()
+                self.enableTableViewHeaderViewWithAnimate(false)
+                
                 self.taskItemBaseView.refreshViewByState(.Running, animation:false)
             } else {
                 // the running task is other task
@@ -91,13 +100,17 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     }
     
     func refreshUI() {
-        self.nameButton.setTitle(self.taskItem.title, forState: UIControlState.Normal)
+//        self.nameButton.setTitle(self.taskItem.title, forState: UIControlState.Normal)
 //        self.detailLabel.text = "Task, \(self.taskItem.expect_times) times"
 //        self.detailLabel.text = String(format: NSLocalizedString("Task_times", comment: ""), "\(self.taskItem.expect_times)")
 //        self.lengthLabel.text = "\(self.taskItem.minutes) Minutes / Task"
-        self.lengthLabel.text = String(format: NSLocalizedString("Minutes_Task", comment: ""), "\(self.taskItem.minutes)")
+//        self.lengthLabel.text = String(format: NSLocalizedString("Minutes_Task", comment: ""), "\(self.taskItem.minutes)")
         self.expectTimesLabel.text = "\(self.taskItem.break_times)"
         self.finishedTimesLabel.text = "\(self.taskItem.finished_times)"
+        
+        if self.taskRunner.isRunning && self.taskRunner.isSameTask(self.taskItem) {
+            self.tableViewHeader!.updateTime(self.getTimerMinutesStringBySeconds(self.taskRunner.seconds), seconds: self.getTimerSecondsStringBySeconds(self.taskRunner.seconds))
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -115,7 +128,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
             } else if WARDevice.getPhoneType() == PhoneType.iPhone6Plus {
                 return 190
             }
-        } else if indexPath.row == 3 {
+        } else if indexPath.row == 1 {
             return 249
         }
         return 35
@@ -124,14 +137,20 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     // MARK: - TaskRunnerDelegate
     
     func started(sender: TaskRunner!) {
-        self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
+//        self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
         self.taskItemBaseView.refreshViewByState(.Running)
+        
+        self.taskItemBaseView.switchToBreakButton()
+        self.setupHeaderView()
+        self.enableTableViewHeaderViewWithAnimate(true)
     }
     
     func completed(sender: TaskRunner!) {
         self.taskItemBaseView.refreshViewByState(.Normal)
         self.taskManager.completeOneTimer(self.taskItem)
         self.refreshUI()
+        
+        self.disableTableViewHeaderView()
     }
 
     func breaked(sender: TaskRunner!) {
@@ -139,14 +158,20 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         self.taskManager.breakOneTimer(self.taskRunner.taskItem)
         self.taskItem = taskManager.selectTask(self.taskItem.taskId)
         self.refreshUI()
+        
+        self.disableTableViewHeaderView()
     }
     
     func tick(sender: TaskRunner!) {
-        println("TaskDetailsViewController: \(sender.seconds)")
-        if self.taskItemBaseView  == nil {
+
+        if !sender.isSameTask(self.taskItem) {
             return
         }
-        self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
+        
+        println("TaskDetailsViewController: \(sender.seconds)")
+
+        
+        self.tableViewHeader!.updateTime(self.getTimerMinutesStringBySeconds(sender.seconds), seconds: self.getTimerSecondsStringBySeconds(sender.seconds))
     }
     
     // MARK: - TaskItemBaseViewDelegate
@@ -171,7 +196,8 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         // But perhaps some task is running, and the running task mebye just youself.
         if self.taskRunner.state == .Running {
             
-            if self.taskRunner.runningTaskID() == self.taskItem.taskId {
+            // if self.taskRunner.runningTaskID() == self.taskItem.taskId {
+            if self.taskRunner.isSameTask(self.taskItem){
                 self.taskRunner.stop()
             } else {
                 println("Some other task is running, you can do nothing")
@@ -200,7 +226,49 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     func addTaskViewController(controller: TaskTitleViewController!, didFinishEditingTask item: Task!) {
         self.taskItem.title = item.title
         self.taskItemBaseView.refreshTitle(self.taskItem.title)
-        self.nameButton.setTitle(self.taskItem.title, forState: UIControlState.Normal)
+//        self.nameButton.setTitle(self.taskItem.title, forState: UIControlState.Normal)
         self.taskManager.updateTask(self.taskItem)
+    }
+    
+    func disableTableViewHeaderView() {
+        println("func disableTableViewHeaderView()")
+        let tempTableViewHeader: TableViewHeader = self.tableViewHeader?.copy() as! TableViewHeader
+        self.view.addSubview(tempTableViewHeader)
+        tempTableViewHeader.moveCenterContentView()
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            
+            tempTableViewHeader.moveOutContentView()
+            self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
+            
+            
+            }) { (finished) -> Void in
+                tempTableViewHeader.removeFromSuperview()
+        }
+    }
+    
+    func enableTableViewHeaderViewWithAnimate(animate: Bool) {
+        println("func enableTableViewHeaderViewWithAnimate(\(animate))")
+
+        self.tableViewHeader?.moveOutContentView()
+        
+        UIView.animateWithDuration(animate ? 0.5 : 0.0, animations: { () -> Void in
+            self.tableView.tableHeaderView = self.tableViewHeader
+            self.tableViewHeader?.moveCenterContentView()
+            
+            }) { (finished) -> Void in
+        }
+    }
+    
+    func setupHeaderView() {
+        //self.createHeaderView()
+        self.tableViewHeader = TableViewHeader(frame: CGRectMake(0, 0, self.view.frame.width, 100))
+    }
+    
+    func getTimerMinutesStringBySeconds(seconds: Int) -> String {
+        return String(format: "%02d", seconds % 3600 / 60)
+    }
+    
+    func getTimerSecondsStringBySeconds(seconds: Int) -> String {
+        return String(format: "%02d", seconds % 3600 % 60)
     }
 }

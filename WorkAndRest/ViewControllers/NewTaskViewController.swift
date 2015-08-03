@@ -77,6 +77,7 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
     // MARK: - Events
     
     @IBAction func startButtonClick(sender: AnyObject) {
+        /*
         if WARDevice.isiOS7() {
             self.startView = self.getStartView()
             let tap = UITapGestureRecognizer(target: self, action: "cancel:")
@@ -86,6 +87,10 @@ class NewTaskViewController: BaseViewController, TaskTitleViewControllerDelegate
         } else {
             self.performSegueWithIdentifier("StartSegue", sender: nil)
         }
+        */
+        
+        self.startViewController(nil, didSelectItem: StartType.Later)
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - ItemDetailViewControllerDelegate
