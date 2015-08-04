@@ -10,7 +10,7 @@ import UIKit
 
 class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate, JBBarChartViewDataSource, StatisticsLockerDelegate, ProductsManagerDelegate {
     
-    @IBOutlet var showPercentageSwitch: UISwitch!
+    //@IBOutlet var showPercentageSwitch: UISwitch!
     @IBOutlet var statisticsView: UIView!
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var commentsView: UIView!
@@ -24,7 +24,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     var baseData: [Int: Array<Work>] = [:]
     var currentIndex = -1
     var tooltipVisible = false
-    var isShowPercentageSwitchOn = true
+//    var isShowPercentageSwitchOn = true
     
     var tooltip: UILabel!
     var locker: StatisticsLocker?
@@ -63,18 +63,13 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.chartView.dataSource = self
         self.chartView.minimumValue = 0.0
         
-        self.isShowPercentageSwitchOn = NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_SHOWPERCENTAGE)
-        self.showPercentageSwitch.on = self.isShowPercentageSwitchOn
-        
         ProductsManager.sharedInstance.delegate = self
     }
     
     func setStateToExpanded() {
         self.chartView.reloadData()
         self.chartView.setState(.Expanded, animated: true)
-        if self.isShowPercentageSwitchOn {
-            self.setChartViewHeaderViewVisible(true, withAmination: true)
-        }
+        self.setChartViewHeaderViewVisible(true, withAmination: true)
     }
     
     func setStateToCollapsed() {
@@ -130,19 +125,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     
     func needLockTheChart() -> Bool {
         return false;
-        
-        // return ApplicationStateManager.sharedInstance.isExpired() &&
-        //    ApplicationStateManager.sharedInstance.versionType() == .Free
-    }
-    
-    // MARK: - Events
-    
-    @IBAction func showPercentageSwitchValueChanged(sender: AnyObject) {
-        self.isShowPercentageSwitchOn = (sender as! UISwitch).on
-        self.setChartViewHeaderViewVisible(self.isShowPercentageSwitchOn, withAmination: true)
-        
-        NSUserDefaults.standardUserDefaults().setBool(self.isShowPercentageSwitchOn, forKey: GlobalConstants.kBOOL_SHOWPERCENTAGE)
-        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     @IBAction func segmentControlValueChanged(sender: AnyObject) {
@@ -809,9 +791,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     
     func didDeselectBarChartView(barChartView: JBBarChartView!) {
         self.setCommentsViewVisible(true)
-        if self.isShowPercentageSwitchOn {
-            self.setChartViewHeaderViewVisible(true, withAmination: true)
-        }
+        self.setChartViewHeaderViewVisible(true, withAmination: true)
         self.tooltip.alpha = 0.0
     }
     
