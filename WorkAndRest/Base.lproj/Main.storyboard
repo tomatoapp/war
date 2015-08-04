@@ -62,10 +62,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="0.0" height="568"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minutes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJc-Sd-tyd">
-                                <rect key="frame" x="125" y="314" width="70" height="24"/>
+                                <rect key="frame" x="110" y="314" width="100" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="4Pd-vE-RAr"/>
-                                    <constraint firstAttribute="width" constant="70" id="zXA-rL-o46"/>
+                                    <constraint firstAttribute="width" constant="100" id="zXA-rL-o46"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
@@ -1160,7 +1160,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="wl7-AJ-ruu"/>
-        <segue reference="aGM-L8-aaO"/>
+        <segue reference="IsP-1t-QkO"/>
+        <segue reference="RhK-XE-Rp2"/>
     </inferredMetricsTieBreakers>
 </document>

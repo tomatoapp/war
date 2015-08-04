@@ -45,7 +45,13 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
         allTasks = self.sortTasks(result!)!
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setupSampleTask"), name: "introDidFinish", object: nil)
+        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK) {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setupSampleTask"), name: "introDidFinish", object: nil)
+        }
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_GUIDE) {
+            self.showGuide()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -74,9 +80,17 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
                 self.insertItem(sampleTask, withRowAnimation: UITableViewRowAnimation.Left)
                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK)
             }
-            return
         })
         
+    }
+    
+    func showGuide() {
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+            Int64(1.0 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue(), {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SHOW_GUIDE)
+            // Show guide image
+        })
     }
     
     func headerHeight() -> CGFloat {
