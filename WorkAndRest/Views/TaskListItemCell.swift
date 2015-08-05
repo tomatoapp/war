@@ -132,7 +132,7 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     
     func tick(sender: TaskRunner!) {
 //        self.taskItemBaseView.refreshViewBySeconds(sender.seconds)
-        self.taskItemBaseView.switchToBreakButton()
+//        self.taskItemBaseView.switchToBreakButton()
         self.custom_delegate?.tick(self, seconds: sender.seconds)
     }
     

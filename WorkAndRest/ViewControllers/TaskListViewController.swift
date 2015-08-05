@@ -268,7 +268,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.tableViewHeader?.updateTime(sender.taskItem!.getTimerMinutesString(), seconds: sender.taskItem!.getTimerSecondsString())
         self.enableTableViewHeaderViewWithAnimate(true)
         
-        sender.taskItemBaseView.switchToBreakButton()
+//        sender.taskItemBaseView.switchToBreakButton()
     }
     
     func tick(sender: TaskListItemCell!, seconds: Int) {
@@ -545,7 +545,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         let sampleTask = Task()
         sampleTask.taskId = 0
         sampleTask.title = NSLocalizedString("Task Sample", comment: "")
-        sampleTask.minutes = 1
+        sampleTask.minutes = 25
         sampleTask.completed = false
         sampleTask.expect_times = 3
         sampleTask.finished_times = 0
