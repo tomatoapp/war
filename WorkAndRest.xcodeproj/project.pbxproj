@@ -77,6 +77,7 @@
 		64E3C1AD1A8752CF00418426 /* TaskListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64E3C1AC1A8752CF00418426 /* TaskListHeaderView.xib */; };
 		64EAEC2D1A7E37F70026C748 /* TaskRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */; };
 		64EBF6271AA9591200ACA139 /* ProductsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EBF6261AA9591200ACA139 /* ProductsManager.swift */; };
+		C32C7E321B73075400977421 /* WARTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32C7E311B73075400977421 /* WARTimer.swift */; };
 		C33562B61B3140950051784D /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B51B3140950051784D /* InterfaceController.swift */; };
 		C33562B81B3140950051784D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B71B3140950051784D /* NotificationController.swift */; };
 		C33562BA1B3140950051784D /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B91B3140950051784D /* GlanceController.swift */; };
@@ -214,6 +215,7 @@
 		64E3C1AC1A8752CF00418426 /* TaskListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskListHeaderView.xib; sourceTree = "<group>"; };
 		64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRunner.swift; sourceTree = "<group>"; };
 		64EBF6261AA9591200ACA139 /* ProductsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsManager.swift; sourceTree = "<group>"; };
+		C32C7E311B73075400977421 /* WARTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARTimer.swift; sourceTree = "<group>"; };
 		C33562B01B3140950051784D /* WorkAndRest WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WorkAndRest WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C33562B31B3140950051784D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C33562B41B3140950051784D /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 				64B563141AA8238300098532 /* ApplicationStateManager.swift */,
 				64EBF6261AA9591200ACA139 /* ProductsManager.swift */,
 				64A6D00D1B66ECE4000D7F2E /* QuotationManager.swift */,
+				C32C7E311B73075400977421 /* WARTimer.swift */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -825,6 +828,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C32C7E321B73075400977421 /* WARTimer.swift in Sources */,
 				64EBF6271AA9591200ACA139 /* ProductsManager.swift in Sources */,
 				64C99A5D1A7905A300F1D796 /* DBOperate.swift in Sources */,
 				64A6D00E1B66ECE4000D7F2E /* QuotationManager.swift in Sources */,

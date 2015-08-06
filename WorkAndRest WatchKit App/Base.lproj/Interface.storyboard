@@ -10,13 +10,17 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WorkAndRest_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <button width="1" alignment="center" verticalAlignment="center" title="Button" id="diH-hU-Zjd">
+                        <button width="1" alignment="center" verticalAlignment="center" title="Start" id="diH-hU-Zjd">
                             <connections>
                                 <action selector="buttonClicked" destination="AgC-eL-Hgc" id="xE6-uY-ovm"/>
                             </connections>
                         </button>
+                        <label width="1" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" id="neI-WD-vnh"/>
                     </items>
-                    <color key="backgroundColor" red="0.77935496715837582" green="1" blue="0.57881581002647042" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="button" destination="diH-hU-Zjd" id="aHQ-Q2-Y75"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="235" y="347"/>

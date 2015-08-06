@@ -20,6 +20,9 @@ class InterfaceController: WKInterfaceController {
 
     let mmwornhole = MMWormhole(applicationGroupIdentifier: IdentifierDef.AppGroupIdentifier, optionalDirectory: nil)
     
+    @IBOutlet weak var button: WKInterfaceButton!
+    
+    
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
@@ -30,7 +33,18 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+    var running = false
     @IBAction func buttonClicked() {
-         self.mmwornhole.passMessageObject(nil, identifier: IdentifierDef.TestIdentifier)
+         //self.mmwornhole.passMessageObject(nil, identifier: IdentifierDef.TestIdentifier)
+
+        if running {
+            println("stop")
+            self.button.setTitle("Start")
+        } else {
+            println("start")
+            self.button.setTitle("Stop")
+        }
+        running = !running
+        
     }
 }
