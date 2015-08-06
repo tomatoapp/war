@@ -14,6 +14,7 @@ PODS:
     - MMWormhole/Core (= 1.2.0)
   - MMWormhole/Core (1.2.0)
   - SWTableViewCell (0.3.7)
+  - WeiboSDK (3.1.1)
 
 DEPENDENCIES:
   - EAIntroView (~> 2.7.0)
@@ -23,6 +24,16 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.9.1)
   - MMWormhole (~> 1.2.0)
   - SWTableViewCell (~> 0.3.7)
+  - WeiboSDK (from `https://github.com/sinaweibosdk/weibo_ios_sdk`)
+
+EXTERNAL SOURCES:
+  WeiboSDK:
+    :git: https://github.com/sinaweibosdk/weibo_ios_sdk
+
+CHECKOUT OPTIONS:
+  WeiboSDK:
+    :commit: e371a0f44e77cb0f23d08135b6a63ae575694935
+    :git: https://github.com/sinaweibosdk/weibo_ios_sdk
 
 SPEC CHECKSUMS:
   EAIntroView: 9becdb1441712405346a3e6bc31b0d9a57b63b10
@@ -33,5 +44,6 @@ SPEC CHECKSUMS:
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MMWormhole: 696de5a8d2ef93f028ade4cff34958943c3bfa1e
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
+  WeiboSDK: 6e346dd76f1fedd576029bf300a8f54b172189ff
 
 COCOAPODS: 0.37.2

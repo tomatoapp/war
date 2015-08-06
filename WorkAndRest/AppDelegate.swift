@@ -9,9 +9,11 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate, WeiboSDKDelegate {
     
     var window: UIWindow?
+    var wbToken: String?
+    var wbCurrentUserID: String?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         println(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String)
@@ -37,6 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             NSThread.sleepForTimeInterval(0.5)
             self.hideIconWithAnimation()
         }
+        
+        WeiboSDK.enableDebugMode(true)
+        println("registerApp: \(WeiboSDK.registerApp(OauthDef.kAppKey))")
         
         return true
     }
@@ -132,6 +137,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         //        IconBadgeNumberManager.sharedInstance.setBadgeNumber()
     }
     
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        return WeiboSDK.handleOpenURL(url, delegate: self)
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        return WeiboSDK.handleOpenURL(url, delegate: self)
+    }
+    
+    // MARK: - WeiboSDK Delegate Methods
+    
+    func didReceiveWeiboRequest(request: WBBaseRequest!) {
+        
+    }
+    
+    func didReceiveWeiboResponse(response: WBBaseResponse!) {
+        
+        if response.isKindOfClass(WBSendMessageToWeiboResponse) {
+            let msg = "SendMessage - statusCode: \(response.statusCode) userInfo: \(response.userInfo) requestUserInfo: \(response.requestUserInfo)"
+            println(msg)
+            self.wbToken = (response as! WBSendMessageToWeiboResponse).authResponse?.accessToken
+            println("accessToken: \(self.wbToken)")
+            self.wbCurrentUserID = (response as! WBSendMessageToWeiboResponse).authResponse?.userID
+            println("userID: \(self.wbCurrentUserID)")
+        }
+        else if response.isKindOfClass(WBAuthorizeResponse) {
+            let msg = "Authorize - statusCode: \(response.statusCode) userInfo: \(response.userInfo) requestUserInfo: \(response.requestUserInfo)"
+            println(msg)
+            self.wbToken = (response as! WBAuthorizeResponse).accessToken
+            println("accessToken: \(self.wbToken)")
+            self.wbCurrentUserID = (response as! WBAuthorizeResponse).userID
+            println("userID: \(self.wbCurrentUserID)")
+            let refreshToken = (response as! WBAuthorizeResponse).refreshToken
+            println(refreshToken)
+        }
+        
+    }
     
     // MARK: - Methods
     

@@ -32,6 +32,13 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         super.viewDidLoad()
         self.taskItemBaseView.delegate = self
         self.taskItemBaseView.isBreakButtonEnable = false
+        
+        
+        let shareButton = UIBarButtonItem(title: "share", style: UIBarButtonItemStyle.Bordered, target: self, action: Selector("shareButtonClick"))
+        let loginButton = UIBarButtonItem(title: "login", style: UIBarButtonItemStyle.Bordered, target: self, action: Selector("sso"))
+        
+        
+        self.navigationItem.rightBarButtonItems = [loginButton, shareButton]
     }
     
     /*
@@ -54,6 +61,34 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownDetailsTutorial)
         }
         */
+    }
+    
+    // MARK: - Actions
+    
+     func shareButtonClick() {
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        if delegate.wbToken == nil || delegate.wbToken == "" {
+//            self.sso()
+//            return
+//        }
+        
+        var authRequest: WBAuthorizeRequest = WBAuthorizeRequest.request() as! WBAuthorizeRequest
+        authRequest.redirectURI = OauthDef.kRedirectURI
+        authRequest.scope = "all"
+        var message = WBMessageObject.message() as! WBMessageObject
+        message.text = "This is a test!"
+        var image = WBImageObject.object() as! WBImageObject
+        image.imageData = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("a", ofType: "jpg")!)
+        message.imageObject = image
+        var request = WBSendMessageToWeiboRequest.requestWithMessage(message, authInfo: authRequest, access_token: delegate.wbToken) as! WBSendMessageToWeiboRequest
+        WeiboSDK.sendRequest(request)
+    }
+    
+    func sso() {
+        var request = WBAuthorizeRequest.request() as! WBAuthorizeRequest
+        request.redirectURI = OauthDef.kRedirectURI
+        request.scope = "all"
+        WeiboSDK.sendRequest(request)
     }
     
     // MARK: - EAIntroDelegate

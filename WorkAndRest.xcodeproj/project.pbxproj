@@ -78,6 +78,10 @@
 		64EAEC2D1A7E37F70026C748 /* TaskRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */; };
 		64EBF6271AA9591200ACA139 /* ProductsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EBF6261AA9591200ACA139 /* ProductsManager.swift */; };
 		C32C7E321B73075400977421 /* WARTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32C7E311B73075400977421 /* WARTimer.swift */; };
+		C32C7E461B731AF400977421 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32C7E451B731AF400977421 /* CoreTelephony.framework */; };
+		C32C7E471B731B3000977421 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32C7E451B731AF400977421 /* CoreTelephony.framework */; };
+		C32C7E491B731F6D00977421 /* OauthDef.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32C7E481B731F6D00977421 /* OauthDef.swift */; };
+		C32C7E4B1B732D9800977421 /* a.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C32C7E4A1B732D9800977421 /* a.jpg */; };
 		C33562B61B3140950051784D /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B51B3140950051784D /* InterfaceController.swift */; };
 		C33562B81B3140950051784D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B71B3140950051784D /* NotificationController.swift */; };
 		C33562BA1B3140950051784D /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B91B3140950051784D /* GlanceController.swift */; };
@@ -216,6 +220,9 @@
 		64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRunner.swift; sourceTree = "<group>"; };
 		64EBF6261AA9591200ACA139 /* ProductsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsManager.swift; sourceTree = "<group>"; };
 		C32C7E311B73075400977421 /* WARTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARTimer.swift; sourceTree = "<group>"; };
+		C32C7E451B731AF400977421 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		C32C7E481B731F6D00977421 /* OauthDef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthDef.swift; sourceTree = "<group>"; };
+		C32C7E4A1B732D9800977421 /* a.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = a.jpg; path = ../../../../Desktop/a.jpg; sourceTree = "<group>"; };
 		C33562B01B3140950051784D /* WorkAndRest WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WorkAndRest WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C33562B31B3140950051784D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C33562B41B3140950051784D /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -241,6 +248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C32C7E471B731B3000977421 /* CoreTelephony.framework in Frameworks */,
 				64012C951900D68F006FC2B2 /* AudioToolbox.framework in Frameworks */,
 				64012C8E1900B8C2006FC2B2 /* SystemConfiguration.framework in Frameworks */,
 				64012C8C1900B8B4006FC2B2 /* CFNetwork.framework in Frameworks */,
@@ -267,6 +275,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C32C7E461B731AF400977421 /* CoreTelephony.framework in Frameworks */,
 				3724A4AE42E8FF4DF4C9AAB9 /* libPods-WorkAndRest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,12 +334,12 @@
 		6434826518C5D343009BF110 = {
 			isa = PBXGroup;
 			children = (
-				64012C861900B870006FC2B2 /* Libs */,
 				6434827718C5D344009BF110 /* WorkAndRest */,
 				C33562B11B3140950051784D /* WorkAndRest WatchKit Extension */,
 				C33562C31B3140950051784D /* WorkAndRest WatchKit App */,
 				6434827018C5D344009BF110 /* Frameworks */,
 				6434826F18C5D344009BF110 /* Products */,
+				64012C861900B870006FC2B2 /* Libs */,
 				446B6C0ECC87852E3341038B /* Pods */,
 			);
 			sourceTree = "<group>";
@@ -349,6 +358,7 @@
 		6434827018C5D344009BF110 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C32C7E451B731AF400977421 /* CoreTelephony.framework */,
 				64012C941900D68F006FC2B2 /* AudioToolbox.framework */,
 				64012C8D1900B8C2006FC2B2 /* SystemConfiguration.framework */,
 				64012C8B1900B8B4006FC2B2 /* CFNetwork.framework */,
@@ -384,6 +394,7 @@
 		6434827818C5D344009BF110 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C32C7E4A1B732D9800977421 /* a.jpg */,
 				645FDE0D1A7D98FB002EC8EF /* AppDelegate.swift */,
 				6434827F18C5D344009BF110 /* WorkAndRest-Prefix.pch */,
 				6497FE581A75A91600174307 /* WorkAndRest-Bridging-Header.h */,
@@ -454,6 +465,7 @@
 				645FDE151A7D9E8B002EC8EF /* GlobalConstants.swift */,
 				649D54071A849978002593F8 /* WARDevide.swift */,
 				C354053B1B560C80008111C2 /* IdentifierDef.swift */,
+				C32C7E481B731F6D00977421 /* OauthDef.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -715,6 +727,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64A6D0101B66ED22000D7F2E /* Quotations-en.plist in Resources */,
+				C32C7E4B1B732D9800977421 /* a.jpg in Resources */,
 				649D54041A84521D002593F8 /* TaskTitleView.xib in Resources */,
 				6434828A18C5D344009BF110 /* Images.xcassets in Resources */,
 				64A6D0121B66FE0A000D7F2E /* Quotations-cn.plist in Resources */,
@@ -834,6 +847,7 @@
 				64A6D00E1B66ECE4000D7F2E /* QuotationManager.swift in Sources */,
 				64B563131AA7FC7000098532 /* StatisticsLocker.swift in Sources */,
 				64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */,
+				C32C7E491B731F6D00977421 /* OauthDef.swift in Sources */,
 				648A27D21AAD4DBD0002BF04 /* TaskDetailsTutorialViewController.swift in Sources */,
 				64E3C1AB1A8752C400418426 /* TaskListHeaderView.swift in Sources */,
 				64CCE5331A89600C008D5A08 /* TaskDetailsViewController.swift in Sources */,

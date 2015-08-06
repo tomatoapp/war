@@ -19,3 +19,4 @@
 #import "EAIntroView.h"
 #import "SMPageControl.h"
 #import "MMWormhole.h"
+#import "WeiboSDK.h"
