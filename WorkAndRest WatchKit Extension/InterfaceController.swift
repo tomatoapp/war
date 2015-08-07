@@ -22,6 +22,7 @@ class InterfaceController: WKInterfaceController {
     
     @IBOutlet weak var button: WKInterfaceButton!
     
+    @IBOutlet var timerLabel: WKInterfaceLabel!
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
@@ -46,7 +47,8 @@ class InterfaceController: WKInterfaceController {
         } else {
             self.timer = WARTimer()
             self.timer?.startWithTickBlock({ (seconds) -> () in
-                println("seconds: \(seconds)")
+                println("\(seconds.timeString())")
+                self.timerLabel.setText(seconds.timeString())
             })
             
             println("start")

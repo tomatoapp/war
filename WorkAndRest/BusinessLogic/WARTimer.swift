@@ -10,7 +10,7 @@ import UIKit
 
 class WARTimer: NSObject {
     
-    var seconds: WARSecond = 25 * 60
+    var seconds: WARSecond = WARSecond(25 * 60)
     var timer: NSTimer?
     var selector: Selector?
     
@@ -59,7 +59,7 @@ class WARTimer: NSObject {
         self.seconds--
         self.block!(seconds: self.seconds)
 //        println("tick: \(self.seconds)")
-        if self.seconds == 0 {
+        if self.seconds == WARSecond.zero() {
             self.cancle()
         }
     }
