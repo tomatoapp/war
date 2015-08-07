@@ -77,6 +77,8 @@
 		64E3C1AD1A8752CF00418426 /* TaskListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64E3C1AC1A8752CF00418426 /* TaskListHeaderView.xib */; };
 		64EAEC2D1A7E37F70026C748 /* TaskRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */; };
 		64EBF6271AA9591200ACA139 /* ProductsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EBF6261AA9591200ACA139 /* ProductsManager.swift */; };
+		C31B8A801B74A92300271DF4 /* WARSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31B8A7F1B74A92300271DF4 /* WARSecond.swift */; };
+		C31B8A811B74A92800271DF4 /* WARSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31B8A7F1B74A92300271DF4 /* WARSecond.swift */; };
 		C32C7E321B73075400977421 /* WARTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32C7E311B73075400977421 /* WARTimer.swift */; };
 		C33562B61B3140950051784D /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B51B3140950051784D /* InterfaceController.swift */; };
 		C33562B81B3140950051784D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33562B71B3140950051784D /* NotificationController.swift */; };
@@ -87,8 +89,9 @@
 		C33562CA1B3140950051784D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C33562C91B3140950051784D /* Images.xcassets */; };
 		C33562CD1B3140950051784D /* WorkAndRest WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C33562B01B3140950051784D /* WorkAndRest WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C354053C1B560C80008111C2 /* IdentifierDef.swift in Sources */ = {isa = PBXBuildFile; fileRef = C354053B1B560C80008111C2 /* IdentifierDef.swift */; };
-		C354053F1B560DA1008111C2 /* IdentifierDef.swift in Sources */ = {isa = PBXBuildFile; fileRef = C354053E1B560DA1008111C2 /* IdentifierDef.swift */; };
 		C36E43381B67707D00834902 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36E43371B67707D00834902 /* TableViewHeader.swift */; };
+		C37DD4EA1B748EA4009E8FAB /* WARTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32C7E311B73075400977421 /* WARTimer.swift */; };
+		C37DD4EB1B748ED4009E8FAB /* IdentifierDef.swift in Sources */ = {isa = PBXBuildFile; fileRef = C354053B1B560C80008111C2 /* IdentifierDef.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,6 +218,7 @@
 		64E3C1AC1A8752CF00418426 /* TaskListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskListHeaderView.xib; sourceTree = "<group>"; };
 		64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRunner.swift; sourceTree = "<group>"; };
 		64EBF6261AA9591200ACA139 /* ProductsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsManager.swift; sourceTree = "<group>"; };
+		C31B8A7F1B74A92300271DF4 /* WARSecond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARSecond.swift; sourceTree = "<group>"; };
 		C32C7E311B73075400977421 /* WARTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARTimer.swift; sourceTree = "<group>"; };
 		C33562B01B3140950051784D /* WorkAndRest WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WorkAndRest WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C33562B31B3140950051784D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -228,7 +232,6 @@
 		C33562C71B3140950051784D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		C33562C91B3140950051784D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C354053B1B560C80008111C2 /* IdentifierDef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifierDef.swift; sourceTree = "<group>"; };
-		C354053E1B560DA1008111C2 /* IdentifierDef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifierDef.swift; sourceTree = "<group>"; };
 		C35405401B560E37008111C2 /* WorkAndRest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WorkAndRest.entitlements; sourceTree = "<group>"; };
 		C35405411B560E84008111C2 /* WorkAndRest WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "WorkAndRest WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		C36E43371B67707D00834902 /* TableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
@@ -499,6 +502,7 @@
 			children = (
 				6497FE551A75A77800174307 /* Work.swift */,
 				64C99A5E1A7906EA00F1D796 /* Task.swift */,
+				C31B8A7F1B74A92300271DF4 /* WARSecond.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -525,7 +529,6 @@
 			isa = PBXGroup;
 			children = (
 				C35405411B560E84008111C2 /* WorkAndRest WatchKit Extension.entitlements */,
-				C354053D1B560D62008111C2 /* Common */,
 				C33562B51B3140950051784D /* InterfaceController.swift */,
 				C33562B71B3140950051784D /* NotificationController.swift */,
 				C33562B91B3140950051784D /* GlanceController.swift */,
@@ -561,14 +564,6 @@
 				C33562C51B3140950051784D /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C354053D1B560D62008111C2 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				C354053E1B560DA1008111C2 /* IdentifierDef.swift */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -855,6 +850,7 @@
 				64C99A5F1A7906EA00F1D796 /* Task.swift in Sources */,
 				6493085B1A7AE88B00480677 /* TaskTitleViewController.swift in Sources */,
 				641B4A881AAC30EB0078E906 /* SMPageControl.m in Sources */,
+				C31B8A801B74A92300271DF4 /* WARSecond.swift in Sources */,
 				646B04ED1A9A99C00083E065 /* WorkManager.swift in Sources */,
 				64B563151AA8238300098532 /* ApplicationStateManager.swift in Sources */,
 				6458B66B1A7722BD004FD3D9 /* RootViewController.swift in Sources */,
@@ -886,10 +882,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C354053F1B560DA1008111C2 /* IdentifierDef.swift in Sources */,
+				C31B8A811B74A92800271DF4 /* WARSecond.swift in Sources */,
 				C33562B81B3140950051784D /* NotificationController.swift in Sources */,
 				C33562B61B3140950051784D /* InterfaceController.swift in Sources */,
 				C33562BA1B3140950051784D /* GlanceController.swift in Sources */,
+				C37DD4EB1B748ED4009E8FAB /* IdentifierDef.swift in Sources */,
+				C37DD4EA1B748EA4009E8FAB /* WARTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1044,7 +1042,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WorkAndRest/WorkAndRest.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Cun Yang (W536UCFWXT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Cun Yang (4H7ZZQ3A4G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cun Yang (W536UCFWXT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WorkAndRest/WorkAndRest-Prefix.pch";
@@ -1053,7 +1051,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b98e623-6d55-4f74-9391-8677932e72dd";
+				PROVISIONING_PROFILE = "98ede1fb-5058-49c5-a83c-f03bd86a7dce";
 				SWIFT_OBJC_BRIDGING_HEADER = "WorkAndRest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -1068,7 +1066,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WorkAndRest/WorkAndRest.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Cun Yang (W536UCFWXT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Cun Yang (4H7ZZQ3A4G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cun Yang (W536UCFWXT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WorkAndRest/WorkAndRest-Prefix.pch";
@@ -1077,7 +1075,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b98e623-6d55-4f74-9391-8677932e72dd";
+				PROVISIONING_PROFILE = "98ede1fb-5058-49c5-a83c-f03bd86a7dce";
 				SWIFT_OBJC_BRIDGING_HEADER = "WorkAndRest-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1128,7 +1126,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Cun Yang (W536UCFWXT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Cun Yang (4H7ZZQ3A4G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cun Yang (W536UCFWXT)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1143,7 +1141,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f4e4016e-ba00-4092-9a44-cb5f18741efa";
+				PROVISIONING_PROFILE = "14baadf3-013c-4a53-9b70-be750e3359a8";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
@@ -1155,7 +1153,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Cun Yang (W536UCFWXT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Cun Yang (4H7ZZQ3A4G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cun Yang (W536UCFWXT)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1167,7 +1165,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f4e4016e-ba00-4092-9a44-cb5f18741efa";
+				PROVISIONING_PROFILE = "14baadf3-013c-4a53-9b70-be750e3359a8";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
@@ -1181,7 +1179,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "WorkAndRest WatchKit Extension/WorkAndRest WatchKit Extension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Cun Yang (W536UCFWXT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Cun Yang (4H7ZZQ3A4G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cun Yang (W536UCFWXT)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1197,7 +1195,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "740604e7-485b-4d45-b55d-db8c58d54f41";
+				PROVISIONING_PROFILE = "2dfcc764-94df-456d-ae79-03dbfeeba947";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WorkAndRest WatchKit Extension/WorkAndRest WatchKit Extension-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1211,7 +1209,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "WorkAndRest WatchKit Extension/WorkAndRest WatchKit Extension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Cun Yang (W536UCFWXT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Cun Yang (4H7ZZQ3A4G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cun Yang (W536UCFWXT)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1228,7 +1226,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "740604e7-485b-4d45-b55d-db8c58d54f41";
+				PROVISIONING_PROFILE = "2dfcc764-94df-456d-ae79-03dbfeeba947";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WorkAndRest WatchKit Extension/WorkAndRest WatchKit Extension-Bridging-Header.h";
 			};

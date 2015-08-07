@@ -34,17 +34,24 @@ class InterfaceController: WKInterfaceController {
     }
 
     var running = false
+    var timer: WARTimer?
     @IBAction func buttonClicked() {
          //self.mmwornhole.passMessageObject(nil, identifier: IdentifierDef.TestIdentifier)
 
         if running {
+            self.timer?.cancle()
+            
             println("stop")
             self.button.setTitle("Start")
         } else {
+            self.timer = WARTimer()
+            self.timer?.startWithTickBlock({ (seconds) -> () in
+                println("seconds: \(seconds)")
+            })
+            
             println("start")
             self.button.setTitle("Stop")
         }
         running = !running
-        
     }
 }
