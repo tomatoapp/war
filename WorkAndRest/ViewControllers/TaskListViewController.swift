@@ -186,7 +186,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         if editingStyle == UITableViewCellEditingStyle.Delete {
             let task = allTasks[indexPath.row]
             self.taskManager.removeTask(task)
-            let indexPaths = [indexPath]
             self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
         }
     }

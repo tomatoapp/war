@@ -64,15 +64,6 @@ class WorkManager: NSObject {
     }
     
     func insertWork(work: Work) {
-        
-        var components = NSCalendar.currentCalendar().components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute], fromDate: NSDate())
-//        for i in 0...100 {
-//            components.day -= 1
-//            let tempDate = NSCalendar.currentCalendar().dateFromComponents(components)
-//            println(tempDate)
-//            work.workTime = tempDate!
-//            DBOperate.insertWork(work)
-//        }
             DBOperate.insertWork(work)
             self.hasNewValue = true
             

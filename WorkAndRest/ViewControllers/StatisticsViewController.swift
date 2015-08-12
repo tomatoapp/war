@@ -642,7 +642,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     
     func addHeaderViewToTheStatisticsView() {
         let VIEW_HEIGHT: CGFloat = 157
-        let LABEL_WIDTH: CGFloat = 40
         let LABEL_HEIGHT: CGFloat = 25
         
         self.chartViewHeaderView = UIView(frame: CGRectMake(0, 0, self.chartView.frame.width + 50, VIEW_HEIGHT))

@@ -113,9 +113,6 @@ class TaskItemBaseView: UIView {
                     self.button.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
                 }, completion: nil)
             break
-            
-        default:
-            break
         }
     }
     

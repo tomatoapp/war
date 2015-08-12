@@ -67,7 +67,6 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         if fromView == toView {
             return false
         }
-        let fromIndex = (tabBarController.viewControllers! ).indexOf(tabBarController.selectedViewController!)
         let toIndex = (tabBarController.viewControllers! ).indexOf(viewController)
         
         UIView.transitionFromView(fromView!,
