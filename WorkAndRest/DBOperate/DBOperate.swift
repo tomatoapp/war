@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc class DBOperate {
+class DBOperate {
 
     struct Static {
         static var db = FMDatabase()
@@ -20,8 +20,8 @@ import UIKit
     }
     
     class func db_init() {
-        let documentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
-        let path = documentsFolder.stringByAppendingPathComponent("db_demo.sqlite3")
+        let documentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
+        let path = documentsFolder.stringByAppendingString("db_demo.sqlite3")
         dataBase = FMDatabase(path: path)
 
 //        let fileManager = NSFileManager.defaultManager()
@@ -49,7 +49,7 @@ import UIKit
         ")"
         
         if !dataBase.open() {
-            println("Unable to open the db.")
+            print("Unable to open the db.")
             return
         }
         let success = dataBase.executeUpdate(sql, withArgumentsInArray: nil)
@@ -70,7 +70,7 @@ import UIKit
 //            println("insert to task table failed!")
         }
         let lastRowId = Int(dataBase.lastInsertRowId())
-        println("lastRowId: \(lastRowId)")
+        print("lastRowId: \(lastRowId)")
         task.taskId = lastRowId
         dataBase.close()
         return success
@@ -82,12 +82,12 @@ import UIKit
         let task = Task()
         let rs = dataBase.executeQuery("SELECT * from t_tasks WHERE task_id = (?)", withArgumentsInArray: [taskId])
         while rs.next() {
-            task.taskId = rs.stringForColumn("task_id").toInt()!
+            task.taskId = Int(rs.stringForColumn("task_id"))!
             task.title = rs.stringForColumn("title")
             task.lastUpdateTime = rs.dateForColumn("lastUpdateTime")
-            task.minutes = rs.stringForColumn("minutes").toInt()!
-            task.expect_times = rs.stringForColumn("expect_times").toInt()!
-            task.finished_times = rs.stringForColumn("finished_times").toInt()!
+            task.minutes = Int(rs.stringForColumn("minutes"))!
+            task.expect_times = Int(rs.stringForColumn("expect_times"))!
+            task.finished_times = Int(rs.stringForColumn("finished_times"))!
 
         }
         dataBase.close()
@@ -100,7 +100,7 @@ import UIKit
         }
         let lastRowId = Int(dataBase.lastInsertRowId())
         dataBase.close()
-        println("lastRowId: \(lastRowId)")
+        print("lastRowId: \(lastRowId)")
         return lastRowId
     }
     
@@ -113,7 +113,7 @@ import UIKit
         // lastUpdateTime = ? -> lastUpdateTime = datetime('now')
         let success = dataBase.executeUpdate("UPDATE t_tasks SET title = ?, lastUpdateTime = ?, minutes = ?, completed = ?, finished_times = ?, break_times = ?, completedTime = ? WHERE task_id = ?", withArgumentsInArray: [task.title, task.lastUpdateTime, task.minutes, task.completed, task.finished_times, task.break_times, task.completedTime, task.taskId])
         if success {
-            println("update task table success.")
+            print("update task table success.")
         } else {
 //            println("update task table failed!")
         }
@@ -141,9 +141,9 @@ import UIKit
         let rs = dataBase.executeQuery("SELECT * from t_tasks", withArgumentsInArray: nil)
         while rs.next() {
             let tempTask = Task()
-            tempTask.taskId = rs.stringForColumn("task_id").toInt()!
+            tempTask.taskId = Int(rs.stringForColumn("task_id"))!
             tempTask.title = rs.stringForColumn("title")
-            tempTask.minutes = rs.stringForColumn("minutes").toInt()!
+            tempTask.minutes = Int(rs.stringForColumn("minutes"))!
             tempTask.lastUpdateTime = rs.dateForColumn("lastUpdateTime")
             tempTask.completed = rs.boolForColumn("completed")
             if tempTask.lastUpdateTime.description.hasPrefix("1970") {
@@ -153,9 +153,9 @@ import UIKit
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 tempTask.lastUpdateTime = formatter.dateFromString(rs.stringForColumn("lastUpdateTime"))!
             }
-            tempTask.expect_times = rs.stringForColumn("expect_times").toInt()!
-            tempTask.finished_times = rs.stringForColumn("finished_times").toInt()!
-            tempTask.break_times = rs.stringForColumn("break_times").toInt()!
+            tempTask.expect_times = Int(rs.stringForColumn("expect_times"))!
+            tempTask.finished_times = Int(rs.stringForColumn("finished_times"))!
+            tempTask.break_times = Int(rs.stringForColumn("break_times"))!
             tempTask.completedTime = rs.dateForColumn("completedTime")
 
             taskArray.append(tempTask)
@@ -174,7 +174,7 @@ import UIKit
         "is_finished BOOL DEFAULT 0" +
         ")"
         if !dataBase.open() {
-            println("Unable to open the db.")
+            print("Unable to open the db.")
             return
         }
         let success = dataBase.executeUpdate(sql, withArgumentsInArray: nil)
@@ -199,11 +199,11 @@ import UIKit
         if !dataBase.open() {
             return nil
         }
-        var work = Work()
+        let work = Work()
         let rs = dataBase.executeQuery("SELECT * from t_works WHERE work_id = ?", withArgumentsInArray: [workId])
         while rs.next() {
-            work.workId = rs.stringForColumn("work_id").toInt()!
-            work.taskId = rs.stringForColumn("task_id").toInt()!
+            work.workId = Int(rs.stringForColumn("work_id"))!
+            work.taskId = Int(rs.stringForColumn("task_id"))!
         }
         dataBase.close()
         return work
@@ -217,8 +217,8 @@ import UIKit
         let rs = dataBase.executeQuery("SELECT * from t_works WHERE task_id = ?", withArgumentsInArray: [taskId])
         while rs.next() {
             let workTemp = Work()
-            workTemp.workId = rs.stringForColumn("work_id").toInt()!
-            workTemp.taskId = rs.stringForColumn("task_id").toInt()!
+            workTemp.workId = Int(rs.stringForColumn("work_id"))!
+            workTemp.taskId = Int(rs.stringForColumn("task_id"))!
             workTemp.workTime = rs.dateForColumn("work_time")
             workTemp.isFinished = rs.boolForColumn("is_finished")
             workArray.append(workTemp)
@@ -236,8 +236,8 @@ import UIKit
         let rs = dataBase.executeQuery("SELECT * from t_works", withArgumentsInArray: nil)
         while rs.next() {
             let tempWork = Work()
-            tempWork.workId = rs.stringForColumn("work_id").toInt()!
-            tempWork.taskId = rs.stringForColumn("task_id").toInt()!
+            tempWork.workId = Int(rs.stringForColumn("work_id"))!
+            tempWork.taskId = Int(rs.stringForColumn("task_id"))!
             tempWork.workTime = rs.dateForColumn("work_time")
             if tempWork.workTime.description.hasPrefix("1970") {
                 let formatter = NSDateFormatter()

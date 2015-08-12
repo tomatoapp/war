@@ -168,7 +168,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
             return
         }
         
-        println("TaskDetailsViewController: \(sender.seconds)")
+        print("TaskDetailsViewController: \(sender.seconds)")
 
         
         self.tableViewHeader!.updateTime(self.getTimerMinutesStringBySeconds(sender.seconds), seconds: self.getTimerSecondsStringBySeconds(sender.seconds))
@@ -200,7 +200,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
             if self.taskRunner.isSameTask(self.taskItem){
                 self.taskRunner.stop()
             } else {
-                println("Some other task is running, you can do nothing")
+                print("Some other task is running, you can do nothing")
             }
             return
         }
@@ -231,7 +231,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     }
     
     func disableTableViewHeaderView() {
-        println("func disableTableViewHeaderView()")
+        print("func disableTableViewHeaderView()")
         let tempTableViewHeader: TableViewHeader = self.tableViewHeader?.copy() as! TableViewHeader
         self.view.addSubview(tempTableViewHeader)
         tempTableViewHeader.moveCenterContentView()
@@ -247,7 +247,7 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
     }
     
     func enableTableViewHeaderViewWithAnimate(animate: Bool) {
-        println("func enableTableViewHeaderViewWithAnimate(\(animate))")
+        print("func enableTableViewHeaderViewWithAnimate(\(animate))")
 
         self.tableViewHeader?.moveOutContentView()
         

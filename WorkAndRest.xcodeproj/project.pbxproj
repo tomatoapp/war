@@ -650,6 +650,8 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = WorkAndRest;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = YangCun;
 				TargetAttributes = {
@@ -984,6 +986,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
+					WATCH_KIT_EXTENSION_TARGET,
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;

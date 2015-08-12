@@ -42,16 +42,16 @@ class InterfaceController: WKInterfaceController {
         if running {
             self.timer?.cancle()
             
-            println("stop")
+            print("stop")
             self.button.setTitle("Start")
         } else {
             self.timer = WARTimer()
             self.timer?.startWithTickBlock({ (seconds) -> () in
-                println("\(seconds.timeString())")
+                print("\(seconds.timeString())")
                 self.timerLabel.setText(seconds.timeString())
             })
             
-            println("start")
+            print("start")
             self.button.setTitle("Stop")
         }
         running = !running

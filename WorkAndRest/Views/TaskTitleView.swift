@@ -19,7 +19,7 @@ class TaskTitleView: UIView {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var button: UIButton!
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setup()
     }

@@ -35,7 +35,7 @@ class TaskItemBaseView: UIView {
         self.delegate?.taskItemBaseView(self, buttonClicked: sender as! UIButton)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setup()
     }
@@ -129,7 +129,7 @@ class TaskItemBaseView: UIView {
 //    }
     
     func switchToBreakButton() {
-        println("switchToBreakButton")
+        print("switchToBreakButton")
         UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in
                 self.timerLabel.alpha = 0

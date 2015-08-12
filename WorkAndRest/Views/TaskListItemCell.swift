@@ -52,7 +52,7 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     func start() {
         
         if !self.taskRunner!.canStart() {
-            println("Can not start!")
+            print("Can not start!")
             return
         }
         self.taskRunner!.start()
@@ -159,7 +159,7 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
                 if self.taskRunner!.isSameTask(self.taskItem!) {
                     self.breakIt()
                 } else {
-                    println("You can not start it, some other task is running!")
+                    print("You can not start it, some other task is running!")
                 }
                 return
             }

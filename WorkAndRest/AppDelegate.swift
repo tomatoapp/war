@@ -14,16 +14,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        println(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String)
+        print(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] )
         DBOperate.db_init()
         self.firstRun()
         self.initRater()
         
-        if application.respondsToSelector("isRegisteredForRemoteNotifications") {
-            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil))
+        if #available(iOS 8.0, *) {
+            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
             application.registerForRemoteNotifications()
         } else {
-            application.registerForRemoteNotificationTypes(.Sound | .Alert | .Badge)
+            // Fallback on earlier versions
+            application.registerForRemoteNotificationTypes([.Sound, .Alert, .Badge])
         }
         
         CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
@@ -97,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             break
             
         case UIApplicationState.Inactive:
-            println("Inactive")
+            print("Inactive")
             break
         }
         IconBadgeNumberManager.sharedInstance.setBadgeNumber()
@@ -116,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         
         if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_ISWORKING) {
             UIApplication.sharedApplication().cancelAllLocalNotifications()
-            println("cancelAllLocalNotifications")
+            print("cancelAllLocalNotifications")
             
             //            println("isWorking! become active")
             TaskRunnerManager.sharedInstance.activeFrozenTaskManager()
@@ -165,7 +166,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         notification.fireDate = fireDate
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        println("addNotificationWithSeconds")
+        print("addNotificationWithSeconds")
     }
     
     func showBreakNotification() {
@@ -191,10 +192,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             TaskRunnerManager.sharedInstance.freezeTaskManager(TaskRunner.sharedInstance)
             
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_ISWORKING)
-            println("kBOOL_ISWORKING = true")
+            print("kBOOL_ISWORKING = true")
             NSUserDefaults.standardUserDefaults().synchronize()
         } else {
-            println("kBOOL_ISWORKING = false")
+            print("kBOOL_ISWORKING = false")
         }
     }
     

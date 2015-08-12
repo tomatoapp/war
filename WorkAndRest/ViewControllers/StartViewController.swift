@@ -36,7 +36,7 @@ class StartViewController: UIViewController, UIViewControllerTransitioningDelega
         self.addBlurView()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         if WARDevice.isiOS7() {
@@ -69,11 +69,13 @@ class StartViewController: UIViewController, UIViewControllerTransitioningDelega
     
     func initBlurView() -> UIView! {
         var blurView: UIView?
-        if let theClass: AnyClass = NSClassFromString("UIBlurEffect") { // iOS 8
+        
+        if #available(iOS 8.0, *) {
             let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
             blurView = UIVisualEffectView(effect: blurEffect)
-            blurView?.setTranslatesAutoresizingMaskIntoConstraints(false)
-        } else { // iOS 7
+            blurView?.translatesAutoresizingMaskIntoConstraints = false
+        } else {
+            // Fallback on earlier versions
             blurView = UIToolbar()
         }
         blurView!.frame = self.view.frame
@@ -99,7 +101,7 @@ class StartViewController: UIViewController, UIViewControllerTransitioningDelega
     
     // MARK: - UIViewControllerAnimatedTransitioning
 
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.3
     }
     
@@ -113,7 +115,7 @@ class StartViewController: UIViewController, UIViewControllerTransitioningDelega
         
         if presentingController == self {
             
-            containterView.addSubview(presentingView)
+            containterView!.addSubview(presentingView)
             
             presentingView.frame = presentedView.frame
             self.view.frame.origin.y += self.view.frame.height
@@ -127,7 +129,7 @@ class StartViewController: UIViewController, UIViewControllerTransitioningDelega
             })
             
         } else {
-            presentingView.frame = containterView.frame
+            presentingView.frame = containterView!.frame
             
             UIView.animateWithDuration(0.3, animations: { () in
                 self.view.frame.origin.y += self.view.frame.height

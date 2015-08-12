@@ -26,16 +26,16 @@ class ProductsManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
     // button
     func purchasePro() {
 //        return
-        println("User requests to purchase Pro.")
+        print("User requests to purchase Pro.")
         
         if SKPaymentQueue.canMakePayments() {
-            println("User can make payments.")
+            print("User can make payments.")
             
-            let productsRequest = SKProductsRequest(productIdentifiers: NSSet(object: kProProductIdentifier) as Set<NSObject>)
+            let productsRequest = SKProductsRequest(productIdentifiers: NSSet(object: kProProductIdentifier) as! Set<String>)
             productsRequest.delegate = self
             productsRequest.start()
         } else {
-            println("User cannot make payments due to  parental controls.")
+            print("User cannot make payments due to  parental controls.")
         }
     }
     
@@ -48,68 +48,68 @@ class ProductsManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
     // button
     func restore() {
 //        return
-        println("TransactionState -> restore()")
+        print("TransactionState -> restore()")
         SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
         SKPaymentQueue.defaultQueue().addTransactionObserver(self)
     }
     
     // MARK: - SKProductsRequestDelegate
     
-    func productsRequest(request: SKProductsRequest!, didReceiveResponse response: SKProductsResponse!) {
+    func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
         
         for invalidProductId in response.invalidProductIdentifiers {
-            println("invalidProductId: \(invalidProductId)")
+            print("invalidProductId: \(invalidProductId)")
         }
         
         var validProduct: SKProduct?
         let count = response.products.count
-        println("count:\(count)")
+        print("count:\(count)")
         if count > 0 {
-            println("Products availabel!")
-            validProduct = response.products[0] as? SKProduct
-            println("price: \(validProduct!.price)")
-            println("description: \(validProduct!.localizedDescription)")
-            println("localizedTitle: \(validProduct!.localizedTitle)")
+            print("Products availabel!")
+            validProduct = response.products[0]
+            print("price: \(validProduct!.price)")
+            print("description: \(validProduct!.localizedDescription)")
+            print("localizedTitle: \(validProduct!.localizedTitle)")
             self.purchase(validProduct!)
         } else if validProduct == nil {
-            println("No products available.")
+            print("No products available.")
         }
     }
     
     // MARK: - SKPaymentTransactionObserver
     
-    func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
+    func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
-            switch transaction.transactionState! {
+            switch transaction.transactionState {
             case SKPaymentTransactionState.Purchasing:
-                println("TransactionState -> Purchasing")
+                print("TransactionState -> Purchasing")
                 // called when the user is in the process of purchasing, do not add any of your own code here.
                 break
                 
             case SKPaymentTransactionState.Purchased:
-                println("TransactionState -> Purchased")
+                print("TransactionState -> Purchased")
                 
                 // this is called when the user has successfully purchased the package (Cha-Ching!)
                 self.doRemoveAds()
-                SKPaymentQueue.defaultQueue().finishTransaction(transaction as! SKPaymentTransaction)
+                SKPaymentQueue.defaultQueue().finishTransaction(transaction )
                 break
                 
             case SKPaymentTransactionState.Restored:
-                println("TransactionState -> Restored")
+                print("TransactionState -> Restored")
                 
                 self.doRemoveAds()
-                SKPaymentQueue.defaultQueue().finishTransaction(transaction as! SKPaymentTransaction)
+                SKPaymentQueue.defaultQueue().finishTransaction(transaction )
                 break
                 
             case SKPaymentTransactionState.Failed:
-                println("TransactionState -> Failed")
+                print("TransactionState -> Failed")
                 
-                if (transaction as! SKPaymentTransaction).error.code == SKErrorPaymentCancelled {
+                if transaction.error!.code == SKErrorPaymentCancelled {
                     // The user cancelled the payment
-                    println("TransactionState -> Cancelled")
+                    print("TransactionState -> Cancelled")
                     
                 }
-                SKPaymentQueue.defaultQueue().finishTransaction(transaction as! SKPaymentTransaction)
+                SKPaymentQueue.defaultQueue().finishTransaction(transaction )
                 break
                 
             default:
@@ -119,24 +119,24 @@ class ProductsManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
         }
     }
     
-    func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue!) {
-        println("Received restored transactions: \(queue.transactions.count)")
+    func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue) {
+        print("Received restored transactions: \(queue.transactions.count)")
         if queue.transactions.count == 0 {
             self.delegate?.productsManagerRestoreFailed!(self)
             return
         }
         for transaction in queue.transactions {
             if transaction.transactionState == SKPaymentTransactionState.Restored {
-                println("paymentQueueRestoreCompletedTransactionsFinished - TransactionState -> Restored")
+                print("paymentQueueRestoreCompletedTransactionsFinished - TransactionState -> Restored")
                 self.doRemoveAds()
-                SKPaymentQueue.defaultQueue().finishTransaction(transaction as! SKPaymentTransaction)
+                SKPaymentQueue.defaultQueue().finishTransaction(transaction )
                 break
             }
         }
     }
     
     func doRemoveAds() {
-        println("doRemoveAds")
+        print("doRemoveAds")
         ApplicationStateManager.sharedInstance.purchasedSuccess()
     }
 }
