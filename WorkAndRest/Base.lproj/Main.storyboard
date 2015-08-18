@@ -64,8 +64,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Start 2" translatesAutoresizingMaskIntoConstraints="NO" id="W95-lv-UNp">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Start 2" translatesAutoresizingMaskIntoConstraints="NO" id="W95-lv-UNp">
                                 <rect key="frame" x="0.0" y="0.0" width="0.0" height="568"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" id="ffL-GK-yoT"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minutes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJc-Sd-tyd">
                                 <rect key="frame" x="110" y="314" width="100" height="24"/>
@@ -119,27 +122,62 @@
                                     <segue destination="efs-XL-sJb" kind="modal" modalTransitionStyle="crossDissolve" id="6Ne-3Y-7Oa"/>
                                 </connections>
                             </button>
-                            <view tag="1004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poP-IU-mMV" customClass="TaskTitleView" customModule="WorkAndRest" customModuleProvider="target">
-                                <rect key="frame" x="21" y="78" width="278" height="70"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pd-MH-gQf">
+                                <rect key="frame" x="20" y="94" width="279" height="49"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close_quote" translatesAutoresizingMaskIntoConstraints="NO" id="CnD-47-1tw">
+                                        <rect key="frame" x="270" y="21" width="9" height="7"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="9" id="6th-RK-E7G"/>
+                                            <constraint firstAttribute="height" constant="7" id="NMa-9q-Hiy"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="open_quote" translatesAutoresizingMaskIntoConstraints="NO" id="oPa-hb-QV1">
+                                        <rect key="frame" x="0.0" y="21" width="9" height="7"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="7" id="9ps-Li-BsM"/>
+                                            <constraint firstAttribute="width" constant="9" id="C6s-Ic-mFp"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Edit Task Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dq2-A7-i2U">
+                                        <rect key="frame" x="14" y="10" width="251" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="qfE-mw-pCK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    </textField>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="HLw-F0-eAA"/>
+                                    <constraint firstItem="dq2-A7-i2U" firstAttribute="top" secondItem="4pd-MH-gQf" secondAttribute="top" constant="10" id="4UO-3s-eiu"/>
+                                    <constraint firstItem="dq2-A7-i2U" firstAttribute="centerY" secondItem="4pd-MH-gQf" secondAttribute="centerY" id="BKj-cK-IM1"/>
+                                    <constraint firstAttribute="height" constant="49" id="CXy-0I-ZeL"/>
+                                    <constraint firstItem="oPa-hb-QV1" firstAttribute="centerY" secondItem="4pd-MH-gQf" secondAttribute="centerY" id="JlX-f8-Hry"/>
+                                    <constraint firstItem="CnD-47-1tw" firstAttribute="centerY" secondItem="4pd-MH-gQf" secondAttribute="centerY" id="KOq-fD-NSb"/>
+                                    <constraint firstItem="oPa-hb-QV1" firstAttribute="leading" secondItem="4pd-MH-gQf" secondAttribute="leading" id="SKm-fn-PF1"/>
+                                    <constraint firstItem="dq2-A7-i2U" firstAttribute="leading" secondItem="oPa-hb-QV1" secondAttribute="trailing" constant="5" id="ekr-qy-p8Y"/>
+                                    <constraint firstAttribute="trailing" secondItem="CnD-47-1tw" secondAttribute="trailing" id="kYu-xw-f3h"/>
+                                    <constraint firstItem="CnD-47-1tw" firstAttribute="leading" secondItem="dq2-A7-i2U" secondAttribute="trailing" constant="5" id="quj-dL-LXI"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="4pd-MH-gQf" firstAttribute="top" secondItem="mpJ-or-Bcp" secondAttribute="bottom" constant="30" id="7EE-X4-Y9x"/>
+                            <constraint firstItem="W95-lv-UNp" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leading" id="8Ig-zN-Pif"/>
                             <constraint firstAttribute="centerX" secondItem="ASE-8s-itc" secondAttribute="centerX" id="8bA-iX-9O9"/>
                             <constraint firstItem="8Sa-Oz-OYd" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" id="E0i-jY-as4"/>
                             <constraint firstAttribute="centerX" secondItem="AJc-Sd-tyd" secondAttribute="centerX" id="H5f-Op-DQo"/>
-                            <constraint firstAttribute="centerY" secondItem="poP-IU-mMV" secondAttribute="centerY" constant="171" id="NRY-4r-g3q"/>
+                            <constraint firstItem="4pd-MH-gQf" firstAttribute="leading" secondItem="W95-lv-UNp" secondAttribute="trailing" constant="20" id="Mg4-aQ-uSg"/>
                             <constraint firstItem="AJc-Sd-tyd" firstAttribute="top" secondItem="QId-3m-KdG" secondAttribute="bottom" constant="9" id="Ocp-2g-riq"/>
                             <constraint firstItem="QId-3m-KdG" firstAttribute="leading" secondItem="ASE-8s-itc" secondAttribute="trailing" constant="-9" id="Puf-LH-lnX"/>
+                            <constraint firstItem="W95-lv-UNp" firstAttribute="top" secondItem="A1W-Vw-dDY" secondAttribute="top" id="Qwk-Gl-GzA"/>
+                            <constraint firstItem="W95-lv-UNp" firstAttribute="bottom" secondItem="Naa-3f-RwY" secondAttribute="top" id="Qz8-91-tie"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8Sa-Oz-OYd" secondAttribute="trailing" id="R6e-DS-oSF"/>
                             <constraint firstItem="AJc-Sd-tyd" firstAttribute="top" secondItem="ASE-8s-itc" secondAttribute="bottom" constant="-7" id="buB-1R-hdB"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="poP-IU-mMV" secondAttribute="trailing" constant="5" id="bul-g3-svR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4pd-MH-gQf" secondAttribute="trailing" constant="5" id="fqq-VF-1N4"/>
                             <constraint firstItem="Naa-3f-RwY" firstAttribute="top" secondItem="8Sa-Oz-OYd" secondAttribute="bottom" constant="40" id="hoz-kZ-Gze"/>
-                            <constraint firstItem="poP-IU-mMV" firstAttribute="leading" secondItem="A1W-Vw-dDY" secondAttribute="leadingMargin" constant="5" id="l8g-ab-vOD"/>
                             <constraint firstAttribute="centerY" secondItem="ASE-8s-itc" secondAttribute="centerY" constant="38" id="s02-3H-9sC"/>
                         </constraints>
                     </view>
@@ -153,7 +191,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="startButton" destination="8Sa-Oz-OYd" id="e42-ui-yZD"/>
-                        <outlet property="taskTitleView" destination="poP-IU-mMV" id="NUd-ms-U1U"/>
+                        <outlet property="titleTextField" destination="dq2-A7-i2U" id="Hm4-jN-cxg"/>
                         <segue destination="UsD-oN-d9y" kind="modal" identifier="EditTaskTitleSegue" id="aGM-L8-aaO"/>
                         <segue destination="2gd-Yk-soa" kind="modal" identifier="StartSegue" id="XbD-Cl-smv"/>
                     </connections>
@@ -1132,8 +1170,10 @@
         <image name="add" width="20" height="20"/>
         <image name="close" width="15" height="15"/>
         <image name="close-tip-button" width="29" height="29"/>
+        <image name="close_quote" width="9" height="7"/>
         <image name="finished number" width="167" height="164"/>
         <image name="icon" width="70" height="70"/>
+        <image name="open_quote" width="9" height="7"/>
         <image name="question-mark" width="17" height="17"/>
         <image name="settings" width="22" height="22"/>
         <image name="start_later_en" width="98" height="99"/>
@@ -1148,7 +1188,7 @@
         <image name="tutorial_detail_page" width="335" height="328"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IsP-1t-QkO"/>
+        <segue reference="aGM-L8-aaO"/>
         <segue reference="RhK-XE-Rp2"/>
     </inferredMetricsTieBreakers>
 </document>

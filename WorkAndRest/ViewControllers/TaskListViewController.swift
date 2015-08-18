@@ -233,21 +233,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     // MARK: - NewTaskViewControllerDelegate
     
-    func newTaskViewController(controller: NewTaskViewController!, didFinishAddingTask item: Task!, runningNow runNow: Bool) {
-        
-        
-        //        for _ in 1...100 {
-        //             DBOperate.insertTask(item)
-        //        }
-        
-        //        if DBOperate.insertTask(item) {
+    func newTaskViewController(controller: NewTaskViewController!, didFinishAddingTask item: Task!) {
         if self.taskManager.addTask(item) {
             NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
-            if runNow {
-                self.taskRunner.setupTaskItem(item)
-                //self.refreshHeaderView()
-                self.reloadTableViewWithTimeInterval(1.0)
-            }
         }
     }
     

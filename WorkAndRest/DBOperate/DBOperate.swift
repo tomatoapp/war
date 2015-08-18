@@ -21,7 +21,7 @@ class DBOperate {
     
     class func db_init() {
         let documentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
-        let path = documentsFolder.stringByAppendingString("db_demo.sqlite3")
+        let path = documentsFolder.stringByAppendingString("/db_demo.sqlite3")
         dataBase = FMDatabase(path: path)
 
 //        let fileManager = NSFileManager.defaultManager()
