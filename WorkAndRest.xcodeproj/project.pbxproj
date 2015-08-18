@@ -408,14 +408,14 @@
 				649308581A7AE68200480677 /* BaseTableViewController.swift */,
 				6458B66A1A7722BD004FD3D9 /* RootViewController.swift */,
 				6442291C1A7A2F2000E516C1 /* TaskListViewController.swift */,
-				64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */,
 				6493085A1A7AE88B00480677 /* TaskTitleViewController.swift */,
-				6497FC6B1A85C5F70098535D /* StartViewController.swift */,
 				64CCE5321A89600C008D5A08 /* TaskDetailsViewController.swift */,
 				6493C5A71A9032890036B5AE /* HelpViewController.swift */,
 				6415C60A1A9234D400A9FBCA /* SettingsViewController.swift */,
 				648311BD1A96B8E100F445AE /* StatisticsViewController.swift */,
 				64293E841B6070360067BF05 /* BaseTranslucentViewController.swift */,
+				6497FC6B1A85C5F70098535D /* StartViewController.swift */,
+				64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */,
 				64293E861B6071BA0067BF05 /* ExplainTomatoTimeViewController.swift */,
 			);
 			path = ViewControllers;

@@ -49,9 +49,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setupSampleTask"), name: "introDidFinish", object: nil)
         }
         
-        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_GUIDE) {
-            self.showGuide()
-        }
+//        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_GUIDE) {
+//            self.showGuide()
+//        }
     }
     
     override func viewWillAppear(animated: Bool) {

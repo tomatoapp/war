@@ -73,7 +73,7 @@
 "start_a_new_timer_normal" = "start_a_new_timer_normal_cn";
 "start_a_new_timer_pressed" = "start_a_new_timer_pressed_cn";
 
-"edit_task_title" = "edit_task_title_cn";
+"edit_task_title" = "请输入任务名称";
 "You stoped the timer!" = "当前番茄时间被打断！";
 
 "Purchase Pro" = "购买专业版 12元";
@@ -92,3 +92,4 @@
 
 "guide3Title" = "一日复一日";
 "guide3SubTitle" = "我们提供了全面的视角，让您了解每天、每星期甚至每个月顺利完成的番茄时间与半途而废的番茄时间之间的比例关系。";
+"Tap here to edit title" = "点击这里编辑任务标题";
