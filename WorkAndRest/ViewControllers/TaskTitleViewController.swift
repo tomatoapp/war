@@ -70,26 +70,26 @@ class TaskTitleViewController: BaseTableViewController, UITextFieldDelegate {
     
     @IBAction func done(sender: AnyObject) {
         
-        if self.textField.text.isEmpty {
+        if self.textField.text!.isEmpty {
             self.cancel(nil)
             return
         }
         
-        if count(self.textField.text!) > GlobalConstants.TITLE_MAXLENGTH {
-            let index: String.Index = advance(self.textField.text.startIndex, GlobalConstants.TITLE_MAXLENGTH)
-            self.textField.text = self.textField.text.substringToIndex(index)
+        if (self.textField.text!).characters.count > GlobalConstants.TITLE_MAXLENGTH {
+            let index: String.Index = advance(self.textField.text!.startIndex, GlobalConstants.TITLE_MAXLENGTH)
+            self.textField.text = self.textField.text!.substringToIndex(index)
         }
         
         if copyTaskItem == nil {
             let newItem = Task()
-            newItem.title = self.textField.text
+            newItem.title = self.textField.text!
             self.delegate.addTaskViewController(self, didFinishAddingTask: newItem)
         } else {
             if copyTaskItem.title == self.textField.text {
                 self.cancel(nil)
                 return;
             }
-            copyTaskItem!.title = self.textField.text
+            copyTaskItem!.title = self.textField.text!
             self.delegate.addTaskViewController(self, didFinishEditingTask: copyTaskItem)
         }
 //        self.navigationController!.popViewControllerAnimated(true)
@@ -121,7 +121,7 @@ class TaskTitleViewController: BaseTableViewController, UITextFieldDelegate {
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        if count(textField.text!) > GlobalConstants.TITLE_MAXLENGTH {
+        if (textField.text!).characters.count > GlobalConstants.TITLE_MAXLENGTH {
             return false
         }
         return true

@@ -26,10 +26,10 @@ class WorkManager: NSObject {
     
     func loadWorkList() -> Array<Work> {
         if !self.hasNewValue && self.cacheWorkList.count > 0 {
-            println("==cache works.")
+            print("==cache works.")
             return self.cacheWorkList
         }
-        println("=====db works.")
+        print("=====db works.")
         let result = DBOperate.loadAllWorks()
         if result != nil {
             self.cacheWorkList = result!
@@ -60,19 +60,10 @@ class WorkManager: NSObject {
                 comps.year = -1
             break
         }
-        return calendar.dateByAddingComponents(comps, toDate: NSDate(), options: NSCalendarOptions.allZeros)!
+        return calendar.dateByAddingComponents(comps, toDate: NSDate(), options: NSCalendarOptions())!
     }
     
     func insertWork(work: Work) {
-        
-        var components = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitMinute, fromDate: NSDate())
-//        for i in 0...100 {
-//            components.day -= 1
-//            let tempDate = NSCalendar.currentCalendar().dateFromComponents(components)
-//            println(tempDate)
-//            work.workTime = tempDate!
-//            DBOperate.insertWork(work)
-//        }
             DBOperate.insertWork(work)
             self.hasNewValue = true
             

@@ -204,7 +204,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == 1 {
             if MFMailComposeViewController.canSendMail() {
-                var mailComposeViewController = MFMailComposeViewController()
+                let mailComposeViewController = MFMailComposeViewController()
                 mailComposeViewController.mailComposeDelegate = self
                 mailComposeViewController.setToRecipients([GlobalConstants.EMAIL_ADDRESS])
                 mailComposeViewController.setSubject(NSLocalizedString("Suggestions", comment: ""))
@@ -216,9 +216,9 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     
     // MARK: - MFMailComposeViewControllerDelegate
     
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
-        switch result.value {
-        case MFMailComposeResultSent.value:
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        switch result.rawValue {
+        case MFMailComposeResultSent.rawValue:
             self.showThanksAlert()
             break
             
@@ -263,21 +263,21 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         switch state {
             
         case SKPaymentTransactionState.Purchasing:
-            println("ProductsManagerDelegate - Purchasing")
+            print("ProductsManagerDelegate - Purchasing")
             break
             
         case SKPaymentTransactionState.Purchased:
-            println("ProductsManagerDelegate - Purchased")
+            print("ProductsManagerDelegate - Purchased")
             self.HUD.hide(true)
             break
             
         case SKPaymentTransactionState.Restored:
-            println("ProductsManagerDelegate - Restored")
+            print("ProductsManagerDelegate - Restored")
             self.HUD.hide(true)
             break
             
         case SKPaymentTransactionState.Failed:
-            println("ProductsManagerDelegate - Failed")
+            print("ProductsManagerDelegate - Failed")
             self.HUD.hide(true)
             break
             

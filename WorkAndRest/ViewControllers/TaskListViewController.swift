@@ -49,9 +49,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setupSampleTask"), name: "introDidFinish", object: nil)
         }
         
-        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_GUIDE) {
-            self.showGuide()
-        }
+//        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_GUIDE) {
+//            self.showGuide()
+//        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -186,7 +186,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         if editingStyle == UITableViewCellEditingStyle.Delete {
             let task = allTasks[indexPath.row]
             self.taskManager.removeTask(task)
-            let indexPaths = [indexPath]
             self.deleteItem(task, withRowAnimation: UITableViewRowAnimation.Fade)
         }
     }
@@ -234,21 +233,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     // MARK: - NewTaskViewControllerDelegate
     
-    func newTaskViewController(controller: NewTaskViewController!, didFinishAddingTask item: Task!, runningNow runNow: Bool) {
-        
-        
-        //        for _ in 1...100 {
-        //             DBOperate.insertTask(item)
-        //        }
-        
-        //        if DBOperate.insertTask(item) {
+    func newTaskViewController(controller: NewTaskViewController!, didFinishAddingTask item: Task!) {
         if self.taskManager.addTask(item) {
             NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
-            if runNow {
-                self.taskRunner.setupTaskItem(item)
-                //self.refreshHeaderView()
-                self.reloadTableViewWithTimeInterval(1.0)
-            }
         }
     }
     
@@ -294,7 +281,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     
     func activated(sender: TaskListItemCell!) {
-        var baseItem = allTasks.filter{ $0.taskId == sender.taskItem!.taskId }.first!
+        let baseItem = allTasks.filter{ $0.taskId == sender.taskItem!.taskId }.first!
         baseItem.completed = false
         self.reloadTableViewWithTimeInterval(0.0)
     }
@@ -330,7 +317,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
                 }
                 
                 // Refresh the tableview.
-                let indexPath = NSIndexPath(forRow: find(allTasks, task)!, inSection: 0)
+                let indexPath = NSIndexPath(forRow: allTasks.indexOf(task)!, inSection: 0)
                 let indexPaths = [indexPath]
                 self.tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Fade)
             }
@@ -399,7 +386,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     func createTask() {
         if self.taskRunner.isRunning {
-            println("There is a task is running, you can not create a new task.")
+            print("There is a task is running, you can not create a new task.")
             return
         }
         self.performSegueWithIdentifier("NewTaskSegue", sender: nil)
@@ -410,7 +397,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     
     func sortTasks(list: Array<Task>) -> Array<Task>? {
-        return list.sorted { $0.lastUpdateTime.compare($1.lastUpdateTime) == NSComparisonResult.OrderedDescending }
+        return list.sort { $0.lastUpdateTime.compare($1.lastUpdateTime) == NSComparisonResult.OrderedDescending }
     }
     
     let HEADERVIEW_OFFSET: CGFloat = 8
@@ -420,8 +407,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         let item = val.userInfo as! Task
         self.tableView.beginUpdates()
         allTasks.insert(item, atIndex: 0)
-        var indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        var indexPaths = [indexPath]
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        let indexPaths = [indexPath]
         self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Fade)
         self.tableView.endUpdates()
     }
@@ -429,8 +416,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     func insertItem(item: Task!, withRowAnimation animation: UITableViewRowAnimation) {
         self.tableView.beginUpdates()
         allTasks.insert(item, atIndex: 0)
-        var indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        var indexPaths = [indexPath]
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        let indexPaths = [indexPath]
         self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: animation)
         self.tableView.endUpdates()
     }
@@ -438,10 +425,10 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     func deleteItem(item: Task!, withRowAnimation animation: UITableViewRowAnimation) {
         
         self.tableView.beginUpdates()
-        let indexPath = NSIndexPath(forRow: find(allTasks, item)!, inSection: 0)
+        let indexPath = NSIndexPath(forRow: allTasks.indexOf(item)!, inSection: 0)
         let indexPaths = [indexPath]
         self.tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: animation)
-        allTasks.removeAtIndex(find(allTasks, item)!)
+        allTasks.removeAtIndex(allTasks.indexOf(item)!)
         self.tableView.endUpdates()
     }
     
@@ -451,8 +438,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         if result.count <= 0 { // Can not found it, maybe deleted it just now.
             return
         }
-        var baseItem = result.first!
-        if find(allTasks, baseItem) == 0 { // if this item is already in the top, then return
+        let baseItem = result.first!
+        if allTasks.indexOf(baseItem) == 0 { // if this item is already in the top, then return
             baseItem.title = copyItem.title
             self.tableView.reloadData()
             return
@@ -498,7 +485,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     
     func leftUtilityButtonsByTaskState(state: TaskState) -> NSMutableArray {
-        var leftUtilityButtons = NSMutableArray()
+        let leftUtilityButtons = NSMutableArray()
         if state == TaskState.Normal {
             leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.clearColor(), normalIcon: UIImage(named: "swipe_item_markdone"), selectedIcon: UIImage(named: "swipe_item_markdone_press"))
         }
@@ -524,7 +511,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     
     func enableTableViewHeaderViewWithAnimate(animate: Bool) {
-        println("func enableTableViewHeaderViewWithAnimate(\(animate))")
+        print("func enableTableViewHeaderViewWithAnimate(\(animate))")
         if self.tableViewHeader == nil {
             self.setupHeaderView()
         }

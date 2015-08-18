@@ -71,7 +71,7 @@
 "start_a_new_timer_normal" = "start_a_new_timer_normal_en";
 "start_a_new_timer_pressed" = "start_a_new_timer_pressed_en";
 
-"edit_task_title" = "edit_task_title_en";
+"edit_task_title" = "Enter the task title";
 "You stoped the timer!" = "You stoped the timer!";
 
 "Purchase Pro" = "Purchase Pro $1.99";
@@ -90,3 +90,5 @@
 
 "guide3Title" = "Day By Day";
 "guide3SubTitle" = "We provide a comprehensive view of the ratio between completed tasks and stopped tasks.";
+
+"Tap here to edit title" = "Tap title to change it";

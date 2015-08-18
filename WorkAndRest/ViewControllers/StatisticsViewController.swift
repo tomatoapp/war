@@ -223,7 +223,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         while self.data.count < self.getNumberOfBarsByPhoneSize() {
             self.data.append(CGFloat(0))
         }
-        self.setChatViewMaximumValue(maxElement(self.data))
+        self.setChatViewMaximumValue(self.data.maxElement()!)
         self.setStateToCollapsed()
 
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("setStateToExpanded"), userInfo: nil, repeats: false)
@@ -251,9 +251,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         var dic = [Int: Array<Work>]()
         
-        let startComponents = NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitWeekday | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitMinute | NSCalendarUnit.CalendarUnitSecond , fromDate: NSDate())
+        let startComponents = NSCalendar.currentCalendar().components([.Year, .Month, .WeekOfMonth, .Weekday, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second] , fromDate: NSDate())
         
-        let endComponents = NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitWeekday | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitMinute | NSCalendarUnit.CalendarUnitSecond , fromDate: NSDate())
+        let endComponents = NSCalendar.currentCalendar().components([.Year, .Month, .WeekOfMonth, .Weekday, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second] , fromDate: NSDate())
         
         startComponents.hour = 0
         startComponents.minute = 0
@@ -271,7 +271,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 endComponents.day = startComponents.day
                 let startDate = NSCalendar.currentCalendar().dateFromComponents(startComponents)!
                 let endDate = NSCalendar.currentCalendar().dateFromComponents(endComponents)!
-                var result = self.filterWorks(list, byStartDate: startDate, andEndDate: endDate)
+                let result = self.filterWorks(list, byStartDate: startDate, andEndDate: endDate)
                 dic[i] = result
             }
             break
@@ -342,7 +342,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         while dates.count < self.getCapacity()  {
             dates.append(nil)
         }
-        println("dates: \(dates)")
+        print("dates: \(dates)")
         
         // If the dates[0] is nil, mean that all the list is nil.
         
@@ -353,7 +353,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         switch type {
         case .Week:
             currentIndex = self.daysBetweenDateFromDate(dates[0]!, toDate: NSDate())
-            println("todayIndex: \(currentIndex)")
+            print("todayIndex: \(currentIndex)")
             // Covert the number to Week day string.
             weekDayNames.append(self.self.getWeekDayStringByWeekDayNumber(todayComponents.weekday))
             // if todayIndex is zero, mean that today is the first day.
@@ -384,10 +384,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 components.day = components.day - components.weekday + 1
                 firstDayOfTheWeekDates.append(NSCalendar.currentCalendar().dateFromComponents(components))
             }
-            println("dates: \(firstDayOfTheWeekDates) (firstDayOfTheWeekDates)")
+            print("dates: \(firstDayOfTheWeekDates) (firstDayOfTheWeekDates)")
             
             currentIndex = abs(self.weeksBetweenDateFromDate(firstDayOfTheWeekDates[0]!, toDate: NSDate()))
-            println("todayIndex: \(currentIndex)")
+            print("todayIndex: \(currentIndex)")
             
             // Covert the number to Week day string.
             let components = self.getComponentsByDate(NSDate())
@@ -397,7 +397,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             var preUnNilDate: NSDate!
             if currentIndex > 0 {
                 for index in 0...currentIndex-1 {
-                    var tempDate = firstDayOfTheWeekDates[index]
+                    let tempDate = firstDayOfTheWeekDates[index]
                     if tempDate != nil {
                         preUnNilDate = tempDate
                         weekDayNames.insert(self.getWeekStringByDate(tempDate), atIndex: weekDayNames.count-1)
@@ -418,7 +418,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         case .Year:
             
             currentIndex = abs(self.monthsBetweenDateFromDate(dates[0]!, toDate: NSDate()))
-            println("todayIndex: \(currentIndex)")
+            print("todayIndex: \(currentIndex)")
 
             // Covert the number to Week day string.
             weekDayNames.append(self.getMonthStringByMonthNumber(todayComponents.month))
@@ -437,7 +437,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             }
             break
         }
-        println("weekDayNames - labels: \(weekDayNames)")
+        print("weekDayNames - labels: \(weekDayNames)")
         for index in 0...weekDayNames.count - 1 {
             let tempLabel = UILabel()
             tempLabel.text = weekDayNames[index]
@@ -569,7 +569,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         let startComponents = self.getComponentsByDate(date)
         let startMonthStr = self.getMonthStringByMonthNumber(startComponents.month)
         
-        var copy: NSDateComponents = startComponents.copy() as! NSDateComponents
+        let copy: NSDateComponents = startComponents.copy() as! NSDateComponents
         copy.day += 6
         let endDate = NSCalendar.currentCalendar().dateFromComponents(copy)
         let endDateComponents = self.getComponentsByDate(endDate)
@@ -595,7 +595,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     func getComponentsByDate(date: NSDate!) -> NSDateComponents! {
-        return NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitWeekday | .CalendarUnitWeekOfMonth | .CalendarUnitWeekdayOrdinal | .CalendarUnitWeekOfYear | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond, fromDate: date)
+        return NSCalendar.currentCalendar().components([.Year, .Month, .Day, .Weekday, .WeekOfMonth, .WeekdayOrdinal, .WeekOfYear, .Hour, .Minute, .Second], fromDate: date)
     }
     
     func daysBetweenDateFromDate(date1: NSDate, toDate date2: NSDate) -> Int {
@@ -605,10 +605,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         let calendar = NSCalendar.currentCalendar()
         
-        calendar.rangeOfUnit(NSCalendarUnit.DayCalendarUnit, startDate: &fromDate, interval: &duration, forDate: date1)
-        calendar.rangeOfUnit(NSCalendarUnit.DayCalendarUnit, startDate: &toDate, interval: &duration, forDate: date2)
+        calendar.rangeOfUnit(NSCalendarUnit.NSDayCalendarUnit, startDate: &fromDate, interval: &duration, forDate: date1)
+        calendar.rangeOfUnit(NSCalendarUnit.NSDayCalendarUnit, startDate: &toDate, interval: &duration, forDate: date2)
         
-        let difference = calendar.components(NSCalendarUnit.DayCalendarUnit, fromDate: fromDate!, toDate: toDate!, options: nil)
+        let difference = calendar.components(NSCalendarUnit.NSDayCalendarUnit, fromDate: fromDate!, toDate: toDate!, options: [])
         return difference.day
     }
 
@@ -619,10 +619,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         let calendar = NSCalendar.currentCalendar()
         
-        calendar.rangeOfUnit(NSCalendarUnit.WeekOfYearCalendarUnit, startDate: &fromDate, interval: &duration, forDate: date1)
-        calendar.rangeOfUnit(NSCalendarUnit.WeekOfYearCalendarUnit, startDate: &toDate, interval: &duration, forDate: date2)
+        calendar.rangeOfUnit(NSCalendarUnit.NSWeekOfYearCalendarUnit, startDate: &fromDate, interval: &duration, forDate: date1)
+        calendar.rangeOfUnit(NSCalendarUnit.NSWeekOfYearCalendarUnit, startDate: &toDate, interval: &duration, forDate: date2)
         
-        let difference = calendar.components(NSCalendarUnit.WeekOfYearCalendarUnit, fromDate: fromDate!, toDate: toDate!, options: nil)
+        let difference = calendar.components(NSCalendarUnit.NSWeekOfYearCalendarUnit, fromDate: fromDate!, toDate: toDate!, options: [])
         return difference.weekOfYear
     }
     
@@ -633,16 +633,15 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         let calendar = NSCalendar.currentCalendar()
         
-        calendar.rangeOfUnit(NSCalendarUnit.MonthCalendarUnit, startDate: &fromDate, interval: &duration, forDate: date1)
-        calendar.rangeOfUnit(NSCalendarUnit.MonthCalendarUnit, startDate: &toDate, interval: &duration, forDate: date2)
+        calendar.rangeOfUnit(NSCalendarUnit.NSMonthCalendarUnit, startDate: &fromDate, interval: &duration, forDate: date1)
+        calendar.rangeOfUnit(NSCalendarUnit.NSMonthCalendarUnit, startDate: &toDate, interval: &duration, forDate: date2)
         
-        let difference = calendar.components(NSCalendarUnit.MonthCalendarUnit, fromDate: fromDate!, toDate: toDate!, options: nil)
+        let difference = calendar.components(NSCalendarUnit.NSMonthCalendarUnit, fromDate: fromDate!, toDate: toDate!, options: [])
         return difference.month
     }
     
     func addHeaderViewToTheStatisticsView() {
         let VIEW_HEIGHT: CGFloat = 157
-        let LABEL_WIDTH: CGFloat = 40
         let LABEL_HEIGHT: CGFloat = 25
         
         self.chartViewHeaderView = UIView(frame: CGRectMake(0, 0, self.chartView.frame.width + 50, VIEW_HEIGHT))
@@ -818,7 +817,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             let itemSpace = ceil(CGFloat(index) / 2) * 10
             let groupSpace = CGFloat(index / 2) * 50
             let itemsWidth = CGFloat(index) * itemWidth
-            var x: CGFloat = (self.statisticsView.frame.size.width - self.chartView.frame.size.width) / 2 + itemSpace + groupSpace + itemsWidth
+            let x: CGFloat = (self.statisticsView.frame.size.width - self.chartView.frame.size.width) / 2 + itemSpace + groupSpace + itemsWidth
             self.tooltip.frame = CGRectMake(CGFloat(x - (self.tooltip.frame.size.width - itemWidth) / 2), 20, self.tooltip.frame.size.width, self.tooltip.frame.size.height)
         }
         
@@ -857,15 +856,15 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     func productsManager(productsManager: ProductsManager, paymentTransactionState state: SKPaymentTransactionState) {
         switch state {
         case SKPaymentTransactionState.Purchased:
-            println("ProductsManagerDelegate - Purchased")
+            print("ProductsManagerDelegate - Purchased")
             break
             
         case SKPaymentTransactionState.Restored:
-            println("ProductsManagerDelegate - Restored")
+            print("ProductsManagerDelegate - Restored")
             break
             
         case SKPaymentTransactionState.Failed:
-            println("ProductsManagerDelegate - Failed")
+            print("ProductsManagerDelegate - Failed")
             break
             
         default:

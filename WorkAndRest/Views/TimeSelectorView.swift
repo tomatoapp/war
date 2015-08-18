@@ -26,7 +26,7 @@ class TimeSelectorView: UIView, V8HorizontalPickerViewDelegate, V8HorizontalPick
         self.setup()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setup()
     }
@@ -74,7 +74,7 @@ class TimeSelectorView: UIView, V8HorizontalPickerViewDelegate, V8HorizontalPick
         let item = self.titleArray[index]
         let index: String.Index = advance(item.startIndex, 2)
         let result = item.substringToIndex(index)
-        let minutes = result.toInt()
+        let minutes = Int(result)
         if self.delegate != nil {
             self.delegate?.timeSelectorView(self, didSelectTime: minutes!)
         }

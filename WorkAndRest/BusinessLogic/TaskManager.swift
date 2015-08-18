@@ -30,7 +30,7 @@ class TaskManager: NSObject {
         
         self.mmwornhole.listenForMessageWithIdentifier(IdentifierDef.TestIdentifier, listener: { (message) -> Void in
             //println("Fire!!!")
-            var task = Task()
+            let task = Task()
             task.taskId = 1
             task.lastUpdateTime = NSDate()
             task.title = "~~ duang! ~"
@@ -66,7 +66,7 @@ class TaskManager: NSObject {
         
         // Remove it from the cache.
         let target = cacheTaskList.filter {$0.taskId == task.taskId }.first!
-        cacheTaskList.removeAtIndex(find(cacheTaskList, target)!)
+        cacheTaskList.removeAtIndex(cacheTaskList.indexOf(target)!)
         
         // Remove it from the database.
         let success = DBOperate.deleteTask(task)
@@ -103,7 +103,7 @@ class TaskManager: NSObject {
         target.lastUpdateTime = task.lastUpdateTime
         target.finished_times = task.finished_times
         
-        println("completeOneTimer: \(target.finished_times)")
+        print("completeOneTimer: \(target.finished_times)")
         
         // Update the database.
         let success = DBOperate.updateTask(task)

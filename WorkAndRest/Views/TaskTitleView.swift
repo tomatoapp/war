@@ -19,7 +19,7 @@ class TaskTitleView: UIView {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var button: UIButton!
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setup()
     }
@@ -43,7 +43,6 @@ class TaskTitleView: UIView {
             self.titleLabel.text = title
 
             self.titleLabel.sizeToFit()
-            let size = self.titleLabel.frame.size
              self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y, 100, self.titleLabel.frame.size.height)
             self.button.setImage(UIImage(named: ""), forState: UIControlState.Normal)
         }

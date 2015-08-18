@@ -35,7 +35,7 @@ class TaskItemBaseView: UIView {
         self.delegate?.taskItemBaseView(self, buttonClicked: sender as! UIButton)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setup()
     }
@@ -113,9 +113,6 @@ class TaskItemBaseView: UIView {
                     self.button.setImage(UIImage(named: "redo"), forState: UIControlState.Normal)
                 }, completion: nil)
             break
-            
-        default:
-            break
         }
     }
     
@@ -129,7 +126,7 @@ class TaskItemBaseView: UIView {
 //    }
     
     func switchToBreakButton() {
-        println("switchToBreakButton")
+        print("switchToBreakButton")
         UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in
                 self.timerLabel.alpha = 0

@@ -24,7 +24,7 @@ class StatisticsLocker: UIView {
         super.init(frame: frame)
         self.setup()
     }
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setup()
     }
@@ -50,7 +50,7 @@ class StatisticsLocker: UIView {
     }
     
     @IBAction func buyButtonClicked(sender: AnyObject) {
-        println("buy")
+        print("buy")
         self.delegate?.statisticsLockerDidClickedBuyButton(self)
     }
 }

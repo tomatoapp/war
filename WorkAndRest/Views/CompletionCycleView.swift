@@ -46,15 +46,15 @@ class CompletionCycleView: UIView {
         }
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setup()
         self.refreshView()
         self.minusButton.addTarget(self, action: Selector("buttonDown:"), forControlEvents: UIControlEvents.TouchDown)
-        self.minusButton.addTarget(self, action: Selector("buttonUp:"), forControlEvents: UIControlEvents.TouchUpInside | UIControlEvents.TouchUpOutside)
+        self.minusButton.addTarget(self, action: Selector("buttonUp:"), forControlEvents: [UIControlEvents.TouchUpInside, UIControlEvents.TouchUpOutside])
         
         self.plusButton.addTarget(self, action: Selector("buttonDown:"), forControlEvents: UIControlEvents.TouchDown)
-        self.plusButton.addTarget(self, action: Selector("buttonUp:"), forControlEvents: UIControlEvents.TouchUpInside | UIControlEvents.TouchUpOutside)
+        self.plusButton.addTarget(self, action: Selector("buttonUp:"), forControlEvents: [UIControlEvents.TouchUpInside, UIControlEvents.TouchUpOutside])
     }
     
     var isHolding = false
@@ -93,7 +93,7 @@ class CompletionCycleView: UIView {
         }
         
         if isHolding {
-            println("go")
+            print("go")
             self.changeNumber()
         }
     }
