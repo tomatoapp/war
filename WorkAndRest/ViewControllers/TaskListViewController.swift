@@ -67,7 +67,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK)
         }
         
-        self.registerUserNotificationSettings()
+        //self.registerUserNotificationSettings()
     }
     
     func setupSampleTask() {
@@ -82,6 +82,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         
     }
     
+    /*
     func registerUserNotificationSettings() {
         let application = UIApplication.sharedApplication()
         if #available(iOS 8.0, *) {
@@ -92,6 +93,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             application.registerForRemoteNotificationTypes([.Sound, .Alert, .Badge])
         }
     }
+    */
     
     func showGuide() {
         let delayTime = dispatch_time(DISPATCH_TIME_NOW,

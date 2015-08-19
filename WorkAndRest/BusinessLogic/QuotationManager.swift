@@ -46,7 +46,7 @@ class QuotationManager: NSObject {
     func loadQuotationsByLanguage(language: LanguageType) -> NSArray? {
         let flag = language == LanguageType.cn ? "cn" : "en"
         let plistPath = NSBundle.mainBundle().pathForResource("Quotations-\(flag)", ofType: "plist")
-        let dictionary = NSDictionary(contentsOfFile: plistPath!)
+        _ = NSDictionary(contentsOfFile: plistPath!)
         let array = NSArray(contentsOfFile: plistPath!)
         return array
     }

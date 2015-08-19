@@ -33,8 +33,6 @@
 		644554641A7CADD100F48164 /* TaskListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644554631A7CADD100F48164 /* TaskListItemCell.xib */; };
 		6458B66B1A7722BD004FD3D9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458B66A1A7722BD004FD3D9 /* RootViewController.swift */; };
 		645FDE0E1A7D98FB002EC8EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FDE0D1A7D98FB002EC8EF /* AppDelegate.swift */; };
-		645FDE121A7D9BA9002EC8EF /* sec.wav in Resources */ = {isa = PBXBuildFile; fileRef = 645FDE101A7D9BA9002EC8EF /* sec.wav */; };
-		645FDE131A7D9BA9002EC8EF /* SecondBeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 645FDE111A7D9BA9002EC8EF /* SecondBeep.wav */; };
 		645FDE161A7D9E8C002EC8EF /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FDE151A7D9E8B002EC8EF /* GlobalConstants.swift */; };
 		646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 646141A41A80C11E0010E19E /* V8HorizontalPickerView.m */; };
 		646B04ED1A9A99C00083E065 /* WorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646B04EC1A9A99C00083E065 /* WorkManager.swift */; };
@@ -59,8 +57,6 @@
 		64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */; };
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
 		64A6D00E1B66ECE4000D7F2E /* QuotationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6D00D1B66ECE4000D7F2E /* QuotationManager.swift */; };
-		64A6D0101B66ED22000D7F2E /* Quotations-en.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64A6D00F1B66ED22000D7F2E /* Quotations-en.plist */; };
-		64A6D0121B66FE0A000D7F2E /* Quotations-cn.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64A6D0111B66FE0A000D7F2E /* Quotations-cn.plist */; };
 		64B563111AA7FC5700098532 /* StatisticsLocker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64B563101AA7FC5700098532 /* StatisticsLocker.xib */; };
 		64B563131AA7FC7000098532 /* StatisticsLocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B563121AA7FC7000098532 /* StatisticsLocker.swift */; };
 		64B563151AA8238300098532 /* ApplicationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B563141AA8238300098532 /* ApplicationStateManager.swift */; };
@@ -77,6 +73,7 @@
 		64EAEC2D1A7E37F70026C748 /* TaskRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */; };
 		64EBF6271AA9591200ACA139 /* ProductsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EBF6261AA9591200ACA139 /* ProductsManager.swift */; };
 		C31B8A801B74A92300271DF4 /* WARSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31B8A7F1B74A92300271DF4 /* WARSecond.swift */; };
+		C322AF541B845F9A009710B1 /* WorkAndRest.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = C322AF531B845F9A009710B1 /* WorkAndRest.entitlements */; };
 		C32C7E321B73075400977421 /* WARTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32C7E311B73075400977421 /* WARTimer.swift */; };
 		C354053C1B560C80008111C2 /* IdentifierDef.swift in Sources */ = {isa = PBXBuildFile; fileRef = C354053B1B560C80008111C2 /* IdentifierDef.swift */; };
 		C36E43381B67707D00834902 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36E43371B67707D00834902 /* TableViewHeader.swift */; };
@@ -141,8 +138,6 @@
 		644554631A7CADD100F48164 /* TaskListItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskListItemCell.xib; sourceTree = "<group>"; };
 		6458B66A1A7722BD004FD3D9 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		645FDE0D1A7D98FB002EC8EF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		645FDE101A7D9BA9002EC8EF /* sec.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sec.wav; sourceTree = "<group>"; };
-		645FDE111A7D9BA9002EC8EF /* SecondBeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SecondBeep.wav; sourceTree = "<group>"; };
 		645FDE151A7D9E8B002EC8EF /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		646141A31A80C11E0010E19E /* V8HorizontalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V8HorizontalPickerView.h; sourceTree = "<group>"; };
 		646141A41A80C11E0010E19E /* V8HorizontalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V8HorizontalPickerView.m; sourceTree = "<group>"; };
@@ -174,8 +169,6 @@
 		64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		64A6D00D1B66ECE4000D7F2E /* QuotationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotationManager.swift; sourceTree = "<group>"; };
-		64A6D00F1B66ED22000D7F2E /* Quotations-en.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Quotations-en.plist"; sourceTree = "<group>"; };
-		64A6D0111B66FE0A000D7F2E /* Quotations-cn.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Quotations-cn.plist"; sourceTree = "<group>"; };
 		64B563101AA7FC5700098532 /* StatisticsLocker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticsLocker.xib; sourceTree = "<group>"; };
 		64B563121AA7FC7000098532 /* StatisticsLocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsLocker.swift; sourceTree = "<group>"; };
 		64B563141AA8238300098532 /* ApplicationStateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationStateManager.swift; sourceTree = "<group>"; };
@@ -192,9 +185,9 @@
 		64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRunner.swift; sourceTree = "<group>"; };
 		64EBF6261AA9591200ACA139 /* ProductsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsManager.swift; sourceTree = "<group>"; };
 		C31B8A7F1B74A92300271DF4 /* WARSecond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARSecond.swift; sourceTree = "<group>"; };
+		C322AF531B845F9A009710B1 /* WorkAndRest.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WorkAndRest.entitlements; sourceTree = "<group>"; };
 		C32C7E311B73075400977421 /* WARTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARTimer.swift; sourceTree = "<group>"; };
 		C354053B1B560C80008111C2 /* IdentifierDef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifierDef.swift; sourceTree = "<group>"; };
-		C35405401B560E37008111C2 /* WorkAndRest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WorkAndRest.entitlements; sourceTree = "<group>"; };
 		C36E43371B67707D00834902 /* TableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		C5A3E743E49F064E285AF8F1 /* Pods-WorkAndRest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkAndRest.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkAndRest/Pods-WorkAndRest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -317,7 +310,7 @@
 		6434827718C5D344009BF110 /* WorkAndRest */ = {
 			isa = PBXGroup;
 			children = (
-				C35405401B560E37008111C2 /* WorkAndRest.entitlements */,
+				C322AF531B845F9A009710B1 /* WorkAndRest.entitlements */,
 				6458B66C1A7722E3004FD3D9 /* Views */,
 				6497FE501A75A72000174307 /* Models */,
 				6458B6661A772279004FD3D9 /* ViewControllers */,
@@ -339,11 +332,8 @@
 				6434827F18C5D344009BF110 /* WorkAndRest-Prefix.pch */,
 				6497FE581A75A91600174307 /* WorkAndRest-Bridging-Header.h */,
 				6434827918C5D344009BF110 /* WorkAndRest-Info.plist */,
-				645FDE0F1A7D9BA9002EC8EF /* Sounds */,
 				64228ECC18FE2ED300461550 /* Localizable.strings */,
 				6434827A18C5D344009BF110 /* InfoPlist.strings */,
-				64A6D00F1B66ED22000D7F2E /* Quotations-en.plist */,
-				64A6D0111B66FE0A000D7F2E /* Quotations-cn.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -388,15 +378,6 @@
 				C36E43371B67707D00834902 /* TableViewHeader.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		645FDE0F1A7D9BA9002EC8EF /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				645FDE101A7D9BA9002EC8EF /* sec.wav */,
-				645FDE111A7D9BA9002EC8EF /* SecondBeep.wav */,
-			);
-			path = Sounds;
 			sourceTree = "<group>";
 		};
 		645FDE141A7D9E7F002EC8EF /* Common */ = {
@@ -567,21 +548,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64A6D0101B66ED22000D7F2E /* Quotations-en.plist in Resources */,
 				649D54041A84521D002593F8 /* TaskTitleView.xib in Resources */,
 				6434828A18C5D344009BF110 /* Images.xcassets in Resources */,
-				64A6D0121B66FE0A000D7F2E /* Quotations-cn.plist in Resources */,
 				64E3C1AD1A8752CF00418426 /* TaskListHeaderView.xib in Resources */,
 				649893971A842F8B0091822A /* CompletionCycleView.xib in Resources */,
 				6434827C18C5D344009BF110 /* InfoPlist.strings in Resources */,
 				64228ECA18FE2ED300461550 /* Localizable.strings in Resources */,
+				C322AF541B845F9A009710B1 /* WorkAndRest.entitlements in Resources */,
 				64012C931900B979006FC2B2 /* AppiraterLocalizable.strings in Resources */,
 				64C99A581A7902A100F1D796 /* Launch Screen.xib in Resources */,
 				64B563111AA7FC5700098532 /* StatisticsLocker.xib in Resources */,
 				644554641A7CADD100F48164 /* TaskListItemCell.xib in Resources */,
 				64C497F61A8AE7F10051E605 /* TaskItemBaseView.xib in Resources */,
-				645FDE131A7D9BA9002EC8EF /* SecondBeep.wav in Resources */,
-				645FDE121A7D9BA9002EC8EF /* sec.wav in Resources */,
 				6434828518C5D344009BF110 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -827,7 +805,7 @@
 				GCC_PREFIX_HEADER = "WorkAndRest/WorkAndRest-Prefix.pch";
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				INFOPLIST_FILE = "WorkAndRest/WorkAndRest-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "98ede1fb-5058-49c5-a83c-f03bd86a7dce";
@@ -850,7 +828,7 @@
 				GCC_PREFIX_HEADER = "WorkAndRest/WorkAndRest-Prefix.pch";
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				INFOPLIST_FILE = "WorkAndRest/WorkAndRest-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "98ede1fb-5058-49c5-a83c-f03bd86a7dce";

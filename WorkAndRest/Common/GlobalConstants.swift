@@ -27,7 +27,7 @@ class GlobalConstants {
     class var DEFAULT_MINUTES: Int { return 25 }
     class var DEFAULT_NUMBER: Int { return 1 }
     class var TITLE_MAXLENGTH: Int { return 50 }
-    class var VERSION: String { return "2.1.0" }
+    class var VERSION: String { return "2.2.0" }
     class var kBOOL_Purchased: String { return "Purchased" }
     class var kBOOL_HAS_SETUP_SAMPLE_TASK: String { return "HasSetupSampleTask" }
     class var kBOOL_HAS_SHOW_GUIDE: String { return "HasShowGuide" }
