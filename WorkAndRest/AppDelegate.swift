@@ -19,13 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         self.firstRun()
         self.initRater()
         
-        if #available(iOS 8.0, *) {
-            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
-            application.registerForRemoteNotifications()
-        } else {
-            // Fallback on earlier versions
-            application.registerForRemoteNotificationTypes([.Sound, .Alert, .Badge])
-        }
+//        if #available(iOS 8.0, *) {
+//            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
+//            application.registerForRemoteNotifications()
+//        } else {
+//            // Fallback on earlier versions
+//            application.registerForRemoteNotificationTypes([.Sound, .Alert, .Badge])
+//        }
         
         CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
             nil,

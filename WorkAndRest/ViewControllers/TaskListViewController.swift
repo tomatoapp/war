@@ -45,13 +45,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
         allTasks = self.sortTasks(result!)!
         
-        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK) {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setupSampleTask"), name: "introDidFinish", object: nil)
-        }
-        
-//        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_GUIDE) {
-//            self.showGuide()
-//        }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("introDidFinish"), name: "introDidFinish", object: nil)
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -66,22 +61,36 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
     }
     
-    func setupSampleTask() {
-        if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK) {
-            return
+    func introDidFinish() {
+        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK) {
+            self.setupSampleTask()
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK)
         }
         
+        self.registerUserNotificationSettings()
+    }
+    
+    func setupSampleTask() {
         let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-            Int64(0.9 * Double(NSEC_PER_SEC)))
+            Int64(0.5 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue(), {
             let sampleTask = self.createSampleTask()
-            let success = self.taskManager.addTask(sampleTask)
-            if success {
+            if self.taskManager.addTask(sampleTask) {
                 self.insertItem(sampleTask, withRowAnimation: UITableViewRowAnimation.Left)
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK)
             }
         })
         
+    }
+    
+    func registerUserNotificationSettings() {
+        let application = UIApplication.sharedApplication()
+        if #available(iOS 8.0, *) {
+            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
+            application.registerForRemoteNotifications()
+        } else {
+            // Fallback on earlier versions
+            application.registerForRemoteNotificationTypes([.Sound, .Alert, .Badge])
+        }
     }
     
     func showGuide() {
