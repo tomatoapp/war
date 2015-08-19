@@ -39,6 +39,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="createTaskButtonItem" destination="zkL-gV-0uP" id="azd-AY-MGh"/>
                         <segue destination="5dB-qS-8bn" kind="modal" identifier="NewTaskSegue" id="j3d-Bi-yZi"/>
                         <segue destination="bcI-2F-yMi" kind="push" identifier="ShowItemDetailsSegue" id="uhY-P2-clw"/>
                     </connections>

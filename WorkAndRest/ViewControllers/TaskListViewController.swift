@@ -16,6 +16,7 @@ let HEADER_HEIGHT: CGFloat = 125
 
 class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, SWTableViewCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate, TaskManagerDelegate {
     
+    @IBOutlet var createTaskButtonItem: UIBarButtonItem!
     var allTasks = [Task]()
     var taskRunner: TaskRunner!
     var handleType = HandleType.None
@@ -66,11 +67,22 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     func introDidFinish() {
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK) {
-            self.setupSampleTask()
+//            self.setupSampleTask()
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+                Int64(2.0 * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue(), {
+                self.popCreateTaskTipView()
+            })
+
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK)
         }
         
-        self.registerUserNotificationSettings()
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+            Int64(0.5 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue(), {
+            self.registerUserNotificationSettings()
+        })
     }
     
     func setupSampleTask() {
@@ -83,6 +95,19 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             }
         })
         
+    }
+    
+    func popCreateTaskTipView() {
+        if self.popTipView == nil {
+            self.popTipView = CMPopTipView(message: NSLocalizedString("Let's Create a new task", comment: ""))
+        }
+        self.popTipView?.backgroundColor = UIColor(red: 57/255, green: 187/255, blue: 79/255, alpha: 1.0)
+        self.popTipView?.textColor = UIColor.whiteColor()
+        self.popTipView?.borderWidth = 0
+        self.popTipView?.dismissTapAnywhere = false
+        self.popTipView?.hasShadow = false
+        self.popTipView?.hasGradientBackground = false
+        self.popTipView?.presentPointingAtBarButtonItem(self.createTaskButtonItem, animated: true)
     }
     
     func registerUserNotificationSettings() {
@@ -116,7 +141,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     
     @IBAction func createTaskButtonClick(sender: AnyObject) {
+        self.popTipView?.dismissAnimated(false)
         self.createTask()
+        
     }
     
     // MARK: - Table view data source
