@@ -32,4 +32,5 @@ class GlobalConstants {
     class var kBOOL_HAS_SETUP_SAMPLE_TASK: String { return "HasSetupSampleTask" }
     class var kBOOL_HAS_SHOW_GUIDE: String { return "HasShowGuide" }
     class var kBOOL_HAS_SHOW_EDIT_TITLE_GUIDE: String { return "HasShowEditTitleGuide" }
+    class var kBOOL_HAS_SHOW_SWIPE_CELL_RIGHT_GUIDE: String { return "HasShowSwipeCellRightGuide" }
 }

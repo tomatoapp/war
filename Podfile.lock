@@ -10,9 +10,6 @@ PODS:
   - JBChartView (2.8.10)
   - Masonry (0.6.0)
   - MBProgressHUD (0.9.1)
-  - MMWormhole (1.2.0):
-    - MMWormhole/Core (= 1.2.0)
-  - MMWormhole/Core (1.2.0)
   - SWTableViewCell (0.3.7)
 
 DEPENDENCIES:
@@ -21,7 +18,6 @@ DEPENDENCIES:
   - JBChartView (~> 2.8.10)
   - Masonry
   - MBProgressHUD (~> 0.9.1)
-  - MMWormhole (~> 1.2.0)
   - SWTableViewCell (~> 0.3.7)
 
 SPEC CHECKSUMS:
@@ -31,7 +27,6 @@ SPEC CHECKSUMS:
   JBChartView: 187186c4730d806962da8ba99aa0d03a77aa35f7
   Masonry: 695dcee5cf90504cc83d85c40e0bd3f4376ed583
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MMWormhole: 696de5a8d2ef93f028ade4cff34958943c3bfa1e
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
 
 COCOAPODS: 0.38.2

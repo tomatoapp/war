@@ -34,19 +34,21 @@ class NewTaskViewController: BaseViewController, UITextFieldDelegate, CMPopTipVi
         
         self.titleTextField.delegate = self
         self.titleTextField.placeholder = NSLocalizedString("edit_task_title", comment: "")
-        self.titleTextField.text = NSLocalizedString("Task", comment: "")
+        //self.titleTextField.text = NSLocalizedString("Task", comment: "")
         
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: "hideKeyboard")
-        self.view.addGestureRecognizer(tapRecognizer)
+        //let tapRecognizer = UITapGestureRecognizer(target: self, action: "hideKeyboard")
+        //self.view.addGestureRecognizer(tapRecognizer)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_EDIT_TITLE_GUIDE) {
-            self.showPopTipView()
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SHOW_EDIT_TITLE_GUIDE)
-        }
+//        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_EDIT_TITLE_GUIDE) {
+//            self.showPopTipView()
+//            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SHOW_EDIT_TITLE_GUIDE)
+//        }
+        
+        self.titleTextField.becomeFirstResponder()
     }
     
     // MARK: - Events
@@ -72,6 +74,7 @@ class NewTaskViewController: BaseViewController, UITextFieldDelegate, CMPopTipVi
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.hideKeyboard()
+        self.startButtonClick(UIButton())
         return false
     }
     

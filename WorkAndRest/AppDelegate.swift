@@ -18,15 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         DBOperate.db_init()
         self.firstRun()
         self.initRater()
-        
-//        if #available(iOS 8.0, *) {
-//            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
-//            application.registerForRemoteNotifications()
-//        } else {
-//            // Fallback on earlier versions
-//            application.registerForRemoteNotificationTypes([.Sound, .Alert, .Badge])
-//        }
-        
         CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
             nil,
             LockNotifierCallback.notifierProc(),
@@ -89,10 +80,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             if NSUserDefaults.standardUserDefaults().boolForKey("kDisplayStatusLocked") {
                 self.freezeTask()
             } else {
-                if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_IS_DETERMINATION) { // 开启决心模式
-                    self.stopTask()
-                } else {
+                if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_IS_DETERMINATION) { // 开启手机学习模式
                     self.freezeTask()
+                } else {
+                    self.stopTask()
                 }
             }
             break
@@ -152,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_SECOND_SOUND)
         NSUserDefaults.standardUserDefaults().setInteger(GlobalConstants.DEFAULT_MINUTES, forKey: GlobalConstants.k_SECONDS)
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_BADGEAPPICON)
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_IS_DETERMINATION)
+//        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_IS_DETERMINATION)
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     

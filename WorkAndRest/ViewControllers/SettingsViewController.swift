@@ -96,7 +96,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         if section == 0 {
             return 20
         }
-        if section == 1 || section == 2 {
+        if section == 1 {
             return SubTitleSectionHeight
         }
         return 15
@@ -104,7 +104,7 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        if section != 1 && section != 2 {
+        if section != 1 {
             return nil
         }
         
@@ -119,9 +119,9 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         if section == 1 {
             label.text = NSLocalizedString("Show the incomplete task count badge on the app icon.", comment: "")
         }
-        if section == 2 {
-            label.text = NSLocalizedString("When turned on, you will not be able to open another app while running a timer in background.", comment: "")
-        }
+//        if section == 2 {
+//            label.text = NSLocalizedString("When turned on, you will not be able to open another app while running a timer in background.", comment: "")
+//        }
         label.sizeToFit()
         view.addSubview(label)
         return view

@@ -9,6 +9,6 @@
 import UIKit
 
 class IdentifierDef {
-    class var AppGroupIdentifier: String { return "group.com.yangcun.WorkAndRest" }
+//    class var AppGroupIdentifier: String { return "group.com.yangcun.WorkAndRest" }
     class var TestIdentifier: String { return "TestIdentifier" }
 }

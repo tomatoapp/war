@@ -18,7 +18,6 @@ class TaskManager: NSObject {
     var delegate: TaskManagerDelegate?
     var cacheTaskList = [Task]()
     
-    let mmwornhole = MMWormhole(applicationGroupIdentifier: IdentifierDef.AppGroupIdentifier, optionalDirectory: nil)
 
     
     class var sharedInstance: TaskManager {
@@ -27,16 +26,6 @@ class TaskManager: NSObject {
     
     override init() {
         super.init()
-        
-        self.mmwornhole.listenForMessageWithIdentifier(IdentifierDef.TestIdentifier, listener: { (message) -> Void in
-            //println("Fire!!!")
-            let task = Task()
-            task.taskId = 1
-            task.lastUpdateTime = NSDate()
-            task.title = "~~ duang! ~"
-            
-            self.startTask(task)
-        })
     }
     
     func loadTaskList() -> Array<Task> {

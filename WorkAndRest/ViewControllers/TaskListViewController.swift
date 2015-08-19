@@ -24,6 +24,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     var taskManager = TaskManager.sharedInstance
     
+    var popTipView: CMPopTipView?
+    var firstCell: UITableViewCell?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,7 +70,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK)
         }
         
-        //self.registerUserNotificationSettings()
+        self.registerUserNotificationSettings()
     }
     
     func setupSampleTask() {
@@ -82,7 +85,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         
     }
     
-    /*
     func registerUserNotificationSettings() {
         let application = UIApplication.sharedApplication()
         if #available(iOS 8.0, *) {
@@ -93,7 +95,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             application.registerForRemoteNotificationTypes([.Sound, .Alert, .Badge])
         }
     }
-    */
     
     func showGuide() {
         let delayTime = dispatch_time(DISPATCH_TIME_NOW,
@@ -183,6 +184,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
                 }
             }
             break
+        }
+        if indexPath.row == 0 {
+            firstCell = cell
         }
         return cell
     }
@@ -282,6 +286,15 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.disableTableViewHeaderView()
         
         self.taskManager.completeOneTimer(self.taskRunner.taskItem)
+        
+        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_SWIPE_CELL_RIGHT_GUIDE) {
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+            Int64(0.6 * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue(), {
+                self.showSwipeTipView()
+            })
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SHOW_SWIPE_CELL_RIGHT_GUIDE)
+        }
     }
     
     func breaked(sender: TaskListItemCell!) {
@@ -318,8 +331,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             } else {
                 
                 // Save it to the database.
-                //                task.completed = true
-                //                DBOperate.updateTask(task)
                 self.taskManager.markDoneTask(task)
                 
                 if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownMarkDoneTutorial) {
@@ -549,4 +560,18 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         sampleTask.finished_times = 0
         return sampleTask
     }
+    
+    func showSwipeTipView() {
+        if self.popTipView == nil {
+            self.popTipView = CMPopTipView(message: NSLocalizedString("Try to swipe this task to the right", comment: ""))
+        }
+        self.popTipView?.backgroundColor = UIColor(red: 57/255, green: 187/255, blue: 79/255, alpha: 1.0)
+        self.popTipView?.textColor = UIColor.whiteColor()
+        self.popTipView?.borderWidth = 0
+        self.popTipView?.dismissTapAnywhere = true
+        self.popTipView?.hasShadow = false
+        self.popTipView?.hasGradientBackground = false
+        self.popTipView?.presentPointingAtView(firstCell, inView: self.tableView, animated: true)
+    }
+    
 }

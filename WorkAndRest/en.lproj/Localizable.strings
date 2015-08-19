@@ -72,7 +72,7 @@
 "start_a_new_timer_pressed" = "start_a_new_timer_pressed_en";
 
 "edit_task_title" = "Enter the task title";
-"You stoped the timer!" = "You stoped the timer!";
+"You stoped the timer!" = "Loser!! You couldn't help to use the phone again! 😠";
 
 "Purchase Pro" = "Purchase Pro $1.99";
 "To unlock, please" = "To unlock, please";
@@ -92,3 +92,5 @@
 "guide3SubTitle" = "We provide a comprehensive view of the ratio between completed tasks and stopped tasks.";
 
 "Tap here to edit title" = "Tap title to change it";
+
+"Try to swipe this task to the right" = "Try to swipe this task to the right 👉";
