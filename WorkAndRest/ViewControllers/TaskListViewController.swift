@@ -30,10 +30,10 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     var createTaskTip: CMPopTipView?
     var startTaskTip: CMPopTipView?
     var markDoneTip: CMPopTipView?
-    //    var startTaskTipView: CMPopTipView?
-    //    var swipeCellTipView: CMPopTipView?
     
     var firstCell: TaskListItemCell?
+    
+    // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,13 +42,11 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
         self.tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, 1, 50))
         
+        self.taskRunner = TaskRunner.sharedInstance
+        self.taskManager.delegate = self
+        
         self.taskRunnerManager = TaskRunnerManager.sharedInstance
         self.taskRunnerManager!.delegate = self
-        
-        self.taskRunner = TaskRunner.sharedInstance
-        //self.headerView.delegate = self
-        
-        self.taskManager.delegate = self
         
         let result = self.loadAllTasks()
         if result != nil {
@@ -56,37 +54,33 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             self.tableView.reloadData()
         }
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "introDidFinish",
-            name: ROOTVIEWCONTROLLER_INTRO_DID_FINISH_NOTIFICATION, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "firstTaskCreateSuccess",
-            name: TASKMANAGER_FIRST_TASK_CREATE_SUCCESS_NOTIFICATION, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "introDidFinish", name: ROOTVIEWCONTROLLER_INTRO_DID_FINISH_NOTIFICATION, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "firstTaskCreateSuccess", name: TASKMANAGER_FIRST_TASK_CREATE_SUCCESS_NOTIFICATION, object: nil)
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapAnywhere")
         self.view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    func tapAnywhere() {
+        self.createTaskTip?.dismissAnimated(true)
+        self.startTaskTip?.dismissAnimated(true)
+        self.markDoneTip?.dismissAnimated(true)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    /*
-    override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    
-    if self.taskRunner.isRunning {
-    let task = allTasks.filter { $0.taskId == self.taskRunner.taskItem.taskId }.first!
-    task.lastUpdateTime = self.taskRunner.taskItem.lastUpdateTime
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
-    allTasks = self.sortTasks(allTasks)!
-    self.tableView.reloadData()
-    self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
-    }
-    */
     
-    func tapAnywhere() {
-        self.createTaskTip?.dismissAnimated(true)
-        self.startTaskTip?.dismissAnimated(true)
-        self.markDoneTip?.dismissAnimated(true)
+    // MARK: - Events
+    
+    @IBAction func createTaskButtonClick(sender: AnyObject) {
+        self.createTaskTip?.dismissAnimated(false)
+        self.createTask()
+        
     }
     
     // MARK: - NotificationCenter
@@ -105,19 +99,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.handleStartTaskTip()
     }
     
-    
-    func setupSampleTask() {
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-            Int64(0.5 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue(), {
-            let sampleTask = self.createSampleTask()
-            if self.taskManager.addTask(sampleTask) {
-                self.insertItem(sampleTask, withRowAnimation: UITableViewRowAnimation.Left)
-            }
-        })
-        
-    }
-    
     func registerUserNotificationSettings() {
         let application = UIApplication.sharedApplication()
         if #available(iOS 8.0, *) {
@@ -129,30 +110,13 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
     }
     
-    func showGuide() {
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-            Int64(1.0 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue(), {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SHOW_GUIDE)
-            // Show guide image
-        })
-    }
-    
     func headerHeight() -> CGFloat {
         if WARDevice.getPhoneType() == PhoneType.iPhone4 {
             return 90
         }
         return HEADER_HEIGHT
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    @IBAction func createTaskButtonClick(sender: AnyObject) {
-        self.createTaskTip?.dismissAnimated(false)
-        self.createTask()
-        
-    }
+
     
     // MARK: - Table view data source
     
@@ -228,12 +192,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //        let item = allTasks[indexPath.row]
-        //        let copyItem = item.copy() as! Task
-        //        self.performSegueWithIdentifier("ShowItemDetailsSegue", sender: copyItem)
-    }
-    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             let task = allTasks[indexPath.row]
@@ -249,22 +207,10 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "EditItem" {
-            let controller = segue.destinationViewController as! TaskTitleViewController
-            controller.copyTaskItem = sender as! Task?
-            controller.delegate = self
-        } else if segue.identifier == "NewTaskSegue" {
+        if segue.identifier == "NewTaskSegue" {
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! NewTaskViewController
             controller.delegate = self
-        } else if segue.identifier == "ShowItemDetailsSegue" {
-            
-            let controller = segue.destinationViewController as! TaskDetailsViewController
-            let selectedTask = sender as! Task!
-            controller.taskItem = selectedTask
-            //self.taskRunner.delegate = controller
-            controller.taskRunner = self.taskRunner
         }
     }
     
@@ -272,7 +218,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     func addTaskViewController(controller: TaskTitleViewController!, didFinishAddingTask item: Task!) {
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("insertItem:"), userInfo: item, repeats: false)
-        
     }
     
     func addTaskViewController(controller: TaskTitleViewController!, didFinishEditingTask item: Task!) {
@@ -304,12 +249,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("moveItemToTop:"), userInfo: sender.taskItem, repeats: false)
         
-        //        self.tableView.tableHeaderView = self.createHeaderView()
         self.setupHeaderView()
         self.tableViewHeader?.updateTime(sender.taskItem!.getTimerMinutesString(), seconds: sender.taskItem!.getTimerSecondsString())
         self.enableTableViewHeaderViewWithAnimate(true)
-        
-        //        sender.taskItemBaseView.switchToBreakButton()
     }
     
     func tick(sender: TaskListItemCell!, seconds: Int) {
@@ -365,7 +307,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
                 // Save it to the database.
                 self.taskManager.markDoneTask(task)
                 
-                self.handleMarkDoneTipAtCell(cell as! TaskListItemCell)
+                self.handleRevertTaskTipAtCell(cell as! TaskListItemCell)
                 
                 // Refresh the tableview.
                 let indexPath = NSIndexPath(forRow: allTasks.indexOf(task)!, inSection: 0)
@@ -385,19 +327,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             break
         }
     }
-    
-//    func showTutorial() {
-//        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-//            Int64(0.5 * Double(NSEC_PER_SEC)))
-//        dispatch_after(delayTime, dispatch_get_main_queue(), {
-//            let alert = UIAlertView()
-//            alert.title = NSLocalizedString("MarkDoneAlertTitle", comment: "")
-//            alert.message = NSLocalizedString("MarkDoneAlertMsg", comment: "")
-//            alert.addButtonWithTitle(NSLocalizedString("MarkDoneAlertButton", comment: ""))
-//            alert.show()
-//            return
-//        })
-//    }
     
     func swipeableTableViewCell(cell: SWTableViewCell!, canSwipeToState state: SWCellState) -> Bool {
         return !self.taskRunner.isRunning
@@ -589,48 +518,16 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         sampleTask.finished_times = 0
         return sampleTask
     }
-    
-    /*
-    func popCreateTaskTipView() {
-    if self.createTaskTipView == nil {
-    self.createTaskTipView = CMPopTipView(message: NSLocalizedString("Let's Create a new task", comment: ""))
-    }
-    self.createTaskTipView?.backgroundColor = UIColor(red: 57/255, green: 187/255, blue: 79/255, alpha: 1.0)
-    self.createTaskTipView?.textColor = UIColor.whiteColor()
-    self.createTaskTipView?.borderWidth = 0
-    self.createTaskTipView?.dismissTapAnywhere = false
-    self.createTaskTipView?.hasShadow = false
-    self.createTaskTipView?.hasGradientBackground = false
-    self.createTaskTipView?.delegate = self
-    self.createTaskTipView?.presentPointingAtBarButtonItem(self.createTaskButtonItem, animated: true)
+
+    // MARK: - CMPopTipViewDelegate
+    func popTipViewWasDismissedByUser(popTipView: CMPopTipView!) {
+        if popTipView.tag == TIP_TAG_CREATE_TASK {
+            self.createTask()
+        }
     }
     
-    func showSwipeTipView() {
-    if self.swipeCellTipView == nil {
-    self.swipeCellTipView = CMPopTipView(message: NSLocalizedString("Try to swipe this task to the right", comment: ""))
-    }
-    self.swipeCellTipView?.backgroundColor = UIColor(red: 57/255, green: 187/255, blue: 79/255, alpha: 1.0)
-    self.swipeCellTipView?.textColor = UIColor.whiteColor()
-    self.swipeCellTipView?.borderWidth = 0
-    self.swipeCellTipView?.dismissTapAnywhere = true
-    self.swipeCellTipView?.hasShadow = false
-    self.swipeCellTipView?.hasGradientBackground = false
-    self.swipeCellTipView?.presentPointingAtView(firstCell, inView: self.tableView, animated: true)
-    }
+    // MARK: - Tip
     
-    
-    func getTipViewByTitle(title: String, atView: UIView, inView: UIView) -> CMPopTipView {
-    let tipView = CMPopTipView(title: "", message: "")
-    tipView.textColor = UIColor.whiteColor()
-    tipView.borderWidth = 0
-    tipView.dismissTapAnywhere = true
-    tipView.hasShadow = false
-    tipView.hasGradientBackground = false
-    //        tipView.presentPointingAtView(atView, inView: inView, animated: true)
-    tipView.delegate = self
-    return tipView
-    }
-    */
     func getTipViewbyMessage(message: String) -> CMPopTipView {
         let tipView = CMPopTipView(message: message)
         tipView.backgroundColor = UIColor(red: 57/255, green: 187/255, blue: 79/255, alpha: 1.0)
@@ -653,15 +550,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         return tipView
     }
     
-    // MARK: - CMPopTipViewDelegate
-    func popTipViewWasDismissedByUser(popTipView: CMPopTipView!) {
-        if popTipView.tag == TIP_TAG_CREATE_TASK {
-            self.createTask()
-        }
-    }
-    
-    // MARK: - Tip
-    
+    /**
+    The + Button (Create Task)
+    */
     func handleCreateTaskTip() {
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK) {
             let delayTime = dispatch_time(DISPATCH_TIME_NOW,
@@ -677,6 +568,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
     }
     
+    /**
+    The > Button on the cell (Start Button)
+    */
     func handleStartTaskTip() {
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_START_TASK_GUIDE) {
             let delayTime = dispatch_time(DISPATCH_TIME_NOW,
@@ -691,16 +585,19 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
     }
     
-    func handleMarkDoneTipAtCell(cell: TaskListItemCell) {
+    /**
+    The revert button on a finished task
+    */
+    func handleRevertTaskTipAtCell(cell: TaskListItemCell) {
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownMarkDoneTutorial) {
             self.markDoneTip = self.getTipViewByTitle(NSLocalizedString("MarkDoneAlertTitle", comment: ""), andMessage: NSLocalizedString("MarkDoneAlertMsg", comment: ""))
             self.markDoneTip?.presentPointingAtView(cell.startButton(), inView: self.view, animated: true)
             
-//            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownMarkDoneTutorial)
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownMarkDoneTutorial)
         }
-
+        
     }
-
+    
     func handleSwipeCellRightTip() {
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_SWIPE_CELL_RIGHT_GUIDE) {
             let delayTime = dispatch_time(DISPATCH_TIME_NOW,
@@ -712,4 +609,5 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SHOW_SWIPE_CELL_RIGHT_GUIDE)
         }
     }
+   
 }
