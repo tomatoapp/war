@@ -11,7 +11,9 @@ import UIKit
 class GlobalConstants {
     class var k_APPID: String { return "868078759" }
     class var APPSTORE_URL: String { return "itms-apps://itunes.apple.com/app/id868078759" }
+    class var VERSION: String { return "2.2.0" }
     class var EMAIL_ADDRESS: String {return "lunars.service@yahoo.com" }
+    
     class var k_HASRAN_BEFORE: String { return "HasRanBefore" } // Not the first launch
     class var kBOOL_firstLaunch: String { return "FirstLaunch" }
     class var kBOOL_hasShownMarkDoneTutorial: String { return "ShownMarkDoneTutorial" }
@@ -27,11 +29,11 @@ class GlobalConstants {
     class var DEFAULT_MINUTES: Int { return 25 }
     class var DEFAULT_NUMBER: Int { return 1 }
     class var TITLE_MAXLENGTH: Int { return 50 }
-    class var VERSION: String { return "2.2.0" }
     class var kBOOL_Purchased: String { return "Purchased" }
     class var kBOOL_HAS_SETUP_SAMPLE_TASK: String { return "HasSetupSampleTask" }
     class var kBOOL_HAS_SHOW_GUIDE: String { return "HasShowGuide" }
     class var kBOOL_HAS_SHOW_EDIT_TITLE_GUIDE: String { return "HasShowEditTitleGuide" }
     class var kBOOL_HAS_SHOW_SWIPE_CELL_RIGHT_GUIDE: String { return "HasShowSwipeCellRightGuide" }
     class var kBOOL_HAS_SHOW_CREATE_TASK_GUIDE: String { return "HasShowCreateTaskGuide" }
+    class var kBOOL_HAS_SHOW_START_TASK_GUIDE: String { return "HasShowStartTaskGuide" }
 }

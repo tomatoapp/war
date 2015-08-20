@@ -29,13 +29,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="×999" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8N-qu-b0l">
-                    <rect key="frame" x="216" y="40" width="100" height="15"/>
+                    <rect key="frame" x="212" y="40" width="100" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="y8W-Rv-2Nx"/>
                         <constraint firstAttribute="height" constant="15" id="yhL-7k-dc0"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWN-NG-ScV">
@@ -63,7 +63,7 @@
                 <constraint firstAttribute="trailing" secondItem="Mzr-aw-9C1" secondAttribute="trailing" constant="60" id="LgT-9w-dt6"/>
                 <constraint firstAttribute="bottom" secondItem="Mzr-aw-9C1" secondAttribute="bottom" constant="8" id="NxX-Ml-fon"/>
                 <constraint firstAttribute="trailing" secondItem="rW5-WG-aUc" secondAttribute="trailing" id="P8A-Nd-QEt"/>
-                <constraint firstAttribute="trailing" secondItem="Y8N-qu-b0l" secondAttribute="trailing" constant="4" id="XVO-YW-eI3"/>
+                <constraint firstAttribute="trailing" secondItem="Y8N-qu-b0l" secondAttribute="trailing" constant="8" id="XVO-YW-eI3"/>
                 <constraint firstItem="rW5-WG-aUc" firstAttribute="top" secondItem="9Kk-hG-Ejj" secondAttribute="top" id="g1n-GP-ghI"/>
                 <constraint firstAttribute="centerY" secondItem="DWN-NG-ScV" secondAttribute="centerY" constant="-0.25" id="nX1-k8-h3R"/>
             </constraints>

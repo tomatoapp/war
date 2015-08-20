@@ -13,12 +13,12 @@ protocol TaskManagerDelegate {
 }
 
 private let _singletonInstance = TaskManager()
+var TASKMANAGER_FIRST_TASK_CREATE_SUCCESS_NOTIFICATION: String  { return "TaskManagerFirstTaskCreateSuccessNotification" }
 
 class TaskManager: NSObject {
     var delegate: TaskManagerDelegate?
     var cacheTaskList = [Task]()
     
-
     
     class var sharedInstance: TaskManager {
         return _singletonInstance
@@ -68,6 +68,9 @@ class TaskManager: NSObject {
         
         // Add to the database.
         let success = DBOperate.insertTask(task)
+        if success && DBOperate.lastInsertId() == 0{
+            NSNotificationCenter.defaultCenter().postNotificationName(TASKMANAGER_FIRST_TASK_CREATE_SUCCESS_NOTIFICATION, object: nil)
+        }
         return success
     }
     

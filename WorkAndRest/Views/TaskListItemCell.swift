@@ -37,6 +37,10 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
         super.setSelected(selected, animated: animated)
     }
     
+    func startButton() -> UIButton {
+        return taskItemBaseView.button
+    }
+    
     func refresh() {
         self.taskItemBaseView.refreshTitle(self.taskItem!.title)
         self.taskItemBaseView.refreshCompletedCount(self.taskItem!.finished_times)

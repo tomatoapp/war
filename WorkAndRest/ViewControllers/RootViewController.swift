@@ -8,6 +8,8 @@
 
 import UIKit
 
+var ROOTVIEWCONTROLLER_INTRO_DID_FINISH_NOTIFICATION: String { return "introDidFinishNotification" }
+
 class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntroDelegate {
     
     var introView: EAIntroView?
@@ -55,7 +57,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
     func introDidFinish(introView: EAIntroView!) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.hideIconWithAnimation()
-        NSNotificationCenter.defaultCenter().postNotificationName("introDidFinish", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(ROOTVIEWCONTROLLER_INTRO_DID_FINISH_NOTIFICATION, object: nil)
     }
     
     // MARK: - UITabBarControllerDelegate
