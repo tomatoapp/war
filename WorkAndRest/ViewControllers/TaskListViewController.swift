@@ -14,7 +14,7 @@ enum HandleType: Int {
 
 let HEADER_HEIGHT: CGFloat = 125
 
-class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, SWTableViewCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate, TaskManagerDelegate {
+class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, SWTableViewCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate, TaskManagerDelegate, CMPopTipViewDelegate {
     
     @IBOutlet var createTaskButtonItem: UIBarButtonItem!
     var allTasks = [Task]()
@@ -69,7 +69,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK) {
 //            self.setupSampleTask()
             let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-                Int64(2.0 * Double(NSEC_PER_SEC)))
+                Int64(0.3 * Double(NSEC_PER_SEC)))
             dispatch_after(delayTime, dispatch_get_main_queue(), {
                 self.popCreateTaskTipView()
             })
@@ -107,6 +107,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.popTipView?.dismissTapAnywhere = false
         self.popTipView?.hasShadow = false
         self.popTipView?.hasGradientBackground = false
+        self.popTipView?.delegate = self
         self.popTipView?.presentPointingAtBarButtonItem(self.createTaskButtonItem, animated: true)
     }
     
@@ -601,4 +602,10 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.popTipView?.presentPointingAtView(firstCell, inView: self.tableView, animated: true)
     }
     
+    // MARK: - CMPopTipViewDelegate
+    func popTipViewWasDismissedByUser(popTipView: CMPopTipView!) {
+        if popTipView.tag == 0 {
+            self.createTask()
+        }
+    }
 }
