@@ -39,6 +39,7 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     
     func refresh() {
         self.taskItemBaseView.refreshTitle(self.taskItem!.title)
+        self.taskItemBaseView.refreshCompletedCount(self.taskItem!.finished_times)
     }
     
     override func updateConstraints() {

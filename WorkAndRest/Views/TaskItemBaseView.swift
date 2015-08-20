@@ -43,7 +43,7 @@ class TaskItemBaseView: UIView {
     func setup() {
         NSBundle.mainBundle().loadNibNamed("TaskItemBaseView", owner: self, options: nil)
         self.addSubview(self.view)
-        self.timerLabel.alpha = 0
+//        self.timerLabel.alpha = 0
     }
     
     func updateViewsWidth() {
@@ -64,12 +64,20 @@ class TaskItemBaseView: UIView {
         self.titleLabel.attributedText = attributeString
     }
 
+    func refreshCompletedCount(count: Int) {
+        if count > 0 {
+            self.timerLabel.text = "🍅×\(count)"
+        } else {
+            self.timerLabel.text = ""
+        }
+    }
+    
     func refreshViewByState(state: TaskState, animation: Bool = true) {
         switch state {
         case .Normal:
             UIView.animateWithDuration(animation ? ANIMATION_DURATION : 0,
                 animations: { () -> Void in
-                    self.timerLabel.alpha = 0
+//                    self.timerLabel.alpha = 0
                     self.button.alpha = 1
             })
             
@@ -100,7 +108,7 @@ class TaskItemBaseView: UIView {
         case .Completed:
             UIView.animateWithDuration(animation ? ANIMATION_DURATION : 0,
                 animations: { () -> Void in
-                    self.timerLabel.alpha = 0
+//                    self.timerLabel.alpha = 0
                     self.button.alpha = 1
                     self.refreshTitle(self.title, withTextStrikethrough: true)
             })
@@ -129,7 +137,7 @@ class TaskItemBaseView: UIView {
         print("switchToBreakButton")
         UIView.animateWithDuration(ANIMATION_DURATION,
             animations: { () -> Void in
-                self.timerLabel.alpha = 0
+//                self.timerLabel.alpha = 0
                 self.button.alpha = 1
             })
             { (finished: Bool) -> Void in

@@ -169,7 +169,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     
     func initRater() {
         Appirater.setAppId(GlobalConstants.k_APPID)
-        Appirater.setDaysUntilPrompt(3)
+        Appirater.setDaysUntilPrompt(1)
         Appirater.setUsesUntilPrompt(3)
         Appirater.setSignificantEventsUntilPrompt(-1)
         Appirater.setTimeBeforeReminding(2)

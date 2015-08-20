@@ -162,7 +162,8 @@ class SettingsViewController: BaseTableViewController, UIAlertViewDelegate, MFMa
         }
         if indexPath.section == 2 && indexPath.row == 1 {
             // rate
-            UIApplication.sharedApplication().openURL(NSURL(string: GlobalConstants.APPSTORE_URL)!)
+//            UIApplication.sharedApplication().openURL(NSURL(string: GlobalConstants.APPSTORE_URL)!)
+            Appirater.rateApp()
         }
     }
     

@@ -44,15 +44,15 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.taskManager.delegate = self
         
         let result = self.loadAllTasks()
-        if result == nil {
-            return
+        if result != nil {
+            allTasks = self.sortTasks(result!)!
+            self.tableView.reloadData()
         }
-        allTasks = self.sortTasks(result!)!
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("introDidFinish"), name: "introDidFinish", object: nil)
-
     }
     
+    /*
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -64,7 +64,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.tableView.reloadData()
         self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
     }
-    
+    */
     func introDidFinish() {
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK) {
 //            self.setupSampleTask()
@@ -199,7 +199,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
                 self.taskRunner.delegate = cell
                 cell.switchToRunningPoint()
                 cell.switchViewToRunningState()
-                self.enableTableViewHeaderViewWithAnimate( self.tableViewHeader == nil ? true : false)
+                if self.tableViewHeader == nil {
+                    self.enableTableViewHeaderViewWithAnimate( self.tableViewHeader == nil ? true : false)
+                }
                 cell.taskItemBaseView.switchToBreakButton()
                 
             } else {
@@ -220,9 +222,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let item = allTasks[indexPath.row]
-        let copyItem = item.copy() as! Task
-        self.performSegueWithIdentifier("ShowItemDetailsSegue", sender: copyItem)
+//        let item = allTasks[indexPath.row]
+//        let copyItem = item.copy() as! Task
+//        self.performSegueWithIdentifier("ShowItemDetailsSegue", sender: copyItem)
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

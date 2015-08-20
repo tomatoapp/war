@@ -78,7 +78,6 @@ class TableViewHeader: UIView, NSCopying {
         self.contentView?.frame = self.frame
     }
     
-    
     override func copy() -> AnyObject {
         if let asCopying = (self as AnyObject) as? NSCopying {
             return asCopying.copyWithZone(nil)
