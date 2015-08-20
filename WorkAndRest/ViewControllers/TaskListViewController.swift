@@ -29,7 +29,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     var createTaskTip: CMPopTipView?
     var startTaskTip: CMPopTipView?
-    
+    var markDoneTip: CMPopTipView?
     //    var startTaskTipView: CMPopTipView?
     //    var swipeCellTipView: CMPopTipView?
     
@@ -60,6 +60,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             name: ROOTVIEWCONTROLLER_INTRO_DID_FINISH_NOTIFICATION, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "firstTaskCreateSuccess",
             name: TASKMANAGER_FIRST_TASK_CREATE_SUCCESS_NOTIFICATION, object: nil)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapAnywhere")
+        self.view.addGestureRecognizer(tapGestureRecognizer)
     }
     
     deinit {
@@ -80,25 +83,16 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     */
     
+    func tapAnywhere() {
+        self.createTaskTip?.dismissAnimated(true)
+        self.startTaskTip?.dismissAnimated(true)
+        self.markDoneTip?.dismissAnimated(true)
+    }
+    
     // MARK: - NotificationCenter
     
     func introDidFinish() {
-        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK) {
-            //            self.setupSampleTask()
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-                Int64(0.3 * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue(), {
-                //                self.popCreateTaskTipView()
-                self.createTaskTip = self.getTipViewbyMessage(NSLocalizedString("Let's Create a new task", comment: ""))
-                self.createTaskTip!.dismissTapAnywhere = false
-                self.createTaskTip!.tag = TIP_TAG_CREATE_TASK
-                self.createTaskTip!.delegate = self
-                self.createTaskTip!.presentPointingAtBarButtonItem(self.createTaskButtonItem, animated: true)
-            })
-            
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK)
-        }
-        
+        self.handleCreateTaskTip()
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW,
             Int64(0.5 * Double(NSEC_PER_SEC)))
@@ -108,18 +102,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     
     func firstTaskCreateSuccess() {
-        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_START_TASK_GUIDE) {
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-                Int64(0.3 * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue(), {
-                self.startTaskTip = self.getTipViewbyMessage("准备好了吗？点击按钮开始吧！")
-                self.startTaskTip!.tag = TIP_TAG_START_TASK
-                self.startTaskTip!.delegate = self
-                self.startTaskTip!.dismissTapAnywhere = false
-                self.startTaskTip!.presentPointingAtView(self.firstCell?.startButton(), inView: self.view, animated: true)
-            })
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SHOW_START_TASK_GUIDE)
-        }
+        self.handleStartTaskTip()
     }
     
     
@@ -343,16 +326,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         
         self.taskManager.completeOneTimer(self.taskRunner.taskItem)
         
-        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_SWIPE_CELL_RIGHT_GUIDE) {
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-                Int64(0.6 * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue(), {
-                //                self.showSwipeTipView()
-                let swipeTip = self.getTipViewbyMessage(NSLocalizedString("Try to swipe this task to the right", comment: ""))
-                swipeTip.presentPointingAtView(self.firstCell, inView: self.tableView, animated: true)
-            })
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SHOW_SWIPE_CELL_RIGHT_GUIDE)
-        }
+        self.handleSwipeCellRightTip()
     }
     
     func breaked(sender: TaskListItemCell!) {
@@ -391,10 +365,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
                 // Save it to the database.
                 self.taskManager.markDoneTask(task)
                 
-                if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownMarkDoneTutorial) {
-                    self.showTutorial()
-                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownMarkDoneTutorial)
-                }
+                self.handleMarkDoneTipAtCell(cell as! TaskListItemCell)
                 
                 // Refresh the tableview.
                 let indexPath = NSIndexPath(forRow: allTasks.indexOf(task)!, inSection: 0)
@@ -415,18 +386,18 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
     }
     
-    func showTutorial() {
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-            Int64(0.5 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue(), {
-            let alert = UIAlertView()
-            alert.title = NSLocalizedString("MarkDoneAlertTitle", comment: "")
-            alert.message = NSLocalizedString("MarkDoneAlertMsg", comment: "")
-            alert.addButtonWithTitle(NSLocalizedString("MarkDoneAlertButton", comment: ""))
-            alert.show()
-            return
-        })
-    }
+//    func showTutorial() {
+//        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+//            Int64(0.5 * Double(NSEC_PER_SEC)))
+//        dispatch_after(delayTime, dispatch_get_main_queue(), {
+//            let alert = UIAlertView()
+//            alert.title = NSLocalizedString("MarkDoneAlertTitle", comment: "")
+//            alert.message = NSLocalizedString("MarkDoneAlertMsg", comment: "")
+//            alert.addButtonWithTitle(NSLocalizedString("MarkDoneAlertButton", comment: ""))
+//            alert.show()
+//            return
+//        })
+//    }
     
     func swipeableTableViewCell(cell: SWTableViewCell!, canSwipeToState state: SWCellState) -> Bool {
         return !self.taskRunner.isRunning
@@ -435,7 +406,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     func swipeableTableViewCellShouldHideUtilityButtonsOnSwipe(cell: SWTableViewCell!) -> Bool {
         return true
     }
-    
+
     // MARK: - TaskRunnerManagerDelegate
     
     func taskRunnerMangerWillFreezeTask(taskManager: TaskRunnerManager!) -> TaskRunner {
@@ -686,6 +657,59 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     func popTipViewWasDismissedByUser(popTipView: CMPopTipView!) {
         if popTipView.tag == TIP_TAG_CREATE_TASK {
             self.createTask()
+        }
+    }
+    
+    // MARK: - Tip
+    
+    func handleCreateTaskTip() {
+        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK) {
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+                Int64(0.3 * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue(), {
+                self.createTaskTip = self.getTipViewbyMessage(NSLocalizedString("Let's Create a new task", comment: ""))
+                self.createTaskTip!.dismissTapAnywhere = false
+                self.createTaskTip!.tag = TIP_TAG_CREATE_TASK
+                self.createTaskTip!.delegate = self
+                self.createTaskTip!.presentPointingAtBarButtonItem(self.createTaskButtonItem, animated: true)
+            })
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK)
+        }
+    }
+    
+    func handleStartTaskTip() {
+        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_START_TASK_GUIDE) {
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+                Int64(0.5 * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue(), {
+                self.startTaskTip = self.getTipViewbyMessage("准备好了吗？点击按钮开始吧！")
+                self.startTaskTip!.delegate = self
+                self.startTaskTip?.dismissTapAnywhere = false
+                self.startTaskTip!.presentPointingAtView(self.firstCell?.startButton(), inView: self.view, animated: true)
+            })
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SHOW_START_TASK_GUIDE)
+        }
+    }
+    
+    func handleMarkDoneTipAtCell(cell: TaskListItemCell) {
+        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownMarkDoneTutorial) {
+            self.markDoneTip = self.getTipViewByTitle(NSLocalizedString("MarkDoneAlertTitle", comment: ""), andMessage: NSLocalizedString("MarkDoneAlertMsg", comment: ""))
+            self.markDoneTip?.presentPointingAtView(cell.startButton(), inView: self.view, animated: true)
+            
+//            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownMarkDoneTutorial)
+        }
+
+    }
+
+    func handleSwipeCellRightTip() {
+        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_SWIPE_CELL_RIGHT_GUIDE) {
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+                Int64(0.6 * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue(), {
+                let swipeTip = self.getTipViewbyMessage(NSLocalizedString("Try to swipe this task to the right", comment: ""))
+                swipeTip.presentPointingAtView(self.firstCell?.taskItemBaseView, inView: self.view, animated: true)
+            })
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SHOW_SWIPE_CELL_RIGHT_GUIDE)
         }
     }
 }
