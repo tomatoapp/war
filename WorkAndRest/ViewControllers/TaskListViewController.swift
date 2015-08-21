@@ -29,7 +29,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     var createTaskTip: CMPopTipView?
     var startTaskTip: CMPopTipView?
-    var markDoneTip: CMPopTipView?
+//    var markDoneTip: CMPopTipView?
     
     var firstCell: TaskListItemCell?
     
@@ -64,7 +64,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     func tapAnywhere() {
         self.createTaskTip?.dismissAnimated(true)
         self.startTaskTip?.dismissAnimated(true)
-        self.markDoneTip?.dismissAnimated(true)
+//        self.markDoneTip?.dismissAnimated(true)
     }
     
     deinit {
@@ -307,7 +307,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
                 // Save it to the database.
                 self.taskManager.markDoneTask(task)
                 
-                self.handleRevertTaskTipAtCell(cell as! TaskListItemCell)
+                // self.handleRevertTaskTipAtCell(cell as! TaskListItemCell)
                 
                 // Refresh the tableview.
                 let indexPath = NSIndexPath(forRow: allTasks.indexOf(task)!, inSection: 0)
@@ -585,6 +585,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
     }
     
+    /*
     /**
     The revert button on a finished task
     */
@@ -597,6 +598,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
         
     }
+    */
     
     func handleSwipeCellRightTip() {
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_SWIPE_CELL_RIGHT_GUIDE) {
