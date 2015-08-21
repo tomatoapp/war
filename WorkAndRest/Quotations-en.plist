@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Quotations-en.plist
+   WorkAndRest
+
+   Created by Carl.Yang on 8/21/15.
+   Copyright (c) 2015 YangCun. All rights reserved.
+-->
+<plist version="1.0">
+    <array>
+        <string>There are no shortcuts to any place worth going.</string>
+        <string>You&apos;re uinique, nothing can replace you.</string>
+        <string>Great works are performed not by strengh, but by perseverance.(Samuel Johnson, British writer and critic)</string>
+        <string>Until you make peace with who you are, you’ll never be content with what you have.</string>
+        <string>Keep trying no matter how hard it seems. it will get easier.</string>
+        <string>True mastery of any skill takes a lifetime.</string>
+        <string>Where there is life, there is hope.</string>
+        <string>I have no secret of success but hard work.</string>
+    </array>
+</plist>

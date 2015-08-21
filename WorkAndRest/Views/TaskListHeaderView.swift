@@ -20,7 +20,7 @@ class TaskListHeaderView: UIView {
     @IBOutlet var startButton: UIButton!
     @IBOutlet var minutesLabel: UILabel!
     @IBOutlet var secondsLabel: UILabel!
-    @IBOutlet var quotationLabel: UILabel!
+//    @IBOutlet var quotationLabel: UILabel!
     
     var flag = false
     var delegate: TaskListHeaderViewDelegate?
@@ -47,9 +47,9 @@ class TaskListHeaderView: UIView {
         self.startButton.setImage(UIImage(named: NSLocalizedString("start_a_new_timer_normal", comment: "")), forState: UIControlState.Normal)
         self.startButton.setImage(UIImage(named: NSLocalizedString("start_a_new_timer_pressed", comment: "")), forState: UIControlState.Highlighted)
         
-        let quotationManager = QuotationManager()
-        let quotation = quotationManager.getQuotation()
-        self.quotationLabel.text = quotation
+//        let quotationManager = QuotationManager()
+//        let quotation = quotationManager.getQuotation()
+//        self.quotationLabel.text = quotation
         
         self.flipToTimerViewSide()
     }

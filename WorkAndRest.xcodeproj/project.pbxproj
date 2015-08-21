@@ -56,7 +56,7 @@
 		649D54081A849978002593F8 /* WARDevide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D54071A849978002593F8 /* WARDevide.swift */; };
 		64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */; };
 		64A4D70A18F7DCF8006BF4D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */; };
-		64A6D00E1B66ECE4000D7F2E /* QuotationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6D00D1B66ECE4000D7F2E /* QuotationManager.swift */; };
+		64A6D00E1B66ECE4000D7F2E /* WARQuotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A6D00D1B66ECE4000D7F2E /* WARQuotation.swift */; };
 		64B563111AA7FC5700098532 /* StatisticsLocker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64B563101AA7FC5700098532 /* StatisticsLocker.xib */; };
 		64B563131AA7FC7000098532 /* StatisticsLocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B563121AA7FC7000098532 /* StatisticsLocker.swift */; };
 		64B563151AA8238300098532 /* ApplicationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B563141AA8238300098532 /* ApplicationStateManager.swift */; };
@@ -76,7 +76,12 @@
 		C322AF541B845F9A009710B1 /* WorkAndRest.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = C322AF531B845F9A009710B1 /* WorkAndRest.entitlements */; };
 		C32C7E321B73075400977421 /* WARTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32C7E311B73075400977421 /* WARTimer.swift */; };
 		C354053C1B560C80008111C2 /* IdentifierDef.swift in Sources */ = {isa = PBXBuildFile; fileRef = C354053B1B560C80008111C2 /* IdentifierDef.swift */; };
+		C367582D1B86C1ED000510E9 /* IdleWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367582C1B86C1ED000510E9 /* IdleWatcher.swift */; };
+		C367582F1B86CDCB000510E9 /* WARLocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367582E1B86CDCB000510E9 /* WARLocalNotification.swift */; };
 		C36E43381B67707D00834902 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36E43371B67707D00834902 /* TableViewHeader.swift */; };
+		C38623621B86E80700E91F5F /* Quotations-cn.plist in Resources */ = {isa = PBXBuildFile; fileRef = C38623611B86E80700E91F5F /* Quotations-cn.plist */; };
+		C38623641B86E81400E91F5F /* Quotations-en.plist in Resources */ = {isa = PBXBuildFile; fileRef = C38623631B86E81400E91F5F /* Quotations-en.plist */; };
+		C38623661B86E8CE00E91F5F /* WARDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38623651B86E8CE00E91F5F /* WARDate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,7 +173,7 @@
 		649D54071A849978002593F8 /* WARDevide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARDevide.swift; sourceTree = "<group>"; };
 		64A0BCD91A7FA14700F210CC /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		64A4D70918F7DCF8006BF4D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		64A6D00D1B66ECE4000D7F2E /* QuotationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotationManager.swift; sourceTree = "<group>"; };
+		64A6D00D1B66ECE4000D7F2E /* WARQuotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WARQuotation.swift; path = ../BusinessLogic/WARQuotation.swift; sourceTree = "<group>"; };
 		64B563101AA7FC5700098532 /* StatisticsLocker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticsLocker.xib; sourceTree = "<group>"; };
 		64B563121AA7FC7000098532 /* StatisticsLocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsLocker.swift; sourceTree = "<group>"; };
 		64B563141AA8238300098532 /* ApplicationStateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationStateManager.swift; sourceTree = "<group>"; };
@@ -188,7 +193,12 @@
 		C322AF531B845F9A009710B1 /* WorkAndRest.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WorkAndRest.entitlements; sourceTree = "<group>"; };
 		C32C7E311B73075400977421 /* WARTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARTimer.swift; sourceTree = "<group>"; };
 		C354053B1B560C80008111C2 /* IdentifierDef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifierDef.swift; sourceTree = "<group>"; };
+		C367582C1B86C1ED000510E9 /* IdleWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdleWatcher.swift; sourceTree = "<group>"; };
+		C367582E1B86CDCB000510E9 /* WARLocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARLocalNotification.swift; sourceTree = "<group>"; };
 		C36E43371B67707D00834902 /* TableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
+		C38623611B86E80700E91F5F /* Quotations-cn.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Quotations-cn.plist"; sourceTree = "<group>"; };
+		C38623631B86E81400E91F5F /* Quotations-en.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Quotations-en.plist"; sourceTree = "<group>"; };
+		C38623651B86E8CE00E91F5F /* WARDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARDate.swift; sourceTree = "<group>"; };
 		C5A3E743E49F064E285AF8F1 /* Pods-WorkAndRest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkAndRest.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkAndRest/Pods-WorkAndRest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -334,6 +344,8 @@
 				6434827918C5D344009BF110 /* WorkAndRest-Info.plist */,
 				64228ECC18FE2ED300461550 /* Localizable.strings */,
 				6434827A18C5D344009BF110 /* InfoPlist.strings */,
+				C38623611B86E80700E91F5F /* Quotations-cn.plist */,
+				C38623631B86E81400E91F5F /* Quotations-en.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -383,9 +395,13 @@
 		645FDE141A7D9E7F002EC8EF /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				64A6D00D1B66ECE4000D7F2E /* WARQuotation.swift */,
 				645FDE151A7D9E8B002EC8EF /* GlobalConstants.swift */,
 				649D54071A849978002593F8 /* WARDevide.swift */,
 				C354053B1B560C80008111C2 /* IdentifierDef.swift */,
+				C367582C1B86C1ED000510E9 /* IdleWatcher.swift */,
+				C367582E1B86CDCB000510E9 /* WARLocalNotification.swift */,
+				C38623651B86E8CE00E91F5F /* WARDate.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -448,7 +464,6 @@
 				64802BF01AA6B7FF00B49E2C /* IconBadgeNumberManager.swift */,
 				64B563141AA8238300098532 /* ApplicationStateManager.swift */,
 				64EBF6261AA9591200ACA139 /* ProductsManager.swift */,
-				64A6D00D1B66ECE4000D7F2E /* QuotationManager.swift */,
 				C32C7E311B73075400977421 /* WARTimer.swift */,
 			);
 			path = BusinessLogic;
@@ -558,8 +573,10 @@
 				64012C931900B979006FC2B2 /* AppiraterLocalizable.strings in Resources */,
 				64C99A581A7902A100F1D796 /* Launch Screen.xib in Resources */,
 				64B563111AA7FC5700098532 /* StatisticsLocker.xib in Resources */,
+				C38623641B86E81400E91F5F /* Quotations-en.plist in Resources */,
 				644554641A7CADD100F48164 /* TaskListItemCell.xib in Resources */,
 				64C497F61A8AE7F10051E605 /* TaskItemBaseView.xib in Resources */,
+				C38623621B86E80700E91F5F /* Quotations-cn.plist in Resources */,
 				6434828518C5D344009BF110 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -614,7 +631,7 @@
 				C32C7E321B73075400977421 /* WARTimer.swift in Sources */,
 				64EBF6271AA9591200ACA139 /* ProductsManager.swift in Sources */,
 				64C99A5D1A7905A300F1D796 /* DBOperate.swift in Sources */,
-				64A6D00E1B66ECE4000D7F2E /* QuotationManager.swift in Sources */,
+				64A6D00E1B66ECE4000D7F2E /* WARQuotation.swift in Sources */,
 				64B563131AA7FC7000098532 /* StatisticsLocker.swift in Sources */,
 				64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */,
 				648A27D21AAD4DBD0002BF04 /* TaskDetailsTutorialViewController.swift in Sources */,
@@ -627,6 +644,7 @@
 				645FDE0E1A7D98FB002EC8EF /* AppDelegate.swift in Sources */,
 				C354053C1B560C80008111C2 /* IdentifierDef.swift in Sources */,
 				649308571A7AE65C00480677 /* BaseViewController.swift in Sources */,
+				C38623661B86E8CE00E91F5F /* WARDate.swift in Sources */,
 				C36E43381B67707D00834902 /* TableViewHeader.swift in Sources */,
 				647603041AA9CD4500B1373E /* CMPopTipView.m in Sources */,
 				646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */,
@@ -635,7 +653,9 @@
 				64C497F81A8AE91D0051E605 /* TaskItemBaseView.swift in Sources */,
 				640B370F1A81908C0020C817 /* TaskRunnerManager.swift in Sources */,
 				649D54061A84522A002593F8 /* TaskTitleView.swift in Sources */,
+				C367582D1B86C1ED000510E9 /* IdleWatcher.swift in Sources */,
 				64C99A5F1A7906EA00F1D796 /* Task.swift in Sources */,
+				C367582F1B86CDCB000510E9 /* WARLocalNotification.swift in Sources */,
 				6493085B1A7AE88B00480677 /* TaskTitleViewController.swift in Sources */,
 				641B4A881AAC30EB0078E906 /* SMPageControl.m in Sources */,
 				C31B8A801B74A92300271DF4 /* WARSecond.swift in Sources */,

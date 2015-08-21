@@ -12,12 +12,12 @@ enum LanguageType {
     case cn
     case en
 }
-class QuotationManager: NSObject {
-    func getQuotation() -> String? {
+class WARQuotation: NSObject {
+    func getQuotation() -> String! {
         return self.getRandomQuotation()
     }
     
-    func getRandomQuotation() -> String? {
+    func getRandomQuotation() -> String! {
         var quotation: String? = nil
         while quotation == nil {
             let randomNumber = Int(arc4random_uniform(228))// return 0 ~ n-1
@@ -46,7 +46,6 @@ class QuotationManager: NSObject {
     func loadQuotationsByLanguage(language: LanguageType) -> NSArray? {
         let flag = language == LanguageType.cn ? "cn" : "en"
         let plistPath = NSBundle.mainBundle().pathForResource("Quotations-\(flag)", ofType: "plist")
-        _ = NSDictionary(contentsOfFile: plistPath!)
         let array = NSArray(contentsOfFile: plistPath!)
         return array
     }

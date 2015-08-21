@@ -46,6 +46,8 @@ class TaskRunnerManager: NSObject {
             }
             self.taskRunner!.resume()
             self.delegate!.taskRunnerManger(self, didActiveFrozenTaskRunner: self.taskRunner)
+        } else {
+            print("!!!!!!!!!!!!!!!!! nil")
         }
     }
 }

@@ -36,4 +36,6 @@ class GlobalConstants {
     class var kBOOL_HAS_SHOW_SWIPE_CELL_RIGHT_GUIDE: String { return "HasShowSwipeCellRightGuide" }
     class var kBOOL_HAS_SHOW_CREATE_TASK_GUIDE: String { return "HasShowCreateTaskGuide" }
     class var kBOOL_HAS_SHOW_START_TASK_GUIDE: String { return "HasShowStartTaskGuide" }
+    
+    class var NOTIFICATION_FREQUENCY_IDLEWATCHER: Int { return 7 } // Days
 }

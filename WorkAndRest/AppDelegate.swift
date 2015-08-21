@@ -104,24 +104,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
-        //        println("applicationDidBecomeActive")
-        
+
+        // Cancel local notification: IdleWatcher & WoringTask
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        IdleWatcher.scheduleLocalNotification()
         if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_ISWORKING) {
-            UIApplication.sharedApplication().cancelAllLocalNotifications()
-            print("cancelAllLocalNotifications")
-            
-            //            println("isWorking! become active")
             TaskRunnerManager.sharedInstance.activeFrozenTaskManager()
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: GlobalConstants.kBOOL_ISWORKING)
             NSUserDefaults.standardUserDefaults().synchronize()
         }
+        
     }
     
     func applicationWillTerminate(application: UIApplication) {
-        //        println("applicationWillTerminate")
+                print("applicationWillTerminate")
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         UIApplication.sharedApplication().cancelAllLocalNotifications()
-        //        IconBadgeNumberManager.sharedInstance.setBadgeNumber()
     }
     
     
