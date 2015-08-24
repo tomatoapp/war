@@ -13,10 +13,10 @@ enum HandleType: Int {
 }
 
 let HEADER_HEIGHT: CGFloat = 125
-let TIP_TAG_CREATE_TASK: Int = 1001
-let TIP_TAG_START_TASK: Int = 1002
+//let TIP_TAG_CREATE_TASK: Int = 1001
+//let TIP_TAG_START_TASK: Int = 1002
 
-class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, SWTableViewCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate, TaskManagerDelegate, CMPopTipViewDelegate {
+class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, SWTableViewCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate, TaskManagerDelegate {
     
     @IBOutlet var createTaskButtonItem: UIBarButtonItem!
     var allTasks = [Task]()
@@ -26,10 +26,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     var tableViewHeader: TableViewHeader?
     
     var taskManager = TaskManager.sharedInstance
-    
-    var createTaskTip: CMPopTipView?
-    var startTaskTip: CMPopTipView?
-//    var markDoneTip: CMPopTipView?
     
     var firstCell: TaskListItemCell?
     
@@ -56,15 +52,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "introDidFinish", name: ROOTVIEWCONTROLLER_INTRO_DID_FINISH_NOTIFICATION, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "firstTaskCreateSuccess", name: TASKMANAGER_FIRST_TASK_CREATE_SUCCESS_NOTIFICATION, object: nil)
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapAnywhere")
-        self.view.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
-    func tapAnywhere() {
-        self.createTaskTip?.dismissAnimated(true)
-        self.startTaskTip?.dismissAnimated(true)
-//        self.markDoneTip?.dismissAnimated(true)
     }
     
     deinit {
@@ -78,7 +65,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     // MARK: - Events
     
     @IBAction func createTaskButtonClick(sender: AnyObject) {
-        self.createTaskTip?.dismissAnimated(false)
         self.createTask()
         
     }
@@ -239,7 +225,6 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     // MARK: - TaskListItemCellDelegate
     
     func ready(sender: TaskListItemCell!) {
-        self.startTaskTip?.dismissAnimated(true)
         
         if self.taskRunner!.isRunning {
             return
@@ -520,11 +505,11 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
 
     // MARK: - CMPopTipViewDelegate
-    func popTipViewWasDismissedByUser(popTipView: CMPopTipView!) {
-        if popTipView.tag == TIP_TAG_CREATE_TASK {
-            self.createTask()
-        }
-    }
+//    func popTipViewWasDismissedByUser(popTipView: CMPopTipView!) {
+//        if popTipView.tag == TIP_TAG_CREATE_TASK {
+//            self.createTask()
+//        }
+//    }
     
     // MARK: - Tip
     
@@ -558,11 +543,10 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             let delayTime = dispatch_time(DISPATCH_TIME_NOW,
                 Int64(0.3 * Double(NSEC_PER_SEC)))
             dispatch_after(delayTime, dispatch_get_main_queue(), {
-                self.createTaskTip = self.getTipViewbyMessage(NSLocalizedString("Let's Create a new task", comment: ""))
-                self.createTaskTip!.dismissTapAnywhere = false
-                self.createTaskTip!.tag = TIP_TAG_CREATE_TASK
-                self.createTaskTip!.delegate = self
-                self.createTaskTip!.presentPointingAtBarButtonItem(self.createTaskButtonItem, animated: true)
+                let createTaskTip = self.getTipViewbyMessage(NSLocalizedString("Let's Create a new task", comment: ""))
+                createTaskTip.dismissTapAnywhere = true
+//                createTaskTip.tag = TIP_TAG_CREATE_TASK
+                createTaskTip.presentPointingAtBarButtonItem(self.createTaskButtonItem, animated: true)
             })
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK)
         }
@@ -576,10 +560,9 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             let delayTime = dispatch_time(DISPATCH_TIME_NOW,
                 Int64(0.5 * Double(NSEC_PER_SEC)))
             dispatch_after(delayTime, dispatch_get_main_queue(), {
-                self.startTaskTip = self.getTipViewbyMessage("准备好了吗？点击按钮开始吧！")
-                self.startTaskTip!.delegate = self
-                self.startTaskTip?.dismissTapAnywhere = false
-                self.startTaskTip!.presentPointingAtView(self.firstCell?.startButton(), inView: self.view, animated: true)
+                let startTaskTip = self.getTipViewbyMessage("准备好了吗？点击按钮开始吧！")
+                startTaskTip.dismissTapAnywhere = true
+                startTaskTip.presentPointingAtView(self.firstCell?.startButton(), inView: self.view, animated: true)
             })
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SHOW_START_TASK_GUIDE)
         }
