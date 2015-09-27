@@ -72,7 +72,7 @@ class TimeSelectorView: UIView, V8HorizontalPickerViewDelegate, V8HorizontalPick
     
     func horizontalPickerView(picker: V8HorizontalPickerView!, didSelectElementAtIndex index: Int) {
         let item = self.titleArray[index]
-        let index: String.Index = advance(item.startIndex, 2)
+        let index: String.Index = item.startIndex.advancedBy(2)// advance(item.startIndex, 2)
         let result = item.substringToIndex(index)
         let minutes = Int(result)
         if self.delegate != nil {

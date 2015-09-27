@@ -322,7 +322,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
 
     
     func addFooterViewToTheStatisticsView(type: TimeSpanType) {
-        let LABEL_WIDTH: CGFloat = 40
         let LABEL_HEIGHT: CGFloat = 25
         self.chartViewFooterView = UIView(frame: CGRectMake(0, 0, self.chartView.frame.width + 50, LABEL_HEIGHT))
         
@@ -565,7 +564,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     func getWeekStringByDate(date: NSDate!) -> String {
-        var result = ""
         let startComponents = self.getComponentsByDate(date)
         let startMonthStr = self.getMonthStringByMonthNumber(startComponents.month)
         

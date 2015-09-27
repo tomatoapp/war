@@ -76,7 +76,7 @@ class TaskTitleViewController: BaseTableViewController, UITextFieldDelegate {
         }
         
         if (self.textField.text!).characters.count > GlobalConstants.TITLE_MAXLENGTH {
-            let index: String.Index = advance(self.textField.text!.startIndex, GlobalConstants.TITLE_MAXLENGTH)
+            let index: String.Index = (self.textField.text?.startIndex.advancedBy(GlobalConstants.TITLE_MAXLENGTH))!// advance(self.textField.text!.startIndex, GlobalConstants.TITLE_MAXLENGTH)
             self.textField.text = self.textField.text!.substringToIndex(index)
         }
         
