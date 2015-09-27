@@ -560,7 +560,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             let delayTime = dispatch_time(DISPATCH_TIME_NOW,
                 Int64(0.5 * Double(NSEC_PER_SEC)))
             dispatch_after(delayTime, dispatch_get_main_queue(), {
-                let startTaskTip = self.getTipViewbyMessage("准备好了吗？点击按钮开始吧！")
+                let startTaskTip = self.getTipViewbyMessage(NSLocalizedString("Ready to start task", comment: ""))
                 startTaskTip.dismissTapAnywhere = true
                 startTaskTip.presentPointingAtView(self.firstCell?.startButton(), inView: self.view, animated: true)
             })
