@@ -831,6 +831,7 @@
 				PROVISIONING_PROFILE = "98ede1fb-5058-49c5-a83c-f03bd86a7dce";
 				SWIFT_OBJC_BRIDGING_HEADER = "WorkAndRest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -853,6 +854,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "98ede1fb-5058-49c5-a83c-f03bd86a7dce";
 				SWIFT_OBJC_BRIDGING_HEADER = "WorkAndRest-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
