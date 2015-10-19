@@ -827,6 +827,7 @@
 				INFOPLIST_FILE = "WorkAndRest/WorkAndRest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangcun.WorkAndRest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "98ede1fb-5058-49c5-a83c-f03bd86a7dce";
 				SWIFT_OBJC_BRIDGING_HEADER = "WorkAndRest-Bridging-Header.h";
@@ -851,6 +852,7 @@
 				INFOPLIST_FILE = "WorkAndRest/WorkAndRest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangcun.WorkAndRest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "98ede1fb-5058-49c5-a83c-f03bd86a7dce";
 				SWIFT_OBJC_BRIDGING_HEADER = "WorkAndRest-Bridging-Header.h";

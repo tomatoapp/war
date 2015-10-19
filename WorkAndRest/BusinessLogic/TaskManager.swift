@@ -37,9 +37,10 @@ class TaskManager: NSObject {
         let result = DBOperate.loadAllTasks()
         if result != nil {
             // remove the finished item
-            let date = NSDate(timeIntervalSinceNow: 60 * 60 * 24 * 7 * -1)
-           let filtered = result!.filter { !$0.completed || ($0.completed && $0.lastUpdateTime.compare(date) == NSComparisonResult.OrderedDescending) }
-            self.cacheTaskList = filtered
+//            let date = NSDate(timeIntervalSinceNow: 60 * 60 * 24 * 7 * -1)
+//           let filtered = result!.filter { !$0.completed || ($0.completed && $0.lastUpdateTime.compare(date) == NSComparisonResult.OrderedDescending) }
+//            let filtered = result
+            self.cacheTaskList = result!
         }
         return self.cacheTaskList
     }
