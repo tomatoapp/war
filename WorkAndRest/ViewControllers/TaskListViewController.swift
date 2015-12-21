@@ -52,6 +52,20 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "introDidFinish", name: ROOTVIEWCONTROLLER_INTRO_DID_FINISH_NOTIFICATION, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "firstTaskCreateSuccess", name: TASKMANAGER_FIRST_TASK_CREATE_SUCCESS_NOTIFICATION, object: nil)
+        /*
+        let user = PFUser()
+        user.username = "Carl"
+        user.password = "QQQqqq111!!!"
+        user.email = "carl@tomato.com"
+        
+        user.signUpInBackgroundWithBlock { (success, error) -> Void in
+            if error == nil {
+                print("success")
+            } else {
+                
+            }
+        }
+        */
     }
     
     deinit {

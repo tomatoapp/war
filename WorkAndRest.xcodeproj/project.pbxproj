@@ -74,6 +74,7 @@
 		64EBF6271AA9591200ACA139 /* ProductsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EBF6261AA9591200ACA139 /* ProductsManager.swift */; };
 		C31B8A801B74A92300271DF4 /* WARSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31B8A7F1B74A92300271DF4 /* WARSecond.swift */; };
 		C322AF541B845F9A009710B1 /* WorkAndRest.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = C322AF531B845F9A009710B1 /* WorkAndRest.entitlements */; };
+		C322C98F1C27B7DE00DD585D /* WARParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C322C98E1C27B7DE00DD585D /* WARParse.swift */; };
 		C32C7E321B73075400977421 /* WARTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32C7E311B73075400977421 /* WARTimer.swift */; };
 		C354053C1B560C80008111C2 /* IdentifierDef.swift in Sources */ = {isa = PBXBuildFile; fileRef = C354053B1B560C80008111C2 /* IdentifierDef.swift */; };
 		C367582D1B86C1ED000510E9 /* IdleWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367582C1B86C1ED000510E9 /* IdleWatcher.swift */; };
@@ -191,6 +192,7 @@
 		64EBF6261AA9591200ACA139 /* ProductsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsManager.swift; sourceTree = "<group>"; };
 		C31B8A7F1B74A92300271DF4 /* WARSecond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARSecond.swift; sourceTree = "<group>"; };
 		C322AF531B845F9A009710B1 /* WorkAndRest.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WorkAndRest.entitlements; sourceTree = "<group>"; };
+		C322C98E1C27B7DE00DD585D /* WARParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARParse.swift; sourceTree = "<group>"; };
 		C32C7E311B73075400977421 /* WARTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARTimer.swift; sourceTree = "<group>"; };
 		C354053B1B560C80008111C2 /* IdentifierDef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifierDef.swift; sourceTree = "<group>"; };
 		C367582C1B86C1ED000510E9 /* IdleWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdleWatcher.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				C367582C1B86C1ED000510E9 /* IdleWatcher.swift */,
 				C367582E1B86CDCB000510E9 /* WARLocalNotification.swift */,
 				C38623651B86E8CE00E91F5F /* WARDate.swift */,
+				C322C98E1C27B7DE00DD585D /* WARParse.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				64A0BCDA1A7FA14700F210CC /* NewTaskViewController.swift in Sources */,
 				648A27D21AAD4DBD0002BF04 /* TaskDetailsTutorialViewController.swift in Sources */,
 				64E3C1AB1A8752C400418426 /* TaskListHeaderView.swift in Sources */,
+				C322C98F1C27B7DE00DD585D /* WARParse.swift in Sources */,
 				64CCE5331A89600C008D5A08 /* TaskDetailsViewController.swift in Sources */,
 				64EAEC2D1A7E37F70026C748 /* TaskRunner.swift in Sources */,
 				64012C8A1900B89D006FC2B2 /* Appirater.m in Sources */,

@@ -14,10 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        print(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] )
+        print(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])
+        
         DBOperate.db_init()
+        
         self.firstRun()
+        
         self.initRater()
+        
         CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
             nil,
             LockNotifierCallback.notifierProc(),
@@ -25,10 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             nil,
             CFNotificationSuspensionBehavior.DeliverImmediately)
         
+        
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) {
             NSThread.sleepForTimeInterval(0.5)
             self.hideIconWithAnimation()
         }
+        
+        Parse.setApplicationId(applicationId, clientKey: clientKey)
+        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
         return true
     }
