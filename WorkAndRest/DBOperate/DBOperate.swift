@@ -184,6 +184,7 @@ class DBOperate {
         dataBase.close()
     }
     class func insertWork(work: Work) {
+        print(work)
         if !dataBase.open() {
             return
         }
