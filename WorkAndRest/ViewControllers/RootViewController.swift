@@ -118,10 +118,10 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         page2.descColor = UIColor(red: 110/255, green: 110/255, blue: 110/255, alpha: 1.0)
         page2.descFont = UIFont.systemFontOfSize(15)
         page2.descPositionY = self.view.frame.size.height/2 + 150 + 20
-        page2.descWidth = self.view.frame.size.width - 20
+
+//        page2.descWidth = self.view.frame.size.width - 30
         
         page2.titleIconView = UIImageView(image: UIImage(named: "guide2Image"))
-//        page2.titleIconView.sizeToFit()
         page2.titleIconView.frame = CGRectMake(0, 0, self.view.frame.size.width-6, self.view.frame.size.width)
         page2.titleIconView.contentMode = UIViewContentMode.ScaleAspectFit
         page2.titleIconPositionY = self.view.frame.size.height/2 - 100 - 30
@@ -137,10 +137,9 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         page3.descColor = UIColor(red: 110/255, green: 110/255, blue: 110/255, alpha: 1.0)
         page3.descFont = UIFont.systemFontOfSize(15)
         page3.descPositionY = self.view.frame.size.height/2 + 150 + 20
-        page3.descWidth = self.view.frame.size.width - 20
+//        page3.descWidth = self.view.frame.size.width - 30
         
         page3.titleIconView = UIImageView(image: UIImage(named: "guide3Image"))
-//        page3.titleIconView.sizeToFit()
         page3.titleIconView.frame = CGRectMake(0, 0, self.view.frame.size.width-6, self.view.frame.size.width-100)
         page3.titleIconView.contentMode = UIViewContentMode.ScaleAspectFit
         page3.titleIconPositionY = self.view.frame.size.height/2 - 50 - 30
@@ -148,27 +147,18 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
 
         
         let page4 = EAIntroPage()
-//        page3.title = NSLocalizedString("guide3Title", comment: "")
-//        page3.titleFont = UIFont.systemFontOfSize(24)
-//        page3.titlePositionY = self.view.frame.size.height/2 + 180
-//        page3.titleColor = UIColor.blackColor()
-//        
-//        page3.desc = NSLocalizedString("guide3SubTitle", comment: "")
-//        page3.descColor = UIColor(red: 110/255, green: 110/255, blue: 110/255, alpha: 1.0)
-//        page3.descFont = UIFont.systemFontOfSize(15)
-//        page3.descPositionY = self.view.frame.size.height/2 + 130
-//        
         page4.titleIconView = UIImageView(image: UIImage(named: "guide4Image"))
         page4.titleIconView.sizeToFit()
-//        page4.titleIconView.frame = CGRectMake(0, 0, self.view.frame.size.width-6, page1.titleIconView.frame.height)
         page4.titleIconView.contentMode = UIViewContentMode.ScaleAspectFit
         page4.titleIconPositionY = self.view.frame.size.height/2 - 170
         pages.append(page4)
+        
+        let pControl = UIPageControl()
+        pControl.currentPageIndicatorTintColor = UIColor.blackColor()
+        pControl.pageIndicatorTintColor = UIColor(red: 127/255, green: 127/255, blue: 127/255, alpha: 1.0)
+        introView?.pageControl = pControl
+        introView?.pageControlY = 40.0
 
-        
-        
-        
-        
         introView = EAIntroView(frame: self.view.bounds, andPages: pages)
         introView?.backgroundColor = UIColor.whiteColor()
         introView?.delegate = self
@@ -178,18 +168,8 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         introView?.skipButtonY = 150
         introView?.skipButton.titleLabel?.font = UIFont.systemFontOfSize(20)
         introView?.skipButton.setTitleColor(UIColor(red: 74/255, green: 144/255, blue: 226/255, alpha: 1.0), forState: UIControlState.Normal)
-//        introView?.skipButton.setTitle("Get Started", forState: UIControlState.Normal)
         introView?.skipButton.setTitle(NSLocalizedString("Get Started", comment: ""), forState: UIControlState.Normal)
-        
-        introView?.swipeToExit = false
-        
-        let pageControl = SMPageControl()
-        pageControl.pageIndicatorImage = UIImage(named: "baseIndicator")
-        pageControl.currentPageIndicatorImage = UIImage(named: "currentIndicator")
-        pageControl.sizeToFit()
-        introView?.setupPageControl(pageControl)
-        introView?.pageControlY = 40.0
-        
+
         introView?.showInView(self.view, animateDuration: 0)
     }
     

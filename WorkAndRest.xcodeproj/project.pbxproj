@@ -15,7 +15,6 @@
 		64012C951900D68F006FC2B2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64012C941900D68F006FC2B2 /* AudioToolbox.framework */; };
 		640B370F1A81908C0020C817 /* TaskRunnerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640B370E1A81908C0020C817 /* TaskRunnerManager.swift */; };
 		6415C60B1A9234D400A9FBCA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6415C60A1A9234D400A9FBCA /* SettingsViewController.swift */; };
-		641B4A881AAC30EB0078E906 /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 641B4A871AAC30EB0078E906 /* SMPageControl.m */; };
 		64228ECA18FE2ED300461550 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64228ECC18FE2ED300461550 /* Localizable.strings */; };
 		64293E851B6070360067BF05 /* BaseTranslucentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64293E841B6070360067BF05 /* BaseTranslucentViewController.swift */; };
 		64293E871B6071BA0067BF05 /* ExplainTomatoTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64293E861B6071BA0067BF05 /* ExplainTomatoTimeViewController.swift */; };
@@ -119,8 +118,6 @@
 		64012C941900D68F006FC2B2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		640B370E1A81908C0020C817 /* TaskRunnerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRunnerManager.swift; sourceTree = "<group>"; };
 		6415C60A1A9234D400A9FBCA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		641B4A861AAC30EB0078E906 /* SMPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPageControl.h; sourceTree = "<group>"; };
-		641B4A871AAC30EB0078E906 /* SMPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPageControl.m; sourceTree = "<group>"; };
 		64228EC918FE2E7300461550 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		64228ECB18FE2ED300461550 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64228ECD18FE2EE300461550 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -244,7 +241,6 @@
 		64012C861900B870006FC2B2 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				641B4A851AAC30EB0078E906 /* SMPageControl */,
 				647603011AA9CD4500B1373E /* CMPopTipView */,
 				646141A21A80C11E0010E19E /* V8HorizontalPickerView */,
 				64012C871900B887006FC2B2 /* Appirater */,
@@ -269,15 +265,6 @@
 				64012C911900B979006FC2B2 /* AppiraterLocalizable.strings */,
 			);
 			path = "zh-Hans.lproj";
-			sourceTree = "<group>";
-		};
-		641B4A851AAC30EB0078E906 /* SMPageControl */ = {
-			isa = PBXGroup;
-			children = (
-				641B4A861AAC30EB0078E906 /* SMPageControl.h */,
-				641B4A871AAC30EB0078E906 /* SMPageControl.m */,
-			);
-			path = SMPageControl;
 			sourceTree = "<group>";
 		};
 		6434826518C5D343009BF110 = {
@@ -673,7 +660,6 @@
 				64C99A5F1A7906EA00F1D796 /* Task.swift in Sources */,
 				C367582F1B86CDCB000510E9 /* WARLocalNotification.swift in Sources */,
 				6493085B1A7AE88B00480677 /* TaskTitleViewController.swift in Sources */,
-				641B4A881AAC30EB0078E906 /* SMPageControl.m in Sources */,
 				C31B8A801B74A92300271DF4 /* WARSecond.swift in Sources */,
 				646B04ED1A9A99C00083E065 /* WorkManager.swift in Sources */,
 				64B563151AA8238300098532 /* ApplicationStateManager.swift in Sources */,

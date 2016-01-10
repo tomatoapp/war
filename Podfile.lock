@@ -1,8 +1,8 @@
 PODS:
   - Bolts/Tasks (1.5.0)
-  - EAIntroView (2.7.0):
-    - EARestrictedScrollView (~> 0.1.0)
-  - EARestrictedScrollView (0.1.0)
+  - EAIntroView (2.8.1):
+    - EARestrictedScrollView (~> 0.2.0)
+  - EARestrictedScrollView (0.2.0)
   - FMDB (2.5):
     - FMDB/standard (= 2.5)
   - FMDB/common (2.5)
@@ -16,7 +16,7 @@ PODS:
   - SWTableViewCell (0.3.7)
 
 DEPENDENCIES:
-  - EAIntroView (~> 2.7.0)
+  - EAIntroView (from `https://github.com/tomatoapp/EAIntroView.git`)
   - FMDB
   - JBChartView (from `https://github.com/tomatoapp/JBChartView.git`)
   - Masonry
@@ -25,18 +25,23 @@ DEPENDENCIES:
   - SWTableViewCell (~> 0.3.7)
 
 EXTERNAL SOURCES:
+  EAIntroView:
+    :git: https://github.com/tomatoapp/EAIntroView.git
   JBChartView:
     :git: https://github.com/tomatoapp/JBChartView.git
 
 CHECKOUT OPTIONS:
+  EAIntroView:
+    :commit: 644cda746cf4142d48250af04ce2d75a6398b323
+    :git: https://github.com/tomatoapp/EAIntroView.git
   JBChartView:
     :commit: 7f1d1555a89f675f865bca7dd5e5f5b23ca470a1
     :git: https://github.com/tomatoapp/JBChartView.git
 
 SPEC CHECKSUMS:
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
-  EAIntroView: 9becdb1441712405346a3e6bc31b0d9a57b63b10
-  EARestrictedScrollView: 5ab3eadd9ea55282cc72df0daecb09803059e3a0
+  EAIntroView: 34da04e87f451bbd9059914eb8ee1693ec4f4bd6
+  EARestrictedScrollView: f86d61e16c61d3e93c84f8e96e83122a2a3b7631
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   JBChartView: fd8f2c244b185577847bd15a4266ee6ca43e2c29
   Masonry: 695dcee5cf90504cc83d85c40e0bd3f4376ed583
