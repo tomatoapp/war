@@ -8,7 +8,7 @@ PODS:
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
-  - JBChartView (2.8.10)
+  - JBChartView (2.9.1)
   - Masonry (0.6.0)
   - MBProgressHUD (0.9.1)
   - Parse (1.11.0):
@@ -18,18 +18,27 @@ PODS:
 DEPENDENCIES:
   - EAIntroView (~> 2.7.0)
   - FMDB
-  - JBChartView (~> 2.8.10)
+  - JBChartView (from `https://github.com/tomatoapp/JBChartView.git`)
   - Masonry
   - MBProgressHUD (~> 0.9.1)
   - Parse
   - SWTableViewCell (~> 0.3.7)
+
+EXTERNAL SOURCES:
+  JBChartView:
+    :git: https://github.com/tomatoapp/JBChartView.git
+
+CHECKOUT OPTIONS:
+  JBChartView:
+    :commit: 7f1d1555a89f675f865bca7dd5e5f5b23ca470a1
+    :git: https://github.com/tomatoapp/JBChartView.git
 
 SPEC CHECKSUMS:
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
   EAIntroView: 9becdb1441712405346a3e6bc31b0d9a57b63b10
   EARestrictedScrollView: 5ab3eadd9ea55282cc72df0daecb09803059e3a0
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
-  JBChartView: 187186c4730d806962da8ba99aa0d03a77aa35f7
+  JBChartView: fd8f2c244b185577847bd15a4266ee6ca43e2c29
   Masonry: 695dcee5cf90504cc83d85c40e0bd3f4376ed583
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   Parse: 886af46a0a677402f6374bb97ac212e795f70afe
