@@ -24,6 +24,8 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) {
             self.showIntroView()
         }
+        self.showIntroView()
+
         
         if UINavigationBar.instancesRespondToSelector(Selector("setBackIndicatorImage:")) {
             UINavigationBar.appearance().backIndicatorImage = UIImage(named: "back")
@@ -153,11 +155,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         page4.titleIconPositionY = self.view.frame.size.height/2 - 170
         pages.append(page4)
         
-        let pControl = UIPageControl()
-        pControl.currentPageIndicatorTintColor = UIColor.blackColor()
-        pControl.pageIndicatorTintColor = UIColor(red: 127/255, green: 127/255, blue: 127/255, alpha: 1.0)
-        introView?.pageControl = pControl
-        introView?.pageControlY = 40.0
+        
 
         introView = EAIntroView(frame: self.view.bounds, andPages: pages)
         introView?.backgroundColor = UIColor.whiteColor()
@@ -170,6 +168,13 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         introView?.skipButton.setTitleColor(UIColor(red: 74/255, green: 144/255, blue: 226/255, alpha: 1.0), forState: UIControlState.Normal)
         introView?.skipButton.setTitle(NSLocalizedString("Get Started", comment: ""), forState: UIControlState.Normal)
 
+        let pControl = UIPageControl()
+        pControl.numberOfPages = 3
+        pControl.currentPageIndicatorTintColor = UIColor.blackColor()
+        pControl.pageIndicatorTintColor = UIColor(red: 127.0/255.0, green: 127.0/255.0, blue: 127.0/255.0, alpha: 1.0)
+        introView?.pageControl = pControl
+        introView?.pageControlY = 40.0
+        
         introView?.showInView(self.view, animateDuration: 0)
     }
     

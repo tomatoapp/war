@@ -5,7 +5,8 @@ target 'WorkAndRest' do
     
 pod 'FMDB'
 pod 'Masonry'
-pod 'SWTableViewCell', '~> 0.3.7'
+#pod 'SWTableViewCell', '~> 0.3.7'
+pod 'SWTableViewCell', :git => 'https://github.com/tomatoapp/SWTableViewCell.git'
 #pod 'EAIntroView', '~> 2.7.0'
 pod 'EAIntroView', :git => 'https://github.com/tomatoapp/EAIntroView.git'
 #pod 'JBChartView', '~> 2.9.1'
