@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D877CEA296110AB78EFAF41D859F53DDBC762CFA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D877CEA296110AB78EFAF41D859F53DDBC762CFA" : 0,
+    "A31C04743691FEA62971CC16ED36133B28095C3F" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6AE1AB82-0666-41CA-BA2A-55EF79CCF6F5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D877CEA296110AB78EFAF41D859F53DDBC762CFA" : "war\/",
+    "A31C04743691FEA62971CC16ED36133B28095C3F" : "JBChartView\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "WorkAndRest",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "WorkAndRest.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tomatoapp\/JBChartView.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A31C04743691FEA62971CC16ED36133B28095C3F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tomatoapp\/war.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D877CEA296110AB78EFAF41D859F53DDBC762CFA"
+    }
+  ]
+}

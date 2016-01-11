@@ -16,7 +16,7 @@ PODS:
 DEPENDENCIES:
   - EAIntroView (from `https://github.com/tomatoapp/EAIntroView.git`)
   - FMDB
-  - JBChartView (from `https://github.com/tomatoapp/JBChartView.git`)
+  - JBChartView (from `~/Documents/git/Tomato!/JBChartView`)
   - Masonry
   - MBProgressHUD (~> 0.9.1)
   - Parse
@@ -26,7 +26,7 @@ EXTERNAL SOURCES:
   EAIntroView:
     :git: https://github.com/tomatoapp/EAIntroView.git
   JBChartView:
-    :git: https://github.com/tomatoapp/JBChartView.git
+    :path: ~/Documents/git/Tomato!/JBChartView
   SWTableViewCell:
     :git: https://github.com/tomatoapp/SWTableViewCell.git
 
@@ -34,9 +34,6 @@ CHECKOUT OPTIONS:
   EAIntroView:
     :commit: 644cda746cf4142d48250af04ce2d75a6398b323
     :git: https://github.com/tomatoapp/EAIntroView.git
-  JBChartView:
-    :commit: 7f1d1555a89f675f865bca7dd5e5f5b23ca470a1
-    :git: https://github.com/tomatoapp/JBChartView.git
   SWTableViewCell:
     :commit: 52cd858bb278254ac027969c1e2bac648f9269be
     :git: https://github.com/tomatoapp/SWTableViewCell.git

@@ -10,7 +10,9 @@ pod 'SWTableViewCell', :git => 'https://github.com/tomatoapp/SWTableViewCell.git
 #pod 'EAIntroView', '~> 2.7.0'
 pod 'EAIntroView', :git => 'https://github.com/tomatoapp/EAIntroView.git'
 #pod 'JBChartView', '~> 2.9.1'
-pod 'JBChartView', :git => 'https://github.com/tomatoapp/JBChartView.git'
+#pod 'JBChartView', :git => 'https://github.com/tomatoapp/JBChartView.git'
+#pod 'JBChartView', :podspec => '/Users/carl/Documents/git/Tomato!/JBChartView/JBChartView.podspec'
+pod 'JBChartView', :path => '~/Documents/git/Tomato!/JBChartView'
 
 pod 'MBProgressHUD', '~> 0.9.1'
 
