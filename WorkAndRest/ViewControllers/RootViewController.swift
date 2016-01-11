@@ -24,8 +24,6 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, EAIntr
         if NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_firstLaunch) {
             self.showIntroView()
         }
-        self.showIntroView()
-
         
         if UINavigationBar.instancesRespondToSelector(Selector("setBackIndicatorImage:")) {
             UINavigationBar.appearance().backIndicatorImage = UIImage(named: "back")
