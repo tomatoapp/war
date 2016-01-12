@@ -253,4 +253,43 @@ class DBOperate {
         dataBase.close()
         return workArray
     }
+    
+    class func loadWorksByTaskID(taskID: Int) -> Array<Work>? {
+        if !dataBase.open() {
+            return nil
+        }
+        var works = [Work]()
+        let sql = "SELECT * FROM t_works WHERE task_id = ?"
+        let rs = dataBase.executeQuery(sql, withArgumentsInArray: [taskID])
+        while rs.next() {
+            let tempWork = Work()
+            tempWork.workId = Int(rs.stringForColumn("work_id"))!
+            tempWork.taskId = Int(rs.stringForColumn("task_id"))!
+            tempWork.workTime = rs.dateForColumn("work_time")
+            if tempWork.workTime.description.hasPrefix("1970") {
+                let formatter = NSDateFormatter()
+                let GMTzone = NSTimeZone(forSecondsFromGMT: 0)
+                formatter.timeZone = GMTzone
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                tempWork.workTime = formatter.dateFromString(rs.stringForColumn("work_time"))!
+            }
+            tempWork.isFinished = rs.boolForColumn("is_finished")
+            works.append(tempWork)
+        }
+        dataBase.close()
+        return works
+    }
+    
+    /*
+    class func loadWorksByDate(date: NSDate) -> Array<Work>? {
+        if !dataBase.open() {
+            return nil
+        }
+        var works = [Work]()
+        let sql = "SELECT * FROM t_works WHERE work_time = ?"
+        let rs = dataBase.executeQuery(sql, withArgumentsInArray: [date])
+        dataBase.close()
+        return works
+    }
+    */
 }
