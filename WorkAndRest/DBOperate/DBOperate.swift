@@ -188,47 +188,33 @@ class DBOperate {
         if !dataBase.open() {
             return
         }
+//        let success = dataBase.executeUpdate("INSERT INTO t_works(task_id, is_finished) VALUES (:task_id, :is_finished)", withArgumentsInArray: [work.taskId, work.isFinished])
+
         let success = dataBase.executeUpdate("INSERT INTO t_works(task_id, is_finished, work_time) VALUES (:task_id, :is_finished, :work_time)", withArgumentsInArray: [work.taskId, work.isFinished, work.workTime])
         if success {
-//            println("insert to work table success.")
+            print("insert to work table success.")
         } else {
-//            println("inert to work table failed!")
+            print("inert to work table failed!")
         }
         dataBase.close()
     }
-    class func selectWorkWithWorkId(workId: Int) -> Work? {
-        if !dataBase.open() {
-            return nil
-        }
+    
+    private class func getWorkByResultSet(rs: FMResultSet) -> Work {
         let work = Work()
-        let rs = dataBase.executeQuery("SELECT * from t_works WHERE work_id = ?", withArgumentsInArray: [workId])
-        while rs.next() {
-            work.workId = Int(rs.stringForColumn("work_id"))!
-            work.taskId = Int(rs.stringForColumn("task_id"))!
+        work.workId = Int(rs.stringForColumn("work_id"))!
+        work.taskId = Int(rs.stringForColumn("task_id"))!
+        work.workTime = rs.dateForColumn("work_time")
+        if work.workTime.description.hasPrefix("1970") {
+            let formatter = NSDateFormatter()
+            let GMTzone = NSTimeZone(forSecondsFromGMT: 0)
+            formatter.timeZone = GMTzone
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            work.workTime = formatter.dateFromString(rs.stringForColumn("work_time"))!
         }
-        dataBase.close()
+        work.isFinished = rs.boolForColumn("is_finished")
         return work
     }
     
-    class func SelectWorkListWithTaskId(taskId: Int) -> Array<Work>? {
-        if !dataBase.open() {
-            return nil
-        }
-        var workArray = [Work]()
-        let rs = dataBase.executeQuery("SELECT * from t_works WHERE task_id = ?", withArgumentsInArray: [taskId])
-        while rs.next() {
-            let workTemp = Work()
-            workTemp.workId = Int(rs.stringForColumn("work_id"))!
-            workTemp.taskId = Int(rs.stringForColumn("task_id"))!
-            workTemp.workTime = rs.dateForColumn("work_time")
-            workTemp.isFinished = rs.boolForColumn("is_finished")
-            workArray.append(workTemp)
-        }
-        dataBase.close()
-//        println("load work list count: \(workArray.count)")
-        return workArray
-    }
-
     class func loadAllWorks() -> Array<Work>? {
         if !dataBase.open() {
             return nil
@@ -236,19 +222,7 @@ class DBOperate {
         var workArray = [Work]()
         let rs = dataBase.executeQuery("SELECT * from t_works", withArgumentsInArray: nil)
         while rs.next() {
-            let tempWork = Work()
-            tempWork.workId = Int(rs.stringForColumn("work_id"))!
-            tempWork.taskId = Int(rs.stringForColumn("task_id"))!
-            tempWork.workTime = rs.dateForColumn("work_time")
-            if tempWork.workTime.description.hasPrefix("1970") {
-                let formatter = NSDateFormatter()
-                let GMTzone = NSTimeZone(forSecondsFromGMT: 0)
-                formatter.timeZone = GMTzone
-                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                tempWork.workTime = formatter.dateFromString(rs.stringForColumn("work_time"))!
-            }
-            tempWork.isFinished = rs.boolForColumn("is_finished")
-            workArray.append(tempWork)
+            workArray.append(self.getWorkByResultSet(rs))
         }
         dataBase.close()
         return workArray
@@ -262,34 +236,43 @@ class DBOperate {
         let sql = "SELECT * FROM t_works WHERE task_id = ?"
         let rs = dataBase.executeQuery(sql, withArgumentsInArray: [taskID])
         while rs.next() {
-            let tempWork = Work()
-            tempWork.workId = Int(rs.stringForColumn("work_id"))!
-            tempWork.taskId = Int(rs.stringForColumn("task_id"))!
-            tempWork.workTime = rs.dateForColumn("work_time")
-            if tempWork.workTime.description.hasPrefix("1970") {
-                let formatter = NSDateFormatter()
-                let GMTzone = NSTimeZone(forSecondsFromGMT: 0)
-                formatter.timeZone = GMTzone
-                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                tempWork.workTime = formatter.dateFromString(rs.stringForColumn("work_time"))!
-            }
-            tempWork.isFinished = rs.boolForColumn("is_finished")
-            works.append(tempWork)
+            works.append(self.getWorkByResultSet(rs))
         }
         dataBase.close()
         return works
     }
     
-    /*
-    class func loadWorksByDate(date: NSDate) -> Array<Work>? {
+    class func loadWorksByDate(startDate: NSDate, endDate: NSDate) -> Array<Work>? {
         if !dataBase.open() {
             return nil
         }
         var works = [Work]()
-        let sql = "SELECT * FROM t_works WHERE work_time = ?"
-        let rs = dataBase.executeQuery(sql, withArgumentsInArray: [date])
+        let sql = "SELECT * FROM t_works WHERE work_time >= ? and work_time <= ?"
+        let rs = dataBase.executeQuery(sql, withArgumentsInArray: [startDate, endDate])
+        while rs.next() {
+            works.append(self.getWorkByResultSet(rs))
+        }
         dataBase.close()
         return works
     }
-    */
+    
+    class func loadWorksByDate(date: NSDate) -> Array<Work>? {
+        let startDate = NSDate().beginningOfDate()
+        let endDate = NSDate().endOfDate()
+        return self.loadWorksByDate(startDate, endDate: endDate)
+    }
+    
+    class func loadWorksByTaskID(taskID: Int, withDateRange startDate: NSDate, endDate: NSDate) -> Array<Work>? {
+        if !dataBase.open() {
+            return nil
+        }
+        var works = [Work]()
+        let sql = "SELECT * FROM t_works WHERE task_id = ? and work_time >= ? and work_time <= ?"
+        let rs = dataBase.executeQuery(sql, withArgumentsInArray: [taskID, startDate, endDate])
+        while rs.next() {
+            works.append(self.getWorkByResultSet(rs))
+        }
+        dataBase.close()
+        return works
+    }
 }

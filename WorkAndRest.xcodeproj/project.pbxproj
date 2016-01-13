@@ -81,6 +81,7 @@
 		C38623621B86E80700E91F5F /* Quotations-cn.plist in Resources */ = {isa = PBXBuildFile; fileRef = C38623611B86E80700E91F5F /* Quotations-cn.plist */; };
 		C38623641B86E81400E91F5F /* Quotations-en.plist in Resources */ = {isa = PBXBuildFile; fileRef = C38623631B86E81400E91F5F /* Quotations-en.plist */; };
 		C38623661B86E8CE00E91F5F /* WARDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38623651B86E8CE00E91F5F /* WARDate.swift */; };
+		C3FE3C3D1C45F9DD00D48517 /* NSDate+BeginningEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FE3C3C1C45F9DD00D48517 /* NSDate+BeginningEnd.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +197,7 @@
 		C38623611B86E80700E91F5F /* Quotations-cn.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Quotations-cn.plist"; sourceTree = "<group>"; };
 		C38623631B86E81400E91F5F /* Quotations-en.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Quotations-en.plist"; sourceTree = "<group>"; };
 		C38623651B86E8CE00E91F5F /* WARDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARDate.swift; sourceTree = "<group>"; };
+		C3FE3C3C1C45F9DD00D48517 /* NSDate+BeginningEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+BeginningEnd.swift"; sourceTree = "<group>"; };
 		C5A3E743E49F064E285AF8F1 /* Pods-WorkAndRest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkAndRest.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkAndRest/Pods-WorkAndRest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -389,6 +391,7 @@
 				C367582C1B86C1ED000510E9 /* IdleWatcher.swift */,
 				C367582E1B86CDCB000510E9 /* WARLocalNotification.swift */,
 				C38623651B86E8CE00E91F5F /* WARDate.swift */,
+				C3FE3C3C1C45F9DD00D48517 /* NSDate+BeginningEnd.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */,
 				6497FE561A75A77800174307 /* Work.swift in Sources */,
 				648A27D41AAD6F730002BF04 /* ChartTutorialViewController.swift in Sources */,
+				C3FE3C3D1C45F9DD00D48517 /* NSDate+BeginningEnd.swift in Sources */,
 				64C497F81A8AE91D0051E605 /* TaskItemBaseView.swift in Sources */,
 				640B370F1A81908C0020C817 /* TaskRunnerManager.swift in Sources */,
 				649D54061A84522A002593F8 /* TaskTitleView.swift in Sources */,
