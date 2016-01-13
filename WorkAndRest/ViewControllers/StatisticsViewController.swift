@@ -158,7 +158,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.loadDataSourceByType(type)
         
         self.removeFooterViewFromTheStatisticsView()
-        //self.addFooterViewToTheStatisticsView(type)
+        self.addFooterViewToTheStatisticsView(type)
         
         self.removeHeaderViewFromTheStatisticsView()
         //self.addHeaderViewToTheStatisticsView()
@@ -336,13 +336,13 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         }
     }
 
-    /*
+    
     func addFooterViewToTheStatisticsView(type: TimeSpanType) {
         let LABEL_HEIGHT: CGFloat = 25
         self.chartViewFooterView = UIView(frame: CGRectMake(0, 0, self.chartView.frame.width + 50, LABEL_HEIGHT))
         
         let todayComponents = self.getComponentsByDate(NSDate())
-        var weekDayNames = [String]()
+        var names = [String]()
 
         var dates = [NSDate?]()
         for index in 0...self.baseData.count-1 {
@@ -367,6 +367,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
 //        currentIndex = -1
         switch type {
         case .Week:
+            /*
             currentIndex = self.daysBetweenDateFromDate(dates[0]!, toDate: NSDate())
             print("todayIndex: \(currentIndex)")
             // Covert the number to Week day string.
@@ -383,6 +384,16 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                         tempComponents.weekday += 1
                     }
                     weekDayNames.insert(self.self.getWeekDayStringByWeekDayNumber(tempComponents.weekday), atIndex: weekDayNames.count-1)
+                }
+            }
+            */
+            for i in 0...((self.getCapacity() - 1) * 1) {
+                let day = NSDate().addDays(-i)
+                
+                if i == (self.getCapacity() - 1) {
+                    names.insert(day.toString(), atIndex: 0)
+                } else {
+                    names.insert(day.toSampleString(), atIndex: 0)
                 }
             }
             break
@@ -408,14 +419,14 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             let components = self.getComponentsByDate(NSDate())
             components.day = components.day - components.weekday + 1
             
-            weekDayNames.append(self.getWeekStringByDate(NSCalendar.currentCalendar().dateFromComponents(components)))
+            names.append(self.getWeekStringByDate(NSCalendar.currentCalendar().dateFromComponents(components)))
             var preUnNilDate: NSDate!
             if currentIndex > 0 {
                 for index in 0...currentIndex-1 {
                     let tempDate = firstDayOfTheWeekDates[index]
                     if tempDate != nil {
                         preUnNilDate = tempDate
-                        weekDayNames.insert(self.getWeekStringByDate(tempDate), atIndex: weekDayNames.count-1)
+                        names.insert(self.getWeekStringByDate(tempDate), atIndex: names.count-1)
                     } else {
                         // If the tempDate is nil, this mean that the firstDayOfTheWeekDates has empty item.
                         let preTempDateComponents = self.getComponentsByDate(preUnNilDate)
@@ -424,7 +435,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                         let lastWeekComponents = self.getComponentsByDate(lastWeek)
                         lastWeekComponents.day = lastWeekComponents.day - lastWeekComponents.weekday + 1
                         let theFirstDayOfLaskWeek = NSCalendar.currentCalendar().dateFromComponents(lastWeekComponents)
-                        weekDayNames.insert(self.getWeekStringByDate(theFirstDayOfLaskWeek), atIndex: weekDayNames.count-1)
+                        names.insert(self.getWeekStringByDate(theFirstDayOfLaskWeek), atIndex: names.count-1)
                     }
                 }
             }
@@ -436,7 +447,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             print("todayIndex: \(currentIndex)")
 
             // Covert the number to Week day string.
-            weekDayNames.append(self.getMonthStringByMonthNumber(todayComponents.month))
+            names.append(self.getMonthStringByMonthNumber(todayComponents.month))
 
             if currentIndex > 0 {
                 var tempDateComponents: NSDateComponents = NSDateComponents()
@@ -447,15 +458,15 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                     } else {
                         tempDateComponents.month -= 1
                     }
-                    weekDayNames.insert(self.getMonthStringByMonthNumber(tempDateComponents.month), atIndex: weekDayNames.count-1)
+                    names.insert(self.getMonthStringByMonthNumber(tempDateComponents.month), atIndex: names.count-1)
                 }
             }
             break
         }
-        print("weekDayNames - labels: \(weekDayNames)")
-        for index in 0...weekDayNames.count - 1 {
+        print("weekDayNames - labels: \(names)")
+        for index in 0...names.count - 1 {
             let tempLabel = UILabel()
-            tempLabel.text = weekDayNames[index]
+            tempLabel.text = names[index]
             let capacity = self.getCapacity()
             let itemWidth: CGFloat = chartViewFooterView.frame.width / CGFloat(capacity)
             tempLabel.frame = CGRectMake(itemWidth * CGFloat(index), 0, itemWidth, LABEL_HEIGHT)
@@ -478,7 +489,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             return ()
         }
     }
-    */
+    
     func getWeekDayStringByWeekDayNumber(weekDay: Int) -> String {
         switch weekDay {
             

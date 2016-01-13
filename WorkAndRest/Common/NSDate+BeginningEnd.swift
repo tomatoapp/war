@@ -28,4 +28,28 @@ extension NSDate {
         date = date.dateByAddingTimeInterval(-1)
         return date
     }
+    
+    func tomorrow() -> NSDate {
+        return self.addDays(1)
+    }
+    
+    func yesterday() -> NSDate {
+        return self.addDays(-1)
+    }
+    
+    func addDays(i: Int) -> NSDate {
+        let components = NSDateComponents()
+        components.day = i
+        return NSCalendar.currentCalendar().dateByAddingComponents(components, toDate: NSDate(), options: [])!
+    }
+    
+    func toString(dateFormat: String = "M月d日") -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        return dateFormatter.stringFromDate(self)
+    }
+    
+    func toSampleString() -> String {
+        return self.toString("d")
+    }
 }
