@@ -64,7 +64,7 @@ class WorkManager: NSObject {
             break
             
         case .Month:
-            comps.month = -1
+            comps.month = -2
             break
             
         case .Year:

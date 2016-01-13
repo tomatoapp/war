@@ -170,6 +170,14 @@ class TaskManager: NSObject {
         let work = Work()
         work.taskId = task.taskId
         work.isFinished = isFinished
-        WorkManager.sharedInstance.insertWork(work)
+        
+        let dateFormater = NSDateFormatter()
+        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        for i in 10...12 {
+            for j in 1...30 {
+                work.workTime = dateFormater.dateFromString("2015-\(i)-\(j) 12:12:12")!
+                WorkManager.sharedInstance.insertWork(work)
+            }
+        }
     }
 }
