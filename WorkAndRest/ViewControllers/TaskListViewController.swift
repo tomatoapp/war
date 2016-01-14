@@ -459,11 +459,12 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         return leftUtilityButtons
     }
     
+    let headerAnimateDuration: NSTimeInterval = 0.3
     func disableTableViewHeaderView() {
         let tempTableViewHeader: TableViewHeader = self.tableViewHeader?.copy() as! TableViewHeader
         self.view.addSubview(tempTableViewHeader)
         tempTableViewHeader.moveCenterContentView()
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
+        UIView.animateWithDuration(headerAnimateDuration, animations: { () -> Void in
             
             tempTableViewHeader.moveOutContentView()
             self.tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 10))
@@ -482,7 +483,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
         self.tableViewHeader?.moveOutContentView()
         
-        UIView.animateWithDuration(animate ? 0.5 : 0.0, animations: { () -> Void in
+        UIView.animateWithDuration(animate ? headerAnimateDuration : 0.0, animations: { () -> Void in
             self.tableView.tableHeaderView = self.tableViewHeader
             self.tableViewHeader?.moveCenterContentView()
             }) { (finished) -> Void in
