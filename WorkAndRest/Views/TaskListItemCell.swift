@@ -22,7 +22,7 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
     @IBOutlet var taskItemBaseView: TaskItemBaseView!
     @IBOutlet var pointImageView: UIImageView!
     
-    var ANIMATION_DURATION = 0.5
+    var ANIMATION_DURATION = 0.3
     var seconds = 0
     var taskItem: Task?
     var taskRunner: TaskRunner?

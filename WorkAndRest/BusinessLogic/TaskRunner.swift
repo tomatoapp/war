@@ -66,7 +66,7 @@ class TaskRunner: NSObject {
     
     func setupTaskItem(task: Task) {
         self.taskItem = task
-        self.seconds = 1// task.minutes * 60
+        self.seconds = task.minutes * 60
         self.state = TaskRunnerState.Ready
     }
     

@@ -170,6 +170,8 @@ class TaskManager: NSObject {
         let work = Work()
         work.taskId = task.taskId
         work.isFinished = isFinished
+        WorkManager.sharedInstance.insertWork(work)
+        return
         
         let dateFormater = NSDateFormatter()
         dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
