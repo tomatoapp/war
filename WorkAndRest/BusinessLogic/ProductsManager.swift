@@ -104,11 +104,13 @@ class ProductsManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
             case SKPaymentTransactionState.Failed:
                 print("TransactionState -> Failed")
                 
+                /*
                 if transaction.error!.code == SKErrorPaymentCancelled {
                     // The user cancelled the payment
                     print("TransactionState -> Cancelled")
                     
                 }
+                */
                 SKPaymentQueue.defaultQueue().finishTransaction(transaction )
                 break
                 
