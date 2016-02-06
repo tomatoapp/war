@@ -213,6 +213,10 @@ class TaskDetailsViewController: BaseTableViewController, TaskRunnerDelegate, Ta
         }
     }
     
+    func taskItemBaseView(view: UIView, titleLongPressed sender: UILabel) {
+        
+    }
+    
     // MARK: - TaskTitleViewControllerDelegate
 
     func addTaskViewController(controller: TaskTitleViewController!, didFinishAddingTask item: Task!) {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 enum TaskState {
     case Normal, Running, Completed
@@ -14,6 +15,7 @@ enum TaskState {
 
 protocol TaskItemBaseViewDelegate {
     func taskItemBaseView(view: UIView!, buttonClicked sender: UIButton!)
+    func taskItemBaseView(view: UIView, titleLongPressed sender: UILabel)
 }
 
 class TaskItemBaseView: UIView {
@@ -38,6 +40,24 @@ class TaskItemBaseView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setup()
+        self.setupLongPress()
+    }
+    
+    func setupLongPress() {
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: "longPress:")
+        let tempButton = UIButton(frame: self.titleLabel.frame)
+        self.addSubview(tempButton)
+        tempButton.addGestureRecognizer(longPress)
+    }
+    
+    func longPress(sender: UILongPressGestureRecognizer) {
+        if sender.state == UIGestureRecognizerState.Began {
+            AudioServicesPlaySystemSound(1114)
+        }
+        if sender.state == .Ended {
+            self.delegate?.taskItemBaseView(self, titleLongPressed: self.titleLabel)
+        }
     }
     
     func setup() {

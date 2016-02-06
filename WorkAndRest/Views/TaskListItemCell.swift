@@ -14,6 +14,8 @@ protocol TaskListItemCellDelegate {
     func completed(sender: TaskListItemCell!)
     func breaked(sender: TaskListItemCell!)
     func activated(sender: TaskListItemCell!)
+    
+    func quickFinish(sender: TaskListItemCell)
 }
 
 class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDelegate {
@@ -192,6 +194,10 @@ class TaskListItemCell: SWTableViewCell, TaskRunnerDelegate, TaskItemBaseViewDel
                 self.disable(TaskState.Normal, animation: true)
             }
         }
+    }
+    
+    func taskItemBaseView(view: UIView, titleLongPressed sender: UILabel) {
+        self.custom_delegate?.quickFinish(self)
     }
 //    
 //    override func layoutSubviews() {

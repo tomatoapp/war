@@ -269,6 +269,12 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         self.reloadTableViewWithTimeInterval(0.0)
     }
     
+    func quickFinish(sender: TaskListItemCell) {
+        self.taskRunner.taskItem = sender.taskItem
+        self.taskManager.completeOneTimer(self.taskRunner.taskItem)
+        self.reload()
+    }
+    
     
     
     // MARK: - SWTableViewCellDelegate
