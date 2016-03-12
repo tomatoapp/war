@@ -525,6 +525,7 @@
 						};
 					};
 					6434828E18C5D344009BF110 = {
+						DevelopmentTeam = W536UCFWXT;
 						TestTargetID = 6434826D18C5D344009BF110;
 					};
 				};
@@ -871,6 +872,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WorkAndRest.app/WorkAndRest";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -884,6 +887,7 @@
 				);
 				INFOPLIST_FILE = "WorkAndRestTests/WorkAndRestTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -893,6 +897,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WorkAndRest.app/WorkAndRest";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -902,6 +908,7 @@
 				GCC_PREFIX_HEADER = "WorkAndRest/WorkAndRest-Prefix.pch";
 				INFOPLIST_FILE = "WorkAndRestTests/WorkAndRestTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};

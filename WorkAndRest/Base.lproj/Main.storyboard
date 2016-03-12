@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D9c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aC1-Pi-pp5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E49a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aC1-Pi-pp5">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -859,23 +859,13 @@
                                                             </constraints>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t9w-0O-b4q">
-                                                            <rect key="frame" x="201" y="4" width="85" height="27"/>
+                                                            <rect key="frame" x="201" y="4" width="85" height="15"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKZ-xZ-mVz">
                                                                     <rect key="frame" x="14" y="0.0" width="71" height="15"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="71" id="EU6-Bl-c5I"/>
                                                                         <constraint firstAttribute="height" constant="15" id="iIt-3k-xIS"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stops" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wA0-FQ-gMe">
-                                                                    <rect key="frame" x="14" y="15" width="71" height="12"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="71" id="7sI-f8-FjQ"/>
-                                                                        <constraint firstAttribute="height" constant="12" id="FPp-ED-bXJ"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -888,24 +878,13 @@
                                                                         <constraint firstAttribute="height" constant="10" id="hs6-4Z-wjb"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statisics_breaked" translatesAutoresizingMaskIntoConstraints="NO" id="gSc-Ek-btd">
-                                                                    <rect key="frame" x="-1" y="16" width="10" height="10"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="10" id="0jE-Qv-Ile"/>
-                                                                        <constraint firstAttribute="width" constant="10" id="HUl-1n-Zpv"/>
-                                                                    </constraints>
-                                                                </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstItem="fJt-10-apY" firstAttribute="leading" secondItem="t9w-0O-b4q" secondAttribute="leading" constant="-1" id="0Vo-kF-zah"/>
-                                                                <constraint firstItem="gSc-Ek-btd" firstAttribute="leading" secondItem="t9w-0O-b4q" secondAttribute="leading" constant="-1" id="1mR-od-ok3"/>
                                                                 <constraint firstAttribute="trailing" secondItem="WKZ-xZ-mVz" secondAttribute="trailing" id="Bkd-LU-1lt"/>
-                                                                <constraint firstAttribute="height" constant="27" id="Bny-bX-BgQ"/>
+                                                                <constraint firstAttribute="height" constant="15" id="Bny-bX-BgQ"/>
                                                                 <constraint firstItem="fJt-10-apY" firstAttribute="top" secondItem="t9w-0O-b4q" secondAttribute="top" constant="3" id="FFP-z8-uBK"/>
-                                                                <constraint firstAttribute="trailing" secondItem="wA0-FQ-gMe" secondAttribute="trailing" id="Jp3-My-x3u"/>
-                                                                <constraint firstAttribute="bottom" secondItem="gSc-Ek-btd" secondAttribute="bottom" constant="1" id="K2O-fH-CUh"/>
-                                                                <constraint firstAttribute="bottom" secondItem="wA0-FQ-gMe" secondAttribute="bottom" id="WL4-Xg-fxc"/>
                                                                 <constraint firstItem="WKZ-xZ-mVz" firstAttribute="top" secondItem="t9w-0O-b4q" secondAttribute="top" id="XzZ-8P-ufa"/>
                                                                 <constraint firstAttribute="width" constant="85" id="YWu-EE-jD1"/>
                                                             </constraints>
@@ -1177,7 +1156,6 @@
         <image name="start_later_en" width="98" height="99"/>
         <image name="start_now_en" width="98" height="99"/>
         <image name="statisics_bg" width="298" height="196"/>
-        <image name="statisics_breaked" width="9" height="9"/>
         <image name="statisics_competed" width="9" height="9"/>
         <image name="statisics_line" width="245" height="3"/>
         <image name="tab_item_1" width="27" height="18"/>

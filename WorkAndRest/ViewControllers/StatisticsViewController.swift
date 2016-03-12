@@ -475,7 +475,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             } else {
                 tempLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.6)
             }
-            tempLabel.font = UIFont.systemFontOfSize(12)
+            tempLabel.font = UIFont.systemFontOfSize(10)
             tempLabel.textAlignment = NSTextAlignment.Center
             chartViewFooterView.addSubview(tempLabel)
         }
