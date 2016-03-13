@@ -67,6 +67,7 @@
 		64C99A5F1A7906EA00F1D796 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C99A5E1A7906EA00F1D796 /* Task.swift */; };
 		64CCE5331A89600C008D5A08 /* TaskDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CCE5321A89600C008D5A08 /* TaskDetailsViewController.swift */; };
 		64CF8A2E1A8EE48F000565C4 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CF8A2D1A8EE48F000565C4 /* TaskManager.swift */; };
+		64D4D7341C9458E400C19CD3 /* NSDate+BeginningEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D4D7331C9458E400C19CD3 /* NSDate+BeginningEnd.swift */; };
 		64E3C1AB1A8752C400418426 /* TaskListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E3C1AA1A8752C400418426 /* TaskListHeaderView.swift */; };
 		64E3C1AD1A8752CF00418426 /* TaskListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64E3C1AC1A8752CF00418426 /* TaskListHeaderView.xib */; };
 		64EAEC2D1A7E37F70026C748 /* TaskRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */; };
@@ -81,7 +82,6 @@
 		C38623621B86E80700E91F5F /* Quotations-cn.plist in Resources */ = {isa = PBXBuildFile; fileRef = C38623611B86E80700E91F5F /* Quotations-cn.plist */; };
 		C38623641B86E81400E91F5F /* Quotations-en.plist in Resources */ = {isa = PBXBuildFile; fileRef = C38623631B86E81400E91F5F /* Quotations-en.plist */; };
 		C38623661B86E8CE00E91F5F /* WARDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38623651B86E8CE00E91F5F /* WARDate.swift */; };
-		C3FE3C3D1C45F9DD00D48517 /* NSDate+BeginningEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FE3C3C1C45F9DD00D48517 /* NSDate+BeginningEnd.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,6 +183,7 @@
 		64C99A5E1A7906EA00F1D796 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		64CCE5321A89600C008D5A08 /* TaskDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailsViewController.swift; sourceTree = "<group>"; };
 		64CF8A2D1A8EE48F000565C4 /* TaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
+		64D4D7331C9458E400C19CD3 /* NSDate+BeginningEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+BeginningEnd.swift"; sourceTree = "<group>"; };
 		64E3C1AA1A8752C400418426 /* TaskListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListHeaderView.swift; sourceTree = "<group>"; };
 		64E3C1AC1A8752CF00418426 /* TaskListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskListHeaderView.xib; sourceTree = "<group>"; };
 		64EAEC2C1A7E37F70026C748 /* TaskRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRunner.swift; sourceTree = "<group>"; };
@@ -197,7 +198,6 @@
 		C38623611B86E80700E91F5F /* Quotations-cn.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Quotations-cn.plist"; sourceTree = "<group>"; };
 		C38623631B86E81400E91F5F /* Quotations-en.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Quotations-en.plist"; sourceTree = "<group>"; };
 		C38623651B86E8CE00E91F5F /* WARDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WARDate.swift; sourceTree = "<group>"; };
-		C3FE3C3C1C45F9DD00D48517 /* NSDate+BeginningEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+BeginningEnd.swift"; sourceTree = "<group>"; };
 		C5A3E743E49F064E285AF8F1 /* Pods-WorkAndRest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkAndRest.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkAndRest/Pods-WorkAndRest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -384,6 +384,7 @@
 		645FDE141A7D9E7F002EC8EF /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				64D4D7331C9458E400C19CD3 /* NSDate+BeginningEnd.swift */,
 				64A6D00D1B66ECE4000D7F2E /* WARQuotation.swift */,
 				645FDE151A7D9E8B002EC8EF /* GlobalConstants.swift */,
 				649D54071A849978002593F8 /* WARDevide.swift */,
@@ -391,7 +392,6 @@
 				C367582C1B86C1ED000510E9 /* IdleWatcher.swift */,
 				C367582E1B86CDCB000510E9 /* WARLocalNotification.swift */,
 				C38623651B86E8CE00E91F5F /* WARDate.swift */,
-				C3FE3C3C1C45F9DD00D48517 /* NSDate+BeginningEnd.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -657,7 +657,7 @@
 				646141A61A80C11E0010E19E /* V8HorizontalPickerView.m in Sources */,
 				6497FE561A75A77800174307 /* Work.swift in Sources */,
 				648A27D41AAD6F730002BF04 /* ChartTutorialViewController.swift in Sources */,
-				C3FE3C3D1C45F9DD00D48517 /* NSDate+BeginningEnd.swift in Sources */,
+				64D4D7341C9458E400C19CD3 /* NSDate+BeginningEnd.swift in Sources */,
 				64C497F81A8AE91D0051E605 /* TaskItemBaseView.swift in Sources */,
 				640B370F1A81908C0020C817 /* TaskRunnerManager.swift in Sources */,
 				649D54061A84522A002593F8 /* TaskTitleView.swift in Sources */,

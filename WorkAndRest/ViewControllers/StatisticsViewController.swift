@@ -244,7 +244,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 return 7
             
             case .Month:
-                return 4*2
+                return 4//4*2
             
             case .Year:
                 return 12
@@ -262,56 +262,84 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     self.chartView.maximumValue = self.maximumHeight
     }
     
+    // Get today
+    func getTodayComponents() -> NSDateComponents {
+        return NSCalendar.currentCalendar().components([.Year, .Month, .WeekOfMonth, .Weekday, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second] , fromDate: NSDate())
+    }
+    
+    // Get a fist-second-of-one-day date
+    // like: 2016-3-6 00:00:01
+    func getFirstSecondComponents(components: NSDateComponents) -> NSDateComponents {
+        let firstSecondComponents = components.copy() as! NSDateComponents
+        firstSecondComponents.hour = 0
+        firstSecondComponents.minute = 0
+        firstSecondComponents.second = 1
+        return firstSecondComponents
+    }
+    
+    // Get a last-second-of-one-day date
+    // like: 2016-3-6 23:59:59
+    func getLastSecondComponents(components: NSDateComponents) -> NSDateComponents {
+        let lastSecondComponents = components.copy() as! NSDateComponents
+        lastSecondComponents.hour = 23
+        lastSecondComponents.minute = 59
+        lastSecondComponents.second = 59
+        return lastSecondComponents
+    }
+    
+    // Get the date string with UTC+8 timeZone.
+    func getLocalDateString(date: NSDate) -> String {
+        let dateFormater = NSDateFormatter()
+        // Default timeZone is the current timeZone, UTC+8, so you can comment this line of code:
+        // dateFormater.timeZone = NSTimeZone(name: "UTC+8")
+        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormater.stringFromDate(date)
+    }
+    
     func getWorksCountWithGroup(list: Array<Work>, byType type: TimeSpanType) -> [Int: Array<Work>]{
         
         var dic = [Int: Array<Work>]()
-        
-        let startComponents = NSCalendar.currentCalendar().components([.Year, .Month, .WeekOfMonth, .Weekday, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second] , fromDate: NSDate())
-        
-        let endComponents = NSCalendar.currentCalendar().components([.Year, .Month, .WeekOfMonth, .Weekday, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second] , fromDate: NSDate())
-        
-        startComponents.hour = 0
-        startComponents.minute = 0
-        startComponents.second = 1
-        endComponents.hour = 23
-        endComponents.minute = 59
-        startComponents.second = 59
+        let now = self.getTodayComponents()
+        let start = getFirstSecondComponents(now)
+        let end = getLastSecondComponents(now)
         
         let capacity = self.getCapacity()
         
         switch type {
         case .Week:
             for i in 0...capacity-1 {
-                startComponents.day = startComponents.day - (i == 0 ? 0 : 1)
-                endComponents.day = startComponents.day
-                let startDate = NSCalendar.currentCalendar().dateFromComponents(startComponents)!
-                let endDate = NSCalendar.currentCalendar().dateFromComponents(endComponents)!
+                start.day = start.day - (i == 0 ? 0 : 1)
+                end.day = start.day
+                let startDate = NSCalendar.currentCalendar().dateFromComponents(start)!
+                let endDate = NSCalendar.currentCalendar().dateFromComponents(end)!
+                print("\(self.getLocalDateString(startDate)) ~ \(self.getLocalDateString(endDate))  \(i)")
                 let result = self.filterWorks(list, byStartDate: startDate, andEndDate: endDate)
                 dic[i] = result
             }
             break
             
         case .Month:
-            startComponents.day = startComponents.day - startComponents.weekday + 1
+            start.day = start.day - start.weekday + 1
             for i in 0...capacity-1 {
-                startComponents.day = startComponents.day - ((i == 0 ? 0 : 1) * 7)
-                endComponents.day = startComponents.day + 6
-                let startDate = NSCalendar.currentCalendar().dateFromComponents(startComponents)!
-                let endDate = NSCalendar.currentCalendar().dateFromComponents(endComponents)!
-                print("\(startDate) ~ \(endDate)  \(i)")
+                start.day = start.day - ((i == 0 ? 0 : 1) * 7)
+                end.day = start.day + 6
+                let startDate = NSCalendar.currentCalendar().dateFromComponents(start)!
+                let endDate = NSCalendar.currentCalendar().dateFromComponents(end)!
+                print("\(self.getLocalDateString(startDate)) ~ \(self.getLocalDateString(endDate))  \(i)")
                 let result = self.filterWorks(list, byStartDate: startDate, andEndDate: endDate)
                 dic[i] = result
             }
             break
             
         case .Year:
-            startComponents.day = 1
-            endComponents.day = 0
+            start.day = 1
+            end.day = 0
             for i in 0...capacity-1 {
-                startComponents.month = startComponents.month - (i == 0 ? 0 : 1)
-                endComponents.month = startComponents.month + 1
-                let startDate = NSCalendar.currentCalendar().dateFromComponents(startComponents)!
-                let endDate = NSCalendar.currentCalendar().dateFromComponents(endComponents)!
+                start.month = start.month - (i == 0 ? 0 : 1)
+                end.month = start.month + 1
+                let startDate = NSCalendar.currentCalendar().dateFromComponents(start)!
+                let endDate = NSCalendar.currentCalendar().dateFromComponents(end)!
+                print("\(self.getLocalDateString(startDate)) ~ \(self.getLocalDateString(endDate))  \(i)")
                 let result = self.filterWorks(list, byStartDate: startDate, andEndDate: endDate)
                 dic[i] = result
             }
@@ -350,6 +378,19 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             dates.insert(works.first?.workTime, atIndex: 0)
         }
         
+        var dic = [Int: Array<Work>]()
+        let now = self.getTodayComponents()
+        let start = getFirstSecondComponents(now)
+        let end = getLastSecondComponents(now)
+        
+        let capacity = self.getCapacity()
+
+        
+        // remove the empty list from the front.
+        // like:
+        // [0] [0] [0] [0] [3] -> [3] [0] [0] [0] [0]
+        // in other words: move the first-not-empty-date from middle/end to first.
+        /*
         while dates.count > 0 && dates[0] == nil {
             dates.removeAtIndex(0)
         }
@@ -364,6 +405,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         if dates[0] == nil {
             dates[0] = NSDate()
         }
+        
+        */
 //        currentIndex = -1
         switch type {
         case .Week:
@@ -400,6 +443,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             
         case .Month:
             // Get the first day of the week, and add them into a new list.
+            /*
             var firstDayOfTheWeekDates = [NSDate?]()
             for date in dates {
                 if date == nil {
@@ -439,6 +483,18 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                     }
                 }
             }
+            */
+            
+            start.day = start.day - start.weekday + 1
+            for i in 0...capacity-1 {
+                start.day = start.day - ((i == 0 ? 0 : 1) * 7)
+                end.day = start.day + 6
+                let startDate = NSCalendar.currentCalendar().dateFromComponents(start)!
+                let endDate = NSCalendar.currentCalendar().dateFromComponents(end)!
+                print("\(self.getLocalDateString(startDate)) ~ \(self.getLocalDateString(endDate))  \(i)")
+                names.insert("\(startDate.toString())-\(endDate.toString())", atIndex: 0)
+            }
+
             break
             
         case .Year:
