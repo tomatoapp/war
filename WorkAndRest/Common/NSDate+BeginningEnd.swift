@@ -11,14 +11,7 @@ import UIKit
 extension NSDate {
     func beginningOfDate() -> NSDate {
         let calendar = NSCalendar.currentCalendar()
-        
-        if #available(iOS 8.0, *) {
-            return calendar.startOfDayForDate(self)
-        } else {
-            // Fallback on earlier versions
-            let components = calendar.components([.Year, .Month, .Day], fromDate: self)
-            return calendar.dateFromComponents(components)!
-        }
+        return calendar.startOfDayForDate(self)
     }
     
     func endOfDate() -> NSDate {
@@ -43,7 +36,7 @@ extension NSDate {
         return NSCalendar.currentCalendar().dateByAddingComponents(components, toDate: NSDate(), options: [])!
     }
     
-    func toString(dateFormat: String = "M月d日") -> String {
+    func toString(dateFormat: String) -> String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = dateFormat
         return dateFormatter.stringFromDate(self)
@@ -55,5 +48,9 @@ extension NSDate {
     
     func isSameMonthWithDate(date: NSDate) -> Bool {
         return self.toString("MM") == date.toString("MM")
+    }
+    
+    func getMonth() -> Int {
+        return NSCalendar.currentCalendar().component(.Month, fromDate: self)
     }
 }

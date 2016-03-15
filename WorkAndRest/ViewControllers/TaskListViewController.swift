@@ -87,13 +87,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     
     func registerUserNotificationSettings() {
         let application = UIApplication.sharedApplication()
-        if #available(iOS 8.0, *) {
-            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
-            application.registerForRemoteNotifications()
-        } else {
-            // Fallback on earlier versions
-            application.registerForRemoteNotificationTypes([.Sound, .Alert, .Badge])
-        }
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
+        application.registerForRemoteNotifications()
     }
     
     func headerHeight() -> CGFloat {
@@ -102,7 +97,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         }
         return HEADER_HEIGHT
     }
-
+    
     
     // MARK: - Table view data source
     
@@ -326,7 +321,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     func swipeableTableViewCellShouldHideUtilityButtonsOnSwipe(cell: SWTableViewCell!) -> Bool {
         return true
     }
-
+    
     // MARK: - TaskRunnerManagerDelegate
     
     func taskRunnerMangerWillFreezeTask(taskManager: TaskRunnerManager!) -> TaskRunner {
@@ -510,13 +505,13 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         sampleTask.finished_times = 0
         return sampleTask
     }
-
+    
     // MARK: - CMPopTipViewDelegate
-//    func popTipViewWasDismissedByUser(popTipView: CMPopTipView!) {
-//        if popTipView.tag == TIP_TAG_CREATE_TASK {
-//            self.createTask()
-//        }
-//    }
+    //    func popTipViewWasDismissedByUser(popTipView: CMPopTipView!) {
+    //        if popTipView.tag == TIP_TAG_CREATE_TASK {
+    //            self.createTask()
+    //        }
+    //    }
     
     // MARK: - Tip
     
@@ -543,8 +538,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     
     /**
-    The + Button (Create Task)
-    */
+     The + Button (Create Task)
+     */
     func handleCreateTaskTip() {
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK) {
             let delayTime = dispatch_time(DISPATCH_TIME_NOW,
@@ -552,7 +547,7 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             dispatch_after(delayTime, dispatch_get_main_queue(), {
                 let createTaskTip = self.getTipViewbyMessage(NSLocalizedString("Let's Create a new task", comment: ""))
                 createTaskTip.dismissTapAnywhere = true
-//                createTaskTip.tag = TIP_TAG_CREATE_TASK
+                //                createTaskTip.tag = TIP_TAG_CREATE_TASK
                 createTaskTip.presentPointingAtBarButtonItem(self.createTaskButtonItem, animated: true)
             })
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SETUP_SAMPLE_TASK)
@@ -560,8 +555,8 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     }
     
     /**
-    The > Button on the cell (Start Button)
-    */
+     The > Button on the cell (Start Button)
+     */
     func handleStartTaskTip() {
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_HAS_SHOW_START_TASK_GUIDE) {
             let delayTime = dispatch_time(DISPATCH_TIME_NOW,
@@ -580,13 +575,13 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
     The revert button on a finished task
     */
     func handleRevertTaskTipAtCell(cell: TaskListItemCell) {
-        if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownMarkDoneTutorial) {
-            self.markDoneTip = self.getTipViewByTitle(NSLocalizedString("MarkDoneAlertTitle", comment: ""), andMessage: NSLocalizedString("MarkDoneAlertMsg", comment: ""))
-            self.markDoneTip?.presentPointingAtView(cell.startButton(), inView: self.view, animated: true)
-            
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownMarkDoneTutorial)
-        }
-        
+    if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownMarkDoneTutorial) {
+    self.markDoneTip = self.getTipViewByTitle(NSLocalizedString("MarkDoneAlertTitle", comment: ""), andMessage: NSLocalizedString("MarkDoneAlertMsg", comment: ""))
+    self.markDoneTip?.presentPointingAtView(cell.startButton(), inView: self.view, animated: true)
+    
+    NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownMarkDoneTutorial)
+    }
+    
     }
     */
     
@@ -601,5 +596,5 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_HAS_SHOW_SWIPE_CELL_RIGHT_GUIDE)
         }
     }
-   
+    
 }

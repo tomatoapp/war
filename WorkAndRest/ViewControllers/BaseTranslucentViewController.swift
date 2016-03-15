@@ -17,9 +17,9 @@ enum TransitionMode {
 }
 
 class BaseTranslucentViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning{
-
+    
     var blurView: UIView!
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -30,10 +30,10 @@ class BaseTranslucentViewController: UIViewController, UIViewControllerTransitio
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.addBlurView()
@@ -53,31 +53,27 @@ class BaseTranslucentViewController: UIViewController, UIViewControllerTransitio
     
     func initBlurView() -> UIView! {
         var blurView: UIView?
-        if #available(iOS 8.0, *) {
-            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
-            blurView = UIVisualEffectView(effect: blurEffect)
-            blurView?.translatesAutoresizingMaskIntoConstraints = false
-        } else {
-            // Fallback on earlier versions
-            blurView = UIToolbar()
-        }
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+        blurView = UIVisualEffectView(effect: blurEffect)
+        blurView?.translatesAutoresizingMaskIntoConstraints = false
+        
         blurView!.frame = self.view.frame
         return blurView
     }
-
-//    func getBlurEffectStyleByMode(mode: TransitionMode) -> UIBlurEffectStyle {
-//        switch mode {
-//        case .FromButtom:
-//            return UIBlurEffectStyle.
-//        }
-//    }
+    
+    //    func getBlurEffectStyleByMode(mode: TransitionMode) -> UIBlurEffectStyle {
+    //        switch mode {
+    //        case .FromButtom:
+    //            return UIBlurEffectStyle.
+    //        }
+    //    }
     func blurViewTap(sender: UITapGestureRecognizer!) {
         self.dismissViewControllerAnimated(true, completion: nil)
-//        if self.delegate != nil {
-//            self.delegate!.startViewController(self, didSelectItem: .Cancel)
-//        }
+        //        if self.delegate != nil {
+        //            self.delegate!.startViewController(self, didSelectItem: .Cancel)
+        //        }
     }
-
+    
     
     // MARK: - UIViewControllerTransitioningDelegate
     
@@ -160,18 +156,18 @@ class BaseTranslucentViewController: UIViewController, UIViewControllerTransitio
                 transitionContext.completeTransition(true)
                 self.view.setNeedsDisplay()
             }
-        
+            
             switch mode {
             case .FromButtom, .FromTop:
                 UIView.animateWithDuration(TRANSITION_DURATION, animations: { () -> Void in
                     self.view.frame.origin.y += offset
                     self.view.transform = CGAffineTransformIdentity
-                }, completion: completion)
+                    }, completion: completion)
                 
             case .FromLeft, .FromRight, .None:
                 UIView.animateWithDuration(TRANSITION_DURATION, animations: { () -> Void in
                     self.view.frame.origin.x += offset
-                }, completion: completion)
+                    }, completion: completion)
             }
             
         } else {
@@ -181,7 +177,7 @@ class BaseTranslucentViewController: UIViewController, UIViewControllerTransitio
                 transitionContext.completeTransition(true)
             }
             presentingView.frame = containterView.frame
-
+            
             switch mode {
             case .FromButtom, .FromTop:
                 UIView.animateWithDuration(TRANSITION_DURATION, animations: { () -> Void in
@@ -194,7 +190,7 @@ class BaseTranslucentViewController: UIViewController, UIViewControllerTransitio
                 UIView.animateWithDuration(TRANSITION_DURATION, animations: { () -> Void in
                     }, completion: dismissCompletion)
             }
-
+            
         }
         
     }
@@ -216,7 +212,7 @@ class BaseTranslucentViewController: UIViewController, UIViewControllerTransitio
         UIView.animateWithDuration(TRANSITION_DURATION, animations: { () -> Void in
             self.view.frame.origin.y -= self.view.frame.height
             self.view.transform =  CGAffineTransformIdentity
-        }, completion: completion)
+            }, completion: completion)
     }
     
     func leftToRightTransitionAnimation(presentedView: UIView, presentingView: UIView) {
@@ -229,12 +225,12 @@ class BaseTranslucentViewController: UIViewController, UIViewControllerTransitio
     
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

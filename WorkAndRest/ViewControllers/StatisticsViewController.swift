@@ -366,7 +366,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             for i in 0...((self.getCapacity() - 1) * 1) {
                 let day = NSDate().addDays(-i)
                 if i == (self.getCapacity() - 1) {
-                    names.insert(day.toString(), atIndex: 0)
+                    names.insert(day.toString("M月d日"), atIndex: 0)
                 } else {
                     names.insert(day.toSampleString(), atIndex: 0)
                 }
@@ -380,8 +380,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 end.day = start.day + 6
                 let startDate = NSCalendar.currentCalendar().dateFromComponents(start)!
                 let endDate = NSCalendar.currentCalendar().dateFromComponents(end)!
-                let startDateString = startDate.toString()
-                var endDateString = endDate.toString()
+                let startDateString = startDate.toString("M月d")
+                var endDateString = endDate.toString("M月d")
                 if startDate.isSameMonthWithDate(endDate) {
                     endDateString = endDate.toString("d日")
                 }
@@ -552,10 +552,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         let calendar = NSCalendar.currentCalendar()
         
-        calendar.rangeOfUnit(NSCalendarUnit.NSDayCalendarUnit, startDate: &fromDate, interval: &duration, forDate: date1)
-        calendar.rangeOfUnit(NSCalendarUnit.NSDayCalendarUnit, startDate: &toDate, interval: &duration, forDate: date2)
+        calendar.rangeOfUnit(.Day, startDate: &fromDate, interval: &duration, forDate: date1)
+        calendar.rangeOfUnit(.Day, startDate: &toDate, interval: &duration, forDate: date2)
         
-        let difference = calendar.components(NSCalendarUnit.NSDayCalendarUnit, fromDate: fromDate!, toDate: toDate!, options: [])
+        let difference = calendar.components(.Day, fromDate: fromDate!, toDate: toDate!, options: [])
         return difference.day
     }
 
@@ -566,10 +566,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         let calendar = NSCalendar.currentCalendar()
         
-        calendar.rangeOfUnit(NSCalendarUnit.NSWeekOfYearCalendarUnit, startDate: &fromDate, interval: &duration, forDate: date1)
-        calendar.rangeOfUnit(NSCalendarUnit.NSWeekOfYearCalendarUnit, startDate: &toDate, interval: &duration, forDate: date2)
+        calendar.rangeOfUnit(.WeekOfYear, startDate: &fromDate, interval: &duration, forDate: date1)
+        calendar.rangeOfUnit(.WeekOfYear, startDate: &toDate, interval: &duration, forDate: date2)
         
-        let difference = calendar.components(NSCalendarUnit.NSWeekOfYearCalendarUnit, fromDate: fromDate!, toDate: toDate!, options: [])
+        let difference = calendar.components(.WeekOfYear, fromDate: fromDate!, toDate: toDate!, options: [])
         return difference.weekOfYear
     }
     
@@ -580,10 +580,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         let calendar = NSCalendar.currentCalendar()
         
-        calendar.rangeOfUnit(NSCalendarUnit.NSMonthCalendarUnit, startDate: &fromDate, interval: &duration, forDate: date1)
-        calendar.rangeOfUnit(NSCalendarUnit.NSMonthCalendarUnit, startDate: &toDate, interval: &duration, forDate: date2)
+        calendar.rangeOfUnit(.Month, startDate: &fromDate, interval: &duration, forDate: date1)
+        calendar.rangeOfUnit(.Month, startDate: &toDate, interval: &duration, forDate: date2)
         
-        let difference = calendar.components(NSCalendarUnit.NSMonthCalendarUnit, fromDate: fromDate!, toDate: toDate!, options: [])
+        let difference = calendar.components(.Month, fromDate: fromDate!, toDate: toDate!, options: [])
         return difference.month
     }
     /*

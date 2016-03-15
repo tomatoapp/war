@@ -69,15 +69,9 @@ class StartViewController: UIViewController, UIViewControllerTransitioningDelega
     
     func initBlurView() -> UIView! {
         var blurView: UIView?
-        
-        if #available(iOS 8.0, *) {
-            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
-            blurView = UIVisualEffectView(effect: blurEffect)
-            blurView?.translatesAutoresizingMaskIntoConstraints = false
-        } else {
-            // Fallback on earlier versions
-            blurView = UIToolbar()
-        }
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+        blurView = UIVisualEffectView(effect: blurEffect)
+        blurView?.translatesAutoresizingMaskIntoConstraints = false
         blurView!.frame = self.view.frame
         return blurView
     }
@@ -90,7 +84,7 @@ class StartViewController: UIViewController, UIViewControllerTransitioningDelega
     }
     
     // MARK: - UIViewControllerTransitioningDelegate
-
+    
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return self
     }
@@ -100,7 +94,7 @@ class StartViewController: UIViewController, UIViewControllerTransitioningDelega
     }
     
     // MARK: - UIViewControllerAnimatedTransitioning
-
+    
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.3
     }
@@ -139,6 +133,4 @@ class StartViewController: UIViewController, UIViewControllerTransitioningDelega
             })
         }
     }
-    
-
 }
