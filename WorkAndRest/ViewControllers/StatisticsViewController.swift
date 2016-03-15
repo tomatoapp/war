@@ -8,23 +8,24 @@
 
 import UIKit
 
+private let ChartBarWidth: CGFloat = 15
 class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate, JBBarChartViewDataSource, StatisticsLockerDelegate, ProductsManagerDelegate {
     
-    //@IBOutlet var showPercentageSwitch: UISwitch!
     @IBOutlet var statisticsView: UIView!
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var commentsView: UIView!
     @IBOutlet var statisticsBg: UIImageView!
     
+    @IBOutlet weak var chartViewLeading: NSLayoutConstraint!
+    @IBOutlet weak var chartViewTrailing: NSLayoutConstraint!
+    
     var chatType =  TimeSpanType.Month
-    var chartView: JBBarChartView!
-    var chartViewFooterView: UIView!
+    @IBOutlet var chartView: JBBarChartView!
+    @IBOutlet var chartViewFooterView: UIView!
     var chartViewHeaderView: UIView!
     var data = [CGFloat]()
     var baseData: [Int: Array<Work>] = [:]
-    var currentIndex = -1
     var tooltipVisible = false
-//    var isShowPercentageSwitchOn = true
     
     var tooltip: UILabel!
     var locker: StatisticsLocker?
@@ -33,31 +34,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var frame: CGRect!
-        
-        switch WARDevice.getPhoneType() {
-        case .iPhone4, .iPhone5:
-            frame = CGRectMake(0, 0, 270-50, 157) // 270
-            break
-            
-        case .iPhone6, .iPhone6Plus:
-            frame = CGRectMake(0, 0, 360-50, 157) // 360
-            break
-            
-        default:
-            break
-        }
-        self.chartView = JBBarChartView(frame: frame)
-        self.statisticsView.addSubview(self.chartView)
-        
-        self.chartView.mas_makeConstraints { (make) -> Void in
-            make.centerX.equalTo()(self.statisticsView.mas_centerX)
-            make.centerY.equalTo()(self.statisticsView.mas_centerY).offset()(-17)
-            make.width.equalTo()(frame.size.width)
-            make.height.equalTo()(frame.size.height)
-            return ()
-        }
         
         self.chartView.delegate = self
         self.chartView.dataSource = self
@@ -82,8 +58,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         if self.needLockTheChart() {
             self.lockTheChart()
@@ -91,7 +67,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             self.locker?.removeFromSuperview()
         }
         self.loaDataSourceBySegmentedControlSelectedIndex(self.segmentedControl.selectedSegmentIndex)
-        self.chartView.reloadData()
+        //self.chartView.reloadData()
         
         /*
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownChartTutorial) {
@@ -137,17 +113,14 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         var type: TimeSpanType = .Week
         switch index {
         case 0:
-            // Week
             type = .Week
             break
             
         case 1:
-            // Month
             type = .Month
             break
             
         case 2:
-            // Year
             type = .Year
             break
             
@@ -161,7 +134,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.addFooterViewToTheStatisticsView(type)
         
         self.removeHeaderViewFromTheStatisticsView()
-        //self.addHeaderViewToTheStatisticsView()
+        
+        self.chartViewLeading.constant = (self.barPaddingForBarChartView() / 2)
+        self.chartViewTrailing.constant = (self.barPaddingForBarChartView() / 2)
     }
     
     func setChartViewHeaderViewVisible(visible: Bool, withAmination animation: Bool) {
@@ -247,7 +222,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 return 4//4*2
             
             case .Year:
-                return 12
+                return 6//12
         }
     }
     
@@ -366,73 +341,30 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
 
     
     func addFooterViewToTheStatisticsView(type: TimeSpanType) {
-        let LABEL_HEIGHT: CGFloat = 25
-        self.chartViewFooterView = UIView(frame: CGRectMake(0, 0, self.chartView.frame.width + 50, LABEL_HEIGHT))
-        
-        let todayComponents = self.getComponentsByDate(NSDate())
+
         var names = [String]()
 
-        var dates = [NSDate?]()
-        for index in 0...self.baseData.count-1 {
-            let works = self.baseData[index]! as Array<Work>
-            dates.insert(works.first?.workTime, atIndex: 0)
+        // Init the footer view
+        let LABEL_HEIGHT: CGFloat = 25
+        self.chartViewFooterView = UIView()
+        self.statisticsView.insertSubview(chartViewFooterView, belowSubview: self.chartView)
+        chartViewFooterView.mas_makeConstraints { (make) -> Void in
+            make.centerX.equalTo()(self.statisticsView.mas_centerX)
+            make.bottom.equalTo()(self.statisticsView.mas_bottom).offset()(-10)
+            make.width.equalTo()(self.statisticsView.mas_width)
+            make.height.equalTo()(LABEL_HEIGHT)
         }
-        
-        var dic = [Int: Array<Work>]()
+
         let now = self.getTodayComponents()
         let start = getFirstSecondComponents(now)
         let end = getLastSecondComponents(now)
-        
         let capacity = self.getCapacity()
 
-        
-        // remove the empty list from the front.
-        // like:
-        // [0] [0] [0] [0] [3] -> [3] [0] [0] [0] [0]
-        // in other words: move the first-not-empty-date from middle/end to first.
-        /*
-        while dates.count > 0 && dates[0] == nil {
-            dates.removeAtIndex(0)
-        }
-        
-        while dates.count < self.getCapacity()  {
-            dates.append(nil)
-        }
-        print("dates: \(dates)")
-        
-        // If the dates[0] is nil, mean that all the list is nil.
-        
-        if dates[0] == nil {
-            dates[0] = NSDate()
-        }
-        
-        */
-//        currentIndex = -1
         switch type {
+            
         case .Week:
-            /*
-            currentIndex = self.daysBetweenDateFromDate(dates[0]!, toDate: NSDate())
-            print("todayIndex: \(currentIndex)")
-            // Covert the number to Week day string.
-            weekDayNames.append(self.self.getWeekDayStringByWeekDayNumber(todayComponents.weekday))
-            // if todayIndex is zero, mean that today is the first day.
-            // if todayIndex is not zero, mean that today is not the first day. maybe in the middle, and maybe in the end.
-            if currentIndex > 0 {
-                var tempComponents: NSDateComponents = NSDateComponents()
-                for index in 0...currentIndex-1 {
-                    let tempDate = dates[index]
-                    if tempDate != nil {
-                        tempComponents = self.getComponentsByDate(tempDate)
-                    } else {
-                        tempComponents.weekday += 1
-                    }
-                    weekDayNames.insert(self.self.getWeekDayStringByWeekDayNumber(tempComponents.weekday), atIndex: weekDayNames.count-1)
-                }
-            }
-            */
             for i in 0...((self.getCapacity() - 1) * 1) {
                 let day = NSDate().addDays(-i)
-                
                 if i == (self.getCapacity() - 1) {
                     names.insert(day.toString(), atIndex: 0)
                 } else {
@@ -442,91 +374,54 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             break
             
         case .Month:
-            // Get the first day of the week, and add them into a new list.
-            /*
-            var firstDayOfTheWeekDates = [NSDate?]()
-            for date in dates {
-                if date == nil {
-                    firstDayOfTheWeekDates.append(nil)
-                    continue
-                }
-                let components = self.getComponentsByDate(date)
-                components.day = components.day - components.weekday + 1
-                firstDayOfTheWeekDates.append(NSCalendar.currentCalendar().dateFromComponents(components))
-            }
-            print("dates: \(firstDayOfTheWeekDates) (firstDayOfTheWeekDates)")
-            
-            currentIndex = abs(self.weeksBetweenDateFromDate(firstDayOfTheWeekDates[0]!, toDate: NSDate()))
-            print("todayIndex: \(currentIndex)")
-            
-            // Covert the number to Week day string.
-            let components = self.getComponentsByDate(NSDate())
-            components.day = components.day - components.weekday + 1
-            
-            names.append(self.getWeekStringByDate(NSCalendar.currentCalendar().dateFromComponents(components)))
-            var preUnNilDate: NSDate!
-            if currentIndex > 0 {
-                for index in 0...currentIndex-1 {
-                    let tempDate = firstDayOfTheWeekDates[index]
-                    if tempDate != nil {
-                        preUnNilDate = tempDate
-                        names.insert(self.getWeekStringByDate(tempDate), atIndex: names.count-1)
-                    } else {
-                        // If the tempDate is nil, this mean that the firstDayOfTheWeekDates has empty item.
-                        let preTempDateComponents = self.getComponentsByDate(preUnNilDate)
-                        preTempDateComponents.day += 7 // Move to next week.
-                        let lastWeek = NSCalendar.currentCalendar().dateFromComponents(preTempDateComponents)
-                        let lastWeekComponents = self.getComponentsByDate(lastWeek)
-                        lastWeekComponents.day = lastWeekComponents.day - lastWeekComponents.weekday + 1
-                        let theFirstDayOfLaskWeek = NSCalendar.currentCalendar().dateFromComponents(lastWeekComponents)
-                        names.insert(self.getWeekStringByDate(theFirstDayOfLaskWeek), atIndex: names.count-1)
-                    }
-                }
-            }
-            */
-            
             start.day = start.day - start.weekday + 1
             for i in 0...capacity-1 {
                 start.day = start.day - ((i == 0 ? 0 : 1) * 7)
                 end.day = start.day + 6
                 let startDate = NSCalendar.currentCalendar().dateFromComponents(start)!
                 let endDate = NSCalendar.currentCalendar().dateFromComponents(end)!
-                print("\(self.getLocalDateString(startDate)) ~ \(self.getLocalDateString(endDate))  \(i)")
-                names.insert("\(startDate.toString())-\(endDate.toString())", atIndex: 0)
+                let startDateString = startDate.toString()
+                var endDateString = endDate.toString()
+                if startDate.isSameMonthWithDate(endDate) {
+                    endDateString = endDate.toString("d日")
+                }
+                print("\(startDateString) ~ \(endDateString)  \(i)")
+                names.insert("\(startDateString)-\(endDateString)", atIndex: 0)
             }
 
             break
             
         case .Year:
-            
-            currentIndex = abs(self.monthsBetweenDateFromDate(dates[0]!, toDate: NSDate()))
-            print("todayIndex: \(currentIndex)")
-
-            // Covert the number to Week day string.
-            names.append(self.getMonthStringByMonthNumber(todayComponents.month))
-
-            if currentIndex > 0 {
-                var tempDateComponents: NSDateComponents = NSDateComponents()
-                for index in 0...currentIndex-1 {
-                    let tempDate = dates[index]
-                    if tempDate != nil {
-                         tempDateComponents = self.getComponentsByDate(tempDate!)
-                    } else {
-                        tempDateComponents.month -= 1
-                    }
-                    names.insert(self.getMonthStringByMonthNumber(tempDateComponents.month), atIndex: names.count-1)
+            start.day = 1
+            for i in 0...capacity-1 {
+                start.month = start.month - (i == 0 ? 0 : 1)
+                let startDate = NSCalendar.currentCalendar().dateFromComponents(start)!
+                print("\(startDate.toString("M月")) \(i)")
+                var dateString = startDate.toString("M月")
+                
+                // new year
+                if start.month == 1 {
+                    dateString = startDate.toString("yyyy年M月")
                 }
+                // first item
+                if i == capacity-1 {
+                    dateString = startDate.toString("yyyy年M月")
+                }
+                names.insert("\(dateString)", atIndex: 0)
             }
             break
         }
+        
+        // Build the footer labels by the names
+        
         print("weekDayNames - labels: \(names)")
         for index in 0...names.count - 1 {
             let tempLabel = UILabel()
             tempLabel.text = names[index]
             let capacity = self.getCapacity()
-            let itemWidth: CGFloat = chartViewFooterView.frame.width / CGFloat(capacity)
+            let itemWidth: CGFloat = self.statisticsView.frame.width / CGFloat(capacity)
             tempLabel.frame = CGRectMake(itemWidth * CGFloat(index), 0, itemWidth, LABEL_HEIGHT)
-            if index == currentIndex {
+            if index == names.count - 1 {
                 tempLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
             } else {
                 tempLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.6)
@@ -535,46 +430,29 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             tempLabel.textAlignment = NSTextAlignment.Center
             chartViewFooterView.addSubview(tempLabel)
         }
-//        self.statisticsView.addSubview(chartViewFooterView)
-        self.statisticsView.insertSubview(chartViewFooterView, belowSubview: self.chartView)
-        chartViewFooterView.mas_makeConstraints { (make) -> Void in
-            make.centerX.equalTo()(self.statisticsView.mas_centerX)
-            make.bottom.equalTo()(self.statisticsView.mas_bottom).offset()(-10)
-            make.width.equalTo()(self.chartView.frame.width+50)
-            make.height.equalTo()(LABEL_HEIGHT)
-            return ()
-        }
     }
-    
     func getWeekDayStringByWeekDayNumber(weekDay: Int) -> String {
         switch weekDay {
             
         case 1:
-//            return "Sun"
             return NSLocalizedString("Sun", comment: "")
             
         case 2:
-//            return "Mon"
             return NSLocalizedString("Mon", comment: "")
             
         case 3:
-//            return "Tue"
             return NSLocalizedString("Tue", comment: "")
             
         case 4:
-//            return "Wed"
             return NSLocalizedString("Wed", comment: "")
             
         case 5:
-//            return "Thu"
             return NSLocalizedString("Thu", comment: "")
             
         case 6:
-//            return "Fri"
             return NSLocalizedString("Fri", comment: "")
             
         case 7:
-//            return "Sat"
             return NSLocalizedString("Sat", comment: "")
             
         default:
@@ -590,51 +468,39 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         switch month {
             
         case 1:
-//            return "Jan"
             return NSLocalizedString("Jan", comment: "")
             
         case 2:
-//            return "Feb"
             return NSLocalizedString("Feb", comment: "")
             
         case 3:
-//            return "Mar"
             return NSLocalizedString("Mar", comment: "")
             
         case 4:
-//            return "Apr"
             return NSLocalizedString("Apr", comment: "")
             
         case 5:
-//            return "May"
             return NSLocalizedString("May", comment: "")
             
         case 6:
-//            return "Jun"
             return NSLocalizedString("Jun", comment: "")
             
         case 7:
-//            return "Jul"
             return NSLocalizedString("Jul", comment: "")
             
         case 8:
-//            return "Aug"
             return NSLocalizedString("Aug", comment: "")
             
         case 9:
-//            return "Sept"
             return NSLocalizedString("Sept", comment: "")
             
         case 10:
-//            return "Oct"
             return NSLocalizedString("Oct", comment: "")
             
         case 11:
-//            return "Nov"
             return NSLocalizedString("Nov", comment: "")
             
         case 12:
-//            return "Dec"
             return NSLocalizedString("Dec", comment: "")
             
         default:
@@ -846,7 +712,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     // MARK: - JBBarChartViewDataSource
     
     func barChartView(barChartView: JBBarChartView!, heightForBarViewAtIndex index: UInt) -> CGFloat {
-        return self.data[Int(index)]
+        return 10//self.data[Int(index)]
     }
     
     func barChartView(barChartView: JBBarChartView!, colorForBarViewAtIndex index: UInt) -> UIColor! {
@@ -857,8 +723,15 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     func barPaddingForBarChartView(barChartView: JBBarChartView!) -> CGFloat {
+        return self.barPaddingForBarChartView()
+    }
+    
+    func barPaddingForBarChartView() -> CGFloat {
         let barNumber = CGFloat(self.getNumberOfBarsByPhoneSize())
-        return (barChartView.frame.width - (barNumber * 15)) / ((barNumber - 1))
+        let result = (self.statisticsView.frame.width - (barNumber * ChartBarWidth)) / (barNumber * 2) * 2
+        print("self.statisticsView.frame.width : \(self.statisticsView.frame.width)")
+        print("result: \(result)")
+        return result
     }
 //
 //    func barGroupPaddingForBarChartView(barChatView: JBBarChartView!) -> CGFloat {

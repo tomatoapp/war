@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E49a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aC1-Pi-pp5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aC1-Pi-pp5">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -852,6 +852,10 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statisics_bg" translatesAutoresizingMaskIntoConstraints="NO" id="1v8-dx-aI2">
                                                             <rect key="frame" x="0.0" y="0.0" width="294" height="193"/>
                                                         </imageView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQw-Nz-oFT" customClass="JBBarChartView">
+                                                            <rect key="frame" x="0.0" y="0.0" width="294" height="157"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statisics_line" translatesAutoresizingMaskIntoConstraints="NO" id="fvi-rL-MzT">
                                                             <rect key="frame" x="13" y="158" width="268" height="2"/>
                                                             <constraints>
@@ -898,10 +902,14 @@
                                                         <constraint firstAttribute="trailing" secondItem="t9w-0O-b4q" secondAttribute="trailing" constant="8" id="NQb-9h-PiJ"/>
                                                         <constraint firstItem="1v8-dx-aI2" firstAttribute="top" secondItem="K4t-eU-vno" secondAttribute="top" id="Uzx-Ra-fYA"/>
                                                         <constraint firstAttribute="trailing" secondItem="fvi-rL-MzT" secondAttribute="trailing" constant="13" id="cNB-pz-bvk"/>
+                                                        <constraint firstItem="fvi-rL-MzT" firstAttribute="top" secondItem="eQw-Nz-oFT" secondAttribute="bottom" constant="1" id="eTp-Jf-kG9"/>
                                                         <constraint firstAttribute="trailing" secondItem="1v8-dx-aI2" secondAttribute="trailing" id="gZP-9m-Mr3"/>
+                                                        <constraint firstAttribute="trailing" secondItem="eQw-Nz-oFT" secondAttribute="trailing" id="lBb-GA-Fad"/>
                                                         <constraint firstItem="fvi-rL-MzT" firstAttribute="leading" secondItem="K4t-eU-vno" secondAttribute="leading" constant="13" id="n9n-7V-9dt"/>
+                                                        <constraint firstItem="eQw-Nz-oFT" firstAttribute="leading" secondItem="K4t-eU-vno" secondAttribute="leading" id="qDC-B2-AHU"/>
                                                         <constraint firstItem="t9w-0O-b4q" firstAttribute="top" secondItem="K4t-eU-vno" secondAttribute="top" constant="4" id="tFp-fp-ivt"/>
                                                         <constraint firstAttribute="bottom" secondItem="1v8-dx-aI2" secondAttribute="bottom" id="vyp-A2-5S3"/>
+                                                        <constraint firstItem="eQw-Nz-oFT" firstAttribute="top" secondItem="K4t-eU-vno" secondAttribute="top" id="zJD-RR-ZI4"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -934,6 +942,9 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="chartView" destination="eQw-Nz-oFT" id="wa5-FX-m5J"/>
+                        <outlet property="chartViewLeading" destination="qDC-B2-AHU" id="anh-9c-d3j"/>
+                        <outlet property="chartViewTrailing" destination="lBb-GA-Fad" id="ujf-Rk-0QO"/>
                         <outlet property="commentsView" destination="t9w-0O-b4q" id="dNC-5F-fHK"/>
                         <outlet property="segmentedControl" destination="DHL-AT-Az8" id="2E0-kd-ssn"/>
                         <outlet property="statisticsBg" destination="1v8-dx-aI2" id="n9c-42-y91"/>
@@ -989,28 +1000,28 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUp-xW-CgF">
                                                     <rect key="frame" x="77" y="43" width="167" height="164"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="finished number" translatesAutoresizingMaskIntoConstraints="NO" id="h6J-bn-oc6">
+                                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="finished number" translatesAutoresizingMaskIntoConstraints="NO" id="h6J-bn-oc6">
                                                             <rect key="frame" x="0.0" y="0.0" width="167" height="164"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="done" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awD-DG-OHz">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="done" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awD-DG-OHz">
                                                             <rect key="frame" x="36" y="123" width="50" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.93725490199999995" green="0.97647058819999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="he7-gx-XHj">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="he7-gx-XHj">
                                                             <rect key="frame" x="27" y="73" width="69" height="49"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="41"/>
                                                             <color key="textColor" red="0.93725490196078431" green="0.97647058823529409" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nf8-Qv-a4l">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nf8-Qv-a4l">
                                                             <rect key="frame" x="109" y="23" width="33" height="24"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" red="0.99607843137254903" green="0.95294117647058818" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="stops" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLj-2B-1Lf">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="stops" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLj-2B-1Lf">
                                                             <rect key="frame" x="95" y="46" width="60" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.99607843139999996" green="0.95294117649999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

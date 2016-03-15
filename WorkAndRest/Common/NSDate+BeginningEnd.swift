@@ -52,4 +52,8 @@ extension NSDate {
     func toSampleString() -> String {
         return self.toString("d")
     }
+    
+    func isSameMonthWithDate(date: NSDate) -> Bool {
+        return self.toString("MM") == date.toString("MM")
+    }
 }
