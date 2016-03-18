@@ -27,18 +27,18 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     var baseData: [Int: Array<Work>] = [:]
     var tooltipVisible = false
     
-//    var tooltip: UILabel!
+    //    var tooltip: UILabel!
     var locker: StatisticsLocker?
     
     //var maximumHeight: CGFloat = 0.0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.chartView.delegate = self
         self.chartView.dataSource = self
         self.chartView.minimumValue = 0.0
-
+        
         ProductsManager.sharedInstance.delegate = self
     }
     
@@ -68,32 +68,32 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         }
         self.loaDataSourceBySegmentedControlSelectedIndex(self.segmentedControl.selectedSegmentIndex)
         self.setTooltipValue()
-
+        
         //self.chartView.reloadData()
         
         /*
         if !NSUserDefaults.standardUserDefaults().boolForKey(GlobalConstants.kBOOL_hasShownChartTutorial) {
-            self.showTurorial()
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownChartTutorial)
+        self.showTurorial()
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GlobalConstants.kBOOL_hasShownChartTutorial)
         }
         */
     }
     
     /*
     func showTurorial() {
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-            Int64(0.1 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue(), {
-            self.performSegueWithIdentifier("showChartTutorialSegue", sender: nil)
-            return
-        })
-        
+    let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+    Int64(0.1 * Double(NSEC_PER_SEC)))
+    dispatch_after(delayTime, dispatch_get_main_queue(), {
+    self.performSegueWithIdentifier("showChartTutorialSegue", sender: nil)
+    return
+    })
+    
     }
     */
     
     func lockTheChart() {
-//        let locker = UIImageView(image: UIImage(named: "lock chart"))
-//        locker.frame = CGRectMake(0, 0, self.view.frame.size.width - 26, 193)
+        //        let locker = UIImageView(image: UIImage(named: "lock chart"))
+        //        locker.frame = CGRectMake(0, 0, self.view.frame.size.width - 26, 193)
         
         self.locker = StatisticsLocker(frame: CGRectMake(0, 0, self.view.frame.size.width - 25, 193))
         locker!.delegate = self
@@ -165,10 +165,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     /*
     func setCommentsViewVisible(visible: Bool) {
-        UIView.animateWithDuration(0.3,
-            animations: { () -> Void in
-                self.commentsView.alpha = visible ? 1.0 : 0.0
-            }, completion: nil)
+    UIView.animateWithDuration(0.3,
+    animations: { () -> Void in
+    self.commentsView.alpha = visible ? 1.0 : 0.0
+    }, completion: nil)
     }
     */
     
@@ -199,36 +199,36 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         /*
         // 1. Remove the zero item from the top of the data source.
         while self.data.count >= 2 && (self.data[0] == 0 && self.data[1] == 0) {
-            self.data.removeAtIndex(0)
-            //self.data.removeAtIndex(0)
+        self.data.removeAtIndex(0)
+        //self.data.removeAtIndex(0)
         }
         
         while self.data.count < self.getNumberOfBarsByPhoneSize() {
-            self.data.append(CGFloat(0))
+        self.data.append(CGFloat(0))
         }
         */
         self.setChatViewMaximumValue(self.data.maxElement()!)
         self.setStateToCollapsed()
-
+        
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("setStateToExpanded"), userInfo: nil, repeats: false)
     }
     
     func getCapacity() -> Int {
         /*
         if WARDevice.getPhoneType() == .iPhone6 || WARDevice.getPhoneType() == .iPhone6Plus {
-            return 4
+        return 4
         }
         return 3
         */
         switch self.chatType {
-            case .Week:
-                return 7
+        case .Week:
+            return 7
             
-            case .Month:
-                return 4//4*2
+        case .Month:
+            return 4//4*2
             
-            case .Year:
-                return 6//12
+        case .Year:
+            return 6//12
         }
     }
     
@@ -243,7 +243,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     func setChatViewMaximumValue(value: CGFloat) {
         
-    self.chartView.maximumValue = self.getMaximumChartViewHeightByValue(value)
+        self.chartView.maximumValue = self.getMaximumChartViewHeightByValue(value)
     }
     
     // Get today
@@ -341,18 +341,18 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             self.chartViewFooterView.removeFromSuperview()
         }
     }
-
+    
     func removeHeaderViewFromTheStatisticsView() {
         if self.chartViewHeaderView != nil && self.chartViewHeaderView.superview != nil {
             self.chartViewHeaderView.removeFromSuperview()
         }
     }
-
+    
     
     func addFooterViewToTheStatisticsView(type: TimeSpanType) {
-
+        
         var names = [String]()
-
+        
         // Init the footer view
         let LABEL_HEIGHT: CGFloat = 25
         self.chartViewFooterView = UIView()
@@ -363,19 +363,19 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             make.width.equalTo()(self.statisticsView.mas_width)
             make.height.equalTo()(LABEL_HEIGHT)
         }
-
+        
         let now = self.getTodayComponents()
         let start = getFirstSecondComponents(now)
         let end = getLastSecondComponents(now)
         let capacity = self.getCapacity()
-
+        
         switch type {
             
         case .Week:
             for i in 0...((self.getCapacity() - 1) * 1) {
                 let day = NSDate().addDays(-i)
                 if i == (self.getCapacity() - 1) {
-                   
+                    
                     // en
                     let monthStr = self.getMonthStringByMonthNumber(day.getMonth())
                     var name = "\(monthStr) d"
@@ -399,7 +399,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 end.day = start.day + 6
                 let startDate = NSCalendar.currentCalendar().dateFromComponents(start)!
                 let endDate = NSCalendar.currentCalendar().dateFromComponents(end)!
-
+                
                 // let startDateString = startDate.toString("M月d")
                 // en
                 let startMonthString = self.getMonthStringByMonthNumber(startDate.getMonth())
@@ -432,7 +432,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 }
                 names.insert("\(startDateString)-\(endDateString)", atIndex: 0)
             }
-
+            
             break
             
         case .Year:
@@ -451,7 +451,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 
                 // new year || first item
                 if (start.month == 1) || (i == capacity - 1) {
-//                    dateString = startDate.toString("yyyy年M月")
+                    //                    dateString = startDate.toString("yyyy年M月")
                     dateString = self.getMonthStringByMonthNumber(startDate.getMonth()) + " " + startDate.toString("yyyy")
                     if self.isZhHans() {
                         dateString = startDate.toString("yyyy年M月")
@@ -608,7 +608,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         let difference = calendar.components(.Day, fromDate: fromDate!, toDate: toDate!, options: [])
         return difference.day
     }
-
+    
     func weeksBetweenDateFromDate(date1: NSDate, toDate date2: NSDate) -> Int {
         var fromDate: NSDate?
         var toDate: NSDate?
@@ -638,77 +638,77 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     /*
     func addHeaderViewToTheStatisticsView() {
-        let VIEW_HEIGHT: CGFloat = 157
-        let LABEL_HEIGHT: CGFloat = 25
-        
-        self.chartViewHeaderView = UIView(frame: CGRectMake(0, 0, self.chartView.frame.width + 50, VIEW_HEIGHT))
-//        self.chartViewHeaderView.backgroundColor = UIColor.redColor()
-        var weekDayNames = [String]()
-        for index in 0...self.getCapacity() - 1 {
-//            let finishedValue = self.data[2 * index]
-            let finishedValue = self.data[index]
-//            let breakedValue = self.data[2 * index + 1]
-            let breakedValue: CGFloat = 0
-            if finishedValue + breakedValue == 0 {
-                if index == currentIndex {
-                    weekDayNames.append("0%")
-                } else {
-                    weekDayNames.append("-")
-                }
-            } else if finishedValue == 0 {
-                weekDayNames.append("0%")
-            } else {
-                let percentage = finishedValue / (finishedValue + breakedValue)
-                let str = "\(Int(percentage * 100))%"
-                weekDayNames.append(str)
-            }
-        }
-        
-        if weekDayNames.count <= 0 {
-            weekDayNames.append("0%")
-        }
-        
-        while weekDayNames.count > 0 && weekDayNames[weekDayNames.count - 1] == "-" {
-            weekDayNames.removeAtIndex(weekDayNames.count - 1)
-        }
-        
-        if weekDayNames.count <= 0 {
-            return
-        }
-        
-        for index in 0...weekDayNames.count - 1 {
-            let tempLabel = UILabel()
-            tempLabel.text = weekDayNames[index]
-            let capacity = self.getCapacity()
-            let itemWidth: CGFloat = chartViewHeaderView.frame.width / CGFloat(capacity)
-            
-            var y = VIEW_HEIGHT - LABEL_HEIGHT
-            let finishedValue = self.data[2 * index]
-            let breakedValue = self.data[2 * index + 1]
-            let value = max(finishedValue, breakedValue)
-            if value > 0 {
-//                let maximumValue = self.chartView.maximumValue
-                let result = value / self.maximumHeight
-                y -= result * 157
-            }
-            
-            tempLabel.frame = CGRectMake(itemWidth * CGFloat(index), y, itemWidth, LABEL_HEIGHT)
-            tempLabel.textColor = UIColor.whiteColor()
-            tempLabel.font = UIFont.systemFontOfSize(12)
-            tempLabel.textAlignment = NSTextAlignment.Center
-            chartViewHeaderView.addSubview(tempLabel)
-        }
-        
-        self.setChartViewHeaderViewVisible(false, withAmination: false)
-        
-        self.statisticsView.insertSubview(self.chartViewHeaderView, belowSubview: self.chartView)
-        chartViewHeaderView.mas_makeConstraints { (make) -> Void in
-            make.centerX.equalTo()(self.statisticsView.mas_centerX)
-            make.top.equalTo()(self.statisticsView.mas_top).offset()
-            make.width.equalTo()(self.chartView.frame.width+50)
-            make.height.equalTo()(VIEW_HEIGHT)
-            return ()
-        }
+    let VIEW_HEIGHT: CGFloat = 157
+    let LABEL_HEIGHT: CGFloat = 25
+    
+    self.chartViewHeaderView = UIView(frame: CGRectMake(0, 0, self.chartView.frame.width + 50, VIEW_HEIGHT))
+    //        self.chartViewHeaderView.backgroundColor = UIColor.redColor()
+    var weekDayNames = [String]()
+    for index in 0...self.getCapacity() - 1 {
+    //            let finishedValue = self.data[2 * index]
+    let finishedValue = self.data[index]
+    //            let breakedValue = self.data[2 * index + 1]
+    let breakedValue: CGFloat = 0
+    if finishedValue + breakedValue == 0 {
+    if index == currentIndex {
+    weekDayNames.append("0%")
+    } else {
+    weekDayNames.append("-")
+    }
+    } else if finishedValue == 0 {
+    weekDayNames.append("0%")
+    } else {
+    let percentage = finishedValue / (finishedValue + breakedValue)
+    let str = "\(Int(percentage * 100))%"
+    weekDayNames.append(str)
+    }
+    }
+    
+    if weekDayNames.count <= 0 {
+    weekDayNames.append("0%")
+    }
+    
+    while weekDayNames.count > 0 && weekDayNames[weekDayNames.count - 1] == "-" {
+    weekDayNames.removeAtIndex(weekDayNames.count - 1)
+    }
+    
+    if weekDayNames.count <= 0 {
+    return
+    }
+    
+    for index in 0...weekDayNames.count - 1 {
+    let tempLabel = UILabel()
+    tempLabel.text = weekDayNames[index]
+    let capacity = self.getCapacity()
+    let itemWidth: CGFloat = chartViewHeaderView.frame.width / CGFloat(capacity)
+    
+    var y = VIEW_HEIGHT - LABEL_HEIGHT
+    let finishedValue = self.data[2 * index]
+    let breakedValue = self.data[2 * index + 1]
+    let value = max(finishedValue, breakedValue)
+    if value > 0 {
+    //                let maximumValue = self.chartView.maximumValue
+    let result = value / self.maximumHeight
+    y -= result * 157
+    }
+    
+    tempLabel.frame = CGRectMake(itemWidth * CGFloat(index), y, itemWidth, LABEL_HEIGHT)
+    tempLabel.textColor = UIColor.whiteColor()
+    tempLabel.font = UIFont.systemFontOfSize(12)
+    tempLabel.textAlignment = NSTextAlignment.Center
+    chartViewHeaderView.addSubview(tempLabel)
+    }
+    
+    self.setChartViewHeaderViewVisible(false, withAmination: false)
+    
+    self.statisticsView.insertSubview(self.chartViewHeaderView, belowSubview: self.chartView)
+    chartViewHeaderView.mas_makeConstraints { (make) -> Void in
+    make.centerX.equalTo()(self.statisticsView.mas_centerX)
+    make.top.equalTo()(self.statisticsView.mas_top).offset()
+    make.width.equalTo()(self.chartView.frame.width+50)
+    make.height.equalTo()(VIEW_HEIGHT)
+    return ()
+    }
     }
     
     */
@@ -746,16 +746,16 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     func getNumberOfBarsByPhoneSize() -> Int {
-//        switch WARDevice.getPhoneType() {
-//        case .iPhone4, .iPhone5:
-//            return 6
-//            
-//        case .iPhone6, .iPhone6Plus:
-//            return 8
-//            
-//        default:
-//            return 0
-//        }
+        //        switch WARDevice.getPhoneType() {
+        //        case .iPhone4, .iPhone5:
+        //            return 6
+        //
+        //        case .iPhone6, .iPhone6Plus:
+        //            return 8
+        //
+        //        default:
+        //            return 0
+        //        }
         return self.getCapacity()
     }
     
@@ -766,9 +766,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     }
     
     func barChartView(barChartView: JBBarChartView!, colorForBarViewAtIndex index: UInt) -> UIColor! {
-//        return index % 2 == 0 ?
-//            UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.9) :
-//            UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.6)
+        //        return index % 2 == 0 ?
+        //            UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.9) :
+        //            UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.6)
         return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.9)
     }
     
@@ -783,29 +783,29 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         print("result: \(result)")
         return result
     }
-//
-//    func barGroupPaddingForBarChartView(barChatView: JBBarChartView!) -> CGFloat {
-//        return 50.0
-//    }
-//    
-//    
+    //
+    //    func barGroupPaddingForBarChartView(barChatView: JBBarChartView!) -> CGFloat {
+    //        return 50.0
+    //    }
+    //
+    //
     
-//    func itemsCountInOneGroup() -> Int32 {
-//        return 2
-//    }
-//    
-
-
+    //    func itemsCountInOneGroup() -> Int32 {
+    //        return 2
+    //    }
+    //
+    
+    
     func barChartView(barChartView: JBBarChartView!, didSelectBarAtIndex index: UInt) {
-       // self.setCommentsViewVisible(false)
+        // self.setCommentsViewVisible(false)
         //self.setTooltipVisible(true, animated: true, atIndex: Int(index))
         //self.setChartViewHeaderViewVisible(false, withAmination: true)
-       // self.setTooltipValue(self.data[Int(index)])
+        // self.setTooltipValue(self.data[Int(index)])
     }
     
     func didDeselectBarChartView(barChartView: JBBarChartView!) {
         //self.setCommentsViewVisible(true)
-//        self.setChartViewHeaderViewVisible(true, withAmination: true)
+        //        self.setChartViewHeaderViewVisible(true, withAmination: true)
         //self.tooltip.alpha = 0.0
     }
     
@@ -818,7 +818,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 continue
             }
             let tooltip = UILabel()
-            tooltip.text = "\(Int(value))"
+            tooltip.text = "🍅×\(Int(value))"
             tooltip.font = UIFont.systemFontOfSize(10)
             tooltip.textColor = UIColor.whiteColor()
             tooltip.textAlignment = .Center
@@ -831,50 +831,51 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             tooltip.frame = CGRectMake(x, y, itemWidth, LABEL_HEIGHT)
             self.statisticsView.addSubview(tooltip)
             tooltip.alpha = 0.0
-            UIView.animateWithDuration(0.4, animations: { () -> Void in
+            UIView.animateWithDuration(0.4, delay: 0.5, options: .BeginFromCurrentState, animations: { () -> Void in
                 tooltip.alpha = 1.0
-            })
+                
+                }, completion: nil)
             tooltips.append(tooltip)
         }
     }
     /*
     
     func setTooltipVisible(visible: Bool, animated:Bool, atIndex index: Int) {
-        if self.tooltip == nil {
-//            self.tooltip = UIView(frame: CGRectMake(0, 0, 16, 8))
-            self.tooltip = UILabel(frame: CGRectMake(0, 0, 30, 10))
-//            self.tooltip.backgroundColor = UIColor.redColor()
-            self.tooltip.font = UIFont.systemFontOfSize(12)
-            self.tooltip.textColor = UIColor.whiteColor()
-            self.tooltip.textAlignment = NSTextAlignment.Center
-            
-            self.statisticsView.addSubview(self.tooltip)
-        }
-        
-        let adjustTooltipPosition:() -> Void = {
-            let spaceWidth = (self.getCapacity() - 1) * 50 + self.getCapacity() * 10
-            let itemWidth = (self.chartView.frame.size.width - CGFloat(spaceWidth)) / CGFloat(self.getCapacity() * 2)
-
-            let itemSpace = ceil(CGFloat(index) / 2) * 10
-            let groupSpace = CGFloat(index / 2) * 50
-            let itemsWidth = CGFloat(index) * itemWidth
-            let x: CGFloat = (self.statisticsView.frame.size.width - self.chartView.frame.size.width) / 2 + itemSpace + groupSpace + itemsWidth
-            self.tooltip.frame = CGRectMake(CGFloat(x - (self.tooltip.frame.size.width - itemWidth) / 2), 20, self.tooltip.frame.size.width, self.tooltip.frame.size.height)
-        }
-        
-        let adjustTooltipVisibility:() -> Void = {
-            self.tooltip.alpha = visible ? 1.0 : 0.0
-        }
-        
-        if animated {
-            adjustTooltipPosition()
-            UIView.animateWithDuration(0.5, animations: { () -> Void in
-                adjustTooltipVisibility()
-            }, completion: { (finished) -> Void in
-            })
-        } else {
-            adjustTooltipVisibility()
-        }
+    if self.tooltip == nil {
+    //            self.tooltip = UIView(frame: CGRectMake(0, 0, 16, 8))
+    self.tooltip = UILabel(frame: CGRectMake(0, 0, 30, 10))
+    //            self.tooltip.backgroundColor = UIColor.redColor()
+    self.tooltip.font = UIFont.systemFontOfSize(12)
+    self.tooltip.textColor = UIColor.whiteColor()
+    self.tooltip.textAlignment = NSTextAlignment.Center
+    
+    self.statisticsView.addSubview(self.tooltip)
+    }
+    
+    let adjustTooltipPosition:() -> Void = {
+    let spaceWidth = (self.getCapacity() - 1) * 50 + self.getCapacity() * 10
+    let itemWidth = (self.chartView.frame.size.width - CGFloat(spaceWidth)) / CGFloat(self.getCapacity() * 2)
+    
+    let itemSpace = ceil(CGFloat(index) / 2) * 10
+    let groupSpace = CGFloat(index / 2) * 50
+    let itemsWidth = CGFloat(index) * itemWidth
+    let x: CGFloat = (self.statisticsView.frame.size.width - self.chartView.frame.size.width) / 2 + itemSpace + groupSpace + itemsWidth
+    self.tooltip.frame = CGRectMake(CGFloat(x - (self.tooltip.frame.size.width - itemWidth) / 2), 20, self.tooltip.frame.size.width, self.tooltip.frame.size.height)
+    }
+    
+    let adjustTooltipVisibility:() -> Void = {
+    self.tooltip.alpha = visible ? 1.0 : 0.0
+    }
+    
+    if animated {
+    adjustTooltipPosition()
+    UIView.animateWithDuration(0.5, animations: { () -> Void in
+    adjustTooltipVisibility()
+    }, completion: { (finished) -> Void in
+    })
+    } else {
+    adjustTooltipVisibility()
+    }
     }
     */
     // MARK: - StatisticsLockerDelegate
@@ -888,7 +889,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             MBProgressHUD.hideHUDForView(self.view, animated: true)
             return
         })
-
+        
         ProductsManager.sharedInstance.purchasePro()
     }
     
