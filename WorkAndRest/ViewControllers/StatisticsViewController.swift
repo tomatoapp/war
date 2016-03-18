@@ -38,7 +38,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.chartView.delegate = self
         self.chartView.dataSource = self
         self.chartView.minimumValue = 0.0
-        
+
         ProductsManager.sharedInstance.delegate = self
     }
     
