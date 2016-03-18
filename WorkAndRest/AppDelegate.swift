@@ -161,7 +161,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     func showBreakNotification() {
         let notification = UILocalNotification()
         notification.soundName = UILocalNotificationDefaultSoundName
-        notification.alertBody = "You stoped the timer!"
+        notification.alertBody = NSLocalizedString("You stoped the timer!\(Int(arc4random_uniform(UInt32(6))))", comment:"")
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
     

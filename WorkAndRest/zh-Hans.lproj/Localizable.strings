@@ -74,7 +74,12 @@
 "start_a_new_timer_pressed" = "start_a_new_timer_pressed_cn";
 
 "edit_task_title" = "请输入任务名称";
-"You stoped the timer!" = "哎！失败了！又忍不住玩手机了吧～ 😞";
+"You stoped the timer!0" = "哎！又忍不住玩手机了吧! 😞";
+"You stoped the timer!1" = "意志力不够坚定呀少年! 👿";
+"You stoped the timer!2" = "😱 你! 又! 打! 碎! 了! 这! 个! 小! 番! 茄! 🍅!";
+"You stoped the timer!3" = "......😞";
+"You stoped the timer!4" = "额......";
+"You stoped the timer!5" = "🍅: 你又把我打碎了! 😡";
 
 "Purchase Pro" = "购买专业版 12元";
 "To unlock, please" = "如需解锁，请";

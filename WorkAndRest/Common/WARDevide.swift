@@ -119,4 +119,9 @@ class WARDevice {
     class func isiOS7() -> Bool {
         return getPhoneVersion() >= 7  && getPhoneVersion() < 8
     }
+    
+    class func getLanguage() -> String {
+        return  NSBundle.mainBundle().preferredLocalizations.first! as String
+
+    }
 }

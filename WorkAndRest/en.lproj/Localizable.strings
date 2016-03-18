@@ -73,7 +73,12 @@
 "start_a_new_timer_pressed" = "start_a_new_timer_pressed_en";
 
 "edit_task_title" = "Enter the task title";
-"You stoped the timer!" = "Loser!! You couldn't help to use the phone again! 😠";
+"You stoped the timer!0" = "You couldn't help to use the phone again!! 😠";
+"You stoped the timer!1" = "You couldn't help to use the phone again!! 😠";
+"You stoped the timer!2" = "You couldn't help to use the phone again!! 😠";
+"You stoped the timer!3" = "......😞";
+"You stoped the timer!4" = "......";
+"You stoped the timer!5" = "🍅: 😡";
 
 "Purchase Pro" = "Purchase Pro $1.99";
 "To unlock, please" = "To unlock, please";

@@ -366,9 +366,19 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             for i in 0...((self.getCapacity() - 1) * 1) {
                 let day = NSDate().addDays(-i)
                 if i == (self.getCapacity() - 1) {
-                    names.insert(day.toString("M月d日"), atIndex: 0)
+                   
+                    // en
+                    let monthStr = self.getMonthStringByMonthNumber(day.getMonth())
+                    var name = "\(monthStr) d"
+                    
+                    // zh-Hans
+                    if WARDevice.getLanguage() == "zh-Hans" {
+                        name = day.toString("M月d日")
+                    }
+                    
+                    names.insert(name, atIndex: 0)
                 } else {
-                    names.insert(day.toSampleString(), atIndex: 0)
+                    names.insert(day.toSampleString("d"), atIndex: 0)
                 }
             }
             break
@@ -380,12 +390,37 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 end.day = start.day + 6
                 let startDate = NSCalendar.currentCalendar().dateFromComponents(start)!
                 let endDate = NSCalendar.currentCalendar().dateFromComponents(end)!
-                let startDateString = startDate.toString("M月d")
-                var endDateString = endDate.toString("M月d")
+
+                // let startDateString = startDate.toString("M月d")
+                // en
+                let startMonthString = self.getMonthStringByMonthNumber(startDate.getMonth())
+                var startDateString = "\(startMonthString) d"
+                // cn
+                if self.isZhHans() {
+                    startDateString = startDate.toString("M月d")
+                }
+                
+                // var endDateString = endDate.toString("M月d")
+                //en
+                let endMonthString = self.getMonthStringByMonthNumber(endDate.getMonth())
+                var endDateString = "\(endMonthString) d"
+                // cn
+                if self.isZhHans() {
+                    endDateString = endDate.toString("M月d")
+                }
+                
+                
+                // if startDate.isSameMonthWithDate(endDate) {
+                //  endDateString = endDate.toString("d日")
+                // }
+                // en
                 if startDate.isSameMonthWithDate(endDate) {
+                    endDateString = endDate.toString("d")
+                }
+                // cn
+                if self.isZhHans() {
                     endDateString = endDate.toString("d日")
                 }
-                print("\(startDateString) ~ \(endDateString)  \(i)")
                 names.insert("\(startDateString)-\(endDateString)", atIndex: 0)
             }
 
@@ -396,16 +431,22 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             for i in 0...capacity-1 {
                 start.month = start.month - (i == 0 ? 0 : 1)
                 let startDate = NSCalendar.currentCalendar().dateFromComponents(start)!
-                print("\(startDate.toString("M月")) \(i)")
-                var dateString = startDate.toString("M月")
-                
-                // new year
-                if start.month == 1 {
-                    dateString = startDate.toString("yyyy年M月")
+                // var dateString = startDate.toString("M月")
+                // en
+                var dateString = self.getMonthStringByMonthNumber(startDate.getMonth())
+                // cn
+                if self.isZhHans() {
+                    dateString = startDate.toString("M月")
                 }
-                // first item
-                if i == capacity-1 {
-                    dateString = startDate.toString("yyyy年M月")
+                
+                
+                // new year || first item
+                if (start.month == 1) || (i == capacity - 1) {
+//                    dateString = startDate.toString("yyyy年M月")
+                    dateString = self.getMonthStringByMonthNumber(startDate.getMonth()) + " " + startDate.toString("yyyy")
+                    if self.isZhHans() {
+                        dateString = startDate.toString("yyyy年M月")
+                    }
                 }
                 names.insert("\(dateString)", atIndex: 0)
             }
@@ -854,6 +895,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         self.view.addSubview(thanksHUD)
         thanksHUD.show(true)
         thanksHUD.hide(true, afterDelay: 2.5)
+    }
+    
+    func isZhHans() -> Bool {
+        return WARDevice.getLanguage() == "zh-Hans"
     }
 }
 

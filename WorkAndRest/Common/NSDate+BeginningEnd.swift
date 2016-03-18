@@ -42,8 +42,8 @@ extension NSDate {
         return dateFormatter.stringFromDate(self)
     }
     
-    func toSampleString() -> String {
-        return self.toString("d")
+    func toSampleString(format: String) -> String {
+        return self.toString(format)
     }
     
     func isSameMonthWithDate(date: NSDate) -> Bool {
