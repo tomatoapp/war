@@ -27,10 +27,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     var baseData: [Int: Array<Work>] = [:]
     var tooltipVisible = false
     
-    var tooltip: UILabel!
+//    var tooltip: UILabel!
     var locker: StatisticsLocker?
     
-    var maximumHeight: CGFloat = 0.0
+    //var maximumHeight: CGFloat = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +67,8 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             self.locker?.removeFromSuperview()
         }
         self.loaDataSourceBySegmentedControlSelectedIndex(self.segmentedControl.selectedSegmentIndex)
+        self.setTooltipValue()
+
         //self.chartView.reloadData()
         
         /*
@@ -105,6 +107,10 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     
     @IBAction func segmentControlValueChanged(sender: AnyObject) {
         self.loaDataSourceBySegmentedControlSelectedIndex((sender as! UISegmentedControl).selectedSegmentIndex)
+        for label in self.tooltips {
+            label.removeFromSuperview()
+        }
+        self.setTooltipValue()
     }
     
     // MARK: - Methods
@@ -226,15 +232,18 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         }
     }
     
-    func setChatViewMaximumValue(value: CGFloat) {
+    func getMaximumChartViewHeightByValue(value: CGFloat) -> CGFloat {
         if value > 20 {
             // 20 = 30 / 1.4858
             // If the value too large, then set the max height of the chat to the_max_number * 1.4858
-             self.maximumHeight = value * 1.4858
+            return value * 1.4858
         } else {
-            self.maximumHeight = 30
+            return 30
         }
-    self.chartView.maximumValue = self.maximumHeight
+    }
+    func setChatViewMaximumValue(value: CGFloat) {
+        
+    self.chartView.maximumValue = self.getMaximumChartViewHeightByValue(value)
     }
     
     // Get today
@@ -753,7 +762,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     // MARK: - JBBarChartViewDataSource
     
     func barChartView(barChartView: JBBarChartView!, heightForBarViewAtIndex index: UInt) -> CGFloat {
-        return 10//self.data[Int(index)]
+        return self.data[Int(index)]
     }
     
     func barChartView(barChartView: JBBarChartView!, colorForBarViewAtIndex index: UInt) -> UIColor! {
@@ -791,7 +800,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
        // self.setCommentsViewVisible(false)
         //self.setTooltipVisible(true, animated: true, atIndex: Int(index))
         //self.setChartViewHeaderViewVisible(false, withAmination: true)
-        //self.setTooltipValue(self.data[Int(index)])
+       // self.setTooltipValue(self.data[Int(index)])
     }
     
     func didDeselectBarChartView(barChartView: JBBarChartView!) {
@@ -799,10 +808,36 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
 //        self.setChartViewHeaderViewVisible(true, withAmination: true)
         //self.tooltip.alpha = 0.0
     }
-    /*
-    func setTooltipValue(value: CGFloat) {
-        self.tooltip.text = "\(Int(value))"
+    
+    var tooltips = Array<UILabel>()
+    func setTooltipValue() {
+        let LABEL_HEIGHT: CGFloat = 10
+        for index in 0...self.getCapacity() - 1 {
+            let value = self.data[Int(index)]
+            if value <= 0 {
+                continue
+            }
+            let tooltip = UILabel()
+            tooltip.text = "\(Int(value))"
+            tooltip.font = UIFont.systemFontOfSize(10)
+            tooltip.textColor = UIColor.whiteColor()
+            tooltip.textAlignment = .Center
+            let itemWidth: CGFloat = self.statisticsView.frame.width / CGFloat(self.getCapacity())
+            let x: CGFloat = itemWidth * CGFloat(index)
+            let itemBarHeight = value
+            var y: CGFloat = self.chartView.frame.size.height - itemBarHeight - LABEL_HEIGHT
+            let result = value / self.getMaximumChartViewHeightByValue(value)
+            y -= result * self.chartView.frame.size.height
+            tooltip.frame = CGRectMake(x, y, itemWidth, LABEL_HEIGHT)
+            self.statisticsView.addSubview(tooltip)
+            tooltip.alpha = 0.0
+            UIView.animateWithDuration(0.4, animations: { () -> Void in
+                tooltip.alpha = 1.0
+            })
+            tooltips.append(tooltip)
+        }
     }
+    /*
     
     func setTooltipVisible(visible: Bool, animated:Bool, atIndex index: Int) {
         if self.tooltip == nil {
