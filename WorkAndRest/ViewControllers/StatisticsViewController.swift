@@ -352,7 +352,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         }
     }
     
-    
     func addFooterViewToTheStatisticsView(type: TimeSpanType) {
         
         var names = [String]()
@@ -407,7 +406,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 let startDate = NSCalendar.currentCalendar().dateFromComponents(start)!
                 let endDate = NSCalendar.currentCalendar().dateFromComponents(end)!
                 
-                // let startDateString = startDate.toString("M月d")
                 // en
                 let startMonthString = self.getMonthStringByMonthNumber(startDate.getMonth())
                 var startDateString = "\(startMonthString) d"
@@ -416,7 +414,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                     startDateString = startDate.toString("M月d日")
                 }
                 
-                // var endDateString = endDate.toString("M月d")
                 //en
                 let endMonthString = self.getMonthStringByMonthNumber(endDate.getMonth())
                 var endDateString = "\(endMonthString) d"
@@ -424,11 +421,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 if self.isZhHans() {
                     endDateString = endDate.toString("M月d日")
                 }
-                
-                
-                // if startDate.isSameMonthWithDate(endDate) {
-                //  endDateString = endDate.toString("d日")
-                // }
                 
                 if startDate.isSameMonthWithDate(endDate) {
                     // en
