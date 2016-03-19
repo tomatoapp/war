@@ -111,7 +111,12 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     
     // MARK: - Methods
     
+    var preIndex = -1
     func loaDataSourceBySegmentedControlSelectedIndex(index: Int) {
+        if preIndex == index {
+            return
+        }
+        preIndex = index
         var type: TimeSpanType = .Week
         switch index {
         case 0:
