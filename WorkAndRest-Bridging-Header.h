@@ -17,3 +17,6 @@
 #import "CMPopTipView.h"
 #import "MBProgressHUD.h"
 #import "EAIntroView.h"
+
+#import "Parse.h"
+#import <ParseUI/ParseUI.h>

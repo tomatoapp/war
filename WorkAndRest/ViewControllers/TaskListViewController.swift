@@ -16,7 +16,7 @@ let HEADER_HEIGHT: CGFloat = 125
 //let TIP_TAG_CREATE_TASK: Int = 1001
 //let TIP_TAG_START_TASK: Int = 1002
 
-class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, SWTableViewCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate, TaskManagerDelegate {
+class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDelegate, NewTaskViewControllerDelegate, TaskListItemCellDelegate, SWTableViewCellDelegate, TaskRunnerManagerDelegate, TaskListHeaderViewDelegate, TaskManagerDelegate, PFLogInViewControllerDelegate {
     
     @IBOutlet var createTaskButtonItem: UIBarButtonItem!
     var allTasks = [Task]()
@@ -52,6 +52,11 @@ class TaskListViewController: BaseTableViewController,TaskTitleViewControllerDel
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "introDidFinish", name: ROOTVIEWCONTROLLER_INTRO_DID_FINISH_NOTIFICATION, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "firstTaskCreateSuccess", name: TASKMANAGER_FIRST_TASK_CREATE_SUCCESS_NOTIFICATION, object: nil)
+        
+        
+        let loginViewController = LogInViewController()
+        loginViewController.delegate = self
+        self.presentViewController(loginViewController, animated: true, completion: nil)
     }
     
     deinit {

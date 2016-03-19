@@ -30,6 +30,7 @@
 		6439ADC918E1325800CAC85B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6439ADC818E1325800CAC85B /* CoreData.framework */; };
 		6442291D1A7A2F2000E516C1 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6442291C1A7A2F2000E516C1 /* TaskListViewController.swift */; };
 		644554641A7CADD100F48164 /* TaskListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644554631A7CADD100F48164 /* TaskListItemCell.xib */; };
+		644BC8B51C9D90DA0016CCFE /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BC8B41C9D90DA0016CCFE /* LogInViewController.swift */; };
 		6458B66B1A7722BD004FD3D9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458B66A1A7722BD004FD3D9 /* RootViewController.swift */; };
 		645FDE0E1A7D98FB002EC8EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FDE0D1A7D98FB002EC8EF /* AppDelegate.swift */; };
 		645FDE161A7D9E8C002EC8EF /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FDE151A7D9E8B002EC8EF /* GlobalConstants.swift */; };
@@ -139,6 +140,7 @@
 		6439ADC818E1325800CAC85B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6442291C1A7A2F2000E516C1 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		644554631A7CADD100F48164 /* TaskListItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskListItemCell.xib; sourceTree = "<group>"; };
+		644BC8B41C9D90DA0016CCFE /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		6458B66A1A7722BD004FD3D9 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		645FDE0D1A7D98FB002EC8EF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		645FDE151A7D9E8B002EC8EF /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				648A27CD1AAD4DA00002BF04 /* Tutorials */,
+				6477D54F1C9D40B600F7B3C6 /* User */,
 				649308561A7AE65C00480677 /* BaseViewController.swift */,
 				649308581A7AE68200480677 /* BaseTableViewController.swift */,
 				6458B66A1A7722BD004FD3D9 /* RootViewController.swift */,
@@ -413,6 +416,14 @@
 				647603031AA9CD4500B1373E /* CMPopTipView.m */,
 			);
 			path = CMPopTipView;
+			sourceTree = "<group>";
+		};
+		6477D54F1C9D40B600F7B3C6 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				644BC8B41C9D90DA0016CCFE /* LogInViewController.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		648A27CD1AAD4DA00002BF04 /* Tutorials */ = {
@@ -649,6 +660,7 @@
 				649D54081A849978002593F8 /* WARDevide.swift in Sources */,
 				6442291D1A7A2F2000E516C1 /* TaskListViewController.swift in Sources */,
 				645FDE0E1A7D98FB002EC8EF /* AppDelegate.swift in Sources */,
+				644BC8B51C9D90DA0016CCFE /* LogInViewController.swift in Sources */,
 				C354053C1B560C80008111C2 /* IdentifierDef.swift in Sources */,
 				649308571A7AE65C00480677 /* BaseViewController.swift in Sources */,
 				C38623661B86E8CE00E91F5F /* WARDate.swift in Sources */,

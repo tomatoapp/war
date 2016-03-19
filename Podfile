@@ -17,6 +17,7 @@ pod 'JBChartView', :path => '~/Documents/git/Tomato!/JBChartView'
 pod 'MBProgressHUD', '~> 0.9.1'
 
 pod 'Parse'
+pod 'ParseUI'
 
 #link_with 'WorkAndRest', 'WorkAndRest WatchKit Extension'
 #pod 'MMWormhole', '~> 1.2.0'
