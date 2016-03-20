@@ -67,7 +67,6 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             self.locker?.removeFromSuperview()
         }
         self.loaDataSourceBySegmentedControlSelectedIndex(self.segmentedControl.selectedSegmentIndex)
-        self.setTooltipValue()
         
         //self.chartView.reloadData()
         
@@ -107,10 +106,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
     
     @IBAction func segmentControlValueChanged(sender: AnyObject) {
         self.loaDataSourceBySegmentedControlSelectedIndex((sender as! UISegmentedControl).selectedSegmentIndex)
-        for label in self.tooltips {
-            label.removeFromSuperview()
-        }
-        self.setTooltipValue()
+        
     }
     
     // MARK: - Methods
@@ -143,6 +139,11 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
         
         self.chartViewLeading.constant = (self.barPaddingForBarChartView() / 2)
         self.chartViewTrailing.constant = (self.barPaddingForBarChartView() / 2)
+        
+        for label in self.tooltips {
+            label.removeFromSuperview()
+        }
+        self.setTooltipValue()
     }
     
     func setChartViewHeaderViewVisible(visible: Bool, withAmination animation: Bool) {
@@ -819,19 +820,19 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             }
             let tooltip = UILabel()
             tooltip.text = "🍅×\(Int(value))"
-            tooltip.font = UIFont.systemFontOfSize(10)
+            tooltip.font = UIFont.systemFontOfSize(8)
             tooltip.textColor = UIColor.whiteColor()
             tooltip.textAlignment = .Center
             let itemWidth: CGFloat = self.statisticsView.frame.width / CGFloat(self.getCapacity())
             let x: CGFloat = itemWidth * CGFloat(index)
             let itemBarHeight = value
-            var y: CGFloat = self.chartView.frame.size.height - itemBarHeight - LABEL_HEIGHT
-            let result = value / self.getMaximumChartViewHeightByValue(value)
+            var y: CGFloat = self.chartView.frame.size.height - LABEL_HEIGHT
+            let result = itemBarHeight / self.getMaximumChartViewHeightByValue(itemBarHeight)
             y -= result * self.chartView.frame.size.height
             tooltip.frame = CGRectMake(x, y, itemWidth, LABEL_HEIGHT)
             self.statisticsView.addSubview(tooltip)
             tooltip.alpha = 0.0
-            UIView.animateWithDuration(0.4, delay: 0.5, options: .BeginFromCurrentState, animations: { () -> Void in
+            UIView.animateWithDuration(0.0, delay: 0.55, options: .BeginFromCurrentState, animations: { () -> Void in
                 tooltip.alpha = 1.0
                 
                 }, completion: nil)
