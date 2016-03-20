@@ -307,6 +307,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             start.day = start.day - start.weekday + 1
             for i in 0...capacity-1 {
                 start.day = start.day - ((i == 0 ? 0 : 1) * 7)
+                if self.isZhHans() {
+                    start.day += 1
+                }
                 end.day = start.day + 6
                 let startDate = NSCalendar.currentCalendar().dateFromComponents(start)!
                 let endDate = NSCalendar.currentCalendar().dateFromComponents(end)!
@@ -397,6 +400,9 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
             start.day = start.day - start.weekday + 1
             for i in 0...capacity-1 {
                 start.day = start.day - ((i == 0 ? 0 : 1) * 7)
+                if self.isZhHans() {
+                    start.day += 1
+                }
                 end.day = start.day + 6
                 let startDate = NSCalendar.currentCalendar().dateFromComponents(start)!
                 let endDate = NSCalendar.currentCalendar().dateFromComponents(end)!
@@ -407,7 +413,7 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 var startDateString = "\(startMonthString) d"
                 // cn
                 if self.isZhHans() {
-                    startDateString = startDate.toString("M月d")
+                    startDateString = startDate.toString("M月d日")
                 }
                 
                 // var endDateString = endDate.toString("M月d")
@@ -416,21 +422,23 @@ class StatisticsViewController: BaseTableViewController, JBBarChartViewDelegate,
                 var endDateString = "\(endMonthString) d"
                 // cn
                 if self.isZhHans() {
-                    endDateString = endDate.toString("M月d")
+                    endDateString = endDate.toString("M月d日")
                 }
                 
                 
                 // if startDate.isSameMonthWithDate(endDate) {
                 //  endDateString = endDate.toString("d日")
                 // }
-                // en
+                
                 if startDate.isSameMonthWithDate(endDate) {
+                    // en
                     endDateString = endDate.toString("d")
+                    // cn
+                    if self.isZhHans() {
+                        endDateString = endDate.toString("d日")
+                    }
                 }
-                // cn
-                if self.isZhHans() {
-                    endDateString = endDate.toString("d日")
-                }
+                
                 names.insert("\(startDateString)-\(endDateString)", atIndex: 0)
             }
             
